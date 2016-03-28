@@ -13,10 +13,10 @@ Author:  Andelo Naselli <anaselli@linux.it>
 '''
 
 import sys
-import dnfbase
 import yui
 
-
+import dnfbase
+import groupicons
 
 #################
 # class mainGui #
@@ -28,8 +28,9 @@ class mainGui():
 
     def __init__(self):
         
-        self.toRemove = [];
-        self.toInstall = [];
+        self.toRemove = []
+        self.toInstall = []
+        self.itemList = []
         
         yui.YUI.app().setApplicationTitle("Software Management - dnfdragora")
         #TODO fix icons
@@ -79,7 +80,7 @@ class mainGui():
         self.tree.setNotify(True)
 
         packageList_header = yui.YTableHeader()
-        columns = [ '', 'Name', 'Summary', 'Version', 'Release', 'Arch']
+        columns = [ 'Name', 'Summary', 'Version', 'Release', 'Arch']
                 
         packageList_header.addColumn("")
         for col in (columns):
@@ -107,7 +108,7 @@ class mainGui():
 
     def _fillPackageList(self) :
         '''
-        _fillPackageList fill package list and checks installed packages
+        fill package list and checks installed packages
         it also clean up temporary lists for install/remove packages if
         any
         '''
@@ -117,20 +118,23 @@ class mainGui():
         yui.YUI.app().busyCursor()
         packages = dnfbase.Packages(self.dnf)
         
-        v = []
+        self.itemList = []
+        itemCollection = yui.YItemCollection()
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.installed :
-            item = yui.YCBTableItem("", pkg.name , "" , pkg.version, pkg.release, pkg.arch)
+            item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
             item.check(True)
-            v.append(item)
+            self.itemList.append(item)
+            #itemCollection.push_back(item)
 
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.available:
-            item = yui.YCBTableItem("", pkg.name , "" , pkg.version, pkg.release, pkg.arch)
-            v.append(item)
-
+            item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+            self.itemList.append(item)
+            #itemCollection.push_back(item)
+            
         #NOTE workaround to get YItemCollection working in python
-        itemCollection = yui.YItemCollection(v)
+        itemCollection = yui.YItemCollection(self.itemList)
 
         self.packageList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
@@ -141,6 +145,25 @@ class mainGui():
 
         self.dialog.doneMultipleChanges()
         yui.YUI.app().normalCursor()
+        
+    def setInfoOnWidget(self, pkg_name) :
+        """
+        write package description into info widget, 
+        this method performs a new query based on package name,
+        future implementation could save package info into a temporary
+        object structure linked to the selected item
+        """
+        packages = dnfbase.Packages(self.dnf)
+        packages.all
+        q = packages.query
+        p_list = q.filter(name = pkg_name)
+        # NOTE first item of the list should be enough, different
+        # arch should have same description for the package
+        pkg = p_list[0]
+        if pkg :
+            self.info.setValue("")
+            s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
+            self.info.setValue(s)
         
 
     def handleevent(self):
@@ -162,13 +185,15 @@ class mainGui():
                 if (widget == self.quitButton) :
                     break
                 elif (widget == self.packageList) :
-                    #wEvent = yui.toYWidgetEvent(event)
-                    #if (wEvent.reason() == yui.YEvent.ValueChanged) :
-                        #print("TODO checked\n")
+                    wEvent = yui.toYWidgetEvent(event)
+                    if (wEvent.reason() == yui.YEvent.ValueChanged) :
+                        print("TODO checked\n")
                     print("TODO selected\n")
-                    #sel = self.packageList.selectedItem()
-                    #print (sel.label())
-                    #_detaillist_callback($detail_list->selectedItem(), $info, \%$options);
+                    sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
+                    if sel :
+                        pkg_name = sel.cell(1).label() 
+                        self.setInfoOnWidget(pkg_name)
+                        
                 else:
                     print("Unmanaged widget")
             else:
