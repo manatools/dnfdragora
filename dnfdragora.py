@@ -104,7 +104,10 @@ class mainGui():
         
         self.dnf = dnfbase.DnfBase()
         self._fillPackageList()
-
+        sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
+        if sel :
+            pkg_name = sel.cell(0).label() 
+            self.setInfoOnWidget(pkg_name)
 
     def _fillPackageList(self) :
         '''
@@ -157,13 +160,14 @@ class mainGui():
         packages.all
         q = packages.query
         p_list = q.filter(name = pkg_name)
-        # NOTE first item of the list should be enough, different
-        # arch should have same description for the package
-        pkg = p_list[0]
-        if pkg :
-            self.info.setValue("")
-            s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
-            self.info.setValue(s)
+        self.info.setValue("")
+        if (len(p_list)) :
+            # NOTE first item of the list should be enough, different
+            # arch should have same description for the package
+            pkg = p_list[0]
+            if pkg :
+                s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
+                self.info.setValue(s)
         
 
     def handleevent(self):
@@ -191,7 +195,7 @@ class mainGui():
                     print("TODO selected\n")
                     sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
                     if sel :
-                        pkg_name = sel.cell(1).label() 
+                        pkg_name = sel.cell(0).label() 
                         self.setInfoOnWidget(pkg_name)
                         
                 else:
