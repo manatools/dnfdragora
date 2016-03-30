@@ -2,7 +2,7 @@
 
 '''
 dnfdragora is a graphical frontend based on rpmdragora implementation
-that uses dnf as rpm backend, due to libyui python bindings dnfdragora 
+that uses dnf as rpm backend, due to libyui python bindings dnfdragora
 is able to comfortably behave like a native gtk or qt5 or ncurses application
 
 License: GPLv3
@@ -27,11 +27,11 @@ class mainGui():
     """
 
     def __init__(self):
-        
+
         self.toRemove = []
         self.toInstall = []
-        self.itemList = []
-        
+        self.itemList = {}
+
         yui.YUI.app().setApplicationTitle("Software Management - dnfdragora")
         #TODO fix icons
         wm_icon = "/usr/share/icons/rpmdrake.png"
@@ -81,7 +81,7 @@ class mainGui():
 
         packageList_header = yui.YTableHeader()
         columns = [ 'Name', 'Summary', 'Version', 'Release', 'Arch']
-                
+
         packageList_header.addColumn("")
         for col in (columns):
             packageList_header.addColumn(col)
@@ -95,19 +95,25 @@ class mainGui():
         self.info = self.factory.createRichText(hbox_bottom,"Test")
         self.info.setWeight(0,40)
         self.info.setWeight(1,40);
-    
+
         self.applyButton = self.factory.createIconButton(hbox_footbar,"","&Apply")
         self.applyButton.setWeight(0,6)
 
         self.quitButton = self.factory.createIconButton(hbox_footbar,"","&Quit")
         self.quitButton.setWeight(0,6)
-        
+
         self.dnf = dnfbase.DnfBase()
         self._fillPackageList()
         sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
         if sel :
-            pkg_name = sel.cell(0).label() 
+            pkg_name = sel.cell(0).label()
             self.setInfoOnWidget(pkg_name)
+
+    def _pkg_name(self, name, epoch, version, release, arch) :
+        '''
+            return a package name in the form name-epoch_version-release.arch
+        '''
+        return ("{0}-{1}_{2}-{3}.{4}".format(name, epoch, version, release, arch))
 
     def _fillPackageList(self) :
         '''
@@ -117,27 +123,39 @@ class mainGui():
         '''
         self.toRemove = []
         self.toInstall = []
-        
+
         yui.YUI.app().busyCursor()
         packages = dnfbase.Packages(self.dnf)
-        
-        self.itemList = []
-        itemCollection = yui.YItemCollection()
+
+        self.itemList = {}
+        # {
+        #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
+        # }
+        v = []
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.installed :
             item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
             item.check(True)
-            self.itemList.append(item)
-            #itemCollection.push_back(item)
+            self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                'pkg' : pkg, 'item' : item
+                }
 
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.available:
             item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-            self.itemList.append(item)
-            #itemCollection.push_back(item)
-            
+            self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                'pkg' : pkg, 'item' : item
+                }
+
+        keylist = sorted(self.itemList.keys())
+        itemCollection = yui.YItemCollection
+
+        for key in keylist :
+            item = self.itemList[key]['item']
+            v.append(item)
+
         #NOTE workaround to get YItemCollection working in python
-        itemCollection = yui.YItemCollection(self.itemList)
+        itemCollection = yui.YItemCollection(v)
 
         self.packageList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
@@ -148,10 +166,10 @@ class mainGui():
 
         self.dialog.doneMultipleChanges()
         yui.YUI.app().normalCursor()
-        
+
     def setInfoOnWidget(self, pkg_name) :
         """
-        write package description into info widget, 
+        write package description into info widget,
         this method performs a new query based on package name,
         future implementation could save package info into a temporary
         object structure linked to the selected item
@@ -168,14 +186,14 @@ class mainGui():
             if pkg :
                 s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
                 self.info.setValue(s)
-        
+
 
     def handleevent(self):
         """
         Event-handler for the maindialog
         """
         while True:
-            
+
             event = self.dialog.waitForEvent()
 
             eventType = event.eventType()
@@ -195,15 +213,15 @@ class mainGui():
                     print("TODO selected\n")
                     sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
                     if sel :
-                        pkg_name = sel.cell(0).label() 
+                        pkg_name = sel.cell(0).label()
                         self.setInfoOnWidget(pkg_name)
-                        
+
                 else:
                     print("Unmanaged widget")
             else:
                 print("Unmanaged yet")
-            
-                
+
+
 
         self.dialog.destroy()
 
