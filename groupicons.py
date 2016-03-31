@@ -35,115 +35,114 @@ class GroupIcons:
                     'icon' : 'other_archiving.png'
                     }
                 },
-            'Communications' : {
-                    'title' : "Communications",
-                    'icon'  : 'communications_section.png',
-                    'Bluetooth': {
-                        'title' : "Bluetooth",
-                        'icon'  : 'communications_bluetooth_section.png',
+                'Communications' : {
+                        'title' : "Communications",
+                        'icon'  : 'communications_section.png',
+                        'Bluetooth': {
+                            'title' : "Bluetooth",
+                            'icon'  : 'communications_bluetooth_section.png',
+                            },
+                        'Dial-Up'  : {
+                            'title' : "Dial-Up",
+                            'icon'  : 'communications_dialup_section.png',
+                            },
+                        'Fax'      : {
+                            'title' : "Fax",
+                            'icon'  : 'communications_fax_section.png',
+                            },
+                        'Mobile'   : {
+                            'title' : "Mobile",
+                            'icon'  : 'communications_mobile_section',
+                            },
+                        'Radio'    : {
+                            'title' : "Radio",
+                            'icon'  : 'communications_radio_section.png',
+                            },
+                        'Serial'   : {
+                            'title' : "Serial",
+                            'icon'  : 'communications_serial_section.png',
+                            },
+                        'Telephony': {
+                            'title' : "Telephony",
+                            'icon'  : 'communications_phone_section',
+                            },
+                    },
+                'Databases' : {
+                    'title': "Databases",
+                    'icon' :'databases_section.png'
+                 },
+                'Development' : {
+                    'title': "Development",
+                    'icon' : 'development_section.png',
+                    'Basic' : {
+                        'title' : "Basic",
                         },
-                    'Dial-Up'  : {
-                        'title' : "Dial-Up",
-                        'icon'  : 'communications_dialup_section.png',
+                    'C' : {
+                        'title' : "C"
                         },
-                    'Fax'      : {
-                        'title' : "Fax",
-                        'icon'  : 'communications_fax_section.png',
+                    'C++' : {
+                        'title' : "C++",
                         },
-                    'Mobile'   : {
-                        'title' : "Mobile",
-                        'icon'  : 'communications_mobile_section',
-                        },
-                    'Radio'    : {
-                        'title' : "Radio",
-                        'icon'  : 'communications_radio_section.png',
-                        },
-                    'Serial'   : {
-                        'title' : "Serial",
-                        'icon'  : 'communications_serial_section.png',
-                        },
-                    'Telephony': {
-                        'title' : "Telephony",
-                        'icon'  : 'communications_phone_section',
+                    'C#' : {
+                        'title' : "C#",
+                        #'icon' : ''
                         },
                     'Databases' : {
-                        'title': "Databases",
-                        'icon' :'databases_section.png'
+                        'title' : "Databases",
+                        'icon' : 'databases_section.png'
                         },
-                    'Development' : {
-                        'title': "Development",
-                        'icon' : 'development_section.png',
-                        'Basic' : { 
-                            'title' : "Basic", 
-                            },
-                        'C' : {
-                            'title' : "C"
-                            },
-                        'C++' : {
-                            'title' : "C++", 
-                            },
-                        'C#' : {
-                            'title' : "C#", 
-                            #'icon' : ''
-                            },
-                        'Databases' : {
-                            'title' : "Databases", 
-                            'icon' : 'databases_section.png'
-                            },
-                        'Debug' : {
-                            'title' : "Debug", 
-                            #'icon' : ''
-                            },
-                        'Erlang' : {
-                            'title' : "Erlang", 
-                            #'icon' : ''
-                            },
-                        'GNOME and GTK+' : {
-                            'title' : "GNOME and GTK+", 
-                            'icon' : 'gnome_section.png'
-                            },
-                        'Java' : {
-                            'title' : "Java", 
-                            #'icon' : ''
-                            },
-                        'KDE and Qt' : {
-                            'title' : "KDE and Qt", 
-                            'icon' : 'kde_section.png'
-                            },
-                        'Kernel' : {
-                            'title' : "Kernel", 
-                            #'icon' : ''
-                            },
-                        'OCaml' : {
-                            'title' : "OCaml",
-                            #'icon' : ''
-                            },
-                        'Other' : {
-                            'title' : "Other", 
-                            #'icon' : ''
-                            },
-                        'Perl' : {
-                            'title' : "Perl", 
-                            #'icon' : ''
-                            },
-                        'PHP' : {
-                            'title' : "PHP", 
-                            #'icon' : ''
-                            },
-                        'Python' : {
-                            'title' : "Python", 
-                            #'icon' : ''
-                            },
-                        'Tools' : {
-                            'title' : "Tools", 
-                            'icon' : 'development_tools_section.png',
-                            },
-                        'X11' : {
-                            'title' : "X11", 
-                            #'icon' : ''
-                            },    
+                    'Debug' : {
+                        'title' : "Debug",
+                        #'icon' : ''
                         },
-
+                    'Erlang' : {
+                        'title' : "Erlang",
+                        #'icon' : ''
+                        },
+                    'GNOME and GTK+' : {
+                        'title' : "GNOME and GTK+",
+                        'icon' : 'gnome_section.png'
+                        },
+                    'Java' : {
+                        'title' : "Java",
+                        #'icon' : ''
+                        },
+                    'KDE and Qt' : {
+                        'title' : "KDE and Qt",
+                        'icon' : 'kde_section.png'
+                        },
+                    'Kernel' : {
+                        'title' : "Kernel",
+                        #'icon' : ''
+                        },
+                    'OCaml' : {
+                        'title' : "OCaml",
+                        #'icon' : ''
+                        },
+                    'Other' : {
+                        'title' : "Other",
+                        #'icon' : ''
+                        },
+                    'Perl' : {
+                        'title' : "Perl",
+                        #'icon' : ''
+                        },
+                    'PHP' : {
+                        'title' : "PHP",
+                        #'icon' : ''
+                        },
+                    'Python' : {
+                        'title' : "Python",
+                        #'icon' : ''
+                        },
+                    'Tools' : {
+                        'title' : "Tools",
+                        'icon' : 'development_tools_section.png',
+                        },
+                    'X11' : {
+                        'title' : "X11",
+                        #'icon' : ''
+                        },
                 },
              }
 
