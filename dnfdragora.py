@@ -31,6 +31,7 @@ class mainGui():
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
+        self.groupList = {}
 
         yui.YUI.app().setApplicationTitle("Software Management - dnfdragora")
         #TODO fix icons
@@ -103,6 +104,8 @@ class mainGui():
         self.quitButton.setWeight(0,6)
 
         self.dnf = dnfbase.DnfBase()
+        self._fillGroupTree()
+
         self._fillPackageList()
         sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
         if sel :
@@ -148,7 +151,6 @@ class mainGui():
                 }
 
         keylist = sorted(self.itemList.keys())
-        itemCollection = yui.YItemCollection
 
         for key in keylist :
             item = self.itemList[key]['item']
@@ -164,8 +166,88 @@ class mainGui():
 
         self.packageList.addItems(itemCollection)
 
-        self.dialog.doneMultipleChanges()
+        self.packageList.doneMultipleChanges()
         yui.YUI.app().normalCursor()
+
+    def _fillGroupTree(self) :
+        '''
+        fill the group tree, look for the retrieved groups and set their icons
+        from groupicons module
+        '''
+        rpm_groups = {}
+        yui.YUI.app().busyCursor()
+        packages = dnfbase.Packages(self.dnf)
+        for pkg in packages.all:
+            if not pkg.group in rpm_groups:
+                rpm_groups[pkg.group] = 1
+
+        rpm_groups = sorted(rpm_groups.keys())
+        gIcons = groupicons.GroupIcons()
+        groups = gIcons.groups()
+        i = 0
+        for g in rpm_groups:
+            #X/Y/Z/...
+            currG = groups
+            currT = self.groupList
+            subGroups = g.split("/")
+            currItem = None
+            parentItem = None
+            groupName = None
+            print ("group %d - % s"%(i, g))
+            if i == 39:
+                print (i)
+            i+=1
+            for sg in subGroups:
+                if groupName:
+                    groupName += "/%s"%(sg)
+                else:
+                    groupName = sg
+                icon = gIcons.icon(groupName)
+                print ("%s(%s) - %s"%(g, sg, icon))
+                if sg in currG:
+                    currG = currG[sg]
+                    if currG["title"] in currT :
+                        currT = currT[currG["title"]]
+                        parentItem = currT["item"]
+                    else :
+                        # create the item
+                        item = None
+                        if parentItem:
+                            item = yui.YTreeItem(parentItem, currG["title"], icon)
+                        else :
+                            item = yui.YTreeItem(currG["title"], icon)
+                        currT[currG["title"]] = { "item" : item, "name" : groupName }
+                        currT = currT[currG["title"]]
+                        parentItem = item
+                else:
+                    # group is not in our group definition, but it's into the repository
+                    # we just use it
+                    if sg in currT :
+                        currT = currT[sg]
+                        parentItem = currT["item"]
+                    else :
+                        item = None
+                        if parentItem:
+                            item = yui.YTreeItem(parentItem, sg, icon)
+                        else :
+                            item = yui.YTreeItem(sg, icon)
+                        currT[sg] = { "item" : item, "name": groupName }
+                        currT = currT[sg]
+                        parentItem = item
+
+        keylist = sorted(self.groupList.keys())
+        v = []
+        for key in keylist :
+            item = self.groupList[key]['item']
+            v.append(item)
+        #NOTE workaround to get YItemCollection working in python
+        itemCollection = yui.YItemCollection(v)
+        self.tree.startMultipleChanges()
+        self.tree.deleteAllItems()
+        self.tree.addItems(itemCollection)
+        self.tree.doneMultipleChanges()
+        yui.YUI.app().normalCursor()
+
 
     def setInfoOnWidget(self, pkg_name) :
         """
