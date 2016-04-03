@@ -31,7 +31,13 @@ class mainGui():
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
+        # {
+        #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
+        # }
         self.groupList = {}
+        # {
+        #    localized_name = { "item" : item, "name" : groupName }
+        # }
 
         yui.YUI.app().setApplicationTitle("Software Management - dnfdragora")
         #TODO fix icons
@@ -104,9 +110,14 @@ class mainGui():
         self.quitButton.setWeight(0,6)
 
         self.dnf = dnfbase.DnfBase()
+        self.dialog.pollEvent();
         self._fillGroupTree()
+        sel = self.tree.selectedItem()
+        group = None
+        if sel :
+            group = self._groupNameFromItem(self.groupList, sel)
 
-        self._fillPackageList()
+        self._fillPackageList(group)
         sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
         if sel :
             pkg_name = sel.cell(0).label()
@@ -118,11 +129,12 @@ class mainGui():
         '''
         return ("{0}-{1}_{2}-{3}.{4}".format(name, epoch, version, release, arch))
 
-    def _fillPackageList(self) :
+    def _fillPackageList(self, groupName=None) :
         '''
-        fill package list and checks installed packages
-        it also clean up temporary lists for install/remove packages if
-        any
+        fill package list filtered by group if groupName is given,
+        and checks installed packages it also clean up temporary lists
+        for install/remove packages if any.
+        Special value for groupName 'All' means all packages
         '''
         self.toRemove = []
         self.toInstall = []
@@ -137,18 +149,22 @@ class mainGui():
         v = []
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.installed :
-            item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-            item.check(True)
-            self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                'pkg' : pkg, 'item' : item
-                }
+            if groupName and (groupName == pkg.group or groupName == 'All') :
+                item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                item.check(True)
+                self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                    'pkg' : pkg, 'item' : item
+                    }
+                item.this.own(False)
 
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.available:
-            item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-            self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                'pkg' : pkg, 'item' : item
-                }
+            if groupName and (groupName == pkg.group or groupName == 'All') :
+                item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                    'pkg' : pkg, 'item' : item
+                    }
+                item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
 
@@ -163,11 +179,39 @@ class mainGui():
         # cleanup old changed items since we are removing all of them
         self.packageList.setChangedItem(None)
         self.packageList.deleteAllItems()
-
         self.packageList.addItems(itemCollection)
-
         self.packageList.doneMultipleChanges()
+
         yui.YUI.app().normalCursor()
+
+    #def _groupNameFromItem(self, treeItem) :
+        #'''
+        #return the group name to be used for a search by group
+        #'''
+        ## TODO check type yui.YTreeItem?
+        #for g in self.groupList :
+            #if self.groupList[g]['item'] == treeItem :
+                #return self.groupList[g]['name']
+
+        #return None
+
+    def _groupNameFromItem(self, group, treeItem) :
+        '''
+        return the group name to be used for a search by group
+        '''
+        # TODO check type yui.YTreeItem?
+        for g in group.keys() :
+            if g == 'name' or g == 'item' :
+                continue
+            if group[g]['item'] == treeItem :
+                return group[g]['name']
+            elif group[g]['item'].hasChildren():
+                gName =  self._groupNameFromItem(group[g], treeItem)
+                if gName :
+                    return gName
+
+        return None
+
 
     def _fillGroupTree(self) :
         '''
@@ -184,7 +228,7 @@ class mainGui():
         rpm_groups = sorted(rpm_groups.keys())
         gIcons = groupicons.GroupIcons()
         groups = gIcons.groups()
-        i = 0
+
         for g in rpm_groups:
             #X/Y/Z/...
             currG = groups
@@ -193,17 +237,14 @@ class mainGui():
             currItem = None
             parentItem = None
             groupName = None
-            print ("group %d - % s"%(i, g))
-            if i == 39:
-                print (i)
-            i+=1
+
             for sg in subGroups:
                 if groupName:
                     groupName += "/%s"%(sg)
                 else:
                     groupName = sg
                 icon = gIcons.icon(groupName)
-                print ("%s(%s) - %s"%(g, sg, icon))
+
                 if sg in currG:
                     currG = currG[sg]
                     if currG["title"] in currT :
@@ -216,6 +257,7 @@ class mainGui():
                             item = yui.YTreeItem(parentItem, currG["title"], icon)
                         else :
                             item = yui.YTreeItem(currG["title"], icon)
+                        item.this.own(False)
                         currT[currG["title"]] = { "item" : item, "name" : groupName }
                         currT = currT[currG["title"]]
                         parentItem = item
@@ -231,6 +273,7 @@ class mainGui():
                             item = yui.YTreeItem(parentItem, sg, icon)
                         else :
                             item = yui.YTreeItem(sg, icon)
+                        item.this.own(False)
                         currT[sg] = { "item" : item, "name": groupName }
                         currT = currT[sg]
                         parentItem = item
@@ -292,12 +335,18 @@ class mainGui():
                     wEvent = yui.toYWidgetEvent(event)
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
                         print("TODO checked\n")
-                    print("TODO selected\n")
+
                     sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
                     if sel :
                         pkg_name = sel.cell(0).label()
                         self.setInfoOnWidget(pkg_name)
 
+                elif (widget == self.tree) :
+                    sel = self.tree.selectedItem()
+                    group = None
+                    if sel :
+                        group = self._groupNameFromItem(self.groupList, sel)
+                    self._fillPackageList(group)
                 else:
                     print("Unmanaged widget")
             else:
