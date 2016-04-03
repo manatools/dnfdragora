@@ -184,17 +184,6 @@ class mainGui():
 
         yui.YUI.app().normalCursor()
 
-    #def _groupNameFromItem(self, treeItem) :
-        #'''
-        #return the group name to be used for a search by group
-        #'''
-        ## TODO check type yui.YTreeItem?
-        #for g in self.groupList :
-            #if self.groupList[g]['item'] == treeItem :
-                #return self.groupList[g]['name']
-
-        #return None
-
     def _groupNameFromItem(self, group, treeItem) :
         '''
         return the group name to be used for a search by group
