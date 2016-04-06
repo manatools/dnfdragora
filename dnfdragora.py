@@ -13,6 +13,7 @@ Author:  Andelo Naselli <anaselli@linux.it>
 '''
 
 import sys
+import platform
 import yui
 
 import dnfbase
@@ -98,6 +99,92 @@ class mainGui():
         self.packageList = self.mgaFactory.createCBTable(hbox_middle,packageList_header,yui.YCBTableCheckBoxOnFirstColumn)
         self.packageList.setWeight(0,50)
         self.packageList.setImmediateMode(True)
+
+        self.filters = {
+            'all' : {'title' : "All"},
+            'installed' : {'title' : "Installed"},
+            'not_installed' : {'title' : "Not installed"}
+        }
+        ordered_filters = [ 'all', 'installed', 'not_installed' ]
+        if platform.machine() == "x86_64" :
+            # NOTE this should work on other architectures too, but maybe it
+            #      is a nonsense, at least for i586
+            self.filters['skip_other'] = {'title' : "Show %s and noarch only" % platform.machine()}
+            ordered_filters.append('skip_other')
+
+        # TODO add backports
+        self.views = {
+            'all' : {'title' : "All"},
+            'meta_pkgs' : {'title' : "Meta packages"},
+            'gui_pkgs' : {'title' : "Packages with GUI"},
+            'all_updates' : {'title' : "All updates"},
+            'security' : {'title' : "Security updates"},
+            'bugfix' : {'title' : "Bugfixes updates"},
+            'normal' : {'title' : "General updates"}
+        }
+        ordered_views = [ 'all', 'meta_pkgs', 'gui_pkgs', 'all_updates', 'security', 'bugfix', 'normal']
+
+        self.view_box = self.factory.createComboBox(hbox_top,"")
+        itemColl = yui.YItemCollection()
+
+        for v in ordered_views:
+            item = yui.YItem(self.views[v]['title'], False)
+            # adding item to views to find the item selected
+            self.views[v]['item'] = item
+            itemColl.push_back(item)
+            item.this.own(False)
+
+        self.view_box.addItems(itemColl)
+        self.view_box.setNotify(True)
+
+        self.filter_box = self.factory.createComboBox(hbox_top,"")
+        itemColl.clear()
+
+        for f in ordered_filters:
+            item = yui.YItem(self.filters[f]['title'], False)
+            # adding item to filters to find the item selected
+            self.filters[f]['item'] = item
+            itemColl.push_back(item)
+            item.this.own(False)
+
+        self.filter_box.addItems(itemColl)
+        self.filter_box.setNotify(True)
+
+        self.local_search_types = {
+            'normal'      : {'title' : "in names"       },
+            'descriptions': {'title' : "in descriptions"},
+            'summaries'   : {'title' : "in summaries"   },
+            'files'       : {'title' : "in file names"  }
+        }
+        search_types = ['normal', 'descriptions', 'summaries', 'files' ]
+
+        self.search_menu = self.factory.createComboBox(hbox_top,"")
+        itemColl.clear()
+        for s in search_types:
+            item = yui.YItem(self.local_search_types[s]['title'], False)
+            if s == search_types[0] :
+                item.setSelected(True)
+            # adding item to local_search_types to find the item selected
+            self.local_search_types[s]['item'] = item
+            itemColl.push_back(item)
+            item.this.own(False)
+
+        self.search_menu.addItems(itemColl)
+        self.search_menu.setNotify(True)
+
+        self.find_entry = self.factory.createInputField(hbox_top, "")
+
+        #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/manalog.png")
+        icon_file = ""
+        self.find_button = self.factory.createIconButton(hbox_top, icon_file, "Search")
+        self.find_button.setWeight(0,6)
+        self.dialog.setDefaultButton(self.find_button)
+        self.find_entry.setKeyboardFocus()
+
+        #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/rpmdragora/clear_22x22.png");
+        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, "Reset")
+        self.reset_search_button.setWeight(0,7)
+        self.find_entry.setWeight(0,10)
 
         self.info = self.factory.createRichText(hbox_bottom,"Test")
         self.info.setWeight(0,40)
