@@ -18,6 +18,7 @@ import yui
 
 import dnfbase
 import groupicons
+import argparse
 
 #################
 # class mainGui #
@@ -27,8 +28,9 @@ class mainGui():
     Main class
     """
 
-    def __init__(self):
+    def __init__(self, options={}):
 
+        self.options = options
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
@@ -302,7 +304,8 @@ class mainGui():
                 rpm_groups[pkg.group] = 1
 
         rpm_groups = sorted(rpm_groups.keys())
-        gIcons = groupicons.GroupIcons()
+        icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
+        gIcons = groupicons.GroupIcons(icon_path)
         groups = gIcons.groups()
 
         for g in rpm_groups:
@@ -434,5 +437,19 @@ class mainGui():
 
 
 if __name__ == "__main__":
-    main_gui = mainGui()
+
+    parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
+    parser.add_argument('--gtk', help='start using yui GTK plugin implementation', action='store_true')
+    parser.add_argument('--ncurses', help='start using yui NCURSES plugin implementation', action='store_true')
+    parser.add_argument('--qt', help='start using yui QT plugin implementation', action='store_true')
+    parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
+
+    parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
+    args = parser.parse_args()
+
+    options = {}
+    if args.icon_path:
+        options['icon_path'] = args.icon_path
+
+    main_gui = mainGui(options)
     main_gui.handleevent()
