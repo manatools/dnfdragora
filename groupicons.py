@@ -3,8 +3,15 @@ class GroupIcons:
     '''
     This class manages the access to group name and icons
     '''
-    def __init__(self):
-        
+    def __init__(self, icon_path=None):
+
+        if icon_path:
+            self.icon_path = icon_path if icon_path.endswith('/') else icon_path + "/"
+            self.mini_icon_path = self.icon_path + "mini/"
+        else:
+            self.icon_path = '/usr/share/icons/'
+            self.mini_icon_path = '/usr/share/icons/mini/'
+
         # TODO add a localized string for any group
         self.group = {
              'All' : { 
@@ -144,7 +151,488 @@ class GroupIcons:
                         #'icon' : ''
                         },
                 },
-             }
+                'Documentation' : {
+                    'title' : "Documentation",
+                    'icon' : 'documentation_section.png'
+                },
+                'Editors' : {
+                    'title' : "Editors",
+                    'icon' : 'editors_section.png'
+                },
+                'Education' : {
+                    'title' : "Education",
+                    'icon' : 'education_section.png'
+                },
+                'Emulators' : {
+                    'title' : "Emulators",
+                    'icon' : 'emulators_section.png'
+                },
+                'File tools' : {
+                    'title' : "File tools",
+                    'icon' : 'file_tools_section.png'
+                },
+                'Games' : {
+                    'title' : "Games",
+                    'icon' : 'amusement_section.png',
+                    'Adventure' : {
+                        'title' : "Adventure",
+                        'icon' : 'adventure_section.png',
+                    },
+                    'Arcade' : {
+                        'title' : "Arcade",
+                        'icon' : 'arcade_section.png',
+                    },
+                    'Boards' : {
+                        'title' : "Boards",
+                        'icon' : 'boards_section.png',
+                    },
+                    'Cards' : {
+                        'title' : "Cards",
+                        'icon' : 'cards_section.png',
+                    },
+                    'Other' : {
+                        'title' : "Other",
+                        'icon' : 'other_amusement.png',
+                    },
+                    'Puzzles' : {
+                        'title' : "Puzzles",
+                        'icon' : 'puzzle_section.png',
+                    },
+                    'Shooter' : {
+                        'title' : "Shooter",
+                        'icon' : 'shooter_section.png',
+                    },
+                    'Simulation' : {
+                        'title' : "Simulation",
+                        'icon' : 'simulation_section.png',
+                    },
+                    'Sports' : {
+                        'title' : "Sports",
+                        'icon' : 'sport_section.png',
+                    },
+                    'Strategy' : {
+                        'title' : "Strategy",
+                        'icon' : 'strategy_section.png',
+                    },
+                },
+                'Geography' : {
+                    'title' : "Geography",
+                    'icon' : 'geography_section.png'
+                },
+                'Graphical desktop' : {
+                    'title' : "Graphical desktop",
+                    'icon' : 'graphical_desktop_section.png',
+                    'Enlightenment' : {
+                        'title' : "Enlightenment",
+                        'icon' : 'enlightment_section.png',
+                    },
+                    'GNOME' : {
+                        'title' : "GNOME",
+                        'icon' : 'gnome_section.png',
+                    },
+                    'Icewm' : {
+                        'title' : "Icewm",
+                        'icon' : 'icewm_section.png',
+                    },
+                    'KDE' : {
+                        'title' : "KDE",
+                        'icon' : 'kde_section.png',
+                    },
+                    'Other' : {
+                        'title' : "Other",
+                        'icon' : 'more_applications_other_section.png',
+                    },
+                    'WindowMaker' : {
+                        'title' : "WindowMaker",
+                        'icon' : 'windowmaker_section.png',
+                    },
+                    'Xfce' : {
+                        'title' : "Xfce",
+                        'icon' : 'xfce_section.png',
+                    },
+                },
+                'Graphics' : {
+                    'title' : "Graphics",
+                    'icon' : 'graphics_section.png',
+                    '3D' : {
+                        'title' : "3D",
+                        'icon' : 'graphics_3d_section.png',
+                    },
+                    'Editors and Converters' : {
+                        'title' : "Editors and Converters",
+                        'icon' : 'graphics_editors_section.png',
+                    },
+                    'Utilities' : {
+                        'title' : "Utilities",
+                        'icon' : 'graphics_utilities_section.png',
+                    },
+                    'Photography' : {
+                        'title' : "Photography",
+                        'icon' : 'graphics_photography_section.png',
+                    },
+                    'Scanning' : {
+                        'title' : "Scanning",
+                        'icon' : 'graphics_scanning_section.png',
+                    },
+                    'Viewers' : {
+                        'title' : "Viewers",
+                        'icon' : 'graphics_viewers_section.png',
+                    },
+                },
+                'Monitoring' : {
+                    'title' : "Monitoring",
+                    'icon' : 'monitoring_section.png'
+                },
+                'Networking' : {
+                    'title' : "Networking",
+                    'icon' : 'networking_section.png',
+                    'File transfer' : {
+                        'title' : "File transfer",
+                        'icon' : 'file_transfer_section.png',
+                    },
+                    'IRC' : {
+                        'title' : "IRC",
+                        'icon' : 'irc_section.png',
+                    },
+                    'Instant messaging' : {
+                        'title' : "Instant messaging",
+                        'icon' : 'instant_messaging_section.png',
+                    },
+                    'Mail' : {
+                        'title' : "Mail",
+                        'icon' : 'mail_section.png',
+                    },
+                    'News' : {
+                        'title' : "News",
+                        'icon' : 'news_section.png',
+                    },
+                    'Other' : {
+                        'title' : "Other",
+                        'icon' : 'other_networking.png',
+                    },
+                    'Remote access' : {
+                        'title' : "Remote access",
+                        'icon' : 'remote_access_section.png',
+                    },
+                    'WWW' : {
+                        'title' : "WWW",
+                        'icon' : 'networking_www_section.png',
+                    },
+                },
+                'Office' : {
+                    'title' : "Office",
+                    'icon' : 'office_section.png',
+                    'Dictionary' : {
+                        'title' : "Dictionary",
+                        'icon' : 'office_dictionary_section.png',
+                    },
+                    'Finance' : {
+                        'title' : "Finance",
+                        'icon' : 'finances_section.png',
+                    },
+                    'Management' : {
+                        'title' : "Management",
+                        'icon' : 'timemanagement_section.png',
+                    },
+                    'Organizer' : {
+                        'title' : "Organizer",
+                        'icon' : 'timemanagement_section.png',
+                    },
+                    'Utilities' : {
+                        'title' : "Utilities",
+                        'icon' : 'office_accessories_section.png',
+                    },
+                    'Spreadsheet' : {
+                        'title' : "Spreadsheet",
+                        'icon' : 'spreadsheet_section.png',
+                    },
+                    'Suite' : {
+                        'title' : "Suite",
+                        'icon' : 'office_suite.png',
+                    },
+                    'Word processor' : {
+                        'title' : "Word processor",
+                        'icon' : 'wordprocessor_section.png',
+                    },
+                },
+                'Publishing' : {
+                    'title' : "Publishing",
+                    'icon' : 'publishing_section.png'
+                },
+                'Sciences' : {
+                    'title' : "Sciences",
+                    'icon' : 'sciences_section.png',
+                    'Astronomy' : {
+                        'title' : "Astronomy",
+                        'icon' : 'astronomy_section.png',
+                    },
+                    'Biology' : {
+                        'title' : "Biology",
+                        'icon' : 'biology_section.png',
+                    },
+                    'Chemistry' : {
+                        'title' : "Chemistry",
+                        'icon' : 'chemistry_section.png',
+                    },
+                    'Computer science' : {
+                        'title' : "Computer science",
+                        'icon' : 'computer_science_section.png',
+                    },
+                    'Geosciences' : {
+                        'title' : "Geosciences",
+                        'icon' : 'geosciences_section.png',
+                    },
+                    'Mathematics' : {
+                        'title' : "Mathematics",
+                        'icon' : 'mathematics_section.png',
+                    },
+                    'Other' : {
+                        'title' : "Other",
+                        'icon' : 'other_sciences.png',
+                    },
+                    'Physics' : {
+                        'title' : "Physics",
+                        'icon' : 'physics_section.png',
+                    },
+                },
+                'Security' : {
+                    'title' : "Security",
+                    'icon' : 'security_section.png'
+                },
+                'Shells' : {
+                    'title' : "Shells",
+                    'icon' : 'shells_section.png'
+                },
+                'Sound' : {
+                    'title' : "Sound",
+                    'icon' : 'sound_section.png',
+                    'Editors and Converters' : {
+                        'title' : "Editors and Converters",
+                        'icon' : 'sound_editors_section.png',
+                    },
+                    'Midi' : {
+                        'title' : "Midi",
+                        'icon' : 'sound_midi_section.png',
+                    },
+                    'Mixers' : {
+                        'title' : "Mixers",
+                        'icon' : 'sound_mixers_section.png',
+                    },
+                    'Players' : {
+                        'title' : "Players",
+                        'icon' : 'sound_players_section.png',
+                    },
+                    'Utilities' : {
+                        'title' : "Utilities",
+                        'icon' : 'sound_utilities_section.png',
+                    },
+                },
+                'System' : {
+                    'title' : "System",
+                    'icon' : 'system_section.png',
+                    'Base' : {
+                        'title' : "Base",
+                        'icon' : 'system_section.png',
+                    },
+                    'Boot and Init' : {
+                        'title' : "Boot and Init",
+                        'icon' : 'boot_init_section.png',
+                    },
+                    'Cluster' : {
+                        'title' : "Cluster",
+                        'icon' : 'parallel_computing_section.png',
+                    },
+                    'Configuration' : {
+                        'title' : "Configuration",
+                        'icon' : 'configuration_section.png',
+                    },
+                    'Fonts' : {
+                        'title' : "Fonts",
+                        'icon' : 'chinese_section.png',
+                        'True type' : {
+                            'title' : "True type",
+                            #'icon' : '',
+                        },
+                        'Type1' : {
+                            'title' : "Type1",
+                            #'icon' : '',
+                        },
+                        'X11 bitmap' : {
+                            'title' : "X11 bitmap",
+                            #'icon' : '',
+                        },
+                    },
+                    'Internationalization' : {
+                        'title' : "Internationalization",
+                        'icon' : 'chinese_section.png',
+                    },
+                    'Kernel and hardware' : {
+                        'title' : "Kernel and hardware",
+                        'icon' : 'hardware_configuration_section.png',
+                    },
+                    'Libraries' : {
+                        'title' : "Libraries",
+                        'icon' : 'system_section.png',
+                    },
+                    'Networking' : {
+                        'title' : "Networking",
+                        'icon' : 'networking_configuration_section.png',
+                    },
+                    'Packaging' : {
+                        'title' : "Packaging",
+                        'icon' : 'packaging_section.png',
+                    },
+                    'Printing' : {
+                        'title' : "Printing",
+                        'icon' : 'printing_section.png',
+                    },
+                    'Servers' : {
+                        'title' : "Servers",
+                        'icon' : 'servers_section.png',
+                    },
+                    'X11' : {
+                        'title' : "X11",
+                        'icon' : 'x11_section.png',
+                    },
+                },
+                'Terminals' : {
+                    'title' : "Terminals",
+                    'icon' : 'terminals_section.png'
+                },
+                'Text tools' : {
+                    'title' : "Text tools",
+                    'icon' : 'text_tools_section.png'
+                },
+                'Toys' : {
+                    'title' : "Toys",
+                    'icon' : 'toys_section.png'
+                },
+                'Video' : {
+                    'title' : "Video",
+                    'icon' : 'video_section.png',
+                    'Editors and Converters' : {
+                        'title' : "Editors and Converters",
+                        'icon' : 'video_editors_section.png',
+                    },
+                    'Players' : {
+                        'title' : "Players",
+                        'icon' : 'video_players_section.png',
+                    },
+                    'Television' : {
+                        'title' : "Television",
+                        'icon' : 'video_television_section.png',
+                    },
+                    'Utilities' : {
+                        'title' : "Utilities",
+                        'icon' : 'video_utilities_section.png',
+                    },
+                },
+                ## for Mageia Choice:
+                'Workstation' : {
+                    'title' : "Workstation",
+                    'icon' : 'system_section.png',
+                    'Configuration' : {
+                        'title' : "Configuration",
+                        'icon' : 'configuration_section.png',
+                    },
+                    'Console Tools' : {
+                        'title' : "Console Tools",
+                        'icon' : 'interpreters_section.png',
+                    },
+                    'Documentation' : {
+                        'title' : "Documentation",
+                        'icon' : 'documentation_section.png',
+                    },
+                    'Game station' : {
+                        'title' : "Game station",
+                        'icon' : 'amusement_section.png',
+                    },
+                    'Internet station' : {
+                        'title' : "Internet station",
+                        'icon' : 'networking_section.png',
+                    },
+                    'Multimedia station' : {
+                        'title' : "Multimedia station",
+                        'icon' : 'multimedia_section.png',
+                    },
+                    'Network Computer (client)' : {
+                        'title' : "Network Computer (client)",
+                        'icon' : 'other_networking.png',
+                    },
+                    'Office Workstation' : {
+                        'title' : "Office Workstation",
+                        'icon' : 'office_section.png',
+                    },
+                    'Scientific Workstation' : {
+                        'title' : "Scientific Workstation",
+                        'icon' : 'sciences_section.png',
+                    },
+                },
+                'Graphical Environment' : {
+                    'title' : "Graphical Environment",
+                    'icon' : 'graphical_desktop_section.png',
+                    'GNOME Workstation' : {
+                        'title' : "GNOME Workstation",
+                        'icon' : 'gnome_section.png',
+                    },
+                    'IceWm Desktop' : {
+                        'title' : "IceWm Desktop",
+                        'icon' : 'icewm_section.png',
+                    },
+                    'KDE Workstation' : {
+                        'title' : "KDE Workstation",
+                        'icon' : 'kde_section.png',
+                    },
+                    'Other Graphical Desktops' : {
+                        'title' : "Other Graphical Desktops",
+                        'icon' : 'more_applications_other_section.png',
+                    },
+                },
+                'Development' : {
+                    'title' : "Development",
+                    'icon' : 'development_section.png',
+                    'Development' : {
+                        'title' : "Development",
+                        'icon' : 'development_section.png',
+                    },
+                    'Documentation' : {
+                        'title' : "Documentation",
+                        'icon' : 'documentation_section.png',
+                    },
+                },
+                'Server' : {
+                    'title' : "Server",
+                    'icon' : 'servers_section.png',
+                    'DNS/NIS' : {
+                        'title' : "DNS/NIS",
+                        'icon' : 'networking_section.png',
+                    },
+                    'Database' : {
+                        'title' : "Database",
+                        'icon' : 'databases_section.png',
+                    },
+                    'Firewall/Router' : {
+                        'title' : "Firewall/Router",
+                        'icon' : 'networking_section.png',
+                    },
+                    'Mail' : {
+                        'title' : "Mail",
+                        'icon' : 'mail_section.png',
+                    },
+                    'Mail/Groupware/News' : {
+                        'title' : "Mail/Groupware/News",
+                        'icon' : 'mail_section.png',
+                    },
+                     'Network Computer server' : {
+                        'title' : "Network Computer server",
+                        'icon' : 'networking_section.png',
+                    },
+                     'Web/FTP' : {
+                        'title' : "Web/FTP",
+                        'icon' : 'networking_www_section.png',
+                    },
+                },
+            }
 
     def groups(self):
         '''
@@ -160,10 +648,12 @@ class GroupIcons:
     def icon(self, group, separator='/') :
         '''
         from the given group as a pathname return the related icon
+        if icon_path is passed to the constructor, icon_path/ and icon_path/mini
+        are used to return icon_name
         '''
        
         groups = group.split(separator)
-        icon_path =  '/usr/share/icons/mini/' if len(groups) > 1 else '/usr/share/icons/'
+        icon_path =  self.mini_icon_path if len(groups) > 1 else self.icon_path
         g = self.group
         for k in groups:
             if k in g:
@@ -179,165 +669,3 @@ class GroupIcons:
             
         return icon_path
 
-
-#my %group_icons = (
-
-	
-	
-	#$loc->N("Documentation") => 'documentation_section',
-	#$loc->N("Editors") => 'editors_section',
-	#$loc->N("Education") => 'education_section',
-	#$loc->N("Emulators") => 'emulators_section',
-	#$loc->N("File tools") => 'file_tools_section',
-	#$loc->N("Games") => 'amusement_section',
-	#join('|', $loc->N("Games"), $loc->N("Adventure")) => 'adventure_section',
-	#join('|', $loc->N("Games"), $loc->N("Arcade")) => 'arcade_section',
-	#join('|', $loc->N("Games"), $loc->N("Boards")) => 'boards_section',
-	#join('|', $loc->N("Games"), $loc->N("Cards")) => 'cards_section',
-	#join('|', $loc->N("Games"), $loc->N("Other")) => 'other_amusement',
-	#join('|', $loc->N("Games"), $loc->N("Puzzles")) => 'puzzle_section',
-	#join('|', $loc->N("Games"), $loc->N("Shooter")) => 'shooter_section',
-	#join('|', $loc->N("Games"), $loc->N("Simulation")) => 'simulation_section',
-	#join('|', $loc->N("Games"), $loc->N("Sports")) => 'sport_section',
-	#join('|', $loc->N("Games"), $loc->N("Strategy")) => 'strategy_section',
-	#$loc->N("Geography") => 'geography_section',
-	#$loc->N("Graphical desktop") => 'graphical_desktop_section',
-	#join('|', $loc->N("Graphical desktop"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("Enlightenment")) => 'enlightment_section',
-	#join('|', $loc->N("Graphical desktop"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("GNOME")) => 'gnome_section',
-	#join('|', $loc->N("Graphical desktop"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("Icewm")) => 'icewm_section',
-	#join('|', $loc->N("Graphical desktop"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("KDE")) => 'kde_section',
-	#join('|', $loc->N("Graphical desktop"), $loc->N("Other")) => 'more_applications_other_section',
-	#join('|', $loc->N("Graphical desktop"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("WindowMaker")) => 'windowmaker_section',
-	#join('|', $loc->N("Graphical desktop"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("Xfce")) => 'xfce_section',
-	#$loc->N("Graphics") => 'graphics_section',
-	#join('|', $loc->N("Graphics"), $loc->N("3D")) => 'graphics_3d_section',
-	#join('|', $loc->N("Graphics"), $loc->N("Editors and Converters")) => 'graphics_editors_section',
-	#join('|', $loc->N("Graphics"), $loc->N("Utilities")) => 'graphics_utilities_section',
-	#join('|', $loc->N("Graphics"), $loc->N("Photography")) => 'graphics_photography_section',
-	#join('|', $loc->N("Graphics"), $loc->N("Scanning")) => 'graphics_scanning_section',
-	#join('|', $loc->N("Graphics"), $loc->N("Viewers")) => 'graphics_viewers_section',
-	#$loc->N("Monitoring") => 'monitoring_section',
-	#$loc->N("Networking") => 'networking_section',
-	#join('|', $loc->N("Networking"), $loc->N("File transfer")) => 'file_transfer_section',
-	#join('|', $loc->N("Networking"), $loc->N("IRC")) => 'irc_section',
-	#join('|', $loc->N("Networking"), $loc->N("Instant messaging")) => 'instant_messaging_section',
-	#join('|', $loc->N("Networking"), $loc->N("Mail")) => 'mail_section',
-	#join('|', $loc->N("Networking"), $loc->N("News")) => 'news_section',
-	#join('|', $loc->N("Networking"), $loc->N("Other")) => 'other_networking',
-	#join('|', $loc->N("Networking"), $loc->N("Remote access")) => 'remote_access_section',
-	#join('|', $loc->N("Networking"), $loc->N("WWW")) => 'networking_www_section',
-	#$loc->N("Office") => 'office_section',
-	#join('|', $loc->N("Office"), $loc->N("Dictionary")) => 'office_dictionary_section',
-	#join('|', $loc->N("Office"), $loc->N("Finance")) => 'finances_section',
-	#join('|', $loc->N("Office"), $loc->N("Management")) => 'timemanagement_section',
-	#join('|', $loc->N("Office"), $loc->N("Organizer")) => 'timemanagement_section',
-	#join('|', $loc->N("Office"), $loc->N("Utilities")) => 'office_accessories_section',
-	#join('|', $loc->N("Office"), $loc->N("Spreadsheet")) => 'spreadsheet_section',
-	#join('|', $loc->N("Office"), $loc->N("Suite")) => 'office_suite',
-	#join('|', $loc->N("Office"), $loc->N("Word processor")) => 'wordprocessor_section',
-	#$loc->N("Publishing") => 'publishing_section',
-	#$loc->N("Sciences") => 'sciences_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Astronomy")) => 'astronomy_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Biology")) => 'biology_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Chemistry")) => 'chemistry_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Computer science")) => 'computer_science_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Geosciences")) => 'geosciences_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Mathematics")) => 'mathematics_section',
-	#join('|', $loc->N("Sciences"), $loc->N("Other")) => 'other_sciences',
-	#join('|', $loc->N("Sciences"), $loc->N("Physics")) => 'physics_section',
-	#$loc->N("Security") => 'security_section',
-	#$loc->N("Shells") => 'shells_section',
-	#$loc->N("Sound") => 'sound_section',
-	#join('|', $loc->N("Sound"), $loc->N("Editors and Converters")) => 'sound_editors_section',
-	#join('|', $loc->N("Sound"), $loc->N("Midi")) => 'sound_midi_section',
-	#join('|', $loc->N("Sound"), $loc->N("Mixers")) => 'sound_mixers_section',
-	#join('|', $loc->N("Sound"), $loc->N("Players")) => 'sound_players_section',
-	#join('|', $loc->N("Sound"), $loc->N("Utilities")) => 'sound_utilities_section',
-	#$loc->N("System") => 'system_section',
-	#join('|', $loc->N("System"), $loc->N("Base")) => 'system_section',
-	#join('|', $loc->N("System"), $loc->N("Boot and Init")) => 'boot_init_section',
-	#join('|', $loc->N("System"), $loc->N("Cluster")) => 'parallel_computing_section',
-	#join('|', $loc->N("System"), $loc->N("Configuration")) => 'configuration_section',
-	#join('|', $loc->N("System"), $loc->N("Fonts")) => 'chinese_section',
-	#join('|', $loc->N("System"), $loc->N("Fonts"), $loc->N("True type")) => '',
-	#join('|', $loc->N("System"), $loc->N("Fonts"), $loc->N("Type1")) => '',
-	#join('|', $loc->N("System"), $loc->N("Fonts"), $loc->N("X11 bitmap")) => '',
-	#join('|', $loc->N("System"), $loc->N("Internationalization")) => 'chinese_section',
-	#join('|', $loc->N("System"), $loc->N("Kernel and hardware")) => 'hardware_configuration_section',
-	#join('|', $loc->N("System"), $loc->N("Libraries")) => 'system_section',
-	#join('|', $loc->N("System"), $loc->N("Networking")) => 'networking_configuration_section',
-	#join('|', $loc->N("System"), $loc->N("Packaging")) => 'packaging_section',
-	#join('|', $loc->N("System"), $loc->N("Printing")) => 'printing_section',
-	#join('|', $loc->N("System"), $loc->N("Servers")) => 'servers_section',
-	#join('|', $loc->N("System"),
-          ##-PO: This is a package/product name. Only translate it if needed:
-          #$loc->N("X11")) => 'x11_section',
-	#$loc->N("Terminals") => 'terminals_section',
-	#$loc->N("Text tools") => 'text_tools_section',
-	#$loc->N("Toys") => 'toys_section',
-	#$loc->N("Video") => 'video_section',
-	#join('|', $loc->N("Video"), $loc->N("Editors and Converters")) => 'video_editors_section',
-	#join('|', $loc->N("Video"), $loc->N("Players")) => 'video_players_section',
-	#join('|', $loc->N("Video"), $loc->N("Television")) => 'video_television_section',
-	#join('|', $loc->N("Video"), $loc->N("Utilities")) => 'video_utilities_section',
-
-     ## for Mageia Choice:
-	#$loc->N("Workstation") => 'system_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Configuration")) => 'configuration_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Console Tools")) => 'interpreters_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Documentation")) => 'documentation_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Game station")) => 'amusement_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Internet station")) => 'networking_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Multimedia station")) => 'multimedia_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Network Computer (client)")) => 'other_networking',
-	#join('|', $loc->N("Workstation"), $loc->N("Office Workstation")) => 'office_section',
-	#join('|', $loc->N("Workstation"), $loc->N("Scientific Workstation")) => 'sciences_section',
-	#$loc->N("Graphical Environment") => 'graphical_desktop_section',
-
-	#join('|', $loc->N("Graphical Environment"), $loc->N("GNOME Workstation")) => 'gnome_section',
-	#join('|', $loc->N("Graphical Environment"), $loc->N("IceWm Desktop")) => 'icewm_section',
-	#join('|', $loc->N("Graphical Environment"), $loc->N("KDE Workstation")) => 'kde_section',
-	#join('|', $loc->N("Graphical Environment"), $loc->N("Other Graphical Desktops")) => 'more_applications_other_section',
-	#$loc->N("Development") => 'development_section',
-	#join('|', $loc->N("Development"), $loc->N("Development")) => 'development_section',
-	#join('|', $loc->N("Development"), $loc->N("Documentation")) => 'documentation_section',
-	#$loc->N("Server") => 'servers_section',
-	#join('|', $loc->N("Server"), $loc->N("DNS/NIS")) => 'networking_section',
-	#join('|', $loc->N("Server"), $loc->N("Database")) => 'databases_section',
-	#join('|', $loc->N("Server"), $loc->N("Firewall/Router")) => 'networking_section',
-	#join('|', $loc->N("Server"), $loc->N("Mail")) => 'mail_section',
-	#join('|', $loc->N("Server"), $loc->N("Mail/Groupware/News")) => 'mail_section',
-	#join('|', $loc->N("Server"), $loc->N("Network Computer server")) => 'networking_section',
-	#join('|', $loc->N("Server"), $loc->N("Web/FTP")) => 'networking_www_section',
-
-    #);
-
-#sub get_icon_path {
-    #my ($group, $parent) = @_;
-
-    #my $path = $parent ? '/usr/share/icons/mini/' : '/usr/share/icons/';
-    #my $icon_path = "";
-    #if(defined($group_icons{$group})){
-        #$icon_path = join('', $path, $group_icons{$group}, '.png');
-    #}elsif(defined($group_icons{$parent."\|".$group})){
-        #$icon_path = join('', $path, $group_icons{$parent."\|".$group}, '.png');
-    #}else{
-        #$icon_path = join('', $path, 'applications_section', '.png');
-    #}
-    #unless(-e $icon_path){
-        #$icon_path = join('', $path, 'applications_section', '.png');
-    #}
-    #return $icon_path;
-#}
