@@ -178,7 +178,7 @@ class mainGui():
 
         #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/manalog.png")
         icon_file = ""
-        self.find_button = self.factory.createIconButton(hbox_top, icon_file, "Search")
+        self.find_button = self.factory.createIconButton(hbox_top, icon_file, "&Search")
         self.find_button.setWeight(0,6)
         self.dialog.setDefaultButton(self.find_button)
         self.find_entry.setKeyboardFocus()
@@ -206,7 +206,8 @@ class mainGui():
         if sel :
             group = self._groupNameFromItem(self.groupList, sel)
 
-        self._fillPackageList(group)
+        filter = self._filterNameSelected()
+        self._fillPackageList(group, filter)
         sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
         if sel :
             pkg_name = sel.cell(0).label()
@@ -218,15 +219,14 @@ class mainGui():
         '''
         return ("{0}-{1}_{2}-{3}.{4}".format(name, epoch, version, release, arch))
 
-    def _fillPackageList(self, groupName=None) :
+    def _fillPackageList(self, groupName=None, filter="all") :
         '''
         fill package list filtered by group if groupName is given,
-        and checks installed packages it also clean up temporary lists
-        for install/remove packages if any.
+        and checks installed packages.
         Special value for groupName 'All' means all packages
+        Available filters are:
+        all, installed, not_installed and skip_other
         '''
-        self.toRemove = []
-        self.toInstall = []
 
         yui.YUI.app().busyCursor()
         packages = dnfbase.Packages(self.dnf)
@@ -239,21 +239,23 @@ class mainGui():
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.installed :
             if groupName and (groupName == pkg.group or groupName == 'All') :
-                item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                item.check(True)
-                self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                    'pkg' : pkg, 'item' : item
-                    }
-                item.this.own(False)
+                if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                    item.check(True)
+                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        'pkg' : pkg, 'item' : item
+                        }
+                    item.this.own(False)
 
         # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
         for pkg in packages.available:
             if groupName and (groupName == pkg.group or groupName == 'All') :
-                item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                    'pkg' : pkg, 'item' : item
-                    }
-                item.this.own(False)
+                if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        'pkg' : pkg, 'item' : item
+                        }
+                    item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
 
@@ -272,6 +274,19 @@ class mainGui():
         self.packageList.doneMultipleChanges()
 
         yui.YUI.app().normalCursor()
+
+    def _filterNameSelected(self) :
+        '''
+        return the filter name index from the selected filter
+        '''
+        filter = 'all'
+        sel = self.filter_box.selectedItem()
+        if sel:
+            for k in self.filters.keys():
+                if self.filters[k]['item'] == sel:
+                    return k
+
+        return filter
 
     def _groupNameFromItem(self, group, treeItem) :
         '''
@@ -420,12 +435,14 @@ class mainGui():
                         pkg_name = sel.cell(0).label()
                         self.setInfoOnWidget(pkg_name)
 
-                elif (widget == self.tree) :
+                elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
                     group = None
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
-                    self._fillPackageList(group)
+
+                    filter = self._filterNameSelected()
+                    self._fillPackageList(group, filter)
                 else:
                     print("Unmanaged widget")
             else:
