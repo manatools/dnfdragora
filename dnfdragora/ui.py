@@ -16,9 +16,8 @@ import sys
 import platform
 import yui
 
-import dnfbase
-import groupicons
-import argparse
+import dnfdragora.dnfbase as dnfbase
+import dnfdragora.groupicons as groupicons
 
 #################
 # class mainGui #
@@ -434,22 +433,3 @@ class mainGui():
 
 
         self.dialog.destroy()
-
-
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
-    parser.add_argument('--gtk', help='start using yui GTK plugin implementation', action='store_true')
-    parser.add_argument('--ncurses', help='start using yui NCURSES plugin implementation', action='store_true')
-    parser.add_argument('--qt', help='start using yui QT plugin implementation', action='store_true')
-    parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
-
-    parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
-    args = parser.parse_args()
-
-    options = {}
-    if args.icon_path:
-        options['icon_path'] = args.icon_path
-
-    main_gui = mainGui(options)
-    main_gui.handleevent()
