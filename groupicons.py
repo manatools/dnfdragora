@@ -12,7 +12,7 @@ class GroupIcons:
             self.icon_path = '/usr/share/icons/'
             self.mini_icon_path = '/usr/share/icons/mini/'
 
-        # TODO add a localized string for any group
+        # TODO add a localized string for any group in "title"
         self.group = {
              'All' : { 
                 'title' : "All", 
