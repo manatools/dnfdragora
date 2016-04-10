@@ -1,22 +1,32 @@
 #!/usr/bin/python3
 
-import dnfdragora.ui
-import argparse
+import sys
+
+if sys.path[0] is not '/usr/bin':
+    # We know this script is running from a git checkout
+    import os
+    SCRIPT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+    SRC_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, "./"))
+    SRC_BIN_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "bin/"))
+    sys.path.insert(0, SRC_DIR)
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
-    parser.add_argument('--gtk', help='start using yui GTK plugin implementation', action='store_true')
-    parser.add_argument('--ncurses', help='start using yui NCURSES plugin implementation', action='store_true')
-    parser.add_argument('--qt', help='start using yui QT plugin implementation', action='store_true')
-    parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
+   import dnfdragora.ui
+   import argparse
 
-    parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
-    args = parser.parse_args()
+   parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
+   parser.add_argument('--gtk', help='start using yui GTK plugin implementation', action='store_true')
+   parser.add_argument('--ncurses', help='start using yui NCURSES plugin implementation', action='store_true')
+   parser.add_argument('--qt', help='start using yui QT plugin implementation', action='store_true')
+   parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
 
-    options = {}
-    if args.icon_path:
-        options['icon_path'] = args.icon_path
+   parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
+   args = parser.parse_args()
 
-    main_gui = dnfdragora.ui.mainGui(options)
-    main_gui.handleevent()
+   options = {}
+   if args.icon_path:
+       options['icon_path'] = args.icon_path
+
+   main_gui = dnfdragora.ui.mainGui(options)
+   main_gui.handleevent()
