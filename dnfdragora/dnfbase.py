@@ -8,7 +8,7 @@ import dnf.yum
 import dnf.const
 import dnf.conf
 import dnf.subject
-
+import hawkey
 
 class Packages:
     '''
@@ -163,4 +163,36 @@ class DnfBase(dnf.Base):
         print("cachedir: %s" % conf.cachedir)
 
 
+    def search(self, fields, values, match_all=True, showdups=False):
+        '''
+        search in a list of package fields for a list of keys
+        :param fields: package attributes to search in
+        :param values: the values to match
+        :param match_all: match all values (default)
+        :param showdups: show duplicate packages or latest (default)
+        :return: a list of package objects
+        '''
+        matches = set()
+        for key in values:
+            key_set = set()
+            for attr in fields:
+                pkgs = set(self.contains(attr,key).run())
+                key_set |= pkgs
+            if len(matches) == 0:
+                matches = key_set
+            else:
+                if match_all:
+                    matches &= key_set
+                else:
+                    matches |= key_set
+        result = list(matches)
+        if not showdups:
+            result = self.sack.query().filter(pkg=result).latest()
+        return result
 
+    def contains(self, attr, needle, ignore_case=True):
+        fdict = {'%s__substr' % attr : needle}
+        if ignore_case:
+            return self.sack.query().filter(hawkey.ICASE, **fdict)
+        else:
+            return self.sack.query().filter(**fdict)
