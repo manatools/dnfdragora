@@ -600,6 +600,10 @@ class GroupIcons:
                         'icon' : 'documentation_section.png',
                     },
                 },
+                'Search' : {
+                    'title' : "Search",
+                    #'icon' : TODO
+                },
                 'Server' : {
                     'title' : "Server",
                     'icon' : 'servers_section.png',
