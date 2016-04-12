@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 
 '''
 dnfdragora is a graphical frontend based on rpmdragora implementation
@@ -152,14 +151,14 @@ class mainGui():
         self.filter_box.setNotify(True)
 
         self.local_search_types = {
-            'normal'      : {'title' : "in names"       },
-            'descriptions': {'title' : "in descriptions"},
-            'summaries'   : {'title' : "in summaries"   },
-            'files'       : {'title' : "in file names"  }
+            'name'       : {'title' : "in names"       },
+            'description': {'title' : "in descriptions"},
+            'summary'    : {'title' : "in summaries"   },
+            'file'       : {'title' : "in file names"  }
         }
-        search_types = ['normal', 'descriptions', 'summaries', 'files' ]
+        search_types = ['name', 'description', 'summary', 'file' ]
 
-        self.search_menu = self.factory.createComboBox(hbox_top,"")
+        self.search_list = self.factory.createComboBox(hbox_top,"")
         itemColl.clear()
         for s in search_types:
             item = yui.YItem(self.local_search_types[s]['title'], False)
@@ -170,8 +169,8 @@ class mainGui():
             itemColl.push_back(item)
             item.this.own(False)
 
-        self.search_menu.addItems(itemColl)
-        self.search_menu.setNotify(True)
+        self.search_list.addItems(itemColl)
+        self.search_list.setNotify(True)
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
 
@@ -228,7 +227,7 @@ class mainGui():
         '''
 
         yui.YUI.app().busyCursor()
-        packages = dnfbase.Packages(self.dnf)
+        packages = self.dnf.packages
 
         self.itemList = {}
         # {
@@ -310,9 +309,11 @@ class mainGui():
         fill the group tree, look for the retrieved groups and set their icons
         from groupicons module
         '''
+
+        self.groupList = {}
         rpm_groups = {}
         yui.YUI.app().busyCursor()
-        packages = dnfbase.Packages(self.dnf)
+        packages = self.dnf.packages
         for pkg in packages.all:
             if not pkg.group in rpm_groups:
                 rpm_groups[pkg.group] = 1
@@ -376,7 +377,7 @@ class mainGui():
         for key in keylist :
             item = self.groupList[key]['item']
             v.append(item)
-        #NOTE workaround to get YItemCollection working in python
+
         itemCollection = yui.YItemCollection(v)
         self.tree.startMultipleChanges()
         self.tree.deleteAllItems()
@@ -392,7 +393,7 @@ class mainGui():
         future implementation could save package info into a temporary
         object structure linked to the selected item
         """
-        packages = dnfbase.Packages(self.dnf)
+        packages = self.dnf.packages
         packages.all
         q = packages.query
         p_list = q.filter(name = pkg_name)
@@ -404,6 +405,71 @@ class mainGui():
             if pkg :
                 s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
                 self.info.setValue(s)
+
+    def _searchPackages(self, createTreeItem=False) :
+        '''
+        retrieves the info from search input field and from the search type list
+        to perform a paclage research and to fill the package list widget
+        '''
+        #clean up tree
+        if createTreeItem:
+            self._fillGroupTree()
+
+        search_string = self.find_entry.value()
+        if search_string :
+            fields = []
+            type_item = self.search_list.selectedItem()
+            for field in self.local_search_types.keys():
+                if self.local_search_types[field]['item'] == type_item:
+                    fields.append(field)
+                    break
+
+            yui.YUI.app().busyCursor()
+            strings = search_string.split(" ,|:;")
+            packages = self.dnf.search(fields, strings)
+
+
+            self.itemList = {}
+            # {
+            #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
+            # }
+
+            # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
+            for pkg in packages:
+                item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                item.check(pkg.installed)
+                self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                    'pkg' : pkg, 'item' : item
+                    }
+                item.this.own(False)
+
+            keylist = sorted(self.itemList.keys())
+            v = []
+            for key in keylist :
+                item = self.itemList[key]['item']
+                v.append(item)
+
+            itemCollection = yui.YItemCollection(v)
+
+            self.packageList.startMultipleChanges()
+            # cleanup old changed items since we are removing all of them
+            self.packageList.setChangedItem(None)
+            self.packageList.deleteAllItems()
+            self.packageList.addItems(itemCollection)
+            self.packageList.doneMultipleChanges()
+
+            if createTreeItem:
+                self.tree.startMultipleChanges()
+                icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
+                gIcons = groupicons.GroupIcons(icon_path)
+                icon = gIcons.icon("Search")
+                treeItem = yui.YTreeItem(gIcons.groups()['Search']['title'] , icon, False)
+                treeItem.setSelected(True)
+                self.groupList[gIcons.groups()['Search']['title']] = { "item" : treeItem, "name" : "Search" }
+                self.tree.addItem(treeItem)
+                self.tree.rebuildTree()
+                self.tree.doneMultipleChanges()
+            yui.YUI.app().normalCursor()
 
 
     def handleevent(self):
@@ -428,24 +494,27 @@ class mainGui():
                     wEvent = yui.toYWidgetEvent(event)
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
                         print("TODO checked\n")
-
-                    sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
-                    if sel :
-                        pkg_name = sel.cell(0).label()
-                        self.setInfoOnWidget(pkg_name)
-
+                elif (widget == self.find_button) :
+                    self._searchPackages(True)
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
                     group = None
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
-
-                    filter = self._filterNameSelected()
-                    self._fillPackageList(group, filter)
+                        if (group == "Search"):
+                            self._searchPackages()
+                        else:
+                            filter = self._filterNameSelected()
+                            self._fillPackageList(group, filter)
                 else:
                     print("Unmanaged widget")
             else:
                 print("Unmanaged yet")
+
+            sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
+            if sel :
+                pkg_name = sel.cell(0).label()
+                self.setInfoOnWidget(pkg_name)
 
 
 
