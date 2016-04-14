@@ -182,7 +182,7 @@ class mainGui():
         self.find_entry.setKeyboardFocus()
 
         #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/rpmdragora/clear_22x22.png");
-        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, "Reset")
+        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, "&Reset")
         self.reset_search_button.setWeight(0,7)
         self.find_entry.setWeight(0,10)
 
@@ -410,6 +410,8 @@ class mainGui():
         '''
         retrieves the info from search input field and from the search type list
         to perform a paclage research and to fill the package list widget
+
+        return False if an empty string used
         '''
         #clean up tree
         if createTreeItem:
@@ -470,6 +472,10 @@ class mainGui():
                 self.tree.rebuildTree()
                 self.tree.doneMultipleChanges()
             yui.YUI.app().normalCursor()
+        else :
+            return False
+
+        return True
 
 
     def handleevent(self):
@@ -482,6 +488,8 @@ class mainGui():
 
             eventType = event.eventType()
 
+            rebuild_package_list = False
+            group = None
             #event type checking
             if (eventType == yui.YEvent.CancelEvent) :
                 break
@@ -495,21 +503,28 @@ class mainGui():
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
                         print("TODO checked\n")
                 elif (widget == self.find_button) :
-                    self._searchPackages(True)
+                    if not self._searchPackages(True) :
+                        rebuild_package_list = True
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
-                    group = None
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
                         if (group == "Search"):
-                            self._searchPackages()
+                            if not self._searchPackages() :
+                                rebuild_package_list = True
                         else:
-                            filter = self._filterNameSelected()
-                            self._fillPackageList(group, filter)
+                            rebuild_package_list = True
                 else:
                     print("Unmanaged widget")
             else:
-                print("Unmanaged yet")
+                print("Unmanaged event")
+
+            if rebuild_package_list :
+                sel = self.tree.selectedItem()
+                if sel :
+                    group = self._groupNameFromItem(self.groupList, sel)
+                    filter = self._filterNameSelected()
+                    self._fillPackageList(group, filter)
 
             sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
             if sel :
