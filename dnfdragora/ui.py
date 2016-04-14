@@ -497,14 +497,24 @@ class mainGui():
                 # widget selected
                 widget  = event.widget()
                 if (widget == self.quitButton) :
+                    #### QUIT
                     break
                 elif (widget == self.packageList) :
                     wEvent = yui.toYWidgetEvent(event)
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
                         print("TODO checked\n")
+
+                elif (widget == self.reset_search_button) :
+                    #### RESET
+                    rebuild_package_list = True
+                    self.find_entry.setValue("")
+                    self._fillGroupTree()
+
                 elif (widget == self.find_button) :
+                    #### FIND
                     if not self._searchPackages(True) :
                         rebuild_package_list = True
+
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
                     if sel :
