@@ -406,7 +406,7 @@ class mainGui():
                 s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
                 self.info.setValue(s)
 
-    def _searchPackages(self, createTreeItem=False) :
+    def _searchPackages(self, filter='all', createTreeItem=False) :
         '''
         retrieves the info from search input field and from the search type list
         to perform a paclage research and to fill the package list widget
@@ -438,12 +438,15 @@ class mainGui():
 
             # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
             for pkg in packages:
-                item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                item.check(pkg.installed)
-                self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                    'pkg' : pkg, 'item' : item
-                    }
-                item.this.own(False)
+                if (filter == 'all' or (filter == 'installed' and pkg.installed) or
+                    (filter == 'not_installed' and not pkg.installed) or
+                    (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
+                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                    item.check(pkg.installed)
+                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        'pkg' : pkg, 'item' : item
+                        }
+                    item.this.own(False)
 
             keylist = sorted(self.itemList.keys())
             v = []
@@ -512,7 +515,8 @@ class mainGui():
 
                 elif (widget == self.find_button) :
                     #### FIND
-                    if not self._searchPackages(True) :
+                    filter = self._filterNameSelected()
+                    if not self._searchPackages(filter, True) :
                         rebuild_package_list = True
 
                 elif (widget == self.tree) or (widget == self.filter_box) :
@@ -520,7 +524,8 @@ class mainGui():
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
                         if (group == "Search"):
-                            if not self._searchPackages() :
+                            filter = self._filterNameSelected()
+                            if not self._searchPackages(filter) :
                                 rebuild_package_list = True
                         else:
                             rebuild_package_list = True
