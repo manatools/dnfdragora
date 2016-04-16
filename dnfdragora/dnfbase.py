@@ -196,3 +196,24 @@ class DnfBase(dnf.Base):
             return self.sack.query().filter(hawkey.ICASE, **fdict)
         else:
             return self.sack.query().filter(**fdict)
+
+
+    def apply_transaction(self, progress):
+        rc = self.resolve()
+        print("Depsolve rc: ", rc)
+        if rc:
+            to_dnl = self.get_packages_to_download()
+            # Downloading Packages
+            self.download_packages(to_dnl, progress)
+            print("\nRunning Transaction")
+            print(self.do_transaction())
+        else:
+            print("Depsolve failed")
+
+    def get_packages_to_download(self):
+        to_dnl = []
+        for tsi in self.transaction:
+            print("   "+tsi.active_history_state+" - "+ str(tsi.active) )
+            if tsi.installed:
+                to_dnl.append(tsi.installed)
+        return to_dnl

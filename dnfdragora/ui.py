@@ -11,12 +11,14 @@ Author:  Andelo Naselli <anaselli@linux.it>
 @package dnfdragora
 '''
 
+import os
 import sys
 import platform
 import yui
 
 import dnfdragora.dnfbase as dnfbase
 import dnfdragora.groupicons as groupicons
+import dnfdragora.progress_ui as progress_ui
 
 #################
 # class mainGui #
@@ -505,7 +507,15 @@ class mainGui():
                 elif (widget == self.packageList) :
                     wEvent = yui.toYWidgetEvent(event)
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
-                        print("TODO checked\n")
+                        changedItem = self.packageList.changedItem()
+                        if changedItem :
+                            pkg_name = changedItem.cell(0).label()
+                            if changedItem.checked():
+                                self.dnf.install(pkg_name)
+                            else:
+                                self.dnf.remove(pkg_name)
+
+                        print("TODO checked, managing also version and arch\n")
 
                 elif (widget == self.reset_search_button) :
                     #### RESET
@@ -518,6 +528,30 @@ class mainGui():
                     filter = self._filterNameSelected()
                     if not self._searchPackages(filter, True) :
                         rebuild_package_list = True
+
+                elif (widget == self.applyButton) :
+                    #### APPLY
+                    if os.getuid() == 0:
+                        progress = progress_ui.Progress()
+                        self.dnf.apply_transaction(progress)
+                        self.dnf.fill_sack() # refresh the sack
+                        # NOTE removing progress bar to make this Dialog the top most again
+                        del progress
+                        # TODO next line works better but installing and then removing or viceversa
+                        #      crashes anyway
+                        #self.dnf = dnfbase.DnfBase()
+                        sel = self.tree.selectedItem()
+                        if sel :
+                            group = self._groupNameFromItem(self.groupList, sel)
+                            if (group == "Search"):
+                                filter = self._filterNameSelected()
+                                if not self._searchPackages(filter) :
+                                    rebuild_package_list = True
+                            else:
+                                rebuild_package_list = True
+                    else:
+                        # TODO use a dialog instead
+                        print("You must be root to apply changes")
 
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
