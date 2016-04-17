@@ -8,7 +8,11 @@ import dnf.yum
 import dnf.const
 import dnf.conf
 import dnf.subject
+import dnf.repodict
+import dnf.repo
 import hawkey
+
+import dnfdragora.progress_ui as progress_ui
 
 class Packages:
     '''
@@ -131,12 +135,20 @@ class DnfBase(dnf.Base):
         # setup the dnf cache
         RELEASEVER = dnf.rpm.detect_releasever(self.conf.installroot)
         self.conf.substitutions['releasever'] = RELEASEVER
+        progress = progress_ui.Progress()
+
         # read the repository infomation
         self.read_all_repos()
         if setup_sack:
             # populate the dnf sack
+            repos = self.repos.all()
+            for repo in repos :
+                repo.set_progress_bar(progress)
+                repo.load()
+                repo.set_progress_bar(None)
             self.fill_sack()
             self._packages = Packages(self) # Define a Packages object
+        del progress
 
     def setup_base(self):
         self.fill_sack()

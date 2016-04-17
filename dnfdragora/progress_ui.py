@@ -18,7 +18,8 @@ class Progress(DownloadProgress):
         self.label_widget = self.factory.createLabel(vbox, "")
         self.label_widget.setStretchable( yui.YD_HORIZ, True )
         self.progressbar = self.factory.createProgressBar(vbox, "")
-
+        self.wrongValue = self.factory.createLabel(vbox, "")
+        self.wrongValue.setStretchable( yui.YD_HORIZ, True )
 
         self.total_files = 0
         self.total_size = 0.0
@@ -33,13 +34,18 @@ class Progress(DownloadProgress):
 
     def start(self, total_files, total_size):
         text = "Downloading :  %d files,  %d bytes" % (total_files, total_size)
+        print (text)
 
-        self._setLabel(text)
+        self._setLabel(self.label_widget, text)
 
         self.total_files = total_files
         self.total_size = total_size
         self.download_files = 0
         self.download_size = 0.0
+
+        self.progressbar.setValue(0)
+        self.wrongValue.setValue("")
+
 
 
     def end(self,payload, status, msg):
@@ -48,13 +54,14 @@ class Progress(DownloadProgress):
             self.update()
         else: # dnl end with errors
             self.update()
+        self.progressbar.setValue(100)
 
     def progress(self, payload, done):
         pload = str(payload)
         if not pload in self.dnl:
             self.dnl[pload] = 0.0
             text = "Starting to download : %s " % str(payload)
-            self._setLabel(text)
+            self._setLabel(self.label_widget, text)
 
         else:
             self.dnl[pload] = done
@@ -75,17 +82,23 @@ class Progress(DownloadProgress):
     def update(self):
         """ Output the current progress"""
         text = "Progress files (%d/%d)" % (self.download_files, self.total_files)
-        self._setLabel(text)
+        # TODO remove print(text)
+        self._setLabel(self.label_widget, text)
         value = self.last_pct
+        # TODO remove print ( "Value %d" % (self.last_pct))
 
-        self.progressbar.setValue(value)
+        if (value <= 100) :
+            self.progressbar.setValue(value)
+        else:
+            self._setLabel(self.wrongValue, text=("%d"%value))
+            self.progressbar.setValue(99)
+
         self._flush()
-        #sys.stdout.write("Progress : %-3d %% (%d/%d)\r" % (self.last_pct,self.download_files, self.total_files))
 
 
-    def _setLabel(self, text=""):
+    def _setLabel(self, label_widget, text=""):
         self.main_dialog.startMultipleChanges()
-        self.label_widget.setValue(text)
+        label_widget.setValue(text)
         self.main_dialog.doneMultipleChanges()
         self._flush()
 
