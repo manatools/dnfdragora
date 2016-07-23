@@ -532,11 +532,9 @@ class mainGui():
                 elif (widget == self.applyButton) :
                     #### APPLY
                     if os.getuid() == 0:
-                        progress = progress_ui.Progress()
-                        self.dnf.apply_transaction(progress)
+                        self.dnf.apply_transaction()
                         self.dnf.fill_sack() # refresh the sack
-                        # NOTE removing progress bar to make this Dialog the top most again
-                        del progress
+
                         # TODO next line works better but installing and then removing or viceversa
                         #      crashes anyway
                         #self.dnf = dnfbase.DnfBase()
@@ -549,6 +547,7 @@ class mainGui():
                                     rebuild_package_list = True
                             else:
                                 rebuild_package_list = True
+                        self.dnf.close()
                     else:
                         # TODO use a dialog instead
                         print("You must be root to apply changes")

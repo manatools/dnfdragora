@@ -3,8 +3,51 @@ from __future__ import absolute_import
 
 import yui
 
-from dnf.callback import DownloadProgress
-class Progress(DownloadProgress):
+import dnf.callback
+
+
+class TransactionProgress(dnf.callback.TransactionProgress):
+
+    def __init__(self):
+        self.actions = {dnf.callback.PKG_CLEANUP: 'cleanup',
+                        dnf.callback.PKG_DOWNGRADE: 'downgrade',
+                        dnf.callback.PKG_REMOVE: 'erase',
+                        dnf.callback.PKG_INSTALL: 'install',
+                        dnf.callback.PKG_OBSOLETE: 'obsolete',
+                        dnf.callback.PKG_REINSTALL: 'reinstall',
+                        dnf.callback.PKG_UPGRADE: 'update',
+                        dnf.callback.PKG_VERIFY: 'verify'}
+
+        super(dnf.callback.TransactionProgress, self).__init__()
+        self.do_verify = False
+
+    def progress(self, package, action, te_current, te_total, ts_current,
+              ts_total):
+        """
+        @param package: A yum package object or simple string of a package name
+        @param action: A constant transaction set state
+        @param te_current: current number of bytes processed in the transaction
+                           element being processed
+        @param te_total: total number of bytes in the transaction element being
+                         processed
+        @param ts_current: number of processes completed in whole transaction
+        @param ts_total: total number of processes in the transaction.
+        """
+        if package:
+            # package can be both str or dnf package object
+            if not isinstance(package, str):
+                pkg_id = str(package)
+            else:
+                pkg_id = package
+            if action in self.actions:
+                action = self.actions[action]
+
+            print ("%s %s"%(pkg_id, action))
+            #self.base.RPMProgress(
+                #pkg_id, action, te_current, te_total, ts_current, ts_total)
+
+
+class Progress(dnf.callback.DownloadProgress):
 
     def __init__(self):
         '''

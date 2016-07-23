@@ -144,7 +144,12 @@ class DnfBase(dnf.Base):
             repos = self.repos.all()
             for repo in repos :
                 repo.set_progress_bar(progress)
-                repo.load()
+                try:
+                    repo.load()
+                except dnf.exceptions.RepoError as e: 
+                    # TODO log and eventually manage it
+                    print(e)
+
                 repo.set_progress_bar(None)
             self.fill_sack()
             self._packages = Packages(self) # Define a Packages object
@@ -210,15 +215,26 @@ class DnfBase(dnf.Base):
             return self.sack.query().filter(**fdict)
 
 
-    def apply_transaction(self, progress):
+    def apply_transaction(self):
         rc = self.resolve()
         print("Depsolve rc: ", rc)
         if rc:
+            progress = progress_ui.Progress()
             to_dnl = self.get_packages_to_download()
-            # Downloading Packages
-            self.download_packages(to_dnl, progress)
+            if len(to_dnl) :
+                # Downloading Packages
+                self.download_packages(to_dnl, progress)
+
             print("\nRunning Transaction")
             print(self.do_transaction())
+#            display = progress_ui.TransactionProgress()
+#            s = self.do_transaction(display)
+#            if isinstance(s, str):
+#                print(s)
+            del progress
+#            del display
+            self.setup_base()
+
         else:
             print("Depsolve failed")
 
