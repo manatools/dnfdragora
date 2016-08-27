@@ -1,19 +1,30 @@
 This file is meant to get a list of things that should be hopefully implemented or fixed
 as soon as possible. 
 
-1. Repository update, TransactionProgress::update gets wrong information
-   e.g. the number of file (always 1) and not its size so dowload progress
-   bar is always wrong (need upstream interaction)
-2. Theme management icons are taken from mageia system. A default theme should
-   be provided.
-3. Group management, upstream rpm seems not to manage groups any more at least in 
-   the way mageia does, we should allow a configuration key to enable/disable mageia
-   behaviour and manage group in a standard way for other systems.
-4. Repositories/mirror management
-5. Keys management (needed?)
-6. Add a configuration file, and a user one to save settings eventually.
-7. String localization, all is ready but gettext is not used
-8. libyui, we need to ask for a patch review concerning YItem selection needed to manage
-   package selection and released on github by anaselli.
+1.  Repository update, TransactionProgress::update gets wrong information
+    e.g. the number of file (always 1) and not its size so dowload progress
+    bar is always wrong (need upstream interaction)
+2.  Theme management icons are taken from mageia system. A default theme should
+    be provided.
+3.  Group management, upstream rpm seems not to manage groups any more at least in
+    the way mageia does, we should allow a configuration key to enable/disable mageia
+    behaviour and manage group in a standard way for other systems.
+4.  Repositories/mirror management
+5.  Keys management (needed?)
+6.  Add a configuration file, and a user one to save settings eventually.
+7.  String localization, all is ready but gettext is not used
+8.  libyui, we need to ask for a patch review concerning YItem selection needed to manage
+    package selection and released on github by anaselli.
+9.  Handle solution errors. In the event that there's a dependency problem detected, we should
+    offer the user a way to resolve it from within the UI so that it can be resolved.
+10. Offer weak dependency options, handling both forward and reverse dependencies.
+    With weak dependencies, we should offer a way for the user to select whether to install
+    recommended/supplementary packages, add suggested/enhancing packages to the transaction, etc.
+11. Handle multiple provider case. When something is provided by multiple packages, we need to be
+    able to offer the user a choice and indicate a sane default based on the system package
+    set and the transaction itself.
+12. Handle complex dependencies. If there are conditional dependencies, we should offer ways to
+    select from the set of options (in the case with Requires with "or") or offer ways to enable
+    additional functionality (in the case where Requires only activate if something is installed).
 
 If you want to help in any of this items, or new ones please contact us
