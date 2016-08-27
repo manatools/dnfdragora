@@ -38,5 +38,5 @@ TODO
 
 # LICENSE AND COPYRIGHT #
 
-See LICENSE file
+See [license](LICENSE) file.
 
