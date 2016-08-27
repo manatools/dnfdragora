@@ -1,6 +1,6 @@
 # dnfdragora #
 
-dnfdragora is a dnf front-end, based on rpmdragora from mageia i
+dnfdragora is a dnf front-end, based on rpmdragora from mageia
 (original rpmdrake) perl code.
 
 dnfdragora is written in python and uses libYui, the Suse widget abstraction library
