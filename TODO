@@ -2,7 +2,6 @@ This file is meant to get a list of things that should be hopefully implemented 
 as soon as possible. 
 
 == Near term targets ==
-
 === Critical ===
 1.  libyui, we need to ask for a patch review concerning YItem selection needed to manage
     package selection and released on github by anaselli.
