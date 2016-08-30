@@ -13,6 +13,8 @@ import dnf.repo
 import hawkey
 
 import dnfdragora.progress_ui as progress_ui
+import gettext
+from gettext import gettext as _
 
 class Packages:
     '''
@@ -177,7 +179,7 @@ class DnfBase(dnf.Base):
         conf = self.conf
         conf.substitutions['releasever'] = dnf.rpm.detect_releasever('/')
         conf.cachedir, self._system_cachedir = self.cachedir_fit()
-        print("cachedir: %s" % conf.cachedir)
+        print(_("cachedir: %s") % conf.cachedir)
 
 
     def search(self, fields, values, match_all=True, showdups=False):
@@ -217,7 +219,7 @@ class DnfBase(dnf.Base):
 
     def apply_transaction(self):
         rc = self.resolve()
-        print("Depsolve rc: ", rc)
+        print(_("Depsolve rc: "), rc)
         if rc:
             progress = progress_ui.Progress()
             to_dnl = self.get_packages_to_download()
@@ -225,7 +227,7 @@ class DnfBase(dnf.Base):
                 # Downloading Packages
                 self.download_packages(to_dnl, progress)
 
-            print("\nRunning Transaction")
+            print(_("\nRunning Transaction"))
             print(self.do_transaction())
 #            display = progress_ui.TransactionProgress()
 #            s = self.do_transaction(display)
@@ -236,7 +238,7 @@ class DnfBase(dnf.Base):
             self.setup_base()
 
         else:
-            print("Depsolve failed")
+            print(_("Depsolve failed"))
 
     def get_packages_to_download(self):
         to_dnl = []

@@ -5,6 +5,8 @@ import yui
 
 import dnf.callback
 
+from gettext import gettext as _
+
 
 class TransactionProgress(dnf.callback.TransactionProgress):
 
@@ -76,7 +78,7 @@ class Progress(dnf.callback.DownloadProgress):
         self.main_dialog.destroy()
 
     def start(self, total_files, total_size):
-        text = "Downloading :  %d files,  %d bytes" % (total_files, total_size)
+        text = _("Downloading :  %d files,  %d bytes") % (total_files, total_size)
         print (text)
 
         self._setLabel(self.label_widget, text)
@@ -103,7 +105,7 @@ class Progress(dnf.callback.DownloadProgress):
         pload = str(payload)
         if not pload in self.dnl:
             self.dnl[pload] = 0.0
-            text = "Starting to download : %s " % str(payload)
+            text = _("Starting to download : %s ") % str(payload)
             self._setLabel(self.label_widget, text)
 
         else:
@@ -124,7 +126,7 @@ class Progress(dnf.callback.DownloadProgress):
 
     def update(self):
         """ Output the current progress"""
-        text = "Progress files (%d/%d)" % (self.download_files, self.total_files)
+        text = _("Progress files (%d/%d)") % (self.download_files, self.total_files)
         # TODO remove print(text)
         self._setLabel(self.label_widget, text)
         value = self.last_pct
