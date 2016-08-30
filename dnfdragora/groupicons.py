@@ -1,3 +1,4 @@
+from gettext import gettext as _
 
 class GroupIcons:
     '''
@@ -15,624 +16,624 @@ class GroupIcons:
         # TODO add a localized string for any group in "title"
         self.group = {
              'All' : { 
-                'title' : "All", 
+                'title' : _("All"), 
                 'icon':  'system_section.png'
                 },
              'Accessibility' : {
-                'title' : "Accessibility",
+                'title' : _("Accessibility"),
                 'icon': 'accessibility_section.png'
                 },
              'Archiving' : {
-                'title' : "Archiving",
+                'title' : _("Archiving"),
                 'icon': 'archiving_section.png',
                 'Backup' : {
-                    'title' : "Backup",
+                    'title' : _("Backup"),
                     'icon' : 'backup_section.png'
                     },
                 'Cd burning' : {
-                    'title' : "Cd burning",
+                    'title' : _("Cd burning"),
                     'icon' : 'cd_burning_section.png'
                     },
                 'Compression' : { 
-                    'title' : "Compression",
+                    'title' : _("Compression"),
                     'icon' : 'compression_section.png'
                     },
                 'Other' : {
-                    'title' : "Other",
+                    'title' : _("Other"),
                     'icon' : 'other_archiving.png'
                     }
                 },
                 'Communications' : {
-                        'title' : "Communications",
+                        'title' : _("Communications"),
                         'icon'  : 'communications_section.png',
                         'Bluetooth': {
-                            'title' : "Bluetooth",
+                            'title' : _("Bluetooth"),
                             'icon'  : 'communications_bluetooth_section.png',
                             },
                         'Dial-Up'  : {
-                            'title' : "Dial-Up",
+                            'title' : _("Dial-Up"),
                             'icon'  : 'communications_dialup_section.png',
                             },
                         'Fax'      : {
-                            'title' : "Fax",
+                            'title' : _("Fax"),
                             'icon'  : 'communications_fax_section.png',
                             },
                         'Mobile'   : {
-                            'title' : "Mobile",
+                            'title' : _("Mobile"),
                             'icon'  : 'communications_mobile_section',
                             },
                         'Radio'    : {
-                            'title' : "Radio",
+                            'title' : _("Radio"),
                             'icon'  : 'communications_radio_section.png',
                             },
                         'Serial'   : {
-                            'title' : "Serial",
+                            'title' : _("Serial"),
                             'icon'  : 'communications_serial_section.png',
                             },
                         'Telephony': {
-                            'title' : "Telephony",
+                            'title' : _("Telephony"),
                             'icon'  : 'communications_phone_section',
                             },
                     },
                 'Databases' : {
-                    'title': "Databases",
+                    'title': _("Databases"),
                     'icon' :'databases_section.png'
                  },
                 'Development' : {
-                    'title': "Development",
+                    'title': _("Development"),
                     'icon' : 'development_section.png',
                     'Basic' : {
-                        'title' : "Basic",
+                        'title' : _("Basic"),
                         },
                     'C' : {
-                        'title' : "C"
+                        'title' : _("C")
                         },
                     'C++' : {
-                        'title' : "C++",
+                        'title' : _("C++"),
                         },
                     'C#' : {
-                        'title' : "C#",
+                        'title' : _("C#"),
                         #'icon' : ''
                         },
                     'Databases' : {
-                        'title' : "Databases",
+                        'title' : _("Databases"),
                         'icon' : 'databases_section.png'
                         },
                     'Debug' : {
-                        'title' : "Debug",
+                        'title' : _("Debug"),
                         #'icon' : ''
                         },
                     'Erlang' : {
-                        'title' : "Erlang",
+                        'title' : _("Erlang"),
                         #'icon' : ''
                         },
                     'GNOME and GTK+' : {
-                        'title' : "GNOME and GTK+",
+                        'title' : _("GNOME and GTK+"),
                         'icon' : 'gnome_section.png'
                         },
                     'Java' : {
-                        'title' : "Java",
+                        'title' : _("Java"),
                         #'icon' : ''
                         },
                     'KDE and Qt' : {
-                        'title' : "KDE and Qt",
+                        'title' : _("KDE and Qt"),
                         'icon' : 'kde_section.png'
                         },
                     'Kernel' : {
-                        'title' : "Kernel",
+                        'title' : _("Kernel"),
                         #'icon' : ''
                         },
                     'OCaml' : {
-                        'title' : "OCaml",
+                        'title' : _("OCaml"),
                         #'icon' : ''
                         },
                     'Other' : {
-                        'title' : "Other",
+                        'title' : _("Other"),
                         #'icon' : ''
                         },
                     'Perl' : {
-                        'title' : "Perl",
+                        'title' : _("Perl"),
                         #'icon' : ''
                         },
                     'PHP' : {
-                        'title' : "PHP",
+                        'title' : _("PHP"),
                         #'icon' : ''
                         },
                     'Python' : {
-                        'title' : "Python",
+                        'title' : _("Python"),
                         #'icon' : ''
                         },
                     'Tools' : {
-                        'title' : "Tools",
+                        'title' : _("Tools"),
                         'icon' : 'development_tools_section.png',
                         },
                     'X11' : {
-                        'title' : "X11",
+                        'title' : _("X11"),
                         #'icon' : ''
                         },
                 },
                 'Documentation' : {
-                    'title' : "Documentation",
+                    'title' : _("Documentation"),
                     'icon' : 'documentation_section.png'
                 },
                 'Editors' : {
-                    'title' : "Editors",
+                    'title' : _("Editors"),
                     'icon' : 'editors_section.png'
                 },
                 'Education' : {
-                    'title' : "Education",
+                    'title' : _("Education"),
                     'icon' : 'education_section.png'
                 },
                 'Emulators' : {
-                    'title' : "Emulators",
+                    'title' : _("Emulators"),
                     'icon' : 'emulators_section.png'
                 },
                 'File tools' : {
-                    'title' : "File tools",
+                    'title' : _("File tools"),
                     'icon' : 'file_tools_section.png'
                 },
                 'Games' : {
-                    'title' : "Games",
+                    'title' : _("Games"),
                     'icon' : 'amusement_section.png',
                     'Adventure' : {
-                        'title' : "Adventure",
+                        'title' : _("Adventure"),
                         'icon' : 'adventure_section.png',
                     },
                     'Arcade' : {
-                        'title' : "Arcade",
+                        'title' : _("Arcade"),
                         'icon' : 'arcade_section.png',
                     },
                     'Boards' : {
-                        'title' : "Boards",
+                        'title' : _("Boards"),
                         'icon' : 'boards_section.png',
                     },
                     'Cards' : {
-                        'title' : "Cards",
+                        'title' : _("Cards"),
                         'icon' : 'cards_section.png',
                     },
                     'Other' : {
-                        'title' : "Other",
+                        'title' : _("Other"),
                         'icon' : 'other_amusement.png',
                     },
                     'Puzzles' : {
-                        'title' : "Puzzles",
+                        'title' : _("Puzzles"),
                         'icon' : 'puzzle_section.png',
                     },
                     'Shooter' : {
-                        'title' : "Shooter",
+                        'title' : _("Shooter"),
                         'icon' : 'shooter_section.png',
                     },
                     'Simulation' : {
-                        'title' : "Simulation",
+                        'title' : _("Simulation"),
                         'icon' : 'simulation_section.png',
                     },
                     'Sports' : {
-                        'title' : "Sports",
+                        'title' : _("Sports"),
                         'icon' : 'sport_section.png',
                     },
                     'Strategy' : {
-                        'title' : "Strategy",
+                        'title' : _("Strategy"),
                         'icon' : 'strategy_section.png',
                     },
                 },
                 'Geography' : {
-                    'title' : "Geography",
+                    'title' : _("Geography"),
                     'icon' : 'geography_section.png'
                 },
                 'Graphical desktop' : {
-                    'title' : "Graphical desktop",
+                    'title' : _("Graphical desktop"),
                     'icon' : 'graphical_desktop_section.png',
                     'Enlightenment' : {
-                        'title' : "Enlightenment",
+                        'title' : _("Enlightenment"),
                         'icon' : 'enlightment_section.png',
                     },
                     'GNOME' : {
-                        'title' : "GNOME",
+                        'title' : _("GNOME"),
                         'icon' : 'gnome_section.png',
                     },
                     'Icewm' : {
-                        'title' : "Icewm",
+                        'title' : _("Icewm"),
                         'icon' : 'icewm_section.png',
                     },
                     'KDE' : {
-                        'title' : "KDE",
+                        'title' : _("KDE"),
                         'icon' : 'kde_section.png',
                     },
                     'Other' : {
-                        'title' : "Other",
+                        'title' : _("Other"),
                         'icon' : 'more_applications_other_section.png',
                     },
                     'WindowMaker' : {
-                        'title' : "WindowMaker",
+                        'title' : _("WindowMaker"),
                         'icon' : 'windowmaker_section.png',
                     },
                     'Xfce' : {
-                        'title' : "Xfce",
+                        'title' : _("Xfce"),
                         'icon' : 'xfce_section.png',
                     },
                 },
                 'Graphics' : {
-                    'title' : "Graphics",
+                    'title' : _("Graphics"),
                     'icon' : 'graphics_section.png',
                     '3D' : {
-                        'title' : "3D",
+                        'title' : _("3D"),
                         'icon' : 'graphics_3d_section.png',
                     },
                     'Editors and Converters' : {
-                        'title' : "Editors and Converters",
+                        'title' : _("Editors and Converters"),
                         'icon' : 'graphics_editors_section.png',
                     },
                     'Utilities' : {
-                        'title' : "Utilities",
+                        'title' : _("Utilities"),
                         'icon' : 'graphics_utilities_section.png',
                     },
                     'Photography' : {
-                        'title' : "Photography",
+                        'title' : _("Photography"),
                         'icon' : 'graphics_photography_section.png',
                     },
                     'Scanning' : {
-                        'title' : "Scanning",
+                        'title' : _("Scanning"),
                         'icon' : 'graphics_scanning_section.png',
                     },
                     'Viewers' : {
-                        'title' : "Viewers",
+                        'title' : _("Viewers"),
                         'icon' : 'graphics_viewers_section.png',
                     },
                 },
                 'Monitoring' : {
-                    'title' : "Monitoring",
+                    'title' : _("Monitoring"),
                     'icon' : 'monitoring_section.png'
                 },
                 'Networking' : {
-                    'title' : "Networking",
+                    'title' : _("Networking"),
                     'icon' : 'networking_section.png',
                     'File transfer' : {
-                        'title' : "File transfer",
+                        'title' : _("File transfer"),
                         'icon' : 'file_transfer_section.png',
                     },
                     'IRC' : {
-                        'title' : "IRC",
+                        'title' : _("IRC"),
                         'icon' : 'irc_section.png',
                     },
                     'Instant messaging' : {
-                        'title' : "Instant messaging",
+                        'title' : _("Instant messaging"),
                         'icon' : 'instant_messaging_section.png',
                     },
                     'Mail' : {
-                        'title' : "Mail",
+                        'title' : _("Mail"),
                         'icon' : 'mail_section.png',
                     },
                     'News' : {
-                        'title' : "News",
+                        'title' : _("News"),
                         'icon' : 'news_section.png',
                     },
                     'Other' : {
-                        'title' : "Other",
+                        'title' : _("Other"),
                         'icon' : 'other_networking.png',
                     },
                     'Remote access' : {
-                        'title' : "Remote access",
+                        'title' : _("Remote access"),
                         'icon' : 'remote_access_section.png',
                     },
                     'WWW' : {
-                        'title' : "WWW",
+                        'title' : _("WWW"),
                         'icon' : 'networking_www_section.png',
                     },
                 },
                 'Office' : {
-                    'title' : "Office",
+                    'title' : _("Office"),
                     'icon' : 'office_section.png',
                     'Dictionary' : {
-                        'title' : "Dictionary",
+                        'title' : _("Dictionary"),
                         'icon' : 'office_dictionary_section.png',
                     },
                     'Finance' : {
-                        'title' : "Finance",
+                        'title' : _("Finance"),
                         'icon' : 'finances_section.png',
                     },
                     'Management' : {
-                        'title' : "Management",
+                        'title' : _("Management"),
                         'icon' : 'timemanagement_section.png',
                     },
                     'Organizer' : {
-                        'title' : "Organizer",
+                        'title' : _("Organizer"),
                         'icon' : 'timemanagement_section.png',
                     },
                     'Utilities' : {
-                        'title' : "Utilities",
+                        'title' : _("Utilities"),
                         'icon' : 'office_accessories_section.png',
                     },
                     'Spreadsheet' : {
-                        'title' : "Spreadsheet",
+                        'title' : _("Spreadsheet"),
                         'icon' : 'spreadsheet_section.png',
                     },
                     'Suite' : {
-                        'title' : "Suite",
+                        'title' : _("Suite"),
                         'icon' : 'office_suite.png',
                     },
                     'Word processor' : {
-                        'title' : "Word processor",
+                        'title' : _("Word processor"),
                         'icon' : 'wordprocessor_section.png',
                     },
                 },
                 'Publishing' : {
-                    'title' : "Publishing",
+                    'title' : _("Publishing"),
                     'icon' : 'publishing_section.png'
                 },
                 'Sciences' : {
-                    'title' : "Sciences",
+                    'title' : _("Sciences"),
                     'icon' : 'sciences_section.png',
                     'Astronomy' : {
-                        'title' : "Astronomy",
+                        'title' : _("Astronomy"),
                         'icon' : 'astronomy_section.png',
                     },
                     'Biology' : {
-                        'title' : "Biology",
+                        'title' : _("Biology"),
                         'icon' : 'biology_section.png',
                     },
                     'Chemistry' : {
-                        'title' : "Chemistry",
+                        'title' : _("Chemistry"),
                         'icon' : 'chemistry_section.png',
                     },
                     'Computer science' : {
-                        'title' : "Computer science",
+                        'title' : _("Computer science"),
                         'icon' : 'computer_science_section.png',
                     },
                     'Geosciences' : {
-                        'title' : "Geosciences",
+                        'title' : _("Geosciences"),
                         'icon' : 'geosciences_section.png',
                     },
                     'Mathematics' : {
-                        'title' : "Mathematics",
+                        'title' : _("Mathematics"),
                         'icon' : 'mathematics_section.png',
                     },
                     'Other' : {
-                        'title' : "Other",
+                        'title' : _("Other"),
                         'icon' : 'other_sciences.png',
                     },
                     'Physics' : {
-                        'title' : "Physics",
+                        'title' : _("Physics"),
                         'icon' : 'physics_section.png',
                     },
                 },
                 'Security' : {
-                    'title' : "Security",
+                    'title' : _("Security"),
                     'icon' : 'security_section.png'
                 },
                 'Shells' : {
-                    'title' : "Shells",
+                    'title' : _("Shells"),
                     'icon' : 'shells_section.png'
                 },
                 'Sound' : {
-                    'title' : "Sound",
+                    'title' : _("Sound"),
                     'icon' : 'sound_section.png',
                     'Editors and Converters' : {
-                        'title' : "Editors and Converters",
+                        'title' : _("Editors and Converters"),
                         'icon' : 'sound_editors_section.png',
                     },
                     'Midi' : {
-                        'title' : "Midi",
+                        'title' : _("Midi"),
                         'icon' : 'sound_midi_section.png',
                     },
                     'Mixers' : {
-                        'title' : "Mixers",
+                        'title' : _("Mixers"),
                         'icon' : 'sound_mixers_section.png',
                     },
                     'Players' : {
-                        'title' : "Players",
+                        'title' : _("Players"),
                         'icon' : 'sound_players_section.png',
                     },
                     'Utilities' : {
-                        'title' : "Utilities",
+                        'title' : _("Utilities"),
                         'icon' : 'sound_utilities_section.png',
                     },
                 },
                 'System' : {
-                    'title' : "System",
+                    'title' : _("System"),
                     'icon' : 'system_section.png',
                     'Base' : {
-                        'title' : "Base",
+                        'title' : _("Base"),
                         'icon' : 'system_section.png',
                     },
                     'Boot and Init' : {
-                        'title' : "Boot and Init",
+                        'title' : _("Boot and Init"),
                         'icon' : 'boot_init_section.png',
                     },
                     'Cluster' : {
-                        'title' : "Cluster",
+                        'title' : _("Cluster"),
                         'icon' : 'parallel_computing_section.png',
                     },
                     'Configuration' : {
-                        'title' : "Configuration",
+                        'title' : _("Configuration"),
                         'icon' : 'configuration_section.png',
                     },
                     'Fonts' : {
-                        'title' : "Fonts",
+                        'title' : _("Fonts"),
                         'icon' : 'chinese_section.png',
                         'True type' : {
-                            'title' : "True type",
+                            'title' : _("True type"),
                             #'icon' : '',
                         },
                         'Type1' : {
-                            'title' : "Type1",
+                            'title' : _("Type1"),
                             #'icon' : '',
                         },
                         'X11 bitmap' : {
-                            'title' : "X11 bitmap",
+                            'title' : _("X11 bitmap"),
                             #'icon' : '',
                         },
                     },
                     'Internationalization' : {
-                        'title' : "Internationalization",
+                        'title' : _("Internationalization"),
                         'icon' : 'chinese_section.png',
                     },
                     'Kernel and hardware' : {
-                        'title' : "Kernel and hardware",
+                        'title' : _("Kernel and hardware"),
                         'icon' : 'hardware_configuration_section.png',
                     },
                     'Libraries' : {
-                        'title' : "Libraries",
+                        'title' : _("Libraries"),
                         'icon' : 'system_section.png',
                     },
                     'Networking' : {
-                        'title' : "Networking",
+                        'title' : _("Networking"),
                         'icon' : 'networking_configuration_section.png',
                     },
                     'Packaging' : {
-                        'title' : "Packaging",
+                        'title' : _("Packaging"),
                         'icon' : 'packaging_section.png',
                     },
                     'Printing' : {
-                        'title' : "Printing",
+                        'title' : _("Printing"),
                         'icon' : 'printing_section.png',
                     },
                     'Servers' : {
-                        'title' : "Servers",
+                        'title' : _("Servers"),
                         'icon' : 'servers_section.png',
                     },
                     'X11' : {
-                        'title' : "X11",
+                        'title' : _("X11"),
                         'icon' : 'x11_section.png',
                     },
                 },
                 'Terminals' : {
-                    'title' : "Terminals",
+                    'title' : _("Terminals"),
                     'icon' : 'terminals_section.png'
                 },
                 'Text tools' : {
-                    'title' : "Text tools",
+                    'title' : _("Text tools"),
                     'icon' : 'text_tools_section.png'
                 },
                 'Toys' : {
-                    'title' : "Toys",
+                    'title' : _("Toys"),
                     'icon' : 'toys_section.png'
                 },
                 'Video' : {
-                    'title' : "Video",
+                    'title' : _("Video"),
                     'icon' : 'video_section.png',
                     'Editors and Converters' : {
-                        'title' : "Editors and Converters",
+                        'title' : _("Editors and Converters"),
                         'icon' : 'video_editors_section.png',
                     },
                     'Players' : {
-                        'title' : "Players",
+                        'title' : _("Players"),
                         'icon' : 'video_players_section.png',
                     },
                     'Television' : {
-                        'title' : "Television",
+                        'title' : _("Television"),
                         'icon' : 'video_television_section.png',
                     },
                     'Utilities' : {
-                        'title' : "Utilities",
+                        'title' : _("Utilities"),
                         'icon' : 'video_utilities_section.png',
                     },
                 },
                 ## for Mageia Choice:
                 'Workstation' : {
-                    'title' : "Workstation",
+                    'title' : _("Workstation"),
                     'icon' : 'system_section.png',
                     'Configuration' : {
-                        'title' : "Configuration",
+                        'title' : _("Configuration"),
                         'icon' : 'configuration_section.png',
                     },
                     'Console Tools' : {
-                        'title' : "Console Tools",
+                        'title' : _("Console Tools"),
                         'icon' : 'interpreters_section.png',
                     },
                     'Documentation' : {
-                        'title' : "Documentation",
+                        'title' : _("Documentation"),
                         'icon' : 'documentation_section.png',
                     },
                     'Game station' : {
-                        'title' : "Game station",
+                        'title' : _("Game station"),
                         'icon' : 'amusement_section.png',
                     },
                     'Internet station' : {
-                        'title' : "Internet station",
+                        'title' : _("Internet station"),
                         'icon' : 'networking_section.png',
                     },
                     'Multimedia station' : {
-                        'title' : "Multimedia station",
+                        'title' : _("Multimedia station"),
                         'icon' : 'multimedia_section.png',
                     },
                     'Network Computer (client)' : {
-                        'title' : "Network Computer (client)",
+                        'title' : _("Network Computer (client)"),
                         'icon' : 'other_networking.png',
                     },
                     'Office Workstation' : {
-                        'title' : "Office Workstation",
+                        'title' : _("Office Workstation"),
                         'icon' : 'office_section.png',
                     },
                     'Scientific Workstation' : {
-                        'title' : "Scientific Workstation",
+                        'title' : _("Scientific Workstation"),
                         'icon' : 'sciences_section.png',
                     },
                 },
                 'Graphical Environment' : {
-                    'title' : "Graphical Environment",
+                    'title' : _("Graphical Environment"),
                     'icon' : 'graphical_desktop_section.png',
                     'GNOME Workstation' : {
-                        'title' : "GNOME Workstation",
+                        'title' : _("GNOME Workstation"),
                         'icon' : 'gnome_section.png',
                     },
                     'IceWm Desktop' : {
-                        'title' : "IceWm Desktop",
+                        'title' : _("IceWm Desktop"),
                         'icon' : 'icewm_section.png',
                     },
                     'KDE Workstation' : {
-                        'title' : "KDE Workstation",
+                        'title' : _("KDE Workstation"),
                         'icon' : 'kde_section.png',
                     },
                     'Other Graphical Desktops' : {
-                        'title' : "Other Graphical Desktops",
+                        'title' : _("Other Graphical Desktops"),
                         'icon' : 'more_applications_other_section.png',
                     },
                 },
                 'Development' : {
-                    'title' : "Development",
+                    'title' : _("Development"),
                     'icon' : 'development_section.png',
                     'Development' : {
-                        'title' : "Development",
+                        'title' : _("Development"),
                         'icon' : 'development_section.png',
                     },
                     'Documentation' : {
-                        'title' : "Documentation",
+                        'title' : _("Documentation"),
                         'icon' : 'documentation_section.png',
                     },
                 },
                 'Search' : {
-                    'title' : "Search",
+                    'title' : _("Search"),
                     #'icon' : TODO
                 },
                 'Server' : {
-                    'title' : "Server",
+                    'title' : _("Server"),
                     'icon' : 'servers_section.png',
                     'DNS/NIS' : {
-                        'title' : "DNS/NIS",
+                        'title' : _("DNS/NIS"),
                         'icon' : 'networking_section.png',
                     },
                     'Database' : {
-                        'title' : "Database",
+                        'title' : _("Database"),
                         'icon' : 'databases_section.png',
                     },
                     'Firewall/Router' : {
-                        'title' : "Firewall/Router",
+                        'title' : _("Firewall/Router"),
                         'icon' : 'networking_section.png',
                     },
                     'Mail' : {
-                        'title' : "Mail",
+                        'title' : _("Mail"),
                         'icon' : 'mail_section.png',
                     },
                     'Mail/Groupware/News' : {
-                        'title' : "Mail/Groupware/News",
+                        'title' : _("Mail/Groupware/News"),
                         'icon' : 'mail_section.png',
                     },
                      'Network Computer server' : {
-                        'title' : "Network Computer server",
+                        'title' : _("Network Computer server"),
                         'icon' : 'networking_section.png',
                     },
                      'Web/FTP' : {
-                        'title' : "Web/FTP",
+                        'title' : _("Web/FTP"),
                         'icon' : 'networking_www_section.png',
                     },
                 },

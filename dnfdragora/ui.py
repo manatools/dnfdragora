@@ -20,6 +20,9 @@ import dnfdragora.dnfbase as dnfbase
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
 
+import gettext
+from gettext import gettext as _
+
 #################
 # class mainGui #
 #################
@@ -41,8 +44,13 @@ class mainGui():
         # {
         #    localized_name = { "item" : item, "name" : groupName }
         # }
+        APP="dnfdragora"
+        # TODO : perhaps fix with a relative path
+        DIR="/usr/share/locale"
+        gettext.bindtextdomain(APP, DIR)
+        gettext.textdomain(APP)
 
-        yui.YUI.app().setApplicationTitle("Software Management - dnfdragora")
+        yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
         #TODO fix icons
         wm_icon = "/usr/share/icons/rpmdrake.png"
         yui.YUI.app().setApplicationIcon(wm_icon)
@@ -71,7 +79,7 @@ class mainGui():
         hbox_iconbar     = self.factory.createHBox(head_align_left)
         self.factory.createImage(hbox_iconbar, wm_icon)
 
-        self.factory.createHeading(hbox_iconbar, "Software Management")
+        self.factory.createHeading(hbox_iconbar, _("Software Management"))
 
         hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
@@ -96,33 +104,33 @@ class mainGui():
         for col in (columns):
             packageList_header.addColumn(col)
 
-        packageList_header.addColumn("Status")
+        packageList_header.addColumn(_("Status"))
 
         self.packageList = self.mgaFactory.createCBTable(hbox_middle,packageList_header,yui.YCBTableCheckBoxOnFirstColumn)
         self.packageList.setWeight(0,50)
         self.packageList.setImmediateMode(True)
 
         self.filters = {
-            'all' : {'title' : "All"},
-            'installed' : {'title' : "Installed"},
-            'not_installed' : {'title' : "Not installed"}
+            'all' : {'title' : _("All")},
+            'installed' : {'title' : _("Installed")},
+            'not_installed' : {'title' : _("Not installed")}
         }
         ordered_filters = [ 'all', 'installed', 'not_installed' ]
         if platform.machine() == "x86_64" :
             # NOTE this should work on other architectures too, but maybe it
             #      is a nonsense, at least for i586
-            self.filters['skip_other'] = {'title' : "Show %s and noarch only" % platform.machine()}
+            self.filters['skip_other'] = {'title' : _("Show %s and noarch only") % platform.machine()}
             ordered_filters.append('skip_other')
 
         # TODO add backports
         self.views = {
-            'all' : {'title' : "All"},
-            'meta_pkgs' : {'title' : "Meta packages"},
-            'gui_pkgs' : {'title' : "Packages with GUI"},
-            'all_updates' : {'title' : "All updates"},
-            'security' : {'title' : "Security updates"},
-            'bugfix' : {'title' : "Bugfixes updates"},
-            'normal' : {'title' : "General updates"}
+            'all' : {'title' : _("All")},
+            'meta_pkgs' : {'title' : _("Meta packages")},
+            'gui_pkgs' : {'title' : _("Packages with GUI")},
+            'all_updates' : {'title' : _("All updates")},
+            'security' : {'title' : _("Security updates")},
+            'bugfix' : {'title' : _("Bugfixes updates")},
+            'normal' : {'title' : _("General updates")}
         }
         ordered_views = [ 'all', 'meta_pkgs', 'gui_pkgs', 'all_updates', 'security', 'bugfix', 'normal']
 
@@ -153,10 +161,10 @@ class mainGui():
         self.filter_box.setNotify(True)
 
         self.local_search_types = {
-            'name'       : {'title' : "in names"       },
-            'description': {'title' : "in descriptions"},
-            'summary'    : {'title' : "in summaries"   },
-            'file'       : {'title' : "in file names"  }
+            'name'       : {'title' : _("in names")       },
+            'description': {'title' : _("in descriptions")},
+            'summary'    : {'title' : _("in summaries")   },
+            'file'       : {'title' : _("in file names")  }
         }
         search_types = ['name', 'description', 'summary', 'file' ]
 
@@ -178,24 +186,24 @@ class mainGui():
 
         #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/manalog.png")
         icon_file = ""
-        self.find_button = self.factory.createIconButton(hbox_top, icon_file, "&Search")
+        self.find_button = self.factory.createIconButton(hbox_top, icon_file, _("&Search"))
         self.find_button.setWeight(0,6)
         self.dialog.setDefaultButton(self.find_button)
         self.find_entry.setKeyboardFocus()
 
         #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/rpmdragora/clear_22x22.png");
-        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, "&Reset")
+        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Reset"))
         self.reset_search_button.setWeight(0,7)
         self.find_entry.setWeight(0,10)
 
-        self.info = self.factory.createRichText(hbox_bottom,"Test")
+        self.info = self.factory.createRichText(hbox_bottom,_("Test"))
         self.info.setWeight(0,40)
         self.info.setWeight(1,40);
 
-        self.applyButton = self.factory.createIconButton(hbox_footbar,"","&Apply")
+        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,6)
 
-        self.quitButton = self.factory.createIconButton(hbox_footbar,"","&Quit")
+        self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,6)
 
         self.dnf = dnfbase.DnfBase()
@@ -472,7 +480,7 @@ class mainGui():
                 icon = gIcons.icon("Search")
                 treeItem = yui.YTreeItem(gIcons.groups()['Search']['title'] , icon, False)
                 treeItem.setSelected(True)
-                self.groupList[gIcons.groups()['Search']['title']] = { "item" : treeItem, "name" : "Search" }
+                self.groupList[gIcons.groups()['Search']['title']] = { "item" : treeItem, "name" : _("Search") }
                 self.tree.addItem(treeItem)
                 self.tree.rebuildTree()
                 self.tree.doneMultipleChanges()
@@ -515,7 +523,7 @@ class mainGui():
                             else:
                                 self.dnf.remove(pkg_name)
 
-                        print("TODO checked, managing also version and arch\n")
+                        print(_("TODO checked, managing also version and arch\n"))
 
                 elif (widget == self.reset_search_button) :
                     #### RESET
@@ -550,7 +558,7 @@ class mainGui():
                         self.dnf.close()
                     else:
                         # TODO use a dialog instead
-                        print("You must be root to apply changes")
+                        print(_("You must be root to apply changes"))
 
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
@@ -563,9 +571,9 @@ class mainGui():
                         else:
                             rebuild_package_list = True
                 else:
-                    print("Unmanaged widget")
+                    print(_("Unmanaged widget"))
             else:
-                print("Unmanaged event")
+                print(_("Unmanaged event"))
 
             if rebuild_package_list :
                 sel = self.tree.selectedItem()
