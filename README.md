@@ -6,6 +6,12 @@ dnfdragora is a dnf front-end, based on rpmdragora from mageia
 dnfdragora is written in python and uses libYui, the Suse widget abstraction library
 so that it can be run using QT, Gtk or ncurses interface.
 
+Example with Qt:
+![dnfdragora with Qt UI](http://anaselli.belinux.it/test/dnfdragora.png "dnfdragora with Qt UI")
+
+Example with ncurses:
+![dnfdragora with ncurses UI](http://anaselli.belinux.it/test/dnfdragora-ncurses.png "dnfdragora with ncurses UI")
+
 # REQUIREMENTS #
 * SUSE libyui *
     * https://github.com/libyui/libyui
