@@ -16,7 +16,7 @@ import sys
 import platform
 import yui
 
-import dnfdragora.dnfbase as dnfbase
+import dnfdragora.basedragora
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
 
@@ -26,14 +26,16 @@ from gettext import gettext as _
 #################
 # class mainGui #
 #################
-class mainGui():
+class mainGui(dnfdragora.basedragora.BaseDragora):
     """
     Main class
     """
 
     def __init__(self, options={}):
 
+        dnfdragora.basedragora.BaseDragora.__init__(self)
         self.options = options
+        self._progressBar = None
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
@@ -206,7 +208,7 @@ class mainGui():
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,6)
 
-        self.dnf = dnfbase.DnfBase()
+        self.dnf = None #dnfbase.DnfBase()
         self.dialog.pollEvent();
         self._fillGroupTree()
         sel = self.tree.selectedItem()
@@ -221,6 +223,16 @@ class mainGui():
             pkg_name = sel.cell(0).label()
             self.setInfoOnWidget(pkg_name)
 
+    def get_infobar(self) :
+        if self._progressBar is None:
+            self._progressBar = progress_ui.Progress()
+        return self._progressBar
+    
+    def release_infobar(self):
+        if self._progressBar is not None:
+            del self._progressBar
+            self._progressBar = None
+    
     def _pkg_name(self, name, epoch, version, release, arch) :
         '''
             return a package name in the form name-epoch_version-release.arch
@@ -237,15 +249,14 @@ class mainGui():
         '''
 
         yui.YUI.app().busyCursor()
-        packages = self.dnf.packages
+        installed = self.backend.get_packages('installed')
 
         self.itemList = {}
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
         v = []
-        # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
-        for pkg in packages.installed :
+        for pkg in installed :
             if groupName and (groupName == pkg.group or groupName == 'All') :
                 if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
@@ -255,8 +266,8 @@ class mainGui():
                         }
                     item.this.own(False)
 
-        # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
-        for pkg in packages.available:
+        available = self.backend.get_packages('available')
+        for pkg in available:
             if groupName and (groupName == pkg.group or groupName == 'All') :
                 if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
@@ -323,10 +334,15 @@ class mainGui():
         self.groupList = {}
         rpm_groups = {}
         yui.YUI.app().busyCursor()
-        packages = self.dnf.packages
-        for pkg in packages.all:
-            if not pkg.group in rpm_groups:
-                rpm_groups[pkg.group] = 1
+
+        print ("Start looking for groups")
+        rpm_groups = self.backend.get_groups_from_packages()
+        #packages = self.backend.get_packages('all')
+
+        #for pkg in packages:
+            ##if not pkg.group in rpm_groups:
+            #rpm_groups[pkg.group] = 1
+        print ("End found %d groups" %len(rpm_groups.keys()))
 
         rpm_groups = sorted(rpm_groups.keys())
         icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
@@ -403,15 +419,12 @@ class mainGui():
         future implementation could save package info into a temporary
         object structure linked to the selected item
         """
-        packages = self.dnf.packages
-        packages.all
-        q = packages.query
-        p_list = q.filter(name = pkg_name)
+        packages = self.backend.get_packages_by_name(pkg_name, True)
         self.info.setValue("")
-        if (len(p_list)) :
+        if (len(packages)) :
             # NOTE first item of the list should be enough, different
             # arch should have same description for the package
-            pkg = p_list[0]
+            pkg = packages[0]
             if pkg :
                 s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
                 self.info.setValue(s)
@@ -438,7 +451,11 @@ class mainGui():
 
             yui.YUI.app().busyCursor()
             strings = search_string.split(" ,|:;")
-            packages = self.dnf.search(fields, strings)
+            ### TODO manage match_all, newest_only, tags
+            match_all = False
+            newest_only = True
+            tags =""
+            packages = self.backend.search(fields, strings, match_all, newest_only, tags )
 
 
             self.itemList = {}

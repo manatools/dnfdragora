@@ -77,6 +77,17 @@ class Progress(dnf.callback.DownloadProgress):
         print ("Progress destroyed")
         self.main_dialog.destroy()
 
+    def info(self, text) :
+        self._setLabel(self.label_widget, text)
+
+    def info_sub(self, text) :
+        self._setLabel(self.wrongValue, text)
+        
+    def set_progress(self, frac, label=None) :
+        if label is not None:
+            self.progressbar.setLabel(label)
+        self.progressbar.setValue(int(100*frac))
+
     def start(self, total_files, total_size):
         text = _("Downloading :  %d files,  %d bytes") % (total_files, total_size)
         print (text)

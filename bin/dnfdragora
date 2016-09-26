@@ -12,22 +12,31 @@ if sys.path[0] is not '/usr/bin':
 
 if __name__ == "__main__":
 
-   import dnfdragora.ui
-   import argparse
+    import dnfdragora.ui
+    import argparse
 
-   parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
-   ui_select_parser = parser.add_mutually_exclusive_group()
-   ui_select_parser.add_argument('--gtk', help='start using yui GTK+ plugin implementation', action='store_true')
-   ui_select_parser.add_argument('--ncurses', help='start using yui ncurses plugin implementation', action='store_true')
-   ui_select_parser.add_argument('--qt', help='start using yui Qt plugin implementation', action='store_true')
-   parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
+    parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
+    ui_select_parser = parser.add_mutually_exclusive_group()
+    ui_select_parser.add_argument('--gtk', help='start using yui GTK+ plugin implementation', action='store_true')
+    ui_select_parser.add_argument('--ncurses', help='start using yui ncurses plugin implementation', action='store_true')
+    ui_select_parser.add_argument('--qt', help='start using yui Qt plugin implementation', action='store_true')
+    parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
 
-   parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
-   args = parser.parse_args()
+    parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
+    args = parser.parse_args()
 
-   options = {}
-   if args.icon_path:
-       options['icon_path'] = args.icon_path
-
-   main_gui = dnfdragora.ui.mainGui(options)
-   main_gui.handleevent()
+    options = {}
+    if args.icon_path:
+        options['icon_path'] = args.icon_path
+    main_gui = None
+    try:
+        main_gui = dnfdragora.ui.mainGui(options)
+        main_gui.handleevent()
+    except:
+        print ("Unexpected error:", sys.exc_info()[0])
+        if (main_gui is not None) :
+            main_gui.backend.quit()
+            main_gui.dialog.destroy()
+        raise
+    if (main_gui is not None) :
+        main_gui.backend.quit()
