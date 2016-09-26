@@ -164,7 +164,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
     def on_TransactionEvent(self, event, data):
         print('on_TransactionEvent')
         if event == 'start-run':
-            self.frontend.infobar.show_progress(True)
+            self.frontend.infobar
         elif event == 'download':
             self.frontend.infobar.info(_('Downloading packages'))
         elif event == 'pkg-to-download':
@@ -180,18 +180,16 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
             # User don't care
             pass
         elif event == 'run-transaction':
-            self.frontend.infobar.show_progress(True)
             self.frontend.infobar.info(_('Applying changes to the system'))
             self.frontend.infobar.hide_sublabel()
         elif event == 'verify':
-            self.frontend.infobar.show_progress(True)
             self.frontend.infobar.info(_('Verify changes on the system'))
             #self.frontend.infobar.hide_sublabel()
         # elif event == '':
         elif event == 'fail':
-            self.frontend.infobar.show_progress(False)
+            self.frontend.release_infobar()
         elif event == 'end-run':
-            self.frontend.infobar.show_progress(False)
+            self.frontend.release_infobar()
         else:
             logger.debug('TransactionEvent : %s', event)
 
@@ -245,6 +243,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
             self._files_downloaded += 1
         else:
             logger.debug('Download Error : %s - %s', name, msg)
+        self.frontend.release_infobar()
 
     def on_RepoMetaDataProgress(self, name, frac):
         """Repository Metadata Download progress."""

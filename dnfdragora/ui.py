@@ -534,11 +534,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
                         changedItem = self.packageList.changedItem()
                         if changedItem :
-                            pkg_name = changedItem.cell(0).label()
-                            if changedItem.checked():
-                                self.dnf.install(pkg_name)
-                            else:
-                                self.dnf.remove(pkg_name)
+                            for it in self.itemList:
+                                if (self.itemList[it]['item'] == changedItem) :
+                                    if changedItem.checked():
+                                        self.backend.AddTransaction(self.itemList[it]['pkg'].pkg_id, 'install')
+                                    else:
+                                        self.backend.AddTransaction(self.itemList[it]['pkg'].pkg_id, 'remove')
+                                    break
 
                         print(_("TODO checked, managing also version and arch\n"))
 
@@ -556,26 +558,29 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 elif (widget == self.applyButton) :
                     #### APPLY
-                    if os.getuid() == 0:
-                        self.dnf.apply_transaction()
-                        self.dnf.fill_sack() # refresh the sack
+                    rc, result = self.backend.BuildTransaction()
+                    rc, result = self.backend.RunTransaction()
 
-                        # TODO next line works better but installing and then removing or viceversa
-                        #      crashes anyway
-                        #self.dnf = dnfbase.DnfBase()
-                        sel = self.tree.selectedItem()
-                        if sel :
-                            group = self._groupNameFromItem(self.groupList, sel)
-                            if (group == "Search"):
-                                filter = self._filterNameSelected()
-                                if not self._searchPackages(filter) :
-                                    rebuild_package_list = True
-                            else:
-                                rebuild_package_list = True
-                        self.dnf.close()
-                    else:
+                    #if os.getuid() == 0:
+                        #self.dnf.apply_transaction()
+                        #self.dnf.fill_sack() # refresh the sack
+
+                        ## TODO next line works better but installing and then removing or viceversa
+                        ##      crashes anyway
+                        ##self.dnf = dnfbase.DnfBase()
+                        #sel = self.tree.selectedItem()
+                        #if sel :
+                            #group = self._groupNameFromItem(self.groupList, sel)
+                            #if (group == "Search"):
+                                #filter = self._filterNameSelected()
+                                #if not self._searchPackages(filter) :
+                                    #rebuild_package_list = True
+                            #else:
+                                #rebuild_package_list = True
+                        #self.dnf.close()
+                    #else:
                         # TODO use a dialog instead
-                        print(_("You must be root to apply changes"))
+                    #    print(_("You must be root to apply changes"))
 
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
