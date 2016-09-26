@@ -379,14 +379,11 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
     @TimeFunction
     def get_groups_from_packages(self):
         """Get groups by looking for all packages group property."""
-        logger.debug('get-groups')
-        filters = ['installed', 'updates', 'available']
+        logger.debug('get-groups-from-packages')
+        packages = self.get_packages('all')
         result = {}
-        for pkg_flt in filters:
-            fields = ['group']  # fields to get
-            po_list = self.GetPackages(pkg_flt, fields)
-            for pkg in po_list :
-                result[pkg[1]] = 1
+        for pkg in packages:
+            result[pkg.group] = 1
 
         return result
 
