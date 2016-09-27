@@ -19,6 +19,8 @@ import dnfdragora.misc
 import dnfdragora.const as const
 from dnfdragora.misc import ExceptionHandler, TimeFunction
 
+from gettext import gettext as _
+
 logger = logging.getLogger('dnfdragora.dnf_backend')
 
 
@@ -162,33 +164,40 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
                                     const.NEEDED_DAEMON_API))
 
     def on_TransactionEvent(self, event, data):
-        print('on_TransactionEvent')
         if event == 'start-run':
-            self.frontend.infobar
+            print('on_TransactionEvent start')
+            self.frontend.infobar.info(_('Start transaction'))
         elif event == 'download':
+            print('on_TransactionEvent download')
             self.frontend.infobar.info(_('Downloading packages'))
         elif event == 'pkg-to-download':
             self._dnl_packages = data
         elif event == 'signature-check':
+            print('on_TransactionEvent signature')
             # self.frontend.infobar.show_progress(False)
             self.frontend.infobar.set_progress(0.0)
             self.frontend.infobar.info(_('Checking package signatures'))
             self.frontend.infobar.set_progress(1.0)
             self.frontend.infobar.info_sub('')
         elif event == 'run-test-transaction':
+            print('on_TransactionEvent test')
             # self.frontend.infobar.info(_('Testing Package Transactions')) #
             # User don't care
             pass
         elif event == 'run-transaction':
+            print('on_TransactionEvent run transaction')
             self.frontend.infobar.info(_('Applying changes to the system'))
-            self.frontend.infobar.hide_sublabel()
+            self.frontend.infobar.info_sub('')
         elif event == 'verify':
+            print('on_TransactionEvent verify')
             self.frontend.infobar.info(_('Verify changes on the system'))
             #self.frontend.infobar.hide_sublabel()
         # elif event == '':
         elif event == 'fail':
+            print('on_TransactionEvent fail')
             self.frontend.release_infobar()
         elif event == 'end-run':
+            print('on_TransactionEvent end')
             self.frontend.release_infobar()
         else:
             logger.debug('TransactionEvent : %s', event)
@@ -215,7 +224,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
 
     def on_DownloadStart(self, num_files, num_bytes):
         """Starting a new parallel download batch."""
-        print('on_DownloadStart')
         #values =  (num_files, num_bytes)
         #print('on_DownloadStart : %s' % (repr(values)))
         self._files_to_download = num_files
@@ -229,13 +237,11 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         """Progress for a single element in the batch."""
         #values =  (name, frac, total_frac, total_files)
         #print('on_DownloadProgress : %s' % (repr(values)))
-        print('on_DownloadProgress')
         num = '( %d/%d )' % (self._files_downloaded, self._files_to_download)
         self.frontend.infobar.set_progress(total_frac, label=num)
 
     def on_DownloadEnd(self, name, status, msg):
         """Download of af single element ended."""
-        print('on_DownloadEnd')
         #values =  (name, status, msg)
         #print('on_DownloadEnd : %s' % (repr(values)))
         if status == -1 or status == 2:  # download OK or already exists
