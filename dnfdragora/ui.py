@@ -340,6 +340,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
+    def _getAllGroupIDList(self, groups, new_groups):
+        for g in groups :
+            if (type(g) is str) :
+                new_groups.append(g)
+                break
+            else :
+               self. _getAllGroupIDList(g, new_groups)
 
     def _fillGroupTree(self) :
         '''
@@ -348,13 +355,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
 
         self.groupList = {}
-        rpm_groups = {}
+        rpm_groups = []
         yui.YUI.app().busyCursor()
 
         print ("Start looking for groups")
         # get group comps
         rpm_groups = self.backend.get_groups()
-        if not rpm_groups :
+        if rpm_groups :
+            groups = []
+            self._getAllGroupIDList(rpm_groups, groups)
+            rpm_groups = groups
+        else:
             #don't have comps try tags
             rpm_groups = self.backend.get_groups_from_packages()
 
