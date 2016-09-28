@@ -249,32 +249,48 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
 
         yui.YUI.app().busyCursor()
-        installed = self.backend.get_packages('installed')
 
         self.itemList = {}
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
-        v = []
-        for pkg in installed :
-            if groupName and (groupName == pkg.group or groupName == 'All') :
+        pkgs = ()
+        if (groupName != 'All') :
+            pkgs = self.backend.get_group_packages(groupName, 'all')
+        if pkgs :
+            v = []
+            for pkg in pkgs :
                 if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    item.check(True)
+                    if pkg.installed :
+                        item.check(True)
                     self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                         'pkg' : pkg, 'item' : item
                         }
                     item.this.own(False)
+        else :
 
-        available = self.backend.get_packages('available')
-        for pkg in available:
-            if groupName and (groupName == pkg.group or groupName == 'All') :
-                if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                        'pkg' : pkg, 'item' : item
-                        }
-                    item.this.own(False)
+            installed = self.backend.get_packages('installed')
+            v = []
+            for pkg in installed :
+                if groupName and (groupName == pkg.group or groupName == 'All') :
+                    if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(True)
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
+
+            available = self.backend.get_packages('available')
+            for pkg in available:
+                if groupName and (groupName == pkg.group or groupName == 'All') :
+                    if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
 
@@ -336,12 +352,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         yui.YUI.app().busyCursor()
 
         print ("Start looking for groups")
-        rpm_groups = self.backend.get_groups_from_packages()
-        #packages = self.backend.get_packages('all')
+        # get group comps
+        rpm_groups = self.backend.get_groups()
+        if not rpm_groups :
+            #don't have comps try tags
+            rpm_groups = self.backend.get_groups_from_packages()
 
-        #for pkg in packages:
-            ##if not pkg.group in rpm_groups:
-            #rpm_groups[pkg.group] = 1
         print ("End found %d groups" %len(rpm_groups.keys()))
 
         rpm_groups = sorted(rpm_groups.keys())
