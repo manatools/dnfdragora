@@ -358,9 +358,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             #don't have comps try tags
             rpm_groups = self.backend.get_groups_from_packages()
 
-        print ("End found %d groups" %len(rpm_groups.keys()))
+        print ("End found %d groups" %len(rpm_groups))
 
-        rpm_groups = sorted(rpm_groups.keys())
+        rpm_groups = sorted(rpm_groups)
         icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
         gIcons = groupicons.GroupIcons(icon_path)
         groups = gIcons.groups()

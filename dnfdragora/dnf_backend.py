@@ -386,9 +386,10 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         """Get groups by looking for all packages group property."""
         logger.debug('get-groups-from-packages')
         packages = self.get_packages('all')
-        result = {}
+        result = []
+        append = result.append
         for pkg in packages:
-            result[pkg.group] = 1
+            append(pkg.group)
 
         return result
 
