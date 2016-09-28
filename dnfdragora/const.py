@@ -27,7 +27,7 @@ NEEDED_DAEMON_API = 2  # The needed dnfdaemon API version
 # find the data dir for resources
 BIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
 if BIN_PATH in ["/usr/bin", "/bin"]:
-    DATA_DIR = '/usr/share/yumex-dnf'
+    DATA_DIR = '/usr/share/dnfdragora'
     PIX_DIR = DATA_DIR + "/gfx"
     MISC_DIR = DATA_DIR
 else:
@@ -37,9 +37,9 @@ else:
 
 HOME_DIR = os.environ['HOME']
 AUTOSTART_DIR = HOME_DIR + '/.config/autostart'
-USER_DESKTOP_FILE = AUTOSTART_DIR + '/yumex-dnf-updater.desktop'
-SYS_DESKTOP_FILE = MISC_DIR + "/yumex-dnf-updater.desktop"
-LEGACY_DESKTOP_FILE = AUTOSTART_DIR + "/yumex-dnf.desktop"
+USER_DESKTOP_FILE = AUTOSTART_DIR + '/dnfdragora-updater.desktop'
+SYS_DESKTOP_FILE = MISC_DIR + "/dnfdragora-updater.desktop"
+LEGACY_DESKTOP_FILE = AUTOSTART_DIR + "/dnfdragora.desktop"
 
 
 ARCH = subprocess.check_output(
