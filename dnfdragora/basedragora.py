@@ -37,13 +37,13 @@ class BaseDragora:
         """Set the working state."""
         self.is_working = state
 
-    @property
-    def infobar(self):
-        return self.get_infobar()    
+    #@property
+    #def infobar(self):
+        #return self.get_infobar()
     
-    def get_infobar(self) :
-        print ("get_infobar not implemented")
-        pass
+    #def get_infobar(self) :
+        #print ("get_infobar not implemented")
+        #pass
     
     def release_infobar(self):
         print ("release_infobar not implemented")

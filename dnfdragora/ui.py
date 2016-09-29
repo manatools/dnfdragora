@@ -86,6 +86,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
         hbox_bottom = self.factory.createHBox(vbox)
+        pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
         hbox_headbar.setWeight(1,10)
@@ -202,6 +203,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setWeight(0,40)
         self.info.setWeight(1,40);
 
+        self.infobar = progress_ui.ProgressBar(self.dialog, pbar_layout)
+
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,6)
 
@@ -223,15 +226,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pkg_name = sel.cell(0).label()
             self.setInfoOnWidget(pkg_name)
 
-    def get_infobar(self) :
-        if self._progressBar is None:
-            self._progressBar = progress_ui.Progress()
-        return self._progressBar
+    #def get_infobar(self) :
+        #if self._progressBar is None:
+            #self._progressBar = progress_ui.Progress()
+        #return self._progressBar
     
-    def release_infobar(self):
-        if self._progressBar is not None:
-            del self._progressBar
-            self._progressBar = None
+    #def release_infobar(self):
+        #if self._progressBar is not None:
+            #del self._progressBar
+            #self._progressBar = None
     
     def _pkg_name(self, name, epoch, version, release, arch) :
         '''

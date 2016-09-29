@@ -49,6 +49,29 @@ class TransactionProgress(dnf.callback.TransactionProgress):
                 #pkg_id, action, te_current, te_total, ts_current, ts_total)
 
 
+class ProgressBar:
+
+    def __init__(self, main_dialog, layout):
+        self.factory = yui.YUI.widgetFactory()
+
+        vbox = self.factory.createVBox(layout)
+        self.info_widget = self.factory.createLabel(vbox, "")
+        self.info_widget.setStretchable( yui.YD_HORIZ, True )
+        self.progressbar = self.factory.createProgressBar(vbox, "")
+        self.info_sub_widget = self.factory.createLabel(vbox, "")
+        self.info_sub_widget.setStretchable( yui.YD_HORIZ, True )
+
+    def info(self, text) :
+        self.info_widget.setValue(text)
+
+    def info_sub(self, text) :
+        self.info_sub_widget.setValue(text)
+
+    def set_progress(self, frac, label=None) :
+        if label is not None:
+            self.progressbar.setLabel(label)
+        self.progressbar.setValue(int(100*frac))
+
 class Progress(dnf.callback.DownloadProgress):
 
     def __init__(self):
