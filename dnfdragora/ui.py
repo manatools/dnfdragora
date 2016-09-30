@@ -589,28 +589,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.applyButton) :
                     #### APPLY
                     rc, result = self.backend.BuildTransaction()
+                    print(result)
                     rc, result = self.backend.RunTransaction()
-
-                    #if os.getuid() == 0:
-                        #self.dnf.apply_transaction()
-                        #self.dnf.fill_sack() # refresh the sack
-
-                        ## TODO next line works better but installing and then removing or viceversa
-                        ##      crashes anyway
-                        ##self.dnf = dnfbase.DnfBase()
-                        #sel = self.tree.selectedItem()
-                        #if sel :
-                            #group = self._groupNameFromItem(self.groupList, sel)
-                            #if (group == "Search"):
-                                #filter = self._filterNameSelected()
-                                #if not self._searchPackages(filter) :
-                                    #rebuild_package_list = True
-                            #else:
-                                #rebuild_package_list = True
-                        #self.dnf.close()
-                    #else:
-                        # TODO use a dialog instead
-                    #    print(_("You must be root to apply changes"))
+                    sel = self.tree.selectedItem()
+                    if sel :
+                        group = self._groupNameFromItem(self.groupList, sel)
+                        if (group == "Search"):
+                            filter = self._filterNameSelected()
+                            if not self._searchPackages(filter) :
+                                rebuild_package_list = True
+                        else:
+                            rebuild_package_list = True
 
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
