@@ -195,16 +195,17 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         # elif event == '':
         elif event == 'fail':
             print('on_TransactionEvent fail')
-            self.frontend.release_infobar()
+            self.frontend.infobar.reset_all()
         elif event == 'end-run':
             print('on_TransactionEvent end')
-            self.frontend.release_infobar()
+            self.frontend.infobar.set_progress(1.0)
+            self.frontend.infobar.reset_all()
         else:
             logger.debug('TransactionEvent : %s', event)
 
     def on_RPMProgress(self, package, action, te_current,
                        te_total, ts_current, ts_total):
-        print('on_RPMProgress')
+        #print('on_RPMProgress')
         num = ' ( %i/%i )' % (ts_current, ts_total)
         if ',' in package:  # this is a pkg_id
             name = dnfdragora.misc.pkg_id_to_full_name(package)
@@ -249,7 +250,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
             self._files_downloaded += 1
         else:
             logger.debug('Download Error : %s - %s', name, msg)
-        self.frontend.release_infobar()
+        self.frontend.infobar.set_progress(1.0)
+        #self.frontend.infobar.reset_all()
 
     def on_RepoMetaDataProgress(self, name, frac):
         """Repository Metadata Download progress."""
@@ -259,7 +261,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         if frac == 0.0:
             self.frontend.infobar.info_sub(name)
         elif frac == 1.0:
-            self.frontend.release_infobar();
+            self.frontend.infobar.set_progress(1.0)
+            self.frontend.infobar.reset_all()
         else:
             self.frontend.infobar.set_progress(frac)
 

@@ -80,7 +80,7 @@ class ProgressBar:
     def reset_all(self) :
         self.info_widget.setValue('')
         self.info_sub_widget.setValue('')
-        self.progressbar.setValue(0)
+        self.set_progress(0, "")
         self.__flush()
 
     def __flush(self) :
