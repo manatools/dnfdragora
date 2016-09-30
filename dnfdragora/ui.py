@@ -589,8 +589,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.applyButton) :
                     #### APPLY
                     rc, result = self.backend.BuildTransaction()
+                    #TODO present dependencies
                     print(result)
                     rc, result = self.backend.RunTransaction()
+                    self.release_root_backend()
+                    self.backend.reload()
+
                     sel = self.tree.selectedItem()
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
