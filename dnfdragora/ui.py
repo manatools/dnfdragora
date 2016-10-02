@@ -116,9 +116,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.filters = {
             'all' : {'title' : _("All")},
             'installed' : {'title' : _("Installed")},
-            'not_installed' : {'title' : _("Not installed")}
+            'not_installed' : {'title' : _("Not installed")},
+            'to_update' : {'title' : _("To update")}
         }
-        ordered_filters = [ 'all', 'installed', 'not_installed' ]
+        ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
         if platform.machine() == "x86_64" :
             # NOTE this should work on other architectures too, but maybe it
             #      is a nonsense, at least for i586
@@ -199,7 +200,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.reset_search_button.setWeight(0,7)
         self.find_entry.setWeight(0,10)
 
-        self.info = self.factory.createRichText(hbox_bottom,_("Test"))
+        self.info = self.factory.createRichText(hbox_bottom,"")
         self.info.setWeight(0,40)
         self.info.setWeight(1,40);
 
@@ -276,7 +277,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             installed = self.backend.get_packages('installed')
             v = []
             for pkg in installed :
-                if groupName and (groupName == pkg.group or groupName == 'All') :
+              if groupName and (groupName == pkg.group or groupName == 'All') :
                     if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                         item.check(True)
@@ -289,6 +290,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             for pkg in available:
                 if groupName and (groupName == pkg.group or groupName == 'All') :
                     if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
+
+            updates = self.backend.get_packages('updates')
+            for pkg in updates:
+                if groupName and (groupName == pkg.group or groupName == 'All') :
+                    if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
