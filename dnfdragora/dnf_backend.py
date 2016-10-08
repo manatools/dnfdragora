@@ -212,6 +212,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         else:  # this is just a pkg name (cleanup)
             name = package
         logger.debug('on_RPMProgress : [%s]', package)
+        #print (const.RPM_ACTIONS[action] % name)
         self.frontend.infobar.info_sub(const.RPM_ACTIONS[action] % name)
         if ts_current > 0 and ts_current <= ts_total:
             frac = float(ts_current) / float(ts_total)

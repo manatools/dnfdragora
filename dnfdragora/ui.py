@@ -19,9 +19,89 @@ import yui
 import dnfdragora.basedragora
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
+from dnfdragora import const
 
 import gettext
 from gettext import gettext as _
+import logging
+logger = logging.getLogger('dnfdragora.ui')
+
+class PackageQueue:
+    '''
+    A Queue class to store selected packages/groups and the pending actions
+    '''
+
+    def __init__(self):
+        self.packages = {}
+        self._setup_packages()
+        self.actions = {}
+
+
+#QUEUE_PACKAGE_TYPES = {
+#    'i': 'install',
+#    'u': 'update',
+#    'r': 'remove',
+#    'o': 'obsolete',
+#    'ri': 'reinstall',
+#    'do': 'downgrade',
+#    'li': 'localinstall'
+#}
+    def _setup_packages(self):
+        for key in const.QUEUE_PACKAGE_TYPES:
+            self.packages[key] = []
+
+    def clear(self):
+        del self.packages
+        self.packages = {}
+        self._setup_packages()
+        self.actions = {}
+
+
+    def get(self, action=None):
+        if action is None:
+            return self.packages
+        else:
+            return self.packages[action]
+
+    def total(self):
+        num = 0
+        for key in const.QUEUE_PACKAGE_TYPES:
+            num += len(self.packages[key])
+        return num
+
+    def add(self, pkg, action):
+        """Add a package to queue"""
+        pkg_id = pkg.pkg_id
+        if pkg_id in self.actions.keys():
+            old_action = self.actions[pkg_id]
+            if old_action != action:
+                self.packages[old_action].remove(pkg_id)
+                if (pkg.installed and action != 'i' or not pkg.installed and action != 'r'):
+                    self.packages[action].append(pkg_id)
+                    self.actions[pkg_id] = action
+                else:
+                    del self.actions[pkg_id]
+        else:
+            self.packages[action].append(pkg_id)
+            self.actions[pkg_id] = action
+
+    def checked(self, pkg):
+        pkg_id = pkg.pkg_id
+        if pkg_id in self.actions.keys():
+            return pkg.installed and self.actions[pkg_id] != 'r' or self.actions[pkg_id] != 'r'
+        return pkg.installed
+
+    def remove(self, pkg):
+        """Remove package from queue"""
+        pkg_id = pkg.pkg_id
+        if pkg_id in self.actions.keys():
+            action = self.actions[pkg_id]
+            self.packages[action].remove(pkg_id)
+            del self.actions[pkg_id]
+
+
+
+
 
 #################
 # class mainGui #
@@ -36,6 +116,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         dnfdragora.basedragora.BaseDragora.__init__(self)
         self.options = options
         self._progressBar = None
+        self.packageQueue = PackageQueue()
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
@@ -266,8 +347,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             for pkg in pkgs :
                 if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    if pkg.installed :
-                        item.check(True)
+                    item.check(self.packageQueue.checked(pkg))
                     self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                         'pkg' : pkg, 'item' : item
                         }
@@ -277,10 +357,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             installed = self.backend.get_packages('installed')
             v = []
             for pkg in installed :
-              if groupName and (groupName == pkg.group or groupName == 'All') :
+                if groupName and (groupName == pkg.group or groupName == 'All') :
                     if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                        item.check(True)
+                        item.check(self.packageQueue.checked(pkg))
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
                             }
@@ -291,6 +371,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if groupName and (groupName == pkg.group or groupName == 'All') :
                     if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(self.packageQueue.checked(pkg))
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
                             }
@@ -301,6 +382,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if groupName and (groupName == pkg.group or groupName == 'All') :
                     if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(self.packageQueue.checked(pkg))
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
                             }
@@ -510,7 +592,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     (filter == 'not_installed' and not pkg.installed) or
                     (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    item.check(pkg.installed)
+                    item.check(self.packageQueue.checked(pkg))
                     self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                         'pkg' : pkg, 'item' : item
                         }
@@ -577,13 +659,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         if changedItem :
                             for it in self.itemList:
                                 if (self.itemList[it]['item'] == changedItem) :
+                                    pkg = self.itemList[it]['pkg']
                                     if changedItem.checked():
-                                        self.backend.AddTransaction(self.itemList[it]['pkg'].pkg_id, 'install')
+                                        self.packageQueue.add(pkg, 'i')
                                     else:
-                                        self.backend.AddTransaction(self.itemList[it]['pkg'].pkg_id, 'remove')
+                                        self.packageQueue.add(pkg, 'r')
                                     break
-
-                        print(_("TODO checked, managing also version and arch\n"))
 
                 elif (widget == self.reset_search_button) :
                     #### RESET
@@ -599,6 +680,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 elif (widget == self.applyButton) :
                     #### APPLY
+                    self.backend.ClearTransaction()
+                    errors = 0
+                    for action in const.QUEUE_PACKAGE_TYPES:
+                        pkg_ids = self.packageQueue.get(action)
+                        for pkg_id in pkg_ids:
+                                logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkg_id))
+                                rc, trans = self.backend.AddTransaction(
+                                    pkg_id, const.QUEUE_PACKAGE_TYPES[action])
+                                if not rc:
+                                    logger.debug('result : %s: %s' % (rc, pkg_id))
+                                    errors += 1
+                    # TODO manage errors
                     rc, result = self.backend.BuildTransaction()
                     #TODO present dependencies
                     print(result)

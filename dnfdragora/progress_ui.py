@@ -75,7 +75,7 @@ class ProgressBar:
         if label is not None:
             self.progressbar.setLabel(label)
         self.progressbar.setValue(int(100*frac))
-        self.__flush()
+        #self.__flush()
 
     def reset_all(self) :
         self.info_widget.setValue('')
