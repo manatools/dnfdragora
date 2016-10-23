@@ -705,6 +705,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     print(result)
                     rc, result = self.backend.RunTransaction()
                     self.release_root_backend()
+                    self.packageQueue.clear()
                     self.backend.reload()
 
                     sel = self.tree.selectedItem()
