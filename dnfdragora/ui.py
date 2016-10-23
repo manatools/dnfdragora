@@ -341,7 +341,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # }
         pkgs = ()
         if (groupName != 'All') :
-            pkgs = self.backend.get_group_packages(groupName, 'all')
+            #NOTE fedora gets packages using the leaf and not a group called X/Y/Z
+            grp = groupName.split("/")
+            pkgs = self.backend.get_group_packages(grp[-1], 'all')
         if pkgs :
             v = []
             for pkg in pkgs :
@@ -436,13 +438,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
-    def _getAllGroupIDList(self, groups, new_groups):
-        for g in groups :
-            if (type(g) is str) :
-                new_groups.append(g)
-                break
-            else :
-               self. _getAllGroupIDList(g, new_groups)
+    def _getAllGroupIDList(self, groups, new_groups, g_id=None) :
+        '''
+        return a list of group ID as pathnames
+        '''
+        gid = g_id
+        for gl in groups:
+            if (isinstance(gl, list)):
+                if (type(gl[0]) is str) :
+                    new_groups.append(gid + "/" + gl[0] if (gid) else gl[0])
+                    if not gid :
+                        gid = gl[0]
+                else :
+                    self._getAllGroupIDList(gl, new_groups, gid)
 
     def _fillGroupTree(self) :
         '''
