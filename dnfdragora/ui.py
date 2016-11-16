@@ -17,6 +17,7 @@ import platform
 import yui
 
 import dnfdragora.basedragora
+import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
 from dnfdragora import const
@@ -438,7 +439,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
-    def _getAllGroupIDList(self, groups, new_groups, g_id=None) :
+    def _getAllGroupIDList(self, groups, new_groups, id_to_name_map, g_id=None) :
         '''
         return a list of group ID as pathnames
         '''
@@ -446,11 +447,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for gl in groups:
             if (isinstance(gl, list)):
                 if (type(gl[0]) is str) :
+                    if not gl[0] in id_to_name_map:
+                        id_to_name_map[gl[0]] = gl[1]
                     new_groups.append(gid + "/" + gl[0] if (gid) else gl[0])
                     if not gid :
                         gid = gl[0]
                 else :
-                    self._getAllGroupIDList(gl, new_groups, gid)
+                    self._getAllGroupIDList(gl, new_groups, id_to_name_map, gid)
 
     def _fillGroupTree(self) :
         '''
@@ -466,68 +469,103 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # get group comps
         rpm_groups = self.backend.get_groups()
         if rpm_groups :
+            # using comps
             groups = []
-            self._getAllGroupIDList(rpm_groups, groups)
+            id_to_name_map = {}
+            self._getAllGroupIDList(rpm_groups, groups, id_to_name_map)
             rpm_groups = groups
-        else:
-            #don't have comps try tags
-            rpm_groups = self.backend.get_groups_from_packages()
 
-        print ("End found %d groups" %len(rpm_groups))
+            rpm_groups = sorted(rpm_groups)
+            icon_path = self.options['comps_icon_path'] if 'comps_icon_path' in self.options.keys() else '/usr/share/pixmaps/comps/'
+            gIcons = compsicons.CompsIcons(icon_path)
 
-        rpm_groups = sorted(rpm_groups)
-        icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
-        gIcons = groupicons.GroupIcons(icon_path)
-        groups = gIcons.groups()
+            for g in rpm_groups:
+                #X/Y/Z/...
+                currT = self.groupList
+                subGroups = g.split("/")
+                currItem = None
+                parentItem = None
+                groupName = None
 
-        for g in rpm_groups:
-            #X/Y/Z/...
-            currG = groups
-            currT = self.groupList
-            subGroups = g.split("/")
-            currItem = None
-            parentItem = None
-            groupName = None
+                for sg in subGroups:
+                    if groupName:
+                        groupName += "/%s"%(sg)
+                    else:
+                        groupName = sg
+                    icon = gIcons.icon(groupName)
 
-            for sg in subGroups:
-                if groupName:
-                    groupName += "/%s"%(sg)
-                else:
-                    groupName = sg
-                icon = gIcons.icon(groupName)
-
-                if sg in currG:
-                    currG = currG[sg]
-                    if currG["title"] in currT :
-                        currT = currT[currG["title"]]
-                        parentItem = currT["item"]
-                    else :
-                        # create the item
-                        item = None
-                        if parentItem:
-                            item = yui.YTreeItem(parentItem, currG["title"], icon)
-                        else :
-                            item = yui.YTreeItem(currG["title"], icon)
-                        item.this.own(False)
-                        currT[currG["title"]] = { "item" : item, "name" : groupName }
-                        currT = currT[currG["title"]]
-                        parentItem = item
-                else:
-                    # group is not in our group definition, but it's into the repository
-                    # we just use it
                     if sg in currT :
                         currT = currT[sg]
                         parentItem = currT["item"]
                     else :
                         item = None
                         if parentItem:
-                            item = yui.YTreeItem(parentItem, sg, icon)
+                            item = yui.YTreeItem(parentItem, id_to_name_map[sg], icon)
                         else :
-                            item = yui.YTreeItem(sg, icon)
+                            item = yui.YTreeItem(id_to_name_map[sg], icon)
                         item.this.own(False)
                         currT[sg] = { "item" : item, "name": groupName }
                         currT = currT[sg]
                         parentItem = item
+        else:
+            #don't have comps try tags
+            rpm_groups = self.backend.get_groups_from_packages()
+
+            rpm_groups = sorted(rpm_groups)
+            icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
+            gIcons = groupicons.GroupIcons(icon_path)
+            groups = gIcons.groups()
+
+            for g in rpm_groups:
+                #X/Y/Z/...
+                currG = groups
+                currT = self.groupList
+                subGroups = g.split("/")
+                currItem = None
+                parentItem = None
+                groupName = None
+
+                for sg in subGroups:
+                    if groupName:
+                        groupName += "/%s"%(sg)
+                    else:
+                        groupName = sg
+                    icon = gIcons.icon(groupName)
+
+                    if sg in currG:
+                        currG = currG[sg]
+                        if currG["title"] in currT :
+                            currT = currT[currG["title"]]
+                            parentItem = currT["item"]
+                        else :
+                            # create the item
+                            item = None
+                            if parentItem:
+                                item = yui.YTreeItem(parentItem, currG["title"], icon)
+                            else :
+                                item = yui.YTreeItem(currG["title"], icon)
+                            item.this.own(False)
+                            currT[currG["title"]] = { "item" : item, "name" : groupName }
+                            currT = currT[currG["title"]]
+                            parentItem = item
+                    else:
+                        # group is not in our group definition, but it's into the repository
+                        # we just use it
+                        if sg in currT :
+                            currT = currT[sg]
+                            parentItem = currT["item"]
+                        else :
+                            item = None
+                            if parentItem:
+                                item = yui.YTreeItem(parentItem, sg, icon)
+                            else :
+                                item = yui.YTreeItem(sg, icon)
+                            item.this.own(False)
+                            currT[sg] = { "item" : item, "name": groupName }
+                            currT = currT[sg]
+                            parentItem = item
+
+        print ("End found %d groups" %len(rpm_groups))
 
         keylist = sorted(self.groupList.keys())
         v = []
