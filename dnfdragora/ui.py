@@ -786,3 +786,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
 
         self.dialog.destroy()
+
+        # next line seems to be a workaround to prevent the qt-app from crashing
+        # see https://github.com/libyui/libyui-qt/issues/41
+        yui.YUILoader.deleteUI()
