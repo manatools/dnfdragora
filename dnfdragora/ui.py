@@ -650,7 +650,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             strings = search_string.split(" ,|:;")
             ### TODO manage match_all, newest_only, tags
             match_all = False
-            newest_only = True
+            newest_only = False
             tags =""
             packages = self.backend.search(fields, strings, match_all, newest_only, tags )
 
