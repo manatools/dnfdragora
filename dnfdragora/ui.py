@@ -347,7 +347,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pkgs = self.backend.get_group_packages(grp[-1], 'all')
         v = []
         if pkgs :
+            updates = self.backend.get_packages('updates')
+            subset_pkgs = list(set(updates) & set(pkgs))
+            print("Packages to be update %d"%(len(updates)))
             
+            for pkg in subset_pkgs :
+                if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                    item.check(self.packageQueue.checked(pkg))
+                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        'pkg' : pkg, 'item' : item
+                        }
+                    item.this.own(False)
+
             installed = self.backend.get_packages('installed')
             subset_pkgs = list(set(installed) & set(pkgs))
             
@@ -371,20 +383,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         'pkg' : pkg, 'item' : item
                         }
                     item.this.own(False)
+            
+        else :
 
             updates = self.backend.get_packages('updates')
-            subset_pkgs = list(set(updates) & set(pkgs))
-            print("Packages to be update %d"%(len(updates)))
-            
-            for pkg in subset_pkgs :
-                if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    item.check(self.packageQueue.checked(pkg))
-                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                        'pkg' : pkg, 'item' : item
-                        }
-                    item.this.own(False)
-        else :
+            for pkg in updates:
+                if groupName and (groupName == pkg.group or groupName == 'All') :
+                    if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(self.packageQueue.checked(pkg))
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
 
             installed = self.backend.get_packages('installed')
             for pkg in installed :
@@ -401,17 +412,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             for pkg in available:
                 if groupName and (groupName == pkg.group or groupName == 'All') :
                     if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
-                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                        item.check(self.packageQueue.checked(pkg))
-                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                            'pkg' : pkg, 'item' : item
-                            }
-                        item.this.own(False)
-
-            updates = self.backend.get_packages('updates')
-            for pkg in updates:
-                if groupName and (groupName == pkg.group or groupName == 'All') :
-                    if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                         item.check(self.packageQueue.checked(pkg))
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {

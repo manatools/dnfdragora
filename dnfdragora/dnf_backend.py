@@ -367,7 +367,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         """Get packages for a given pkg filter."""
         logger.debug('get-packages : %s ', flt)
         if flt == 'all':
-            filters = ['installed', 'updates', 'available']
+            filters = ['updates', 'installed', 'available']
         else:
             filters = [flt]
         result = []
