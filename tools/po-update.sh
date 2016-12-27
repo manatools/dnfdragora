@@ -26,7 +26,6 @@ POT_FILE="$POT_DIR/$DOMAIN.pot"
 	--add-comments=I18N \
 	--output="$POT_FILE" \
 	dnfdragora/ui.py \
-	dnfdragora/dnfbase.py \
 	dnfdragora/groupicons.py \
 	dnfdragora/progress_ui.py
 

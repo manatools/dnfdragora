@@ -17,25 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dnfdragora/dnfbase.py:182
-#, python-format
-msgid "cachedir: %s"
-msgstr ""
-
-#: dnfdragora/dnfbase.py:222
-msgid "Depsolve rc: "
-msgstr ""
-
-#: dnfdragora/dnfbase.py:230
-msgid ""
-"\n"
-"Running Transaction"
-msgstr ""
-
-#: dnfdragora/dnfbase.py:241
-msgid "Depsolve failed"
-msgstr ""
-
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:113 dnfdragora/ui.py:126
 msgid "All"
 msgstr "Tous"
