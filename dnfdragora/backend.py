@@ -135,7 +135,7 @@ class ArchFilter(BaseFilter):
 
     def __init__(self, name, active=False):
         BaseFilter.__init__(self, name, active)
-        self.archs = ['noarch', 'i586', 'x86_64']
+        self.archs = ['noarch', 'i586', 'i686', 'x86_64']
 
     def run(self, pkgs):
         BaseFilter.run(self, pkgs)
@@ -216,6 +216,8 @@ class PackageCache:
         self.find_packages(pkgs)
         self._populated.append(str(pkg_filter))
 
+    # NOTE fedora adds package in updates also as installable
+    #      so look for updates first as workaround or update list will be empty
     def _add(self, po):
         if str(po) in self._index:  # package is in cache
             return self._index[str(po)]
