@@ -20,6 +20,7 @@ import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
+import dnfdragora.config
 from dnfdragora import const
 
 import gettext
@@ -134,7 +135,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         gettext.bindtextdomain(APP, DIR)
         gettext.textdomain(APP)
 
+        self.config = dnfdragora.config.AppConfig(APP)
+
+        try:
+            self.config.load()
+        except Exception as e:
+            print ("Exception: %s" % str(e))
+            exc = "Configuration file <%s> problem" % self.config.fileName
+            raise (Exception(exc))
+
         yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
+
         #TODO fix icons
         wm_icon = "/usr/share/icons/rpmdrake.png"
         yui.YUI.app().setApplicationIcon(wm_icon)
@@ -294,7 +305,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,6)
 
-        self.dnf = None #dnfbase.DnfBase()
         self.dialog.pollEvent();
         self._fillGroupTree()
         sel = self.tree.selectedItem()
