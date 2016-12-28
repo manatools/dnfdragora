@@ -122,6 +122,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
+
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
@@ -135,6 +136,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         gettext.bindtextdomain(APP, DIR)
         gettext.textdomain(APP)
 
+        self.use_comps = False
+        self.group_icon_path = None
+        self.images_path = '/usr/share/dnfdragora/images'
+
         self.config = dnfdragora.config.AppConfig(APP)
 
         try:
@@ -143,6 +148,34 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             print ("Exception: %s" % str(e))
             exc = "Configuration file <%s> problem" % self.config.fileName
             raise (Exception(exc))
+
+        # settings from configuration file first
+        if self.config.content :
+            settings = {}
+            if 'settings' in self.config.content.keys() :
+                settings = self.config.content['settings']
+
+            if 'use_comps' in settings.keys() :
+                self.use_comps = settings['use_comps']
+
+            # config['settings']['path']
+            path_settings = {}
+            if 'path' in settings.keys():
+                path_settings = settings['path']
+            if 'group_icons' in path_settings.keys():
+                self.group_icon_path = path_settings['group_icons']
+            if 'images' in path_settings.keys():
+                self.images_path = path_settings['images']
+
+        # overload settings from comand line
+        if 'group_icons_path' in self.options.keys() :
+            self.group_icon_path = self.options['group_icons_path']
+        if 'images_path' in self.options.keys() :
+            self.images_path = self.options['images_path']
+
+        if self.use_comps and not self.group_icon_path:
+            self.group_icon_path = '/usr/share/pixmaps/comps/'
+
 
         yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
@@ -514,6 +547,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             rpm_groups = groups
 
             rpm_groups = sorted(rpm_groups)
+            #TODO use self.group_icon_path
             icon_path = self.options['comps_icon_path'] if 'comps_icon_path' in self.options.keys() else '/usr/share/pixmaps/comps/'
             gIcons = compsicons.CompsIcons(icon_path)
 
@@ -550,8 +584,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             rpm_groups = self.backend.get_groups_from_packages()
 
             rpm_groups = sorted(rpm_groups)
-            icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
-            gIcons = groupicons.GroupIcons(icon_path)
+
+            gIcons = groupicons.GroupIcons(self.group_icon_path)
             groups = gIcons.groups()
 
             for g in rpm_groups:
@@ -699,8 +733,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             if createTreeItem:
                 self.tree.startMultipleChanges()
-                icon_path = self.options['icon_path'] if 'icon_path' in self.options.keys() else None
-                gIcons = groupicons.GroupIcons(icon_path)
+                gIcons = groupicons.GroupIcons(self.group_icon_path)
                 icon = gIcons.icon("Search")
                 treeItem = yui.YTreeItem(gIcons.groups()['Search']['title'] , icon, False)
                 treeItem.setSelected(True)

@@ -22,12 +22,16 @@ if __name__ == "__main__":
     ui_select_parser.add_argument('--qt', help='start using yui Qt plugin implementation', action='store_true')
     parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
 
-    parser.add_argument('--icon_path', nargs='?', help='force a new path for icons (instead of /usr/share/icons)')
+    parser.add_argument('--group_icons_path', nargs='?', help='force a new path for group icons (instead of /usr/share/icons)')
+    parser.add_argument('--images_path', nargs='?', help='force a new path for all the needed images (instead of /usr/share/dnfdragora/images)')
     args = parser.parse_args()
 
     options = {}
-    if args.icon_path:
-        options['icon_path'] = args.icon_path
+    if args.group_icons_path:
+        options['group_icons_path'] = args.group_icons_path
+    if args.images_path:
+        options['images_path'] = args.images_path
+
     main_gui = None
     try:
         main_gui = dnfdragora.ui.mainGui(options)
