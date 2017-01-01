@@ -73,15 +73,19 @@ class TransactionResult:
 
             itemVect.append(level1Item)
 
+        sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
+        dlg.pollEvent()
+
+        yui.YUI.app().busyCursor()
         itemCollection = yui.YItemCollection(itemVect)
         treeWidget.startMultipleChanges()
         treeWidget.deleteAllItems()
         treeWidget.addItems(itemCollection)
-        sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
         treeWidget.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
         dlg.setDefaultButton(okButton)
+
 
         accepting = False
         while (True) :
