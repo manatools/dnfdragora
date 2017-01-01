@@ -20,6 +20,8 @@ import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
+import dnfdragora.dialogs as dialogs
+
 import dnfdragora.config
 from dnfdragora import const
 
@@ -139,7 +141,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.use_comps = False
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images'
-
+        self.always_yes = False
         self.config = dnfdragora.config.AppConfig(APP)
 
         try:
@@ -808,14 +810,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                 if not rc:
                                     logger.debug('result : %s: %s' % (rc, pkg_id))
                                     errors += 1
-                    # TODO manage errors
                     rc, result = self.backend.BuildTransaction()
-                    #TODO present dependencies
-                    print(result)
-                    rc, result = self.backend.RunTransaction()
-                    self.release_root_backend()
-                    self.packageQueue.clear()
-                    self.backend.reload()
+                    if rc :
+                        ok = True
+                        if not self.always_yes:
+                            print("TransactionResult")
+                            transaction_result_dlg = dialogs.TransactionResult(self)
+                            ok = transaction_result_dlg.run(result)
+                            print("TransactionResult finsih")
+
+                        if ok:  # Ok pressed
+                            self.infobar.info(_('Applying changes to the system'))
+                            rc, result = self.backend.RunTransaction()
+                            self.release_root_backend()
+                            self.packageQueue.clear()
+                            self.backend.reload()
+                    else:
+                        # TODO manage errors
+                        pass
 
                     sel = self.tree.selectedItem()
                     if sel :
