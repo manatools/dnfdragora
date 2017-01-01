@@ -13,6 +13,7 @@ Author:  Andelo Naselli <anaselli@linux.it>
 import yui
 from dnfdragora import const
 import dnfdragora.misc as misc
+from dnfdragora import const
 
 import gettext
 from gettext import gettext as _
@@ -105,4 +106,54 @@ class TransactionResult:
         yui.YUI.app().setApplicationTitle(appTitle)
 
         return accepting
+
+
+
+class AboutDialog:
+
+    def __init__(self, parent):
+        '''
+        Create an about dialog
+        @param parent: main parent dialog
+
+        '''
+        self.parent = parent
+        self.factory = self.parent.mgaFactory
+        # name        => the application name
+        # version     =>  the application version
+        # license     =>  the application license, the short length one (e.g. GPLv2, GPLv3, LGPLv2+, etc)
+        # authors     =>  the string providing the list of authors; it could be html-formatted
+        # description =>  the string providing a brief description of the application
+        # logo        => the string providing the file path for the application logo (high-res image)
+        # icon        => the string providing the file path for the application icon (low-res image)
+        # credits     => the application credits, they can be html-formatted
+        # information => other extra informations, they can be html-formatted
+        # dialog_mode => 1: classic style dialog, any other as tabbed style dialog
+        self.name    = parent.appname
+        self.version = const.VERSION
+        self.license = "GPLv3"
+        self.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li></ul>"%(
+                            _("Developers"),
+                            "Angelo Naselli &lt;anaselli@linux.it&gt;",
+                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;")
+        self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
+        self.dialog_mode = yui.YMGAAboutDialog.TABBED
+        # TODO
+        self.logo = ""
+        self.icon = ""
+        self.credits = ""
+        self.information = ""
+
+    def run (self) :
+        '''
+        shows the about dialog
+        '''
+        dlg = self.factory.createAboutDialog(
+            self.name, self.version, self.license,
+            self.authors, self.description, self.logo,
+            self.icon, self.credits, self.information)
+
+        dlg.show(self.dialog_mode)
+
+        dlg = None;
 

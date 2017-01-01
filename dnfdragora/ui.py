@@ -124,6 +124,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.toRemove = []
         self.toInstall = []
         self.itemList = {}
+        self.appname = "dnfdragora"
+
 
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -132,17 +134,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # {
         #    localized_name = { "item" : item, "name" : groupName }
         # }
-        APP="dnfdragora"
         # TODO : perhaps fix with a relative path
         DIR="/usr/share/locale"
-        gettext.bindtextdomain(APP, DIR)
-        gettext.textdomain(APP)
+        gettext.bindtextdomain(self.appname, DIR)
+        gettext.textdomain(self.appname)
 
         self.use_comps = False
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images'
         self.always_yes = False
-        self.config = dnfdragora.config.AppConfig(APP)
+        self.config = dnfdragora.config.AppConfig(self.appname)
 
         # settings from configuration file first
         self._configFileRead()
@@ -169,6 +170,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         mgaFact = yui.YExternalWidgets.externalWidgetFactory(MGAPlugin)
         self.mgaFactory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(mgaFact)
         self.optFactory = yui.YUI.optionalWidgetFactory()
+
+        self.AboutDialog = dialogs.AboutDialog(self)
 
         ### MAIN DIALOG ###
         self.dialog = self.factory.createMainDialog()
@@ -318,7 +321,32 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,6)
 
-        self.dialog.pollEvent();
+        # build File menu
+        self.fileMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("File")),
+            'reset_sel' : yui.YMenuItem(_("Reset the selection")),
+            'reload'    : yui.YMenuItem(_("Reload the packages list")),
+            'quit'      : yui.YMenuItem(_("&Quit")),
+        }
+
+        ordered_menu_lines = ['reset_sel', 'reload', 'quit']
+        for l in ordered_menu_lines :
+            self.fileMenu['widget'].addItem(self.fileMenu[l])
+        self.fileMenu['widget'].rebuildMenuTree();
+
+        # build help menu
+        self.helpMenu = {
+            'widget': self.factory.createMenuButton(headRight, _("&Help")),
+            'help'  : yui.YMenuItem(_("Manual")),
+            'about' : yui.YMenuItem(_("&About")),
+        }
+        ordered_menu_lines = ['help', 'about']
+        for l in ordered_menu_lines :
+            self.helpMenu['widget'].addItem(self.helpMenu[l])
+
+        self.helpMenu['widget'].rebuildMenuTree()
+
+        self.dialog.pollEvent()
         self._fillGroupTree()
         sel = self.tree.selectedItem()
         group = None
@@ -766,6 +794,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             #event type checking
             if (eventType == yui.YEvent.CancelEvent) :
                 break
+            elif (eventType == yui.YEvent.MenuEvent) :
+                ### MENU ###
+                item = event.item()
+                if (item) :
+                    if  item == self.fileMenu['reset_sel'] :
+                        pass
+                    elif item == self.fileMenu['reload']  :
+                        pass
+                    elif item == self.fileMenu['quit']    :
+                        #### QUIT
+                        break
+                    elif item == self.helpMenu['help']  :
+                        pass
+                    elif item == self.helpMenu['about']  :
+                        self.AboutDialog.run()
+
             elif (eventType == yui.YEvent.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
