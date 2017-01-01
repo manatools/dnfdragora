@@ -822,7 +822,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         group = self._groupNameFromItem(self.groupList, sel)
                         if (group == "Search"):
                             filter = self._filterNameSelected()
-                            if not self._searchPackages(filter) :
+                            # force tree rebuilding to show new pacakge status
+                            if not self._searchPackages(filter, True) :
                                 rebuild_package_list = True
                         else:
                             rebuild_package_list = True
