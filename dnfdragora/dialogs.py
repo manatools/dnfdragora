@@ -157,3 +157,114 @@ class AboutDialog:
 
         dlg = None;
 
+
+def warningMsgBox (info) :
+    '''
+    This function creates an Warning dialog and show the message
+    passed as input.
+
+    @param info: dictionary, information to be passed to the dialog.
+            title     =>     dialog title
+            text      =>     string to be swhon into the dialog
+            richtext =>     1 if using rich text
+    '''
+    if (not info) :
+        return 0
+
+    retVal = 0
+    yui.YUI.widgetFactory
+    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
+    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
+    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE, yui.YMGAMessageBox.D_WARNING)
+
+    if ('title' in info.keys()) :
+        dlg.setTitle(info['title'])
+
+    rt = False
+    if ("richtext" in info.keys()) :
+        rt = info['richtext']
+
+    if ('text' in info.keys()) :
+        dlg.setText(info['text'], rt)
+
+    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
+#   dlg.setMinSize(50, 5)
+
+    retVal = dlg.show()
+    dlg = None
+
+    return 1
+
+
+def infoMsgBox (info) :
+    '''
+    This function creates an Info dialog and show the message
+    passed as input.
+
+    @param info: dictionary, information to be passed to the dialog.
+            title     =>     dialog title
+            text      =>     string to be swhon into the dialog
+            richtext =>     1 if using rich text
+    '''
+    if (not info) :
+        return 0
+
+    retVal = 0
+    yui.YUI.widgetFactory
+    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
+    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
+    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE, yui.YMGAMessageBox.D_INFO)
+
+    if ('title' in info.keys()) :
+        dlg.setTitle(info['title'])
+
+    rt = False
+    if ("richtext" in info.keys()) :
+        rt = info['richtext']
+
+    if ('text' in info.keys()) :
+        dlg.setText(info['text'], rt)
+
+    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
+#   dlg.setMinSize(50, 5)
+
+    retVal = dlg.show()
+    dlg = None
+
+    return 1
+
+def msgBox (info) :
+    '''
+    This function creates a dialog and show the message passed as input.
+
+    @param info: dictionary, information to be passed to the dialog.
+            title     =>     dialog title
+            text      =>     string to be swhon into the dialog
+            richtext =>     1 if using rich text
+    '''
+    if (not info) :
+        return 0
+
+    retVal = 0
+    yui.YUI.widgetFactory
+    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
+    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
+    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE)
+
+    if ('title' in info.keys()) :
+        dlg.setTitle(info['title'])
+
+    rt = False
+    if ("richtext" in info.keys()) :
+        rt = info['richtext']
+
+    if ('text' in info.keys()) :
+        dlg.setText(info['text'], rt)
+
+    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
+#   dlg.setMinSize(50, 5)
+
+    retVal = dlg.show()
+    dlg = None
+
+    return 1

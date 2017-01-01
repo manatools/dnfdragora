@@ -799,14 +799,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 item = event.item()
                 if (item) :
                     if  item == self.fileMenu['reset_sel'] :
-                        pass
+                        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.fileMenu['reload']  :
-                        pass
+                        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.fileMenu['quit']    :
                         #### QUIT
                         break
                     elif item == self.helpMenu['help']  :
-                        pass
+                        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
                         self.AboutDialog.run()
 
