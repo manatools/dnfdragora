@@ -1,0 +1,8 @@
+settings:
+    use_comps: False
+    always_yes: False
+
+#    path:
+#        group_icons: /usr/share/icons
+#        To see icons set the following path 
+#        images: PATH_TO_DNFDRAGORA/share/images

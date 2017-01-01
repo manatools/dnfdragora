@@ -141,7 +141,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.use_comps = False
         self.group_icon_path = None
-        self.images_path = '/usr/share/dnfdragora/images'
+        self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
         self.config = dnfdragora.config.AppConfig(self.appname)
 
@@ -157,11 +157,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.use_comps and not self.group_icon_path:
             self.group_icon_path = '/usr/share/pixmaps/comps/'
 
+        # Adding / as last har in the path if not present
+        if not self.images_path.endswith('/'):
+            self.images_path += "/"
+        if self.group_icon_path and not self.group_icon_path.endswith('/'):
+            self.group_icon_path += "/"
 
         yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
         #TODO fix icons
-        wm_icon = "/usr/share/icons/rpmdrake.png"
+        wm_icon = self.images_path + "dnfdragora.png"
         yui.YUI.app().setApplicationIcon(wm_icon)
 
         MGAPlugin = "mga"
@@ -297,15 +302,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
 
-        #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/manalog.png")
-        icon_file = ""
+        icon_file = self.images_path + "find.png"
         self.find_button = self.factory.createIconButton(hbox_top, icon_file, _("&Search"))
         self.find_button.setWeight(0,6)
         self.dialog.setDefaultButton(self.find_button)
         self.find_entry.setKeyboardFocus()
 
-        #TODO icon_file = File::ShareDir::dist_file(ManaTools::Shared::distName(), "images/rpmdragora/clear_22x22.png");
-        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Reset"))
+        icon_file = self.images_path + "clear_22x22.png"
+        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Clear search"))
         self.reset_search_button.setWeight(0,7)
         self.find_entry.setWeight(0,10)
 
