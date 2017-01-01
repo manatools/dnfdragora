@@ -144,30 +144,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.always_yes = False
         self.config = dnfdragora.config.AppConfig(APP)
 
-        try:
-            self.config.load()
-        except Exception as e:
-            print ("Exception: %s" % str(e))
-            exc = "Configuration file <%s> problem" % self.config.fileName
-            raise (Exception(exc))
-
         # settings from configuration file first
-        if self.config.content :
-            settings = {}
-            if 'settings' in self.config.content.keys() :
-                settings = self.config.content['settings']
-
-            if 'use_comps' in settings.keys() :
-                self.use_comps = settings['use_comps']
-
-            # config['settings']['path']
-            path_settings = {}
-            if 'path' in settings.keys():
-                path_settings = settings['path']
-            if 'group_icons' in path_settings.keys():
-                self.group_icon_path = path_settings['group_icons']
-            if 'images' in path_settings.keys():
-                self.images_path = path_settings['images']
+        self._configFileRead()
 
         # overload settings from comand line
         if 'group_icons_path' in self.options.keys() :
@@ -354,16 +332,39 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pkg_name = sel.cell(0).label()
             self.setInfoOnWidget(pkg_name)
 
-    #def get_infobar(self) :
-        #if self._progressBar is None:
-            #self._progressBar = progress_ui.Progress()
-        #return self._progressBar
-    
-    #def release_infobar(self):
-        #if self._progressBar is not None:
-            #del self._progressBar
-            #self._progressBar = None
-    
+
+    def _configFileRead(self) :
+        '''
+            reads the configuration file and sets application data
+        '''
+        try:
+            self.config.load()
+        except Exception as e:
+            print ("Exception: %s" % str(e))
+            exc = "Configuration file <%s> problem" % self.config.fileName
+            raise (Exception(exc))
+
+        if self.config.content :
+            settings = {}
+            if 'settings' in self.config.content.keys() :
+                settings = self.config.content['settings']
+
+            if 'use_comps' in settings.keys() :
+                self.use_comps = settings['use_comps']
+
+            if 'always_yes' in settings.keys() :
+                self.always_yes = settings['always_yes']
+
+            # config['settings']['path']
+            path_settings = {}
+            if 'path' in settings.keys():
+                path_settings = settings['path']
+            if 'group_icons' in path_settings.keys():
+                self.group_icon_path = path_settings['group_icons']
+            if 'images' in path_settings.keys():
+                self.images_path = path_settings['images']
+
+
     def _pkg_name(self, name, epoch, version, release, arch) :
         '''
             return a package name in the form name-epoch_version-release.arch
@@ -814,10 +815,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if rc :
                         ok = True
                         if not self.always_yes:
-                            print("TransactionResult")
                             transaction_result_dlg = dialogs.TransactionResult(self)
                             ok = transaction_result_dlg.run(result)
-                            print("TransactionResult finsih")
 
                         if ok:  # Ok pressed
                             self.infobar.info(_('Applying changes to the system'))
