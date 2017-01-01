@@ -139,8 +139,8 @@ class AboutDialog:
         self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
         self.dialog_mode = yui.YMGAAboutDialog.TABBED
         # TODO
-        self.logo = ""
-        self.icon = ""
+        self.logo = parent.images_path + "dnfdragora-logo.png"
+        self.icon = parent.icon
         self.credits = ""
         self.information = ""
 

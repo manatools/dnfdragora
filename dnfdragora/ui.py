@@ -166,8 +166,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
         #TODO fix icons
-        wm_icon = self.images_path + "dnfdragora.png"
-        yui.YUI.app().setApplicationIcon(wm_icon)
+        self.icon = self.images_path + "dnfdragora.png"
+        yui.YUI.app().setApplicationIcon(self.icon)
 
         MGAPlugin = "mga"
 
@@ -193,7 +193,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         hbox_iconbar  = self.factory.createHBox(vbox)
         head_align_left  = self.factory.createLeft(hbox_iconbar)
         hbox_iconbar     = self.factory.createHBox(head_align_left)
-        self.factory.createImage(hbox_iconbar, wm_icon)
+        self.factory.createImage(hbox_iconbar, self.icon)
 
         self.factory.createHeading(hbox_iconbar, _("Software Management"))
 
