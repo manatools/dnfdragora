@@ -763,7 +763,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
             for pkg in packages:
-                if (filter == 'all' or (filter == 'installed' and pkg.installed) or
+                if (filter == 'all' or (filter == 'to_update' and pkg.is_update ) or (filter == 'installed' and pkg.installed) or
                     (filter == 'not_installed' and not pkg.installed) or
                     (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
