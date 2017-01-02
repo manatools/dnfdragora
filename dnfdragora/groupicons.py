@@ -662,7 +662,7 @@ class GroupIcons:
         icon_path =  self.mini_icon_path if len(groups) > 1 else self.icon_path
         g = self._group_info
         for k in groups:
-            if k in g:
+            if k in g.keys():
                 g = g[k]
             else:
                 g = None
