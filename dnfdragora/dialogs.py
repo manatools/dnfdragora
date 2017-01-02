@@ -19,6 +19,10 @@ import gettext
 from gettext import gettext as _
 
 class TransactionResult:
+    '''
+    TransactionResult is a dialog that shows the transacion dependencies before
+    running the transaction.
+    '''
 
     def __init__(self, parent):
         self.parent = parent
@@ -114,10 +118,13 @@ class TransactionResult:
 
 
 class AboutDialog:
+    '''
+    Create an about dialog
+    '''
 
     def __init__(self, parent):
         '''
-        Create an about dialog
+        Constructor
         @param parent: main parent dialog
 
         '''
