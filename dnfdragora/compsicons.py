@@ -33,6 +33,9 @@ class CompsIcons:
             "Content": {"title": _("Content"), "icon" :"content.png"},
             }
 
+        # adding group to use it in a search
+        self._group_info['Search'] = {"title" : _("Search result")}
+
     @property
     def groups(self):
         '''
@@ -45,7 +48,8 @@ class CompsIcons:
         for group_name in reversed(group_names):
             icon_name = group_name + ".png"
             if group_name in self._group_info.keys():
-                icon_name = self._group_info[group_name]['icon']
+                if ('icon' in self._group_info[group_name]):
+                    icon_name = self._group_info[group_name]['icon']
 
             icon_pathname = self.icon_path + icon_name
             if os.path.exists(icon_pathname):

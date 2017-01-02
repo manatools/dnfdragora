@@ -602,7 +602,7 @@ class GroupIcons:
                     },
                 },
                 'Search' : {
-                    'title' : _("Search"),
+                    'title' : _("Search result"),
                     #'icon' : TODO
                 },
                 'Server' : {
