@@ -48,7 +48,7 @@ class CompsIcons:
         for group_name in reversed(group_names):
             icon_name = group_name + ".png"
             if group_name in self._group_info.keys():
-                if ('icon' in self._group_info[group_name]):
+                if ('icon' in self._group_info[group_name].keys()):
                     icon_name = self._group_info[group_name]['icon']
 
             icon_pathname = self.icon_path + icon_name
