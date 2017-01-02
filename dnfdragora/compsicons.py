@@ -16,33 +16,36 @@ class CompsIcons:
 
         # workaround for https://github.com/timlau/dnf-daemon/issues/9
         # generated using tools/gen-comps-category-list.sh
-        self.name_to_id_map = {
-            "KDE Desktop": "kde-desktop-environment",
-            "Xfce Desktop": "xfce-desktop-environment",
-            "Applications": "apps",
-            "LXDE Desktop": "lxde-desktop-environment",
-            "LXQt Desktop": "lxqt-desktop-environment",
-            "Cinnamon Desktop": "cinnamon-desktop-environment",
-            "MATE Desktop": "mate-desktop-environment",
-            "Hawaii Desktop": "hawaii-desktop-environment",
-            "Sugar Desktop Environment": "sugar-desktop-environment",
-            "GNOME Desktop": "gnome-desktop-environment",
-            "Development": "development",
-            "Servers": "servers",
-            "Base System": "base-system",
-            "Content": "content",
+        self._group_info = {
+            "KDE Desktop": {"title": _("KDE Desktop"), "icon" :"kde-desktop-environment.png"},
+            "Xfce Desktop": {"title": _("Xfce Desktop"), "icon" :"xfce-desktop-environment.png"},
+            "Applications": {"title": _("Applications"), "icon" :"apps.png"},
+            "LXDE Desktop": {"title": _("LXDE Desktop"), "icon" :"lxde-desktop-environment.png"},
+            "LXQt Desktop": {"title": _("LXQt Desktop"), "icon" :"lxqt-desktop-environment.png"},
+            "Cinnamon Desktop": {"title": _("Cinnamon Desktop"), "icon" :"cinnamon-desktop-environment.png"},
+            "MATE Desktop": {"title": _("MATE Desktop"), "icon" :"mate-desktop-environment.png"},
+            "Hawaii Desktop": {"title": _("Hawaii Desktop"), "icon" :"hawaii-desktop-environment.png"},
+            "Sugar Desktop Environment": {"title": _("Sugar Desktop Environment"), "icon" :"sugar-desktop-environment.png"},
+            "GNOME Desktop": {"title": _("GNOME Desktop"), "icon" :"gnome-desktop-environment.png"},
+            "Development": {"title": _("Development"), "icon" :"development.png"},
+            "Servers": {"title": _("Servers"), "icon" :"servers.png"},
+            "Base System": {"title": _("Base System"), "icon" :"base-system.png"},
+            "Content": {"title": _("Content"), "icon" :"content.png"},
             }
+
+    @property
+    def groups(self):
+        return self._group_info
 
     def icon(self, group_path):
         group_names = group_path.split("/")
         for group_name in reversed(group_names):
-            if group_name in self.name_to_id_map:
-                group_id = self.name_to_id_map[group_name]
-            else:
-                group_id = group_name
+            icon_name = group_name + ".png"
+            if group_name in self._group_info.keys():
+                icon_name = self._group_info[group_name]['icon']
 
-            icon_name = self.icon_path + group_id + ".png"
-            if os.path.exists(icon_name):
-                return icon_name
+            icon_pathname = self.icon_path + icon_name
+            if os.path.exists(icon_pathname):
+                return icon_pathname
 
         return self.default_icon
