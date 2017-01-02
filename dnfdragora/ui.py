@@ -117,7 +117,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def __init__(self, options={}):
 
-        dnfdragora.basedragora.BaseDragora.__init__(self)
         self.options = options
         self._progressBar = None
         self.packageQueue = PackageQueue()
@@ -163,6 +162,47 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
+        self.gIcons = compsicons.CompsIcons(self.group_icon_path) if self.use_comps else groupicons.GroupIcons(self.group_icon_path)
+
+        dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
+        # setup UI
+        self._setupUI()
+
+    def _configFileRead(self) :
+        '''
+            reads the configuration file and sets application data
+        '''
+        try:
+            self.config.load()
+        except Exception as e:
+            print ("Exception: %s" % str(e))
+            exc = "Configuration file <%s> problem" % self.config.fileName
+            raise (Exception(exc))
+
+        if self.config.content :
+            settings = {}
+            if 'settings' in self.config.content.keys() :
+                settings = self.config.content['settings']
+
+            if 'use_comps' in settings.keys() :
+                self.use_comps = settings['use_comps']
+
+            if 'always_yes' in settings.keys() :
+                self.always_yes = settings['always_yes']
+
+            # config['settings']['path']
+            path_settings = {}
+            if 'path' in settings.keys():
+                path_settings = settings['path']
+            if 'group_icons' in path_settings.keys():
+                self.group_icon_path = path_settings['group_icons']
+            if 'images' in path_settings.keys():
+                self.images_path = path_settings['images']
+
+    def _setupUI(self) :
+        '''
+            setup main dialog
+        '''
         yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
         #TODO fix icons
@@ -364,39 +404,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pkg_name = sel.cell(0).label()
             self.setInfoOnWidget(pkg_name)
 
-
-    def _configFileRead(self) :
-        '''
-            reads the configuration file and sets application data
-        '''
-        try:
-            self.config.load()
-        except Exception as e:
-            print ("Exception: %s" % str(e))
-            exc = "Configuration file <%s> problem" % self.config.fileName
-            raise (Exception(exc))
-
-        if self.config.content :
-            settings = {}
-            if 'settings' in self.config.content.keys() :
-                settings = self.config.content['settings']
-
-            if 'use_comps' in settings.keys() :
-                self.use_comps = settings['use_comps']
-
-            if 'always_yes' in settings.keys() :
-                self.always_yes = settings['always_yes']
-
-            # config['settings']['path']
-            path_settings = {}
-            if 'path' in settings.keys():
-                path_settings = settings['path']
-            if 'group_icons' in path_settings.keys():
-                self.group_icon_path = path_settings['group_icons']
-            if 'images' in path_settings.keys():
-                self.images_path = path_settings['images']
-
-
     def _pkg_name(self, name, epoch, version, release, arch) :
         '''
             return a package name in the form name-epoch_version-release.arch
@@ -545,21 +552,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
-    def _getAllGroupIDList(self, groups, new_groups, id_to_name_map, g_id=None) :
-        '''
-        return a list of group ID as pathnames
-        '''
-        gid = g_id
-        for gl in groups:
-            if (isinstance(gl, list)):
-                if (type(gl[0]) is str) :
-                    if not gl[0] in id_to_name_map:
-                        id_to_name_map[gl[0]] = gl[1]
-                    new_groups.append(gid + "/" + gl[0] if (gid) else gl[0])
-                    if not gid :
-                        gid = gl[0]
-                else :
-                    self._getAllGroupIDList(gl, new_groups, id_to_name_map, gid)
 
     def _fillGroupTree(self) :
         '''
@@ -572,127 +564,60 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         yui.YUI.app().busyCursor()
 
         print ("Start looking for groups")
-        # get group comps
+
         rpm_groups = self.backend.get_groups()
-        if rpm_groups :
-            #TODO fix use use_comps
-            # using comps
-            groups = []
-            id_to_name_map = {}
-            self._getAllGroupIDList(rpm_groups, groups, id_to_name_map)
-            rpm_groups = groups
+        rpm_groups = sorted(rpm_groups)
 
-            rpm_groups = sorted(rpm_groups)
-            #TODO use self.group_icon_path
-            icon_path = self.options['comps_icon_path'] if 'comps_icon_path' in self.options.keys() else '/usr/share/pixmaps/comps/'
-            gIcons = compsicons.CompsIcons(icon_path)
-            groups = gIcons.groups
+        groups = self.gIcons.groups
 
-            for g in rpm_groups:
-                #X/Y/Z/...
-                currG = groups
-                currT = self.groupList
-                subGroups = g.split("/")
-                currItem = None
-                parentItem = None
-                groupName = None
+        for g in rpm_groups:
+            #X/Y/Z/...
+            currG = groups
+            currT = self.groupList
+            subGroups = g.split("/")
+            currItem = None
+            parentItem = None
+            groupName = None
 
-                for sg in subGroups:
-                    if groupName:
-                        groupName += "/%s"%(sg)
-                    else:
-                        groupName = sg
-                    icon = gIcons.icon(groupName)
+            for sg in subGroups:
+                if groupName:
+                    groupName += "/%s"%(sg)
+                else:
+                    groupName = sg
+                icon = self.gIcons.icon(groupName)
 
-                    if sg in currG:
-                        currG = currG[sg]
-                        if currG["title"] in currT :
-                            currT = currT[currG["title"]]
-                            parentItem = currT["item"]
+                if sg in currG:
+                    currG = currG[sg]
+                    if currG["title"] in currT :
+                        currT = currT[currG["title"]]
+                        parentItem = currT["item"]
+                    else :
+                        # create the item
+                        item = None
+                        if parentItem:
+                            item = yui.YTreeItem(parentItem, currG["title"], icon)
                         else :
-                            # create the item
-                            item = None
-                            if parentItem:
-                                item = yui.YTreeItem(parentItem, currG["title"], icon)
-                            else :
-                                item = yui.YTreeItem(currG["title"], icon)
-                            item.this.own(False)
-                            currT[currG["title"]] = { "item" : item, "name" : groupName }
-                            currT = currT[currG["title"]]
-                            parentItem = item
-                    else:
-                        # group is not in our group definition, but it's into the repository
-                        # we just use it
-                        if sg in currT :
-                            currT = currT[sg]
-                            parentItem = currT["item"]
+                            item = yui.YTreeItem(currG["title"], icon)
+                        item.this.own(False)
+                        currT[currG["title"]] = { "item" : item, "name" : groupName }
+                        currT = currT[currG["title"]]
+                        parentItem = item
+                else:
+                    # group is not in our group definition, but it's into the repository
+                    # we just use it
+                    if sg in currT :
+                        currT = currT[sg]
+                        parentItem = currT["item"]
+                    else :
+                        item = None
+                        if parentItem:
+                            item = yui.YTreeItem(parentItem, sg, icon)
                         else :
-                            item = None
-                            if parentItem:
-                                item = yui.YTreeItem(parentItem, sg, icon)
-                            else :
-                                item = yui.YTreeItem(sg, icon)
-                            item.this.own(False)
-                            currT[sg] = { "item" : item, "name": groupName }
-                            currT = currT[sg]
-                            parentItem = item
-        else:
-            #don't have comps try tags
-            rpm_groups = self.backend.get_groups_from_packages()
-
-            rpm_groups = sorted(rpm_groups)
-
-            gIcons = groupicons.GroupIcons(self.group_icon_path)
-            groups = gIcons.groups()
-
-            for g in rpm_groups:
-                #X/Y/Z/...
-                currG = groups
-                currT = self.groupList
-                subGroups = g.split("/")
-                currItem = None
-                parentItem = None
-                groupName = None
-
-                for sg in subGroups:
-                    if groupName:
-                        groupName += "/%s"%(sg)
-                    else:
-                        groupName = sg
-                    icon = gIcons.icon(groupName)
-
-                    if sg in currG:
-                        currG = currG[sg]
-                        if currG["title"] in currT :
-                            currT = currT[currG["title"]]
-                            parentItem = currT["item"]
-                        else :
-                            # create the item
-                            item = None
-                            if parentItem:
-                                item = yui.YTreeItem(parentItem, currG["title"], icon)
-                            else :
-                                item = yui.YTreeItem(currG["title"], icon)
-                            item.this.own(False)
-                            currT[currG["title"]] = { "item" : item, "name" : groupName }
-                            currT = currT[currG["title"]]
-                            parentItem = item
-                    else:
-                        # group is not in our group definition, but it's into the repository
-                        # we just use it
-                        if sg in currT :
-                            currT = currT[sg]
-                            parentItem = currT["item"]
-                        else :
-                            item = None
-                            if parentItem:
-                                item = yui.YTreeItem(parentItem, sg, icon)
-                            else :
-                                item = yui.YTreeItem(sg, icon)
-                            item.this.own(False)
-                            currT[sg] = { "item" : item, "name": groupName }
-                            currT = currT[sg]
-                            parentItem = item
+                            item = yui.YTreeItem(sg, icon)
+                        item.this.own(False)
+                        currT[sg] = { "item" : item, "name": groupName }
+                        currT = currT[sg]
+                        parentItem = item
 
         print ("End found %d groups" %len(rpm_groups))
 
@@ -790,11 +715,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             if createTreeItem:
                 self.tree.startMultipleChanges()
-                gIcons = groupicons.GroupIcons(self.group_icon_path)
-                icon = gIcons.icon("Search")
-                treeItem = yui.YTreeItem(gIcons.groups()['Search']['title'] , icon, False)
+                icon = self.gIcons.icon("Search")
+                treeItem = yui.YTreeItem(self.gIcons.groups['Search']['title'] , icon, False)
                 treeItem.setSelected(True)
-                self.groupList[gIcons.groups()['Search']['title']] = { "item" : treeItem, "name" : _("Search") }
+                self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : _("Search") }
                 self.tree.addItem(treeItem)
                 self.tree.rebuildTree()
                 self.tree.doneMultipleChanges()

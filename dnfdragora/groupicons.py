@@ -14,7 +14,7 @@ class GroupIcons:
             self.mini_icon_path = '/usr/share/icons/mini/'
 
         # TODO add a localized string for any group in "title"
-        self.group = {
+        self._group_info = {
              'All' : { 
                 'title' : _("All"), 
                 'icon':  'system_section.png'
@@ -639,11 +639,12 @@ class GroupIcons:
                 },
             }
 
+    @property
     def groups(self):
         '''
         return all the group info
         '''
-        return self.group
+        return self._group_info
     
     def _group(self, k, group_dic) :
         if k in group_dic:
@@ -659,7 +660,7 @@ class GroupIcons:
        
         groups = group.split(separator)
         icon_path =  self.mini_icon_path if len(groups) > 1 else self.icon_path
-        g = self.group
+        g = self._group_info
         for k in groups:
             if k in g:
                 g = g[k]

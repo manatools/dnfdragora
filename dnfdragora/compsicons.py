@@ -35,6 +35,9 @@ class CompsIcons:
 
     @property
     def groups(self):
+        '''
+        return all the group info
+        '''
         return self._group_info
 
     def icon(self, group_path):

@@ -145,13 +145,16 @@ class DnfPackage(dnfdragora.backend.Package):
 class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
     """Backend to do all the dnf related actions """
 
-    def __init__(self, frontend):
+    def __init__(self, frontend, use_comps=False):
         dnfdragora.backend.Backend.__init__(self, frontend, filters=True)
         dnfdaemon.client.Client.__init__(self)
         self._gpg_confirm = None
         self.dnl_progress = None
         self._files_to_download = 0
         self._files_downloaded = 0
+        self._use_comps = use_comps
+        self._group_cache = None
+
         if self.running_api_version == const.NEEDED_DAEMON_API:
             logger.debug('dnfdaemon api version (%d)',
                          self.running_api_version)
@@ -294,6 +297,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         self.SetWatchdogState(False)
         #self._update_config_options()
         self.cache.reset()  # Reset the cache
+        self._group_cache = None
 
     def _update_config_options(self):
         pass
@@ -386,14 +390,15 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
 
     @ExceptionHandler
     @TimeFunction
-    def get_groups_from_packages(self):
+    def _get_groups_from_packages(self):
         """Get groups by looking for all packages group property."""
-        logger.debug('get-groups-from-packages')
+        logger.debug('_get-groups-from-packages')
         packages = self.get_packages('all')
         result = []
         append = result.append
         for pkg in packages:
-            append(pkg.group)
+            if pkg.group not in result :
+                append(pkg.group)
 
         return result
 
@@ -446,11 +451,32 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
                            newest_only, tags)
         return self._make_pkg_object_with_attr(pkgs)
 
+    def _getAllGroupIDList(self, groups, new_groups, g_id=None) :
+        '''
+        return a list of group ID as pathnames from comps
+        '''
+        gid = g_id
+        for gl in groups:
+            if (isinstance(gl, list)):
+                if (type(gl[0]) is str) :
+                    new_groups.append(gid + "/" + gl[0] if (gid) else gl[0])
+                    if not gid :
+                        gid = gl[0]
+                else :
+                    self._getAllGroupIDList(gl, new_groups, gid)
+
     @ExceptionHandler
     def get_groups(self):
-        """Get groups/categories from dnf daemon backend"""
-        result = self.GetGroups()
-        return result
+        """Get groups/categories from dnf daemon backend if use comps or evaluated from packages otherwise"""
+        if not self._group_cache :
+            if self._use_comps:
+                self._group_cache = []
+                rpm_groups = self.GetGroups()
+                self._getAllGroupIDList(rpm_groups, self._group_cache)
+            else :
+                self._group_cache = self._get_groups_from_packages()
+
+        return self._group_cache
 
     @TimeFunction
     def get_group_packages(self, grp_id, grp_flt):
