@@ -18,7 +18,7 @@ import os
 class AppConfig() :
     ''' AppConfig is an application configuration file management
     appName ia the application name
-    configuration file name is appName + ".conf"
+    configuration file name is appName + ".yaml"
     which is searched in these places and order:
     1. from environment variable $'AppNme'
     2. ~/
@@ -29,7 +29,7 @@ class AppConfig() :
         self.content    = None
         self.project   = appName
         self.variable  = appName.upper() + "_CONF"
-        self.fileName  = appName + ".conf"
+        self.fileName  = appName + ".yaml"
         self.systemDir = "/etc/" + appName
 
     def load(self) :
