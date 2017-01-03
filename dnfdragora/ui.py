@@ -417,7 +417,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         and checks installed packages.
         Special value for groupName 'All' means all packages
         Available filters are:
-        all, installed, not_installed and skip_other
+        all, installed, not_installed, to_update and skip_other
         '''
 
         yui.YUI.app().busyCursor()
@@ -426,45 +426,50 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
-        v = []
-        updates = self.backend.get_packages('updates')
-        for pkg in updates:
-            groups_pkg = self.backend.get_groups_from_package(pkg)
-            if groupName and (groupName in groups_pkg or groupName == 'All') :
-                if filter == 'all' or filter == 'to_update' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    item.check(self.packageQueue.checked(pkg))
-                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                        'pkg' : pkg, 'item' : item
-                        }
-                    item.this.own(False)
+        if filter == 'all' or filter == 'to_update' or filter == 'skip_other':
+            updates = self.backend.get_packages('updates')
+            for pkg in updates:
+                groups_pkg = self.backend.get_groups_from_package(pkg)
+                if groupName and (groupName in groups_pkg or groupName == 'All') :
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    if not skip_insert :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(self.packageQueue.checked(pkg))
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
 
-        installed = self.backend.get_packages('installed')
-        for pkg in installed :
-            groups_pkg = self.backend.get_groups_from_package(pkg)
-            if groupName and (groupName in groups_pkg or groupName == 'All') :
-                if filter == 'all' or filter == 'installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    item.check(self.packageQueue.checked(pkg))
-                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                        'pkg' : pkg, 'item' : item
-                        }
-                    item.this.own(False)
+        if filter == 'all' or filter == 'installed' or filter == 'skip_other':
+            installed = self.backend.get_packages('installed')
+            for pkg in installed :
+                groups_pkg = self.backend.get_groups_from_package(pkg)
+                if groupName and (groupName in groups_pkg or groupName == 'All') :
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    if not skip_insert :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(self.packageQueue.checked(pkg))
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
 
-        available = self.backend.get_packages('available')
-        for pkg in available:
-            groups_pkg = self.backend.get_groups_from_package(pkg)
-            if groupName and (groupName in groups_pkg or groupName == 'All') :
-                if filter == 'all' or filter == 'not_installed' or (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine())) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    item.check(self.packageQueue.checked(pkg))
-                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
-                        'pkg' : pkg, 'item' : item
-                        }
-                    item.this.own(False)
+        if filter == 'all' or filter == 'not_installed' or filter == 'skip_other':
+            available = self.backend.get_packages('available')
+            for pkg in available:
+                groups_pkg = self.backend.get_groups_from_package(pkg)
+                if groupName and (groupName in groups_pkg or groupName == 'All') :
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    if not skip_insert :
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item.check(self.packageQueue.checked(pkg))
+                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                            'pkg' : pkg, 'item' : item
+                            }
+                        item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
-
+        v = []
         for key in keylist :
             item = self.itemList[key]['item']
             v.append(item)
