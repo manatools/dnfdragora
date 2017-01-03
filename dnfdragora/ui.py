@@ -6,7 +6,7 @@ is able to comfortably behave like a native gtk or qt5 or ncurses application
 
 License: GPLv3
 
-Author:  Andelo Naselli <anaselli@linux.it>
+Author:  Angelo Naselli <anaselli@linux.it>
 
 @package dnfdragora
 '''
@@ -356,7 +356,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar = progress_ui.ProgressBar(self.dialog, pbar_layout)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
-        self.applyButton.setWeight(0,6)
+        self.applyButton.setWeight(0,3)
+
+        self.updateAllButton = self.factory.createIconButton(hbox_footbar,"",_("&Update all"))
+        self.updateAllButton.setWeight(0,3)
+        self.updateAllButton.setEnabled(False)
 
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,6)
@@ -481,6 +485,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         yui.YUI.app().normalCursor()
 
+    def _viewNameSelectet(self):
+        '''
+        return the view_box name index from the selected view
+        '''
+        sel = self.view_box.selectedItem()
+        view = 'groups'
+        ordered_views = [ 'groups', 'all' ]
+        for v in ordered_views:
+            if self.views[v]['item'] == sel :
+                return v
+
+        return view
+
     def _filterNameSelected(self) :
         '''
         return the filter name index from the selected filter
@@ -522,13 +539,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         rpm_groups = []
         yui.YUI.app().busyCursor()
 
-        sel = self.view_box.selectedItem()
-        view = 'groups'
-        ordered_views = [ 'groups', 'all' ]
-        for v in ordered_views:
-            if self.views[v]['item'] == sel :
-                view = v
-                break
+        view = self._viewNameSelectet()
+
         if view != 'all' :
             print ("Start looking for groups")
 
@@ -761,6 +773,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if not self._searchPackages(filter, True) :
                         rebuild_package_list = True
 
+                elif (widget == self.updateAllButton) :
+                    dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+
                 elif (widget == self.applyButton) :
                     #### APPLY
                     self.backend.ClearTransaction()
@@ -802,11 +817,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         else:
                             rebuild_package_list = True
                 elif (widget == self.view_box) :
+                    view = self._viewNameSelectet()
+                    filter = self._filterNameSelected()
+                    self.updateAllButton.setEnabled(view == 'all' and filter == 'to_update')
                     rebuild_package_list = True
                     #reset find entry, it does not make sense here
                     self.find_entry.setValue("")
                     self._fillGroupTree()
                 elif (widget == self.tree) or (widget == self.filter_box) :
+                    if (widget == self.filter_box) :
+                        view = self._viewNameSelectet()
+                        filter = self._filterNameSelected()
+                        self.updateAllButton.setEnabled(view == 'all' and filter == 'to_update')
                     sel = self.tree.selectedItem()
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
