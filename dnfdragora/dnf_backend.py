@@ -154,6 +154,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         self._files_downloaded = 0
         self._use_comps = use_comps
         self._group_cache = None
+        self._pkg_id_to_groups_cache = None
 
         if self.running_api_version == const.NEEDED_DAEMON_API:
             logger.debug('dnfdaemon api version (%d)',
@@ -298,6 +299,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         #self._update_config_options()
         self.cache.reset()  # Reset the cache
         self._group_cache = None
+        #NOTE caching groups is slow let's do only once by now
+        #self._pkg_id_to_groups_cache = None
 
     def _update_config_options(self):
         pass
@@ -477,6 +480,44 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
                 self._group_cache = self._get_groups_from_packages()
 
         return self._group_cache
+
+    @ExceptionHandler
+    def get_groups_from_package(self, pkg):
+        '''
+        returns a list containing comps which the package belongs to if use comps, 
+        or the package group otherwise
+        @param pkg: given package
+        '''
+        groups = []
+        if self._use_comps:
+            if not self._pkg_id_to_groups_cache:
+                # fill the cache
+                self._pkg_id_to_groups_cache = {}
+                rpm_groups = self.get_groups()
+                tot = len(rpm_groups)
+                self.frontend.infobar.set_progress(0.0)
+                self.frontend.infobar.info(_('Caching groups from package... '))
+                g = 0
+                for groupName in rpm_groups:
+                    perc = float(float(g*1.0)/139)
+                    self.frontend.infobar.set_progress(perc)
+                    g+=1
+                    #NOTE fedora gets packages using the leaf and not a group called X/Y/Z
+                    grp = groupName.split("/")
+                    #pkgs = self.get_group_packages(grp[-1], 'all')
+                    pkgs = self.GetGroupPackages(grp[-1], 'all', [])
+                    for pkg_id in pkgs :
+                        if pkg_id not in self._pkg_id_to_groups_cache.keys():
+                            self._pkg_id_to_groups_cache[pkg_id] = []
+                        self._pkg_id_to_groups_cache[pkg_id].append(groupName) 
+                self.frontend.infobar.set_progress(0.0)
+                self.frontend.infobar.info("")
+            if pkg.pkg_id in self._pkg_id_to_groups_cache.keys():
+                groups = self._pkg_id_to_groups_cache[pkg.pkg_id]
+        else :
+            groups.append(pkg.group)
+
+        return groups
 
     @TimeFunction
     def get_group_packages(self, grp_id, grp_flt):
