@@ -256,7 +256,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree.setNotify(True)
 
         packageList_header = yui.YTableHeader()
-        columns = [ 'Name', 'Summary', 'Version', 'Release', 'Arch']
+        columns = [ _('Name'), _('Summary'), _('Version'), _('Release'), _('Arch')]
 
         packageList_header.addColumn("")
         for col in (columns):
@@ -284,14 +284,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # TODO add backports
         self.views = {
             'all' : {'title' : _("All")},
-            'meta_pkgs' : {'title' : _("Meta packages")},
-            'gui_pkgs' : {'title' : _("Packages with GUI")},
-            'all_updates' : {'title' : _("All updates")},
-            'security' : {'title' : _("Security updates")},
-            'bugfix' : {'title' : _("Bugfixes updates")},
-            'normal' : {'title' : _("General updates")}
+            'groups' : {'title' : _("Groups")},
         }
-        ordered_views = [ 'all', 'meta_pkgs', 'gui_pkgs', 'all_updates', 'security', 'bugfix', 'normal']
+        ordered_views = [ 'groups', 'all' ]
 
         self.view_box = self.factory.createComboBox(hbox_top,"")
         itemColl = yui.YItemCollection()
@@ -368,7 +363,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # build File menu
         self.fileMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("File")),
+            'widget'    : self.factory.createMenuButton(headbar, _("&File")),
             'reset_sel' : yui.YMenuItem(_("Reset the selection")),
             'reload'    : yui.YMenuItem(_("Reload the packages list")),
             'quit'      : yui.YMenuItem(_("&Quit")),
@@ -527,10 +522,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         rpm_groups = []
         yui.YUI.app().busyCursor()
 
-        print ("Start looking for groups")
+        sel = self.view_box.selectedItem()
+        view = 'groups'
+        ordered_views = [ 'groups', 'all' ]
+        for v in ordered_views:
+            if self.views[v]['item'] == sel :
+                view = v
+                break
+        if view != 'all' :
+            print ("Start looking for groups")
 
-        rpm_groups = self.backend.get_groups()
-        rpm_groups = sorted(rpm_groups)
+            rpm_groups = self.backend.get_groups()
+            rpm_groups = sorted(rpm_groups)
+        else:
+            rpm_groups = ['All']
 
         groups = self.gIcons.groups
 
@@ -796,7 +801,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                 rebuild_package_list = True
                         else:
                             rebuild_package_list = True
-
+                elif (widget == self.view_box) :
+                    rebuild_package_list = True
+                    #reset find entry, it does not make sense here
+                    self.find_entry.setValue("")
+                    self._fillGroupTree()
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     sel = self.tree.selectedItem()
                     if sel :
