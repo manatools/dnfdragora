@@ -5,7 +5,7 @@ class CompsIcons:
     '''
     This class manages the access to group name and icons
     '''
-    def __init__(self, icon_path=None):
+    def __init__(self, rpm_groups, icon_path=None):
 
         if icon_path:
             self.icon_path = icon_path if icon_path.endswith("/") else icon_path + "/"
@@ -33,8 +33,29 @@ class CompsIcons:
             "Content": {"title": _("Content"), "icon" :"content.png"},
             }
 
+        self._getID_to_map(rpm_groups, self._group_info)
+
         # adding group to use it in a search
-        self._group_info['Search'] = {"title" : _("Search result")}
+        if not 'Search' in self._group_info.keys():
+            self._group_info['Search'] = {"title" : _("Search result")}
+
+    def _getID_to_map(self, groups, group_info, g_id=None) :
+        '''
+        return id_to_name_map at run time
+        '''
+        gid = g_id
+        for gl in groups:
+            if (isinstance(gl, list)):
+                if (type(gl[0]) is str) :
+                    if not gid:
+                        if not gl[0] in group_info.keys():
+                            group_info[gl[0]] = { "title": gl[1], 'icon': gl[0] + ".png"}
+                        gid = gl[0]
+                    else:
+                        if not gl[0] in group_info[gid].keys():
+                            group_info[gid][gl[0]] = { "title": gl[1], 'icon': gl[0] + ".png"}
+                else :
+                    self._getID_to_map(gl, group_info, gid)
 
     @property
     def groups(self):

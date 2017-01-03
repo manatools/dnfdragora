@@ -162,9 +162,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
-        self.gIcons = compsicons.CompsIcons(self.group_icon_path) if self.use_comps else groupicons.GroupIcons(self.group_icon_path)
-
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
+        rpm_groups = self.backend.GetGroups() if self.use_comps else None
+        self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
+
         # setup UI
         self._setupUI()
 
