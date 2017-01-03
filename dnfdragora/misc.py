@@ -3,7 +3,7 @@ dnfdragora is a graphical package management tool based on libyui python binding
 
 License: GPLv3
 
-Author:  Andelo Naselli <anaselli@linux.it>
+Author:  Angelo Naselli <anaselli@linux.it>
 
 @package dnfdragora
 '''
