@@ -69,7 +69,7 @@ class TransactionResult:
                            'update-deps', 'obsoletes']:
                     total_size += size
                 for r in replaces:
-                    label = misc.pkg_id_to_full_name(r) + " (" +  misc.format_number(size) + ")"
+                    label =  _("replacing ") + misc.pkg_id_to_full_name(r) + " (" +  misc.format_number(size) + ")"
                     item = yui.YTreeItem(level2Item, label, False)
                     item.this.own(False)
 
