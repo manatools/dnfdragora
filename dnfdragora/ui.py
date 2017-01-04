@@ -358,9 +358,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
 
-        self.updateAllButton = self.factory.createIconButton(hbox_footbar,"",_("&Update all"))
-        self.updateAllButton.setWeight(0,3)
-        self.updateAllButton.setEnabled(False)
+        self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Ch&eck all"))
+        self.checkAllButton.setWeight(0,3)
+        self.checkAllButton.setEnabled(False)
 
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,6)
@@ -773,8 +773,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if not self._searchPackages(filter, True) :
                         rebuild_package_list = True
 
-                elif (widget == self.updateAllButton) :
-                    dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+                elif (widget == self.checkAllButton) :
+                    for it in self.itemList:
+                        pkg = self.itemList[it]['pkg']
+                        self.packageQueue.add(pkg, 'i')
+                        rebuild_package_list = True
 
                 elif (widget == self.applyButton) :
                     #### APPLY
@@ -819,7 +822,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.view_box) :
                     view = self._viewNameSelectet()
                     filter = self._filterNameSelected()
-                    self.updateAllButton.setEnabled(view == 'all' and filter == 'to_update')
+                    self.checkAllButton.setEnabled(view == 'all' and filter == 'to_update')
                     rebuild_package_list = True
                     #reset find entry, it does not make sense here
                     self.find_entry.setValue("")
@@ -828,7 +831,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if (widget == self.filter_box) :
                         view = self._viewNameSelectet()
                         filter = self._filterNameSelected()
-                        self.updateAllButton.setEnabled(view == 'all' and filter == 'to_update')
+                        self.checkAllButton.setEnabled(view == 'all' and filter == 'to_update')
                     sel = self.tree.selectedItem()
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)

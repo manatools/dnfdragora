@@ -496,7 +496,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
                 rpm_groups = self.get_groups()
                 tot = len(rpm_groups)
                 self.frontend.infobar.set_progress(0.0)
-                self.frontend.infobar.info(_('Caching groups from package... '))
+                self.frontend.infobar.info(_('Caching groups from packages... '))
                 g = 0
                 for groupName in rpm_groups:
                     perc = float(float(g*1.0)/139)

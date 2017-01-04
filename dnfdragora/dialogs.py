@@ -60,7 +60,6 @@ class TransactionResult:
             level1Item.this.own(False)
 
             for pkgid, size, replaces in lvl1:
-
                 label = misc.pkg_id_to_full_name(pkgid) + " (" +  misc.format_number(size) + ")"
                 level2Item = yui.YTreeItem(level1Item, label, True)
                 level2Item.this.own(False)
@@ -70,9 +69,8 @@ class TransactionResult:
                            'update-deps', 'obsoletes']:
                     total_size += size
                 for r in replaces:
-                    (n, e, v, r, a, repo_id) = misc.to_pkg_tuple(r)
-                    label = _("replacing {}").format(n), a, "%s.%s" % (v, r), repo_id, misc.format_number(size)
-                    item = yui.YTreeItem(level2Item, label, True)
+                    label = misc.pkg_id_to_full_name(r) + " (" +  misc.format_number(size) + ")"
+                    item = yui.YTreeItem(level2Item, label, False)
                     item.this.own(False)
 
             itemVect.append(level1Item)
