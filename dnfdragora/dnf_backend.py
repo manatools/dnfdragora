@@ -254,8 +254,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
             logger.debug('Downloaded : %s', name)
             self._files_downloaded += 1
         else:
-            logger.debug('Download Error : %s - %s', name, msg)
-        self.frontend.infobar.set_progress(1.0)
+            logger.error('Download Error : %s - %s', name, msg)
+        #self.frontend.infobar.set_progress(1.0)
         #self.frontend.infobar.reset_all()
 
     def on_RepoMetaDataProgress(self, name, frac):

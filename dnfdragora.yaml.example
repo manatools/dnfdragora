@@ -1,6 +1,8 @@
 settings:
     use_comps: False
     always_yes: False
+#    log_filename: PATH/TO/dnfdragora.log
+#    log_level_debug: True
 
 #    path:
 #        group_icons: /usr/share/icons

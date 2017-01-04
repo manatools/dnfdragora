@@ -21,6 +21,7 @@ import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
 import dnfdragora.dialogs as dialogs
+import dnfdragora.misc as misc
 
 import dnfdragora.config
 from dnfdragora import const
@@ -142,10 +143,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
+        self.log_filename = None
+        self.level_debug = False
         self.config = dnfdragora.config.AppConfig(self.appname)
 
         # settings from configuration file first
         self._configFileRead()
+
+        if self.log_filename:
+            if self.level_debug:
+                misc.logger_setup(self.log_filename, loglvl=logging.DEBUG)
+            else:
+                misc.logger_setup(self.log_filename)
+            logger.info("dnfdragora started")
 
         # overload settings from comand line
         if 'group_icons_path' in self.options.keys() :
@@ -190,6 +200,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             if 'always_yes' in settings.keys() :
                 self.always_yes = settings['always_yes']
+
+            if 'log_filename' in settings.keys() :
+                self.log_filename = settings['log_filename']
+
+            if 'log_level_debug' in settings.keys() :
+                self.level_debug = settings['log_level_debug']
 
             # config['settings']['path']
             path_settings = {}
@@ -802,11 +818,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         if ok:  # Ok pressed
                             self.infobar.info(_('Applying changes to the system'))
                             rc, result = self.backend.RunTransaction()
+                            # TODO investigate why is always False
+                            #if not rc :
+                                #logger.error('RunTransaction failure')
+                                #logger.error(result)
                             self.release_root_backend()
                             self.packageQueue.clear()
                             self.backend.reload()
                     else:
                         # TODO manage errors
+                        logger.error('BuildTransaction failure')
+                        logger.error(result)
                         pass
 
                     sel = self.tree.selectedItem()

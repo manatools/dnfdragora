@@ -194,15 +194,17 @@ def format_number(number, SI=0, space=' '):
 
 
 
-def logger_setup(logroot='dnfdragora',
+def logger_setup(file_name,
+                 logroot='dnfdragora',
                  logfmt='%(asctime)s: %(message)s',
                  loglvl=logging.INFO):
     """Setup Python logging."""
-    logger = logging.getLogger(logroot)
-    logger.setLevel(loglvl)
-    formatter = logging.Formatter(logfmt, '%H:%M:%S')
-    handler = logging.StreamHandler()
-    handler.setFormatter(formatter)
-    handler.propagate = False
-    logger.addHandler(handler)
+    logging.basicConfig(filename='dnfdragora.log', format='%(asctime)s [%(name)s](%(levelname)s) %(message)s', level=loglvl)
+    #logger = logging.getLogger(logroot)
+    #logger.setLevel(loglvl)
+    #formatter = logging.Formatter(logfmt, '%H:%M:%S')
+    #handler = logging.FileHandler(filename)
+    #handler.setFormatter(formatter)
+    #handler.propagate = False
+    #logger.addHandler(handler)
 
