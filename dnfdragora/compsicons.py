@@ -35,7 +35,11 @@ class CompsIcons:
 
         self._getID_to_map(rpm_groups, self._group_info)
 
-        # adding group to use it in a search
+        # adding special groups
+        if not 'All' in self._group_info.keys():
+            self._group_info['All'] = {"title" : _("All")}
+        if not 'Empty' in self._group_info.keys():
+            self._group_info['Empty'] = {"title" : _("Empty")}
         if not 'Search' in self._group_info.keys():
             self._group_info['Search'] = {"title" : _("Search result")}
 

@@ -588,6 +588,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
             rpm_groups = ['All']
 
+        if not rpm_groups:
+            rpm_groups = ['Empty']
+
         groups = self.gIcons.groups
 
         for g in rpm_groups:

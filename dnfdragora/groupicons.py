@@ -164,6 +164,10 @@ class GroupIcons:
                     'title' : _("Education"),
                     'icon' : 'education_section.png'
                 },
+                'Empty' : {
+                    'title' : _("Empty"),
+                    #'icon' : TODO
+                },
                 'Emulators' : {
                     'title' : _("Emulators"),
                     'icon' : 'emulators_section.png'
@@ -638,6 +642,7 @@ class GroupIcons:
                     },
                 },
             }
+
 
     @property
     def groups(self):
