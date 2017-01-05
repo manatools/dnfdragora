@@ -867,7 +867,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.view_box) :
                     view = self._viewNameSelectet()
                     filter = self._filterNameSelected()
-                    self.checkAllButton.setEnabled(view == 'all' and filter == 'to_update')
+                    self.checkAllButton.setEnabled(filter == 'to_update')
                     rebuild_package_list = True
                     #reset find entry, it does not make sense here
                     self.find_entry.setValue("")
@@ -877,7 +877,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         view = self._viewNameSelectet()
                         filter = self._filterNameSelected()
                         self._fillGroupTree()
-                        self.checkAllButton.setEnabled(view == 'all' and filter == 'to_update')
+                        self.checkAllButton.setEnabled(filter == 'to_update')
                     sel = self.tree.selectedItem()
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
