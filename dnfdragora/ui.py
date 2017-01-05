@@ -516,7 +516,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _filterNameSelected(self) :
         '''
-        return the filter name index from the selected filter
+        return the filter name index from the selected filter e.g.
+        'all', 'installed', 'to_update', 'not_installed' or 'skip other'
         '''
         filter = 'all'
         sel = self.filter_box.selectedItem()
@@ -860,12 +861,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     sel = self.tree.selectedItem()
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
+                        filter = self._filterNameSelected()
                         if (group == "Search"):
-                            filter = self._filterNameSelected()
                             # force tree rebuilding to show new pacakge status
                             if not self._searchPackages(filter, True) :
                                 rebuild_package_list = True
                         else:
+                            if filter == "to_update":
+                                self._fillGroupTree()
                             rebuild_package_list = True
                 elif (widget == self.view_box) :
                     view = self._viewNameSelectet()
