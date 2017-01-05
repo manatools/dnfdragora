@@ -65,11 +65,11 @@ class ProgressBar:
 
     def info(self, text) :
         self.info_widget.setValue(text)
-        self.__flush()
+        #self.__flush()
 
     def info_sub(self, text) :
         self.info_sub_widget.setValue(text)
-        self.__flush()
+        #self.__flush()
 
     def set_progress(self, frac, label=None) :
         if label is not None:
