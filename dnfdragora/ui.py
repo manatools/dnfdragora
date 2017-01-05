@@ -556,11 +556,34 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         yui.YUI.app().busyCursor()
 
         view = self._viewNameSelectet()
+        filter = self._filterNameSelected()
 
         if view != 'all' :
             print ("Start looking for groups")
 
-            rpm_groups = self.backend.get_groups()
+            #filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
+            if (filter == 'to_update'):
+                logger.debug("get groups for update packages only")
+                pkgs = self.backend.get_packages('updates')
+                for pkg in pkgs:
+                    groups = self.backend.get_groups_from_package(pkg)
+                    rpm_groups = list(set().union(rpm_groups, groups))
+            elif (filter == 'installed'):
+                logger.debug("get groups for installed packages only")
+                pkgs = self.backend.get_packages('installed')
+                for pkg in pkgs:
+                    groups = self.backend.get_groups_from_package(pkg)
+                    rpm_groups = list(set().union(rpm_groups, groups))
+            elif (filter == 'not_installed'):
+                logger.debug("get groups for available packages only")
+                pkgs = self.backend.get_packages('available')
+                for pkg in pkgs:
+                    groups = self.backend.get_groups_from_package(pkg)
+                    rpm_groups = list(set().union(rpm_groups, groups))
+            else:
+                # all pr arch
+                logger.debug("get all groups")
+                rpm_groups = self.backend.get_groups()
             rpm_groups = sorted(rpm_groups)
         else:
             rpm_groups = ['All']
@@ -853,6 +876,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if (widget == self.filter_box) :
                         view = self._viewNameSelectet()
                         filter = self._filterNameSelected()
+                        self._fillGroupTree()
                         self.checkAllButton.setEnabled(view == 'all' and filter == 'to_update')
                     sel = self.tree.selectedItem()
                     if sel :
