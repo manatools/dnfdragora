@@ -773,7 +773,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 item = event.item()
                 if (item) :
                     if  item == self.fileMenu['reset_sel'] :
-                        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+                        self.packageQueue.clear()
+                        sel = self.tree.selectedItem()
+                        if sel :
+                            group = self._groupNameFromItem(self.groupList, sel)
+                            if (group == "Search"):
+                                filter = self._filterNameSelected()
+                                if not self._searchPackages(filter) :
+                                    rebuild_package_list = True
+                            else:
+                                rebuild_package_list = True
                     elif item == self.fileMenu['reload']  :
                         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.fileMenu['quit']    :
