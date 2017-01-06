@@ -45,6 +45,8 @@ if __name__ == "__main__":
         logger.error("dnfdaemon client error: %s ", e)
     except NameError as e:
         logger.error("dnfdaemon NameError: %s ", e)
+    except AttributeError as e:
+        logger.error("dnfdaemon AttributeError: %s ", e)
     except:
         logger.error("Unexpected error: %s ", sys.exc_info()[0])
     finally:
