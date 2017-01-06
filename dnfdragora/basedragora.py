@@ -20,7 +20,9 @@ import subprocess
 import sys
 
 import dnfdragora.const as const
+import dnfdragora.dialogs as dialogs
 import dnfdragora.dnf_backend
+import yui
 
 
 logger = logging.getLogger('dnfdragora.base')
@@ -79,7 +81,7 @@ class BaseDragora:
                 #if self._check_cache_expired('system'):
                 #    self.reset_cache()
                 self.backend.ExpireCache()
-                print("Locked")
+                logger.info("Locked the DNF root daemon")
             else:
                 logger.critical("can't get root backend lock")
                 if msg == 'not-authorized':  # user canceled the polkit dialog
@@ -91,10 +93,12 @@ class BaseDragora:
                     errmsg = _(
                         'DNF is locked by another process.\n\n'
                         'dnfdragora will exit')
-                print(errmsg)
-                # close down and exit yum extender
-                #self.status.SetWorking(False)  # reset working state
-                #self.status.SetYumexIsRunning(self.pid, False)
+                logger.critical(errmsg)
+                dialogs.warningMsgBox(errmsg)
+                yui.YDialog.deleteTopmostDialog()
+                # next line seems to be a workaround to prevent the qt-app from crashing
+                # see https://github.com/libyui/libyui-qt/issues/41
+                yui.YUILoader.deleteUI()
                 sys.exit(1)
         return self._root_backend
 
@@ -106,7 +110,7 @@ class BaseDragora:
             logger.debug('Unlock the DNF root daemon')
             self._root_backend.Unlock()
             self._root_locked = False
-            print("Unlocked")
+            logger.info("Unlocked the DNF root daemon")
         if quit_dnfdaemon:
             logger.debug('Exit the DNF root daemon')
             self._root_backend.Exit()
@@ -130,7 +134,7 @@ class BaseDragora:
             close = False
         if errmsg == '':
             errmsg = msg
-        print(errmsg)
+        logger.critical(errmsg)
 
         # try to exit the backends, ignore errors
         if close:
@@ -138,8 +142,11 @@ class BaseDragora:
                 self.release_root_backend(quit_dnfdaemon=True)
             except:
                 pass
-        #self.status.SetWorking(False)  # reset working state
-        #self.status.SetYumexIsRunning(self.pid, False)
+
+        yui.YDialog.deleteTopmostDialog()
+        # next line seems to be a workaround to prevent the qt-app from crashing
+        # see https://github.com/libyui/libyui-qt/issues/41
+        yui.YUILoader.deleteUI()
         sys.exit(1)
 
     def _parse_error(self, value):

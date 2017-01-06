@@ -12,8 +12,11 @@ if sys.path[0] is not '/usr/bin':
 
 if __name__ == "__main__":
 
+    import dnfdaemon.client
     import dnfdragora.ui
     import argparse
+    import logging
+    logger = logging.getLogger('dnfdragora')
 
     parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
     ui_select_parser = parser.add_mutually_exclusive_group()
@@ -35,12 +38,30 @@ if __name__ == "__main__":
     main_gui = None
     try:
         main_gui = dnfdragora.ui.mainGui(options)
+
         main_gui.handleevent()
-    except:
-        print ("Unexpected error:", sys.exc_info()[0])
+
         if (main_gui is not None) :
             main_gui.backend.quit()
-            main_gui.dialog.destroy()
-        raise
-    if (main_gui is not None) :
-        main_gui.backend.quit()
+
+    except dnfdaemon.client.DaemonError as e:
+        logger.error("dnfdaemon client error: %s ", e)
+        if (main_gui is not None) :
+            main_gui.backend.quit()
+
+        import yui
+        yui.YDialog.deleteTopmostDialog()
+        # next line seems to be a workaround to prevent the qt-app from crashing
+        # see https://github.com/libyui/libyui-qt/issues/41
+        yui.YUILoader.deleteUI()
+        logger.critical("Closing dnfdragora")
+    except:
+        logger.error("Unexpected error: %s ", sys.exc_info()[0])
+        if (main_gui is not None) :
+            main_gui.backend.quit()
+        import yui
+        yui.YDialog.deleteTopmostDialog()
+        # next line seems to be a workaround to prevent the qt-app from crashing
+        # see https://github.com/libyui/libyui-qt/issues/41
+        yui.YUILoader.deleteUI()
+        logger.critical("Closing dnfdragora")
