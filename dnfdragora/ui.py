@@ -373,6 +373,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
+        self.applyButton.setEnabled(False)
 
         self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Ch&eck all"))
         self.checkAllButton.setWeight(0,3)
@@ -919,6 +920,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 pkg_name = sel.cell(0).label()
                 self.setInfoOnWidget(pkg_name)
 
+            if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
+                self.applyButton.setEnabled()
+            elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
+                self.applyButton.setEnabled(False)
 
 
         self.dialog.destroy()
