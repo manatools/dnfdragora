@@ -385,7 +385,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.fileMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&File")),
             'reset_sel' : yui.YMenuItem(_("Reset the selection")),
-            'reload'    : yui.YMenuItem(_("Reload the packages list")),
+            'reload'    : yui.YMenuItem(_("Refresh Metadata")),
             'quit'      : yui.YMenuItem(_("&Quit")),
         }
 
@@ -784,7 +784,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             else:
                                 rebuild_package_list = True
                     elif item == self.fileMenu['reload']  :
-                        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+                        self.reset_cache()
                     elif item == self.fileMenu['quit']    :
                         #### QUIT
                         break

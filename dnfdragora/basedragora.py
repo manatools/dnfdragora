@@ -23,6 +23,7 @@ import dnfdragora.const as const
 import dnfdragora.dialogs as dialogs
 import dnfdragora.dnf_backend
 import yui
+from gettext import gettext as _
 
 
 logger = logging.getLogger('dnfdragora.base')
@@ -39,14 +40,6 @@ class BaseDragora:
     def set_working(self, state, insensitive=False):
         """Set the working state."""
         self.is_working = state
-
-    #@property
-    #def infobar(self):
-        #return self.get_infobar()
-    
-    #def get_infobar(self) :
-        #print ("get_infobar not implemented")
-        #pass
     
     def release_infobar(self):
         print ("release_infobar not implemented")
@@ -59,11 +52,12 @@ class BaseDragora:
     def reset_cache(self):
         logger.debug('Refresh system cache')
         self.set_working(True, True)
-        print(_('Refreshing Repository Metadata'))
+        self.infobar.info(_('Refreshing Repository Metadata'))
         rc = self._root_backend.ExpireCache()
         self.set_working(False)
+        self.infobar.info("")
         if not rc:
-            print(_('Could not refresh the DNF cache (root)'))
+            dialogs.warningMsgBox(_('Could not refresh the DNF cache (root)'))
 
     def get_root_backend(self):
         """Get the current root backend.
