@@ -863,10 +863,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             self.packageQueue.clear()
                             self.backend.reload()
                     else:
-                        # TODO manage errors
                         logger.error('BuildTransaction failure')
                         logger.error(result)
-                        pass
+                        s = "%s"%result
+                        dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
 
                     sel = self.tree.selectedItem()
                     if sel :
