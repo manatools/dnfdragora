@@ -428,6 +428,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             group = self._groupNameFromItem(self.groupList, sel)
 
         filter = self._filterNameSelected()
+        self.checkAllButton.setEnabled(filter == 'to_update')
         self._fillPackageList(group, filter)
         sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
         if sel :
