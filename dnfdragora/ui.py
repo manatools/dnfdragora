@@ -157,11 +157,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 misc.logger_setup(self.log_filename)
             logger.info("dnfdragora started")
 
-        # overload settings from comand line
+        # overrides settings from comand line
         if 'group_icons_path' in self.options.keys() :
             self.group_icon_path = self.options['group_icons_path']
         if 'images_path' in self.options.keys() :
             self.images_path = self.options['images_path']
+        self.update_only = 'update_only' in self.options.keys()
+        
 
         if self.use_comps and not self.group_icon_path:
             self.group_icon_path = '/usr/share/pixmaps/comps/'
@@ -278,7 +280,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for col in (columns):
             packageList_header.addColumn(col)
 
-        packageList_header.addColumn(_("Status"))
+        if not self.update_only :
+            packageList_header.addColumn(_("Status"))
 
         self.packageList = self.mgaFactory.createCBTable(hbox_middle,packageList_header,yui.YCBTableCheckBoxOnFirstColumn)
         self.packageList.setWeight(0,50)
@@ -309,6 +312,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
+            #TODO restore saved settings selection
+            if self.update_only and v == "all":
+                item.setSelected(True)
+                
             # adding item to views to find the item selected
             self.views[v]['item'] = item
             itemColl.push_back(item)
@@ -316,12 +323,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.view_box.addItems(itemColl)
         self.view_box.setNotify(True)
+        self.view_box.setEnabled(not self.update_only)
 
         self.filter_box = self.factory.createComboBox(hbox_top,"")
         itemColl.clear()
 
         for f in ordered_filters:
             item = yui.YItem(self.filters[f]['title'], False)
+            #TODO restore saved settings selection
+            if self.update_only and f == "to_update":
+                item.setSelected(True)
+
             # adding item to filters to find the item selected
             self.filters[f]['item'] = item
             itemColl.push_back(item)
@@ -329,6 +341,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.filter_box.addItems(itemColl)
         self.filter_box.setNotify(True)
+        self.filter_box.setEnabled(not self.update_only)
 
         self.local_search_types = {
             'name'       : {'title' : _("in names")       },
