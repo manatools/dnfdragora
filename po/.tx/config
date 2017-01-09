@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[mageia.dnfdragora]
+file_filter = <lang>.po
+source_file = dnfdragora.pot
+source_lang = en
+type = PO
