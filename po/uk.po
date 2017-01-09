@@ -1,0 +1,688 @@
+# Ukrainian translation of dnfdragora.pot
+# Copyright (C) 2017, Dnfdragora developers
+# This file is distributed under the same license as the dnfdragora package.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: dnfdragora 0.xx\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-30 21:29+0200\n"
+"PO-Revision-Date: 2017-01-09 13:40+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:113 dnfdragora/ui.py:126
+msgid "All"
+msgstr "Усі"
+
+#: dnfdragora/groupicons.py:23
+msgid "Accessibility"
+msgstr "Доступність"
+
+#: dnfdragora/groupicons.py:27
+msgid "Archiving"
+msgstr "Архівування"
+
+#: dnfdragora/groupicons.py:30
+msgid "Backup"
+msgstr "Резервне копіювання"
+
+#: dnfdragora/groupicons.py:34
+msgid "Cd burning"
+msgstr "Запис компакт-дисків"
+
+#: dnfdragora/groupicons.py:38
+msgid "Compression"
+msgstr "Стиснення"
+
+#: dnfdragora/groupicons.py:42 dnfdragora/groupicons.py:131
+#: dnfdragora/groupicons.py:195 dnfdragora/groupicons.py:243
+#: dnfdragora/groupicons.py:311 dnfdragora/groupicons.py:391
+msgid "Other"
+msgstr "Інше"
+
+#: dnfdragora/groupicons.py:47
+msgid "Communications"
+msgstr "Спілкування"
+
+#: dnfdragora/groupicons.py:50
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: dnfdragora/groupicons.py:54
+msgid "Dial-Up"
+msgstr "Комутований"
+
+#: dnfdragora/groupicons.py:58
+msgid "Fax"
+msgstr "Факс"
+
+#: dnfdragora/groupicons.py:62
+msgid "Mobile"
+msgstr "Мобільний"
+
+#: dnfdragora/groupicons.py:66
+msgid "Radio"
+msgstr "Радіо"
+
+#: dnfdragora/groupicons.py:70
+msgid "Serial"
+msgstr "Послідовний"
+
+#: dnfdragora/groupicons.py:74
+msgid "Telephony"
+msgstr "Телефонія"
+
+#: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
+msgid "Databases"
+msgstr "Бази даних"
+
+#: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:593
+#: dnfdragora/groupicons.py:596
+msgid "Development"
+msgstr "Розробка"
+
+#: dnfdragora/groupicons.py:86
+msgid "Basic"
+msgstr "Basic"
+
+#: dnfdragora/groupicons.py:89
+msgid "C"
+msgstr "C"
+
+#: dnfdragora/groupicons.py:92
+msgid "C++"
+msgstr "C++"
+
+#: dnfdragora/groupicons.py:95
+msgid "C#"
+msgstr "C#"
+
+#: dnfdragora/groupicons.py:103
+msgid "Debug"
+msgstr "Діагностика"
+
+#: dnfdragora/groupicons.py:107
+msgid "Erlang"
+msgstr "Erlang"
+
+#: dnfdragora/groupicons.py:111
+msgid "GNOME and GTK+"
+msgstr "GNOME і GTK+"
+
+#: dnfdragora/groupicons.py:115
+msgid "Java"
+msgstr "Java"
+
+#: dnfdragora/groupicons.py:119
+msgid "KDE and Qt"
+msgstr "KDE і Qt"
+
+#: dnfdragora/groupicons.py:123
+msgid "Kernel"
+msgstr "Ядро"
+
+#: dnfdragora/groupicons.py:127
+msgid "OCaml"
+msgstr "OCaml"
+
+#: dnfdragora/groupicons.py:135
+msgid "Perl"
+msgstr "Perl"
+
+#: dnfdragora/groupicons.py:139
+msgid "PHP"
+msgstr "PHP"
+
+#: dnfdragora/groupicons.py:143
+msgid "Python"
+msgstr "Python"
+
+#: dnfdragora/groupicons.py:147
+msgid "Tools"
+msgstr "Інструменти"
+
+#: dnfdragora/groupicons.py:151 dnfdragora/groupicons.py:495
+msgid "X11"
+msgstr "X11"
+
+#: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:544
+#: dnfdragora/groupicons.py:600
+msgid "Documentation"
+msgstr "Документація"
+
+#: dnfdragora/groupicons.py:160
+msgid "Editors"
+msgstr "Редактори"
+
+#: dnfdragora/groupicons.py:164
+msgid "Education"
+msgstr "Освіта"
+
+#: dnfdragora/groupicons.py:168
+msgid "Emulators"
+msgstr "Імітатори"
+
+#: dnfdragora/groupicons.py:172
+msgid "File tools"
+msgstr "Робота з файлами"
+
+#: dnfdragora/groupicons.py:176
+msgid "Games"
+msgstr "Ігри"
+
+#: dnfdragora/groupicons.py:179
+msgid "Adventure"
+msgstr "Пригоди"
+
+#: dnfdragora/groupicons.py:183
+msgid "Arcade"
+msgstr "Аркади"
+
+#: dnfdragora/groupicons.py:187
+msgid "Boards"
+msgstr "Ігри на дошці"
+
+#: dnfdragora/groupicons.py:191
+msgid "Cards"
+msgstr "Карти"
+
+#: dnfdragora/groupicons.py:199
+msgid "Puzzles"
+msgstr "Головоломки"
+
+#: dnfdragora/groupicons.py:203
+msgid "Shooter"
+msgstr "Стрілялки"
+
+#: dnfdragora/groupicons.py:207
+msgid "Simulation"
+msgstr "Моделювання"
+
+#: dnfdragora/groupicons.py:211
+msgid "Sports"
+msgstr "Спорт"
+
+#: dnfdragora/groupicons.py:215
+msgid "Strategy"
+msgstr "Стратегії"
+
+#: dnfdragora/groupicons.py:220
+msgid "Geography"
+msgstr "Географія"
+
+#: dnfdragora/groupicons.py:224
+msgid "Graphical desktop"
+msgstr "Графічна стільниця"
+
+#: dnfdragora/groupicons.py:227
+msgid "Enlightenment"
+msgstr "Enlightenment"
+
+#: dnfdragora/groupicons.py:231
+msgid "GNOME"
+msgstr "GNOME"
+
+#: dnfdragora/groupicons.py:235
+msgid "Icewm"
+msgstr "IceWM"
+
+#: dnfdragora/groupicons.py:239
+msgid "KDE"
+msgstr "KDE"
+
+#: dnfdragora/groupicons.py:247
+msgid "WindowMaker"
+msgstr "WindowMaker"
+
+#: dnfdragora/groupicons.py:251
+msgid "Xfce"
+msgstr "Xfce"
+
+#: dnfdragora/groupicons.py:256
+msgid "Graphics"
+msgstr "Графіка"
+
+#: dnfdragora/groupicons.py:259
+msgid "3D"
+msgstr "Просторова графіка"
+
+#: dnfdragora/groupicons.py:263 dnfdragora/groupicons.py:411
+#: dnfdragora/groupicons.py:515
+msgid "Editors and Converters"
+msgstr "Редактори та перетворювачі"
+
+#: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:343
+#: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:527
+msgid "Utilities"
+msgstr "Інструменти"
+
+#: dnfdragora/groupicons.py:271
+msgid "Photography"
+msgstr "Фотографія"
+
+#: dnfdragora/groupicons.py:275
+msgid "Scanning"
+msgstr "Сканування"
+
+#: dnfdragora/groupicons.py:279
+msgid "Viewers"
+msgstr "Переглядачі"
+
+#: dnfdragora/groupicons.py:284
+msgid "Monitoring"
+msgstr "Спостереження"
+
+#: dnfdragora/groupicons.py:288 dnfdragora/groupicons.py:479
+msgid "Networking"
+msgstr "Робота у мережі"
+
+#: dnfdragora/groupicons.py:291
+msgid "File transfer"
+msgstr "Перенесення файлів"
+
+#: dnfdragora/groupicons.py:295
+msgid "IRC"
+msgstr "IRC"
+
+#: dnfdragora/groupicons.py:299
+msgid "Instant messaging"
+msgstr "Миттєвий обмін повідомленнями"
+
+#: dnfdragora/groupicons.py:303 dnfdragora/groupicons.py:624
+msgid "Mail"
+msgstr "Пошта"
+
+#: dnfdragora/groupicons.py:307
+msgid "News"
+msgstr "Новини"
+
+#: dnfdragora/groupicons.py:315
+msgid "Remote access"
+msgstr "Віддалений доступ"
+
+#: dnfdragora/groupicons.py:319
+msgid "WWW"
+msgstr "WWW"
+
+#: dnfdragora/groupicons.py:324
+msgid "Office"
+msgstr "Офіс"
+
+#: dnfdragora/groupicons.py:327
+msgid "Dictionary"
+msgstr "Словник"
+
+#: dnfdragora/groupicons.py:331
+msgid "Finance"
+msgstr "Фінанси"
+
+#: dnfdragora/groupicons.py:335
+msgid "Management"
+msgstr "Керування"
+
+#: dnfdragora/groupicons.py:339
+msgid "Organizer"
+msgstr "Щоденник"
+
+#: dnfdragora/groupicons.py:347
+msgid "Spreadsheet"
+msgstr "Електронні таблиці"
+
+#: dnfdragora/groupicons.py:351
+msgid "Suite"
+msgstr "Комплекс"
+
+#: dnfdragora/groupicons.py:355
+msgid "Word processor"
+msgstr "Текстовий процесор"
+
+#: dnfdragora/groupicons.py:360
+msgid "Publishing"
+msgstr "Видавнича справа"
+
+#: dnfdragora/groupicons.py:364
+msgid "Sciences"
+msgstr "Наука"
+
+#: dnfdragora/groupicons.py:367
+msgid "Astronomy"
+msgstr "Астрономія"
+
+#: dnfdragora/groupicons.py:371
+msgid "Biology"
+msgstr "Біологія"
+
+#: dnfdragora/groupicons.py:375
+msgid "Chemistry"
+msgstr "Хімія"
+
+#: dnfdragora/groupicons.py:379
+msgid "Computer science"
+msgstr "Комп’ютерні науки"
+
+#: dnfdragora/groupicons.py:383
+msgid "Geosciences"
+msgstr "Науки про Землю"
+
+#: dnfdragora/groupicons.py:387
+msgid "Mathematics"
+msgstr "Математика"
+
+#: dnfdragora/groupicons.py:395
+msgid "Physics"
+msgstr "Фізика"
+
+#: dnfdragora/groupicons.py:400
+msgid "Security"
+msgstr "Безпека"
+
+#: dnfdragora/groupicons.py:404
+msgid "Shells"
+msgstr "Командні оболонки"
+
+#: dnfdragora/groupicons.py:408
+msgid "Sound"
+msgstr "Звук"
+
+#: dnfdragora/groupicons.py:415
+msgid "Midi"
+msgstr "MIDI"
+
+#: dnfdragora/groupicons.py:419
+msgid "Mixers"
+msgstr "Мікшери"
+
+#: dnfdragora/groupicons.py:423 dnfdragora/groupicons.py:519
+msgid "Players"
+msgstr "Програвачі"
+
+#: dnfdragora/groupicons.py:432
+msgid "System"
+msgstr "Система"
+
+#: dnfdragora/groupicons.py:435
+msgid "Base"
+msgstr "Основа"
+
+#: dnfdragora/groupicons.py:439
+msgid "Boot and Init"
+msgstr "Завантаження та ініціалізація"
+
+#: dnfdragora/groupicons.py:443
+msgid "Cluster"
+msgstr "Кластер"
+
+#: dnfdragora/groupicons.py:447 dnfdragora/groupicons.py:536
+msgid "Configuration"
+msgstr "Налаштовування"
+
+#: dnfdragora/groupicons.py:451
+msgid "Fonts"
+msgstr "Шрифти"
+
+#: dnfdragora/groupicons.py:454
+msgid "True type"
+msgstr "True type"
+
+#: dnfdragora/groupicons.py:458
+msgid "Type1"
+msgstr "Type1"
+
+#: dnfdragora/groupicons.py:462
+msgid "X11 bitmap"
+msgstr "Растрові X11"
+
+#: dnfdragora/groupicons.py:467
+msgid "Internationalization"
+msgstr "Інтернаціоналізація"
+
+#: dnfdragora/groupicons.py:471
+msgid "Kernel and hardware"
+msgstr "Ядро і обладнання"
+
+#: dnfdragora/groupicons.py:475
+msgid "Libraries"
+msgstr "Бібліотеки"
+
+#: dnfdragora/groupicons.py:483
+msgid "Packaging"
+msgstr "Пакування"
+
+#: dnfdragora/groupicons.py:487
+msgid "Printing"
+msgstr "Друк"
+
+#: dnfdragora/groupicons.py:491
+msgid "Servers"
+msgstr "Сервери"
+
+#: dnfdragora/groupicons.py:500
+msgid "Terminals"
+msgstr "Термінали"
+
+#: dnfdragora/groupicons.py:504
+msgid "Text tools"
+msgstr "Текстові засоби"
+
+#: dnfdragora/groupicons.py:508
+msgid "Toys"
+msgstr "Забавки"
+
+#: dnfdragora/groupicons.py:512
+msgid "Video"
+msgstr "Відео"
+
+#: dnfdragora/groupicons.py:523
+msgid "Television"
+msgstr "Телебачення"
+
+#: dnfdragora/groupicons.py:533
+msgid "Workstation"
+msgstr "Робоча станція"
+
+#: dnfdragora/groupicons.py:540
+msgid "Console Tools"
+msgstr "Засоби для консолі"
+
+#: dnfdragora/groupicons.py:548
+msgid "Game station"
+msgstr "Ігрова станція"
+
+#: dnfdragora/groupicons.py:552
+msgid "Internet station"
+msgstr "Станція для Інтернету"
+
+#: dnfdragora/groupicons.py:556
+msgid "Multimedia station"
+msgstr "Мультимедійна станція"
+
+#: dnfdragora/groupicons.py:560
+msgid "Network Computer (client)"
+msgstr "Мережевий комп'ютер (клієнт)"
+
+#: dnfdragora/groupicons.py:564
+msgid "Office Workstation"
+msgstr "Офісна робоча станція"
+
+#: dnfdragora/groupicons.py:568
+msgid "Scientific Workstation"
+msgstr "Наукова робоча станція"
+
+#: dnfdragora/groupicons.py:573
+msgid "Graphical Environment"
+msgstr "Графічне середовище"
+
+#: dnfdragora/groupicons.py:576
+msgid "GNOME Workstation"
+msgstr "Робоча станція Gnome"
+
+#: dnfdragora/groupicons.py:580
+msgid "IceWm Desktop"
+msgstr "Стільниця IceWm"
+
+#: dnfdragora/groupicons.py:584
+msgid "KDE Workstation"
+msgstr "Робоча станція KDE"
+
+#: dnfdragora/groupicons.py:588
+msgid "Other Graphical Desktops"
+msgstr "Інші графічні стільниці"
+
+#: dnfdragora/groupicons.py:605 dnfdragora/ui.py:482
+msgid "Search"
+msgstr "Пошук"
+
+#: dnfdragora/groupicons.py:609
+msgid "Server"
+msgstr "Сервер"
+
+#: dnfdragora/groupicons.py:612
+msgid "DNS/NIS"
+msgstr "DNS/NIS"
+
+#: dnfdragora/groupicons.py:616
+msgid "Database"
+msgstr "База даних"
+
+#: dnfdragora/groupicons.py:620
+msgid "Firewall/Router"
+msgstr "Захисний шлюз/Маршрутизатор"
+
+#: dnfdragora/groupicons.py:628
+msgid "Mail/Groupware/News"
+msgstr "Пошта/Групова робота/Новини"
+
+#: dnfdragora/groupicons.py:632
+msgid "Network Computer server"
+msgstr "Мережевий комп'ютер (сервер)"
+
+#: dnfdragora/groupicons.py:636
+msgid "Web/FTP"
+msgstr "Тенета/FTP"
+
+#: dnfdragora/progress_ui.py:81
+#, python-format
+msgid "Downloading :  %d files,  %d bytes"
+msgstr "Отримуємо:  %d файлів, %d байтів"
+
+#: dnfdragora/progress_ui.py:108
+#, python-format
+msgid "Starting to download : %s "
+msgstr "Починаємо отримання: %s "
+
+#: dnfdragora/progress_ui.py:129
+#, python-format
+msgid "Progress files (%d/%d)"
+msgstr "Поступ за файлами (%d/%d)"
+
+#: dnfdragora/ui.py:52
+msgid "Software Management - dnfdragora"
+msgstr "Керування програмами – dnfdragora"
+
+#: dnfdragora/ui.py:81
+msgid "Software Management"
+msgstr "Керування програмами"
+
+#: dnfdragora/ui.py:106
+msgid "Status"
+msgstr "Стан"
+
+#: dnfdragora/ui.py:114
+msgid "Installed"
+msgstr "Встановлено"
+
+#: dnfdragora/ui.py:115
+msgid "Not installed"
+msgstr "Не встановлено"
+
+#: dnfdragora/ui.py:121
+#, python-format
+msgid "Show %s and noarch only"
+msgstr "Показувати лише %s і noarch"
+
+#: dnfdragora/ui.py:127
+msgid "Meta packages"
+msgstr "Метапакунки"
+
+#: dnfdragora/ui.py:128
+msgid "Packages with GUI"
+msgstr "Пакунки з графічним інтерфейсом"
+
+#: dnfdragora/ui.py:129
+msgid "All updates"
+msgstr "Всі оновлення"
+
+#: dnfdragora/ui.py:130
+msgid "Security updates"
+msgstr "Оновлення безпеки"
+
+#: dnfdragora/ui.py:131
+msgid "Bugfixes updates"
+msgstr "Поновлення виявлених дефектів"
+
+#: dnfdragora/ui.py:132
+msgid "General updates"
+msgstr "Загальні оновлення"
+
+#: dnfdragora/ui.py:163
+msgid "in names"
+msgstr "у назвах"
+
+#: dnfdragora/ui.py:164
+msgid "in descriptions"
+msgstr "в описах"
+
+#: dnfdragora/ui.py:165
+msgid "in summaries"
+msgstr "у резюме"
+
+#: dnfdragora/ui.py:166
+msgid "in file names"
+msgstr "у назвах файлів"
+
+#: dnfdragora/ui.py:188
+msgid "&Search"
+msgstr "&Шукати"
+
+#: dnfdragora/ui.py:194
+msgid "&Reset"
+msgstr "С&кинути"
+
+#: dnfdragora/ui.py:198
+msgid "Test"
+msgstr "Тест"
+
+#: dnfdragora/ui.py:202
+msgid "&Apply"
+msgstr "&Застосувати"
+
+#: dnfdragora/ui.py:205
+msgid "&Quit"
+msgstr "Ви&йти"
+
+#: dnfdragora/ui.py:525
+msgid "TODO checked, managing also version and arch\n"
+msgstr "Завдання: керувати також версією і архітектурою\n"
+
+#: dnfdragora/ui.py:560
+msgid "You must be root to apply changes"
+msgstr ""
+"Для застосування змін вам знадобляться права доступу адміністратора (root)"
+
+#: dnfdragora/ui.py:573
+msgid "Unmanaged widget"
+msgstr "Некерований віджет"
+
+#: dnfdragora/ui.py:575
+msgid "Unmanaged event"
+msgstr "Некерована подія"
+
