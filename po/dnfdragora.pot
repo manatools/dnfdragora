@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-30 21:29+0200\n"
+"POT-Creation-Date: 2017-01-09 12:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:113 dnfdragora/ui.py:126
+#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:291 dnfdragora/ui.py:305
 msgid "All"
 msgstr ""
 
@@ -42,8 +42,8 @@ msgid "Compression"
 msgstr ""
 
 #: dnfdragora/groupicons.py:42 dnfdragora/groupicons.py:131
-#: dnfdragora/groupicons.py:195 dnfdragora/groupicons.py:243
-#: dnfdragora/groupicons.py:311 dnfdragora/groupicons.py:391
+#: dnfdragora/groupicons.py:199 dnfdragora/groupicons.py:247
+#: dnfdragora/groupicons.py:315 dnfdragora/groupicons.py:395
 msgid "Other"
 msgstr ""
 
@@ -83,8 +83,8 @@ msgstr ""
 msgid "Databases"
 msgstr ""
 
-#: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:593
-#: dnfdragora/groupicons.py:596
+#: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:597
+#: dnfdragora/groupicons.py:600
 msgid "Development"
 msgstr ""
 
@@ -148,12 +148,12 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: dnfdragora/groupicons.py:151 dnfdragora/groupicons.py:495
+#: dnfdragora/groupicons.py:151 dnfdragora/groupicons.py:499
 msgid "X11"
 msgstr ""
 
-#: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:544
-#: dnfdragora/groupicons.py:600
+#: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:548
+#: dnfdragora/groupicons.py:604
 msgid "Documentation"
 msgstr ""
 
@@ -166,519 +166,563 @@ msgid "Education"
 msgstr ""
 
 #: dnfdragora/groupicons.py:168
-msgid "Emulators"
+msgid "Empty"
 msgstr ""
 
 #: dnfdragora/groupicons.py:172
-msgid "File tools"
+msgid "Emulators"
 msgstr ""
 
 #: dnfdragora/groupicons.py:176
+msgid "File tools"
+msgstr ""
+
+#: dnfdragora/groupicons.py:180
 msgid "Games"
 msgstr ""
 
-#: dnfdragora/groupicons.py:179
+#: dnfdragora/groupicons.py:183
 msgid "Adventure"
 msgstr ""
 
-#: dnfdragora/groupicons.py:183
+#: dnfdragora/groupicons.py:187
 msgid "Arcade"
 msgstr ""
 
-#: dnfdragora/groupicons.py:187
+#: dnfdragora/groupicons.py:191
 msgid "Boards"
 msgstr ""
 
-#: dnfdragora/groupicons.py:191
+#: dnfdragora/groupicons.py:195
 msgid "Cards"
 msgstr ""
 
-#: dnfdragora/groupicons.py:199
+#: dnfdragora/groupicons.py:203
 msgid "Puzzles"
 msgstr ""
 
-#: dnfdragora/groupicons.py:203
+#: dnfdragora/groupicons.py:207
 msgid "Shooter"
 msgstr ""
 
-#: dnfdragora/groupicons.py:207
+#: dnfdragora/groupicons.py:211
 msgid "Simulation"
 msgstr ""
 
-#: dnfdragora/groupicons.py:211
+#: dnfdragora/groupicons.py:215
 msgid "Sports"
 msgstr ""
 
-#: dnfdragora/groupicons.py:215
+#: dnfdragora/groupicons.py:219
 msgid "Strategy"
 msgstr ""
 
-#: dnfdragora/groupicons.py:220
+#: dnfdragora/groupicons.py:224
 msgid "Geography"
 msgstr ""
 
-#: dnfdragora/groupicons.py:224
+#: dnfdragora/groupicons.py:228
 msgid "Graphical desktop"
 msgstr ""
 
-#: dnfdragora/groupicons.py:227
+#: dnfdragora/groupicons.py:231
 msgid "Enlightenment"
 msgstr ""
 
-#: dnfdragora/groupicons.py:231
+#: dnfdragora/groupicons.py:235
 msgid "GNOME"
 msgstr ""
 
-#: dnfdragora/groupicons.py:235
+#: dnfdragora/groupicons.py:239
 msgid "Icewm"
 msgstr ""
 
-#: dnfdragora/groupicons.py:239
+#: dnfdragora/groupicons.py:243
 msgid "KDE"
 msgstr ""
 
-#: dnfdragora/groupicons.py:247
+#: dnfdragora/groupicons.py:251
 msgid "WindowMaker"
 msgstr ""
 
-#: dnfdragora/groupicons.py:251
+#: dnfdragora/groupicons.py:255
 msgid "Xfce"
 msgstr ""
 
-#: dnfdragora/groupicons.py:256
+#: dnfdragora/groupicons.py:260
 msgid "Graphics"
 msgstr ""
 
-#: dnfdragora/groupicons.py:259
+#: dnfdragora/groupicons.py:263
 msgid "3D"
 msgstr ""
 
-#: dnfdragora/groupicons.py:263 dnfdragora/groupicons.py:411
-#: dnfdragora/groupicons.py:515
+#: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
+#: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
 msgstr ""
 
-#: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:343
-#: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:527
+#: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
+#: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
 msgid "Utilities"
 msgstr ""
 
-#: dnfdragora/groupicons.py:271
+#: dnfdragora/groupicons.py:275
 msgid "Photography"
 msgstr ""
 
-#: dnfdragora/groupicons.py:275
+#: dnfdragora/groupicons.py:279
 msgid "Scanning"
 msgstr ""
 
-#: dnfdragora/groupicons.py:279
+#: dnfdragora/groupicons.py:283
 msgid "Viewers"
 msgstr ""
 
-#: dnfdragora/groupicons.py:284
+#: dnfdragora/groupicons.py:288
 msgid "Monitoring"
 msgstr ""
 
-#: dnfdragora/groupicons.py:288 dnfdragora/groupicons.py:479
+#: dnfdragora/groupicons.py:292 dnfdragora/groupicons.py:483
 msgid "Networking"
 msgstr ""
 
-#: dnfdragora/groupicons.py:291
+#: dnfdragora/groupicons.py:295
 msgid "File transfer"
 msgstr ""
 
-#: dnfdragora/groupicons.py:295
+#: dnfdragora/groupicons.py:299
 msgid "IRC"
 msgstr ""
 
-#: dnfdragora/groupicons.py:299
+#: dnfdragora/groupicons.py:303
 msgid "Instant messaging"
 msgstr ""
 
-#: dnfdragora/groupicons.py:303 dnfdragora/groupicons.py:624
+#: dnfdragora/groupicons.py:307 dnfdragora/groupicons.py:628
 msgid "Mail"
 msgstr ""
 
-#: dnfdragora/groupicons.py:307
+#: dnfdragora/groupicons.py:311
 msgid "News"
 msgstr ""
 
-#: dnfdragora/groupicons.py:315
+#: dnfdragora/groupicons.py:319
 msgid "Remote access"
 msgstr ""
 
-#: dnfdragora/groupicons.py:319
+#: dnfdragora/groupicons.py:323
 msgid "WWW"
 msgstr ""
 
-#: dnfdragora/groupicons.py:324
+#: dnfdragora/groupicons.py:328
 msgid "Office"
 msgstr ""
 
-#: dnfdragora/groupicons.py:327
+#: dnfdragora/groupicons.py:331
 msgid "Dictionary"
 msgstr ""
 
-#: dnfdragora/groupicons.py:331
+#: dnfdragora/groupicons.py:335
 msgid "Finance"
 msgstr ""
 
-#: dnfdragora/groupicons.py:335
+#: dnfdragora/groupicons.py:339
 msgid "Management"
 msgstr ""
 
-#: dnfdragora/groupicons.py:339
+#: dnfdragora/groupicons.py:343
 msgid "Organizer"
 msgstr ""
 
-#: dnfdragora/groupicons.py:347
+#: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
 msgstr ""
 
-#: dnfdragora/groupicons.py:351
+#: dnfdragora/groupicons.py:355
 msgid "Suite"
 msgstr ""
 
-#: dnfdragora/groupicons.py:355
+#: dnfdragora/groupicons.py:359
 msgid "Word processor"
 msgstr ""
 
-#: dnfdragora/groupicons.py:360
+#: dnfdragora/groupicons.py:364
 msgid "Publishing"
 msgstr ""
 
-#: dnfdragora/groupicons.py:364
+#: dnfdragora/groupicons.py:368
 msgid "Sciences"
 msgstr ""
 
-#: dnfdragora/groupicons.py:367
+#: dnfdragora/groupicons.py:371
 msgid "Astronomy"
 msgstr ""
 
-#: dnfdragora/groupicons.py:371
+#: dnfdragora/groupicons.py:375
 msgid "Biology"
 msgstr ""
 
-#: dnfdragora/groupicons.py:375
+#: dnfdragora/groupicons.py:379
 msgid "Chemistry"
 msgstr ""
 
-#: dnfdragora/groupicons.py:379
+#: dnfdragora/groupicons.py:383
 msgid "Computer science"
 msgstr ""
 
-#: dnfdragora/groupicons.py:383
+#: dnfdragora/groupicons.py:387
 msgid "Geosciences"
 msgstr ""
 
-#: dnfdragora/groupicons.py:387
+#: dnfdragora/groupicons.py:391
 msgid "Mathematics"
 msgstr ""
 
-#: dnfdragora/groupicons.py:395
+#: dnfdragora/groupicons.py:399
 msgid "Physics"
 msgstr ""
 
-#: dnfdragora/groupicons.py:400
+#: dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr ""
 
-#: dnfdragora/groupicons.py:404
+#: dnfdragora/groupicons.py:408
 msgid "Shells"
 msgstr ""
 
-#: dnfdragora/groupicons.py:408
+#: dnfdragora/groupicons.py:412
 msgid "Sound"
 msgstr ""
 
-#: dnfdragora/groupicons.py:415
+#: dnfdragora/groupicons.py:419
 msgid "Midi"
 msgstr ""
 
-#: dnfdragora/groupicons.py:419
+#: dnfdragora/groupicons.py:423
 msgid "Mixers"
 msgstr ""
 
-#: dnfdragora/groupicons.py:423 dnfdragora/groupicons.py:519
+#: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
 msgid "Players"
 msgstr ""
 
-#: dnfdragora/groupicons.py:432
+#: dnfdragora/groupicons.py:436
 msgid "System"
 msgstr ""
 
-#: dnfdragora/groupicons.py:435
+#: dnfdragora/groupicons.py:439
 msgid "Base"
 msgstr ""
 
-#: dnfdragora/groupicons.py:439
+#: dnfdragora/groupicons.py:443
 msgid "Boot and Init"
 msgstr ""
 
-#: dnfdragora/groupicons.py:443
+#: dnfdragora/groupicons.py:447
 msgid "Cluster"
 msgstr ""
 
-#: dnfdragora/groupicons.py:447 dnfdragora/groupicons.py:536
+#: dnfdragora/groupicons.py:451 dnfdragora/groupicons.py:540
 msgid "Configuration"
 msgstr ""
 
-#: dnfdragora/groupicons.py:451
+#: dnfdragora/groupicons.py:455
 msgid "Fonts"
 msgstr ""
 
-#: dnfdragora/groupicons.py:454
+#: dnfdragora/groupicons.py:458
 msgid "True type"
 msgstr ""
 
-#: dnfdragora/groupicons.py:458
+#: dnfdragora/groupicons.py:462
 msgid "Type1"
 msgstr ""
 
-#: dnfdragora/groupicons.py:462
+#: dnfdragora/groupicons.py:466
 msgid "X11 bitmap"
 msgstr ""
 
-#: dnfdragora/groupicons.py:467
+#: dnfdragora/groupicons.py:471
 msgid "Internationalization"
 msgstr ""
 
-#: dnfdragora/groupicons.py:471
+#: dnfdragora/groupicons.py:475
 msgid "Kernel and hardware"
 msgstr ""
 
-#: dnfdragora/groupicons.py:475
+#: dnfdragora/groupicons.py:479
 msgid "Libraries"
 msgstr ""
 
-#: dnfdragora/groupicons.py:483
+#: dnfdragora/groupicons.py:487
 msgid "Packaging"
 msgstr ""
 
-#: dnfdragora/groupicons.py:487
+#: dnfdragora/groupicons.py:491
 msgid "Printing"
 msgstr ""
 
-#: dnfdragora/groupicons.py:491
+#: dnfdragora/groupicons.py:495
 msgid "Servers"
 msgstr ""
 
-#: dnfdragora/groupicons.py:500
+#: dnfdragora/groupicons.py:504
 msgid "Terminals"
 msgstr ""
 
-#: dnfdragora/groupicons.py:504
+#: dnfdragora/groupicons.py:508
 msgid "Text tools"
 msgstr ""
 
-#: dnfdragora/groupicons.py:508
+#: dnfdragora/groupicons.py:512
 msgid "Toys"
 msgstr ""
 
-#: dnfdragora/groupicons.py:512
+#: dnfdragora/groupicons.py:516
 msgid "Video"
 msgstr ""
 
-#: dnfdragora/groupicons.py:523
+#: dnfdragora/groupicons.py:527
 msgid "Television"
 msgstr ""
 
-#: dnfdragora/groupicons.py:533
+#: dnfdragora/groupicons.py:537
 msgid "Workstation"
 msgstr ""
 
-#: dnfdragora/groupicons.py:540
+#: dnfdragora/groupicons.py:544
 msgid "Console Tools"
 msgstr ""
 
-#: dnfdragora/groupicons.py:548
+#: dnfdragora/groupicons.py:552
 msgid "Game station"
 msgstr ""
 
-#: dnfdragora/groupicons.py:552
+#: dnfdragora/groupicons.py:556
 msgid "Internet station"
 msgstr ""
 
-#: dnfdragora/groupicons.py:556
+#: dnfdragora/groupicons.py:560
 msgid "Multimedia station"
 msgstr ""
 
-#: dnfdragora/groupicons.py:560
+#: dnfdragora/groupicons.py:564
 msgid "Network Computer (client)"
 msgstr ""
 
-#: dnfdragora/groupicons.py:564
+#: dnfdragora/groupicons.py:568
 msgid "Office Workstation"
 msgstr ""
 
-#: dnfdragora/groupicons.py:568
+#: dnfdragora/groupicons.py:572
 msgid "Scientific Workstation"
 msgstr ""
 
-#: dnfdragora/groupicons.py:573
+#: dnfdragora/groupicons.py:577
 msgid "Graphical Environment"
 msgstr ""
 
-#: dnfdragora/groupicons.py:576
+#: dnfdragora/groupicons.py:580
 msgid "GNOME Workstation"
 msgstr ""
 
-#: dnfdragora/groupicons.py:580
+#: dnfdragora/groupicons.py:584
 msgid "IceWm Desktop"
 msgstr ""
 
-#: dnfdragora/groupicons.py:584
+#: dnfdragora/groupicons.py:588
 msgid "KDE Workstation"
 msgstr ""
 
-#: dnfdragora/groupicons.py:588
+#: dnfdragora/groupicons.py:592
 msgid "Other Graphical Desktops"
 msgstr ""
 
-#: dnfdragora/groupicons.py:605 dnfdragora/ui.py:482
-msgid "Search"
+#: dnfdragora/groupicons.py:609
+msgid "Search result"
 msgstr ""
 
-#: dnfdragora/groupicons.py:609
+#: dnfdragora/groupicons.py:613
 msgid "Server"
 msgstr ""
 
-#: dnfdragora/groupicons.py:612
+#: dnfdragora/groupicons.py:616
 msgid "DNS/NIS"
 msgstr ""
 
-#: dnfdragora/groupicons.py:616
+#: dnfdragora/groupicons.py:620
 msgid "Database"
 msgstr ""
 
-#: dnfdragora/groupicons.py:620
+#: dnfdragora/groupicons.py:624
 msgid "Firewall/Router"
 msgstr ""
 
-#: dnfdragora/groupicons.py:628
+#: dnfdragora/groupicons.py:632
 msgid "Mail/Groupware/News"
 msgstr ""
 
-#: dnfdragora/groupicons.py:632
+#: dnfdragora/groupicons.py:636
 msgid "Network Computer server"
 msgstr ""
 
-#: dnfdragora/groupicons.py:636
+#: dnfdragora/groupicons.py:640
 msgid "Web/FTP"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:81
+#: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %d files,  %d bytes"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:108
+#: dnfdragora/progress_ui.py:157
 #, python-format
 msgid "Starting to download : %s "
 msgstr ""
 
-#: dnfdragora/progress_ui.py:129
+#: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%d/%d)"
 msgstr ""
 
-#: dnfdragora/ui.py:52
+#: dnfdragora/ui.py:225
 msgid "Software Management - dnfdragora"
 msgstr ""
 
-#: dnfdragora/ui.py:81
+#: dnfdragora/ui.py:257
 msgid "Software Management"
 msgstr ""
 
-#: dnfdragora/ui.py:106
+#: dnfdragora/ui.py:277
+msgid "Arch"
+msgstr ""
+
+#: dnfdragora/ui.py:277
+msgid "Name"
+msgstr ""
+
+#: dnfdragora/ui.py:277
+msgid "Release"
+msgstr ""
+
+#: dnfdragora/ui.py:277
+msgid "Summary"
+msgstr ""
+
+#: dnfdragora/ui.py:277
+msgid "Version"
+msgstr ""
+
+#: dnfdragora/ui.py:284
 msgid "Status"
 msgstr ""
 
-#: dnfdragora/ui.py:114
+#: dnfdragora/ui.py:292
 msgid "Installed"
 msgstr ""
 
-#: dnfdragora/ui.py:115
+#: dnfdragora/ui.py:293
 msgid "Not installed"
 msgstr ""
 
-#: dnfdragora/ui.py:121
+#: dnfdragora/ui.py:294
+msgid "To update"
+msgstr ""
+
+#: dnfdragora/ui.py:300
 #, python-format
 msgid "Show %s and noarch only"
 msgstr ""
 
-#: dnfdragora/ui.py:127
-msgid "Meta packages"
+#: dnfdragora/ui.py:306
+msgid "Groups"
 msgstr ""
 
-#: dnfdragora/ui.py:128
-msgid "Packages with GUI"
-msgstr ""
-
-#: dnfdragora/ui.py:129
-msgid "All updates"
-msgstr ""
-
-#: dnfdragora/ui.py:130
-msgid "Security updates"
-msgstr ""
-
-#: dnfdragora/ui.py:131
-msgid "Bugfixes updates"
-msgstr ""
-
-#: dnfdragora/ui.py:132
-msgid "General updates"
-msgstr ""
-
-#: dnfdragora/ui.py:163
+#: dnfdragora/ui.py:347
 msgid "in names"
 msgstr ""
 
-#: dnfdragora/ui.py:164
+#: dnfdragora/ui.py:348
 msgid "in descriptions"
 msgstr ""
 
-#: dnfdragora/ui.py:165
+#: dnfdragora/ui.py:349
 msgid "in summaries"
 msgstr ""
 
-#: dnfdragora/ui.py:166
+#: dnfdragora/ui.py:350
 msgid "in file names"
 msgstr ""
 
-#: dnfdragora/ui.py:188
+#: dnfdragora/ui.py:371
 msgid "&Search"
 msgstr ""
 
-#: dnfdragora/ui.py:194
-msgid "&Reset"
+#: dnfdragora/ui.py:377
+msgid "&Clear search"
 msgstr ""
 
-#: dnfdragora/ui.py:198
-msgid "Test"
-msgstr ""
-
-#: dnfdragora/ui.py:202
+#: dnfdragora/ui.py:387
 msgid "&Apply"
 msgstr ""
 
-#: dnfdragora/ui.py:205
+#: dnfdragora/ui.py:391
+msgid "Ch&eck all"
+msgstr ""
+
+#: dnfdragora/ui.py:395 dnfdragora/ui.py:403
 msgid "&Quit"
 msgstr ""
 
-#: dnfdragora/ui.py:525
-msgid "TODO checked, managing also version and arch\n"
+#: dnfdragora/ui.py:400
+msgid "&File"
 msgstr ""
 
-#: dnfdragora/ui.py:560
-msgid "You must be root to apply changes"
+#: dnfdragora/ui.py:401
+msgid "Reset the selection"
 msgstr ""
 
-#: dnfdragora/ui.py:573
+#: dnfdragora/ui.py:402
+msgid "Refresh Metadata"
+msgstr ""
+
+#: dnfdragora/ui.py:413
+msgid "&Help"
+msgstr ""
+
+#: dnfdragora/ui.py:414
+msgid "Manual"
+msgstr ""
+
+#: dnfdragora/ui.py:415
+msgid "&About"
+msgstr ""
+
+#: dnfdragora/ui.py:759
+msgid "Search"
+msgstr ""
+
+#: dnfdragora/ui.py:806
+msgid "Not implemented yet"
+msgstr ""
+
+#: dnfdragora/ui.py:806
+msgid "Sorry"
+msgstr ""
+
+#: dnfdragora/ui.py:869
+msgid "Applying changes to the system"
+msgstr ""
+
+#: dnfdragora/ui.py:882
+msgid "BuildTransaction failure"
+msgstr ""
+
+#: dnfdragora/ui.py:920
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:575
+#: dnfdragora/ui.py:922
 msgid "Unmanaged event"
 msgstr ""
