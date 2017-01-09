@@ -11,87 +11,87 @@ msgstr ""
 "POT-Creation-Date: 2017-01-09 12:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rémi Verschelde <akien@mageia.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/fr/)\n"
+"Language-Team: Arabic (https://www.transifex.com/MageiaLinux/teams/9361/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:291 dnfdragora/ui.py:305
 msgid "All"
-msgstr "Tous"
+msgstr "الكلّ"
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
-msgstr "Accessibilité"
+msgstr "إتاحة"
 
 #: dnfdragora/groupicons.py:27
 msgid "Archiving"
-msgstr "Archivage"
+msgstr "أرشفة"
 
 #: dnfdragora/groupicons.py:30
 msgid "Backup"
-msgstr "Sauvegarde"
+msgstr "نسخ احتياطي"
 
 #: dnfdragora/groupicons.py:34
 msgid "Cd burning"
-msgstr "Gravure de CD"
+msgstr "كتابة أقراص"
 
 #: dnfdragora/groupicons.py:38
 msgid "Compression"
-msgstr "Compression"
+msgstr "ضغط"
 
 #: dnfdragora/groupicons.py:42 dnfdragora/groupicons.py:131
 #: dnfdragora/groupicons.py:199 dnfdragora/groupicons.py:247
 #: dnfdragora/groupicons.py:315 dnfdragora/groupicons.py:395
 msgid "Other"
-msgstr "Autre"
+msgstr "أخرى"
 
 #: dnfdragora/groupicons.py:47
 msgid "Communications"
-msgstr "Communications"
+msgstr "اتصالات"
 
 #: dnfdragora/groupicons.py:50
 msgid "Bluetooth"
-msgstr "Bluetooth"
+msgstr ""
 
 #: dnfdragora/groupicons.py:54
 msgid "Dial-Up"
-msgstr "Dial-Up"
+msgstr ""
 
 #: dnfdragora/groupicons.py:58
 msgid "Fax"
-msgstr "Fax"
+msgstr ""
 
 #: dnfdragora/groupicons.py:62
 msgid "Mobile"
-msgstr "Mobile"
+msgstr ""
 
 #: dnfdragora/groupicons.py:66
 msgid "Radio"
-msgstr "Radio"
+msgstr ""
 
 #: dnfdragora/groupicons.py:70
 msgid "Serial"
-msgstr "Série"
+msgstr ""
 
 #: dnfdragora/groupicons.py:74
 msgid "Telephony"
-msgstr "Téléphonie"
+msgstr ""
 
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
-msgstr "Bases de données"
+msgstr "قواعد بيانات"
 
 #: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:597
 #: dnfdragora/groupicons.py:600
 msgid "Development"
-msgstr "Développement"
+msgstr "تطوير"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
-msgstr "Basic"
+msgstr ""
 
 #: dnfdragora/groupicons.py:89
 msgid "C"
@@ -103,39 +103,39 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:95
 msgid "C#"
-msgstr "C#"
+msgstr ""
 
 #: dnfdragora/groupicons.py:103
 msgid "Debug"
-msgstr "Debug"
+msgstr ""
 
 #: dnfdragora/groupicons.py:107
 msgid "Erlang"
-msgstr "Erlang"
+msgstr ""
 
 #: dnfdragora/groupicons.py:111
 msgid "GNOME and GTK+"
-msgstr "GNOME et GTK+"
+msgstr "جنوم وGTK+"
 
 #: dnfdragora/groupicons.py:115
 msgid "Java"
-msgstr "Java"
+msgstr "جافا"
 
 #: dnfdragora/groupicons.py:119
 msgid "KDE and Qt"
-msgstr "KDE et Qt"
+msgstr "كِدي وQt"
 
 #: dnfdragora/groupicons.py:123
 msgid "Kernel"
-msgstr "Noyau"
+msgstr "النواة"
 
 #: dnfdragora/groupicons.py:127
 msgid "OCaml"
-msgstr "OCaml"
+msgstr ""
 
 #: dnfdragora/groupicons.py:135
 msgid "Perl"
-msgstr "Perl"
+msgstr "بيرل"
 
 #: dnfdragora/groupicons.py:139
 msgid "PHP"
@@ -143,11 +143,11 @@ msgstr "PHP"
 
 #: dnfdragora/groupicons.py:143
 msgid "Python"
-msgstr "Python"
+msgstr "بايثون"
 
 #: dnfdragora/groupicons.py:147
 msgid "Tools"
-msgstr "Outils"
+msgstr "أدوات"
 
 #: dnfdragora/groupicons.py:151 dnfdragora/groupicons.py:499
 msgid "X11"
@@ -156,75 +156,75 @@ msgstr "X11"
 #: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:548
 #: dnfdragora/groupicons.py:604
 msgid "Documentation"
-msgstr "Documentation"
+msgstr "توثيق"
 
 #: dnfdragora/groupicons.py:160
 msgid "Editors"
-msgstr "Éditeurs"
+msgstr "محررات نصوص"
 
 #: dnfdragora/groupicons.py:164
 msgid "Education"
-msgstr "Éducation"
+msgstr "تعليم"
 
 #: dnfdragora/groupicons.py:168
 msgid "Empty"
-msgstr "Vide"
+msgstr "فارغ"
 
 #: dnfdragora/groupicons.py:172
 msgid "Emulators"
-msgstr "Émulateurs"
+msgstr "محاكيات"
 
 #: dnfdragora/groupicons.py:176
 msgid "File tools"
-msgstr "Outils fichiers"
+msgstr "أدوات ملفات"
 
 #: dnfdragora/groupicons.py:180
 msgid "Games"
-msgstr "Jeux"
+msgstr "ألعاب"
 
 #: dnfdragora/groupicons.py:183
 msgid "Adventure"
-msgstr "Aventure"
+msgstr "مغامرة"
 
 #: dnfdragora/groupicons.py:187
 msgid "Arcade"
-msgstr "Jeux d'arcade"
+msgstr "أركيد"
 
 #: dnfdragora/groupicons.py:191
 msgid "Boards"
-msgstr "Jeux de plateau"
+msgstr "لوحية"
 
 #: dnfdragora/groupicons.py:195
 msgid "Cards"
-msgstr "Jeux de cartes"
+msgstr "ورقية"
 
 #: dnfdragora/groupicons.py:203
 msgid "Puzzles"
-msgstr "Casse-têtes"
+msgstr "أحاجي"
 
 #: dnfdragora/groupicons.py:207
 msgid "Shooter"
-msgstr "Jeux de tir"
+msgstr ""
 
 #: dnfdragora/groupicons.py:211
 msgid "Simulation"
-msgstr "Jeux de simulation"
+msgstr ""
 
 #: dnfdragora/groupicons.py:215
 msgid "Sports"
-msgstr "Jeux de sport"
+msgstr "رياضة"
 
 #: dnfdragora/groupicons.py:219
 msgid "Strategy"
-msgstr "Jeux de stratégie"
+msgstr "استراتيجية"
 
 #: dnfdragora/groupicons.py:224
 msgid "Geography"
-msgstr "Géographie"
+msgstr "جغرافية"
 
 #: dnfdragora/groupicons.py:228
 msgid "Graphical desktop"
-msgstr "Environnement graphique"
+msgstr "سطح المكتب الرسومي"
 
 #: dnfdragora/groupicons.py:231
 msgid "Enlightenment"
@@ -232,7 +232,7 @@ msgstr "Enlightenment"
 
 #: dnfdragora/groupicons.py:235
 msgid "GNOME"
-msgstr "GNOME"
+msgstr "جنوم"
 
 #: dnfdragora/groupicons.py:239
 msgid "Icewm"
@@ -240,7 +240,7 @@ msgstr "Icewm"
 
 #: dnfdragora/groupicons.py:243
 msgid "KDE"
-msgstr "KDE"
+msgstr "كدي"
 
 #: dnfdragora/groupicons.py:251
 msgid "WindowMaker"
@@ -248,49 +248,49 @@ msgstr "WindowMaker"
 
 #: dnfdragora/groupicons.py:255
 msgid "Xfce"
-msgstr "Xfce"
+msgstr "إكسفس"
 
 #: dnfdragora/groupicons.py:260
 msgid "Graphics"
-msgstr "Graphismes"
+msgstr "رسوميات"
 
 #: dnfdragora/groupicons.py:263
 msgid "3D"
-msgstr "3D"
+msgstr ""
 
 #: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
 #: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
-msgstr "Éditeurs et convertisseurs"
+msgstr ""
 
 #: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
 #: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
 msgid "Utilities"
-msgstr "Utilitaires"
+msgstr "أدوات"
 
 #: dnfdragora/groupicons.py:275
 msgid "Photography"
-msgstr "Photographie"
+msgstr ""
 
 #: dnfdragora/groupicons.py:279
 msgid "Scanning"
-msgstr "Scanner"
+msgstr ""
 
 #: dnfdragora/groupicons.py:283
 msgid "Viewers"
-msgstr "Lecteurs"
+msgstr ""
 
 #: dnfdragora/groupicons.py:288
 msgid "Monitoring"
-msgstr "Surveillance"
+msgstr "مراقبة"
 
 #: dnfdragora/groupicons.py:292 dnfdragora/groupicons.py:483
 msgid "Networking"
-msgstr "Réseau"
+msgstr "شبكات"
 
 #: dnfdragora/groupicons.py:295
 msgid "File transfer"
-msgstr "Transfert de fichiers"
+msgstr "نقل ملفات"
 
 #: dnfdragora/groupicons.py:299
 msgid "IRC"
@@ -298,143 +298,143 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:303
 msgid "Instant messaging"
-msgstr "Messagerie instantanée"
+msgstr "مراسلة آنية"
 
 #: dnfdragora/groupicons.py:307 dnfdragora/groupicons.py:628
 msgid "Mail"
-msgstr "Courrier électronique"
+msgstr "البريد"
 
 #: dnfdragora/groupicons.py:311
 msgid "News"
-msgstr "Actualités"
+msgstr "برامج أخبار"
 
 #: dnfdragora/groupicons.py:319
 msgid "Remote access"
-msgstr "Accès distant"
+msgstr "وصول بعيد"
 
 #: dnfdragora/groupicons.py:323
 msgid "WWW"
-msgstr "WWW"
+msgstr "وِب"
 
 #: dnfdragora/groupicons.py:328
 msgid "Office"
-msgstr "Bureautique"
+msgstr "أطقم مكتبية"
 
 #: dnfdragora/groupicons.py:331
 msgid "Dictionary"
-msgstr "Dictionnaire"
+msgstr ""
 
 #: dnfdragora/groupicons.py:335
 msgid "Finance"
-msgstr "Finance"
+msgstr ""
 
 #: dnfdragora/groupicons.py:339
 msgid "Management"
-msgstr "Gestion"
+msgstr ""
 
 #: dnfdragora/groupicons.py:343
 msgid "Organizer"
-msgstr "Organiseur"
+msgstr ""
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
-msgstr "Tableur"
+msgstr ""
 
 #: dnfdragora/groupicons.py:355
 msgid "Suite"
-msgstr "Suite"
+msgstr ""
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr "Traitement de texte"
+msgstr ""
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
-msgstr "Publication"
+msgstr "نشر"
 
 #: dnfdragora/groupicons.py:368
 msgid "Sciences"
-msgstr "Sciences"
+msgstr "علوم"
 
 #: dnfdragora/groupicons.py:371
 msgid "Astronomy"
-msgstr "Astronomie"
+msgstr "فلك"
 
 #: dnfdragora/groupicons.py:375
 msgid "Biology"
-msgstr "Biologie"
+msgstr "أحياء"
 
 #: dnfdragora/groupicons.py:379
 msgid "Chemistry"
-msgstr "Chimie"
+msgstr "كيمياء"
 
 #: dnfdragora/groupicons.py:383
 msgid "Computer science"
-msgstr "Informatique"
+msgstr "علوم حاسب"
 
 #: dnfdragora/groupicons.py:387
 msgid "Geosciences"
-msgstr "Sciences de la Terre"
+msgstr "علوم أرض"
 
 #: dnfdragora/groupicons.py:391
 msgid "Mathematics"
-msgstr "Mathématiques"
+msgstr "رياضيات"
 
 #: dnfdragora/groupicons.py:399
 msgid "Physics"
-msgstr "Physique"
+msgstr "فيزياء"
 
 #: dnfdragora/groupicons.py:404
 msgid "Security"
-msgstr "Sécurité"
+msgstr "الأمن"
 
 #: dnfdragora/groupicons.py:408
 msgid "Shells"
-msgstr "Interpréteurs de commandes"
+msgstr "صدفات"
 
 #: dnfdragora/groupicons.py:412
 msgid "Sound"
-msgstr "Son"
+msgstr "صوتيات"
 
 #: dnfdragora/groupicons.py:419
 msgid "Midi"
-msgstr "Midi"
+msgstr ""
 
 #: dnfdragora/groupicons.py:423
 msgid "Mixers"
-msgstr "Mixeurs"
+msgstr ""
 
 #: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
 msgid "Players"
-msgstr "Lecteurs"
+msgstr ""
 
 #: dnfdragora/groupicons.py:436
 msgid "System"
-msgstr "Système"
+msgstr "النظام"
 
 #: dnfdragora/groupicons.py:439
 msgid "Base"
-msgstr "Base"
+msgstr "الحزم الأساسية"
 
 #: dnfdragora/groupicons.py:443
 msgid "Boot and Init"
-msgstr "Démarrage"
+msgstr "الإقلاع و بدء التشغيل"
 
 #: dnfdragora/groupicons.py:447
 msgid "Cluster"
-msgstr "Grappe"
+msgstr "عنقود"
 
 #: dnfdragora/groupicons.py:451 dnfdragora/groupicons.py:540
 msgid "Configuration"
-msgstr "Configuration"
+msgstr "الضبط"
 
 #: dnfdragora/groupicons.py:455
 msgid "Fonts"
-msgstr "Polices"
+msgstr "خطوط"
 
 #: dnfdragora/groupicons.py:458
 msgid "True type"
-msgstr "True type"
+msgstr "True Type"
 
 #: dnfdragora/groupicons.py:462
 msgid "Type1"
@@ -446,99 +446,99 @@ msgstr "X11 bitmap"
 
 #: dnfdragora/groupicons.py:471
 msgid "Internationalization"
-msgstr "Internationalisation"
+msgstr "توطين"
 
 #: dnfdragora/groupicons.py:475
 msgid "Kernel and hardware"
-msgstr "Noyau et matériel"
+msgstr "النواة والعتاد"
 
 #: dnfdragora/groupicons.py:479
 msgid "Libraries"
-msgstr "Bibliothèques"
+msgstr "مكتبات"
 
 #: dnfdragora/groupicons.py:487
 msgid "Packaging"
-msgstr "Empaquetage"
+msgstr "تحزيم"
 
 #: dnfdragora/groupicons.py:491
 msgid "Printing"
-msgstr "Impression"
+msgstr "الطباعة"
 
 #: dnfdragora/groupicons.py:495
 msgid "Servers"
-msgstr "Serveurs"
+msgstr "خوادم"
 
 #: dnfdragora/groupicons.py:504
 msgid "Terminals"
-msgstr "Terminaux"
+msgstr "طرفيات"
 
 #: dnfdragora/groupicons.py:508
 msgid "Text tools"
-msgstr "Outils Texte"
+msgstr "أدوات نصوص"
 
 #: dnfdragora/groupicons.py:512
 msgid "Toys"
-msgstr "Petits outils"
+msgstr "طفولية"
 
 #: dnfdragora/groupicons.py:516
 msgid "Video"
-msgstr "Vidéo"
+msgstr "مرئيات"
 
 #: dnfdragora/groupicons.py:527
 msgid "Television"
-msgstr "Télévision"
+msgstr ""
 
 #: dnfdragora/groupicons.py:537
 msgid "Workstation"
-msgstr "Station de travail"
+msgstr "محطة عمل"
 
 #: dnfdragora/groupicons.py:544
 msgid "Console Tools"
-msgstr "Utilitaires console"
+msgstr "أدوات الطرفيات"
 
 #: dnfdragora/groupicons.py:552
 msgid "Game station"
-msgstr "Ordinateur de jeu"
+msgstr "محطة ألعاب"
 
 #: dnfdragora/groupicons.py:556
 msgid "Internet station"
-msgstr "Ordinateur dédié à la navigation"
+msgstr "محطة إنترنت"
 
 #: dnfdragora/groupicons.py:560
 msgid "Multimedia station"
-msgstr "Ordinateur multimédia"
+msgstr "محطة وسائط متعددة"
 
 #: dnfdragora/groupicons.py:564
 msgid "Network Computer (client)"
-msgstr "Ordinateur en réseau (client)"
+msgstr "جهاز شبكة (عميل)"
 
 #: dnfdragora/groupicons.py:568
 msgid "Office Workstation"
-msgstr "Environnement Bureautique"
+msgstr "محطة عمل مكتبية"
 
 #: dnfdragora/groupicons.py:572
 msgid "Scientific Workstation"
-msgstr "Environnement Scientifique"
+msgstr "محطة علمية"
 
 #: dnfdragora/groupicons.py:577
 msgid "Graphical Environment"
-msgstr "Environnement graphique"
+msgstr "بيئات رسومية"
 
 #: dnfdragora/groupicons.py:580
 msgid "GNOME Workstation"
-msgstr "Environnement GNOME"
+msgstr "محطة عمل جنوم"
 
 #: dnfdragora/groupicons.py:584
 msgid "IceWm Desktop"
-msgstr "Environnement IceWm"
+msgstr "IceWm Desktop"
 
 #: dnfdragora/groupicons.py:588
 msgid "KDE Workstation"
-msgstr "Environnement KDE"
+msgstr "محطة عمل كدي"
 
 #: dnfdragora/groupicons.py:592
 msgid "Other Graphical Desktops"
-msgstr "Autres environnements graphiques"
+msgstr "أسطح مكتب رسومية أخرى"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
@@ -546,7 +546,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
-msgstr "Serveur"
+msgstr "خادم"
 
 #: dnfdragora/groupicons.py:616
 msgid "DNS/NIS"
@@ -554,23 +554,23 @@ msgstr "DNS/NIS"
 
 #: dnfdragora/groupicons.py:620
 msgid "Database"
-msgstr "Base de données"
+msgstr "قواعد بيانات"
 
 #: dnfdragora/groupicons.py:624
 msgid "Firewall/Router"
-msgstr "Pare-feu/Routeur"
+msgstr "جدار ناري/روتر"
 
 #: dnfdragora/groupicons.py:632
 msgid "Mail/Groupware/News"
-msgstr "Courriel/Travail collaboratif/Actualité"
+msgstr "بريد/برمجيات تشاركية/أخبار"
 
 #: dnfdragora/groupicons.py:636
 msgid "Network Computer server"
-msgstr "Serveur d'ordinateur réseau"
+msgstr "خادم شبكات"
 
 #: dnfdragora/groupicons.py:640
 msgid "Web/FTP"
-msgstr "Web/FTP"
+msgstr "وب/FTP"
 
 #: dnfdragora/progress_ui.py:130
 #, python-format
@@ -593,7 +593,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:257
 msgid "Software Management"
-msgstr "Gestion des logiciels"
+msgstr "إدارة البرامج"
 
 #: dnfdragora/ui.py:277
 msgid "Arch"
@@ -601,15 +601,15 @@ msgstr "Arch"
 
 #: dnfdragora/ui.py:277
 msgid "Name"
-msgstr "Nom"
+msgstr "الاسم"
 
 #: dnfdragora/ui.py:277
 msgid "Release"
-msgstr "Révision"
+msgstr "Release"
 
 #: dnfdragora/ui.py:277
 msgid "Summary"
-msgstr "Résumé"
+msgstr "ملخص"
 
 #: dnfdragora/ui.py:277
 msgid "Version"
@@ -617,15 +617,15 @@ msgstr "Version"
 
 #: dnfdragora/ui.py:284
 msgid "Status"
-msgstr "Statut"
+msgstr "الحالة"
 
 #: dnfdragora/ui.py:292
 msgid "Installed"
-msgstr "Installé"
+msgstr "مثبت"
 
 #: dnfdragora/ui.py:293
 msgid "Not installed"
-msgstr "Non installé"
+msgstr "غير مثبت"
 
 #: dnfdragora/ui.py:294
 msgid "To update"
@@ -634,27 +634,27 @@ msgstr ""
 #: dnfdragora/ui.py:300
 #, python-format
 msgid "Show %s and noarch only"
-msgstr "Afficher uniquement %s et noarch"
+msgstr ""
 
 #: dnfdragora/ui.py:306
 msgid "Groups"
-msgstr "Groupes"
+msgstr "المجموعات"
 
 #: dnfdragora/ui.py:347
 msgid "in names"
-msgstr "parmi les noms"
+msgstr "في الأسماء"
 
 #: dnfdragora/ui.py:348
 msgid "in descriptions"
-msgstr "parmi les descriptions"
+msgstr "في الأوصاف"
 
 #: dnfdragora/ui.py:349
 msgid "in summaries"
-msgstr "parmi les résumés"
+msgstr "في الملخصات"
 
 #: dnfdragora/ui.py:350
 msgid "in file names"
-msgstr "dans les noms de fichiers"
+msgstr "في أسماء الملفات"
 
 #: dnfdragora/ui.py:371
 msgid "&Search"
@@ -666,7 +666,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:387
 msgid "&Apply"
-msgstr "&Appliquer"
+msgstr ""
 
 #: dnfdragora/ui.py:391
 msgid "Ch&eck all"
@@ -674,15 +674,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:395 dnfdragora/ui.py:403
 msgid "&Quit"
-msgstr "&Quitter"
+msgstr ""
 
 #: dnfdragora/ui.py:400
 msgid "&File"
-msgstr "&Fichier"
+msgstr ""
 
 #: dnfdragora/ui.py:401
 msgid "Reset the selection"
-msgstr "_Remettre à zéro la sélection"
+msgstr ""
 
 #: dnfdragora/ui.py:402
 msgid "Refresh Metadata"
@@ -690,19 +690,19 @@ msgstr ""
 
 #: dnfdragora/ui.py:413
 msgid "&Help"
-msgstr "&Aide"
+msgstr ""
 
 #: dnfdragora/ui.py:414
 msgid "Manual"
-msgstr "Manuel"
+msgstr "يدوي"
 
 #: dnfdragora/ui.py:415
 msgid "&About"
-msgstr "À &propos"
+msgstr ""
 
 #: dnfdragora/ui.py:759
 msgid "Search"
-msgstr "Rechercher"
+msgstr ""
 
 #: dnfdragora/ui.py:806
 msgid "Not implemented yet"

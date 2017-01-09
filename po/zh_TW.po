@@ -10,88 +10,88 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-09 12:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rémi Verschelde <akien@mageia.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/fr/)\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/teams/9361/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:291 dnfdragora/ui.py:305
 msgid "All"
-msgstr "Tous"
+msgstr "全部"
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
-msgstr "Accessibilité"
+msgstr "輔助功能"
 
 #: dnfdragora/groupicons.py:27
 msgid "Archiving"
-msgstr "Archivage"
+msgstr "歸檔"
 
 #: dnfdragora/groupicons.py:30
 msgid "Backup"
-msgstr "Sauvegarde"
+msgstr "備份"
 
 #: dnfdragora/groupicons.py:34
 msgid "Cd burning"
-msgstr "Gravure de CD"
+msgstr "光碟燒錄"
 
 #: dnfdragora/groupicons.py:38
 msgid "Compression"
-msgstr "Compression"
+msgstr "壓縮"
 
 #: dnfdragora/groupicons.py:42 dnfdragora/groupicons.py:131
 #: dnfdragora/groupicons.py:199 dnfdragora/groupicons.py:247
 #: dnfdragora/groupicons.py:315 dnfdragora/groupicons.py:395
 msgid "Other"
-msgstr "Autre"
+msgstr "其他"
 
 #: dnfdragora/groupicons.py:47
 msgid "Communications"
-msgstr "Communications"
+msgstr "通訊"
 
 #: dnfdragora/groupicons.py:50
 msgid "Bluetooth"
-msgstr "Bluetooth"
+msgstr "藍牙"
 
 #: dnfdragora/groupicons.py:54
 msgid "Dial-Up"
-msgstr "Dial-Up"
+msgstr "撥接"
 
 #: dnfdragora/groupicons.py:58
 msgid "Fax"
-msgstr "Fax"
+msgstr "傳真"
 
 #: dnfdragora/groupicons.py:62
 msgid "Mobile"
-msgstr "Mobile"
+msgstr "行動"
 
 #: dnfdragora/groupicons.py:66
 msgid "Radio"
-msgstr "Radio"
+msgstr "廣播"
 
 #: dnfdragora/groupicons.py:70
 msgid "Serial"
-msgstr "Série"
+msgstr "串列通訊"
 
 #: dnfdragora/groupicons.py:74
 msgid "Telephony"
-msgstr "Téléphonie"
+msgstr "電話"
 
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
-msgstr "Bases de données"
+msgstr "資料庫"
 
 #: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:597
 #: dnfdragora/groupicons.py:600
 msgid "Development"
-msgstr "Développement"
+msgstr "開發"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
-msgstr "Basic"
+msgstr "基本"
 
 #: dnfdragora/groupicons.py:89
 msgid "C"
@@ -107,7 +107,7 @@ msgstr "C#"
 
 #: dnfdragora/groupicons.py:103
 msgid "Debug"
-msgstr "Debug"
+msgstr "除錯"
 
 #: dnfdragora/groupicons.py:107
 msgid "Erlang"
@@ -115,7 +115,7 @@ msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:111
 msgid "GNOME and GTK+"
-msgstr "GNOME et GTK+"
+msgstr "GNOME 與 GTK+"
 
 #: dnfdragora/groupicons.py:115
 msgid "Java"
@@ -123,11 +123,11 @@ msgstr "Java"
 
 #: dnfdragora/groupicons.py:119
 msgid "KDE and Qt"
-msgstr "KDE et Qt"
+msgstr "KDE 與 Qt"
 
 #: dnfdragora/groupicons.py:123
 msgid "Kernel"
-msgstr "Noyau"
+msgstr "核心"
 
 #: dnfdragora/groupicons.py:127
 msgid "OCaml"
@@ -147,7 +147,7 @@ msgstr "Python"
 
 #: dnfdragora/groupicons.py:147
 msgid "Tools"
-msgstr "Outils"
+msgstr "工具"
 
 #: dnfdragora/groupicons.py:151 dnfdragora/groupicons.py:499
 msgid "X11"
@@ -156,75 +156,75 @@ msgstr "X11"
 #: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:548
 #: dnfdragora/groupicons.py:604
 msgid "Documentation"
-msgstr "Documentation"
+msgstr "文件檔案"
 
 #: dnfdragora/groupicons.py:160
 msgid "Editors"
-msgstr "Éditeurs"
+msgstr "編輯器"
 
 #: dnfdragora/groupicons.py:164
 msgid "Education"
-msgstr "Éducation"
+msgstr "教育"
 
 #: dnfdragora/groupicons.py:168
 msgid "Empty"
-msgstr "Vide"
+msgstr "空白"
 
 #: dnfdragora/groupicons.py:172
 msgid "Emulators"
-msgstr "Émulateurs"
+msgstr "模擬器"
 
 #: dnfdragora/groupicons.py:176
 msgid "File tools"
-msgstr "Outils fichiers"
+msgstr "檔案工具"
 
 #: dnfdragora/groupicons.py:180
 msgid "Games"
-msgstr "Jeux"
+msgstr "遊戲"
 
 #: dnfdragora/groupicons.py:183
 msgid "Adventure"
-msgstr "Aventure"
+msgstr "冒險遊戲"
 
 #: dnfdragora/groupicons.py:187
 msgid "Arcade"
-msgstr "Jeux d'arcade"
+msgstr "大型電玩"
 
 #: dnfdragora/groupicons.py:191
 msgid "Boards"
-msgstr "Jeux de plateau"
+msgstr "棋盤遊戲"
 
 #: dnfdragora/groupicons.py:195
 msgid "Cards"
-msgstr "Jeux de cartes"
+msgstr "卡片遊戲"
 
 #: dnfdragora/groupicons.py:203
 msgid "Puzzles"
-msgstr "Casse-têtes"
+msgstr "益智遊戲"
 
 #: dnfdragora/groupicons.py:207
 msgid "Shooter"
-msgstr "Jeux de tir"
+msgstr "射擊"
 
 #: dnfdragora/groupicons.py:211
 msgid "Simulation"
-msgstr "Jeux de simulation"
+msgstr "模擬遊戲"
 
 #: dnfdragora/groupicons.py:215
 msgid "Sports"
-msgstr "Jeux de sport"
+msgstr "運動遊戲"
 
 #: dnfdragora/groupicons.py:219
 msgid "Strategy"
-msgstr "Jeux de stratégie"
+msgstr "戰略遊戲"
 
 #: dnfdragora/groupicons.py:224
 msgid "Geography"
-msgstr "Géographie"
+msgstr "地理"
 
 #: dnfdragora/groupicons.py:228
 msgid "Graphical desktop"
-msgstr "Environnement graphique"
+msgstr "圖形化桌面"
 
 #: dnfdragora/groupicons.py:231
 msgid "Enlightenment"
@@ -252,7 +252,7 @@ msgstr "Xfce"
 
 #: dnfdragora/groupicons.py:260
 msgid "Graphics"
-msgstr "Graphismes"
+msgstr "圖形"
 
 #: dnfdragora/groupicons.py:263
 msgid "3D"
@@ -261,36 +261,36 @@ msgstr "3D"
 #: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
 #: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
-msgstr "Éditeurs et convertisseurs"
+msgstr "編輯和轉檔"
 
 #: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
 #: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
 msgid "Utilities"
-msgstr "Utilitaires"
+msgstr "工具"
 
 #: dnfdragora/groupicons.py:275
 msgid "Photography"
-msgstr "Photographie"
+msgstr "攝影"
 
 #: dnfdragora/groupicons.py:279
 msgid "Scanning"
-msgstr "Scanner"
+msgstr "掃描"
 
 #: dnfdragora/groupicons.py:283
 msgid "Viewers"
-msgstr "Lecteurs"
+msgstr "檢視器"
 
 #: dnfdragora/groupicons.py:288
 msgid "Monitoring"
-msgstr "Surveillance"
+msgstr "監視"
 
 #: dnfdragora/groupicons.py:292 dnfdragora/groupicons.py:483
 msgid "Networking"
-msgstr "Réseau"
+msgstr "網路"
 
 #: dnfdragora/groupicons.py:295
 msgid "File transfer"
-msgstr "Transfert de fichiers"
+msgstr "檔案傳輸"
 
 #: dnfdragora/groupicons.py:299
 msgid "IRC"
@@ -298,19 +298,19 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:303
 msgid "Instant messaging"
-msgstr "Messagerie instantanée"
+msgstr "即時通訊"
 
 #: dnfdragora/groupicons.py:307 dnfdragora/groupicons.py:628
 msgid "Mail"
-msgstr "Courrier électronique"
+msgstr "郵件"
 
 #: dnfdragora/groupicons.py:311
 msgid "News"
-msgstr "Actualités"
+msgstr "新聞群組"
 
 #: dnfdragora/groupicons.py:319
 msgid "Remote access"
-msgstr "Accès distant"
+msgstr "遠端存取"
 
 #: dnfdragora/groupicons.py:323
 msgid "WWW"
@@ -318,83 +318,83 @@ msgstr "WWW"
 
 #: dnfdragora/groupicons.py:328
 msgid "Office"
-msgstr "Bureautique"
+msgstr "辦公軟體"
 
 #: dnfdragora/groupicons.py:331
 msgid "Dictionary"
-msgstr "Dictionnaire"
+msgstr "字典"
 
 #: dnfdragora/groupicons.py:335
 msgid "Finance"
-msgstr "Finance"
+msgstr "財務"
 
 #: dnfdragora/groupicons.py:339
 msgid "Management"
-msgstr "Gestion"
+msgstr "管理"
 
 #: dnfdragora/groupicons.py:343
 msgid "Organizer"
-msgstr "Organiseur"
+msgstr "行事曆"
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
-msgstr "Tableur"
+msgstr "試算表"
 
 #: dnfdragora/groupicons.py:355
 msgid "Suite"
-msgstr "Suite"
+msgstr "套裝軟體"
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr "Traitement de texte"
+msgstr "文字處理"
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
-msgstr "Publication"
+msgstr "出版"
 
 #: dnfdragora/groupicons.py:368
 msgid "Sciences"
-msgstr "Sciences"
+msgstr "科學"
 
 #: dnfdragora/groupicons.py:371
 msgid "Astronomy"
-msgstr "Astronomie"
+msgstr "天文學"
 
 #: dnfdragora/groupicons.py:375
 msgid "Biology"
-msgstr "Biologie"
+msgstr "生物學"
 
 #: dnfdragora/groupicons.py:379
 msgid "Chemistry"
-msgstr "Chimie"
+msgstr "化學"
 
 #: dnfdragora/groupicons.py:383
 msgid "Computer science"
-msgstr "Informatique"
+msgstr "計算機科學"
 
 #: dnfdragora/groupicons.py:387
 msgid "Geosciences"
-msgstr "Sciences de la Terre"
+msgstr "地球科學"
 
 #: dnfdragora/groupicons.py:391
 msgid "Mathematics"
-msgstr "Mathématiques"
+msgstr "數學"
 
 #: dnfdragora/groupicons.py:399
 msgid "Physics"
-msgstr "Physique"
+msgstr "物理"
 
 #: dnfdragora/groupicons.py:404
 msgid "Security"
-msgstr "Sécurité"
+msgstr "安全"
 
 #: dnfdragora/groupicons.py:408
 msgid "Shells"
-msgstr "Interpréteurs de commandes"
+msgstr "Shells"
 
 #: dnfdragora/groupicons.py:412
 msgid "Sound"
-msgstr "Son"
+msgstr "音效"
 
 #: dnfdragora/groupicons.py:419
 msgid "Midi"
@@ -402,35 +402,35 @@ msgstr "Midi"
 
 #: dnfdragora/groupicons.py:423
 msgid "Mixers"
-msgstr "Mixeurs"
+msgstr "混音器"
 
 #: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
 msgid "Players"
-msgstr "Lecteurs"
+msgstr "播放器"
 
 #: dnfdragora/groupicons.py:436
 msgid "System"
-msgstr "Système"
+msgstr "系統"
 
 #: dnfdragora/groupicons.py:439
 msgid "Base"
-msgstr "Base"
+msgstr "基本套件"
 
 #: dnfdragora/groupicons.py:443
 msgid "Boot and Init"
-msgstr "Démarrage"
+msgstr "開機與 Init 初始"
 
 #: dnfdragora/groupicons.py:447
 msgid "Cluster"
-msgstr "Grappe"
+msgstr "叢集"
 
 #: dnfdragora/groupicons.py:451 dnfdragora/groupicons.py:540
 msgid "Configuration"
-msgstr "Configuration"
+msgstr "設定"
 
 #: dnfdragora/groupicons.py:455
 msgid "Fonts"
-msgstr "Polices"
+msgstr "字型"
 
 #: dnfdragora/groupicons.py:458
 msgid "True type"
@@ -446,99 +446,99 @@ msgstr "X11 bitmap"
 
 #: dnfdragora/groupicons.py:471
 msgid "Internationalization"
-msgstr "Internationalisation"
+msgstr "國際化"
 
 #: dnfdragora/groupicons.py:475
 msgid "Kernel and hardware"
-msgstr "Noyau et matériel"
+msgstr "核心與硬體"
 
 #: dnfdragora/groupicons.py:479
 msgid "Libraries"
-msgstr "Bibliothèques"
+msgstr "函式庫"
 
 #: dnfdragora/groupicons.py:487
 msgid "Packaging"
-msgstr "Empaquetage"
+msgstr "包裝"
 
 #: dnfdragora/groupicons.py:491
 msgid "Printing"
-msgstr "Impression"
+msgstr "列印"
 
 #: dnfdragora/groupicons.py:495
 msgid "Servers"
-msgstr "Serveurs"
+msgstr "伺服器"
 
 #: dnfdragora/groupicons.py:504
 msgid "Terminals"
-msgstr "Terminaux"
+msgstr "終端機"
 
 #: dnfdragora/groupicons.py:508
 msgid "Text tools"
-msgstr "Outils Texte"
+msgstr "文字工具"
 
 #: dnfdragora/groupicons.py:512
 msgid "Toys"
-msgstr "Petits outils"
+msgstr "玩具"
 
 #: dnfdragora/groupicons.py:516
 msgid "Video"
-msgstr "Vidéo"
+msgstr "視訊"
 
 #: dnfdragora/groupicons.py:527
 msgid "Television"
-msgstr "Télévision"
+msgstr "電視"
 
 #: dnfdragora/groupicons.py:537
 msgid "Workstation"
-msgstr "Station de travail"
+msgstr "工作站"
 
 #: dnfdragora/groupicons.py:544
 msgid "Console Tools"
-msgstr "Utilitaires console"
+msgstr "Console 工具"
 
 #: dnfdragora/groupicons.py:552
 msgid "Game station"
-msgstr "Ordinateur de jeu"
+msgstr "遊戲平台"
 
 #: dnfdragora/groupicons.py:556
 msgid "Internet station"
-msgstr "Ordinateur dédié à la navigation"
+msgstr "網際網路平台"
 
 #: dnfdragora/groupicons.py:560
 msgid "Multimedia station"
-msgstr "Ordinateur multimédia"
+msgstr "多媒體平台"
 
 #: dnfdragora/groupicons.py:564
 msgid "Network Computer (client)"
-msgstr "Ordinateur en réseau (client)"
+msgstr "網路電腦 (客戶端)"
 
 #: dnfdragora/groupicons.py:568
 msgid "Office Workstation"
-msgstr "Environnement Bureautique"
+msgstr "辦公軟體平台"
 
 #: dnfdragora/groupicons.py:572
 msgid "Scientific Workstation"
-msgstr "Environnement Scientifique"
+msgstr "科學工作站"
 
 #: dnfdragora/groupicons.py:577
 msgid "Graphical Environment"
-msgstr "Environnement graphique"
+msgstr "圖形環境"
 
 #: dnfdragora/groupicons.py:580
 msgid "GNOME Workstation"
-msgstr "Environnement GNOME"
+msgstr "GNOME 工作站"
 
 #: dnfdragora/groupicons.py:584
 msgid "IceWm Desktop"
-msgstr "Environnement IceWm"
+msgstr "IceWM 桌面"
 
 #: dnfdragora/groupicons.py:588
 msgid "KDE Workstation"
-msgstr "Environnement KDE"
+msgstr "KDE 工作站"
 
 #: dnfdragora/groupicons.py:592
 msgid "Other Graphical Desktops"
-msgstr "Autres environnements graphiques"
+msgstr "其他圖型桌面軟體"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
@@ -546,7 +546,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
-msgstr "Serveur"
+msgstr "伺服器"
 
 #: dnfdragora/groupicons.py:616
 msgid "DNS/NIS"
@@ -554,19 +554,19 @@ msgstr "DNS/NIS"
 
 #: dnfdragora/groupicons.py:620
 msgid "Database"
-msgstr "Base de données"
+msgstr "資料庫軟體"
 
 #: dnfdragora/groupicons.py:624
 msgid "Firewall/Router"
-msgstr "Pare-feu/Routeur"
+msgstr "防火牆/路由器"
 
 #: dnfdragora/groupicons.py:632
 msgid "Mail/Groupware/News"
-msgstr "Courriel/Travail collaboratif/Actualité"
+msgstr "郵件/群組軟體/新聞"
 
 #: dnfdragora/groupicons.py:636
 msgid "Network Computer server"
-msgstr "Serveur d'ordinateur réseau"
+msgstr "網路伺服器"
 
 #: dnfdragora/groupicons.py:640
 msgid "Web/FTP"
@@ -593,39 +593,39 @@ msgstr ""
 
 #: dnfdragora/ui.py:257
 msgid "Software Management"
-msgstr "Gestion des logiciels"
+msgstr "軟體套件管理程式"
 
 #: dnfdragora/ui.py:277
 msgid "Arch"
-msgstr "Arch"
+msgstr "硬體架構"
 
 #: dnfdragora/ui.py:277
 msgid "Name"
-msgstr "Nom"
+msgstr "名稱"
 
 #: dnfdragora/ui.py:277
 msgid "Release"
-msgstr "Révision"
+msgstr "釋出"
 
 #: dnfdragora/ui.py:277
 msgid "Summary"
-msgstr "Résumé"
+msgstr "摘要"
 
 #: dnfdragora/ui.py:277
 msgid "Version"
-msgstr "Version"
+msgstr "版本"
 
 #: dnfdragora/ui.py:284
 msgid "Status"
-msgstr "Statut"
+msgstr "狀態"
 
 #: dnfdragora/ui.py:292
 msgid "Installed"
-msgstr "Installé"
+msgstr "已安裝"
 
 #: dnfdragora/ui.py:293
 msgid "Not installed"
-msgstr "Non installé"
+msgstr "未安裝"
 
 #: dnfdragora/ui.py:294
 msgid "To update"
@@ -634,27 +634,27 @@ msgstr ""
 #: dnfdragora/ui.py:300
 #, python-format
 msgid "Show %s and noarch only"
-msgstr "Afficher uniquement %s et noarch"
+msgstr ""
 
 #: dnfdragora/ui.py:306
 msgid "Groups"
-msgstr "Groupes"
+msgstr "群組"
 
 #: dnfdragora/ui.py:347
 msgid "in names"
-msgstr "parmi les noms"
+msgstr "依名稱"
 
 #: dnfdragora/ui.py:348
 msgid "in descriptions"
-msgstr "parmi les descriptions"
+msgstr "依描述"
 
 #: dnfdragora/ui.py:349
 msgid "in summaries"
-msgstr "parmi les résumés"
+msgstr "依摘要"
 
 #: dnfdragora/ui.py:350
 msgid "in file names"
-msgstr "dans les noms de fichiers"
+msgstr "依檔案名稱"
 
 #: dnfdragora/ui.py:371
 msgid "&Search"
@@ -666,7 +666,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:387
 msgid "&Apply"
-msgstr "&Appliquer"
+msgstr ""
 
 #: dnfdragora/ui.py:391
 msgid "Ch&eck all"
@@ -674,15 +674,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:395 dnfdragora/ui.py:403
 msgid "&Quit"
-msgstr "&Quitter"
+msgstr ""
 
 #: dnfdragora/ui.py:400
 msgid "&File"
-msgstr "&Fichier"
+msgstr ""
 
 #: dnfdragora/ui.py:401
 msgid "Reset the selection"
-msgstr "_Remettre à zéro la sélection"
+msgstr ""
 
 #: dnfdragora/ui.py:402
 msgid "Refresh Metadata"
@@ -690,19 +690,19 @@ msgstr ""
 
 #: dnfdragora/ui.py:413
 msgid "&Help"
-msgstr "&Aide"
+msgstr ""
 
 #: dnfdragora/ui.py:414
 msgid "Manual"
-msgstr "Manuel"
+msgstr "手動"
 
 #: dnfdragora/ui.py:415
 msgid "&About"
-msgstr "À &propos"
+msgstr ""
 
 #: dnfdragora/ui.py:759
 msgid "Search"
-msgstr "Rechercher"
+msgstr "搜尋"
 
 #: dnfdragora/ui.py:806
 msgid "Not implemented yet"
