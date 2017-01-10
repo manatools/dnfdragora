@@ -2,23 +2,24 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-09 12:55+0100\n"
+"POT-Creation-Date: 2017-01-11 00:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
-"Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/teams/9361/nb/)\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
+"teams/9361/nb/)\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:291 dnfdragora/ui.py:305
+#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
 msgid "All"
 msgstr "Alle"
 
@@ -587,143 +588,151 @@ msgstr ""
 msgid "Progress files (%d/%d)"
 msgstr ""
 
-#: dnfdragora/ui.py:225
+#: dnfdragora/ui.py:237
 msgid "Software Management - dnfdragora"
 msgstr ""
 
-#: dnfdragora/ui.py:257
+#: dnfdragora/ui.py:269
 msgid "Software Management"
 msgstr "Programvarehåndtering"
 
-#: dnfdragora/ui.py:277
+#: dnfdragora/ui.py:289
 msgid "Arch"
 msgstr "Arkitektur"
 
-#: dnfdragora/ui.py:277
+#: dnfdragora/ui.py:289
 msgid "Name"
 msgstr "Navn"
 
-#: dnfdragora/ui.py:277
+#: dnfdragora/ui.py:289
 msgid "Release"
 msgstr "Utgivelse"
 
-#: dnfdragora/ui.py:277
+#: dnfdragora/ui.py:289
 msgid "Summary"
 msgstr "Oppsummering"
 
-#: dnfdragora/ui.py:277
+#: dnfdragora/ui.py:289
 msgid "Version"
 msgstr "Versjon"
 
-#: dnfdragora/ui.py:284
+#: dnfdragora/ui.py:296
 msgid "Status"
 msgstr "Status"
 
-#: dnfdragora/ui.py:292
+#: dnfdragora/ui.py:304
 msgid "Installed"
 msgstr "Installert"
 
-#: dnfdragora/ui.py:293
+#: dnfdragora/ui.py:305
 msgid "Not installed"
 msgstr "Ikke installert"
 
-#: dnfdragora/ui.py:294
+#: dnfdragora/ui.py:306
 msgid "To update"
 msgstr ""
 
-#: dnfdragora/ui.py:300
+#: dnfdragora/ui.py:312
 #, python-format
 msgid "Show %s and noarch only"
 msgstr ""
 
-#: dnfdragora/ui.py:306
+#: dnfdragora/ui.py:318
 msgid "Groups"
 msgstr "Grupper"
 
-#: dnfdragora/ui.py:347
+#: dnfdragora/ui.py:359
 msgid "in names"
 msgstr "i navn"
 
-#: dnfdragora/ui.py:348
+#: dnfdragora/ui.py:360
 msgid "in descriptions"
 msgstr "i beskrivelser"
 
-#: dnfdragora/ui.py:349
+#: dnfdragora/ui.py:361
 msgid "in summaries"
 msgstr "i sammendrag"
 
-#: dnfdragora/ui.py:350
+#: dnfdragora/ui.py:362
 msgid "in file names"
 msgstr "i filnavn"
 
-#: dnfdragora/ui.py:371
+#: dnfdragora/ui.py:383
 msgid "&Search"
 msgstr ""
 
-#: dnfdragora/ui.py:377
+#: dnfdragora/ui.py:389
 msgid "&Clear search"
 msgstr ""
 
-#: dnfdragora/ui.py:387
+#: dnfdragora/ui.py:399
 msgid "&Apply"
 msgstr ""
 
-#: dnfdragora/ui.py:391
+#: dnfdragora/ui.py:403
 msgid "Ch&eck all"
 msgstr ""
 
-#: dnfdragora/ui.py:395 dnfdragora/ui.py:403
+#: dnfdragora/ui.py:407 dnfdragora/ui.py:415
 msgid "&Quit"
 msgstr ""
 
-#: dnfdragora/ui.py:400
+#: dnfdragora/ui.py:412
 msgid "&File"
 msgstr ""
 
-#: dnfdragora/ui.py:401
+#: dnfdragora/ui.py:413
 msgid "Reset the selection"
 msgstr ""
 
-#: dnfdragora/ui.py:402
+#: dnfdragora/ui.py:414
 msgid "Refresh Metadata"
 msgstr ""
 
-#: dnfdragora/ui.py:413
+#: dnfdragora/ui.py:425
 msgid "&Help"
 msgstr ""
 
-#: dnfdragora/ui.py:414
+#: dnfdragora/ui.py:426
 msgid "Manual"
 msgstr "Manuell"
 
-#: dnfdragora/ui.py:415
+#: dnfdragora/ui.py:427
 msgid "&About"
 msgstr ""
 
-#: dnfdragora/ui.py:759
+#: dnfdragora/ui.py:474
+msgid "update"
+msgstr ""
+
+#: dnfdragora/ui.py:477
+msgid "installed"
+msgstr ""
+
+#: dnfdragora/ui.py:818
 msgid "Search"
 msgstr ""
 
-#: dnfdragora/ui.py:806
+#: dnfdragora/ui.py:865
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:806
+#: dnfdragora/ui.py:865
 msgid "Sorry"
 msgstr ""
 
-#: dnfdragora/ui.py:869
+#: dnfdragora/ui.py:929
 msgid "Applying changes to the system"
 msgstr ""
 
-#: dnfdragora/ui.py:882
+#: dnfdragora/ui.py:942
 msgid "BuildTransaction failure"
 msgstr ""
 
-#: dnfdragora/ui.py:920
+#: dnfdragora/ui.py:980
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:922
+#: dnfdragora/ui.py:982
 msgid "Unmanaged event"
 msgstr ""
