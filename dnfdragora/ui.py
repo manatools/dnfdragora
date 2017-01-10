@@ -91,10 +91,22 @@ class PackageQueue:
             self.actions[pkg_id] = action
 
     def checked(self, pkg):
+        '''
+        returns if a package has to be checked in gui pacakge-list
+        '''
         pkg_id = pkg.pkg_id
         if pkg_id in self.actions.keys():
             return pkg.installed and self.actions[pkg_id] != 'r' or self.actions[pkg_id] != 'r'
         return pkg.installed
+
+    def action(self, pkg):
+        '''
+        returns the action of the queued package or None if pacakge is not queued
+        '''
+        pkg_id = pkg.pkg_id
+        if pkg_id in self.actions.keys():
+            return self.actions[pkg_id]
+        return None
 
     def remove(self, pkg):
         """Remove package from queue"""
@@ -441,6 +453,40 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         return ("{0}-{1}_{2}-{3}.{4}".format(name, epoch, version, release, arch))
 
+    def _setStatusToItem(self, pkg, item, emit_changed=False) :
+        '''
+        set the status of the given package to the item so that it is shown on package list
+        '''
+        if self.update_only:
+            return
+
+        cellNum = item.cellCount()
+        cell= item.cell(cellNum-1)
+        icon = None
+
+        #TODO get from backend if it is a base pacakge to lock it.
+        status = self.packageQueue.action(pkg)
+        if status:
+            icon = self.images_path + const.QUEUE_PACKAGE_TYPES[status] +".png"
+        else:
+            #not queued
+            if pkg.is_update:
+                status = _("update")
+                icon = self.images_path + "update.png"
+            elif pkg.installed :
+                status = _("installed")
+                icon = self.images_path + "installed.png"
+            else:
+                status = ""
+                icon = self.images_path + "available.png"
+        if icon:
+            cell.setLabel(status)
+            cell.setIconName(icon)
+            if emit_changed:
+                self.packageList.cellChanged(cell)
+
+
+
     def _fillPackageList(self, groupName=None, filter="all") :
         '''
         fill package list filtered by group if groupName is given,
@@ -468,6 +514,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
                             }
+                        if not self.update_only:
+                            item.addCell("")
+                            self._setStatusToItem(pkg,item)
                         item.this.own(False)
 
         if filter == 'all' or filter == 'installed' or filter == 'skip_other':
@@ -482,6 +531,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
                             }
+                        if not self.update_only:
+                            item.addCell("")
+                            self._setStatusToItem(pkg,item)
                         item.this.own(False)
 
         if filter == 'all' or filter == 'not_installed' or filter == 'skip_other':
@@ -496,6 +548,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                             'pkg' : pkg, 'item' : item
                             }
+                        if not self.update_only:
+                            item.addCell("")
+                            self._setStatusToItem(pkg,item)
                         item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
@@ -735,6 +790,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
                         'pkg' : pkg, 'item' : item
                         }
+                    if not self.update_only:
+                        item.addCell("")
+                        self._setStatusToItem(pkg,item)
                     item.this.own(False)
 
             keylist = sorted(self.itemList.keys())
@@ -826,6 +884,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                         self.packageQueue.add(pkg, 'i')
                                     else:
                                         self.packageQueue.add(pkg, 'r')
+                                    self._setStatusToItem(pkg, self.itemList[it]['item'], True)
                                     break
 
                 elif (widget == self.reset_search_button) :
