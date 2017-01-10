@@ -27,7 +27,7 @@ if __name__ == "__main__":
     parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
 
     # Application arguments
-    parser.add_argument('--update_only', help='run as show updates only dialog', action='store_true')
+    parser.add_argument('--update-only', help='show updates only dialog', action='store_true')
 
     parser.add_argument('--group_icons_path', nargs='?', help='force a new path for group icons (instead of /usr/share/icons)')
     parser.add_argument('--images_path', nargs='?', help='force a new path for all the needed images (instead of /usr/share/dnfdragora/images)')
