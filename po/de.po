@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-09 12:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Marc Lattemann <marc.lattemann@web.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -542,7 +542,7 @@ msgstr "Andere grafische Oberflächen"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Suchergebnisse"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
@@ -575,21 +575,21 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %d files,  %d bytes"
-msgstr ""
+msgstr "Herunterladen: %d Dateien, %d Bytes"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Herunterladen starten: %s"
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%d/%d)"
-msgstr ""
+msgstr "Fortschritt Dateien (%d%d)"
 
 #: dnfdragora/ui.py:225
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Software-Verwaltung - dnfdragora"
 
 #: dnfdragora/ui.py:257
 msgid "Software Management"
@@ -629,7 +629,7 @@ msgstr "Nicht Installiert"
 
 #: dnfdragora/ui.py:294
 msgid "To update"
-msgstr ""
+msgstr "Aktualisieren"
 
 #: dnfdragora/ui.py:300
 #, python-format
@@ -658,11 +658,11 @@ msgstr "in Dateinamen"
 
 #: dnfdragora/ui.py:371
 msgid "&Search"
-msgstr ""
+msgstr "&Suchen"
 
 #: dnfdragora/ui.py:377
 msgid "&Clear search"
-msgstr ""
+msgstr "Suche &löschen"
 
 #: dnfdragora/ui.py:387
 msgid "&Apply"
@@ -670,7 +670,7 @@ msgstr "&Anwenden"
 
 #: dnfdragora/ui.py:391
 msgid "Ch&eck all"
-msgstr ""
+msgstr "Alle au&swählen"
 
 #: dnfdragora/ui.py:395 dnfdragora/ui.py:403
 msgid "&Quit"
@@ -686,7 +686,7 @@ msgstr "Auswahl zurücksetzen"
 
 #: dnfdragora/ui.py:402
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Metadaten aktualisieren"
 
 #: dnfdragora/ui.py:413
 msgid "&Help"
@@ -706,24 +706,24 @@ msgstr "Suchen"
 
 #: dnfdragora/ui.py:806
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Derzeit nicht implementiert"
 
 #: dnfdragora/ui.py:806
 msgid "Sorry"
-msgstr ""
+msgstr "Entschuldigung!"
 
 #: dnfdragora/ui.py:869
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Änderungen auf das System anwenden"
 
 #: dnfdragora/ui.py:882
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "Build Transaktion Fehler"
 
 #: dnfdragora/ui.py:920
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Nicht unterstützes Objekt"
 
 #: dnfdragora/ui.py:922
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Nicht unterstützter Event"
