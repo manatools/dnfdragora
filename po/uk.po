@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -11,14 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-11 00:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
-"Language-Team: Ukrainian (https://www.transifex.com/MageiaLinux/teams/9361/"
-"uk/)\n"
-"Language: uk\n"
+"Language-Team: Ukrainian (https://www.transifex.com/MageiaLinux/teams/9361/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
 msgid "All"
@@ -704,11 +702,11 @@ msgstr "Пр&о програму"
 
 #: dnfdragora/ui.py:474
 msgid "update"
-msgstr ""
+msgstr "оновлення"
 
 #: dnfdragora/ui.py:477
 msgid "installed"
-msgstr ""
+msgstr "встановлено"
 
 #: dnfdragora/ui.py:818
 msgid "Search"

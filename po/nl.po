@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: dragnadh <dragnadh@gmail.com>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/MageiaLinux/teams/9361/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
@@ -702,11 +702,11 @@ msgstr "&Over"
 
 #: dnfdragora/ui.py:474
 msgid "update"
-msgstr ""
+msgstr "bijwerken"
 
 #: dnfdragora/ui.py:477
 msgid "installed"
-msgstr ""
+msgstr "geïnstalleerd"
 
 #: dnfdragora/ui.py:818
 msgid "Search"
