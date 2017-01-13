@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -11,12 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2017-01-11 00:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
-"teams/9361/zh_CN/)\n"
-"Language: zh_CN\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/teams/9361/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
@@ -543,7 +542,7 @@ msgstr "其他图形界面"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "搜索结果"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
@@ -576,21 +575,21 @@ msgstr "网络/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %d files,  %d bytes"
-msgstr ""
+msgstr "正在下载：%d 个文件，%d 字节"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "开始下载：%s"
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%d/%d)"
-msgstr ""
+msgstr "处理文件（%d / %d）"
 
 #: dnfdragora/ui.py:237
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "软件管理 - dnfdragora"
 
 #: dnfdragora/ui.py:269
 msgid "Software Management"
@@ -630,7 +629,7 @@ msgstr "未安装"
 
 #: dnfdragora/ui.py:306
 msgid "To update"
-msgstr ""
+msgstr "升级"
 
 #: dnfdragora/ui.py:312
 #, python-format
@@ -659,11 +658,11 @@ msgstr "在文件名中"
 
 #: dnfdragora/ui.py:383
 msgid "&Search"
-msgstr ""
+msgstr "搜索(&S)"
 
 #: dnfdragora/ui.py:389
 msgid "&Clear search"
-msgstr ""
+msgstr "清除搜索结果(&C)"
 
 #: dnfdragora/ui.py:399
 msgid "&Apply"
@@ -671,7 +670,7 @@ msgstr "应用(&A)"
 
 #: dnfdragora/ui.py:403
 msgid "Ch&eck all"
-msgstr ""
+msgstr "检查所有(&e)"
 
 #: dnfdragora/ui.py:407 dnfdragora/ui.py:415
 msgid "&Quit"
@@ -687,7 +686,7 @@ msgstr "重置所选项"
 
 #: dnfdragora/ui.py:414
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "更新元数据"
 
 #: dnfdragora/ui.py:425
 msgid "&Help"
@@ -703,11 +702,11 @@ msgstr "关于(&A)"
 
 #: dnfdragora/ui.py:474
 msgid "update"
-msgstr ""
+msgstr "升级"
 
 #: dnfdragora/ui.py:477
 msgid "installed"
-msgstr ""
+msgstr "已安装"
 
 #: dnfdragora/ui.py:818
 msgid "Search"
@@ -715,24 +714,24 @@ msgstr "查找"
 
 #: dnfdragora/ui.py:865
 msgid "Not implemented yet"
-msgstr ""
+msgstr "尚未实现"
 
 #: dnfdragora/ui.py:865
 msgid "Sorry"
-msgstr ""
+msgstr "抱歉"
 
 #: dnfdragora/ui.py:929
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "应用所作更改"
 
 #: dnfdragora/ui.py:942
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "构建事务失败"
 
 #: dnfdragora/ui.py:980
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "组件未被管理"
 
 #: dnfdragora/ui.py:982
 msgid "Unmanaged event"
-msgstr ""
+msgstr "事件未被管理"
