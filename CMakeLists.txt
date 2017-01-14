@@ -1,6 +1,8 @@
 project(dnfdragora NONE)
 cmake_minimum_required(VERSION 3.4)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+
 include(FindPkgConfig)
 include(GNUInstallDirs)
 
@@ -11,18 +13,20 @@ string(REGEX REPLACE "\n$" "" ${PYTHON_INSTALL_DIR} "${PYTHON_INSTALL_DIR}")
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; sys.stdout.write('%s.%s' % (sys.version_info.major, sys.version_info.minor))" OUTPUT_VARIABLE PYTHON_MAJOR_DOT_MINOR_VERSION)
 message(STATUS "Python install dir is ${PYTHON_INSTALL_DIR}")
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+option(CHECK_RUNTIME_DEPENDENCIES "Verify the presence of runtime-only dependencies?" ON)
 
-include(FindPythonModule)
+if(CHECK_RUNTIME_DEPENDENCIES)
+	include(FindPythonModule)
 
-# Find the dnfdaemon client module
-find_python_module(dnfdaemon.client REQUIRED)
+	# Find the dnfdaemon module
+	find_python_module(dnfdaemon REQUIRED)
 
-# Find yui module
-find_python_module(yui REQUIRED)
+	# Find yui module
+	find_python_module(yui REQUIRED)
 
-# Find yaml module
-find_python_module(yaml REQUIRED)
+	# Find yaml module
+	find_python_module(yaml REQUIRED)
+endif(CHECK_RUNTIME_DEPENDENCIES)
 
 option(ENABLE_COMPS "Use comps data for organizing packages?" OFF)
 
