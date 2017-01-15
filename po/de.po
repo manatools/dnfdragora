@@ -694,7 +694,7 @@ msgstr "&Hilfe"
 
 #: dnfdragora/ui.py:426
 msgid "Manual"
-msgstr "Manuell"
+msgstr "Anleitung"
 
 #: dnfdragora/ui.py:427
 msgid "&About"
