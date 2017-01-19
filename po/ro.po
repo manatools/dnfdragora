@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -11,14 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-11 00:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Florin Cătălin RUSSEN <cfrussen@yahoo.co.uk>, 2017\n"
-"Language-Team: Romanian (https://www.transifex.com/MageiaLinux/teams/9361/"
-"ro/)\n"
-"Language: ro\n"
+"Language-Team: Romanian (https://www.transifex.com/MageiaLinux/teams/9361/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
-"2:1));\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
 msgid "All"
@@ -544,7 +542,7 @@ msgstr "Alte medii grafice"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Rezultatul căutării"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
@@ -577,21 +575,21 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %d files,  %d bytes"
-msgstr ""
+msgstr "Se descarcă: %d fișiere, %d octeți"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Se pornește descărcarea: %s"
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%d/%d)"
-msgstr ""
+msgstr "Progresul fișierelor (%d/%d)"
 
 #: dnfdragora/ui.py:237
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Gestionare aplicații - dnfdragora"
 
 #: dnfdragora/ui.py:269
 msgid "Software Management"
@@ -631,7 +629,7 @@ msgstr "Neinstalat"
 
 #: dnfdragora/ui.py:306
 msgid "To update"
-msgstr ""
+msgstr "De actualizat"
 
 #: dnfdragora/ui.py:312
 #, python-format
@@ -660,11 +658,11 @@ msgstr "în denumirile fișierelor"
 
 #: dnfdragora/ui.py:383
 msgid "&Search"
-msgstr ""
+msgstr "Ca&ută"
 
 #: dnfdragora/ui.py:389
 msgid "&Clear search"
-msgstr ""
+msgstr "&Curăță căutarea"
 
 #: dnfdragora/ui.py:399
 msgid "&Apply"
@@ -672,7 +670,7 @@ msgstr "&Aplică"
 
 #: dnfdragora/ui.py:403
 msgid "Ch&eck all"
-msgstr ""
+msgstr "V&erifică tot"
 
 #: dnfdragora/ui.py:407 dnfdragora/ui.py:415
 msgid "&Quit"
@@ -688,7 +686,7 @@ msgstr "_Reinițializează selecția"
 
 #: dnfdragora/ui.py:414
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Împrospătează metadatele"
 
 #: dnfdragora/ui.py:425
 msgid "&Help"
@@ -704,11 +702,11 @@ msgstr "&Despre"
 
 #: dnfdragora/ui.py:474
 msgid "update"
-msgstr ""
+msgstr "actualizare"
 
 #: dnfdragora/ui.py:477
 msgid "installed"
-msgstr ""
+msgstr "instalat"
 
 #: dnfdragora/ui.py:818
 msgid "Search"
@@ -716,24 +714,24 @@ msgstr "Caută"
 
 #: dnfdragora/ui.py:865
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Neimplementat încă"
 
 #: dnfdragora/ui.py:865
 msgid "Sorry"
-msgstr ""
+msgstr "Regrete"
 
 #: dnfdragora/ui.py:929
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Se aplică modificările sistemului"
 
 #: dnfdragora/ui.py:942
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "BuildTransaction a eșuat"
 
 #: dnfdragora/ui.py:980
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Miniaplicație negestionată"
 
 #: dnfdragora/ui.py:982
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Eveniment negestionat"
