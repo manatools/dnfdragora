@@ -27,7 +27,7 @@ import dnfdragora.config
 from dnfdragora import const
 
 import gettext
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 import logging
 logger = logging.getLogger('dnfdragora.ui')
 
@@ -826,6 +826,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         return True
 
 
+    def _populate_transaction(self) :
+        '''
+        Clear and populate a transaction
+        '''
+        self.backend.ClearTransaction()
+        for action in const.QUEUE_PACKAGE_TYPES:
+            pkg_ids = self.packageQueue.get(action)
+            for pkg_id in pkg_ids:
+                logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkg_id))
+                rc, trans = self.backend.AddTransaction(
+                    pkg_id, const.QUEUE_PACKAGE_TYPES[action])
+                if not rc:
+                    logger.error('AddTransaction result : %s: %s' % (rc, pkg_id))
+
     def handleevent(self):
         """
         Event-handler for the maindialog
@@ -907,17 +921,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 elif (widget == self.applyButton) :
                     #### APPLY
-                    self.backend.ClearTransaction()
-                    errors = 0
-                    for action in const.QUEUE_PACKAGE_TYPES:
-                        pkg_ids = self.packageQueue.get(action)
-                        for pkg_id in pkg_ids:
-                                logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkg_id))
-                                rc, trans = self.backend.AddTransaction(
-                                    pkg_id, const.QUEUE_PACKAGE_TYPES[action])
-                                if not rc:
-                                    logger.debug('result : %s: %s' % (rc, pkg_id))
-                                    errors += 1
+                    self._populate_transaction()
                     rc, result = self.backend.BuildTransaction()
                     if rc :
                         ok = True
@@ -928,10 +932,44 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         if ok:  # Ok pressed
                             self.infobar.info(_('Applying changes to the system'))
                             rc, result = self.backend.RunTransaction()
-                            # TODO investigate why is always False
-                            #if not rc :
-                                #logger.error('RunTransaction failure')
-                                #logger.error(result)
+                            # This can happen more than once (more gpg keys to be
+                            # imported)
+                            while rc == 1:
+                                logger.debug('GPG key missing: %s' % repr(result))
+                                # get info about gpgkey to be comfirmed
+                                values = self.backend._gpg_confirm
+                                if values:  # There is a gpgkey to be verified
+                                    (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                                    logger.debug('GPGKey : %s' % repr(values))
+                                    resp = dialogs.ask_for_gpg_import(values)
+                                    self.backend.ConfirmGPGImport(hexkeyid, resp)
+                                    # tell the backend that the gpg key is confirmed
+                                    # rerun the transaction
+                                    # FIXME: It should not be needed to populate
+                                    # the transaction again
+                                    if resp:
+                                        self._populate_transaction()
+                                        rc, result = self.backend.BuildTransaction()
+                                        rc, result = self.backend.RunTransaction()
+                                    else:
+                                        # NOTE TODO answer no is the only way to exit, since it seems not
+                                        # to install the key :(
+                                        break
+                                else:  # error in signature verification
+                                    dialogs.infoMsgBox({'title' : _('Error checking package signatures\n'),
+                                                        'text' : '\n'.join(result), 'richtext': 1})
+                                    break
+                            if rc == 4:  # Download errors
+                                dialogs.infoMsgBox({'title'  : ngettext('Downloading error\n',
+                                    'Downloading errors\n', len(result)), 'text' : '\n'.join(result), 'richtext' : 1 })
+                                logger.error('Download error')
+                                logger.error(result)
+                            elif rc != 0:  # other transaction errors
+                                dialogs.infoMsgBox({'title'  : ngettext('Error in transaction\n',
+                                            'Errors in transaction\n', len(result)), 'text' :  '\n'.join(result), 'richtext' : 1} )
+                                logger.error('RunTransaction failure')
+                                logger.error(result)
+
                             self.release_root_backend()
                             self.packageQueue.clear()
                             self.backend.reload()
