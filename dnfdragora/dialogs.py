@@ -277,3 +277,125 @@ def msgBox (info) :
     dlg = None
 
     return 1
+
+
+def askOkCancel (info) :
+    '''
+    This function create an OK-Cancel dialog with a <<title>> and a
+    <<text>> passed as parameters.
+
+    @param info: dictionary, information to be passed to the dialog.
+        title     =>     dialog title
+        text      =>     string to be swhon into the dialog
+        richtext  =>     1 if using rich text
+        default_button => optional default button [1 => Ok - any other values => Cancel]
+
+    @output:
+        False: Cancel button has been pressed
+        True:  Ok button has been pressed
+    '''
+    if (not info) :
+        return False
+
+    retVal = False
+    yui.YUI.widgetFactory
+    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
+    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
+    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_TWO)
+
+    if ('title' in info.keys()) :
+        dlg.setTitle(info['title'])
+
+    rt = False
+    if ("richtext" in info.keys()) :
+        rt = info['richtext']
+
+    if ('text' in info.keys()) :
+        dlg.setText(info['text'], rt)
+
+    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
+    dlg.setButtonLabel(_("&Cancel"), yui.YMGAMessageBox.B_TWO )
+
+    if ("default_button" in info.keys() and info["default_button"] == 1) :
+        dlg.setDefaultButton(yui.YMGAMessageBox.B_ONE)
+    else :
+        dlg.setDefaultButton(yui.YMGAMessageBox.B_TWO)
+
+    dlg.setMinSize(50, 5)
+
+    retVal = dlg.show() == yui.YMGAMessageBox.B_ONE;
+    dlg = None
+
+    return retVal
+
+def askYesOrNo (info) :
+    '''
+    This function create an Yes-No dialog with a <<title>> and a
+    <<text>> passed as parameters.
+
+    @param info: dictionary, information to be passed to the dialog.
+        title     =>     dialog title
+        text      =>     string to be swhon into the dialog
+        richtext  =>     1 if using rich text
+        default_button => optional default button [1 => Yes - any other values => No]
+        size => [row, coulmn]
+
+    @output:
+        False: No button has been pressed
+        True:  Yes button has been pressed
+    '''
+    if (not info) :
+        return False
+
+    retVal = False
+    yui.YUI.widgetFactory
+    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
+    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
+    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_TWO)
+
+    if ('title' in info.keys()) :
+        dlg.setTitle(info['title'])
+
+    rt = False
+    if ("richtext" in info.keys()) :
+        rt = info['richtext']
+
+    if ('text' in info.keys()) :
+        dlg.setText(info['text'], rt)
+
+    dlg.setButtonLabel(_("&Yes"), yui.YMGAMessageBox.B_ONE )
+    dlg.setButtonLabel(_("&No"), yui.YMGAMessageBox.B_TWO )
+    if ("default_button" in info.keys() and info["default_button"] == 1) :
+        dlg.setDefaultButton(yui.YMGAMessageBox.B_ONE)
+    else :
+        dlg.setDefaultButton(yui.YMGAMessageBox.B_TWO)
+    if ('size' in info.keys()) :
+        dlg.setMinSize(info['size'][0], info['size'][1])
+
+    retVal = dlg.show() == yui.YMGAMessageBox.B_ONE;
+    dlg = None
+
+    return retVal
+
+
+def ask_for_gpg_import (values):
+    '''
+    This function asks if user wants to import or not the gpg keys.
+    @output:
+        False: No button has been pressed
+        True:  Yes button has been pressed
+    '''
+    (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+    pkg_name = pkg_id.split(',')[0]
+    msg = (_('Do you want to import this GPG key <br>needed to verify the %s package?<br>'
+             '<br>Key        : 0x%s:<br>'
+             'Userid     : "%s"<br>'
+             'From       : %s') %
+           (pkg_name, hexkeyid, userid,
+            keyurl.replace("file://", "")))
+
+    return askYesOrNo({'title' : _("GPG key missed"),
+                       'text': msg,
+                       'default_button' : 1,
+                       'richtext' : True,
+                       'size' : [60, 10]})
