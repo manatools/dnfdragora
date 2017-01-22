@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-11 00:08+0100\n"
+"POT-Creation-Date: 2017-01-22 22:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
@@ -713,26 +713,42 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: dnfdragora/ui.py:865
+#: dnfdragora/ui.py:879
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:865
+#: dnfdragora/ui.py:879
 msgid "Sorry"
 msgstr ""
 
-#: dnfdragora/ui.py:929
+#: dnfdragora/ui.py:933
 msgid "Applying changes to the system"
 msgstr ""
 
-#: dnfdragora/ui.py:942
+#: dnfdragora/ui.py:959
+msgid "Error checking package signatures\n"
+msgstr ""
+
+#: dnfdragora/ui.py:963
+msgid "Downloading error\n"
+msgid_plural "Downloading errors\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dnfdragora/ui.py:968
+msgid "Error in transaction\n"
+msgid_plural "Errors in transaction\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dnfdragora/ui.py:980
 msgid "BuildTransaction failure"
 msgstr ""
 
-#: dnfdragora/ui.py:980
+#: dnfdragora/ui.py:1018
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:982
+#: dnfdragora/ui.py:1020
 msgid "Unmanaged event"
 msgstr ""
