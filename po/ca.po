@@ -75,7 +75,7 @@ msgstr "Ràdio"
 
 #: dnfdragora/groupicons.py:70
 msgid "Serial"
-msgstr "De sèrie"
+msgstr "Sèrie"
 
 #: dnfdragora/groupicons.py:74
 msgid "Telephony"
@@ -197,7 +197,7 @@ msgstr "Taulers"
 
 #: dnfdragora/groupicons.py:195
 msgid "Cards"
-msgstr "Cartes"
+msgstr "Targetes"
 
 #: dnfdragora/groupicons.py:203
 msgid "Puzzles"
@@ -375,7 +375,7 @@ msgstr "Informàtica"
 
 #: dnfdragora/groupicons.py:387
 msgid "Geosciences"
-msgstr "Geociències"
+msgstr "Ciències de la Terra"
 
 #: dnfdragora/groupicons.py:391
 msgid "Mathematics"
@@ -543,7 +543,7 @@ msgstr "Altres escriptoris gràfics"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr "Resultats de la cerca"
+msgstr "Resultat de la cerca"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
@@ -559,7 +559,7 @@ msgstr "Base de dades"
 
 #: dnfdragora/groupicons.py:624
 msgid "Firewall/Router"
-msgstr "Tallafoc/Encaminador"
+msgstr "Tallafoc / encaminador"
 
 #: dnfdragora/groupicons.py:632
 msgid "Mail/Groupware/News"
@@ -635,7 +635,7 @@ msgstr "Per actualitzar"
 #: dnfdragora/ui.py:312
 #, python-format
 msgid "Show %s and noarch only"
-msgstr "Mostra %s i només sense arquitectura"
+msgstr "Mostra només %s i noarch"
 
 #: dnfdragora/ui.py:318
 msgid "Groups"
@@ -643,19 +643,19 @@ msgstr "Grups"
 
 #: dnfdragora/ui.py:359
 msgid "in names"
-msgstr "en noms"
+msgstr "als noms"
 
 #: dnfdragora/ui.py:360
 msgid "in descriptions"
-msgstr "en descripcions"
+msgstr "a les descripcions"
 
 #: dnfdragora/ui.py:361
 msgid "in summaries"
-msgstr "en resums"
+msgstr "als resums"
 
 #: dnfdragora/ui.py:362
 msgid "in file names"
-msgstr "en noms de fitxers"
+msgstr "als noms dels fitxers"
 
 #: dnfdragora/ui.py:383
 msgid "&Search"
@@ -671,11 +671,11 @@ msgstr "&Aplica"
 
 #: dnfdragora/ui.py:403
 msgid "Ch&eck all"
-msgstr "S&elecciona-ho tot"
+msgstr "&Marca-ho tot"
 
 #: dnfdragora/ui.py:407 dnfdragora/ui.py:415
 msgid "&Quit"
-msgstr "Surt"
+msgstr "&Surt"
 
 #: dnfdragora/ui.py:412
 msgid "&File"
@@ -683,7 +683,7 @@ msgstr "&Fitxer"
 
 #: dnfdragora/ui.py:413
 msgid "Reset the selection"
-msgstr "/_Reinicia la selecció"
+msgstr "Restableix la selecció"
 
 #: dnfdragora/ui.py:414
 msgid "Refresh Metadata"
@@ -747,7 +747,7 @@ msgstr "Fallada de BuildTransaction"
 
 #: dnfdragora/ui.py:1018
 msgid "Unmanaged widget"
-msgstr "Giny no gestionat"
+msgstr "Estri no gestionat"
 
 #: dnfdragora/ui.py:1020
 msgid "Unmanaged event"
