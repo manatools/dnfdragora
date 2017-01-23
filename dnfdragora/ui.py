@@ -956,17 +956,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                         # to install the key :(
                                         break
                                 else:  # error in signature verification
-                                    dialogs.infoMsgBox({'title' : _('Error checking package signatures\n'),
-                                                        'text' : '\n'.join(result), 'richtext': 1})
+                                    dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
+                                                        'text' : '<br>'.join(result), 'richtext' : True })
                                     break
                             if rc == 4:  # Download errors
-                                dialogs.infoMsgBox({'title'  : ngettext('Downloading error\n',
-                                    'Downloading errors\n', len(result)), 'text' : '\n'.join(result), 'richtext' : 1 })
+                                dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
+                                    'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
                                 logger.error('Download error')
                                 logger.error(result)
                             elif rc != 0:  # other transaction errors
-                                dialogs.infoMsgBox({'title'  : ngettext('Error in transaction\n',
-                                            'Errors in transaction\n', len(result)), 'text' :  '\n'.join(result), 'richtext' : 1} )
+                                dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
+                                            'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
                                 logger.error('RunTransaction failure')
                                 logger.error(result)
 

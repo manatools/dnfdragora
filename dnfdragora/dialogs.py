@@ -175,7 +175,7 @@ def warningMsgBox (info) :
     @param info: dictionary, information to be passed to the dialog.
             title     =>     dialog title
             text      =>     string to be swhon into the dialog
-            richtext =>     1 if using rich text
+            richtext  =>     True if using rich text
     '''
     if (not info) :
         return 0
@@ -213,7 +213,7 @@ def infoMsgBox (info) :
     @param info: dictionary, information to be passed to the dialog.
             title     =>     dialog title
             text      =>     string to be swhon into the dialog
-            richtext =>     1 if using rich text
+            richtext  =>     True if using rich text
     '''
     if (not info) :
         return 0
@@ -249,7 +249,7 @@ def msgBox (info) :
     @param info: dictionary, information to be passed to the dialog.
             title     =>     dialog title
             text      =>     string to be swhon into the dialog
-            richtext =>     1 if using rich text
+            richtext  =>     True if using rich text
     '''
     if (not info) :
         return 0
@@ -287,7 +287,7 @@ def askOkCancel (info) :
     @param info: dictionary, information to be passed to the dialog.
         title     =>     dialog title
         text      =>     string to be swhon into the dialog
-        richtext  =>     1 if using rich text
+        richtext  =>     True if using rich text
         default_button => optional default button [1 => Ok - any other values => Cancel]
 
     @output:
@@ -336,7 +336,7 @@ def askYesOrNo (info) :
     @param info: dictionary, information to be passed to the dialog.
         title     =>     dialog title
         text      =>     string to be swhon into the dialog
-        richtext  =>     1 if using rich text
+        richtext  =>     True if using rich text
         default_button => optional default button [1 => Yes - any other values => No]
         size => [row, coulmn]
 
