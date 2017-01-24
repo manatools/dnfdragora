@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Yuri Chornoivan <yurchor@ukr.net>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-22 22:52+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
-"Language-Team: Ukrainian (https://www.transifex.com/MageiaLinux/teams/9361/"
+"PO-Revision-Date: 2017-01-24 08:56+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "uk/)\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
 msgid "All"
@@ -728,21 +727,21 @@ msgstr "Застосовуємо до системи зміни"
 
 #: dnfdragora/ui.py:959
 msgid "Error checking package signatures\n"
-msgstr ""
+msgstr "Помилка під час спроби перевірити підписи пакунків\n"
 
 #: dnfdragora/ui.py:963
 msgid "Downloading error\n"
 msgid_plural "Downloading errors\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Помилка під час отримання\n"
+msgstr[1] "Помилки під час отримання\n"
+msgstr[2] "Помилки під час отримання\n"
 
 #: dnfdragora/ui.py:968
 msgid "Error in transaction\n"
 msgid_plural "Errors in transaction\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Помилка під час виконання дії\n"
+msgstr[1] "Помилки під час виконання дії\n"
+msgstr[2] "Помилки під час виконання дії\n"
 
 #: dnfdragora/ui.py:980
 msgid "BuildTransaction failure"
@@ -755,3 +754,4 @@ msgstr "Некерований віджет"
 #: dnfdragora/ui.py:1020
 msgid "Unmanaged event"
 msgstr "Некерована подія"
+
