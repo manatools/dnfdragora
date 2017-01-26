@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -11,15 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-22 22:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
-"Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
-"ru/)\n"
-"Language: ru\n"
+"Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: dnfdragora/groupicons.py:19 dnfdragora/ui.py:303 dnfdragora/ui.py:317
 msgid "All"
@@ -729,23 +726,23 @@ msgstr "Применение изменений к системе"
 
 #: dnfdragora/ui.py:959
 msgid "Error checking package signatures\n"
-msgstr ""
+msgstr "Ошибка при проверке подписей пакетов\n"
 
 #: dnfdragora/ui.py:963
 msgid "Downloading error\n"
 msgid_plural "Downloading errors\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Ошибка при загрузке\n"
+msgstr[1] "Ошибки при загрузке\n"
+msgstr[2] "Ошибок при загрузке\n"
+msgstr[3] "Ошибок при загрузке\n"
 
 #: dnfdragora/ui.py:968
 msgid "Error in transaction\n"
 msgid_plural "Errors in transaction\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Ошибка в транзакции\n"
+msgstr[1] "Ошибки в транзакции\n"
+msgstr[2] "Ошибок в транзакции\n"
+msgstr[3] "Ошибок в транзакции\n"
 
 #: dnfdragora/ui.py:980
 msgid "BuildTransaction failure"
