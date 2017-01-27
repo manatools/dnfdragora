@@ -262,7 +262,7 @@ msgstr "3D"
 #: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
 #: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
-msgstr ""
+msgstr "Redaktorët dhe Konvertues"
 
 #: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
 #: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
@@ -279,7 +279,7 @@ msgstr "Skanim"
 
 #: dnfdragora/groupicons.py:283
 msgid "Viewers"
-msgstr ""
+msgstr "Shikuesit"
 
 #: dnfdragora/groupicons.py:288
 msgid "Monitoring"
@@ -339,15 +339,15 @@ msgstr "Organizues"
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Fletëllogaritjesh"
 
 #: dnfdragora/groupicons.py:355
 msgid "Suite"
-msgstr ""
+msgstr "Paketë"
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr ""
+msgstr "Përpunues tekstesh"
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
@@ -531,7 +531,7 @@ msgstr "Stacioni punues Gnome"
 
 #: dnfdragora/groupicons.py:584
 msgid "IceWm Desktop"
-msgstr ""
+msgstr "Mjedisi IceWm"
 
 #: dnfdragora/groupicons.py:588
 msgid "KDE Workstation"
@@ -543,7 +543,7 @@ msgstr "Mjedise të Tjera Grafike në Tryezë"
 
 #: dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Kërkues rezultatesh"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
@@ -576,21 +576,21 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %d files,  %d bytes"
-msgstr ""
+msgstr "Shkarkim :  %d skedarë,  %d bytes"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Fillimi i shkarkimit : %s "
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%d/%d)"
-msgstr ""
+msgstr "Progresi skedarëve (%d/%d)"
 
 #: dnfdragora/ui.py:237
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Menaxhuesi Programeve  - dnfdragora"
 
 #: dnfdragora/ui.py:269
 msgid "Software Management"
@@ -630,12 +630,12 @@ msgstr "Pa instaluar"
 
 #: dnfdragora/ui.py:306
 msgid "To update"
-msgstr ""
+msgstr "Për përditësime"
 
 #: dnfdragora/ui.py:312
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Shfaq %s dhe jo arch"
 
 #: dnfdragora/ui.py:318
 msgid "Groups"
@@ -651,7 +651,7 @@ msgstr "në përshkrime"
 
 #: dnfdragora/ui.py:361
 msgid "in summaries"
-msgstr ""
+msgstr "në përmbledhjet"
 
 #: dnfdragora/ui.py:362
 msgid "in file names"
@@ -659,19 +659,19 @@ msgstr "në emra dokumentesh"
 
 #: dnfdragora/ui.py:383
 msgid "&Search"
-msgstr ""
+msgstr "&Kërko"
 
 #: dnfdragora/ui.py:389
 msgid "&Clear search"
-msgstr ""
+msgstr "&Kërkim pastër"
 
 #: dnfdragora/ui.py:399
 msgid "&Apply"
-msgstr ""
+msgstr "&Apliko"
 
 #: dnfdragora/ui.py:403
 msgid "Ch&eck all"
-msgstr ""
+msgstr "Kontrollo t'gjitha"
 
 #: dnfdragora/ui.py:407 dnfdragora/ui.py:415
 msgid "&Quit"
@@ -683,11 +683,11 @@ msgstr "&Skedarë"
 
 #: dnfdragora/ui.py:413
 msgid "Reset the selection"
-msgstr ""
+msgstr "Rivendos përzgjedhjen"
 
 #: dnfdragora/ui.py:414
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Rifresko Metadata"
 
 #: dnfdragora/ui.py:425
 msgid "&Help"
@@ -703,11 +703,11 @@ msgstr "&Rreth"
 
 #: dnfdragora/ui.py:474
 msgid "update"
-msgstr ""
+msgstr "përditësime"
 
 #: dnfdragora/ui.py:477
 msgid "installed"
-msgstr ""
+msgstr "instaluar"
 
 #: dnfdragora/ui.py:818
 msgid "Search"
@@ -719,15 +719,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:879
 msgid "Sorry"
-msgstr ""
+msgstr "Falje"
 
 #: dnfdragora/ui.py:933
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Apliko ndryshimet në sistem"
 
 #: dnfdragora/ui.py:959
 msgid "Error checking package signatures\n"
-msgstr ""
+msgstr "Gabim në kontrollin e nënshkrimit paketave\n"
 
 #: dnfdragora/ui.py:963
 msgid "Downloading error\n"
@@ -738,8 +738,8 @@ msgstr[1] ""
 #: dnfdragora/ui.py:968
 msgid "Error in transaction\n"
 msgid_plural "Errors in transaction\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gabim ne transaksion\n"
+msgstr[1] "Gabime në transaksion\n"
 
 #: dnfdragora/ui.py:980
 msgid "BuildTransaction failure"
