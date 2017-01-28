@@ -727,7 +727,7 @@ msgstr "Aplicando alterações no sistema"
 
 #: dnfdragora/ui.py:959
 msgid "Error checking package signatures\n"
-msgstr ""
+msgstr "Erro ao verificar assinaturas de pacote\n"
 
 #: dnfdragora/ui.py:963
 msgid "Downloading error\n"
@@ -738,8 +738,7 @@ msgstr[1] ""
 #: dnfdragora/ui.py:968
 msgid "Error in transaction\n"
 msgid_plural "Errors in transaction\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tradução com erro\n"
 
 #: dnfdragora/ui.py:980
 msgid "BuildTransaction failure"
