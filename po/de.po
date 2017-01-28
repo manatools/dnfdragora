@@ -727,19 +727,19 @@ msgstr "Änderungen auf das System anwenden"
 
 #: dnfdragora/ui.py:959
 msgid "Error checking package signatures\n"
-msgstr ""
+msgstr "Fehler bei überprüfen der Paketsignaturen\n"
 
 #: dnfdragora/ui.py:963
 msgid "Downloading error\n"
 msgid_plural "Downloading errors\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fehler beim herunterladen\n"
+msgstr[1] "Fehler beim herunterladen\n"
 
 #: dnfdragora/ui.py:968
 msgid "Error in transaction\n"
 msgid_plural "Errors in transaction\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fehler bei der Übermittlung\n"
+msgstr[1] "Fehler bei den Übermittlungen\n"
 
 #: dnfdragora/ui.py:980
 msgid "BuildTransaction failure"
