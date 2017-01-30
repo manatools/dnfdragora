@@ -896,8 +896,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             for it in self.itemList:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     pkg = self.itemList[it]['pkg']
-                                    if self.backend.protected(pkg) :
-                                        #changedItem.check(True)
+                                    if pkg.installed and self.backend.protected(pkg) :
+                                        dialogs.warningMsgBox({'title' : _("Protected package selected"), "text": _("Package %s cannot be removed")%pkg.name, "richtext":True})
                                         sel = self.tree.selectedItem()
                                         if sel :
                                             group = self._groupNameFromItem(self.groupList, sel)
