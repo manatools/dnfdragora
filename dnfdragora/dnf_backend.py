@@ -12,6 +12,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 import logging
 
+from os import listdir
 import dnfdaemon.client
 
 import dnfdragora.backend
@@ -154,6 +155,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         self._files_downloaded = 0
         self._use_comps = use_comps
         self._group_cache = None
+        self._protected = None
         self._pkg_id_to_groups_cache = None
         self._package_name = None
 
@@ -457,6 +459,45 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         pkgs = self.Search(search_attrs, keys, attrs, match_all,
                            newest_only, tags)
         return self._make_pkg_object_with_attr(pkgs)
+
+    @ExceptionHandler
+    @TimeFunction
+    def _cacheProtected(self) :
+        '''
+        gets all the protected packages
+        '''
+        self._protected = []
+        protected_conf_path='/etc/dnf/protected.d'
+        conf_files = listdir(protected_conf_path)
+        for f in conf_files :
+            file_path = protected_conf_path + '/' + f
+            with open(file_path, 'r') as content_file:
+                for line in content_file:
+                    if line.strip() :
+                        match_all = False
+                        newest_only = False
+                        tags =""
+                        pkgs = self.get_packages_by_name(line.strip(), newest_only)
+
+                        for pkg in pkgs:
+                            pkg_id = pkg.pkg_id
+                            if (not pkg_id in self._protected) :
+                                self._protected.append(pkg_id)
+                        # TODO it would be better to get recursive require
+                        #for pkg_id in self._protected:
+                            #recursive_id = self.GetAttribute(pkg_id,'requires')
+
+
+    def protected(self, pkg) :
+        '''
+        if pkg is not none returns if the given package is a protected one
+        '''
+        if not self._protected :
+            self._cacheProtected()
+
+        found = pkg.pkg_id in self._protected
+
+        return found
 
     def _getAllGroupIDList(self, groups, new_groups, g_id=None) :
         '''

@@ -464,7 +464,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         cell= item.cell(cellNum-1)
         icon = None
 
-        #TODO get from backend if it is a base pacakge to lock it.
         status = self.packageQueue.action(pkg)
         if status:
             icon = self.images_path + const.QUEUE_PACKAGE_TYPES[status] +".png"
@@ -473,6 +472,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if pkg.is_update:
                 status = _("update")
                 icon = self.images_path + "update.png"
+            elif pkg.installed and self.backend.protected(pkg) :
+                status = _("locked")
+                icon = self.images_path + "protected.png"
             elif pkg.installed :
                 status = _("installed")
                 icon = self.images_path + "installed.png"
