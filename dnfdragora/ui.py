@@ -498,6 +498,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         all, installed, not_installed, to_update and skip_other
         '''
 
+        sel = self.packageList.selectedItem()
+        sel_pkg = None
+        if sel :
+            for pkg_name in self.itemList:
+                if (self.itemList[pkg_name]['item'] == sel) :
+                    sel_pkg = pkg_name
+                    break
+
         yui.YUI.app().busyCursor()
 
         self.itemList = {}
@@ -512,8 +520,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                        if sel_pkg :
+                            if sel_pkg == pkg_name :
+                                item.setSelected(True)
                         item.check(self.packageQueue.checked(pkg))
-                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        self.itemList[pkg_name] = {
                             'pkg' : pkg, 'item' : item
                             }
                         if not self.update_only:
@@ -529,8 +541,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                        if sel_pkg :
+                            if sel_pkg == pkg_name :
+                                item.setSelected(True)
                         item.check(self.packageQueue.checked(pkg))
-                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        self.itemList[pkg_name] = {
                             'pkg' : pkg, 'item' : item
                             }
                         if not self.update_only:
@@ -546,8 +562,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                        if sel_pkg :
+                            if sel_pkg == pkg_name :
+                                item.setSelected(True)
                         item.check(self.packageQueue.checked(pkg))
-                        self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                        self.itemList[pkg_name] = {
                             'pkg' : pkg, 'item' : item
                             }
                         if not self.update_only:
@@ -755,6 +775,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return False if an empty string used
         '''
+        sel = self.packageList.selectedItem()
+        sel_pkg = None
+        if sel :
+            for pkg_name in self.itemList:
+                if (self.itemList[pkg_name]['item'] == sel) :
+                    sel_pkg = pkg_name
+                    break
         #clean up tree
         if createTreeItem:
             self._fillGroupTree()
@@ -776,7 +803,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             tags =""
             packages = self.backend.search(fields, strings, match_all, newest_only, tags )
 
-
             self.itemList = {}
             # {
             #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -788,8 +814,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     (filter == 'not_installed' and not pkg.installed) or
                     (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                    pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                    if sel_pkg :
+                        if sel_pkg == pkg_name :
+                            item.setSelected(True)
                     item.check(self.packageQueue.checked(pkg))
-                    self.itemList[self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)] = {
+                    self.itemList[pkg_name] = {
                         'pkg' : pkg, 'item' : item
                         }
                     if not self.update_only:
