@@ -896,11 +896,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             for it in self.itemList:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     pkg = self.itemList[it]['pkg']
-                                    if changedItem.checked():
-                                        self.packageQueue.add(pkg, 'i')
-                                    else:
-                                        self.packageQueue.add(pkg, 'r')
-                                    self._setStatusToItem(pkg, self.itemList[it]['item'], True)
+                                    if self.backend.protected(pkg) :
+                                        #changedItem.check(True)
+                                        sel = self.tree.selectedItem()
+                                        if sel :
+                                            group = self._groupNameFromItem(self.groupList, sel)
+                                            if (group == "Search"):
+                                                filter = self._filterNameSelected()
+                                                if not self._searchPackages(filter) :
+                                                    rebuild_package_list = True
+                                            else:
+                                                rebuild_package_list = True
+                                    else :
+                                        if changedItem.checked():
+                                            self.packageQueue.add(pkg, 'i')
+                                        else:
+                                            self.packageQueue.add(pkg, 'r')
+                                        self._setStatusToItem(pkg, self.itemList[it]['item'], True)
                                     break
 
                 elif (widget == self.reset_search_button) :
