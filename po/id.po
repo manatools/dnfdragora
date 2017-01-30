@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-22 22:52+0100\n"
+"POT-Creation-Date: 2017-01-30 22:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: anzhyo <anzhyo@gmail.com>, 2017\n"
 "Language-Team: Indonesian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -701,52 +701,65 @@ msgstr "Manual"
 msgid "&About"
 msgstr ""
 
-#: dnfdragora/ui.py:474
+#: dnfdragora/ui.py:473
 msgid "update"
 msgstr ""
 
-#: dnfdragora/ui.py:477
+#: dnfdragora/ui.py:476
+msgid "locked"
+msgstr ""
+
+#: dnfdragora/ui.py:479
 msgid "installed"
 msgstr ""
 
-#: dnfdragora/ui.py:818
+#: dnfdragora/ui.py:850
 msgid "Search"
 msgstr "Cari"
 
-#: dnfdragora/ui.py:879
+#: dnfdragora/ui.py:911
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:879
+#: dnfdragora/ui.py:911
 msgid "Sorry"
 msgstr ""
 
-#: dnfdragora/ui.py:933
+#: dnfdragora/ui.py:930
+#, python-format
+msgid "Package %s cannot be removed"
+msgstr ""
+
+#: dnfdragora/ui.py:930
+msgid "Protected package selected"
+msgstr ""
+
+#: dnfdragora/ui.py:977
 msgid "Applying changes to the system"
 msgstr ""
 
-#: dnfdragora/ui.py:959
-msgid "Error checking package signatures\n"
+#: dnfdragora/ui.py:1003
+msgid "Error checking package signatures"
 msgstr ""
 
-#: dnfdragora/ui.py:963
-msgid "Downloading error\n"
-msgid_plural "Downloading errors\n"
+#: dnfdragora/ui.py:1007
+msgid "Downloading error"
+msgid_plural "Downloading errors"
 msgstr[0] ""
 
-#: dnfdragora/ui.py:968
-msgid "Error in transaction\n"
-msgid_plural "Errors in transaction\n"
+#: dnfdragora/ui.py:1012
+msgid "Error in transaction"
+msgid_plural "Errors in transaction"
 msgstr[0] ""
 
-#: dnfdragora/ui.py:980
+#: dnfdragora/ui.py:1024
 msgid "BuildTransaction failure"
 msgstr ""
 
-#: dnfdragora/ui.py:1018
+#: dnfdragora/ui.py:1062
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:1020
+#: dnfdragora/ui.py:1064
 msgid "Unmanaged event"
 msgstr ""
