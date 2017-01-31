@@ -117,9 +117,6 @@ class PackageQueue:
             del self.actions[pkg_id]
 
 
-
-
-
 #################
 # class mainGui #
 #################
@@ -487,10 +484,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
     def _selectedPackage(self) :
         '''
         gets the selected package from package list, if any, and return the
-        related pakcage
+        related package as DnfPackage
         '''
-        sel = self.packageList.selectedItem()
         selected_pkg = None
+        sel = self.packageList.selectedItem()
         if sel :
             for pkg_name in self.itemList:
                 if (self.itemList[pkg_name]['item'] == sel) :
@@ -507,14 +504,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         Available filters are:
         all, installed, not_installed, to_update and skip_other
         '''
-
-        sel = self.packageList.selectedItem()
-        sel_pkg = None
-        if sel :
-            for pkg_name in self.itemList:
-                if (self.itemList[pkg_name]['item'] == sel) :
-                    sel_pkg = pkg_name
-                    break
+        sel_pkg = self._selectedPackage()
 
         yui.YUI.app().busyCursor()
 
@@ -532,7 +522,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                         pkg_name = pkg.fullname
                         if sel_pkg :
-                            if sel_pkg == pkg_name :
+                            if sel_pkg.fullname == pkg_name :
                                 item.setSelected(True)
                         item.check(self.packageQueue.checked(pkg))
                         self.itemList[pkg_name] = {
@@ -553,7 +543,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                         pkg_name = pkg.fullname
                         if sel_pkg :
-                            if sel_pkg == pkg_name :
+                            if sel_pkg.fullname == pkg_name :
                                 item.setSelected(True)
                         item.check(self.packageQueue.checked(pkg))
                         self.itemList[pkg_name] = {
@@ -574,7 +564,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                         pkg_name = pkg.fullname
                         if sel_pkg :
-                            if sel_pkg == pkg_name :
+                            if sel_pkg.fullname == pkg_name :
                                 item.setSelected(True)
                         item.check(self.packageQueue.checked(pkg))
                         self.itemList[pkg_name] = {
@@ -783,13 +773,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return False if an empty string used
         '''
-        sel = self.packageList.selectedItem()
-        sel_pkg = None
-        if sel :
-            for pkg_name in self.itemList:
-                if (self.itemList[pkg_name]['item'] == sel) :
-                    sel_pkg = pkg_name
-                    break
+        sel_pkg = self._selectedPackage()
+
         #clean up tree
         if createTreeItem:
             self._fillGroupTree()
@@ -824,7 +809,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
                     pkg_name = pkg.fullname
                     if sel_pkg :
-                        if sel_pkg == pkg_name :
+                        if sel_pkg.fullname == pkg_name :
                             item.setSelected(True)
                     item.check(self.packageQueue.checked(pkg))
                     self.itemList[pkg_name] = {
