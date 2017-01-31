@@ -129,6 +129,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
     """
 
     def __init__(self, options={}):
+        '''
+        constructor
+        '''
 
         self.options = options
         self._progressBar = None
@@ -644,7 +647,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
-
     def _fillGroupTree(self) :
         '''
         fill the group tree, look for the retrieved groups and set their icons
@@ -757,7 +759,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
-
     def setInfoOnWidget(self, pkg_name) :
         """
         write package description into info widget,
@@ -863,7 +864,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             return False
 
         return True
-
 
     def _populate_transaction(self) :
         '''
