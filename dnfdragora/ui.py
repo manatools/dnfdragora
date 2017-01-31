@@ -442,10 +442,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         filter = self._filterNameSelected()
         self.checkAllButton.setEnabled(filter == 'to_update')
         self._fillPackageList(group, filter)
-        sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
-        if sel :
-            pkg_name = sel.cell(0).label()
-            self._setInfoOnWidget(pkg_name)
+        sel_pkg = self._selectedPackage()
+        if sel_pkg :
+            self._setInfoOnWidget(sel_pkg)
 
     def _setStatusToItem(self, pkg, item, emit_changed=False) :
         '''
@@ -749,22 +748,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
-    def _setInfoOnWidget(self, pkg_name) :
+    def _setInfoOnWidget(self, pkg) :
         """
-        write package description into info widget,
-        this method performs a new query based on package name,
-        future implementation could save package info into a temporary
-        object structure linked to the selected item
+        writes package description into info widget
         """
-        packages = self.backend.get_packages_by_name(pkg_name, True)
         self.info.setValue("")
-        if (len(packages)) :
-            # NOTE first item of the list should be enough, different
-            # arch should have same description for the package
-            pkg = packages[0]
-            if pkg :
-                s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
-                self.info.setValue(s)
+        if pkg :
+            s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
+            self.info.setValue(s)
 
     def _searchPackages(self, filter='all', createTreeItem=False) :
         '''
@@ -1062,10 +1053,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     filter = self._filterNameSelected()
                     self._fillPackageList(group, filter)
 
-            sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
-            if sel :
-                pkg_name = sel.cell(0).label()
-                self._setInfoOnWidget(pkg_name)
+            sel_pkg = self._selectedPackage()
+            if sel_pkg :
+                self._setInfoOnWidget(sel_pkg)
 
             if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
                 self.applyButton.setEnabled()
