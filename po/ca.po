@@ -707,7 +707,7 @@ msgstr "actualització"
 
 #: dnfdragora/ui.py:476
 msgid "locked"
-msgstr ""
+msgstr "bloquejat"
 
 #: dnfdragora/ui.py:479
 msgid "installed"
@@ -728,11 +728,11 @@ msgstr "Perdó!"
 #: dnfdragora/ui.py:930
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "No es pot eliminar el paquet %s"
 
 #: dnfdragora/ui.py:930
 msgid "Protected package selected"
-msgstr ""
+msgstr "S'han seleccionat un paquet protegit"
 
 #: dnfdragora/ui.py:977
 msgid "Applying changes to the system"
@@ -740,19 +740,19 @@ msgstr "S'apliquen els canvis al sistema"
 
 #: dnfdragora/ui.py:1003
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Error en la verificació de les signatures dels paquets"
 
 #: dnfdragora/ui.py:1007
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Error en la baixada"
+msgstr[1] "Errors en la baixada"
 
 #: dnfdragora/ui.py:1012
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Error en la transacció"
+msgstr[1] "Errors en la transacció"
 
 #: dnfdragora/ui.py:1024
 msgid "BuildTransaction failure"
