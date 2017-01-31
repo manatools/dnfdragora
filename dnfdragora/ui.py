@@ -138,7 +138,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.itemList = {}
         self.appname = "dnfdragora"
 
-
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
@@ -151,6 +150,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         gettext.bindtextdomain(self.appname, DIR)
         gettext.textdomain(self.appname)
 
+        self.infoshown = {
+            'updateinfo' : { 'title' : _("Update information"), 'show' : False },
+            'files' : { 'title' : _("File list"), 'show' : False },
+            'changelog' : { 'title' : _("Changelog"), 'show' : False },
+            }
         self.use_comps = False
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images/'
@@ -504,6 +508,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         all, installed, not_installed, to_update and skip_other
         '''
         sel_pkg = self._selectedPackage()
+        # reset info view
+        self.info.setValue("")
 
         yui.YUI.app().busyCursor()
 
@@ -748,6 +754,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
+
+    def _formatLink(self, description, url) :
+        '''
+        @param description: Description to be shown as link
+        @param url: to be reach when click on $description link
+        returns href string to be published
+        '''
+        webref = '<a href="%s">%s</a>'%(url, description)
+
+        return webref
+
     def _setInfoOnWidget(self, pkg) :
         """
         writes package description into info widget
@@ -755,6 +772,29 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setValue("")
         if pkg :
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
+            s += "<br>"
+            if pkg.is_update :
+                s+= '<b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
+                s += "<br>"
+                if self.infoshown['updateinfo']["show"]:
+                    s+= "TODO pkg.updateinfo"
+
+            t = 'files'
+            s += "<br>"
+            s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
+            s += "<br>"
+            if self.infoshown[t]["show"]:
+                s+= "<br>".join(pkg.filelist)
+
+            t = 'changelog'
+            s += "<br>"
+            s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
+            s += "<br>"
+            if self.infoshown[t]["show"]:
+                if pkg.changelog:
+                    s+= "<br>".join(pkg.changelog)
+                else:
+                    s+= _("Missing information")
             self.info.setValue(s)
 
     def _searchPackages(self, filter='all', createTreeItem=False) :
@@ -894,7 +934,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
                         self.AboutDialog.run()
-
+                else:
+                    url = yui.toYMenuEvent(event).id()
+                    if url:
+                        self.infoshown[url]["show"] = not self.infoshown[url]["show"]
+                        sel_pkg = self._selectedPackage()
+                        self._setInfoOnWidget(sel_pkg)
             elif (eventType == yui.YEvent.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
