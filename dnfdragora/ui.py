@@ -593,7 +593,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         yui.YUI.app().normalCursor()
 
-    def _viewNameSelectet(self):
+    def _viewNameSelected(self):
         '''
         return the view_box name index from the selected view
         '''
@@ -648,7 +648,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         rpm_groups = []
         yui.YUI.app().busyCursor()
 
-        view = self._viewNameSelectet()
+        view = self._viewNameSelected()
         filter = self._filterNameSelected()
 
         if view != 'all' :
@@ -1036,7 +1036,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                 self._fillGroupTree()
                             rebuild_package_list = True
                 elif (widget == self.view_box) :
-                    view = self._viewNameSelectet()
+                    view = self._viewNameSelected()
                     filter = self._filterNameSelected()
                     self.checkAllButton.setEnabled(filter == 'to_update')
                     rebuild_package_list = True
@@ -1045,7 +1045,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self._fillGroupTree()
                 elif (widget == self.tree) or (widget == self.filter_box) :
                     if (widget == self.filter_box) :
-                        view = self._viewNameSelectet()
+                        view = self._viewNameSelected()
                         filter = self._filterNameSelected()
                         self._fillGroupTree()
                         self.checkAllButton.setEnabled(filter == 'to_update')
