@@ -3,26 +3,14 @@ as soon as possible.
 
 == Near term targets ==
 === Critical ===
-*   Keys management. At the very least, we need to be able to query and verify package signing keys.
-*   Repository update, TransactionProgress::update gets wrong information
-    e.g. the number of file (always 1) and not its size so dowload progress
-    bar is always wrong (need upstream interaction)
 *   Repository management (enabling and disabling repositories)
-*   String localization, all is ready but gettext is not used
 
 === Important ===
-*   libyui, we need to ask for a patch review concerning YItem selection needed to manage
-    package selection and released on github by anaselli.
-*   Add system configuration file for configuring the application per distro/system.
-*   Theme management icons are taken from mageia system. A default theme should
-    be provided.
-*   Group management, upstream rpm seems not to manage groups any more at least in
-    the way mageia does, we should allow a configuration key to enable/disable mageia
-    behaviour and manage group in a standard way for other systems.
 
 === Nice to have ===
 *   Add a user specific configuration file for saving user preferences.
 *   Modifying repository configuration to override settings per repository.
+*   Add a way to search, enable, and disable COPR repositories
 
 == Medium term targets ==
 *   Handle solution errors. In the event that there's a dependency problem detected, we should
