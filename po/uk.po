@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-30 22:31+0100\n"
-"PO-Revision-Date: 2017-01-24 08:56+0200\n"
+"PO-Revision-Date: 2017-01-31 20:56+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -707,7 +707,7 @@ msgstr "оновлення"
 
 #: dnfdragora/ui.py:476
 msgid "locked"
-msgstr ""
+msgstr "заблоковано"
 
 #: dnfdragora/ui.py:479
 msgid "installed"
@@ -728,11 +728,11 @@ msgstr "Вибачте"
 #: dnfdragora/ui.py:930
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Не можна вилучати пакунок %s"
 
 #: dnfdragora/ui.py:930
 msgid "Protected package selected"
-msgstr ""
+msgstr "Позначено захищений пакунок"
 
 #: dnfdragora/ui.py:977
 msgid "Applying changes to the system"
@@ -740,21 +740,21 @@ msgstr "Застосовуємо до системи зміни"
 
 #: dnfdragora/ui.py:1003
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Помилка під час спроби перевірити підписи пакунків"
 
 #: dnfdragora/ui.py:1007
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Помилка отримання даних"
+msgstr[1] "Помилки отримання даних"
+msgstr[2] "Помилки отримання даних"
 
 #: dnfdragora/ui.py:1012
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Помилка під час дії"
+msgstr[1] "Помилки під час дії"
+msgstr[2] "Помилки під час дії"
 
 #: dnfdragora/ui.py:1024
 msgid "BuildTransaction failure"
