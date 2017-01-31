@@ -487,7 +487,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if emit_changed:
                 self.packageList.cellChanged(cell)
 
+    def _selectedPackage(self) :
+        '''
+        gets the selected package from package list, if any, and return the
+        related pakcage
+        '''
+        sel = self.packageList.selectedItem()
+        selected_pkg = None
+        if sel :
+            for pkg_name in self.itemList:
+                if (self.itemList[pkg_name]['item'] == sel) :
+                    selected_pkg = self.itemList[pkg_name]['pkg']
+                    break
 
+        return selected_pkg
 
     def _fillPackageList(self, groupName=None, filter="all") :
         '''
