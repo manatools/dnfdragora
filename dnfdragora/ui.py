@@ -448,7 +448,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
         if sel :
             pkg_name = sel.cell(0).label()
-            self.setInfoOnWidget(pkg_name)
+            self._setInfoOnWidget(pkg_name)
 
     def _setStatusToItem(self, pkg, item, emit_changed=False) :
         '''
@@ -759,7 +759,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
-    def setInfoOnWidget(self, pkg_name) :
+    def _setInfoOnWidget(self, pkg_name) :
         """
         write package description into info widget,
         this method performs a new query based on package name,
@@ -1080,7 +1080,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             sel = self.packageList.toCBYTableItem(self.packageList.selectedItem())
             if sel :
                 pkg_name = sel.cell(0).label()
-                self.setInfoOnWidget(pkg_name)
+                self._setInfoOnWidget(pkg_name)
 
             if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
                 self.applyButton.setEnabled()
