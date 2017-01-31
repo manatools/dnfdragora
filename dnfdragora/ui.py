@@ -447,12 +447,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pkg_name = sel.cell(0).label()
             self.setInfoOnWidget(pkg_name)
 
-    def _pkg_name(self, name, epoch, version, release, arch) :
-        '''
-            return a package name in the form name-epoch_version-release.arch
-        '''
-        return ("{0}-{1}_{2}-{3}.{4}".format(name, epoch, version, release, arch))
-
     def _setStatusToItem(self, pkg, item, emit_changed=False) :
         '''
         set the status of the given package to the item so that it is shown on package list
@@ -533,7 +527,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                        pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                        pkg_name = pkg.fullname
                         if sel_pkg :
                             if sel_pkg == pkg_name :
                                 item.setSelected(True)
@@ -554,7 +548,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                        pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                        pkg_name = pkg.fullname
                         if sel_pkg :
                             if sel_pkg == pkg_name :
                                 item.setSelected(True)
@@ -575,7 +569,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                        pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                        pkg_name = pkg.fullname
                         if sel_pkg :
                             if sel_pkg == pkg_name :
                                 item.setSelected(True)
@@ -827,7 +821,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     (filter == 'not_installed' and not pkg.installed) or
                     (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
                     item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
-                    pkg_name = self._pkg_name(pkg.name , pkg.epoch , pkg.version, pkg.release, pkg.arch)
+                    pkg_name = pkg.fullname
                     if sel_pkg :
                         if sel_pkg == pkg_name :
                             item.setSelected(True)
