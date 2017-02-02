@@ -12,11 +12,7 @@ if sys.path[0] is not '/usr/bin':
 
 if __name__ == "__main__":
 
-    import dnfdaemon.client
-    import dnfdragora.ui
     import argparse
-    import logging
-    logger = logging.getLogger('dnfdragora')
 
     parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
     ui_select_parser = parser.add_mutually_exclusive_group()
@@ -32,6 +28,11 @@ if __name__ == "__main__":
     parser.add_argument('--group_icons_path', nargs='?', help='force a new path for group icons (instead of /usr/share/icons)')
     parser.add_argument('--images_path', nargs='?', help='force a new path for all the needed images (instead of /usr/share/dnfdragora/images)')
     args = parser.parse_args()
+
+    import dnfdaemon.client
+    import dnfdragora.ui
+    import logging
+    logger = logging.getLogger('dnfdragora')
 
     options = {}
     if args.update_only:
