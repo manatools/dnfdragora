@@ -771,20 +771,32 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         self.info.setValue("")
         if pkg :
+            missing = _("Missing information")
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
             s += "<br>"
             if pkg.is_update :
                 s+= '<b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
                 s += "<br>"
                 if self.infoshown['updateinfo']["show"]:
-                    s+= "TODO pkg.updateinfo"
+                    # [{'references': [], 'filenames': [], 'id': 'xxxx', 'title': 'yyyy',  'description': 'desc', 'updated': 'date', 'type': 2}]
+                    if pkg.updateinfo :
+                        s += '<b>%s</b>'%pkg.updateinfo[0]['title']
+                        s += "<br>"
+                        s += pkg.updateinfo[0]['description']
+                        s += "<br>"
+                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], pkg.updateinfo[0]['updated'])
+                    else :
+                        s+= missing
 
             t = 'files'
             s += "<br>"
             s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
             s += "<br>"
             if self.infoshown[t]["show"]:
-                s+= "<br>".join(pkg.filelist)
+                if pkg.filelist :
+                    s+= "<br>".join(pkg.filelist)
+                else:
+                    s+= missing
 
             t = 'changelog'
             s += "<br>"
@@ -794,7 +806,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if pkg.changelog:
                     s+= "<br>".join(pkg.changelog)
                 else:
-                    s+= _("Missing information")
+                    s+= missing
             self.info.setValue(s)
 
     def _searchPackages(self, filter='all', createTreeItem=False) :
