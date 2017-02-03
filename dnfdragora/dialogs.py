@@ -17,6 +17,8 @@ from dnfdragora import const
 
 import gettext
 from gettext import gettext as _
+import logging
+logger = logging.getLogger('dnfdragora.dialogs')
 
 class TransactionResult:
     '''
@@ -113,8 +115,6 @@ class TransactionResult:
 
         return accepting
 
-
-
 class AboutDialog:
     '''
     Create an about dialog
@@ -166,6 +166,171 @@ class AboutDialog:
 
         dlg = None;
 
+class RepoDialog:
+    '''
+    Create a dialog to manage repository enabling and disabling
+    '''
+
+    def __init__(self, parent):
+        '''
+        Constructor
+        @param parent: main parent dialog
+        '''
+        self.parent = parent
+        self.factory = self.parent.factory
+        self.mgaFactory = self.parent.mgaFactory
+        self.backend = self.parent.backend
+        self.itemList = {}
+
+    def _setupUI(self):
+        '''
+        setup the dialog layout
+        '''
+        self.appTitle = yui.YUI.app().applicationTitle()
+        ## set new title to get it in dialog
+        yui.YUI.app().setApplicationTitle(_("Repository Management") )
+
+        self.dialog = self.factory.createPopupDialog()
+
+        vbox = self.factory.createVBox(self.dialog)
+
+        hbox_headbar = self.factory.createHBox(vbox)
+        #Line for logo and title
+        hbox_iconbar  = self.factory.createHBox(vbox)
+        head_align_left  = self.factory.createLeft(hbox_iconbar)
+        hbox_iconbar     = self.factory.createHBox(head_align_left)
+        #TODO fix icon with one that recall repository management
+        self.factory.createImage(hbox_iconbar, self.parent.icon)
+
+        self.factory.createHeading(hbox_iconbar, _("Repository Management"))
+
+        hbox_top = self.factory.createHBox(vbox)
+        hbox_middle = self.factory.createHBox(vbox)
+        hbox_bottom = self.factory.createHBox(vbox)
+        hbox_footbar = self.factory.createHBox(vbox)
+
+        hbox_headbar.setWeight(1,10)
+        hbox_top.setWeight(1,10)
+        hbox_middle.setWeight(1,50)
+        hbox_bottom.setWeight(1,30)
+        hbox_footbar.setWeight(1,10)
+
+        repoList_header = yui.YTableHeader()
+        columns = [ _('Name'), _("Enabled")]
+
+        for col in (columns):
+            repoList_header.addColumn(col)
+
+        self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header,yui.YCBTableCheckBoxOnLastColumn)
+        self.repoList.setImmediateMode(True)
+        self.info = self.factory.createRichText(hbox_bottom,"")
+        self.info.setWeight(0,40)
+        self.info.setWeight(1,40)
+
+        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
+        self.applyButton.setWeight(0,3)
+
+        self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
+        self.quitButton.setWeight(0,3)
+        self.dialog.setDefaultButton(self.quitButton)
+
+        self.itemList = {}
+        # TODO fix the workaround when GetRepo(id) works again
+        repos = self.backend.get_repo_ids("*")
+        for r in repos:
+            item = yui.YCBTableItem(r)
+            # TODO name from repo info
+            self.itemList[r] = {
+                'item' : item, 'name': r, 'enabled' : False
+            }
+            item.this.own(False)
+        enabled_repos = self.backend.get_repo_ids("enabled")
+        for r in enabled_repos:
+            if r in self.itemList.keys():
+                self.itemList[r]["enabled"] = True
+                self.itemList[r]["item"].check(True)
+
+        keylist = sorted(self.itemList.keys())
+        v = []
+        for key in keylist :
+            item = self.itemList[key]['item']
+            v.append(item)
+
+        #NOTE workaround to get YItemCollection working in python
+        itemCollection = yui.YItemCollection(v)
+
+        self.repoList.startMultipleChanges()
+        # cleanup old changed items since we are removing all of them
+        self.repoList.deleteAllItems()
+        self.repoList.addItems(itemCollection)
+        self.repoList.doneMultipleChanges()
+
+    def _selectedRepository(self) :
+        '''
+        gets the selected repository id from repo list, if any selected
+        '''
+        selected_repo = None
+        sel = self.repoList.selectedItem()
+        if sel :
+            for repo_id in self.itemList:
+                if (self.itemList[repo_id]['item'] == sel) :
+                    selected_repo = repo_id
+                    break
+
+        return selected_repo
+
+    def _handleEvents(self):
+        '''
+        manage dialog events
+        '''
+        while True:
+
+            event = self.dialog.waitForEvent()
+
+            eventType = event.eventType()
+
+            rebuild_package_list = False
+            group = None
+            #event type checking
+            if (eventType == yui.YEvent.CancelEvent) :
+                break
+            elif (eventType == yui.YEvent.WidgetEvent) :
+                # widget selected
+                widget  = event.widget()
+                if (widget == self.quitButton) :
+                    #### QUIT
+                    break
+                elif (widget == self.applyButton) :
+                    enabled_repos = []
+                    for k in self.itemList.keys():
+                        if self.itemList[k]['enabled'] :
+                           enabled_repos.append(k)
+                    logger.info("Enabling repos %s "%" ".join(enabled_repos))
+                    self.backend.SetEnabledRepos(enabled_repos)
+                    break
+                elif (widget == self.repoList) :
+                    wEvent = yui.toYWidgetEvent(event)
+                    if (wEvent.reason() == yui.YEvent.ValueChanged) :
+                        changedItem = self.repoList.changedItem()
+                        if changedItem :
+                            for it in self.itemList:
+                                if (self.itemList[it]['item'] == changedItem) :
+                                    self.itemList[it]['enabled'] = changedItem.checked()
+                    repo_id = self._selectedRepository()
+                    self.info.setText("TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---"))
+
+    def run(self):
+        '''
+        show and run the dialog
+        '''
+        self._setupUI()
+        self._handleEvents()
+
+        #restore old application title
+        yui.YUI.app().setApplicationTitle(self.appTitle)
+
+        self.dialog.destroy()
+        self.dialog = None
 
 def warningMsgBox (info) :
     '''

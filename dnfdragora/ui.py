@@ -15,6 +15,7 @@ import os
 import sys
 import platform
 import yui
+import webbrowser
 
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
@@ -397,7 +398,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.info = self.factory.createRichText(hbox_bottom,"")
         self.info.setWeight(0,40)
-        self.info.setWeight(1,40);
+        self.info.setWeight(1,40)
 
         self.infobar = progress_ui.ProgressBar(self.dialog, pbar_layout)
 
@@ -417,10 +418,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'widget'    : self.factory.createMenuButton(headbar, _("&File")),
             'reset_sel' : yui.YMenuItem(_("Reset the selection")),
             'reload'    : yui.YMenuItem(_("Refresh Metadata")),
+            'repos'     : yui.YMenuItem(_("Repositories")),
             'quit'      : yui.YMenuItem(_("&Quit")),
         }
 
-        ordered_menu_lines = ['reset_sel', 'reload', 'quit']
+        ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
         for l in ordered_menu_lines :
             self.fileMenu['widget'].addItem(self.fileMenu[l])
         self.fileMenu['widget'].rebuildMenuTree();
@@ -955,6 +957,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                 rebuild_package_list = True
                     elif item == self.fileMenu['reload']  :
                         self.reset_cache()
+                    elif item == self.fileMenu['repos']  :
+                        rd = dialogs.RepoDialog(self)
+                        rd.run()
+                        rd = None
                     elif item == self.fileMenu['quit']    :
                         #### QUIT
                         break
@@ -970,7 +976,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             sel_pkg = self._selectedPackage()
                             self._setInfoOnWidget(sel_pkg)
                         else :
-                            logger.debug("TODO run browser, URL: %s"%url)
+                            logger.debug("run browser, URL: %s"%url)
+                            webbrowser.open(url, 2)
             elif (eventType == yui.YEvent.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
