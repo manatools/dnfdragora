@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-02 22:48+0100\n"
+"POT-Creation-Date: 2017-02-04 00:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Icelandic (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:307 dnfdragora/ui.py:321
+#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:309 dnfdragora/ui.py:323
 msgid "All"
 msgstr "Allt"
 
@@ -588,196 +588,204 @@ msgstr ""
 msgid "Progress files (%d/%d)"
 msgstr ""
 
-#: dnfdragora/ui.py:154
+#: dnfdragora/ui.py:155
 msgid "Update information"
 msgstr ""
 
-#: dnfdragora/ui.py:155
+#: dnfdragora/ui.py:156
 msgid "File list"
 msgstr ""
 
-#: dnfdragora/ui.py:156
+#: dnfdragora/ui.py:157
 msgid "Changelog"
 msgstr ""
 
-#: dnfdragora/ui.py:241
+#: dnfdragora/ui.py:158
+msgid "Requirements"
+msgstr ""
+
+#: dnfdragora/ui.py:243
 msgid "Software Management - dnfdragora"
 msgstr ""
 
-#: dnfdragora/ui.py:273
+#: dnfdragora/ui.py:275
 msgid "Software Management"
 msgstr "Hugbúnaðarumsýsla"
 
-#: dnfdragora/ui.py:293
+#: dnfdragora/ui.py:295
 msgid "Arch"
 msgstr "Vélb"
 
-#: dnfdragora/ui.py:293
+#: dnfdragora/ui.py:295
 msgid "Name"
 msgstr "Nafn"
 
-#: dnfdragora/ui.py:293
+#: dnfdragora/ui.py:295
 msgid "Release"
 msgstr "Undirútgáfa"
 
-#: dnfdragora/ui.py:293
+#: dnfdragora/ui.py:295
 msgid "Summary"
 msgstr "Yfirlit"
 
-#: dnfdragora/ui.py:293
+#: dnfdragora/ui.py:295
 msgid "Version"
 msgstr "Útgáfa"
 
-#: dnfdragora/ui.py:300
+#: dnfdragora/ui.py:302
 msgid "Status"
 msgstr "Staða"
 
-#: dnfdragora/ui.py:308
+#: dnfdragora/ui.py:310
 msgid "Installed"
 msgstr "Uppsett"
 
-#: dnfdragora/ui.py:309
+#: dnfdragora/ui.py:311
 msgid "Not installed"
 msgstr "Ekki settur inn"
 
-#: dnfdragora/ui.py:310
+#: dnfdragora/ui.py:312
 msgid "To update"
 msgstr ""
 
-#: dnfdragora/ui.py:316
+#: dnfdragora/ui.py:318
 #, python-format
 msgid "Show %s and noarch only"
 msgstr ""
 
-#: dnfdragora/ui.py:322
+#: dnfdragora/ui.py:324
 msgid "Groups"
 msgstr "Hópar"
 
-#: dnfdragora/ui.py:363
+#: dnfdragora/ui.py:365
 msgid "in names"
 msgstr "í nöfnum"
 
-#: dnfdragora/ui.py:364
+#: dnfdragora/ui.py:366
 msgid "in descriptions"
 msgstr "í lýsingum"
 
-#: dnfdragora/ui.py:365
+#: dnfdragora/ui.py:367
 msgid "in summaries"
 msgstr "í samantekt"
 
-#: dnfdragora/ui.py:366
+#: dnfdragora/ui.py:368
 msgid "in file names"
 msgstr "í skráanöfnum"
 
-#: dnfdragora/ui.py:387
+#: dnfdragora/ui.py:389
 msgid "&Search"
 msgstr ""
 
-#: dnfdragora/ui.py:393
+#: dnfdragora/ui.py:395
 msgid "&Clear search"
 msgstr ""
 
-#: dnfdragora/ui.py:403
+#: dnfdragora/ui.py:405
 msgid "&Apply"
 msgstr ""
 
-#: dnfdragora/ui.py:407
+#: dnfdragora/ui.py:409
 msgid "Ch&eck all"
 msgstr ""
 
-#: dnfdragora/ui.py:411 dnfdragora/ui.py:419
+#: dnfdragora/ui.py:413 dnfdragora/ui.py:422
 msgid "&Quit"
 msgstr ""
 
-#: dnfdragora/ui.py:416
+#: dnfdragora/ui.py:418
 msgid "&File"
 msgstr ""
 
-#: dnfdragora/ui.py:417
+#: dnfdragora/ui.py:419
 msgid "Reset the selection"
 msgstr ""
 
-#: dnfdragora/ui.py:418
+#: dnfdragora/ui.py:420
 msgid "Refresh Metadata"
 msgstr ""
 
-#: dnfdragora/ui.py:429
+#: dnfdragora/ui.py:421
+msgid "Repositories"
+msgstr ""
+
+#: dnfdragora/ui.py:432
 msgid "&Help"
 msgstr ""
 
-#: dnfdragora/ui.py:430
+#: dnfdragora/ui.py:433
 msgid "Manual"
 msgstr "Handvirkt"
 
-#: dnfdragora/ui.py:431
+#: dnfdragora/ui.py:434
 msgid "&About"
 msgstr ""
 
-#: dnfdragora/ui.py:470
+#: dnfdragora/ui.py:473
 msgid "update"
 msgstr ""
 
-#: dnfdragora/ui.py:473
+#: dnfdragora/ui.py:476
 msgid "locked"
 msgstr ""
 
-#: dnfdragora/ui.py:476
+#: dnfdragora/ui.py:479
 msgid "installed"
 msgstr ""
 
-#: dnfdragora/ui.py:774
+#: dnfdragora/ui.py:777
 msgid "Missing information"
 msgstr ""
 
-#: dnfdragora/ui.py:886
+#: dnfdragora/ui.py:904
 msgid "Search"
 msgstr ""
 
-#: dnfdragora/ui.py:946
+#: dnfdragora/ui.py:968
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:946
+#: dnfdragora/ui.py:968
 msgid "Sorry"
 msgstr ""
 
-#: dnfdragora/ui.py:970
+#: dnfdragora/ui.py:996
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr ""
 
-#: dnfdragora/ui.py:970
+#: dnfdragora/ui.py:996
 msgid "Protected package selected"
 msgstr ""
 
-#: dnfdragora/ui.py:1017
+#: dnfdragora/ui.py:1043
 msgid "Applying changes to the system"
 msgstr ""
 
-#: dnfdragora/ui.py:1043
+#: dnfdragora/ui.py:1069
 msgid "Error checking package signatures"
 msgstr ""
 
-#: dnfdragora/ui.py:1047
+#: dnfdragora/ui.py:1073
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dnfdragora/ui.py:1052
+#: dnfdragora/ui.py:1078
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dnfdragora/ui.py:1064
+#: dnfdragora/ui.py:1090
 msgid "BuildTransaction failure"
 msgstr ""
 
-#: dnfdragora/ui.py:1102
+#: dnfdragora/ui.py:1128
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:1104
+#: dnfdragora/ui.py:1130
 msgid "Unmanaged event"
 msgstr ""
