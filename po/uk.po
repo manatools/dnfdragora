@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-02 22:48+0100\n"
-"PO-Revision-Date: 2017-01-31 20:56+0200\n"
+"PO-Revision-Date: 2017-02-03 12:50+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -590,15 +590,15 @@ msgstr "Поступ за файлами (%d/%d)"
 
 #: dnfdragora/ui.py:154
 msgid "Update information"
-msgstr ""
+msgstr "Оновити дані"
 
 #: dnfdragora/ui.py:155
 msgid "File list"
-msgstr ""
+msgstr "Список файлів"
 
 #: dnfdragora/ui.py:156
 msgid "Changelog"
-msgstr ""
+msgstr "Журнал змін"
 
 #: dnfdragora/ui.py:241
 msgid "Software Management - dnfdragora"
@@ -727,7 +727,7 @@ msgstr "встановлено"
 
 #: dnfdragora/ui.py:774
 msgid "Missing information"
-msgstr ""
+msgstr "Немає даних"
 
 #: dnfdragora/ui.py:886
 msgid "Search"
