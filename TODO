@@ -6,6 +6,8 @@ as soon as possible.
 *   Repository management (enabling and disabling repositories)
 
 === Important ===
+*   Write help/manual pages, maybe html to be run in a browser
+*   Run browser on package links, maybe also for help
 
 === Nice to have ===
 *   Add a user specific configuration file for saving user preferences.
