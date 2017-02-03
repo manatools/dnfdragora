@@ -154,6 +154,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'updateinfo' : { 'title' : _("Update information"), 'show' : False },
             'files' : { 'title' : _("File list"), 'show' : False },
             'changelog' : { 'title' : _("Changelog"), 'show' : False },
+            'requirements' : { 'title' : _("Requirements"), 'show' : False },
             }
         self.use_comps = False
         self.group_icon_path = None
@@ -788,6 +789,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     else :
                         s+= missing
 
+            if pkg.URL:
+                s += "<br>"
+                s+= '<b><a href="%s">%s</a></b>'%(pkg.URL, pkg.URL)
+                s += "<br>"
+
+            t = 'requirements'
+            s += "<br>"
+            s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
+            s += "<br>"
+            if self.infoshown[t]["show"]:
+                if pkg.requirements :
+                    s+= "<br>".join(pkg.requirements)
+                else:
+                    s+= missing
+
             t = 'files'
             s += "<br>"
             s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
@@ -948,10 +964,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.AboutDialog.run()
                 else:
                     url = yui.toYMenuEvent(event).id()
-                    if url:
-                        self.infoshown[url]["show"] = not self.infoshown[url]["show"]
-                        sel_pkg = self._selectedPackage()
-                        self._setInfoOnWidget(sel_pkg)
+                    if url :
+                        if url in self.infoshown.keys():
+                            self.infoshown[url]["show"] = not self.infoshown[url]["show"]
+                            sel_pkg = self._selectedPackage()
+                            self._setInfoOnWidget(sel_pkg)
+                        else :
+                            logger.debug("TODO run browser, URL: %s"%url)
             elif (eventType == yui.YEvent.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
