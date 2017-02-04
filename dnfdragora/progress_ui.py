@@ -127,7 +127,7 @@ class Progress(dnf.callback.DownloadProgress):
         self.progressbar.setValue(int(100*frac))
 
     def start(self, total_files, total_size):
-        text = _("Downloading :  %d files,  %d bytes") % (total_files, total_size)
+        text = _("Downloading :  %(files)d files,  %(size)d bytes") % {'files': total_files, 'bytes': total_size}
         print (text)
 
         self._setLabel(self.label_widget, text)
@@ -175,7 +175,7 @@ class Progress(dnf.callback.DownloadProgress):
 
     def update(self):
         """ Output the current progress"""
-        text = _("Progress files (%d/%d)") % (self.download_files, self.total_files)
+        text = _("Progress files (%(downloaded)d/%(total)d)") % {'downloaded': self.download_files, 'total': self.total_files}
         # TODO remove print(text)
         self._setLabel(self.label_widget, text)
         value = self.last_pct
