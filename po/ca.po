@@ -590,19 +590,19 @@ msgstr "Progrés dels fitxers (%d/%d)"
 
 #: dnfdragora/ui.py:155
 msgid "Update information"
-msgstr ""
+msgstr "Informació de l'actualització"
 
 #: dnfdragora/ui.py:156
 msgid "File list"
-msgstr ""
+msgstr "Llista de fitxes"
 
 #: dnfdragora/ui.py:157
 msgid "Changelog"
-msgstr ""
+msgstr "Registre de canvis"
 
 #: dnfdragora/ui.py:158
 msgid "Requirements"
-msgstr ""
+msgstr "Requisits"
 
 #: dnfdragora/ui.py:243
 msgid "Software Management - dnfdragora"
@@ -707,7 +707,7 @@ msgstr "Refresca les metadades"
 
 #: dnfdragora/ui.py:421
 msgid "Repositories"
-msgstr ""
+msgstr "Dipòsits"
 
 #: dnfdragora/ui.py:432
 msgid "&Help"
@@ -735,7 +735,7 @@ msgstr "instal·lat"
 
 #: dnfdragora/ui.py:777
 msgid "Missing information"
-msgstr ""
+msgstr "No s'ha trobat informació"
 
 #: dnfdragora/ui.py:904
 msgid "Search"
