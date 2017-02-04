@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-04 00:33+0100\n"
-"PO-Revision-Date: 2017-02-03 12:50+0200\n"
+"PO-Revision-Date: 2017-02-04 14:01+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -602,7 +602,7 @@ msgstr "Журнал змін"
 
 #: dnfdragora/ui.py:158
 msgid "Requirements"
-msgstr ""
+msgstr "Вимоги"
 
 #: dnfdragora/ui.py:243
 msgid "Software Management - dnfdragora"
@@ -707,7 +707,7 @@ msgstr "Оновити метадані"
 
 #: dnfdragora/ui.py:421
 msgid "Repositories"
-msgstr ""
+msgstr "Сховища"
 
 #: dnfdragora/ui.py:432
 msgid "&Help"
