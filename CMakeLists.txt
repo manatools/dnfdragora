@@ -7,6 +7,7 @@ include(FindPkgConfig)
 include(GNUInstallDirs)
 
 find_package(PythonInterp 3.4 REQUIRED)
+find_package(Gettext)
 
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(), end='')" OUTPUT_VARIABLE PYTHON_INSTALL_DIR)
 string(REGEX REPLACE "\n$" "" ${PYTHON_INSTALL_DIR} "${PYTHON_INSTALL_DIR}")
@@ -39,6 +40,11 @@ endif(ENABLE_COMPS)
 
 # Configure files
 configure_file(${CMAKE_SOURCE_DIR}/etc/dnfdragora.yaml.in ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml @ONLY)
+
+# Build and install translations
+if(GETTEXT_FOUND)
+	add_subdirectory(po)
+endif(GETTEXT_FOUND)
 
 # Installing application code
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/dnfdragora DESTINATION ${CMAKE_INSTALL_BINDIR})
