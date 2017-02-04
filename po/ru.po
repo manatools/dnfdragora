@@ -592,19 +592,19 @@ msgstr "Прогресс файлов (%d/%d)"
 
 #: dnfdragora/ui.py:155
 msgid "Update information"
-msgstr ""
+msgstr "Информация об обновлении"
 
 #: dnfdragora/ui.py:156
 msgid "File list"
-msgstr ""
+msgstr "Список файлов"
 
 #: dnfdragora/ui.py:157
 msgid "Changelog"
-msgstr ""
+msgstr "Журнал изменений"
 
 #: dnfdragora/ui.py:158
 msgid "Requirements"
-msgstr ""
+msgstr "Требования"
 
 #: dnfdragora/ui.py:243
 msgid "Software Management - dnfdragora"
@@ -709,7 +709,7 @@ msgstr "Обновить метаданные"
 
 #: dnfdragora/ui.py:421
 msgid "Repositories"
-msgstr ""
+msgstr "Репозитории"
 
 #: dnfdragora/ui.py:432
 msgid "&Help"
@@ -737,7 +737,7 @@ msgstr "установлен"
 
 #: dnfdragora/ui.py:777
 msgid "Missing information"
-msgstr ""
+msgstr "Отсутствует информация"
 
 #: dnfdragora/ui.py:904
 msgid "Search"
