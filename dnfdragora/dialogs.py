@@ -554,12 +554,12 @@ def ask_for_gpg_import (values):
     '''
     (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
     pkg_name = pkg_id.split(',')[0]
-    msg = (_('Do you want to import this GPG key <br>needed to verify the %s package?<br>'
-             '<br>Key        : 0x%s:<br>'
-             'Userid     : "%s"<br>'
-             'From       : %s') %
-           (pkg_name, hexkeyid, userid,
-            keyurl.replace("file://", "")))
+    msg = (_('Do you want to import this GPG key <br>needed to verify the %(pkg)s package?<br>'
+             '<br>Key        : 0x%(id)s:<br>'
+             'Userid     : "%(user)s"<br>'
+             'From       : %(file)s') %
+           {'pkg': pkg_name, 'id': hexkeyid, 'user': userid,
+            'file': keyurl.replace("file://", "")})
 
     return askYesOrNo({'title' : _("GPG key missed"),
                        'text': msg,

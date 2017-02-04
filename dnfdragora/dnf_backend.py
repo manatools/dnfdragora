@@ -164,11 +164,11 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
                          self.running_api_version)
         else:
             raise dnfdaemon.client.APIVersionError(
-                                   _('dnfdaemon api version : %d'
+                                   _('dnfdaemon api version : %(actual)d'
                                      "\ndoesn't match"
-                                     '\nneeded api version : %d') %
-                                   (self.running_api_version,
-                                    const.NEEDED_DAEMON_API))
+                                     '\nneeded api version : %(required)d') %
+                                   {'actual': self.running_api_version,
+                                    'required': const.NEEDED_DAEMON_API})
 
     def on_TransactionEvent(self, event, data):
         if event == 'start-run':
@@ -242,8 +242,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         self._files_downloaded = 0
         self.frontend.infobar.set_progress(0.0)
         self.frontend.infobar.info_sub(
-            _('Downloading %d files (%sB)...') %
-            (num_files, dnfdragora.misc.format_number(num_bytes)))
+            _('Downloading %(count_files)d files (%(count_bytes)sB)...') %
+            {'count_files':num_files, 'count_bytes': dnfdragora.misc.format_number(num_bytes)})
 
     def on_DownloadProgress(self, name, frac, total_frac, total_files):
         """Progress for a single element in the batch."""
