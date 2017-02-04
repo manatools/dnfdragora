@@ -192,7 +192,9 @@ class RepoDialog:
 
         self.dialog = self.factory.createPopupDialog()
 
-        vbox = self.factory.createVBox(self.dialog)
+        minSize = self.factory.createMinSize( self.dialog, 80, 26 )
+
+        vbox = self.factory.createVBox(minSize)
 
         hbox_headbar = self.factory.createHBox(vbox)
         #Line for logo and title
