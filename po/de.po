@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-05 00:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Marc Lattemann <marc.lattemann@web.de>, 2017\n"
+"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
 "de/)\n"
 "Language: de\n"
@@ -20,9 +34,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: dnfdragora/basedragora.py:55
-#, fuzzy
 msgid "Refreshing Repository Metadata"
-msgstr "Metadaten aktualisieren"
+msgstr ""
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
@@ -42,53 +55,44 @@ msgid ""
 msgstr ""
 
 #: dnfdragora/compsicons.py:20
-#, fuzzy
 msgid "KDE Desktop"
-msgstr "IceWm-Desktop"
+msgstr "KDE-Desktop"
 
 #: dnfdragora/compsicons.py:21
-#, fuzzy
 msgid "Xfce Desktop"
-msgstr "IceWm-Desktop"
+msgstr "Xfce-Desktop"
 
 #: dnfdragora/compsicons.py:22
-#, fuzzy
 msgid "Applications"
-msgstr "Kommunikationen"
+msgstr "Anwendungen"
 
 #: dnfdragora/compsicons.py:23
-#, fuzzy
 msgid "LXDE Desktop"
-msgstr "IceWm-Desktop"
+msgstr "LXDE-Desktop"
 
 #: dnfdragora/compsicons.py:24
-#, fuzzy
 msgid "LXQt Desktop"
-msgstr "IceWm-Desktop"
+msgstr "LXQt-Desktop"
 
 #: dnfdragora/compsicons.py:25
-#, fuzzy
 msgid "Cinnamon Desktop"
-msgstr "IceWm-Desktop"
+msgstr "Cinnamon-Desktop"
 
 #: dnfdragora/compsicons.py:26
-#, fuzzy
 msgid "MATE Desktop"
-msgstr "IceWm-Desktop"
+msgstr "MATE-Desktop"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii-Desktop"
 
 #: dnfdragora/compsicons.py:28
-#, fuzzy
 msgid "Sugar Desktop Environment"
-msgstr "Grafische Umgebung"
+msgstr "Sugar-Desktopumgebung"
 
 #: dnfdragora/compsicons.py:29
-#, fuzzy
 msgid "GNOME Desktop"
-msgstr "IceWm-Desktop"
+msgstr "GNOME-Desktop"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -100,13 +104,12 @@ msgid "Servers"
 msgstr "Server"
 
 #: dnfdragora/compsicons.py:32
-#, fuzzy
 msgid "Base System"
-msgstr "System"
+msgstr "Grundsystem"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 #: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
 #: dnfdragora/ui.py:309 dnfdragora/ui.py:323
@@ -123,23 +126,23 @@ msgstr "Suchergebnisse"
 
 #: dnfdragora/const.py:101
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Installierte Pakete werden geholt"
 
 #: dnfdragora/const.py:102
 msgid "Getting available packages"
-msgstr ""
+msgstr "Verfügbare Pakete werden geholt"
 
 #: dnfdragora/const.py:103
 msgid "Getting available updates"
-msgstr ""
+msgstr "Verfügbare Aktualisierungen werden geholt"
 
 #: dnfdragora/const.py:104
 msgid "Getting all packages"
-msgstr ""
+msgstr "Alle Pakete werden geholt"
 
 #: dnfdragora/const.py:117
 msgid "Updated packages"
-msgstr ""
+msgstr "Aktualisierte Pakete"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
@@ -150,32 +153,28 @@ msgid "Obsoleting packages"
 msgstr ""
 
 #: dnfdragora/const.py:120
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "Geschütztes Paket ausgewählt"
+msgstr ""
 
 #: dnfdragora/const.py:121
 msgid "Erased packages"
 msgstr ""
 
 #: dnfdragora/const.py:122 dnfdragora/const.py:123
-#, fuzzy
 msgid "Installed packages"
-msgstr "Installiert"
+msgstr "Installierte Pakete"
 
 #: dnfdragora/const.py:124
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Installiert für Abhängigkeiten"
 
 #: dnfdragora/const.py:125
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "installiert"
+msgstr "Erneut installierte Pakete"
 
 #: dnfdragora/const.py:129
-#, fuzzy
 msgid "Installing"
-msgstr "Installiert"
+msgstr "Installation"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
@@ -186,9 +185,8 @@ msgid "Removing"
 msgstr ""
 
 #: dnfdragora/const.py:132
-#, fuzzy
 msgid "Downgrading"
-msgstr "Fehler beim herunterladen"
+msgstr ""
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
@@ -200,9 +198,9 @@ msgid "Updating: %s"
 msgstr ""
 
 #: dnfdragora/const.py:138
-#, fuzzy, python-format
+#, python-format
 msgid "Installing: %s"
-msgstr "Installiert"
+msgstr ""
 
 #: dnfdragora/const.py:139
 #, python-format
@@ -225,9 +223,9 @@ msgid "Obsoleting: %s"
 msgstr ""
 
 #: dnfdragora/const.py:143
-#, fuzzy, python-format
+#, python-format
 msgid "Downgrading: %s"
-msgstr "Fehler beim herunterladen"
+msgstr ""
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -236,26 +234,23 @@ msgstr ""
 
 #: dnfdragora/const.py:154
 msgid "Bugfix"
-msgstr ""
+msgstr "Fehlerkorrektur"
 
 #: dnfdragora/const.py:155
-#, fuzzy
 msgid "New Package"
-msgstr "Paketbau"
+msgstr "Neues Paket"
 
 #: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Sicherheit"
 
 #: dnfdragora/const.py:157
-#, fuzzy
 msgid "Enhancement"
-msgstr "Verwaltung"
+msgstr "Verbesserung"
 
 #: dnfdragora/dialogs.py:43
-#, fuzzy
 msgid "Transaction result"
-msgstr "Build Transaktion Fehler"
+msgstr ""
 
 #: dnfdragora/dialogs.py:49
 msgid "Transaction dependency"
@@ -265,12 +260,12 @@ msgstr ""
 #: dnfdragora/dialogs.py:404 dnfdragora/dialogs.py:440
 #: dnfdragora/dialogs.py:483
 msgid "&Ok"
-msgstr ""
+msgstr "&Ok"
 
 #: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:235
 #: dnfdragora/dialogs.py:484
 msgid "&Cancel"
-msgstr ""
+msgstr "Abbre&chen"
 
 #: dnfdragora/dialogs.py:74
 msgid "replacing "
@@ -278,21 +273,19 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:80
 msgid "Total size "
-msgstr ""
+msgstr "Gesamtgröße"
 
 #: dnfdragora/dialogs.py:145
-#, fuzzy
 msgid "Developers"
-msgstr "Entwicklung"
+msgstr "Entwickler"
 
 #: dnfdragora/dialogs.py:148
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
 
 #: dnfdragora/dialogs.py:191 dnfdragora/dialogs.py:207
-#, fuzzy
 msgid "Repository Management"
-msgstr "Software-Verwaltung"
+msgstr "Repositoriumsverwaltung"
 
 #: dnfdragora/dialogs.py:221 dnfdragora/ui.py:295
 msgid "Name"
@@ -300,7 +293,7 @@ msgstr "Name"
 
 #: dnfdragora/dialogs.py:221
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiviert"
 
 #: dnfdragora/dialogs.py:232 dnfdragora/ui.py:405
 msgid "&Apply"
@@ -308,11 +301,11 @@ msgstr "&Anwenden"
 
 #: dnfdragora/dialogs.py:533
 msgid "&Yes"
-msgstr ""
+msgstr "&Ja"
 
 #: dnfdragora/dialogs.py:534
 msgid "&No"
-msgstr ""
+msgstr "&Nein"
 
 #: dnfdragora/dialogs.py:557
 #, python-format
@@ -335,33 +328,29 @@ msgid ""
 msgstr ""
 
 #: dnfdragora/dnf_backend.py:176
-#, fuzzy
 msgid "Start transaction"
-msgstr "Internet-Station"
+msgstr "Vorgang starten"
 
 #: dnfdragora/dnf_backend.py:179
-#, fuzzy
 msgid "Downloading packages"
-msgstr "Fehler beim herunterladen"
+msgstr "Pakete werden heruntergeladen"
 
 #: dnfdragora/dnf_backend.py:186
-#, fuzzy
 msgid "Checking package signatures"
-msgstr "Fehler beim überprüfen der Paketsignaturen "
+msgstr "Paketsignaturen werden überprüft"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1043
 msgid "Applying changes to the system"
 msgstr "Änderungen auf das System anwenden"
 
 #: dnfdragora/dnf_backend.py:200
-#, fuzzy
 msgid "Verify changes on the system"
-msgstr "Änderungen auf das System anwenden"
+msgstr "Änderungen auf dem System werden verifiziert"
 
 #: dnfdragora/dnf_backend.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr "Herunterladen: %d Dateien, %d Bytes"
+msgstr "Herunterladen %(count_files)d Dateien (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
@@ -897,9 +886,9 @@ msgid "Web/FTP"
 msgstr "Web/FTP"
 
 #: dnfdragora/progress_ui.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr "Herunterladen: %d Dateien, %d Bytes"
+msgstr "Herunterladen :  %(files)d Dateien,  %(size)d Bytes"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
@@ -907,9 +896,9 @@ msgid "Starting to download : %s "
 msgstr "Herunterladen starten: %s"
 
 #: dnfdragora/progress_ui.py:178
-#, fuzzy, python-format
+#, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr "Fortschritt Dateien (%d%d)"
+msgstr "Fortschritt Dateien (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:155
 msgid "Update information"
@@ -1050,7 +1039,7 @@ msgstr "installiert"
 
 #: dnfdragora/ui.py:777
 msgid "Missing information"
-msgstr ""
+msgstr "Fehlende Information"
 
 #: dnfdragora/ui.py:904
 msgid "Search"
