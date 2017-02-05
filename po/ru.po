@@ -1,16 +1,30 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-04 00:33+0100\n"
+"POT-Creation-Date: 2017-02-05 00:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ru/)\n"
 "Language: ru\n"
@@ -21,9 +35,341 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:309 dnfdragora/ui.py:323
+#: dnfdragora/basedragora.py:55
+msgid "Refreshing Repository Metadata"
+msgstr "Обновление метаданных репозиториев"
+
+#: dnfdragora/basedragora.py:60
+msgid "Could not refresh the DNF cache (root)"
+msgstr "Не удалось обновить кэш DNF (root)"
+
+#: dnfdragora/basedragora.py:83
+msgid ""
+"DNF root backend was not authorized.\n"
+"dnfdragora will exit"
+msgstr ""
+"DNF root бэкенд не был авторизован.\n"
+"dnfdragora завершится"
+
+#: dnfdragora/basedragora.py:88
+msgid ""
+"DNF is locked by another process.\n"
+"\n"
+"dnfdragora will exit"
+msgstr ""
+"DNF заблокирован другим процессом.\n"
+"\n"
+"dnfdragora завершится"
+
+#: dnfdragora/compsicons.py:20
+msgid "KDE Desktop"
+msgstr "Рабочий стол KDE"
+
+#: dnfdragora/compsicons.py:21
+msgid "Xfce Desktop"
+msgstr "Рабочий стол Xfce"
+
+#: dnfdragora/compsicons.py:22
+msgid "Applications"
+msgstr "Приложения"
+
+#: dnfdragora/compsicons.py:23
+msgid "LXDE Desktop"
+msgstr "Рабочий стол LXDE"
+
+#: dnfdragora/compsicons.py:24
+msgid "LXQt Desktop"
+msgstr "LXQt Desktop"
+
+#: dnfdragora/compsicons.py:25
+msgid "Cinnamon Desktop"
+msgstr "Рабочий стол Cinnamon"
+
+#: dnfdragora/compsicons.py:26
+msgid "MATE Desktop"
+msgstr "Рабочий стол MATE"
+
+#: dnfdragora/compsicons.py:27
+msgid "Hawaii Desktop"
+msgstr "Рабочий стол Hawaii"
+
+#: dnfdragora/compsicons.py:28
+msgid "Sugar Desktop Environment"
+msgstr "Окружение рабочего стола Sugar"
+
+#: dnfdragora/compsicons.py:29
+msgid "GNOME Desktop"
+msgstr "Рабочий стол GNOME"
+
+#: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
+#: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
+msgid "Development"
+msgstr "Разработка"
+
+#: dnfdragora/compsicons.py:31 dnfdragora/groupicons.py:495
+msgid "Servers"
+msgstr "Серверы"
+
+#: dnfdragora/compsicons.py:32
+msgid "Base System"
+msgstr "Базовая система"
+
+#: dnfdragora/compsicons.py:33
+msgid "Content"
+msgstr "Содержание"
+
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:309 dnfdragora/ui.py:323
 msgid "All"
 msgstr "Все"
+
+#: dnfdragora/compsicons.py:42 dnfdragora/groupicons.py:168
+msgid "Empty"
+msgstr "Пусто"
+
+#: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
+msgid "Search result"
+msgstr "Результат поиска"
+
+#: dnfdragora/const.py:101
+msgid "Getting installed packages"
+msgstr "Получение установленных пакетов"
+
+#: dnfdragora/const.py:102
+msgid "Getting available packages"
+msgstr "Получение доступных пакетов"
+
+#: dnfdragora/const.py:103
+msgid "Getting available updates"
+msgstr "Получение доступных обновлений"
+
+#: dnfdragora/const.py:104
+msgid "Getting all packages"
+msgstr "Получение всех пакетов"
+
+#: dnfdragora/const.py:117
+msgid "Updated packages"
+msgstr "Обновлённые пакеты"
+
+#: dnfdragora/const.py:118
+msgid "Downgraded packages"
+msgstr "Пониженные пакеты"
+
+#: dnfdragora/const.py:119
+msgid "Obsoleting packages"
+msgstr "Устаревание пакетов"
+
+#: dnfdragora/const.py:120
+msgid "Obsoleted packages"
+msgstr "Устаревшие пакеты"
+
+#: dnfdragora/const.py:121
+msgid "Erased packages"
+msgstr "Стёртые пакеты"
+
+#: dnfdragora/const.py:122 dnfdragora/const.py:123
+msgid "Installed packages"
+msgstr "Установленные пакеты"
+
+#: dnfdragora/const.py:124
+msgid "Installed for dependencies"
+msgstr "Установленные для зависимостей"
+
+#: dnfdragora/const.py:125
+msgid "Reinstalled packages"
+msgstr "Переустановленные пакеты"
+
+#: dnfdragora/const.py:129
+msgid "Installing"
+msgstr "Установка"
+
+#: dnfdragora/const.py:130
+msgid "Updating"
+msgstr "Обновление"
+
+#: dnfdragora/const.py:131
+msgid "Removing"
+msgstr "Удаление"
+
+#: dnfdragora/const.py:132
+msgid "Downgrading"
+msgstr "Понижение"
+
+#: dnfdragora/const.py:133
+msgid "Replacing"
+msgstr "Замена"
+
+#: dnfdragora/const.py:137
+#, python-format
+msgid "Updating: %s"
+msgstr "Обновление: %s"
+
+#: dnfdragora/const.py:138
+#, python-format
+msgid "Installing: %s"
+msgstr "Установка: %s"
+
+#: dnfdragora/const.py:139
+#, python-format
+msgid "Reinstalling: %s"
+msgstr "Переустановка: %s"
+
+#: dnfdragora/const.py:140
+#, python-format
+msgid "Cleanup: %s"
+msgstr "Очистка: %s"
+
+#: dnfdragora/const.py:141
+#, python-format
+msgid "Removing: %s"
+msgstr "Удаление: %s"
+
+#: dnfdragora/const.py:142
+#, python-format
+msgid "Obsoleting: %s"
+msgstr "Устаревание: %s"
+
+#: dnfdragora/const.py:143
+#, python-format
+msgid "Downgrading: %s"
+msgstr "Понижение: %s"
+
+#: dnfdragora/const.py:144
+#, python-format
+msgid "Verifying: %s"
+msgstr "Проверка: %s"
+
+#: dnfdragora/const.py:154
+msgid "Bugfix"
+msgstr "Багфикс"
+
+#: dnfdragora/const.py:155
+msgid "New Package"
+msgstr "Новый пакет"
+
+#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+msgid "Security"
+msgstr "Безопасность"
+
+#: dnfdragora/const.py:157
+msgid "Enhancement"
+msgstr "Увеличение"
+
+#: dnfdragora/dialogs.py:43
+msgid "Transaction result"
+msgstr "Результат транзакции"
+
+#: dnfdragora/dialogs.py:49
+msgid "Transaction dependency"
+msgstr "Зависимость транзакции"
+
+#: dnfdragora/dialogs.py:54 dnfdragora/dialogs.py:366
+#: dnfdragora/dialogs.py:404 dnfdragora/dialogs.py:440
+#: dnfdragora/dialogs.py:483
+msgid "&Ok"
+msgstr "&Хорошо"
+
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:235
+#: dnfdragora/dialogs.py:484
+msgid "&Cancel"
+msgstr "&Отмена"
+
+#: dnfdragora/dialogs.py:74
+msgid "replacing "
+msgstr "замена"
+
+#: dnfdragora/dialogs.py:80
+msgid "Total size "
+msgstr "Общий размер"
+
+#: dnfdragora/dialogs.py:145
+msgid "Developers"
+msgstr "Разработчики"
+
+#: dnfdragora/dialogs.py:148
+msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
+msgstr ""
+"dnfdragora - фронтэнд DNF, который работает с использованием GTK, ncurses и "
+"QT"
+
+#: dnfdragora/dialogs.py:191 dnfdragora/dialogs.py:207
+msgid "Repository Management"
+msgstr "Управление репозиториями"
+
+#: dnfdragora/dialogs.py:221 dnfdragora/ui.py:295
+msgid "Name"
+msgstr "Название"
+
+#: dnfdragora/dialogs.py:221
+msgid "Enabled"
+msgstr "Включено"
+
+#: dnfdragora/dialogs.py:232 dnfdragora/ui.py:405
+msgid "&Apply"
+msgstr "&Применить"
+
+#: dnfdragora/dialogs.py:533
+msgid "&Yes"
+msgstr "&Да"
+
+#: dnfdragora/dialogs.py:534
+msgid "&No"
+msgstr "&Нет"
+
+#: dnfdragora/dialogs.py:557
+#, python-format
+msgid ""
+"Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
+"<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
+"%(file)s"
+msgstr ""
+"Вы хотите импортировать этот GPG ключ, <br>требуемый для верификации %(pkg)s "
+"пакета?<br><br>Ключ        : 0x%(id)s:<br>Userid     : \"%(user)s"
+"\"<br>Из       : %(file)s"
+
+#: dnfdragora/dialogs.py:564
+msgid "GPG key missed"
+msgstr "Отсутствует GPG ключ"
+
+#: dnfdragora/dnf_backend.py:167
+#, python-format
+msgid ""
+"dnfdaemon api version : %(actual)d\n"
+"doesn't match\n"
+"needed api version : %(required)d"
+msgstr ""
+"api версия у dnfdaemon : %(actual)d\n"
+"не соответствует\n"
+"трубуется api версия : %(required)d"
+
+#: dnfdragora/dnf_backend.py:176
+msgid "Start transaction"
+msgstr "Запуск транзакции"
+
+#: dnfdragora/dnf_backend.py:179
+msgid "Downloading packages"
+msgstr "Загружаются пакеты"
+
+#: dnfdragora/dnf_backend.py:186
+msgid "Checking package signatures"
+msgstr "Проверяются подписи пакетов"
+
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1043
+msgid "Applying changes to the system"
+msgstr "Применение изменений к системе"
+
+#: dnfdragora/dnf_backend.py:200
+msgid "Verify changes on the system"
+msgstr "Проверять изменения в системе"
+
+#: dnfdragora/dnf_backend.py:245
+#, python-format
+msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
+msgstr "Загружается %(count_files)d файлов (%(count_bytes)sБ)..."
+
+#: dnfdragora/dnf_backend.py:544
+msgid "Caching groups from packages... "
+msgstr "Кэширование групп из пакетов..."
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -86,11 +432,6 @@ msgstr "Телефония"
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
 msgstr "Базы данных"
-
-#: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:597
-#: dnfdragora/groupicons.py:600
-msgid "Development"
-msgstr "Разработка"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
@@ -168,10 +509,6 @@ msgstr "Редакторы"
 #: dnfdragora/groupicons.py:164
 msgid "Education"
 msgstr "Образование"
-
-#: dnfdragora/groupicons.py:168
-msgid "Empty"
-msgstr "Пусто"
 
 #: dnfdragora/groupicons.py:172
 msgid "Emulators"
@@ -387,10 +724,6 @@ msgstr "Математика"
 msgid "Physics"
 msgstr "Физика"
 
-#: dnfdragora/groupicons.py:404
-msgid "Security"
-msgstr "Безопасность"
-
 #: dnfdragora/groupicons.py:408
 msgid "Shells"
 msgstr "Командные процессоры"
@@ -467,10 +800,6 @@ msgstr "Опакечивание"
 msgid "Printing"
 msgstr "Печать"
 
-#: dnfdragora/groupicons.py:495
-msgid "Servers"
-msgstr "Серверы"
-
 #: dnfdragora/groupicons.py:504
 msgid "Terminals"
 msgstr "Терминалы"
@@ -543,10 +872,6 @@ msgstr "Рабочая станция KDE"
 msgid "Other Graphical Desktops"
 msgstr "Другие графические рабочие столы"
 
-#: dnfdragora/groupicons.py:609
-msgid "Search result"
-msgstr "Результат поиска"
-
 #: dnfdragora/groupicons.py:613
 msgid "Server"
 msgstr "Сервер"
@@ -577,8 +902,8 @@ msgstr "Веб/FTP"
 
 #: dnfdragora/progress_ui.py:130
 #, python-format
-msgid "Downloading :  %d files,  %d bytes"
-msgstr "Загружается :  %d файлов,  %d байт"
+msgid "Downloading :  %(files)d files,  %(size)d bytes"
+msgstr "Загружается :  %(files)d файлов, %(size)d байт"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
@@ -587,8 +912,8 @@ msgstr "Начинается загрузка : %s "
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
-msgid "Progress files (%d/%d)"
-msgstr "Прогресс файлов (%d/%d)"
+msgid "Progress files (%(downloaded)d/%(total)d)"
+msgstr "Прогресс файлов (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:155
 msgid "Update information"
@@ -615,24 +940,20 @@ msgid "Software Management"
 msgstr "Управление программами"
 
 #: dnfdragora/ui.py:295
-msgid "Arch"
-msgstr "Платформа"
-
-#: dnfdragora/ui.py:295
-msgid "Name"
-msgstr "Название"
-
-#: dnfdragora/ui.py:295
-msgid "Release"
-msgstr "Релиз"
-
-#: dnfdragora/ui.py:295
 msgid "Summary"
 msgstr "Сводка"
 
 #: dnfdragora/ui.py:295
 msgid "Version"
 msgstr "Версия"
+
+#: dnfdragora/ui.py:295
+msgid "Release"
+msgstr "Релиз"
+
+#: dnfdragora/ui.py:295
+msgid "Arch"
+msgstr "Платформа"
 
 #: dnfdragora/ui.py:302
 msgid "Status"
@@ -682,10 +1003,6 @@ msgstr "&Поиск"
 #: dnfdragora/ui.py:395
 msgid "&Clear search"
 msgstr "&Очистить поиск"
-
-#: dnfdragora/ui.py:405
-msgid "&Apply"
-msgstr "&Применить"
 
 #: dnfdragora/ui.py:409
 msgid "Ch&eck all"
@@ -744,25 +1061,21 @@ msgid "Search"
 msgstr "Поиск"
 
 #: dnfdragora/ui.py:968
-msgid "Not implemented yet"
-msgstr "Ещё не реализовано"
-
-#: dnfdragora/ui.py:968
 msgid "Sorry"
 msgstr "Извините"
 
-#: dnfdragora/ui.py:996
-#, python-format
-msgid "Package %s cannot be removed"
-msgstr "Пакет %s не может быть удалён"
+#: dnfdragora/ui.py:968
+msgid "Not implemented yet"
+msgstr "Ещё не реализовано"
 
 #: dnfdragora/ui.py:996
 msgid "Protected package selected"
 msgstr "Выбран защищённый пакет"
 
-#: dnfdragora/ui.py:1043
-msgid "Applying changes to the system"
-msgstr "Применение изменений к системе"
+#: dnfdragora/ui.py:996
+#, python-format
+msgid "Package %s cannot be removed"
+msgstr "Пакет %s не может быть удалён"
 
 #: dnfdragora/ui.py:1069
 msgid "Error checking package signatures"
