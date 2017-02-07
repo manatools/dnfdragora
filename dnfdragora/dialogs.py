@@ -11,6 +11,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 # NOTE part of this code is imported from yumex-dnf
 
 import yui
+import sys
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
@@ -196,7 +197,6 @@ class RepoDialog:
 
         vbox = self.factory.createVBox(minSize)
 
-        hbox_headbar = self.factory.createHBox(vbox)
         #Line for logo and title
         hbox_iconbar  = self.factory.createHBox(vbox)
         head_align_left  = self.factory.createLeft(hbox_iconbar)
@@ -206,13 +206,10 @@ class RepoDialog:
 
         self.factory.createHeading(hbox_iconbar, _("Repository Management"))
 
-        hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
         hbox_bottom = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
-        hbox_headbar.setWeight(1,10)
-        hbox_top.setWeight(1,10)
         hbox_middle.setWeight(1,50)
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
@@ -319,7 +316,22 @@ class RepoDialog:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     self.itemList[it]['enabled'] = changedItem.checked()
                     repo_id = self._selectedRepository()
-                    self.info.setText("TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---"))
+                    s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
+                    # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
+                    try:
+                        ri = self.backend.GetRepo(repo_id)
+                        logger.debug(ri)
+                        s = ""
+                        for k in sorted(ri.keys()):
+                            if (ri[k]):
+                                s+= "<b>%s</b>: %s<br>"%(k, ri[k])
+                    except NameError as e:
+                        logger.error("dnfdaemon NameError: %s ", e)
+                    except AttributeError as e:
+                        logger.error("dnfdaemon AttributeError: %s ", e)
+                    except:
+                        logger.error("Unexpected error: %s ", sys.exc_info()[0])
+                    self.info.setText(s)
 
     def run(self):
         '''
