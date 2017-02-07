@@ -397,8 +397,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.find_entry.setWeight(0,10)
 
         self.info = self.factory.createRichText(hbox_bottom,"")
-        self.info.setWeight(0,40)
-        self.info.setWeight(1,40)
+        self.info.setWeight(yui.YD_HORIZ,40)
+        self.info.setWeight(yui.YD_VERT, 40)
 
         self.infobar = progress_ui.ProgressBar(self.dialog, pbar_layout)
 
