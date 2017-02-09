@@ -34,7 +34,7 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Metadata van de softwarebron verversen"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
@@ -150,7 +150,7 @@ msgstr "Opgewaardeerde pakketten"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Gedegradeerde pakketten"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
@@ -286,10 +286,11 @@ msgstr "Ontwikkelaars"
 #: dnfdragora/dialogs.py:148
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora is een DNF frontend die werkt met behulp van GTK, ncurses en QT"
 
 #: dnfdragora/dialogs.py:191 dnfdragora/dialogs.py:207
 msgid "Repository Management"
-msgstr ""
+msgstr "Softwarebron-beheer"
 
 #: dnfdragora/dialogs.py:221 dnfdragora/ui.py:295
 msgid "Name"
@@ -318,10 +319,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Wilt u deze GPG sleutel <br>die nodig is om het %(pkg)s pakket te "
+"controleren importeren?<br><br>Sleutel : 0x%(id)s:<br>Userid : \"%(user)s"
+"\"<br>Van: %(file)s"
 
 #: dnfdragora/dialogs.py:564
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG sleutel gemist"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -330,6 +334,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon api versie: %(actual)d\n"
+"komt niet overeen\n"
+"benodigde api versie: %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
@@ -341,7 +348,7 @@ msgstr "Pakketten downloaden"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Pakketondertekeningen controleren"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1043
 msgid "Applying changes to the system"
@@ -355,10 +362,11 @@ msgstr "Wijzigingen aan het systeem verifiëren"
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr ""
+"Bezig met het downloaden van: %(count_files)d bestanden (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Caching groepen van pakketten..."
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -892,7 +900,7 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Bezig met het downloaden van: %(files)d bestanden, %(size)d bytes"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
@@ -902,7 +910,7 @@ msgstr "Beginnen met downloaden: %s"
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Voortgang-bestanden (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:155
 msgid "Update information"
@@ -1015,7 +1023,7 @@ msgstr "Metadata verversen"
 
 #: dnfdragora/ui.py:421
 msgid "Repositories"
-msgstr ""
+msgstr "Softwarebronnen"
 
 #: dnfdragora/ui.py:432
 msgid "&Help"
@@ -1059,16 +1067,18 @@ msgstr "Nog niet geïmplementeerd"
 
 #: dnfdragora/ui.py:996
 msgid "Protected package selected"
-msgstr ""
+msgstr "Beschermd pakket geselecteerd"
 
 #: dnfdragora/ui.py:996
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Pakket %s kan niet verwijderd worden"
 
 #: dnfdragora/ui.py:1069
 msgid "Error checking package signatures"
 msgstr ""
+"Er is een fout opgetreden tijdens het controleren van de "
+"pakketondertekeningen..."
 
 #: dnfdragora/ui.py:1073
 msgid "Downloading error"
