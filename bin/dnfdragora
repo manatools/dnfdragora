@@ -1,6 +1,18 @@
 #!/usr/bin/python3
+# vim: set et ts=4 sw=4:
+#    Copyright 2016-2017 Angelo Naselli <anaselli@linux.it>
+#
+#    dnfdragora is a graphical package management tool based on libyui 
+#    python bindings
+#
+#    dnfdragora is an external manatools module
+#
+#    License: GPLv3
+#
 
 import sys
+import gettext
+from gettext import gettext as _
 
 if sys.path[0] is not '/usr/bin':
     # We know this script is running from a git checkout
@@ -14,19 +26,20 @@ if __name__ == "__main__":
 
     import argparse
 
-    parser = argparse.ArgumentParser(prog='dnfdragora', usage='%(prog)s [options]')
+    parser = argparse.ArgumentParser(prog='dnfdragora', usage=_('%(prog)s [options]'))
     ui_select_parser = parser.add_mutually_exclusive_group()
     # libyui pass through arguments
-    ui_select_parser.add_argument('--gtk', help='start using yui GTK+ plugin implementation', action='store_true')
-    ui_select_parser.add_argument('--ncurses', help='start using yui ncurses plugin implementation', action='store_true')
-    ui_select_parser.add_argument('--qt', help='start using yui Qt plugin implementation', action='store_true')
-    parser.add_argument('--fullscreen', help='use full screen for dialogs', action='store_true')
+    ui_select_parser.add_argument('--gtk', help=_('start using yui GTK+ plugin implementation'), action='store_true')
+    ui_select_parser.add_argument('--ncurses', help=_('start using yui ncurses plugin implementation'), action='store_true')
+    ui_select_parser.add_argument('--qt', help=_('start using yui Qt plugin implementation'), action='store_true')
+    parser.add_argument('--fullscreen', help=_('use full screen for dialogs'), action='store_true')
 
     # Application arguments
-    parser.add_argument('--update-only', help='show updates only dialog', action='store_true')
+    parser.add_argument('--update-only', help=_('show updates only dialog'), action='store_true')
 
-    parser.add_argument('--group_icons_path', nargs='?', help='force a new path for group icons (instead of /usr/share/icons)')
-    parser.add_argument('--images_path', nargs='?', help='force a new path for all the needed images (instead of /usr/share/dnfdragora/images)')
+    parser.add_argument('--group-icons-path', nargs='?', help=_('force a new path for group icons (instead of /usr/share/icons)'))
+    parser.add_argument('--images-path', nargs='?', help=_('force a new path for all the needed images (instead of /usr/share/dnfdragora/images)'))
+    parser.add_argument('--locales-dir', nargs='?', help=_('directory containing localization strings (developer only)'))
     args = parser.parse_args()
 
     import dnfdaemon.client
@@ -41,6 +54,8 @@ if __name__ == "__main__":
         options['group_icons_path'] = args.group_icons_path
     if args.images_path:
         options['images_path'] = args.images_path
+    if args.locales_dir:
+        options['locales_dir'] = args.locales_dir
 
     main_gui = None
     try:

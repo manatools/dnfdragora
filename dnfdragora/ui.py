@@ -146,9 +146,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # {
         #    localized_name = { "item" : item, "name" : groupName }
         # }
-        # TODO : perhaps fix with a relative path
-        DIR="/usr/share/locale"
-        gettext.bindtextdomain(self.appname, DIR)
+        self.locales_dir = "/usr/share/locale"
+        if 'locales_dir' in self.options.keys() :
+            self.locales_dir = self.options['locales_dir']
+
+        gettext.bindtextdomain(self.appname, localedir=self.locales_dir)
         gettext.textdomain(self.appname)
 
         self.infoshown = {
@@ -181,7 +183,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if 'images_path' in self.options.keys() :
             self.images_path = self.options['images_path']
         self.update_only = 'update_only' in self.options.keys()
-        
 
         if self.use_comps and not self.group_icon_path:
             self.group_icon_path = '/usr/share/pixmaps/comps/'
