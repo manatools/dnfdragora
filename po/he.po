@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-04 00:33+0100\n"
+"POT-Creation-Date: 2017-02-10 22:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2017\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -19,9 +19,365 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dnfdragora/groupicons.py:19 dnfdragora/ui.py:309 dnfdragora/ui.py:323
+#: bin/dnfdragora:29
+#, python-format
+msgid "%(prog)s [options]"
+msgstr ""
+
+#: bin/dnfdragora:32
+msgid "start using yui GTK+ plugin implementation"
+msgstr ""
+
+#: bin/dnfdragora:33
+msgid "start using yui ncurses plugin implementation"
+msgstr ""
+
+#: bin/dnfdragora:34
+msgid "start using yui Qt plugin implementation"
+msgstr ""
+
+#: bin/dnfdragora:35
+msgid "use full screen for dialogs"
+msgstr ""
+
+#: bin/dnfdragora:38
+msgid "show updates only dialog"
+msgstr ""
+
+#: bin/dnfdragora:40
+msgid "force a new path for group icons (instead of /usr/share/icons)"
+msgstr ""
+
+#: bin/dnfdragora:41
+msgid ""
+"force a new path for all the needed images (instead of /usr/share/dnfdragora/"
+"images)"
+msgstr ""
+
+#: bin/dnfdragora:42
+msgid "directory containing localization strings (developer only)"
+msgstr ""
+
+#: dnfdragora/basedragora.py:55
+msgid "Refreshing Repository Metadata"
+msgstr ""
+
+#: dnfdragora/basedragora.py:60
+msgid "Could not refresh the DNF cache (root)"
+msgstr ""
+
+#: dnfdragora/basedragora.py:83
+msgid ""
+"DNF root backend was not authorized.\n"
+"dnfdragora will exit"
+msgstr ""
+
+#: dnfdragora/basedragora.py:88
+msgid ""
+"DNF is locked by another process.\n"
+"\n"
+"dnfdragora will exit"
+msgstr ""
+
+#: dnfdragora/compsicons.py:20
+msgid "KDE Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:21
+msgid "Xfce Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:22
+msgid "Applications"
+msgstr ""
+
+#: dnfdragora/compsicons.py:23
+msgid "LXDE Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:24
+msgid "LXQt Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:25
+msgid "Cinnamon Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:26
+msgid "MATE Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:27
+msgid "Hawaii Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:28
+msgid "Sugar Desktop Environment"
+msgstr ""
+
+#: dnfdragora/compsicons.py:29
+msgid "GNOME Desktop"
+msgstr ""
+
+#: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
+#: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
+msgid "Development"
+msgstr "פיתוח"
+
+#: dnfdragora/compsicons.py:31 dnfdragora/groupicons.py:495
+msgid "Servers"
+msgstr "שרתים"
+
+#: dnfdragora/compsicons.py:32
+msgid "Base System"
+msgstr ""
+
+#: dnfdragora/compsicons.py:33
+msgid "Content"
+msgstr ""
+
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:310
+#: dnfdragora/ui.py:324
 msgid "All"
 msgstr "הכל"
+
+#: dnfdragora/compsicons.py:42 dnfdragora/groupicons.py:168
+msgid "Empty"
+msgstr "ריק"
+
+#: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
+msgid "Search result"
+msgstr ""
+
+#: dnfdragora/const.py:101
+msgid "Getting installed packages"
+msgstr ""
+
+#: dnfdragora/const.py:102
+msgid "Getting available packages"
+msgstr ""
+
+#: dnfdragora/const.py:103
+msgid "Getting available updates"
+msgstr ""
+
+#: dnfdragora/const.py:104
+msgid "Getting all packages"
+msgstr ""
+
+#: dnfdragora/const.py:117
+msgid "Updated packages"
+msgstr ""
+
+#: dnfdragora/const.py:118
+msgid "Downgraded packages"
+msgstr ""
+
+#: dnfdragora/const.py:119
+msgid "Obsoleting packages"
+msgstr ""
+
+#: dnfdragora/const.py:120
+msgid "Obsoleted packages"
+msgstr ""
+
+#: dnfdragora/const.py:121
+msgid "Erased packages"
+msgstr ""
+
+#: dnfdragora/const.py:122 dnfdragora/const.py:123
+msgid "Installed packages"
+msgstr ""
+
+#: dnfdragora/const.py:124
+msgid "Installed for dependencies"
+msgstr ""
+
+#: dnfdragora/const.py:125
+msgid "Reinstalled packages"
+msgstr ""
+
+#: dnfdragora/const.py:129
+msgid "Installing"
+msgstr ""
+
+#: dnfdragora/const.py:130
+msgid "Updating"
+msgstr ""
+
+#: dnfdragora/const.py:131
+msgid "Removing"
+msgstr ""
+
+#: dnfdragora/const.py:132
+msgid "Downgrading"
+msgstr ""
+
+#: dnfdragora/const.py:133
+msgid "Replacing"
+msgstr ""
+
+#: dnfdragora/const.py:137
+#, python-format
+msgid "Updating: %s"
+msgstr ""
+
+#: dnfdragora/const.py:138
+#, python-format
+msgid "Installing: %s"
+msgstr ""
+
+#: dnfdragora/const.py:139
+#, python-format
+msgid "Reinstalling: %s"
+msgstr ""
+
+#: dnfdragora/const.py:140
+#, python-format
+msgid "Cleanup: %s"
+msgstr ""
+
+#: dnfdragora/const.py:141
+#, python-format
+msgid "Removing: %s"
+msgstr ""
+
+#: dnfdragora/const.py:142
+#, python-format
+msgid "Obsoleting: %s"
+msgstr ""
+
+#: dnfdragora/const.py:143
+#, python-format
+msgid "Downgrading: %s"
+msgstr ""
+
+#: dnfdragora/const.py:144
+#, python-format
+msgid "Verifying: %s"
+msgstr ""
+
+#: dnfdragora/const.py:154
+msgid "Bugfix"
+msgstr ""
+
+#: dnfdragora/const.py:155
+msgid "New Package"
+msgstr ""
+
+#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+msgid "Security"
+msgstr "הגדרות אבטחה"
+
+#: dnfdragora/const.py:157
+msgid "Enhancement"
+msgstr ""
+
+#: dnfdragora/dialogs.py:44
+msgid "Transaction result"
+msgstr ""
+
+#: dnfdragora/dialogs.py:50
+msgid "Transaction dependency"
+msgstr ""
+
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
+#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+msgid "&Ok"
+msgstr ""
+
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+msgid "&Cancel"
+msgstr ""
+
+#: dnfdragora/dialogs.py:75
+msgid "replacing "
+msgstr ""
+
+#: dnfdragora/dialogs.py:81
+msgid "Total size "
+msgstr ""
+
+#: dnfdragora/dialogs.py:146
+msgid "Developers"
+msgstr ""
+
+#: dnfdragora/dialogs.py:149
+msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
+msgstr ""
+
+#: dnfdragora/dialogs.py:192 dnfdragora/dialogs.py:207
+msgid "Repository Management"
+msgstr ""
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr ""
+
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:296
+msgid "Name"
+msgstr "שם"
+
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:406
+msgid "&Apply"
+msgstr ""
+
+#: dnfdragora/dialogs.py:545
+msgid "&Yes"
+msgstr ""
+
+#: dnfdragora/dialogs.py:546
+msgid "&No"
+msgstr ""
+
+#: dnfdragora/dialogs.py:569
+#, python-format
+msgid ""
+"Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
+"<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
+"%(file)s"
+msgstr ""
+
+#: dnfdragora/dialogs.py:576
+msgid "GPG key missed"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:167
+#, python-format
+msgid ""
+"dnfdaemon api version : %(actual)d\n"
+"doesn't match\n"
+"needed api version : %(required)d"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:176
+msgid "Start transaction"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:179
+msgid "Downloading packages"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:186
+msgid "Checking package signatures"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1044
+msgid "Applying changes to the system"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:200
+msgid "Verify changes on the system"
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:245
+#, python-format
+msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
+msgstr ""
+
+#: dnfdragora/dnf_backend.py:544
+msgid "Caching groups from packages... "
+msgstr ""
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -84,11 +440,6 @@ msgstr ""
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
 msgstr "מסדי נתונים"
-
-#: dnfdragora/groupicons.py:83 dnfdragora/groupicons.py:597
-#: dnfdragora/groupicons.py:600
-msgid "Development"
-msgstr "פיתוח"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
@@ -166,10 +517,6 @@ msgstr "עורכים"
 #: dnfdragora/groupicons.py:164
 msgid "Education"
 msgstr "לימוד"
-
-#: dnfdragora/groupicons.py:168
-msgid "Empty"
-msgstr "ריק"
 
 #: dnfdragora/groupicons.py:172
 msgid "Emulators"
@@ -385,10 +732,6 @@ msgstr "מתמטיקה"
 msgid "Physics"
 msgstr "פיסיקה"
 
-#: dnfdragora/groupicons.py:404
-msgid "Security"
-msgstr "הגדרות אבטחה"
-
 #: dnfdragora/groupicons.py:408
 msgid "Shells"
 msgstr "מסופים"
@@ -465,10 +808,6 @@ msgstr "אריזה"
 msgid "Printing"
 msgstr "הדפסה"
 
-#: dnfdragora/groupicons.py:495
-msgid "Servers"
-msgstr "שרתים"
-
 #: dnfdragora/groupicons.py:504
 msgid "Terminals"
 msgstr "מסופים"
@@ -541,10 +880,6 @@ msgstr "סביבת העבודה KDE"
 msgid "Other Graphical Desktops"
 msgstr "סביבות עבודה אחרות"
 
-#: dnfdragora/groupicons.py:609
-msgid "Search result"
-msgstr ""
-
 #: dnfdragora/groupicons.py:613
 msgid "Server"
 msgstr "שרת"
@@ -575,7 +910,7 @@ msgstr "Web/FTP"
 
 #: dnfdragora/progress_ui.py:130
 #, python-format
-msgid "Downloading :  %d files,  %d bytes"
+msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr ""
 
 #: dnfdragora/progress_ui.py:157
@@ -585,207 +920,195 @@ msgstr ""
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
-msgid "Progress files (%d/%d)"
-msgstr ""
-
-#: dnfdragora/ui.py:155
-msgid "Update information"
-msgstr ""
-
-#: dnfdragora/ui.py:156
-msgid "File list"
+msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr ""
 
 #: dnfdragora/ui.py:157
-msgid "Changelog"
+msgid "Update information"
 msgstr ""
 
 #: dnfdragora/ui.py:158
+msgid "File list"
+msgstr ""
+
+#: dnfdragora/ui.py:159
+msgid "Changelog"
+msgstr ""
+
+#: dnfdragora/ui.py:160
 msgid "Requirements"
 msgstr ""
 
-#: dnfdragora/ui.py:243
+#: dnfdragora/ui.py:244
 msgid "Software Management - dnfdragora"
 msgstr ""
 
-#: dnfdragora/ui.py:275
+#: dnfdragora/ui.py:276
 msgid "Software Management"
 msgstr "ניהול תוכנות"
 
-#: dnfdragora/ui.py:295
+#: dnfdragora/ui.py:296
 msgid "Arch"
 msgstr "ארכיטקטורה"
 
-#: dnfdragora/ui.py:295
-msgid "Name"
-msgstr "שם"
-
-#: dnfdragora/ui.py:295
+#: dnfdragora/ui.py:296
 msgid "Release"
 msgstr "שחרור"
 
-#: dnfdragora/ui.py:295
+#: dnfdragora/ui.py:296
 msgid "Summary"
 msgstr "סיכום ובדיקת הגדרות"
 
-#: dnfdragora/ui.py:295
+#: dnfdragora/ui.py:296
 msgid "Version"
 msgstr "גרסה"
 
-#: dnfdragora/ui.py:302
+#: dnfdragora/ui.py:303
 msgid "Status"
 msgstr "מצב"
 
-#: dnfdragora/ui.py:310
+#: dnfdragora/ui.py:311
 msgid "Installed"
 msgstr "מותקן"
 
-#: dnfdragora/ui.py:311
+#: dnfdragora/ui.py:312
 msgid "Not installed"
 msgstr "לא מותקן"
 
-#: dnfdragora/ui.py:312
+#: dnfdragora/ui.py:313
 msgid "To update"
 msgstr ""
 
-#: dnfdragora/ui.py:318
+#: dnfdragora/ui.py:319
 #, python-format
 msgid "Show %s and noarch only"
 msgstr ""
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:325
 msgid "Groups"
 msgstr "קבוצות"
 
-#: dnfdragora/ui.py:365
+#: dnfdragora/ui.py:366
 msgid "in names"
 msgstr "בשמות"
 
-#: dnfdragora/ui.py:366
+#: dnfdragora/ui.py:367
 msgid "in descriptions"
 msgstr "בתיאורים"
 
-#: dnfdragora/ui.py:367
+#: dnfdragora/ui.py:368
 msgid "in summaries"
 msgstr "בתקצירים"
 
-#: dnfdragora/ui.py:368
+#: dnfdragora/ui.py:369
 msgid "in file names"
 msgstr "בשמות קבצים"
 
-#: dnfdragora/ui.py:389
+#: dnfdragora/ui.py:390
 msgid "&Search"
 msgstr ""
 
-#: dnfdragora/ui.py:395
+#: dnfdragora/ui.py:396
 msgid "&Clear search"
 msgstr ""
 
-#: dnfdragora/ui.py:405
-msgid "&Apply"
-msgstr ""
-
-#: dnfdragora/ui.py:409
+#: dnfdragora/ui.py:410
 msgid "Ch&eck all"
 msgstr ""
 
-#: dnfdragora/ui.py:413 dnfdragora/ui.py:422
+#: dnfdragora/ui.py:414 dnfdragora/ui.py:423
 msgid "&Quit"
 msgstr ""
 
-#: dnfdragora/ui.py:418
+#: dnfdragora/ui.py:419
 msgid "&File"
 msgstr ""
 
-#: dnfdragora/ui.py:419
+#: dnfdragora/ui.py:420
 msgid "Reset the selection"
 msgstr ""
 
-#: dnfdragora/ui.py:420
+#: dnfdragora/ui.py:421
 msgid "Refresh Metadata"
 msgstr ""
 
-#: dnfdragora/ui.py:421
+#: dnfdragora/ui.py:422
 msgid "Repositories"
 msgstr ""
 
-#: dnfdragora/ui.py:432
+#: dnfdragora/ui.py:433
 msgid "&Help"
 msgstr ""
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:434
 msgid "Manual"
 msgstr "ידני"
 
-#: dnfdragora/ui.py:434
+#: dnfdragora/ui.py:435
 msgid "&About"
 msgstr ""
 
-#: dnfdragora/ui.py:473
+#: dnfdragora/ui.py:474
 msgid "update"
 msgstr ""
 
-#: dnfdragora/ui.py:476
+#: dnfdragora/ui.py:477
 msgid "locked"
 msgstr ""
 
-#: dnfdragora/ui.py:479
+#: dnfdragora/ui.py:480
 msgid "installed"
 msgstr ""
 
-#: dnfdragora/ui.py:777
+#: dnfdragora/ui.py:778
 msgid "Missing information"
 msgstr ""
 
-#: dnfdragora/ui.py:904
+#: dnfdragora/ui.py:905
 msgid "Search"
 msgstr ""
 
-#: dnfdragora/ui.py:968
+#: dnfdragora/ui.py:969
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:968
+#: dnfdragora/ui.py:969
 msgid "Sorry"
 msgstr ""
 
-#: dnfdragora/ui.py:996
+#: dnfdragora/ui.py:997
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr ""
 
-#: dnfdragora/ui.py:996
+#: dnfdragora/ui.py:997
 msgid "Protected package selected"
 msgstr ""
 
-#: dnfdragora/ui.py:1043
-msgid "Applying changes to the system"
-msgstr ""
-
-#: dnfdragora/ui.py:1069
+#: dnfdragora/ui.py:1070
 msgid "Error checking package signatures"
 msgstr ""
 
-#: dnfdragora/ui.py:1073
+#: dnfdragora/ui.py:1074
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dnfdragora/ui.py:1078
+#: dnfdragora/ui.py:1079
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dnfdragora/ui.py:1090
+#: dnfdragora/ui.py:1091
 msgid "BuildTransaction failure"
 msgstr ""
 
-#: dnfdragora/ui.py:1128
+#: dnfdragora/ui.py:1129
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:1130
+#: dnfdragora/ui.py:1131
 msgid "Unmanaged event"
 msgstr ""

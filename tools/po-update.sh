@@ -25,9 +25,18 @@ POT_FILE="$POT_DIR/$DOMAIN.pot"
 	--no-escape --add-location --sort-by-file \
 	--add-comments=I18N \
 	--output="$POT_FILE" \
+	bin/dnfdragora \
 	dnfdragora/ui.py \
 	dnfdragora/groupicons.py \
-	dnfdragora/progress_ui.py
+	dnfdragora/progress_ui.py \
+	dnfdragora/backend.py \
+	dnfdragora/basedragora.py \
+	dnfdragora/compsicons.py \
+	dnfdragora/config.py \
+	dnfdragora/const.py \
+	dnfdragora/dialogs.py \
+	dnfdragora/dnf_backend.py \
+	dnfdragora/misc.py
 
 /bin/sed --in-place --expression="s/charset=CHARSET/charset=UTF-8/" "$POT_FILE"
 
