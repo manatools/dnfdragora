@@ -35,17 +35,19 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Aktualisiere Repository-Metadaten"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "Kann den DNF Cache nicht erneuern (root)"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"Verwendung des DNF Backend als root wurde nicht autorisiert.\n"
+"dnfdragora wird beendet"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -53,6 +55,9 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF wird aktuell von einem anderen Prozess gesperrt.\n"
+"\n"
+"dnfdragora wird beendet"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
@@ -154,11 +159,11 @@ msgstr ""
 
 #: dnfdragora/const.py:120
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Veraltete Pakete"
 
 #: dnfdragora/const.py:121
 msgid "Erased packages"
-msgstr ""
+msgstr "Gelöschte Pakete"
 
 #: dnfdragora/const.py:122 dnfdragora/const.py:123
 msgid "Installed packages"
@@ -178,11 +183,11 @@ msgstr "Installation"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "Aktualisiere"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "Entferne"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
@@ -190,22 +195,22 @@ msgstr ""
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "Ersetze"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Aktualisiere: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Installiere: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Installiere erneut: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
@@ -215,7 +220,7 @@ msgstr ""
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Entferne: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
@@ -230,7 +235,7 @@ msgstr ""
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Verifiziere: %s"
 
 #: dnfdragora/const.py:154
 msgid "Bugfix"
@@ -282,6 +287,8 @@ msgstr "Entwickler"
 #: dnfdragora/dialogs.py:148
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora ist ein DNF Frontend, welches mit GTK, ncurses und Qt verwendet "
+"werden kann"
 
 #: dnfdragora/dialogs.py:191 dnfdragora/dialogs.py:207
 msgid "Repository Management"
@@ -314,10 +321,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Möchen Sie diesen GPG Schlüssel,<br>der für das Verifizieren des Pakets "
+"%(pkg)s benötigt wird, importieren?<br><br>Schlüssel : 0x%(id)s:<br>Userid : "
+"\"%(user)s\"<br>Von: %(file)s"
 
 #: dnfdragora/dialogs.py:564
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG Schlüssel fehlt"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -326,6 +336,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"die dnfdaemon api version : %(actual)d\n"
+"passt nicht zusammen\n"
+"benötige die api version : %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
