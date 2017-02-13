@@ -36,41 +36,44 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [opcions]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "inicia l'ús de la implementació del connector yui GTK+"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "inicia l'ús de la implementació del connector yui ncurses"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "inicia l'ús de la implementació del connector yui Qt"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "utilitza la pantalla completa per als diàlegs"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "mostra el diàleg només d'actualitzacions"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "força un camí nou per a icones de grup (en lloc de /usr/share/icons)"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"força un camí nou per a totes les imatges necessàries (en lloc de /usr/share/"
+"dnfdragora/images)"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
 msgstr ""
+"directori que conté cadenes de localització (només per a desenvolupadors)"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -149,14 +152,14 @@ msgstr "Servidors"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr "Sistema base"
+msgstr "Sistema de base"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
 msgstr "Contingut"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:310
-#: dnfdragora/ui.py:324
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:310 dnfdragora/ui.py:324
 msgid "All"
 msgstr "Tot"
 
@@ -300,12 +303,14 @@ msgstr "Resultat de la transacció"
 msgid "Transaction dependency"
 msgstr "Dependència de la transacció"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "D'acord"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Cancel·la"
 
@@ -378,11 +383,11 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr "Inici de la transacció"
+msgstr "Inicia la transacció"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr "Baixa de paquets"
+msgstr "Es baixen els paquets"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
@@ -748,7 +753,7 @@ msgstr "Informàtica"
 
 #: dnfdragora/groupicons.py:387
 msgid "Geosciences"
-msgstr "Ciències de la Terra"
+msgstr "Geociències"
 
 #: dnfdragora/groupicons.py:391
 msgid "Mathematics"
