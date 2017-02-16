@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-10 22:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>, 2017\n"
 "Language-Team: Tajik (https://www.transifex.com/MageiaLinux/teams/9361/tg/)\n"
 "Language: tg\n"
 "MIME-Version: 1.0\n"
@@ -88,15 +102,15 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Замимаҳо"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "Мизи кории LXDE"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "Мизи кории LXQt"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
@@ -116,7 +130,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "Мизи кории GNOME"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -135,8 +149,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:310
-#: dnfdragora/ui.py:324
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:310 dnfdragora/ui.py:324
 msgid "All"
 msgstr "Ҳама"
 
@@ -198,7 +212,7 @@ msgstr ""
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "Коргузорӣ шуда истодааст"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
@@ -280,12 +294,14 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr ""
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr ""
 
@@ -311,7 +327,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
-msgstr ""
+msgstr "Даргирифта"
 
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:296
 msgid "Name"
@@ -507,7 +523,7 @@ msgstr ""
 #: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:548
 #: dnfdragora/groupicons.py:604
 msgid "Documentation"
-msgstr "Санадсозӣ"
+msgstr "Ҳуҷҷатҳо"
 
 #: dnfdragora/groupicons.py:160
 msgid "Editors"
