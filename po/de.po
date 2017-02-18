@@ -36,7 +36,7 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [Optionen]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "Vollbild für Dialoge verwenden"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
@@ -1127,8 +1127,8 @@ msgstr[1] "Fehler beim herunterladen"
 #: dnfdragora/ui.py:1079
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fehler bei der Übermittlung"
+msgstr[1] "Fehler bei den Übermittlungen"
 
 #: dnfdragora/ui.py:1091
 msgid "BuildTransaction failure"
