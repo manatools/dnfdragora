@@ -40,15 +40,15 @@ msgstr "%(prog)s [Optionen]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "mit Verwendung der yui GTK+ Plugin Implementierung starten"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "mit Verwendung der yui ncurses Plugin Implementierung starten"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "mit Verwendung der yui Qt Plugin Implementierung starten"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
@@ -61,12 +61,15 @@ msgstr ""
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
+"erzwinge einen neuen Pfad für die Gruppensymbole (anstatt /usr/share/icons)"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"erzwinge einen neuen Pfad für die alle benötigten Bilder (anstatt /usr/share/"
+"dnfdragora/images)"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
