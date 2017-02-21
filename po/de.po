@@ -68,7 +68,7 @@ msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
-"erzwinge einen neuen Pfad für die alle benötigten Bilder (anstatt /usr/share/"
+"erzwinge einen neuen Pfad für alle benötigten Bilder (anstatt /usr/share/"
 "dnfdragora/images)"
 
 #: bin/dnfdragora:42
