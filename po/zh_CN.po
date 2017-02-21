@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-10 22:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: zwpwjwtz <zwpwjwtz@126.com>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/zh_CN/)\n"
 "Language: zh_CN\n"
@@ -22,55 +36,58 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [选项]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "使用 GTK+ 插件实现的 yui"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "使用 ncurses 插件实现的 yui"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "使用 Qt 插件实现的 yui"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "以全屏模式显示对话框"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "显示“仅更新”对话框"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "为分组图标指定新路径（而不是使用 /usr/share/icons）"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"为所有所需图像文件指定新路径（而不是使用 /usr/share/dnfdragora/images）"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "包含本地化字符串的目录（仅用于开发）"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "刷新仓库的元数据"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "无法更新 DNF 缓存（根节点）"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF 根节点未被授权。\n"
+"dnfdragora 将退出"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -78,46 +95,49 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF 被其他进程锁定\n"
+"\n"
+"dnfdragora 将退出"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "桌面"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce 桌面"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "应用程序"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE 桌面"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt桌面"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon 桌面"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE 桌面"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii 桌面"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar 桌面环境"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "桌面"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -130,14 +150,14 @@ msgstr "服务器"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "基础系统"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "内容"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:310
-#: dnfdragora/ui.py:324
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:310 dnfdragora/ui.py:324
 msgid "All"
 msgstr "全部"
 
@@ -151,119 +171,119 @@ msgstr "搜索结果"
 
 #: dnfdragora/const.py:101
 msgid "Getting installed packages"
-msgstr ""
+msgstr "获取已安装的软件包"
 
 #: dnfdragora/const.py:102
 msgid "Getting available packages"
-msgstr ""
+msgstr "获取可用的软件包"
 
 #: dnfdragora/const.py:103
 msgid "Getting available updates"
-msgstr ""
+msgstr "获取可用的更新"
 
 #: dnfdragora/const.py:104
 msgid "Getting all packages"
-msgstr ""
+msgstr "获取所有软件包"
 
 #: dnfdragora/const.py:117
 msgid "Updated packages"
-msgstr ""
+msgstr "更新的软件包"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
-msgstr ""
+msgstr "降级的软件包"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "弃用软件包"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "废弃的软件包"
 
 #: dnfdragora/const.py:121
 msgid "Erased packages"
-msgstr ""
+msgstr "移除的软件包"
 
 #: dnfdragora/const.py:122 dnfdragora/const.py:123
 msgid "Installed packages"
-msgstr ""
+msgstr "安装的软件包"
 
 #: dnfdragora/const.py:124
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "因依赖关系而安装"
 
 #: dnfdragora/const.py:125
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "重新安装的软件包"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "安装"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "升级"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "移除"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "降级"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "替换"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "升级：%s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "安装：%s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "重新安装：%s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "清理：%s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "移除：%s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "弃用：%s"
 
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "降级：%s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "校验：%s"
 
 #: dnfdragora/const.py:154
 msgid "Bugfix"
-msgstr ""
+msgstr "错误修复"
 
 #: dnfdragora/const.py:155
 msgid "New Package"
-msgstr ""
+msgstr "新软件包"
 
 #: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -271,48 +291,50 @@ msgstr "安全"
 
 #: dnfdragora/const.py:157
 msgid "Enhancement"
-msgstr ""
+msgstr "功能增强"
 
 #: dnfdragora/dialogs.py:44
 msgid "Transaction result"
-msgstr ""
+msgstr "事务处理结果"
 
 #: dnfdragora/dialogs.py:50
 msgid "Transaction dependency"
-msgstr ""
+msgstr "事务依赖"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
-msgstr ""
+msgstr "确定(&O)"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
-msgstr ""
+msgstr "取消(&C)"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
-msgstr ""
+msgstr "替换"
 
 #: dnfdragora/dialogs.py:81
 msgid "Total size "
-msgstr ""
+msgstr "总大小 "
 
 #: dnfdragora/dialogs.py:146
 msgid "Developers"
-msgstr ""
+msgstr "开发者"
 
 #: dnfdragora/dialogs.py:149
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "dnfdragora 是使用 GTK、ncurses 和 QT 编写的 DNF 控制前端"
 
 #: dnfdragora/dialogs.py:192 dnfdragora/dialogs.py:207
 msgid "Repository Management"
-msgstr ""
+msgstr "仓库管理"
 
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
-msgstr ""
+msgstr "已启用"
 
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:296
 msgid "Name"
@@ -324,11 +346,11 @@ msgstr "应用(&A)"
 
 #: dnfdragora/dialogs.py:545
 msgid "&Yes"
-msgstr ""
+msgstr "是(&Y)"
 
 #: dnfdragora/dialogs.py:546
 msgid "&No"
-msgstr ""
+msgstr "否(&N)"
 
 #: dnfdragora/dialogs.py:569
 #, python-format
@@ -337,10 +359,15 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"您是否想要导入用于校验 %(pkg)s 软件包的密钥？<br>\n"
+"<br>\n"
+"密钥：         0x%(id)s:<br>\n"
+"用户ID：     \"%(user)s\"<br>\n"
+"从：              %(file)s"
 
 #: dnfdragora/dialogs.py:576
 msgid "GPG key missed"
-msgstr ""
+msgstr "缺少 GPG 密钥"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -349,18 +376,20 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon的  API 版本：%(actual)d\n"
+"与所需 API 版本：%(required)d 不匹配"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "开始处理事务"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "下载软件包"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "检查软件包签名"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1044
 msgid "Applying changes to the system"
@@ -368,16 +397,16 @@ msgstr "应用所作更改"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "校验系统更改"
 
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "下载 %(count_files)d 个文件（%(count_bytes)sB）……"
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "从软件包中隐藏分组……"
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -911,7 +940,7 @@ msgstr "网络/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "下载： %(files)d 个文件， %(size)d 字节"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
@@ -921,23 +950,23 @@ msgstr "开始下载：%s"
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "处理文件（%(downloaded)d/%(total)d）"
 
 #: dnfdragora/ui.py:157
 msgid "Update information"
-msgstr ""
+msgstr "更新信息"
 
 #: dnfdragora/ui.py:158
 msgid "File list"
-msgstr ""
+msgstr "文件列表"
 
 #: dnfdragora/ui.py:159
 msgid "Changelog"
-msgstr ""
+msgstr "变更日志"
 
 #: dnfdragora/ui.py:160
 msgid "Requirements"
-msgstr ""
+msgstr "安装需求"
 
 #: dnfdragora/ui.py:244
 msgid "Software Management - dnfdragora"
@@ -1034,7 +1063,7 @@ msgstr "更新元数据"
 
 #: dnfdragora/ui.py:422
 msgid "Repositories"
-msgstr ""
+msgstr "仓库"
 
 #: dnfdragora/ui.py:433
 msgid "&Help"
@@ -1054,7 +1083,7 @@ msgstr "升级"
 
 #: dnfdragora/ui.py:477
 msgid "locked"
-msgstr ""
+msgstr "已锁定"
 
 #: dnfdragora/ui.py:480
 msgid "installed"
@@ -1062,7 +1091,7 @@ msgstr "已安装"
 
 #: dnfdragora/ui.py:778
 msgid "Missing information"
-msgstr ""
+msgstr "缺少信息"
 
 #: dnfdragora/ui.py:905
 msgid "Search"
@@ -1079,25 +1108,25 @@ msgstr "抱歉"
 #: dnfdragora/ui.py:997
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "无法移除软件包 %s"
 
 #: dnfdragora/ui.py:997
 msgid "Protected package selected"
-msgstr ""
+msgstr "选中了受保护的软件包"
 
 #: dnfdragora/ui.py:1070
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "检查软件包签名时出错"
 
 #: dnfdragora/ui.py:1074
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
+msgstr[0] "下载出错"
 
 #: dnfdragora/ui.py:1079
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
+msgstr[0] "处理事务时出错"
 
 #: dnfdragora/ui.py:1091
 msgid "BuildTransaction failure"
@@ -1110,9 +1139,3 @@ msgstr "组件未被管理"
 #: dnfdragora/ui.py:1131
 msgid "Unmanaged event"
 msgstr "事件未被管理"
-
-#~ msgid "Downloading :  %d files,  %d bytes"
-#~ msgstr "正在下载：%d 个文件，%d 字节"
-
-#~ msgid "Progress files (%d/%d)"
-#~ msgstr "处理文件（%d / %d）"
