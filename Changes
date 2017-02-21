@@ -1,0 +1,6 @@
+- Added a dialog to show the error message on exit
+  in case of known exception
+
+2017-02-19 v. 1.0.0
+---------------------
+first release
