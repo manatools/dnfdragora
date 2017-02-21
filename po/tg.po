@@ -139,7 +139,7 @@ msgstr "Коркард"
 
 #: dnfdragora/compsicons.py:31 dnfdragora/groupicons.py:495
 msgid "Servers"
-msgstr "Хидматрасонҳо"
+msgstr "Серверҳо"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
@@ -897,7 +897,7 @@ msgstr "Дигар Мизҳои Кории Графикӣ"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
-msgstr "Хидматрасон"
+msgstr "Сервер"
 
 #: dnfdragora/groupicons.py:616
 msgid "DNS/NIS"
@@ -917,7 +917,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:636
 msgid "Network Computer server"
-msgstr "Хидматрасони Компютери Шабакавӣ"
+msgstr "Сервери компютерии шабакавӣ"
 
 #: dnfdragora/groupicons.py:640
 msgid "Web/FTP"
@@ -1053,7 +1053,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:433
 msgid "&Help"
-msgstr ""
+msgstr "&Кумак"
 
 #: dnfdragora/ui.py:434
 msgid "Manual"
