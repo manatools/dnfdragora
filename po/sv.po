@@ -37,7 +37,7 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [alternativ]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
@@ -71,7 +71,7 @@ msgstr ""
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "mapp som innehåller lokalisationssträngar (endast utvecklare)"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -154,8 +154,8 @@ msgstr "Bas-system"
 msgid "Content"
 msgstr "Innehåll"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:310
-#: dnfdragora/ui.py:324
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:310 dnfdragora/ui.py:324
 msgid "All"
 msgstr "Alla"
 
@@ -209,7 +209,7 @@ msgstr "Installerade paket"
 
 #: dnfdragora/const.py:124
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Installerad för beroenden"
 
 #: dnfdragora/const.py:125
 msgid "Reinstalled packages"
@@ -299,12 +299,14 @@ msgstr "Överföringsresultat"
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Avbryt"
 
