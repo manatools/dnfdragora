@@ -43,7 +43,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     import dnfdaemon.client
-    import dnfdragora.ui
+    import dnfdragora.ui as ui
     import dnfdragora.dialogs as dialogs
     import logging
     logger = logging.getLogger('dnfdragora')
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     main_gui = None
     try:
-        main_gui = dnfdragora.ui.mainGui(options)
+        main_gui = ui.mainGui(options)
 
         main_gui.handleevent()
 

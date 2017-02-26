@@ -194,11 +194,32 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.group_icon_path += "/"
 
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
-        rpm_groups = self.backend.GetGroups() if self.use_comps else None
-        self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
 
         # setup UI
         self._setupUI()
+
+        rpm_groups = None
+        if self.use_comps :
+            # let's show the dialog with a poll event
+            self.dialog.pollEvent()
+            rpm_groups = self.backend.GetGroups()
+
+        self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
+
+        self.dialog.pollEvent()
+        self._fillGroupTree()
+        sel = self.tree.selectedItem()
+        group = None
+        if sel :
+            group = self._groupNameFromItem(self.groupList, sel)
+
+        filter = self._filterNameSelected()
+        self.checkAllButton.setEnabled(filter == 'to_update')
+        self._fillPackageList(group, filter)
+        sel_pkg = self._selectedPackage()
+        if sel_pkg :
+            self._setInfoOnWidget(sel_pkg)
+
 
     def _configFileRead(self) :
         '''
@@ -440,19 +461,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.helpMenu['widget'].rebuildMenuTree()
 
-        self.dialog.pollEvent()
-        self._fillGroupTree()
-        sel = self.tree.selectedItem()
-        group = None
-        if sel :
-            group = self._groupNameFromItem(self.groupList, sel)
-
-        filter = self._filterNameSelected()
-        self.checkAllButton.setEnabled(filter == 'to_update')
-        self._fillPackageList(group, filter)
-        sel_pkg = self._selectedPackage()
-        if sel_pkg :
-            self._setInfoOnWidget(sel_pkg)
 
     def _setStatusToItem(self, pkg, item, emit_changed=False) :
         '''
