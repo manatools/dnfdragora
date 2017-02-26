@@ -72,7 +72,7 @@ if __name__ == "__main__":
         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%s%s")%("\n",str(e))})
     except AttributeError as e:
         logger.error("dnfdaemon AttributeError: %s ", e)
-        dialogs.warningMsgBox({'title' : _("Sorry"), "text": ("dnfdaemon attribute error occurred:%s%s")("\n",str(e))})
+        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%s%s")%("\n",str(e))})
     except:
         logger.error("Unexpected error: %s ", sys.exc_info()[0])
     finally:
