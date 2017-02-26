@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-10 22:02+0100\n"
+"POT-Creation-Date: 2017-02-26 22:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: zwpwjwtz <zwpwjwtz@126.com>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -72,6 +72,27 @@ msgstr ""
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
 msgstr "包含本地化字符串的目录（仅用于开发）"
+
+#: bin/dnfdragora:69 bin/dnfdragora:72 bin/dnfdragora:75
+#: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
+#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:977
+msgid "Sorry"
+msgstr "抱歉"
+
+#: bin/dnfdragora:69
+#, python-format
+msgid "dnfdaemon client error occurred:%s%s"
+msgstr ""
+
+#: bin/dnfdragora:72
+#, python-format
+msgid "dnfdaemon name error occurred:%s%s"
+msgstr ""
+
+#: bin/dnfdragora:75
+#, python-format
+msgid "dnfdaemon attribute error occurred:%s%s"
+msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -156,8 +177,8 @@ msgstr "基础系统"
 msgid "Content"
 msgstr "内容"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
-#: dnfdragora/ui.py:310 dnfdragora/ui.py:324
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
+#: dnfdragora/ui.py:345
 msgid "All"
 msgstr "全部"
 
@@ -301,14 +322,12 @@ msgstr "事务处理结果"
 msgid "Transaction dependency"
 msgstr "事务依赖"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
-#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
-#: dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
+#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "确定(&O)"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
-#: dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "取消(&C)"
 
@@ -336,11 +355,11 @@ msgstr "仓库管理"
 msgid "Enabled"
 msgstr "已启用"
 
-#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:296
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:317
 msgid "Name"
 msgstr "名称"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:406
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:427
 msgid "&Apply"
 msgstr "应用(&A)"
 
@@ -391,7 +410,7 @@ msgstr "下载软件包"
 msgid "Checking package signatures"
 msgstr "检查软件包签名"
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1044
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1052
 msgid "Applying changes to the system"
 msgstr "应用所作更改"
 
@@ -968,174 +987,170 @@ msgstr "变更日志"
 msgid "Requirements"
 msgstr "安装需求"
 
-#: dnfdragora/ui.py:244
+#: dnfdragora/ui.py:265
 msgid "Software Management - dnfdragora"
 msgstr "软件管理 - dnfdragora"
 
-#: dnfdragora/ui.py:276
+#: dnfdragora/ui.py:297
 msgid "Software Management"
 msgstr "软件管理"
 
-#: dnfdragora/ui.py:296
+#: dnfdragora/ui.py:317
 msgid "Arch"
 msgstr "架构"
 
-#: dnfdragora/ui.py:296
+#: dnfdragora/ui.py:317
 msgid "Release"
 msgstr "发行"
 
-#: dnfdragora/ui.py:296
+#: dnfdragora/ui.py:317
 msgid "Summary"
 msgstr "概要"
 
-#: dnfdragora/ui.py:296
+#: dnfdragora/ui.py:317
 msgid "Version"
 msgstr "版本"
 
-#: dnfdragora/ui.py:303
+#: dnfdragora/ui.py:324
 msgid "Status"
 msgstr "状态"
 
-#: dnfdragora/ui.py:311
+#: dnfdragora/ui.py:332
 msgid "Installed"
 msgstr "已安装"
 
-#: dnfdragora/ui.py:312
+#: dnfdragora/ui.py:333
 msgid "Not installed"
 msgstr "未安装"
 
-#: dnfdragora/ui.py:313
+#: dnfdragora/ui.py:334
 msgid "To update"
 msgstr "升级"
 
-#: dnfdragora/ui.py:319
+#: dnfdragora/ui.py:340
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "仅显示 %s 和任意架构的软件"
 
-#: dnfdragora/ui.py:325
+#: dnfdragora/ui.py:346
 msgid "Groups"
 msgstr "组"
 
-#: dnfdragora/ui.py:366
+#: dnfdragora/ui.py:387
 msgid "in names"
 msgstr "在名称中"
 
-#: dnfdragora/ui.py:367
+#: dnfdragora/ui.py:388
 msgid "in descriptions"
 msgstr "在描述中"
 
-#: dnfdragora/ui.py:368
+#: dnfdragora/ui.py:389
 msgid "in summaries"
 msgstr "在概要中"
 
-#: dnfdragora/ui.py:369
+#: dnfdragora/ui.py:390
 msgid "in file names"
 msgstr "在文件名中"
 
-#: dnfdragora/ui.py:390
+#: dnfdragora/ui.py:411
 msgid "&Search"
 msgstr "搜索(&S)"
 
-#: dnfdragora/ui.py:396
+#: dnfdragora/ui.py:417
 msgid "&Clear search"
 msgstr "清除搜索结果(&C)"
 
-#: dnfdragora/ui.py:410
+#: dnfdragora/ui.py:431
 msgid "Ch&eck all"
 msgstr "检查所有(&e)"
 
-#: dnfdragora/ui.py:414 dnfdragora/ui.py:423
+#: dnfdragora/ui.py:435 dnfdragora/ui.py:444
 msgid "&Quit"
 msgstr "退出(&Q)"
 
-#: dnfdragora/ui.py:419
+#: dnfdragora/ui.py:440
 msgid "&File"
 msgstr "文件(&F)"
 
-#: dnfdragora/ui.py:420
+#: dnfdragora/ui.py:441
 msgid "Reset the selection"
 msgstr "重置所选项"
 
-#: dnfdragora/ui.py:421
+#: dnfdragora/ui.py:442
 msgid "Refresh Metadata"
 msgstr "更新元数据"
 
-#: dnfdragora/ui.py:422
+#: dnfdragora/ui.py:443
 msgid "Repositories"
 msgstr "仓库"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:454
 msgid "&Help"
 msgstr "帮助(&H)"
 
-#: dnfdragora/ui.py:434
+#: dnfdragora/ui.py:455
 msgid "Manual"
 msgstr "手动"
 
-#: dnfdragora/ui.py:435
+#: dnfdragora/ui.py:456
 msgid "&About"
 msgstr "关于(&A)"
 
-#: dnfdragora/ui.py:474
+#: dnfdragora/ui.py:482
 msgid "update"
 msgstr "升级"
 
-#: dnfdragora/ui.py:477
+#: dnfdragora/ui.py:485
 msgid "locked"
 msgstr "已锁定"
 
-#: dnfdragora/ui.py:480
+#: dnfdragora/ui.py:488
 msgid "installed"
 msgstr "已安装"
 
-#: dnfdragora/ui.py:778
+#: dnfdragora/ui.py:786
 msgid "Missing information"
 msgstr "缺少信息"
 
-#: dnfdragora/ui.py:905
+#: dnfdragora/ui.py:913
 msgid "Search"
 msgstr "查找"
 
-#: dnfdragora/ui.py:969
+#: dnfdragora/ui.py:977
 msgid "Not implemented yet"
 msgstr "尚未实现"
 
-#: dnfdragora/ui.py:969
-msgid "Sorry"
-msgstr "抱歉"
-
-#: dnfdragora/ui.py:997
+#: dnfdragora/ui.py:1005
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "无法移除软件包 %s"
 
-#: dnfdragora/ui.py:997
+#: dnfdragora/ui.py:1005
 msgid "Protected package selected"
 msgstr "选中了受保护的软件包"
 
-#: dnfdragora/ui.py:1070
+#: dnfdragora/ui.py:1078
 msgid "Error checking package signatures"
 msgstr "检查软件包签名时出错"
 
-#: dnfdragora/ui.py:1074
+#: dnfdragora/ui.py:1082
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "下载出错"
 
-#: dnfdragora/ui.py:1079
+#: dnfdragora/ui.py:1087
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "处理事务时出错"
 
-#: dnfdragora/ui.py:1091
+#: dnfdragora/ui.py:1099
 msgid "BuildTransaction failure"
 msgstr "构建事务失败"
 
-#: dnfdragora/ui.py:1129
+#: dnfdragora/ui.py:1137
 msgid "Unmanaged widget"
 msgstr "组件未被管理"
 
-#: dnfdragora/ui.py:1131
+#: dnfdragora/ui.py:1139
 msgid "Unmanaged event"
 msgstr "事件未被管理"
