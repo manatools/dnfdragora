@@ -1,3 +1,5 @@
+- Fixed long time startup in Fedora where backend 
+  was initialized before GUI
 - Added a dialog to show the error message on exit
   in case of known exception
 
