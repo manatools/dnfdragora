@@ -38,41 +38,43 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [опции]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "начать использовать реализацию плагина yui GTK+"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "начать использовать реализацию плагина yui ncurses"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "начать использовать реализацию плагина yui Qt"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "использовать полный экран для диалогов"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "показывать только диалог обновлений"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "принудительный новый путь для иконок групп (вместо /usr/share/icons)"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"принудительный новый путь для всех требующихся изображений (вместо /usr/"
+"share/dnfdragora/images)"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "каталог, содержащий локализованные строки (только для разработчиков)"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -157,8 +159,8 @@ msgstr "Базовая система"
 msgid "Content"
 msgstr "Содержание"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:310
-#: dnfdragora/ui.py:324
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:310 dnfdragora/ui.py:324
 msgid "All"
 msgstr "Все"
 
@@ -302,12 +304,14 @@ msgstr "Результат транзакции"
 msgid "Transaction dependency"
 msgstr "Зависимость транзакции"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Хорошо"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Отмена"
 
