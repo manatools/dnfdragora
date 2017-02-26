@@ -57,7 +57,7 @@ class BaseDragora:
         self.set_working(False)
         self.infobar.info("")
         if not rc:
-            dialogs.warningMsgBox(_('Could not refresh the DNF cache (root)'))
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _('Could not refresh the DNF cache (root)')})
 
     def get_root_backend(self):
         """Get the current root backend.
@@ -88,7 +88,7 @@ class BaseDragora:
                         'DNF is locked by another process.\n\n'
                         'dnfdragora will exit')
                 logger.critical(errmsg)
-                dialogs.warningMsgBox(errmsg)
+                dialogs.warningMsgBox({'title' : _("Sorry"), "text": errmsg})
                 yui.YDialog.deleteTopmostDialog()
                 # next line seems to be a workaround to prevent the qt-app from crashing
                 # see https://github.com/libyui/libyui-qt/issues/41
@@ -128,6 +128,7 @@ class BaseDragora:
             close = False
         if errmsg == '':
             errmsg = msg
+        dialogs.warningMsgBox({'title' : _("Sorry"), "text": errmsg})
         logger.critical(errmsg)
 
         # try to exit the backends, ignore errors
