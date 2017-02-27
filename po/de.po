@@ -74,6 +74,7 @@ msgstr ""
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
 msgstr ""
+"Verzeichnis, das die Übersetzungszeichenfolgen enthält (nur für Entwickler)"
 
 #: bin/dnfdragora:69 bin/dnfdragora:72 bin/dnfdragora:75
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -179,8 +180,8 @@ msgstr "Grundsystem"
 msgid "Content"
 msgstr "Inhalt"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
-#: dnfdragora/ui.py:345
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:331 dnfdragora/ui.py:345
 msgid "All"
 msgstr "Alle"
 
@@ -324,12 +325,14 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "Abbre&chen"
 
