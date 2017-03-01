@@ -182,6 +182,13 @@ class RepoDialog:
         self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
+        self.expert = False
+        self.simplified = {
+            'categs':[{'name':'Core','disabling':False,'repos':['mageia-x86_64','updates-x86_64','mageia-i586','updates-i586'] },
+                   {'name':'Nonfree','disabling':True,'repos':['mageia-x86_64-nonfree', 'updates-x86_64-nonfree', 'mageia-i586-nonfree','updates-i586-nonfree'] },
+                   {'name':'Tainted','disabling':True,'repos':['mageia-x86_64-tainted','updates-x86_64-tainted','mageia-i586-tainted',' updates-i586-tainted'] },
+                   ]
+            }
 
     def _setupUI(self):
         '''
@@ -206,14 +213,17 @@ class RepoDialog:
 
         self.factory.createHeading(hbox_iconbar, _("Repository Management"))
 
+        hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
         hbox_bottom = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
+        hbox_footbar.setWeight(1,10)
         hbox_middle.setWeight(1,50)
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
 
+        self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode"))
         repoList_header = yui.YTableHeader()
         columns = [ _('Name'), _("Enabled")]
 
@@ -232,23 +242,39 @@ class RepoDialog:
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
         self.quitButton.setWeight(0,3)
         self.dialog.setDefaultButton(self.quitButton)
+        self.drawList()
 
+    def drawList(self):
         self.itemList = {}
         # TODO fix the workaround when GetRepo(id) works again
         repos = self.backend.get_repo_ids("*")
-        for r in repos:
-            item = yui.YCBTableItem(r)
-            # TODO name from repo info
-            self.itemList[r] = {
-                'item' : item, 'name': r, 'enabled' : False
-            }
-            item.this.own(False)
-        enabled_repos = self.backend.get_repo_ids("enabled")
-        for r in enabled_repos:
-            if r in self.itemList.keys():
-                self.itemList[r]["enabled"] = True
-                self.itemList[r]["item"].check(True)
-
+        if self.expert:
+            for r in repos:
+                item = yui.YCBTableItem(r)
+                # TODO name from repo info
+                self.itemList[r] = {
+                    'item' : item, 'name': r, 'enabled' : False
+                }
+                item.this.own(False)
+            enabled_repos = self.backend.get_repo_ids("enabled")
+            for r in enabled_repos:
+                if r in self.itemList.keys():
+                    self.itemList[r]["enabled"] = True
+                    self.itemList[r]["item"].check(True)
+        else:
+            cat = self.simplified['categs']
+            enabled_repos = self.backend.get_repo_ids("enabled")
+            for c in cat:
+                item = yui.YCBTableItem(c['name'])
+                # TODO name from repo info
+                self.itemList[c['name']] = {
+                    'item' : item, 'name': c['name'], 'enabled' : False
+                }
+                item.this.own(False)
+                r = c['repos'][0]
+                if r in enabled_repos:
+                    self.itemList[c['name']]['enabled'] = True
+                    self.itemList[c['name']]['item'].check(True)
         keylist = sorted(self.itemList.keys())
         v = []
         for key in keylist :
@@ -264,6 +290,12 @@ class RepoDialog:
         self.repoList.addItems(itemCollection)
         self.repoList.doneMultipleChanges()
 
+    def toogle_expert(self):
+        self.expert = not self.expert
+        self.cb_expert.setLabel(  _("Standard mode") if self.expert else   _("Expert mode"))
+        self.drawList()
+        self.dialog.recalcLayout()
+        
     def _selectedRepository(self) :
         '''
         gets the selected repository id from repo list, if any selected
@@ -332,6 +364,9 @@ class RepoDialog:
                     except:
                         logger.error("Unexpected error: %s ", sys.exc_info()[0])
                     self.info.setText(s)
+                elif(widget == self.cb_expert):
+                    print('Toogle expert')
+                    self.toogle_expert()
 
     def run(self):
         '''
