@@ -335,7 +335,13 @@ class RepoDialog:
                     enabled_repos = []
                     for k in self.itemList.keys():
                         if self.itemList[k]['enabled'] :
-                           enabled_repos.append(k)
+                            if self.expert:
+                                enabled_repos.append(k)
+                            else:
+                               for c in self.simplified['categs']:
+                                    if c['name'] == self.itemList[k]['name']:
+                                        for r in c['repos']:
+                                            enabled_repos.append(r)
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
                     self.backend.SetEnabledRepos(enabled_repos)
                     break
