@@ -84,7 +84,7 @@ msgstr "Sorry"
 #: bin/dnfdragora:69
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "Er is een client fout opgetreden in dnfdaemon:%s%s"
 
 #: bin/dnfdragora:72
 #, python-format
@@ -179,8 +179,8 @@ msgstr "Basissysteem"
 msgid "Content"
 msgstr "Inhoud"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
-#: dnfdragora/ui.py:345
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:331 dnfdragora/ui.py:345
 msgid "All"
 msgstr "Alle"
 
@@ -324,12 +324,14 @@ msgstr "Transactieresultaat"
 msgid "Transaction dependency"
 msgstr "Transactie afhankelijkheid"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Annuleren"
 
