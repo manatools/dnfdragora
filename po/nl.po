@@ -89,12 +89,12 @@ msgstr "Er is een client fout opgetreden in dnfdaemon:%s%s"
 #: bin/dnfdragora:72
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "Er is een naam fout opgetreden in dnfdaemon:%s%s"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "Er is een attribuut fout opgetreden in dnfdaemon:%s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
