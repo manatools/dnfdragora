@@ -84,17 +84,17 @@ msgstr "Perdó!"
 #: bin/dnfdragora:69
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "S'ha produït un error de client de dnfdaemon:%s%s"
 
 #: bin/dnfdragora:72
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "S'ha produït un error de nom de dnfdaemon:%s%s"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "S'ha produït un error d'atribut de dnfdaemon:%s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -179,8 +179,8 @@ msgstr "Sistema de base"
 msgid "Content"
 msgstr "Contingut"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
-#: dnfdragora/ui.py:345
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:331 dnfdragora/ui.py:345
 msgid "All"
 msgstr "Tot"
 
@@ -324,12 +324,14 @@ msgstr "Resultat de la transacció"
 msgid "Transaction dependency"
 msgstr "Dependència de la transacció"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "D'acord"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Cancel·la"
 
