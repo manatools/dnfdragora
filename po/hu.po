@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-26 22:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Csaba Mészáros <pingvin@y2k.hu>, 2017\n"
+"Last-Translator: Laszlo Espadas <kardiweb@protonmail.ch>, 2017\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
 "Language: hu\n"
@@ -22,7 +36,7 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [options]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
@@ -62,7 +76,7 @@ msgstr ""
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:977
 msgid "Sorry"
-msgstr ""
+msgstr "Sajnáljuk"
 
 #: bin/dnfdragora:69
 #, python-format
@@ -102,7 +116,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE munkaasztal"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
@@ -110,15 +124,15 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Alkalmazások"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE munkaasztal"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt Munkaasztal"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
@@ -138,7 +152,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME munkaasztal"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -157,8 +171,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
-#: dnfdragora/ui.py:345
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:331 dnfdragora/ui.py:345
 msgid "All"
 msgstr "Mind"
 
@@ -220,7 +234,7 @@ msgstr ""
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "Telepítés"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
@@ -302,14 +316,16 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
-msgstr ""
+msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
-msgstr ""
+msgstr "&Mégsem"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
@@ -333,7 +349,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
-msgstr ""
+msgstr "Engedélyezve"
 
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:317
 msgid "Name"
