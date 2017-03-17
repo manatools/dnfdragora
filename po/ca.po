@@ -350,7 +350,7 @@ msgstr "Desenvolupadors"
 #: dnfdragora/dialogs.py:149
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
-"dnfdragora és un frontals de DNF que funciona mitjançant GTK, ncurses i QT"
+"dnfdragora és un frontal de DNF que funciona mitjançant GTK, ncurses i QT"
 
 #: dnfdragora/dialogs.py:192 dnfdragora/dialogs.py:207
 msgid "Repository Management"
