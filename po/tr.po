@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-26 22:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Atilla Öntaş <tarakbumba@gmail.com>, 2017\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "tr/)\n"
 "Language: tr\n"
@@ -22,76 +36,81 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [seçenekler]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "yui GTK+ eklentisini kullanarak başlat"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "yui ncurses eklentisini kullanarak başlat"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "yui Qt eklentisini kullanarak başlat"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "iletişim kutularını tam ekranda kullan"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "sadece güncelleme iletişim kutusu göster"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "grup simgeleri için (/usr/share/icons yerine) yeni bir konuma zorla"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"gerekli tüm resimler için (/usr/share/dnfdragora/images yerine) yeni bir "
+"konuma zorla"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
 msgstr ""
+"yerelleştirme söz dizilerini barındıran dizin (sadece geliştirici için)"
 
 #: bin/dnfdragora:69 bin/dnfdragora:72 bin/dnfdragora:75
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:977
 msgid "Sorry"
-msgstr ""
+msgstr "Üzgünüz"
 
 #: bin/dnfdragora:69
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon istemci hatası oluştu:%s%s"
 
 #: bin/dnfdragora:72
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon isim hatası oluştu:%s%s"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon iyelik hatası oluştu:%s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Veri Kaynağı Meta Verisi Yenileniyor"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "DNF önbelleği (kök) yenilenemiyor"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF kök uçbirimi yetkilendirilmemiş.\n"
+"dnfdragora' dan çıkılacak"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -99,46 +118,49 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF bir başka işlem tarafından kilitlenmiş.\n"
+"\n"
+"dnfdragora' dan çıkılacak"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE Masaüstü"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce Masaüstü"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Uygulamalar"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE Masaüstü"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt Masaüstü"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon Masaüstü"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE Masaüstü"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii Masaüstü"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar Masaüstü Ortamı"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME Masaüstü"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -151,14 +173,14 @@ msgstr "Sunucular"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "Temel Sistem"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "İçerik"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
-#: dnfdragora/ui.py:345
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:331 dnfdragora/ui.py:345
 msgid "All"
 msgstr "Hepsi"
 
@@ -168,123 +190,123 @@ msgstr "Boş"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Arama sonucu"
 
 #: dnfdragora/const.py:101
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Kurulu paketler alınıyor"
 
 #: dnfdragora/const.py:102
 msgid "Getting available packages"
-msgstr ""
+msgstr "Erişilebilir paketler alınıyor"
 
 #: dnfdragora/const.py:103
 msgid "Getting available updates"
-msgstr ""
+msgstr "Erişilebilir güncellemeler alınıyor"
 
 #: dnfdragora/const.py:104
 msgid "Getting all packages"
-msgstr ""
+msgstr "Tüm paketler alınıyor"
 
 #: dnfdragora/const.py:117
 msgid "Updated packages"
-msgstr ""
+msgstr "Güncellenen paketler"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Sürümü düşürülen paketler"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Eski ve Kullanılamaz paketler"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Eski ve Kullanılamaz paketler"
 
 #: dnfdragora/const.py:121
 msgid "Erased packages"
-msgstr ""
+msgstr "Silinen paketler"
 
 #: dnfdragora/const.py:122 dnfdragora/const.py:123
 msgid "Installed packages"
-msgstr ""
+msgstr "Kurulan paketler"
 
 #: dnfdragora/const.py:124
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Bağımlılıkları aşmak için kurulan"
 
 #: dnfdragora/const.py:125
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Yeniden kurulan paketler"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "Kuruluyor"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "Güncelleniyor"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "Kaldırılıyor"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "Sürümü düşürülüyor"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "Başkası ile değiştiriliyor"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Güncelleniyor: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Kuruluyor: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Yeniden kuruluyor: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Temizleme: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Kaldırılıyor: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Eski ve kullanılmaz hale getiriliyor: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Sürümü düşürülüyor: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Doğrulanıyor: %s"
 
 #: dnfdragora/const.py:154
 msgid "Bugfix"
-msgstr ""
+msgstr "Hata düzeltme"
 
 #: dnfdragora/const.py:155
 msgid "New Package"
-msgstr ""
+msgstr "Yeni Paket"
 
 #: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -292,48 +314,50 @@ msgstr "Güvenlik"
 
 #: dnfdragora/const.py:157
 msgid "Enhancement"
-msgstr ""
+msgstr "Geliştirme"
 
 #: dnfdragora/dialogs.py:44
 msgid "Transaction result"
-msgstr ""
+msgstr "İşlem sonucu"
 
 #: dnfdragora/dialogs.py:50
 msgid "Transaction dependency"
-msgstr ""
+msgstr "İşlem bağımlılığı"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
-msgstr ""
+msgstr "&Tamam"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
-msgstr ""
+msgstr "&İptal"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
-msgstr ""
+msgstr "başkası ile değiştiriliyor"
 
 #: dnfdragora/dialogs.py:81
 msgid "Total size "
-msgstr ""
+msgstr "Toplam boyut"
 
 #: dnfdragora/dialogs.py:146
 msgid "Developers"
-msgstr ""
+msgstr "Geliştiriciler"
 
 #: dnfdragora/dialogs.py:149
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "dnfdragora, GTK, ncurses ve QT kullanan bir DNF önyüzüdür"
 
 #: dnfdragora/dialogs.py:192 dnfdragora/dialogs.py:207
 msgid "Repository Management"
-msgstr ""
+msgstr "Depo Yönetimi"
 
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
-msgstr ""
+msgstr "Etkin"
 
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:317
 msgid "Name"
@@ -345,11 +369,11 @@ msgstr "&Uygula"
 
 #: dnfdragora/dialogs.py:545
 msgid "&Yes"
-msgstr ""
+msgstr "&Evet"
 
 #: dnfdragora/dialogs.py:546
 msgid "&No"
-msgstr ""
+msgstr "&Hayır"
 
 #: dnfdragora/dialogs.py:569
 #, python-format
