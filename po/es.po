@@ -36,7 +36,7 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [opciones]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
@@ -44,33 +44,36 @@ msgstr "Inicio usando complemento de implementación GTK+ yui"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "Inicio usando implementación de plugin yui"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "Inicio usando implementación de plugin yui Qt"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "Utilizar pantalla completa para diálogos"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "Mostrar solo las actualizaciones"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
+"Forzar una nueva ruta para los iconos de grupo (en lugar de /usr/share/icons)"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"Forzar una nueva ruta para todas las imágenes necesarias (en lugar de /usr/"
+"share/dnfdragora/images)"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "Directorio que contiene cadenas de localización (sólo desarrollador)"
 
 #: bin/dnfdragora:69 bin/dnfdragora:72 bin/dnfdragora:75
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -81,17 +84,17 @@ msgstr "Lo siento"
 #: bin/dnfdragora:69
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "Se ha producido un error de cliente de demonio dnf:%s%s"
 
 #: bin/dnfdragora:72
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "Se ha producido un error de nombre de demonio dnf:%s%s"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "Se ha producido un error de atributos de demonio dnf:%s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -106,6 +109,8 @@ msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"El backend raiz de DNF no ha sido autorizado.\n"
+"Mandragora saldrá ahora."
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -113,6 +118,8 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF está bloqueado por otro proceso.\n"
+"Mandragora saldrá ahora."
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
@@ -165,7 +172,7 @@ msgstr "Servidores"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "Sistema base"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
@@ -206,11 +213,11 @@ msgstr "Paquetes actualizados"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Paquetes degradados"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Paquetes obsoletos"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleted packages"
@@ -246,7 +253,7 @@ msgstr "Eliminando"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "Degradación"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
@@ -285,7 +292,7 @@ msgstr "Marcando como obsoleto: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Degradación: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -341,7 +348,7 @@ msgstr "Desarrolladores"
 
 #: dnfdragora/dialogs.py:149
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "Mandragora es un frontend DNF que funciona con GTK, ncurses y QT"
 
 #: dnfdragora/dialogs.py:192 dnfdragora/dialogs.py:207
 msgid "Repository Management"
@@ -374,10 +381,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"¿Desea importar esta clave GPG necesaria para verificar el %(pkg)s de un "
+"paquete?\n"
+"<br><br>Clave: 0x%(id)s:<br>Id Usuario:\"%(user)s\"<br>De:%(file)s"
 
 #: dnfdragora/dialogs.py:576
 msgid "GPG key missed"
-msgstr ""
+msgstr "Clave GPG perdida"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -386,6 +396,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"Versión api demonio dnf: %(actual)d\n"
+"No conicide\n"
+"Versión api necesaria: %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
@@ -397,7 +410,7 @@ msgstr "Descargando paquetes"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Comprobando firmas de paquetes"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1052
 msgid "Applying changes to the system"
@@ -414,7 +427,7 @@ msgstr "Descargando %(count_files)d ficheros (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Almacenando caché de grupos de paquetes..."
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -948,7 +961,7 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Descargando: %(files)d archivos, %(size)d bytes"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
@@ -958,7 +971,7 @@ msgstr "Comenzando a descargar: %s"
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Progreso de archivos (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:157
 msgid "Update information"
@@ -974,7 +987,7 @@ msgstr "Log de cambios"
 
 #: dnfdragora/ui.py:160
 msgid "Requirements"
-msgstr ""
+msgstr "Requerimientos"
 
 #: dnfdragora/ui.py:265
 msgid "Software Management - dnfdragora"
@@ -1125,14 +1138,14 @@ msgstr "Error comprobando firmas del paquete"
 #: dnfdragora/ui.py:1082
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Errores de descarga"
+msgstr[1] "Errores de descarga"
 
 #: dnfdragora/ui.py:1087
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Errores en transacción"
+msgstr[1] "Errores en transacción"
 
 #: dnfdragora/ui.py:1099
 msgid "BuildTransaction failure"
