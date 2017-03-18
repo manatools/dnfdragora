@@ -36,41 +36,46 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [opções]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "Começar a usar a implementação de plugin do yui GTK+"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "Comece a usar a implementação do plugin do yui ncurses"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "Começar a usar a implementação de plugin do yui Qt"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "Usar tela cheia para diálogos"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "Mostrar apenas as atualizações"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
+"Forçar um novo caminho para ícones de grupo (em vez de /usr/share/icons)"
 
 #: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"Forçar um novo caminho para todas as imagens necessárias (em vez de /usr/"
+"share/dnfdragora/images)"
 
 #: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
 msgstr ""
+"Forçar um novo caminho para todas as imagens necessárias (em vez de /usr/"
+"share/dnfdragora/images)"
 
 #: bin/dnfdragora:69 bin/dnfdragora:72 bin/dnfdragora:75
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -81,17 +86,17 @@ msgstr "Desculpe"
 #: bin/dnfdragora:69
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "Erro de cliente dnfdaemon:%s%s"
 
 #: bin/dnfdragora:72
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "Ocorreu um erro de nome dnfdaemon:%s%s"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "Ocorreu um erro de atributo dnfdaemon:%s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -176,8 +181,8 @@ msgstr "Sistema base"
 msgid "Content"
 msgstr "Conteúdo"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:331
-#: dnfdragora/ui.py:345
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:331 dnfdragora/ui.py:345
 msgid "All"
 msgstr "Todos"
 
@@ -321,12 +326,14 @@ msgstr "Resultado da transação"
 msgid "Transaction dependency"
 msgstr "Dependência de transações"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Cancelar"
 
@@ -377,6 +384,9 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Você deseja importar essa chave GPG <br>necessária para verificar o pacote "
+"%(pkg)s ?<br><br>chave : 0x%(id)s:<br> ID do usuário : \"%(user)s\" <br> De: "
+"%(file)s"
 
 #: dnfdragora/dialogs.py:576
 msgid "GPG key missed"
@@ -389,6 +399,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"Dnfdaemon versão do api : %(actual)d\n"
+"Não combina\n"
+"Versão de api necessária : %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
@@ -413,7 +426,7 @@ msgstr "Verificar as alterações no sistema"
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Baixando %(count_files)d arquivos (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
@@ -951,7 +964,7 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Baixando :  %(files)d arquivos, %(size)d bytes"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
@@ -961,7 +974,7 @@ msgstr "Começando a fazer o download : %s"
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Arquivos em progresso (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:157
 msgid "Update information"
