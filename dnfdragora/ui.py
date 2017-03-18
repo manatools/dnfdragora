@@ -762,8 +762,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         itemCollection = yui.YItemCollection(v)
         self.tree.startMultipleChanges()
         self.tree.deleteAllItems()
-        self.tree.addItems(itemCollection)
         self.tree.doneMultipleChanges()
+        self.tree.addItems(itemCollection)
         yui.YUI.app().normalCursor()
 
 
@@ -912,8 +912,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 treeItem.setSelected(True)
                 self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : _("Search") }
                 self.tree.addItem(treeItem)
-                self.tree.rebuildTree()
                 self.tree.doneMultipleChanges()
+                self.tree.rebuildTree()
             yui.YUI.app().normalCursor()
         else :
             return False
