@@ -204,7 +204,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             #TODO evaluate if passing always_yes to False in this case
             always_yes = self.always_yes
             self._run_transaction(always_yes)
-            print ("INSTALL %s" % self.options['install'])
 
         rpm_groups = None
         if self.use_comps :
