@@ -40,6 +40,7 @@ if __name__ == "__main__":
     parser.add_argument('--group-icons-path', nargs='?', help=_('force a new path for group icons (instead of /usr/share/icons)'))
     parser.add_argument('--images-path', nargs='?', help=_('force a new path for all the needed images (instead of /usr/share/dnfdragora/images)'))
     parser.add_argument('--locales-dir', nargs='?', help=_('directory containing localization strings (developer only)'))
+    parser.add_argument('--install',     nargs='+', help=_('install packages'))
     args = parser.parse_args()
 
     import dnfdaemon.client
@@ -57,6 +58,8 @@ if __name__ == "__main__":
         options['images_path'] = args.images_path
     if args.locales_dir:
         options['locales_dir'] = args.locales_dir
+    if args.install:
+        options['install'] = args.install
 
     main_gui = None
     try:

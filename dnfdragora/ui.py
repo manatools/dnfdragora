@@ -198,6 +198,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # setup UI
         self._setupUI()
 
+        if 'install' in self.options.keys() :
+            pkgs = " ".join(self.options['install'])
+            self.backend.Install(pkgs)
+            #TODO evaluate if passing always_yes to False in this case
+            always_yes = self.always_yes
+            self._run_transaction(always_yes)
+            print ("INSTALL %s" % self.options['install'])
+
         rpm_groups = None
         if self.use_comps :
             # let's show the dialog with a poll event
@@ -934,6 +942,69 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if not rc:
                     logger.error('AddTransaction result : %s: %s' % (rc, pkg_id))
 
+    def _run_transaction(self, always_yes):
+        '''
+        Run a transaction after an apply button or a package given by CLI
+        '''
+        rc, result = self.backend.BuildTransaction()
+        if rc :
+            ok = True
+            if not always_yes:
+                transaction_result_dlg = dialogs.TransactionResult(self)
+                ok = transaction_result_dlg.run(result)
+
+            if ok:  # Ok pressed
+                self.infobar.info(_('Applying changes to the system'))
+                rc, result = self.backend.RunTransaction()
+                # This can happen more than once (more gpg keys to be
+                # imported)
+                while rc == 1:
+                    logger.debug('GPG key missing: %s' % repr(result))
+                    # get info about gpgkey to be comfirmed
+                    values = self.backend._gpg_confirm
+                    if values:  # There is a gpgkey to be verified
+                        (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                        logger.debug('GPGKey : %s' % repr(values))
+                        resp = dialogs.ask_for_gpg_import(values)
+                        self.backend.ConfirmGPGImport(hexkeyid, resp)
+                        # tell the backend that the gpg key is confirmed
+                        # rerun the transaction
+                        # FIXME: It should not be needed to populate
+                        # the transaction again
+                        if resp:
+                            self._populate_transaction()
+                            rc, result = self.backend.BuildTransaction()
+                            rc, result = self.backend.RunTransaction()
+                        else:
+                            # NOTE TODO answer no is the only way to exit, since it seems not
+                            # to install the key :(
+                            break
+                    else:  # error in signature verification
+                        dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
+                                            'text' : '<br>'.join(result), 'richtext' : True })
+                        break
+                if rc == 4:  # Download errors
+                    dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
+                        'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
+                    logger.error('Download error')
+                    logger.error(result)
+                elif rc != 0:  # other transaction errors
+                    dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
+                                'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
+                    logger.error('RunTransaction failure')
+                    logger.error(result)
+
+                self.release_root_backend()
+                self.packageQueue.clear()
+                self.backend.reload()
+        else:
+            logger.error('BuildTransaction failure')
+            logger.error(result)
+            s = "%s"%result
+            dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
+
+
+
     def handleevent(self):
         """
         Event-handler for the maindialog
@@ -1041,63 +1112,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.applyButton) :
                     #### APPLY
                     self._populate_transaction()
-                    rc, result = self.backend.BuildTransaction()
-                    if rc :
-                        ok = True
-                        if not self.always_yes:
-                            transaction_result_dlg = dialogs.TransactionResult(self)
-                            ok = transaction_result_dlg.run(result)
-
-                        if ok:  # Ok pressed
-                            self.infobar.info(_('Applying changes to the system'))
-                            rc, result = self.backend.RunTransaction()
-                            # This can happen more than once (more gpg keys to be
-                            # imported)
-                            while rc == 1:
-                                logger.debug('GPG key missing: %s' % repr(result))
-                                # get info about gpgkey to be comfirmed
-                                values = self.backend._gpg_confirm
-                                if values:  # There is a gpgkey to be verified
-                                    (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
-                                    logger.debug('GPGKey : %s' % repr(values))
-                                    resp = dialogs.ask_for_gpg_import(values)
-                                    self.backend.ConfirmGPGImport(hexkeyid, resp)
-                                    # tell the backend that the gpg key is confirmed
-                                    # rerun the transaction
-                                    # FIXME: It should not be needed to populate
-                                    # the transaction again
-                                    if resp:
-                                        self._populate_transaction()
-                                        rc, result = self.backend.BuildTransaction()
-                                        rc, result = self.backend.RunTransaction()
-                                    else:
-                                        # NOTE TODO answer no is the only way to exit, since it seems not
-                                        # to install the key :(
-                                        break
-                                else:  # error in signature verification
-                                    dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
-                                                        'text' : '<br>'.join(result), 'richtext' : True })
-                                    break
-                            if rc == 4:  # Download errors
-                                dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
-                                    'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-                                logger.error('Download error')
-                                logger.error(result)
-                            elif rc != 0:  # other transaction errors
-                                dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
-                                            'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-                                logger.error('RunTransaction failure')
-                                logger.error(result)
-
-                            self.release_root_backend()
-                            self.packageQueue.clear()
-                            self.backend.reload()
-                    else:
-                        logger.error('BuildTransaction failure')
-                        logger.error(result)
-                        s = "%s"%result
-                        dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
-
+                    self._run_transaction(self.always_yes)
                     sel = self.tree.selectedItem()
                     if sel :
                         group = self._groupNameFromItem(self.groupList, sel)
