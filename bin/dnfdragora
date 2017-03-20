@@ -41,11 +41,13 @@ if __name__ == "__main__":
     parser.add_argument('--images-path', nargs='?', help=_('force a new path for all the needed images (instead of /usr/share/dnfdragora/images)'))
     parser.add_argument('--locales-dir', nargs='?', help=_('directory containing localization strings (developer only)'))
     parser.add_argument('--install',     nargs='+', help=_('install packages'))
+    parser.add_argument('--exit',        help=_('force dnfdaemon dbus services used by dnfdragora to exit'), action='store_true')
     args = parser.parse_args()
 
     import dnfdaemon.client
     import dnfdragora.ui as ui
     import dnfdragora.dialogs as dialogs
+    import dnfdragora.misc as misc
     import logging
     logger = logging.getLogger('dnfdragora')
 
@@ -60,30 +62,32 @@ if __name__ == "__main__":
         options['locales_dir'] = args.locales_dir
     if args.install:
         options['install'] = args.install
+    if args.exit:
+        misc.dbus_dnfsystem('Exit')
+    else:
+        main_gui = None
+        try:
+            main_gui = ui.mainGui(options)
 
-    main_gui = None
-    try:
-        main_gui = ui.mainGui(options)
+            main_gui.handleevent()
 
-        main_gui.handleevent()
-
-    except dnfdaemon.client.DaemonError as e:
-        logger.error("dnfdaemon client error: %s ", e)
-        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon client error occurred:%s%s")%("\n",str(e))})
-    except NameError as e:
-        logger.error("dnfdaemon NameError: %s ", e)
-        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%s%s")%("\n",str(e))})
-    except AttributeError as e:
-        logger.error("dnfdaemon AttributeError: %s ", e)
-        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%s%s")%("\n",str(e))})
-    except:
-        logger.error("Unexpected error: %s ", sys.exc_info()[0])
-    finally:
-        if (main_gui is not None) :
-            main_gui.backend.quit()
-        import yui
-        yui.YDialog.deleteAllDialogs()
-        # next line seems to be a workaround to prevent the qt-app from crashing
-        # see https://github.com/libyui/libyui-qt/issues/41
-        yui.YUILoader.deleteUI()
-        logger.critical("Closing dnfdragora")
+        except dnfdaemon.client.DaemonError as e:
+            logger.error("dnfdaemon client error: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon client error occurred:%s%s")%("\n",str(e))})
+        except NameError as e:
+            logger.error("dnfdaemon NameError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%s%s")%("\n",str(e))})
+        except AttributeError as e:
+            logger.error("dnfdaemon AttributeError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%s%s")%("\n",str(e))})
+        except:
+            logger.error("Unexpected error: %s ", sys.exc_info()[0])
+        finally:
+            if (main_gui is not None) :
+                main_gui.backend.quit()
+            import yui
+            yui.YDialog.deleteAllDialogs()
+            # next line seems to be a workaround to prevent the qt-app from crashing
+            # see https://github.com/libyui/libyui-qt/issues/41
+            yui.YUILoader.deleteUI()
+            logger.critical("Closing dnfdragora")
