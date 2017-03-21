@@ -78,7 +78,7 @@ msgstr "каталог, содержащий локализованные стр
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "установить пакеты"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -188,8 +188,8 @@ msgstr "Базовая система"
 msgid "Content"
 msgstr "Содержание"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Все"
 
@@ -333,12 +333,14 @@ msgstr "Результат транзакции"
 msgid "Transaction dependency"
 msgstr "Зависимость транзакции"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Хорошо"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Отмена"
 
