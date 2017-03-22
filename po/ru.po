@@ -83,6 +83,8 @@ msgstr "установить пакеты"
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"принудительно завершить работу служб dbus dnfdaemon, которые используются "
+"dnfdragora"
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
