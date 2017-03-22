@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-20 18:52+0100\n"
-"PO-Revision-Date: 2017-02-27 19:01+0200\n"
+"PO-Revision-Date: 2017-03-22 07:10+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -63,11 +63,13 @@ msgstr "каталог, у якому містяться переклади (л�
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "встановити пакунки"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"примусово завершити роботу служб D-Bus dnfdaemon, які використовуються "
+"dnfdragora"
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
