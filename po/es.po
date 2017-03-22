@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-20 18:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
+"Last-Translator: Jose Manuel López <joselp@outlook.es>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -77,11 +77,12 @@ msgstr "Directorio que contiene cadenas de localización (sólo desarrollador)"
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "Instalar paquetes"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"Forzar servicios dbus de demonio dnf utilizados por dnfdragora para salir"
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -186,8 +187,8 @@ msgstr "Sistema base"
 msgid "Content"
 msgstr "Contenido"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Todos"
 
@@ -331,12 +332,14 @@ msgstr "Resultado de la transacción"
 msgid "Transaction dependency"
 msgstr "Dependencias de la transacción"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Cancelar"
 
