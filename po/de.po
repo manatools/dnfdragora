@@ -93,7 +93,7 @@ msgstr "Entschuldigung!"
 #: bin/dnfdragora:76
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon Client-Fehler aufgetreten:%s%s"
 
 #: bin/dnfdragora:79
 #, python-format
@@ -103,7 +103,7 @@ msgstr ""
 #: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon Attribut-Fehler aufgetreten:%s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -188,8 +188,8 @@ msgstr "Grundsystem"
 msgid "Content"
 msgstr "Inhalt"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Alle"
 
@@ -223,7 +223,7 @@ msgstr "Aktualisierte Pakete"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Heruntergestufte Pakete"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
@@ -263,7 +263,7 @@ msgstr "Entferne"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "Downgrade"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
@@ -302,7 +302,7 @@ msgstr ""
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Downgrade: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -333,12 +333,14 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "Abbre&chen"
 
