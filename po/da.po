@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-20 18:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "da/)\n"
 "Language: da\n"
@@ -328,12 +328,12 @@ msgstr ""
 #: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
 #: dnfdragora/dialogs.py:495
 msgid "&Ok"
-msgstr ""
+msgstr "&Ok"
 
 #: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
 #: dnfdragora/dialogs.py:496
 msgid "&Cancel"
-msgstr ""
+msgstr "&Annuller"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
@@ -365,15 +365,15 @@ msgstr "Navn"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
-msgstr ""
+msgstr "&Anvend"
 
 #: dnfdragora/dialogs.py:545
 msgid "&Yes"
-msgstr ""
+msgstr "&Ja"
 
 #: dnfdragora/dialogs.py:546
 msgid "&No"
-msgstr ""
+msgstr "&Nej"
 
 #: dnfdragora/dialogs.py:569
 #, python-format
@@ -460,27 +460,27 @@ msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:54
 msgid "Dial-Up"
-msgstr ""
+msgstr "Opkald"
 
 #: dnfdragora/groupicons.py:58
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 #: dnfdragora/groupicons.py:62
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 #: dnfdragora/groupicons.py:66
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: dnfdragora/groupicons.py:70
 msgid "Serial"
-msgstr ""
+msgstr "Serie"
 
 #: dnfdragora/groupicons.py:74
 msgid "Telephony"
-msgstr ""
+msgstr "Telefoni"
 
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
@@ -488,7 +488,7 @@ msgstr "Databaser"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
-msgstr ""
+msgstr "Basic"
 
 #: dnfdragora/groupicons.py:89
 msgid "C"
@@ -500,15 +500,15 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:95
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:103
 msgid "Debug"
-msgstr ""
+msgstr "Fejlret"
 
 #: dnfdragora/groupicons.py:107
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:111
 msgid "GNOME and GTK+"
@@ -528,7 +528,7 @@ msgstr "Kerne"
 
 #: dnfdragora/groupicons.py:127
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: dnfdragora/groupicons.py:135
 msgid "Perl"
@@ -597,11 +597,11 @@ msgstr "Puslespil"
 
 #: dnfdragora/groupicons.py:207
 msgid "Shooter"
-msgstr ""
+msgstr "Skydespil"
 
 #: dnfdragora/groupicons.py:211
 msgid "Simulation"
-msgstr ""
+msgstr "Simulator"
 
 #: dnfdragora/groupicons.py:215
 msgid "Sports"
@@ -649,12 +649,12 @@ msgstr "Grafik"
 
 #: dnfdragora/groupicons.py:263
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 #: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
 #: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
-msgstr ""
+msgstr "Redigerings- og konvertingsprogrammer"
 
 #: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
 #: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
@@ -663,15 +663,15 @@ msgstr "Nytteprogrammer"
 
 #: dnfdragora/groupicons.py:275
 msgid "Photography"
-msgstr ""
+msgstr "Fotografi"
 
 #: dnfdragora/groupicons.py:279
 msgid "Scanning"
-msgstr ""
+msgstr "Skanning"
 
 #: dnfdragora/groupicons.py:283
 msgid "Viewers"
-msgstr ""
+msgstr "Fremvisere"
 
 #: dnfdragora/groupicons.py:288
 msgid "Monitoring"
@@ -715,31 +715,31 @@ msgstr "Kontor"
 
 #: dnfdragora/groupicons.py:331
 msgid "Dictionary"
-msgstr ""
+msgstr "Ordbog"
 
 #: dnfdragora/groupicons.py:335
 msgid "Finance"
-msgstr ""
+msgstr "Penge"
 
 #: dnfdragora/groupicons.py:339
 msgid "Management"
-msgstr ""
+msgstr "Håndtering"
 
 #: dnfdragora/groupicons.py:343
 msgid "Organizer"
-msgstr ""
+msgstr "Organisering"
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Regneark"
 
 #: dnfdragora/groupicons.py:355
 msgid "Suite"
-msgstr ""
+msgstr "Kontor"
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr ""
+msgstr "Tekstbehandler"
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
@@ -787,15 +787,15 @@ msgstr "Lyd"
 
 #: dnfdragora/groupicons.py:419
 msgid "Midi"
-msgstr ""
+msgstr "Midi"
 
 #: dnfdragora/groupicons.py:423
 msgid "Mixers"
-msgstr ""
+msgstr "Miksere"
 
 #: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
 msgid "Players"
-msgstr ""
+msgstr "Afspillere"
 
 #: dnfdragora/groupicons.py:436
 msgid "System"
@@ -871,7 +871,7 @@ msgstr "Video"
 
 #: dnfdragora/groupicons.py:527
 msgid "Television"
-msgstr ""
+msgstr "Fjernsyn"
 
 #: dnfdragora/groupicons.py:537
 msgid "Workstation"
@@ -1065,11 +1065,11 @@ msgstr ""
 
 #: dnfdragora/ui.py:442 dnfdragora/ui.py:451
 msgid "&Quit"
-msgstr ""
+msgstr "&Afslut"
 
 #: dnfdragora/ui.py:447
 msgid "&File"
-msgstr ""
+msgstr "&Fil"
 
 #: dnfdragora/ui.py:448
 msgid "Reset the selection"
@@ -1085,7 +1085,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:461
 msgid "&Help"
-msgstr ""
+msgstr "&Hjælp"
 
 #: dnfdragora/ui.py:462
 msgid "Manual"
@@ -1093,7 +1093,7 @@ msgstr "Manuel"
 
 #: dnfdragora/ui.py:463
 msgid "&About"
-msgstr ""
+msgstr "&Om"
 
 #: dnfdragora/ui.py:489
 msgid "update"
@@ -1101,11 +1101,11 @@ msgstr ""
 
 #: dnfdragora/ui.py:492
 msgid "locked"
-msgstr ""
+msgstr "låst"
 
 #: dnfdragora/ui.py:495
 msgid "installed"
-msgstr ""
+msgstr "installeret"
 
 #: dnfdragora/ui.py:793
 msgid "Missing information"
@@ -1113,7 +1113,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:920
 msgid "Search"
-msgstr ""
+msgstr "Søg"
 
 #: dnfdragora/ui.py:982
 msgid "Error checking package signatures"
