@@ -75,11 +75,11 @@ msgstr "Adresář obsahující jazykové řetězce (pouze vývojář)"
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "Nainstalovat balíčky"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "Vynutit ukončení služeb dbus dnfdaemon používané dnfdragora"
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -186,8 +186,8 @@ msgstr "Základní systém"
 msgid "Content"
 msgstr "Obsah"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Vše"
 
@@ -331,12 +331,14 @@ msgstr "Výsledek transakce"
 msgid "Transaction dependency"
 msgstr "Závislost transakce"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Zrušit"
 
