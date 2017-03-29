@@ -77,11 +77,13 @@ msgstr ""
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "paketleri kur"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"dnfdragora tarafından kullanılan dnfdaemon dbus hizmetlerini çıkış yapmaya "
+"zorla"
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -187,8 +189,8 @@ msgstr "Temel Sistem"
 msgid "Content"
 msgstr "İçerik"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Hepsi"
 
@@ -332,12 +334,14 @@ msgstr "İşlem sonucu"
 msgid "Transaction dependency"
 msgstr "İşlem bağımlılığı"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Tamam"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&İptal"
 
@@ -388,10 +392,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"<br>%(pkg)s paketini doğrulamak için gerekli olan bu GPG anahtarını içe "
+"aktarmak istiyor musunuz?<br><br>Anahtar        : 0x%(id)s:"
+"<br>KullanıcıKimliği     : \"%(user)s\"<br>Şuradan       : %(file)s"
 
 #: dnfdragora/dialogs.py:576
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG anahtarı eksik"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -400,35 +407,38 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon api sürümü : %(actual)d\n"
+"gerekli api sürümü : %(required)d\n"
+"ile eşleşmiyor"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "İşlemi başlat"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "Paketler indiriliyor"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Paket imzaları denetleniyor"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:956
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Değişiklikler sisteme uygulanıyor"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Sistemdeki değişiklikleri doğrula"
 
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "%(count_files)d adet dosya (%(count_bytes)sB) ile indiriliyor..."
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Gruplar paketlerden önbelleğe alınıyor"
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -962,37 +972,37 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:130
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "İndiriliyor:  %(files)d adet dosya, %(size)d bayt"
 
 #: dnfdragora/progress_ui.py:157
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "İndirmeye başlanıyor: %s"
 
 #: dnfdragora/progress_ui.py:178
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Dosya ilerlemesi (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:157
 msgid "Update information"
-msgstr ""
+msgstr "Güncelleme bilgisi"
 
 #: dnfdragora/ui.py:158
 msgid "File list"
-msgstr ""
+msgstr "Dosya listesi"
 
 #: dnfdragora/ui.py:159
 msgid "Changelog"
-msgstr ""
+msgstr "Günlük"
 
 #: dnfdragora/ui.py:160
 msgid "Requirements"
-msgstr ""
+msgstr "Gereklilikler"
 
 #: dnfdragora/ui.py:272
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Yazılım Yönetimi - dnfdragora"
 
 #: dnfdragora/ui.py:304
 msgid "Software Management"
@@ -1028,7 +1038,7 @@ msgstr "Kurulmamış"
 
 #: dnfdragora/ui.py:341
 msgid "To update"
-msgstr ""
+msgstr "Güncellenecek"
 
 #: dnfdragora/ui.py:347
 #, python-format
@@ -1057,15 +1067,15 @@ msgstr "dosya isimlerinde"
 
 #: dnfdragora/ui.py:418
 msgid "&Search"
-msgstr ""
+msgstr "&Ara"
 
 #: dnfdragora/ui.py:424
 msgid "&Clear search"
-msgstr ""
+msgstr "Aramayı &temizle"
 
 #: dnfdragora/ui.py:438
 msgid "Ch&eck all"
-msgstr ""
+msgstr "Tümünü &işaretle"
 
 #: dnfdragora/ui.py:442 dnfdragora/ui.py:451
 msgid "&Quit"
@@ -1081,11 +1091,11 @@ msgstr "Seçimi sıfırla"
 
 #: dnfdragora/ui.py:449
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Meta Verisini Yenile"
 
 #: dnfdragora/ui.py:450
 msgid "Repositories"
-msgstr ""
+msgstr "Depolar"
 
 #: dnfdragora/ui.py:461
 msgid "&Help"
@@ -1101,19 +1111,19 @@ msgstr "&Hakkında"
 
 #: dnfdragora/ui.py:489
 msgid "update"
-msgstr ""
+msgstr "güncelleme"
 
 #: dnfdragora/ui.py:492
 msgid "locked"
-msgstr ""
+msgstr "kilitli"
 
 #: dnfdragora/ui.py:495
 msgid "installed"
-msgstr ""
+msgstr "kurulu"
 
 #: dnfdragora/ui.py:793
 msgid "Missing information"
-msgstr ""
+msgstr "Eksik bilgi"
 
 #: dnfdragora/ui.py:920
 msgid "Search"
@@ -1121,41 +1131,41 @@ msgstr "Ara"
 
 #: dnfdragora/ui.py:982
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Paket imzaları denetlenirken hata oluştu"
 
 #: dnfdragora/ui.py:986
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "İndirme hatası"
+msgstr[1] "İndirme hatası"
 
 #: dnfdragora/ui.py:991
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "İşlem sırasında hata oluştu"
+msgstr[1] "İşlem sırasında hata oluştu"
 
 #: dnfdragora/ui.py:1003
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "İşlemDerleme hatası"
 
 #: dnfdragora/ui.py:1047
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Henüz bu özellik eklenmedi"
 
 #: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "%s paketi kaldırılamaz"
 
 #: dnfdragora/ui.py:1075
 msgid "Protected package selected"
-msgstr ""
+msgstr "Korumalı paket seçildi"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Yönetilmeyen programcık"
 
 #: dnfdragora/ui.py:1153
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Yönetilmeyen olay"
