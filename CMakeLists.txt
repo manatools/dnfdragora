@@ -56,5 +56,6 @@ install(FILES ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml DESTINATION ${CMAKE_INSTAL
 # Installing data files
 install(FILES ${CMAKE_SOURCE_DIR}/share/metainfo/org.mageia.dnfdragora.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata)
 install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora-localinstall.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 install(FILES ${CMAKE_SOURCE_DIR}/share/images/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/48x48/apps RENAME dnfdragora.png)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/images DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dnfdragora)
