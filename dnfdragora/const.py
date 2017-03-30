@@ -122,7 +122,8 @@ HISTORY_STATE_LABLES = {
     'Install': _('Installed packages'),
     'True-Install': _('Installed packages'),
     'Dep-Install': _('Installed for dependencies'),
-    'Reinstall': _('Reinstalled packages')}
+    'Reinstall': _('Reinstalled packages')
+}
 
 
 TRANSACTION_RESULT_TYPES = {
@@ -141,7 +142,10 @@ RPM_ACTIONS = {
     'erase': _("Removing: %s"),
     'obsolete': _("Obsoleting: %s"),
     'downgrade': _("Downgrading: %s"),
-    'verify': _("Verifying: %s"),
+    'verify': _("Verifying: %s")
+    'scriptlet': _("Running scriptlet: %s"),
+    'preptrans': _("Preparing transaction: %s"),
+    'posttrans': _("Post-transaction script: %s")
 }
 
 WIDGETS_INSENSITIVE = ["header_menu", "header_filters",
