@@ -142,7 +142,7 @@ RPM_ACTIONS = {
     'erase': _("Removing: %s"),
     'obsolete': _("Obsoleting: %s"),
     'downgrade': _("Downgrading: %s"),
-    'verify': _("Verifying: %s")
+    'verify': _("Verifying: %s"),
     'scriptlet': _("Running scriptlet: %s"),
     'preptrans': _("Preparing transaction: %s"),
     'posttrans': _("Post-transaction script: %s")
