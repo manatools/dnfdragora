@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
-"PO-Revision-Date: 2017-03-22 07:10+0200\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
+"PO-Revision-Date: 2017-03-31 12:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -175,8 +175,8 @@ msgstr "Базова система"
 msgid "Content"
 msgstr "Вміст"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Усі"
 
@@ -236,79 +236,94 @@ msgstr "Встановлено як залежність"
 msgid "Reinstalled packages"
 msgstr "Повторно встановлені пакунки"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Встановлення"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr "Оновлення"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr "Вилучення"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr "Зниження версії"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
 msgstr "Замінюємо"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Updating: %s"
 msgstr "Оновлюємо: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Installing: %s"
 msgstr "Встановлюємо: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Повторно встановлюємо: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Спорожнення: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Removing: %s"
 msgstr "Вилучаємо: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Робимо застарілими: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Знижуємо версію: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Verifying: %s"
 msgstr "Перевіряємо: %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr "Виконуємо дієсценарій: %s"
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr "Готуємо дію: %s"
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr "Скрипт після дії: %s"
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr "Виправлення вади"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr "Новий пакунок"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Безпека"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr "Покращення"
 
@@ -320,12 +335,14 @@ msgstr "Результат операції"
 msgid "Transaction dependency"
 msgstr "Залежність операції"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Гаразд"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Скасувати"
 
@@ -351,13 +368,13 @@ msgstr ""
 msgid "Repository Management"
 msgstr "Керування сховищами"
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Увімкнено"
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Назва"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Увімкнено"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -995,20 +1012,20 @@ msgid "Software Management"
 msgstr "Керування програмами"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Архітектура"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Випуск"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Резюме"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Версія"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Випуск"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Архітектура"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1142,13 +1159,13 @@ msgid "Not implemented yet"
 msgstr "Ще не реалізовано"
 
 #: dnfdragora/ui.py:1075
+msgid "Protected package selected"
+msgstr "Позначено захищений пакунок"
+
+#: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Не можна вилучати пакунок %s"
-
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Позначено захищений пакунок"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
