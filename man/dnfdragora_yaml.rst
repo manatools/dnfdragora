@@ -46,7 +46,7 @@ The configuration-file will be looked up in the previous order of options.
 ``use_comps``
     :ref:`boolean <boolean-label>`
 
-    If enabled, group-sorting is read from from comps-file. This is recommended
+    If enabled, group-sorting is read from comps-file. This is recommended
     for Fedora or other Red Hat-based distributions currently. Default is false.
 
 ``always_yes``
