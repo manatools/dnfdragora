@@ -17,7 +17,7 @@ Example with ncurses:
 * Version higher than 1.1.9 required.
 
 ### DNF Daemon
-* https://github.com/timlau/dnf-daemon/
+* https://github.com/manatools/dnfdaemon/
 
 ### SUSE libyui
 * https://github.com/libyui/libyui
@@ -48,10 +48,12 @@ Example with ncurses:
 
 ### Distribution packages:
 * Mageia:
-    * dnfdragora: `urpmi dnfdragora`
+    * dnfdragora: `dnf install dnfdragora` or `urpmi dnfdragora`
+    * dnfdragora-gui: `dnf install dnfdragora-<gui>` or `urpmi dnfdragora-<gui>`
+        * Replace `<gui>` with `qt` or `gtk` depending on desired toolkit
 * Fedora:
     * dnfdragora:     `dnf install dnfdragora`     (installs all needed for use on terminal)
-    * dnfdragora-gui: `dnf install dnfdragora-gui` (installs all needed for use in desktop-environment)
+    * dnfdragora-gui: `dnf install dnfdragora-gui` (installs all needed for use in desktop environment)
 
 ### From sources:
 * Packages needed to build:
