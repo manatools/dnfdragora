@@ -68,7 +68,7 @@ endif(NOT SPHINX_EXECUTABLE-NOTFOUND)
 # Installing application code
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/dnfdragora DESTINATION ${CMAKE_INSTALL_BINDIR})
 file(GLOB_RECURSE PY_SRC LIST_DIRECTORIES false RELATIVE ${CMAKE_SOURCE_DIR} dnfdragora/*.py)
-install(FILES ${PY_SRC} ${CMAKE_BINARY_DIR}/dnfdragora/const.py DESTINATION ${PYTHON_INSTALL_DIR})
+install(FILES ${PY_SRC} ${CMAKE_BINARY_DIR}/dnfdragora/const.py DESTINATION ${PYTHON_INSTALL_DIR}/dnfdragora)
 
 # Installing configuration
 install(FILES ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/dnfdragora)
