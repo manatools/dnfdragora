@@ -7,9 +7,6 @@ cmake_minimum_required(VERSION 3.4)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
-include(FindPkgConfig)
-include(GNUInstallDirs)
-
 find_package(PythonInterp 3.4 REQUIRED)
 find_package(Gettext)
 find_program(SPHINX_EXECUTABLE
@@ -50,6 +47,11 @@ if(ENABLE_COMPS)
 else(ENABLE_COMPS)
 	set(USE_COMPS "False")
 endif(ENABLE_COMPS)
+
+# Set install dirs.
+set(CMAKE_INSTALL_BINDIR "${CMAKE_INSTALL_PREFIX}/bin")
+set(CMAKE_INSTALL_DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share")
+set(CMAKE_INSTALL_LOCALEDIR "${CMAKE_INSTALL_DATAROOTDIR}/locale")
 
 # Configure files
 configure_file(${CMAKE_SOURCE_DIR}/etc/dnfdragora.yaml.in ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml @ONLY)
