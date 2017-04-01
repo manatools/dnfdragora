@@ -1,4 +1,8 @@
-project(dnfdragora NONE)
+if(POLICY CMP0048)
+	cmake_policy(SET CMP0048 NEW)
+endif(POLICY CMP0048)
+
+project(dnfdragora VERSION 1.0.0 LANGUAGES NONE)
 cmake_minimum_required(VERSION 3.4)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
@@ -8,6 +12,15 @@ include(GNUInstallDirs)
 
 find_package(PythonInterp 3.4 REQUIRED)
 find_package(Gettext)
+find_program(SPHINX_EXECUTABLE
+	NAMES	sphinx-build-${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}
+		sphinx-build-${PYTHON_VERSION_MAJOR}
+		sphinx-build)
+if(NOT SPHINX_EXECUTABLE-NOTFOUND)
+	message(STATUS "Found sphinx-build: ${SPHINX_EXECUTABLE}")
+else(NOT SPHINX_EXECUTABLE-NOTFOUND)
+	message(STATUS "Could NOT find sphinx-build.")
+endif(NOT SPHINX_EXECUTABLE-NOTFOUND)
 
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(), end='')" OUTPUT_VARIABLE PYTHON_INSTALL_DIR)
 string(REGEX REPLACE "\n$" "" ${PYTHON_INSTALL_DIR} "${PYTHON_INSTALL_DIR}")
@@ -40,15 +53,22 @@ endif(ENABLE_COMPS)
 
 # Configure files
 configure_file(${CMAKE_SOURCE_DIR}/etc/dnfdragora.yaml.in ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/dnfdragora/const.py.in ${CMAKE_BINARY_DIR}/dnfdragora/const.py @ONLY)
 
 # Build and install translations
 if(GETTEXT_FOUND)
 	add_subdirectory(po)
 endif(GETTEXT_FOUND)
 
+# Build and install the man-pages
+if(NOT SPHINX_EXECUTABLE-NOTFOUND)
+	add_subdirectory(man)
+endif(NOT SPHINX_EXECUTABLE-NOTFOUND)
+
 # Installing application code
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/dnfdragora DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/dnfdragora DESTINATION ${PYTHON_INSTALL_DIR})
+file(GLOB_RECURSE PY_SRC LIST_DIRECTORIES false RELATIVE ${CMAKE_SOURCE_DIR} dnfdragora/*.py)
+install(FILES ${PY_SRC} ${CMAKE_BINARY_DIR}/dnfdragora/const.py DESTINATION ${PYTHON_INSTALL_DIR})
 
 # Installing configuration
 install(FILES ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/dnfdragora)
