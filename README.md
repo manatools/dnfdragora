@@ -24,7 +24,7 @@ Example with ncurses:
 * Consider to check some not yet approved changes here https://github.com/anaselli/libyui
 
 ### libyui-mga - our widget extension
-* https://github.com/xquiet/libyui-mga
+* https://github.com/manatools/libyui-mga
 
 ### SUSE libyui-bindings - anaselli fork
 * https://github.com/anaselli/libyui-bindings/tree/mageia
@@ -40,9 +40,9 @@ Example with ncurses:
   gtk, qt or ncurses)
 
 ### at least one of the MGA libyui widget extension plugins (according to the one above)
-* libyui-mga-gtk     - https://github.com/xquiet/libyui-mga-gtk
-* libyui-mga-ncurses - https://github.com/xquiet/libyui-mga-ncurses
-* libyui-mga-qt      - https://github.com/xquiet/libyui-mga-qt
+* libyui-mga-gtk     - https://github.com/manatools/libyui-mga-gtk
+* libyui-mga-ncurses - https://github.com/manatools/libyui-mga-ncurses
+* libyui-mga-qt      - https://github.com/manatools/libyui-mga-qt
 
 ## INSTALLATION
 
