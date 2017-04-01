@@ -58,14 +58,13 @@ Example with ncurses:
 ### From sources:
 * Packages needed to build:
     * cmake >= 3.4.0
-    * gettext
-    * pkgconfig >= 0.9.0
     * python3-devel >= 3.4.0
+    * optional: gettext        (for locales)
+    * optional: python3-sphinx (for manpages)
 * Configure: `mkdir build && cd build && cmake ..`
     * -DCMAKE_INSTALL_PREFIX=/usr      - Sets the install path, eg. /usr, /usr/local or /opt
     * -DCHECK_RUNTIME_DEPENDENCIES=ON  - Checks if the needed runtime dependencies are met.
     * -DENABLE_COMPS=ON                - Useful if your distribution uses COMPS for groups, eg. Fedora, RHEL, CentOS
-    * -Wno-dev                         - Supresses some not useful warnings from CMake
 * Build:     `make`
 * Install:   `make install`
 * Run:       `dnfdragora`
