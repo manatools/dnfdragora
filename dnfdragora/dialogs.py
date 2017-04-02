@@ -15,6 +15,8 @@ import sys
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
+import dnfdragora.config
+
 
 import gettext
 from gettext import gettext as _
@@ -183,13 +185,18 @@ class RepoDialog:
         self.backend = self.parent.backend
         self.itemList = {}
         self.expert = False
-        self.simplified = {
-            'categs':[{'name':'Core','disabling':False,'repos':['mageia-x86_64','updates-x86_64','mageia-i586','updates-i586'] },
-                   {'name':'Nonfree','disabling':True,'repos':['mageia-x86_64-nonfree', 'updates-x86_64-nonfree', 'mageia-i586-nonfree','updates-i586-nonfree'] },
-                   {'name':'Tainted','disabling':True,'repos':['mageia-x86_64-tainted','updates-x86_64-tainted','mageia-i586-tainted',' updates-i586-tainted'] },
-                   ]
-            }
-
+        self.config_repos = dnfdragora.config.AppConfig('dnfdragora-repos')
+        self.hideStandard = False
+        try:
+            self.config_repos.load()
+            self.simplified = self.config_repos.content
+        except Exception as e:
+            print ("Exception: %s" % str(e))
+            exc = "Configuration file <%s> problem" % self.config_repos.fileName
+            self.expert = True
+            self.hideStandard = True
+        
+            
     def _setupUI(self):
         '''
         setup the dialog layout
@@ -223,7 +230,8 @@ class RepoDialog:
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
 
-        self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode"))
+        if not self.hideStandard :
+            self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode"))
         repoList_header = yui.YTableHeader()
         columns = [ _('Name'), _("Enabled")]
 
