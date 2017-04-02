@@ -20,9 +20,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: dragnadh <dragnadh@gmail.com>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/MageiaLinux/teams/9361/nl/)\n"
@@ -250,79 +250,94 @@ msgstr "Geïnstalleerd voor afhankelijkheden"
 msgid "Reinstalled packages"
 msgstr "Opnieuw geïnstalleerde pakketten"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Installeren"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr "Updaten"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr "Bezig met verwijderen"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr "Downgraden"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
 msgstr "Vervangen"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Updating: %s"
 msgstr "Updaten: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Installing: %s"
 msgstr "Installeren: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Opnieuw installeren: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Opschonen: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Removing: %s"
 msgstr "Verwijderen: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Verouderd: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Downgrading: %s"
 msgstr "downgraden: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verifiëren: %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr "Uitvoeren van scriptlet: %s"
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr "Voorbereiding van de transactie: %s"
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr "Na-transactie script: %s"
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr "Foutverwijdering"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr "Nieuw pakket"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Beveiliging"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr "Verbetering"
 
@@ -366,13 +381,13 @@ msgstr ""
 msgid "Repository Management"
 msgstr "Softwarebron-beheer"
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Naam"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Ingeschakeld"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -1011,20 +1026,20 @@ msgid "Software Management"
 msgstr "Softwarebeheer"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Arch"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Uitgave"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Samenvatting"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Versie"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Uitgave"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Arch"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1158,13 +1173,13 @@ msgid "Not implemented yet"
 msgstr "Nog niet geïmplementeerd"
 
 #: dnfdragora/ui.py:1075
+msgid "Protected package selected"
+msgstr "Beschermd pakket geselecteerd"
+
+#: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Pakket %s kan niet verwijderd worden"
-
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Beschermd pakket geselecteerd"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
