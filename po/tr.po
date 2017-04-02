@@ -20,9 +20,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -250,79 +250,94 @@ msgstr "Bağımlılıkları aşmak için kurulan"
 msgid "Reinstalled packages"
 msgstr "Yeniden kurulan paketler"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Kuruluyor"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr "Güncelleniyor"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr "Kaldırılıyor"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr "Sürümü düşürülüyor"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
 msgstr "Başkası ile değiştiriliyor"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Updating: %s"
 msgstr "Güncelleniyor: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Installing: %s"
 msgstr "Kuruluyor: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Yeniden kuruluyor: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Temizleme: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Removing: %s"
 msgstr "Kaldırılıyor: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Eski ve kullanılmaz hale getiriliyor: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Sürümü düşürülüyor: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Verifying: %s"
 msgstr "Doğrulanıyor: %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr "Betik çalıştırılıyor: %s"
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr "İşleme hazırlanılıyor: %s"
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr "İşlem sonu betiği: %s"
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr "Hata düzeltme"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr "Yeni Paket"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Güvenlik"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr "Geliştirme"
 
@@ -365,13 +380,13 @@ msgstr "dnfdragora, GTK, ncurses ve QT kullanan bir DNF önyüzüdür"
 msgid "Repository Management"
 msgstr "Depo Yönetimi"
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Etkin"
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Ad"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Etkin"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -1009,20 +1024,20 @@ msgid "Software Management"
 msgstr "Yazılım Yönetimi"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Mimari"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Dağıtım"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Özet"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Sürüm"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Dağıtım"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Mimari"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1154,13 +1169,13 @@ msgid "Not implemented yet"
 msgstr "Henüz bu özellik eklenmedi"
 
 #: dnfdragora/ui.py:1075
+msgid "Protected package selected"
+msgstr "Korumalı paket seçildi"
+
+#: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "%s paketi kaldırılamaz"
-
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Korumalı paket seçildi"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
