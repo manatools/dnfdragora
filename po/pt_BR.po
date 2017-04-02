@@ -20,9 +20,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
@@ -79,11 +79,11 @@ msgstr ""
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "Instalar pacotes"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "Força serviços dnfdaemon dbus usados por dnfdragora para sair"
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -189,8 +189,8 @@ msgstr "Sistema base"
 msgid "Content"
 msgstr "Conteúdo"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Todos"
 
@@ -250,79 +250,94 @@ msgstr "Instalado para dependências"
 msgid "Reinstalled packages"
 msgstr "Pacotes reinstalados"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Instalando"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr "Atualizando"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr "Removendo"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr "Downgrade"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
 msgstr "Substituindo"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Updating: %s"
 msgstr "Atualizando: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Installing: %s"
 msgstr "Instalando: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Reinstalando: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Limpeza: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Removing: %s"
 msgstr "Removendo: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Obsoleto:%s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Downgrade: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verificando: %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr "Executando scriptlets: %s"
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr "Preparando transação: %s"
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr "Script pós-transação: %s"
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr "Bugfix"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr "Novo pacote"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Segurânça"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr "Aprimoramento"
 
@@ -334,12 +349,14 @@ msgstr "Resultado da transação"
 msgid "Transaction dependency"
 msgstr "Dependência de transações"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Cancelar"
 
@@ -363,13 +380,13 @@ msgstr "dnfdragora é um frontend DNF que funciona com GTK, ncurses e QT"
 msgid "Repository Management"
 msgstr "Gerenciamento do Repositório"
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Ativado"
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Nome"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Ativado"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -1007,20 +1024,20 @@ msgid "Software Management"
 msgstr "Gerenciamento de Software"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Arquitetura"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Lançamento"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Resumo"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Versão"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Lançamento"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Arquitetura"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1152,13 +1169,13 @@ msgid "Not implemented yet"
 msgstr "Ainda não implementado"
 
 #: dnfdragora/ui.py:1075
+msgid "Protected package selected"
+msgstr "Pacote protegido selecionado"
+
+#: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "O pacote %s  não pode ser removido"
-
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Pacote protegido selecionado"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
