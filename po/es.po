@@ -20,9 +20,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jose Manuel López <joselp@outlook.es>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -248,79 +248,94 @@ msgstr "Instalados por dependencias"
 msgid "Reinstalled packages"
 msgstr "Paquetes reinstalados"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Instalando"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr "Actualizando"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr "Eliminando"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr "Degradación"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
 msgstr "Reemplazando"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Updating: %s"
 msgstr "Actualizando: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Installing: %s"
 msgstr "Instalando: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Reinstalando: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Limpiando: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Removing: %s"
 msgstr "Eliminando: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Marcando como obsoleto: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Degradación: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Verifying: %s"
 msgstr "Comprobando: %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr "Ejecutando scriptlet: %s"
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr "Preparando transacción: %s"
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr "Script post-transacción: %s"
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr "Corrección de errores"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr "Nuevo Paquete"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Seguridad"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr "Mejora"
 
@@ -363,13 +378,13 @@ msgstr "Mandragora es un frontend DNF que funciona con GTK, ncurses y QT"
 msgid "Repository Management"
 msgstr "Administración de repositorios"
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Habilitado"
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Nombre"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Habilitado"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -1007,20 +1022,20 @@ msgid "Software Management"
 msgstr "Administración de Software"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Arq"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Revisión"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Resumen"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Versión"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Revisión"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Arq"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1152,13 +1167,13 @@ msgid "Not implemented yet"
 msgstr "Aún no implementado."
 
 #: dnfdragora/ui.py:1075
+msgid "Protected package selected"
+msgstr "Paquete protegido seleccionado"
+
+#: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "El paquete %s no se puede quitar"
-
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Paquete protegido seleccionado"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
