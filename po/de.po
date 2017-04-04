@@ -56,7 +56,7 @@ msgstr "Vollbild für Dialoge verwenden"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "Nur den Update Dialog anzeigen"
 
 #: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -78,11 +78,11 @@ msgstr ""
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "Installiere Pakete"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "DNFdeamon dbus Service wurde durch dnfdragora zum beenden gezwungen."
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -98,7 +98,7 @@ msgstr "dnfdaemon Client-Fehler aufgetreten:%s%s"
 #: bin/dnfdragora:79
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "dnfdeamon Namensfehler aufgetreten:%s%s"
 
 #: bin/dnfdragora:82
 #, python-format
@@ -227,7 +227,7 @@ msgstr "Heruntergestufte Pakete"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Pakete als veraltet markieren"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleted packages"
@@ -297,7 +297,7 @@ msgstr "Entferne: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Markieren als veraltet: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -317,12 +317,12 @@ msgstr "Führe Scriptlet aus: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Transaktion vorbereiten: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Post-Transaktions Script: %s"
 
 #: dnfdragora/const.py:158
 msgid "Bugfix"
@@ -342,11 +342,11 @@ msgstr "Verbesserung"
 
 #: dnfdragora/dialogs.py:44
 msgid "Transaction result"
-msgstr ""
+msgstr "Transaktionsergebnis"
 
 #: dnfdragora/dialogs.py:50
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Transaktions Abhängigkeit"
 
 #: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
 #: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
@@ -361,7 +361,7 @@ msgstr "Abbre&chen"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
-msgstr ""
+msgstr "Ersetzen"
 
 #: dnfdragora/dialogs.py:81
 msgid "Total size "
@@ -1127,7 +1127,7 @@ msgstr "&Über"
 
 #: dnfdragora/ui.py:489
 msgid "update"
-msgstr ""
+msgstr "Update"
 
 #: dnfdragora/ui.py:492
 msgid "locked"
