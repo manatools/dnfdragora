@@ -14,6 +14,12 @@ import sys
 import gettext
 from gettext import gettext as _
 
+recursionlimit = sys.getrecursionlimit()
+print(_('Current recursion limit: %s') % recursionlimit)
+sys.setrecursionlimit(recursionlimit * 10)
+recursionlimit = sys.getrecursionlimit()
+print(_('Raised recursion limit to: %s') % recursionlimit)
+
 if sys.path[0] is not '/usr/bin':
     # We know this script is running from a git checkout
     import os
