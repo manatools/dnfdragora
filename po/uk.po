@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 15:59+0200\n"
-"PO-Revision-Date: 2017-03-31 12:30+0300\n"
+"POT-Creation-Date: 2017-04-05 18:40+0200\n"
+"PO-Revision-Date: 2017-04-06 21:34+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -19,37 +19,47 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: bin/dnfdragora:29
+#: bin/dnfdragora:18
+#, python-format
+msgid "Current recursion limit: %s"
+msgstr "Поточне обмеження на рекурсію: %s"
+
+#: bin/dnfdragora:21
+#, python-format
+msgid "Raised recursion limit to: %s"
+msgstr "Збільшено обмеження на рекурсію до %s"
+
+#: bin/dnfdragora:35
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [параметри]"
 
-#: bin/dnfdragora:32
+#: bin/dnfdragora:38
 msgid "start using yui GTK+ plugin implementation"
 msgstr "запустити з використанням реалізації додатків на основі GTK+"
 
-#: bin/dnfdragora:33
+#: bin/dnfdragora:39
 msgid "start using yui ncurses plugin implementation"
 msgstr "запустити з використанням реалізації додатків на основі ncurses"
 
-#: bin/dnfdragora:34
+#: bin/dnfdragora:40
 msgid "start using yui Qt plugin implementation"
 msgstr "запустити з використанням реалізації додатків на основі Qt"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:41
 msgid "use full screen for dialogs"
 msgstr "використовувати повноекранні діалогові вікна"
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:44
 msgid "show updates only dialog"
 msgstr "показати вікно лише оновлень"
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:46
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
 "примусово вказати новий шлях для піктограм груп (замість /usr/share/icons)"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:47
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -57,37 +67,37 @@ msgstr ""
 "примусово вказати новий шлях до усіх потрібних зображень (замість /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:48
 msgid "directory containing localization strings (developer only)"
 msgstr "каталог, у якому містяться переклади (лише для розробників)"
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:49
 msgid "install packages"
 msgstr "встановити пакунки"
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 "примусово завершити роботу служб D-Bus dnfdaemon, які використовуються "
 "dnfdragora"
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
 msgstr "Вибачте"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
 msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:85
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
 msgstr "dnfdaemon, сталася помилка назви:%s%s"
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:88
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
 msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
