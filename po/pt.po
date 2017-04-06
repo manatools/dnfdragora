@@ -1,17 +1,30 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-04-05 18:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Manuela Silva <inactive+h_manuela_rodsilva@transifex.com>, "
-"2017\n"
+"Last-Translator: alfalb_mansil <inactive+alfalb_mansil@transifex.com>, 2017\n"
 "Language-Team: Portuguese (https://www.transifex.com/MageiaLinux/teams/9361/"
 "pt/)\n"
 "Language: pt\n"
@@ -20,70 +33,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:29
+#: bin/dnfdragora:18
 #, python-format
-msgid "%(prog)s [options]"
+msgid "Current recursion limit: %s"
 msgstr ""
 
-#: bin/dnfdragora:32
-msgid "start using yui GTK+ plugin implementation"
-msgstr ""
-
-#: bin/dnfdragora:33
-msgid "start using yui ncurses plugin implementation"
-msgstr ""
-
-#: bin/dnfdragora:34
-msgid "start using yui Qt plugin implementation"
+#: bin/dnfdragora:21
+#, python-format
+msgid "Raised recursion limit to: %s"
 msgstr ""
 
 #: bin/dnfdragora:35
-msgid "use full screen for dialogs"
-msgstr ""
+#, python-format
+msgid "%(prog)s [options]"
+msgstr "%(prog)s [opções]"
 
 #: bin/dnfdragora:38
-msgid "show updates only dialog"
+msgid "start using yui GTK+ plugin implementation"
+msgstr ""
+
+#: bin/dnfdragora:39
+msgid "start using yui ncurses plugin implementation"
 msgstr ""
 
 #: bin/dnfdragora:40
-msgid "force a new path for group icons (instead of /usr/share/icons)"
+msgid "start using yui Qt plugin implementation"
 msgstr ""
 
 #: bin/dnfdragora:41
+msgid "use full screen for dialogs"
+msgstr "utilizar ecrã completo para as janelas"
+
+#: bin/dnfdragora:44
+msgid "show updates only dialog"
+msgstr "mostrar apenas a janela de atualizações"
+
+#: bin/dnfdragora:46
+msgid "force a new path for group icons (instead of /usr/share/icons)"
+msgstr ""
+
+#: bin/dnfdragora:47
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:48
 msgid "directory containing localization strings (developer only)"
 msgstr ""
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:49
 msgid "install packages"
-msgstr ""
+msgstr "Pacotes de instalação"
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
-msgstr ""
+msgstr "Desculpe"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
 msgstr ""
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:85
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
 msgstr ""
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:88
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
 msgstr ""
@@ -111,7 +134,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "Área de Trabalho KDE"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
@@ -119,11 +142,11 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Aplicações"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "Ecrâ LXDE"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
@@ -147,7 +170,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "Área de Trabalho GNOME"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -166,8 +189,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Tudo"
 
@@ -227,79 +250,94 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr ""
 
-#: dnfdragora/const.py:129
-msgid "Installing"
-msgstr ""
-
 #: dnfdragora/const.py:130
+msgid "Installing"
+msgstr "Instalação"
+
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr ""
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr ""
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr ""
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
-msgstr ""
-
-#: dnfdragora/const.py:137
-#, python-format
-msgid "Updating: %s"
 msgstr ""
 
 #: dnfdragora/const.py:138
 #, python-format
-msgid "Installing: %s"
+msgid "Updating: %s"
 msgstr ""
 
 #: dnfdragora/const.py:139
 #, python-format
-msgid "Reinstalling: %s"
+msgid "Installing: %s"
 msgstr ""
 
 #: dnfdragora/const.py:140
 #, python-format
-msgid "Cleanup: %s"
+msgid "Reinstalling: %s"
 msgstr ""
 
 #: dnfdragora/const.py:141
 #, python-format
-msgid "Removing: %s"
+msgid "Cleanup: %s"
 msgstr ""
 
 #: dnfdragora/const.py:142
 #, python-format
-msgid "Obsoleting: %s"
+msgid "Removing: %s"
 msgstr ""
 
 #: dnfdragora/const.py:143
 #, python-format
-msgid "Downgrading: %s"
+msgid "Obsoleting: %s"
 msgstr ""
 
 #: dnfdragora/const.py:144
 #, python-format
+msgid "Downgrading: %s"
+msgstr ""
+
+#: dnfdragora/const.py:145
+#, python-format
 msgid "Verifying: %s"
 msgstr ""
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr ""
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr ""
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr ""
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr ""
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr ""
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Segurança"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr ""
 
@@ -311,14 +349,16 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
-msgstr ""
+msgstr "&CONFIRMAR"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
-msgstr ""
+msgstr "&Cancelar"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
@@ -340,13 +380,13 @@ msgstr ""
 msgid "Repository Management"
 msgstr ""
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr ""
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Nome"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Ativado"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -978,20 +1018,20 @@ msgid "Software Management"
 msgstr "Gestor de Software"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Arquitetura"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Lançamento"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Resumo"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Versão"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Lançamento"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Arquitetura"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1123,12 +1163,12 @@ msgid "Not implemented yet"
 msgstr ""
 
 #: dnfdragora/ui.py:1075
-#, python-format
-msgid "Package %s cannot be removed"
+msgid "Protected package selected"
 msgstr ""
 
 #: dnfdragora/ui.py:1075
-msgid "Protected package selected"
+#, python-format
+msgid "Package %s cannot be removed"
 msgstr ""
 
 #: dnfdragora/ui.py:1151
