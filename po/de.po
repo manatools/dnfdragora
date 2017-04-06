@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 15:59+0200\n"
+"POT-Creation-Date: 2017-04-05 18:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -33,37 +33,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:29
+#: bin/dnfdragora:18
+#, python-format
+msgid "Current recursion limit: %s"
+msgstr ""
+
+#: bin/dnfdragora:21
+#, python-format
+msgid "Raised recursion limit to: %s"
+msgstr ""
+
+#: bin/dnfdragora:35
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [Optionen]"
 
-#: bin/dnfdragora:32
+#: bin/dnfdragora:38
 msgid "start using yui GTK+ plugin implementation"
 msgstr "mit Verwendung der yui GTK+ Plugin Implementierung starten"
 
-#: bin/dnfdragora:33
+#: bin/dnfdragora:39
 msgid "start using yui ncurses plugin implementation"
 msgstr "mit Verwendung der yui ncurses Plugin Implementierung starten"
 
-#: bin/dnfdragora:34
+#: bin/dnfdragora:40
 msgid "start using yui Qt plugin implementation"
 msgstr "mit Verwendung der yui Qt Plugin Implementierung starten"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:41
 msgid "use full screen for dialogs"
 msgstr "Vollbild für Dialoge verwenden"
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:44
 msgid "show updates only dialog"
 msgstr "Nur den Update Dialog anzeigen"
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:46
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
 "erzwinge einen neuen Pfad für die Gruppensymbole (anstatt /usr/share/icons)"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:47
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -71,36 +81,36 @@ msgstr ""
 "erzwinge einen neuen Pfad für alle benötigten Bilder (anstatt /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:48
 msgid "directory containing localization strings (developer only)"
 msgstr ""
 "Verzeichnis, das die Übersetzungszeichenfolgen enthält (nur für Entwickler)"
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:49
 msgid "install packages"
 msgstr "Installiere Pakete"
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr "DNFdeamon dbus Service wurde durch dnfdragora zum beenden gezwungen."
+msgstr "DNFdaemon dbus Service wurde durch dnfdragora zum beenden gezwungen."
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
 msgstr "Entschuldigung!"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
 msgstr "dnfdaemon Client-Fehler aufgetreten:%s%s"
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:85
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr "dnfdeamon Namensfehler aufgetreten:%s%s"
+msgstr "dnfdaemon Namensfehler aufgetreten:%s%s"
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:88
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
 msgstr "dnfdaemon Attribut-Fehler aufgetreten:%s%s"
