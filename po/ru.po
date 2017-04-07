@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 15:59+0200\n"
+"POT-Creation-Date: 2017-04-05 18:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -35,36 +35,46 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: bin/dnfdragora:29
+#: bin/dnfdragora:18
+#, python-format
+msgid "Current recursion limit: %s"
+msgstr "Текущий предел рекурсии: %s"
+
+#: bin/dnfdragora:21
+#, python-format
+msgid "Raised recursion limit to: %s"
+msgstr "Повышенный предел рекурсии: %s"
+
+#: bin/dnfdragora:35
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [опции]"
 
-#: bin/dnfdragora:32
+#: bin/dnfdragora:38
 msgid "start using yui GTK+ plugin implementation"
 msgstr "начать использовать реализацию плагина yui GTK+"
 
-#: bin/dnfdragora:33
+#: bin/dnfdragora:39
 msgid "start using yui ncurses plugin implementation"
 msgstr "начать использовать реализацию плагина yui ncurses"
 
-#: bin/dnfdragora:34
+#: bin/dnfdragora:40
 msgid "start using yui Qt plugin implementation"
 msgstr "начать использовать реализацию плагина yui Qt"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:41
 msgid "use full screen for dialogs"
 msgstr "использовать полный экран для диалогов"
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:44
 msgid "show updates only dialog"
 msgstr "показывать только диалог обновлений"
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:46
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr "принудительный новый путь для иконок групп (вместо /usr/share/icons)"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:47
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -72,37 +82,37 @@ msgstr ""
 "принудительный новый путь для всех требующихся изображений (вместо /usr/"
 "share/dnfdragora/images)"
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:48
 msgid "directory containing localization strings (developer only)"
 msgstr "каталог, содержащий локализованные строки (только для разработчиков)"
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:49
 msgid "install packages"
 msgstr "установить пакеты"
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 "принудительно завершить работу служб dbus dnfdaemon, которые используются "
 "dnfdragora"
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
 msgstr "Извините"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
 msgstr "Произошла ошибка клиента dnfdaemon: %s%s"
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:85
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
 msgstr "Произошла ошибка имени dnfdaemon: %s%s"
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:88
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
 msgstr "Произошла ошибка атрибута dnfdaemon: %s%s"
