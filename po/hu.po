@@ -20,11 +20,11 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-04-05 18:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Laszlo Espadas <kardiweb@protonmail.ch>, 2017\n"
+"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
 "Language: hu\n"
@@ -33,70 +33,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:29
+#: bin/dnfdragora:18
+#, python-format
+msgid "Current recursion limit: %s"
+msgstr ""
+
+#: bin/dnfdragora:21
+#, python-format
+msgid "Raised recursion limit to: %s"
+msgstr ""
+
+#: bin/dnfdragora:35
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [options]"
 
-#: bin/dnfdragora:32
+#: bin/dnfdragora:38
 msgid "start using yui GTK+ plugin implementation"
 msgstr ""
 
-#: bin/dnfdragora:33
+#: bin/dnfdragora:39
 msgid "start using yui ncurses plugin implementation"
 msgstr ""
 
-#: bin/dnfdragora:34
+#: bin/dnfdragora:40
 msgid "start using yui Qt plugin implementation"
 msgstr ""
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:41
 msgid "use full screen for dialogs"
 msgstr ""
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:44
 msgid "show updates only dialog"
 msgstr ""
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:46
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:47
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:48
 msgid "directory containing localization strings (developer only)"
 msgstr ""
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:49
 msgid "install packages"
 msgstr ""
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
 msgstr "Sajnáljuk"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
 msgstr ""
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:85
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
 msgstr ""
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:88
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
 msgstr ""
@@ -179,8 +189,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Mind"
 
@@ -240,79 +250,94 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr ""
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Telepítés"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr ""
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr ""
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr ""
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
-msgstr ""
-
-#: dnfdragora/const.py:137
-#, python-format
-msgid "Updating: %s"
 msgstr ""
 
 #: dnfdragora/const.py:138
 #, python-format
-msgid "Installing: %s"
+msgid "Updating: %s"
 msgstr ""
 
 #: dnfdragora/const.py:139
 #, python-format
-msgid "Reinstalling: %s"
+msgid "Installing: %s"
 msgstr ""
 
 #: dnfdragora/const.py:140
 #, python-format
-msgid "Cleanup: %s"
+msgid "Reinstalling: %s"
 msgstr ""
 
 #: dnfdragora/const.py:141
 #, python-format
-msgid "Removing: %s"
+msgid "Cleanup: %s"
 msgstr ""
 
 #: dnfdragora/const.py:142
 #, python-format
-msgid "Obsoleting: %s"
+msgid "Removing: %s"
 msgstr ""
 
 #: dnfdragora/const.py:143
 #, python-format
-msgid "Downgrading: %s"
+msgid "Obsoleting: %s"
 msgstr ""
 
 #: dnfdragora/const.py:144
 #, python-format
+msgid "Downgrading: %s"
+msgstr ""
+
+#: dnfdragora/const.py:145
+#, python-format
 msgid "Verifying: %s"
 msgstr ""
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr ""
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr ""
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr ""
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr ""
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr ""
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Biztonság"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr ""
 
@@ -324,12 +349,14 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Mégsem"
 
@@ -353,13 +380,13 @@ msgstr ""
 msgid "Repository Management"
 msgstr ""
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Engedélyezve"
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Név"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Engedélyezve"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -991,20 +1018,20 @@ msgid "Software Management"
 msgstr "Szoftverkezelés"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Architektúra"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Kiadás"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Összegzés"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Verzió"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Kiadás"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Architektúra"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1136,12 +1163,12 @@ msgid "Not implemented yet"
 msgstr ""
 
 #: dnfdragora/ui.py:1075
-#, python-format
-msgid "Package %s cannot be removed"
+msgid "Protected package selected"
 msgstr ""
 
 #: dnfdragora/ui.py:1075
-msgid "Protected package selected"
+#, python-format
+msgid "Package %s cannot be removed"
 msgstr ""
 
 #: dnfdragora/ui.py:1151
