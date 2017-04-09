@@ -46,7 +46,7 @@ msgstr ""
 #: bin/dnfdragora:35
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [aukerak]"
 
 #: bin/dnfdragora:38
 msgid "start using yui GTK+ plugin implementation"
@@ -84,7 +84,7 @@ msgstr ""
 
 #: bin/dnfdragora:49
 msgid "install packages"
-msgstr ""
+msgstr "instalatu paketeak"
 
 #: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -94,7 +94,7 @@ msgstr ""
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
-msgstr ""
+msgstr "Barkatu"
 
 #: bin/dnfdragora:82
 #, python-format
@@ -138,7 +138,7 @@ msgstr "KDE Idaztegia"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce Mahaigaina"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
@@ -154,19 +154,19 @@ msgstr "LXQt Mahaigaina"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon Mahaigaina"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE Mahaigaina"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii Mahaigaina"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar Mahaingain Ingurunea"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
@@ -183,11 +183,11 @@ msgstr "Zerbitzariak"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "Base Sistema"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "Edukia"
 
 #: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
 #: dnfdragora/ui.py:338 dnfdragora/ui.py:352
@@ -200,31 +200,31 @@ msgstr "Hutsik"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Bilaketaren emaitza"
 
 #: dnfdragora/const.py:101
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Instalatutako paketeak eskuratzen"
 
 #: dnfdragora/const.py:102
 msgid "Getting available packages"
-msgstr ""
+msgstr "Pakete erabilgarriak eskuratzen"
 
 #: dnfdragora/const.py:103
 msgid "Getting available updates"
-msgstr ""
+msgstr "Eguneraketa erabilgarriak eskuratzen"
 
 #: dnfdragora/const.py:104
 msgid "Getting all packages"
-msgstr ""
+msgstr "Pakete guztiak eskuratzen"
 
 #: dnfdragora/const.py:117
 msgid "Updated packages"
-msgstr ""
+msgstr "Pakete eguneratuak"
 
 #: dnfdragora/const.py:118
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Atzeratutako paketeak"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleting packages"
@@ -232,19 +232,19 @@ msgstr ""
 
 #: dnfdragora/const.py:120
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Zaharkitutako paketeak"
 
 #: dnfdragora/const.py:121
 msgid "Erased packages"
-msgstr ""
+msgstr "Ezabatutako paketeak"
 
 #: dnfdragora/const.py:122 dnfdragora/const.py:123
 msgid "Installed packages"
-msgstr ""
+msgstr "Instalatutasko paketeak"
 
 #: dnfdragora/const.py:124
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Mendekotasunetarako instalatuta"
 
 #: dnfdragora/const.py:125
 msgid "Reinstalled packages"
@@ -362,11 +362,11 @@ msgstr "&Utzi"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
-msgstr ""
+msgstr "ordezten"
 
 #: dnfdragora/dialogs.py:81
 msgid "Total size "
-msgstr ""
+msgstr "Guztira tamaina"
 
 #: dnfdragora/dialogs.py:146
 msgid "Developers"
@@ -410,7 +410,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:576
 msgid "GPG key missed"
-msgstr ""
+msgstr "Galdutako GPG gakoa"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -995,7 +995,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:157
 msgid "Update information"
-msgstr ""
+msgstr "Eguneratze informazioa"
 
 #: dnfdragora/ui.py:158
 msgid "File list"
@@ -1003,11 +1003,11 @@ msgstr "Fitxategi zerrenda"
 
 #: dnfdragora/ui.py:159
 msgid "Changelog"
-msgstr ""
+msgstr "Aldaketen historia:"
 
 #: dnfdragora/ui.py:160
 msgid "Requirements"
-msgstr ""
+msgstr "Eskakizunak"
 
 #: dnfdragora/ui.py:272
 msgid "Software Management - dnfdragora"
@@ -1120,15 +1120,15 @@ msgstr "&Honi buruz"
 
 #: dnfdragora/ui.py:489
 msgid "update"
-msgstr ""
+msgstr "eguneratu"
 
 #: dnfdragora/ui.py:492
 msgid "locked"
-msgstr ""
+msgstr "giltzatuta"
 
 #: dnfdragora/ui.py:495
 msgid "installed"
-msgstr ""
+msgstr "instalatuta"
 
 #: dnfdragora/ui.py:793
 msgid "Missing information"
