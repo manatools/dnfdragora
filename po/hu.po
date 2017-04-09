@@ -36,12 +36,12 @@ msgstr ""
 #: bin/dnfdragora:18
 #, python-format
 msgid "Current recursion limit: %s"
-msgstr ""
+msgstr "Jelenlegi rekurzió határ: %s"
 
 #: bin/dnfdragora:21
 #, python-format
 msgid "Raised recursion limit to: %s"
-msgstr ""
+msgstr "Emelt rekurzió korlátja: %s"
 
 #: bin/dnfdragora:35
 #, python-format
@@ -50,45 +50,50 @@ msgstr "%(prog)s [options]"
 
 #: bin/dnfdragora:38
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "Megjelenítés GTK + bővítmény használatával"
 
 #: bin/dnfdragora:39
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "Megjelenítés ncurses bővítmény használatával"
 
 #: bin/dnfdragora:40
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "Megjelenítés Qt bővítmény használatával"
 
 #: bin/dnfdragora:41
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "Teljes képernyős dialógus ablakok használata"
 
 #: bin/dnfdragora:44
 msgid "show updates only dialog"
-msgstr ""
+msgstr "Csak a frissítések megjelenítése dialógus ablakban"
 
 #: bin/dnfdragora:46
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
+"Az alapértelmezett (/usr/share/icons) ikon útvonal helyett másik útvonal "
+"megadása"
 
 #: bin/dnfdragora:47
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"Az alapértelmezett (/usr/share/dnfdragora/images) útvonal helyett másik "
+"útvonal megadása"
 
 #: bin/dnfdragora:48
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "A könyvtár tartalmazza a nyelvi fájlokat is (fejlesztő esetén)"
 
 #: bin/dnfdragora:49
 msgid "install packages"
-msgstr ""
+msgstr "Csomag telepítése"
 
 #: bin/dnfdragora:50
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"dbus által igénybe vett szolgáltatások a dnfdragora kényszerített kilépéséhez"
 
 #: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -99,25 +104,25 @@ msgstr "Sajnáljuk"
 #: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon kliens hiba történt: %s%s"
 
 #: bin/dnfdragora:85
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon név hiba történt: %s%s"
 
 #: bin/dnfdragora:88
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "dnfdaemon attribútum hiba történt: %s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Repó Metaadat frissítése"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "Nem sikerült frissíteni a DNF cache-t (root)"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
