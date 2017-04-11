@@ -20,9 +20,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -79,11 +79,12 @@ msgstr ""
 
 #: bin/dnfdragora:43
 msgid "install packages"
-msgstr ""
+msgstr "installer les paquetages"
 
 #: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"oblige à fermer les services dbus de dnfdeamon utilisés par dnfdragora "
 
 #: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -94,17 +95,17 @@ msgstr "Désolé"
 #: bin/dnfdragora:76
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
-msgstr ""
+msgstr "Une erreur de client de dnfdeamon est survenue : %s%s"
 
 #: bin/dnfdragora:79
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
-msgstr ""
+msgstr "Une erreur de nom de dnfdeamon est survenue : %s%s"
 
 #: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr ""
+msgstr "Une erreur d'attribut de dnfdeamon est survenue : %s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -189,8 +190,8 @@ msgstr "Système de base"
 msgid "Content"
 msgstr "Contenu"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
 msgid "All"
 msgstr "Tous"
 
@@ -250,79 +251,94 @@ msgstr "Installés par dépendances"
 msgid "Reinstalled packages"
 msgstr "Paquetages réinstallés"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Installing"
 msgstr "Installation"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Updating"
 msgstr "Mise à jour"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Removing"
 msgstr "Suppression"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:133
 msgid "Downgrading"
 msgstr "Rétrogradage"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:134
 msgid "Replacing"
 msgstr "Remplacement"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Updating: %s"
 msgstr "Mise à jour : %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Installing: %s"
 msgstr "Installation : %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Réinstallation : %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Nettoyage : %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Removing: %s"
 msgstr "Suppression : %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Obsolescence : %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Rétrogradage : %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Verifying: %s"
 msgstr "Vérification : %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr "Exécution du script : %s"
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr "Préparation de la transaction : %s"
+
+#: dnfdragora/const.py:148
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr "Script post-transaction : %s"
+
+#: dnfdragora/const.py:158
 msgid "Bugfix"
 msgstr "Correction de bogue"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:159
 msgid "New Package"
 msgstr "Nouveau Paquetage"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Sécurité"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:161
 msgid "Enhancement"
 msgstr "Amélioration"
 
@@ -334,12 +350,14 @@ msgstr "Résultat de la transaction"
 msgid "Transaction dependency"
 msgstr "Dépendance de transaction"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "Ok"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "Annuler"
 
@@ -363,13 +381,13 @@ msgstr "dnfdragora est une interface à DNF utilisant Qt, GTK ou ncurses"
 msgid "Repository Management"
 msgstr "Gestionnaire de Dépôt"
 
-#: dnfdragora/dialogs.py:218
-msgid "Enabled"
-msgstr "Activé "
-
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
 msgid "Name"
 msgstr "Nom"
+
+#: dnfdragora/dialogs.py:218
+msgid "Enabled"
+msgstr "Activé "
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
 msgid "&Apply"
@@ -1007,20 +1025,20 @@ msgid "Software Management"
 msgstr "Gestion des logiciels"
 
 #: dnfdragora/ui.py:324
-msgid "Arch"
-msgstr "Arch"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Révision"
-
-#: dnfdragora/ui.py:324
 msgid "Summary"
 msgstr "Résumé"
 
 #: dnfdragora/ui.py:324
 msgid "Version"
 msgstr "Version"
+
+#: dnfdragora/ui.py:324
+msgid "Release"
+msgstr "Révision"
+
+#: dnfdragora/ui.py:324
+msgid "Arch"
+msgstr "Arch"
 
 #: dnfdragora/ui.py:331
 msgid "Status"
@@ -1152,13 +1170,13 @@ msgid "Not implemented yet"
 msgstr "Pas encore développé"
 
 #: dnfdragora/ui.py:1075
+msgid "Protected package selected"
+msgstr "Paquetage sélectionné protégé"
+
+#: dnfdragora/ui.py:1075
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Le paquetage %s ne peut pas être supprimé"
-
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Paquetage sélectionné protégé"
 
 #: dnfdragora/ui.py:1151
 msgid "Unmanaged widget"
@@ -1167,3 +1185,9 @@ msgstr "Widget non géré"
 #: dnfdragora/ui.py:1153
 msgid "Unmanaged event"
 msgstr "Evènement non géré"
+
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Limite actuelle de récursivité : %s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Limite de récursivité atteinte à : %s"
