@@ -74,7 +74,10 @@ class ProgressBar:
     def set_progress(self, frac, label=None) :
         if label is not None:
             self.progressbar.setLabel(label)
-        self.progressbar.setValue(int(100*frac))
+        val = self.progressbar.value()
+        newval = int(100*frac)
+        if (val != newval) :
+            self.progressbar.setValue(newval)
         #self.__flush()
 
     def reset_all(self) :
