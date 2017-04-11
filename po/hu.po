@@ -143,7 +143,7 @@ msgstr "KDE munkaasztal"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce Asztal"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
@@ -159,11 +159,11 @@ msgstr "LXQt Munkaasztal"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon Asztal"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE Asztal"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
@@ -945,7 +945,7 @@ msgstr "GNOME munkaállomás"
 
 #: dnfdragora/groupicons.py:584
 msgid "IceWm Desktop"
-msgstr "IceWm-munkaasztal"
+msgstr "IceWm  munkaasztal"
 
 #: dnfdragora/groupicons.py:588
 msgid "KDE Workstation"
@@ -1129,15 +1129,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:492
 msgid "locked"
-msgstr ""
+msgstr "zárolva"
 
 #: dnfdragora/ui.py:495
 msgid "installed"
-msgstr ""
+msgstr "telepítve"
 
 #: dnfdragora/ui.py:793
 msgid "Missing information"
-msgstr ""
+msgstr "Hiányos információ"
 
 #: dnfdragora/ui.py:920
 msgid "Search"
@@ -1150,8 +1150,8 @@ msgstr ""
 #: dnfdragora/ui.py:986
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Letöltési hiba"
+msgstr[1] "Letöltési hiba"
 
 #: dnfdragora/ui.py:991
 msgid "Error in transaction"
