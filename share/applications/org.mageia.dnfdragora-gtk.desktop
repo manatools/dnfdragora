@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=dnfdragora
+GenericName=Install & Remove Software
+Icon=dnfdragora
+Exec=dnfdragora --gtk
+OnlyShowIn=Cinnamon;GNOME;LXDE;MATE;ROX;XFCE;
+Comment=A graphical front end for installing, removing and updating packages
+Terminal=false
+Type=Application
+Categories=System;Settings;PackageManager;
+StartupNotify=false
+
