@@ -2,8 +2,8 @@
 Name=dnfdragora
 GenericName=Install & Remove Software
 Icon=dnfdragora
-Exec=dnfdragora
-NotShowIn=Cinnamon;GNOME;KDE;LXDE;LXQt;MATE;ROX;XFCE;
+Exec=dnfdragora --gtk
+OnlyShowIn=Cinnamon;GNOME;LXDE;MATE;ROX;XFCE;
 Comment=A graphical front end for installing, removing and updating packages
 Terminal=false
 Type=Application

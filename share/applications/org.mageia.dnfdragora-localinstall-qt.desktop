@@ -2,8 +2,8 @@
 Name=dnfdragora Package Installer
 GenericName=RPM Package Installer
 Icon=dnfdragora
-Exec=dnfdragora --install %F
-NotShowIn=Cinnamon;GNOME;KDE;LXDE;LXQt;MATE;ROX;XFCE;
+Exec=dnfdragora --qt --install %F
+OnlyShowIn=KDE;LXQt;
 Comment=Install local packages on the system
 Terminal=false
 Type=Application
