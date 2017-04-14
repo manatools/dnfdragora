@@ -1,10 +1,11 @@
 2017-XX-YY v. 1.0.1
 ---------------------
+- Install all sizes of the dnfdragora logo
 - Added a workaround for exceeded recursion depth, 
-  fixing #16"
+  fixing #16
 - Added man pages
 - Added installation documentation (README section)
-- Fixed dnf-2.2.0 missing dbus signale 
+- Fixed dnf-2.2.0 missing dbus signal
 - Added desktop file to handle local RPM installation
 - Added "--exit" command line option to clean up dnf 
   connection in case of a previous crash
