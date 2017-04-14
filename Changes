@@ -1,3 +1,17 @@
+2017-XX-YY v. 1.0.1
+---------------------
+- Added a workaround for exceeded recursion depth, 
+  fixing #16"
+- Added man pages
+- Added installation documentation (README section)
+- Fixed dnf-2.2.0 missing dbus signale 
+- Added desktop file to handle local RPM installation
+- Added "--exit" command line option to clean up dnf 
+  connection in case of a previous crash
+- Added "--install" command line option to be used in a
+  desktop mime type
+- Workaround to libyui-ncurses github issue 55, tree 
+  items shown twice
 - Caught exception if network is not active at first 
   run
 - Fixed long time startup in Fedora where backend 
