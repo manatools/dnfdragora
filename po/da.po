@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-05 18:40+0200\n"
+"POT-Creation-Date: 2017-03-30 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -33,46 +33,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:18
-#, python-format
-msgid "Current recursion limit: %s"
-msgstr "Aktuelle rekursiv grænse: %s"
-
-#: bin/dnfdragora:21
-#, python-format
-msgid "Raised recursion limit to: %s"
-msgstr "Løftede rekursiv grænse til: %s"
-
-#: bin/dnfdragora:35
+#: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [tilvalg]"
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
 msgstr "start ved brug af yui GTK+-plugin-implementation"
 
-#: bin/dnfdragora:39
+#: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
 msgstr "start ved brug af yui ncurses-plugin-implementation"
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
 msgstr "start ved brug af yui Qt-plugin-implementation"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:35
 msgid "use full screen for dialogs"
 msgstr "brug fuldskærm til dialoger"
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:38
 msgid "show updates only dialog"
 msgstr "vis dialog kun med opdateringer"
 
-#: bin/dnfdragora:46
+#: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr "tving en ny sti til gruppeikoner (i stedet for /usr/share/icons)"
 
-#: bin/dnfdragora:47
+#: bin/dnfdragora:41
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -80,35 +70,35 @@ msgstr ""
 "tving en ny sti til alle nødvendige billeder (i stedet for /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:48
+#: bin/dnfdragora:42
 msgid "directory containing localization strings (developer only)"
 msgstr "mappe som indeholder lokaliseringsstrenge (kun udvikler)"
 
-#: bin/dnfdragora:49
+#: bin/dnfdragora:43
 msgid "install packages"
 msgstr "installer pakker"
 
-#: bin/dnfdragora:50
+#: bin/dnfdragora:44
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr "tving dnfdaemon dbus-tjenester brugt af dnfdragora til at afslutte"
 
-#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
+#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
 msgid "Sorry"
 msgstr "Beklager"
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:76
 #, python-format
 msgid "dnfdaemon client error occurred:%s%s"
 msgstr "dnfdaemon-klientfejl opstod:%s%s"
 
-#: bin/dnfdragora:85
+#: bin/dnfdragora:79
 #, python-format
 msgid "dnfdaemon name error occurred:%s%s"
 msgstr "dnfdaemon-navnefejl opstod:%s%s"
 
-#: bin/dnfdragora:88
+#: bin/dnfdragora:82
 #, python-format
 msgid "dnfdaemon attribute error occurred:%s%s"
 msgstr "dnfdaemon-attributfejl opstod:%s%s"
@@ -369,7 +359,7 @@ msgstr "&Annuller"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
-msgstr "erstatning"
+msgstr "erstatter "
 
 #: dnfdragora/dialogs.py:81
 msgid "Total size "
@@ -616,7 +606,7 @@ msgstr "Spil"
 
 #: dnfdragora/groupicons.py:183
 msgid "Adventure"
-msgstr "Adventure"
+msgstr "Eventyr"
 
 #: dnfdragora/groupicons.py:187
 msgid "Arcade"
@@ -982,7 +972,7 @@ msgstr "Brandmur/ruter"
 
 #: dnfdragora/groupicons.py:632
 msgid "Mail/Groupware/News"
-msgstr "E-post, gruppevare og diskutionsgrupper"
+msgstr "Post/Groupware/Nyhedsgruppe"
 
 #: dnfdragora/groupicons.py:636
 msgid "Network Computer server"
