@@ -1,0 +1,7 @@
+# this file is meant to test ~/.config/dnfdragora.yaml
+# until a dialog cannot manage it directly so copy it to
+# ~/.config/dnfdragora.yaml to test the function
+view:
+    filter: 'to_update'
+    show: 'all'
+
