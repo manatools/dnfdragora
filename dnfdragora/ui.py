@@ -230,19 +230,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _configFileRead(self) :
         '''
-            reads the configuration file and sets application data
+        reads the configuration file and sets application data
         '''
-        try:
-            self.config.load()
-        except Exception as e:
-            print ("Exception: %s" % str(e))
-            exc = "Configuration file <%s> problem" % self.config.fileName
-            raise (Exception(exc))
 
-        if self.config.content :
+        if self.config.systemSettings :
             settings = {}
-            if 'settings' in self.config.content.keys() :
-                settings = self.config.content['settings']
+            if 'settings' in self.config.systemSettings.keys() :
+                settings = self.config.systemSettings['settings']
 
             if 'use_comps' in settings.keys() :
                 self.use_comps = settings['use_comps']
@@ -357,10 +351,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.view_box = self.factory.createComboBox(hbox_top,"")
         itemColl = yui.YItemCollection()
 
+        view = {}
+        if self.config.userPreferences:
+            if 'view' in self.config.userPreferences.keys() :
+                view = self.config.userPreferences['view']
+
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
-            #TODO restore saved settings selection
-            if self.update_only and v == "all":
+            show_item = self.update_only
+            if not self.update_only and 'show' in view.keys():
+                show_item = view['show']
+
+            if show_item == v :
                 item.setSelected(True)
                 
             # adding item to views to find the item selected
@@ -377,8 +379,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         for f in ordered_filters:
             item = yui.YItem(self.filters[f]['title'], False)
-            #TODO restore saved settings selection
-            if self.update_only and f == "to_update":
+
+            filter_item = self.update_only
+            if not self.update_only and 'filter' in view.keys():
+                        filter_item = view['filter']
+
+            if filter_item == f:
                 item.setSelected(True)
 
             # adding item to filters to find the item selected
