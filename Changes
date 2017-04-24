@@ -1,3 +1,6 @@
+- managed show (all, group) and filter (to_update, 
+  install,...) from user preferences
+- added user preferences configuration file
 2017-04-14 v. 1.0.1
 ---------------------
 - Install all sizes of the dnfdragora logo
