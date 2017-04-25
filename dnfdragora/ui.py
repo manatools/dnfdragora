@@ -352,9 +352,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         itemColl = yui.YItemCollection()
 
         view = {}
+        settings = {}
         if self.config.userPreferences:
+            if 'settings' in self.config.userPreferences.keys() :
+                settings = self.config.userPreferences['settings']
             if 'view' in self.config.userPreferences.keys() :
                 view = self.config.userPreferences['view']
+            if 'show updates at startup' in settings.keys() :
+                if settings['show updates at startup'] :
+                view['filter'] = 'to_update'
+                if settings['show groups at startup'] :
+                view['show'] = 'groups'
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
@@ -382,7 +390,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             filter_item = self.update_only
             if not self.update_only and 'filter' in view.keys():
-                        filter_item = view['filter']
+                filter_item = view['filter']
 
             if filter_item == f:
                 item.setSelected(True)

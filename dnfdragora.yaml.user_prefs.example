@@ -1,7 +1,15 @@
 # this file is meant to test ~/.config/dnfdragora.yaml
 # until a dialog cannot manage it directly so copy it to
 # ~/.config/dnfdragora.yaml to test the function
+# To avoid confusion 'view' is less priority compared to
+# 'settings' prefs so on exit the entry 'view' is saved but
+# 'settings will override them if 'show updates at startup' is True
+# or 'show groups at startup' is True
+#
 view:
-    filter: 'to_update'
+    filter: 'installed'
     show: 'all'
 
+settings:
+    'show updates at startup': False
+    'show groups at startup': False
