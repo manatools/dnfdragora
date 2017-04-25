@@ -42,6 +42,7 @@ class AppConfig() :
         load system settings and user preferences
         '''
         if self._systemSettings is None and self._userPrefs is None :
+            self._userPrefs = {}
             pathdir = []
             if os.environ.get(self.variable) :
                 pathdir.append(os.environ.get(self.variable))

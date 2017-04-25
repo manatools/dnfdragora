@@ -360,9 +360,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 view = self.config.userPreferences['view']
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
-                view['filter'] = 'to_update'
+                    view['filter'] = 'to_update'
                 if settings['show groups at startup'] :
-                view['show'] = 'groups'
+                    view['show'] = 'groups'
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
@@ -1032,6 +1032,25 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
 
 
+    def saveUserPreference(self):
+        '''
+        Save user preferences on exit and view layout if needed
+        '''
+        filter = self._filterNameSelected()
+        view = self._viewNameSelected()
+        self.config.userPreferences['view'] = {
+            'show': view,
+            'filter': filter
+            }
+
+        if 'settings' in self.config.userPreferences.keys() :
+            settings = self.config.userPreferences['settings']
+            if 'show updates at startup' in settings.keys() :
+                if settings['show updates at startup'] :
+                    view['filter'] = 'to_update'
+                if settings['show groups at startup'] :
+                    view['show'] = 'groups'
+        self.config.saveUserPreferences()
 
     def handleevent(self):
         """
@@ -1197,6 +1216,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
                 self.applyButton.setEnabled(False)
 
+        # Save user prefs on exit
+        self.saveUserPreference()
 
         self.dialog.destroy()
 
