@@ -361,8 +361,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
                     view['filter'] = 'to_update'
-                if settings['show groups at startup'] :
-                    view['show'] = 'groups'
+            if 'do not show groups at startup' in settings.keys() :
+                if settings['do not show groups at startup'] :
+                    view['show'] = 'all'
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
@@ -469,6 +470,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for l in ordered_menu_lines :
             self.fileMenu['widget'].addItem(self.fileMenu[l])
         self.fileMenu['widget'].rebuildMenuTree();
+
+        # build Options menu
+        self.optionsMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
+            'user_prefs' : yui.YMenuItem(_("User preferences")),
+        }
+
+        #NOTE following the same behavior to simplfy further menu entry addtion
+        ordered_menu_lines = ['user_prefs']
+        for l in ordered_menu_lines :
+            self.optionsMenu['widget'].addItem(self.optionsMenu[l])
+        self.optionsMenu['widget'].rebuildMenuTree();
 
         # build help menu
         self.helpMenu = {
@@ -1047,9 +1060,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             settings = self.config.userPreferences['settings']
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
-                    view['filter'] = 'to_update'
-                if settings['show groups at startup'] :
-                    view['show'] = 'groups'
+                    self.config.userPreferences['view']['filter'] = 'to_update'
+                if settings['do not show groups at startup'] :
+                    self.config.userPreferences['view']['show'] = 'all'
         self.config.saveUserPreferences()
 
     def handleevent(self):
@@ -1082,15 +1095,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                     rebuild_package_list = True
                             else:
                                 rebuild_package_list = True
-                    elif item == self.fileMenu['reload']  :
+                    elif item == self.fileMenu['reload'] :
                         self.reset_cache()
-                    elif item == self.fileMenu['repos']  :
+                    elif item == self.fileMenu['repos'] :
                         rd = dialogs.RepoDialog(self)
                         rd.run()
                         rd = None
-                    elif item == self.fileMenu['quit']    :
+                    elif item == self.fileMenu['quit'] :
                         #### QUIT
                         break
+                    elif item == self.optionsMenu['user_prefs'] :
+                        up = dialogs.UserPrefsDialog(self)
+                        up.run()
                     elif item == self.helpMenu['help']  :
                         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :

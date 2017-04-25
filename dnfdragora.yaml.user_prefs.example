@@ -4,7 +4,7 @@
 # To avoid confusion 'view' is less priority compared to
 # 'settings' prefs so on exit the entry 'view' is saved but
 # 'settings will override them if 'show updates at startup' is True
-# or 'show groups at startup' is True
+# or 'do not show groups at startup' is True
 #
 view:
     filter: 'installed'
@@ -12,4 +12,4 @@ view:
 
 settings:
     'show updates at startup': False
-    'show groups at startup': False
+    'do not show groups at startup': False

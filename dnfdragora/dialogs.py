@@ -346,6 +346,105 @@ class RepoDialog:
         self.dialog.destroy()
         self.dialog = None
 
+
+class UserPrefsDialog:
+    '''
+    Create a dialog to manage user preferences
+    '''
+
+    def __init__(self, parent):
+        '''
+        Constructor
+        @param parent: main parent dialog
+        '''
+        self.parent = parent
+        self.factory = self.parent.factory
+        self.mgaFactory = self.parent.mgaFactory
+
+    def _setupUI(self):
+        '''
+        setup the dialog layout
+        '''
+        self.appTitle = yui.YUI.app().applicationTitle()
+        ## set new title to get it in dialog
+        yui.YUI.app().setApplicationTitle(_("User preferences") )
+
+        self.dialog = self.factory.createPopupDialog()
+
+        minSize = self.factory.createMinSize( self.dialog, 80, 10 )
+
+        vbox = self.factory.createVBox(minSize)
+
+        hbox_middle = self.factory.createHBox(vbox)
+        hbox_bottom = self.factory.createHBox(vbox)
+        hbox_footbar = self.factory.createHBox(vbox)
+
+        hbox_middle.setWeight(1,50)
+        hbox_bottom.setWeight(1,30)
+        hbox_footbar.setWeight(1,10)
+
+        settings = {}
+        if self.parent.config.userPreferences:
+            if 'settings' in self.parent.config.userPreferences.keys() :
+                settings = self.parent.config.userPreferences['settings']
+        showUpdates = False
+        showAll = False
+        if 'show updates at startup' in settings.keys() :
+            showUpdates = settings['show updates at startup']
+        if 'do not show groups at startup' in settings.keys() :
+            showAll = settings['do not show groups at startup']
+
+        self.showUpdates =  self.factory.createCheckBox(hbox_middle , _("Show updates next startup"), showUpdates )
+        self.showAll  =  self.factory.createCheckBox(hbox_middle , _("Do not show groups view next startup"), showAll )
+
+        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
+        self.applyButton.setWeight(0,3)
+
+        self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
+        self.quitButton.setWeight(0,3)
+        self.dialog.setDefaultButton(self.quitButton)
+
+
+    def _handleEvents(self):
+        '''
+        manage dialog events
+        '''
+        while True:
+
+            event = self.dialog.waitForEvent()
+
+            eventType = event.eventType()
+
+            #event type checking
+            if (eventType == yui.YEvent.CancelEvent) :
+                break
+            elif (eventType == yui.YEvent.WidgetEvent) :
+                # widget selected
+                widget  = event.widget()
+                if (widget == self.quitButton) :
+                    #### QUIT
+                    break
+                elif (widget == self.applyButton) :
+                    self.parent.config.userPreferences['settings'] = {
+                        'show updates at startup' : self.showUpdates.isChecked(),
+                        'do not show groups at startup'  : self.showAll.isChecked()
+                        }
+                    break
+
+    def run(self):
+        '''
+        show and run the dialog
+        '''
+        self._setupUI()
+        self._handleEvents()
+
+        #restore old application title
+        yui.YUI.app().setApplicationTitle(self.appTitle)
+
+        self.dialog.destroy()
+        self.dialog = None
+
+
 def warningMsgBox (info) :
     '''
     This function creates an Warning dialog and show the message
