@@ -544,9 +544,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # }
         if filter == 'all' or filter == 'to_update' or filter == 'skip_other':
             updates = self.backend.get_packages('updates')
-            for pkg in updates:
-                groups_pkg = self.backend.get_groups_from_package(pkg)
-                if groupName and (groupName in groups_pkg or groupName == 'All') :
+            for pkg in updates :
+                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
+                insert_items = groupName and (groupName == 'All')
+                if not insert_items and groupName :
+                    groups_pkg = self.backend.get_groups_from_package(pkg)
+                    insert_items = groupName in groups_pkg
+
+                if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
@@ -566,8 +571,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if filter == 'all' or filter == 'installed' or filter == 'skip_other':
             installed = self.backend.get_packages('installed')
             for pkg in installed :
-                groups_pkg = self.backend.get_groups_from_package(pkg)
-                if groupName and (groupName in groups_pkg or groupName == 'All') :
+                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
+                insert_items = groupName and (groupName == 'All')
+                if not insert_items and groupName :
+                    groups_pkg = self.backend.get_groups_from_package(pkg)
+                    insert_items = groupName in groups_pkg
+
+                if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
@@ -586,9 +596,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         if filter == 'all' or filter == 'not_installed' or filter == 'skip_other':
             available = self.backend.get_packages('available')
-            for pkg in available:
-                groups_pkg = self.backend.get_groups_from_package(pkg)
-                if groupName and (groupName in groups_pkg or groupName == 'All') :
+            for pkg in available :
+                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
+                insert_items = groupName and (groupName == 'All')
+                if not insert_items and groupName :
+                    groups_pkg = self.backend.get_groups_from_package(pkg)
+                    insert_items = groupName in groups_pkg
+
+                if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
                         item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
