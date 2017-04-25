@@ -20,7 +20,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-25 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -97,19 +97,19 @@ msgid "Sorry"
 msgstr "Promiňte"
 
 #: bin/dnfdragora:84
-#, python-format
+#, fuzzy, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla se chyba klienta dnfdaemon: %s%s"
 
 #: bin/dnfdragora:87
-#, python-format
+#, fuzzy, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla se chyba názvu dnfdaemon: %s%s"
 
 #: bin/dnfdragora:90
-#, python-format
+#, fuzzy, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla se chyba vlastnosti dnfdaemon: %s%s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -195,8 +195,8 @@ msgstr "Základní systém"
 msgid "Content"
 msgstr "Obsah"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
-#: dnfdragora/ui.py:346
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:332 dnfdragora/ui.py:346
 msgid "All"
 msgstr "Vše"
 
@@ -324,7 +324,7 @@ msgstr ""
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Příprava transakce: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
@@ -355,12 +355,14 @@ msgstr "Výsledek transakce"
 msgid "Transaction dependency"
 msgstr "Závislost transakce"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
+#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Zrušit"
 
@@ -1190,12 +1192,3 @@ msgstr "Nespravovaný doplněk"
 #: dnfdragora/ui.py:1159
 msgid "Unmanaged event"
 msgstr "Nespravovaná událost"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "Vyskytla se chyba vlastnosti dnfdaemon: %s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "Vyskytla se chyba názvu dnfdaemon: %s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "Vyskytla se chyba klienta dnfdaemon: %s%s"
