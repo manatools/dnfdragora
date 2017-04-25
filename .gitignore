@@ -1,5 +1,7 @@
 # vim backup/undo files
 *~
+# version.py is generated from dnfdragora/version.py.in
+dnfdragora/version.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
