@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-25 19:12+0200\n"
+"POT-Creation-Date: 2017-04-25 23:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -96,7 +96,7 @@ msgstr ""
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
-#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1053
+#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1111
 msgid "Sorry"
 msgstr "Üzgünüz"
 
@@ -358,12 +358,13 @@ msgstr "İşlem sonucu"
 msgid "Transaction dependency"
 msgstr "İşlem bağımlılığı"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
-#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:515
+#: dnfdragora/dialogs.py:551 dnfdragora/dialogs.py:594
 msgid "&Ok"
 msgstr "&Tamam"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:403
+#: dnfdragora/dialogs.py:595
 msgid "&Cancel"
 msgstr "&İptal"
 
@@ -395,19 +396,31 @@ msgstr "Etkin"
 msgid "Name"
 msgstr "Ad"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:440
+#: dnfdragora/dialogs.py:229 dnfdragora/dialogs.py:400 dnfdragora/ui.py:449
 msgid "&Apply"
 msgstr "&Uygula"
 
-#: dnfdragora/dialogs.py:545
+#: dnfdragora/dialogs.py:370 dnfdragora/ui.py:477
+msgid "User preferences"
+msgstr ""
+
+#: dnfdragora/dialogs.py:397
+msgid "Show updates next startup"
+msgstr ""
+
+#: dnfdragora/dialogs.py:398
+msgid "Do not show groups view next startup"
+msgstr ""
+
+#: dnfdragora/dialogs.py:644
 msgid "&Yes"
 msgstr "&Evet"
 
-#: dnfdragora/dialogs.py:546
+#: dnfdragora/dialogs.py:645
 msgid "&No"
 msgstr "&Hayır"
 
-#: dnfdragora/dialogs.py:569
+#: dnfdragora/dialogs.py:668
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -418,7 +431,7 @@ msgstr ""
 "aktarmak istiyor musunuz?<br><br>Anahtar        : 0x%(id)s:"
 "<br>KullanıcıKimliği     : \"%(user)s\"<br>Şuradan       : %(file)s"
 
-#: dnfdragora/dialogs.py:576
+#: dnfdragora/dialogs.py:675
 msgid "GPG key missed"
 msgstr "GPG anahtarı eksik"
 
@@ -445,7 +458,7 @@ msgstr "Paketler indiriliyor"
 msgid "Checking package signatures"
 msgstr "Paket imzaları denetleniyor"
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:962
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:998
 msgid "Applying changes to the system"
 msgstr "Değişiklikler sisteme uygulanıyor"
 
@@ -1071,132 +1084,136 @@ msgstr "Sadece %s ve noarch görüntüle"
 msgid "Groups"
 msgstr "Gruplar"
 
-#: dnfdragora/ui.py:400
+#: dnfdragora/ui.py:409
 msgid "in names"
 msgstr "isimlerde"
 
-#: dnfdragora/ui.py:401
+#: dnfdragora/ui.py:410
 msgid "in descriptions"
 msgstr "tanımlarda"
 
-#: dnfdragora/ui.py:402
+#: dnfdragora/ui.py:411
 msgid "in summaries"
 msgstr "özetlerde"
 
-#: dnfdragora/ui.py:403
+#: dnfdragora/ui.py:412
 msgid "in file names"
 msgstr "dosya isimlerinde"
 
-#: dnfdragora/ui.py:424
+#: dnfdragora/ui.py:433
 msgid "&Search"
 msgstr "&Ara"
 
-#: dnfdragora/ui.py:430
+#: dnfdragora/ui.py:439
 msgid "&Clear search"
 msgstr "Aramayı &temizle"
 
-#: dnfdragora/ui.py:444
+#: dnfdragora/ui.py:453
 msgid "Ch&eck all"
 msgstr "Tümünü &işaretle"
 
-#: dnfdragora/ui.py:448 dnfdragora/ui.py:457
+#: dnfdragora/ui.py:457 dnfdragora/ui.py:466
 msgid "&Quit"
 msgstr "&Çık"
 
-#: dnfdragora/ui.py:453
+#: dnfdragora/ui.py:462
 msgid "&File"
 msgstr "&Dosya"
 
-#: dnfdragora/ui.py:454
+#: dnfdragora/ui.py:463
 msgid "Reset the selection"
 msgstr "Seçimi sıfırla"
 
-#: dnfdragora/ui.py:455
+#: dnfdragora/ui.py:464
 msgid "Refresh Metadata"
 msgstr "Meta Verisini Yenile"
 
-#: dnfdragora/ui.py:456
+#: dnfdragora/ui.py:465
 msgid "Repositories"
 msgstr "Depolar"
 
-#: dnfdragora/ui.py:467
+#: dnfdragora/ui.py:476
+msgid "&Options"
+msgstr ""
+
+#: dnfdragora/ui.py:488
 msgid "&Help"
 msgstr "&Yardım"
 
-#: dnfdragora/ui.py:468
+#: dnfdragora/ui.py:489
 msgid "Manual"
 msgstr "Elle"
 
-#: dnfdragora/ui.py:469
+#: dnfdragora/ui.py:490
 msgid "&About"
 msgstr "&Hakkında"
 
-#: dnfdragora/ui.py:495
+#: dnfdragora/ui.py:516
 msgid "update"
 msgstr "güncelleme"
 
-#: dnfdragora/ui.py:498
+#: dnfdragora/ui.py:519
 msgid "locked"
 msgstr "kilitli"
 
-#: dnfdragora/ui.py:501
+#: dnfdragora/ui.py:522
 msgid "installed"
 msgstr "kurulu"
 
-#: dnfdragora/ui.py:799
+#: dnfdragora/ui.py:835
 msgid "Missing information"
 msgstr "Eksik bilgi"
 
-#: dnfdragora/ui.py:926
+#: dnfdragora/ui.py:962
 msgid "Search"
 msgstr "Ara"
 
-#: dnfdragora/ui.py:988
+#: dnfdragora/ui.py:1024
 msgid "Error checking package signatures"
 msgstr "Paket imzaları denetlenirken hata oluştu"
 
-#: dnfdragora/ui.py:992
+#: dnfdragora/ui.py:1028
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "İndirme hatası"
 msgstr[1] "İndirme hatası"
 
-#: dnfdragora/ui.py:997
+#: dnfdragora/ui.py:1033
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "İşlem sırasında hata oluştu"
 msgstr[1] "İşlem sırasında hata oluştu"
 
-#: dnfdragora/ui.py:1009
+#: dnfdragora/ui.py:1045
 msgid "BuildTransaction failure"
 msgstr "İşlemDerleme hatası"
 
-#: dnfdragora/ui.py:1053
+#: dnfdragora/ui.py:1111
 msgid "Not implemented yet"
 msgstr "Henüz bu özellik eklenmedi"
 
-#: dnfdragora/ui.py:1081
+#: dnfdragora/ui.py:1139
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "%s paketi kaldırılamaz"
 
-#: dnfdragora/ui.py:1081
+#: dnfdragora/ui.py:1139
 msgid "Protected package selected"
 msgstr "Korumalı paket seçildi"
 
-#: dnfdragora/ui.py:1157
+#: dnfdragora/ui.py:1215
 msgid "Unmanaged widget"
 msgstr "Yönetilmeyen programcık"
 
-#: dnfdragora/ui.py:1159
+#: dnfdragora/ui.py:1217
 msgid "Unmanaged event"
 msgstr "Yönetilmeyen olay"
 
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon iyelik hatası oluştu:%s%s"
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon istemci hatası oluştu:%s%s"
 
 #~ msgid "dnfdaemon name error occurred:%s%s"
 #~ msgstr "dnfdaemon isim hatası oluştu:%s%s"
 
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon istemci hatası oluştu:%s%s"
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon iyelik hatası oluştu:%s%s"
