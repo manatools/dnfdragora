@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 15:59+0200\n"
+"POT-Creation-Date: 2017-04-25 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -56,14 +56,10 @@ msgid "use full screen for dialogs"
 msgstr "uporaba celotnega zaslona za pogovorna okna"
 
 #: bin/dnfdragora:38
-msgid "show updates only dialog"
-msgstr "prikaži le pogovorno okno s posodobitvami"
-
-#: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr "vsili novo pot za ikone skupin (namesto privzete /usr/share/icons)"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -71,38 +67,51 @@ msgstr ""
 "vsili novo pot za vse potrebne slike (namesto privzete /usr/share/dnfdragora/"
 "images)"
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
 msgstr "mapa s shranjenimi prevodi (samo za razvijalce)"
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:42
 msgid "install packages"
 msgstr "namestitev paketov"
 
+#: bin/dnfdragora:43
+msgid "show updates only dialog"
+msgstr "prikaži le pogovorno okno s posodobitvami"
+
 #: bin/dnfdragora:44
+msgid "show application version and exit"
+msgstr ""
+
+#: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr "vsiljen zaključek dnfdaemon dbus storitev, ki jih uporablja dnfdragora"
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:70
+#, python-format
+msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
+msgstr ""
+
+#: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
-#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
+#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1053
 msgid "Sorry"
 msgstr "Žal"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:84
 #, python-format
-msgid "dnfdaemon client error occurred:%s%s"
-msgstr "pojavila se je napaka odjemalca dnfdaemon: %s%s"
+msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
+msgstr ""
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:87
 #, python-format
-msgid "dnfdaemon name error occurred:%s%s"
-msgstr "pojavila se je imenska napaka dnfdaemon: %s%s"
+msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
+msgstr ""
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:90
 #, python-format
-msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr "pojavila se je atribut napaka dnfdaemon: %s%s"
+msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
+msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -187,8 +196,8 @@ msgstr "osnovni sistem"
 msgid "Content"
 msgstr "Vsebina"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
-#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
+#: dnfdragora/ui.py:346
 msgid "All"
 msgstr "Vse"
 
@@ -200,142 +209,142 @@ msgstr "Prazno"
 msgid "Search result"
 msgstr "Rezultat iskanja"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:100
 msgid "Getting installed packages"
 msgstr "Pridobivanje nameščenih paketov"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:101
 msgid "Getting available packages"
 msgstr "Pridobivanje razpoložljivih paketov"
 
-#: dnfdragora/const.py:103
+#: dnfdragora/const.py:102
 msgid "Getting available updates"
 msgstr "Pridobivanje razpoložljivih posodobitev"
 
-#: dnfdragora/const.py:104
+#: dnfdragora/const.py:103
 msgid "Getting all packages"
 msgstr "Pridobivanje vseh paketov"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:116
 msgid "Updated packages"
 msgstr "Posodobljeni paketi"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:117
 msgid "Downgraded packages"
 msgstr "Podgrajeni; starejši paketi"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:118
 msgid "Obsoleting packages"
 msgstr "Kmalu zastareli paketi"
 
-#: dnfdragora/const.py:120
+#: dnfdragora/const.py:119
 msgid "Obsoleted packages"
 msgstr "Zastareli paketi"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:120
 msgid "Erased packages"
 msgstr "Pobrisani paketi"
 
-#: dnfdragora/const.py:122 dnfdragora/const.py:123
+#: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
 msgstr "Nameščeni paketi"
 
-#: dnfdragora/const.py:124
+#: dnfdragora/const.py:123
 msgid "Installed for dependencies"
 msgstr "Nameščeni za odvisnosti"
 
-#: dnfdragora/const.py:125
+#: dnfdragora/const.py:124
 msgid "Reinstalled packages"
 msgstr "Ponovno nameščeni paketi"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:129
 msgid "Installing"
 msgstr "Nameščanje"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:130
 msgid "Updating"
 msgstr "Posodabljanje"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:131
 msgid "Removing"
 msgstr "Odstranjevanje"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:132
 msgid "Downgrading"
 msgstr "Podgrajevanje"
 
-#: dnfdragora/const.py:134
+#: dnfdragora/const.py:133
 msgid "Replacing"
 msgstr "Zamenjava"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
 msgstr "Posodabljanje: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
 msgstr "Nameščanje: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Ponovno nameščanje: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Čiščenje: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
 msgstr "Odstranjevanje: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Zastaranje: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Podgrajevanje: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
 msgstr "Preverjanje: %s"
 
-#: dnfdragora/const.py:146
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Zagon delčka skriptne kode: %s"
 
-#: dnfdragora/const.py:147
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Priprava transakcije: %s"
 
-#: dnfdragora/const.py:148
+#: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Skripta po transakciji: %s"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:157
 msgid "Bugfix"
 msgstr "Popravek napake"
 
-#: dnfdragora/const.py:159
+#: dnfdragora/const.py:158
 msgid "New Package"
 msgstr "Nov paket"
 
-#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Varnost"
 
-#: dnfdragora/const.py:161
+#: dnfdragora/const.py:160
 msgid "Enhancement"
 msgstr "Izboljšava"
 
@@ -347,14 +356,12 @@ msgstr "Rezultat transakcije"
 msgid "Transaction dependency"
 msgstr "Odvisnost transakcije"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
-#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
-#: dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
+#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&V redu"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
-#: dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Prekliči"
 
@@ -380,15 +387,15 @@ msgstr ""
 msgid "Repository Management"
 msgstr "Upravljanje s skladišči paketov"
 
-#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
-msgid "Name"
-msgstr "Ime"
-
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
 msgstr "Omogočeno"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:318
+msgid "Name"
+msgstr "Ime"
+
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:440
 msgid "&Apply"
 msgstr "&Uveljavi"
 
@@ -437,7 +444,7 @@ msgstr "Prenos paketov"
 msgid "Checking package signatures"
 msgstr "Preverjanje podpisov paketov"
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:956
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:962
 msgid "Applying changes to the system"
 msgstr "Uveljavitev sprememb v sistemu"
 
@@ -983,17 +990,17 @@ msgstr "Omrežni računalnik (strežnik)"
 msgid "Web/FTP"
 msgstr "Splet/FTP"
 
-#: dnfdragora/progress_ui.py:130
+#: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr "Prenos:  %(files)d datotek,  %(size)d bajtov"
 
-#: dnfdragora/progress_ui.py:157
+#: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
 msgstr "Začetek prenosa: %s"
 
-#: dnfdragora/progress_ui.py:178
+#: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Napredek datotek (%(downloaded)d/%(total)d)"
@@ -1014,140 +1021,140 @@ msgstr "Dnevnik sprememb"
 msgid "Requirements"
 msgstr "Zahteve"
 
-#: dnfdragora/ui.py:272
+#: dnfdragora/ui.py:266
 msgid "Software Management - dnfdragora"
 msgstr "Upravljanje programja - dnfdragora"
 
-#: dnfdragora/ui.py:304
+#: dnfdragora/ui.py:298
 msgid "Software Management"
 msgstr "Upravljanje programja"
 
-#: dnfdragora/ui.py:324
-msgid "Summary"
-msgstr "Povzetek"
-
-#: dnfdragora/ui.py:324
-msgid "Version"
-msgstr "Različica"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Izdaja"
-
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Arch"
 msgstr "Arhit."
 
-#: dnfdragora/ui.py:331
+#: dnfdragora/ui.py:318
+msgid "Release"
+msgstr "Izdaja"
+
+#: dnfdragora/ui.py:318
+msgid "Summary"
+msgstr "Povzetek"
+
+#: dnfdragora/ui.py:318
+msgid "Version"
+msgstr "Različica"
+
+#: dnfdragora/ui.py:325
 msgid "Status"
 msgstr "Stanje"
 
-#: dnfdragora/ui.py:339
+#: dnfdragora/ui.py:333
 msgid "Installed"
 msgstr "Nameščeno"
 
-#: dnfdragora/ui.py:340
+#: dnfdragora/ui.py:334
 msgid "Not installed"
 msgstr "Ni nameščeno"
 
-#: dnfdragora/ui.py:341
+#: dnfdragora/ui.py:335
 msgid "To update"
 msgstr "Za posodobitev"
 
-#: dnfdragora/ui.py:347
+#: dnfdragora/ui.py:341
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Pokaži samo %s in neodvisne od arhitekture"
 
-#: dnfdragora/ui.py:353
+#: dnfdragora/ui.py:347
 msgid "Groups"
 msgstr "Skupine"
 
-#: dnfdragora/ui.py:394
+#: dnfdragora/ui.py:400
 msgid "in names"
 msgstr "v imenih"
 
-#: dnfdragora/ui.py:395
+#: dnfdragora/ui.py:401
 msgid "in descriptions"
 msgstr "v opisih"
 
-#: dnfdragora/ui.py:396
+#: dnfdragora/ui.py:402
 msgid "in summaries"
 msgstr "v povzetkih"
 
-#: dnfdragora/ui.py:397
+#: dnfdragora/ui.py:403
 msgid "in file names"
 msgstr "v imenih datotek"
 
-#: dnfdragora/ui.py:418
+#: dnfdragora/ui.py:424
 msgid "&Search"
 msgstr "&Iskanje"
 
-#: dnfdragora/ui.py:424
+#: dnfdragora/ui.py:430
 msgid "&Clear search"
 msgstr "&Počisti iskanje"
 
-#: dnfdragora/ui.py:438
+#: dnfdragora/ui.py:444
 msgid "Ch&eck all"
 msgstr "Preveri &vse"
 
-#: dnfdragora/ui.py:442 dnfdragora/ui.py:451
+#: dnfdragora/ui.py:448 dnfdragora/ui.py:457
 msgid "&Quit"
 msgstr "&Končaj"
 
-#: dnfdragora/ui.py:447
+#: dnfdragora/ui.py:453
 msgid "&File"
 msgstr "&Datoteka"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:454
 msgid "Reset the selection"
 msgstr "Ponastavi izbiro"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:455
 msgid "Refresh Metadata"
 msgstr "Osveži metapodatke"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:456
 msgid "Repositories"
 msgstr "Skladišča paketov"
 
-#: dnfdragora/ui.py:461
+#: dnfdragora/ui.py:467
 msgid "&Help"
 msgstr "&Pomoč"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:468
 msgid "Manual"
 msgstr "Ročno"
 
-#: dnfdragora/ui.py:463
+#: dnfdragora/ui.py:469
 msgid "&About"
 msgstr "O &programu"
 
-#: dnfdragora/ui.py:489
+#: dnfdragora/ui.py:495
 msgid "update"
 msgstr "posodobi"
 
-#: dnfdragora/ui.py:492
+#: dnfdragora/ui.py:498
 msgid "locked"
 msgstr "zaklenjeno"
 
-#: dnfdragora/ui.py:495
+#: dnfdragora/ui.py:501
 msgid "installed"
 msgstr "nameščeno"
 
-#: dnfdragora/ui.py:793
+#: dnfdragora/ui.py:799
 msgid "Missing information"
 msgstr "Manjkajoči podatki"
 
-#: dnfdragora/ui.py:920
+#: dnfdragora/ui.py:926
 msgid "Search"
 msgstr "Iskanje"
 
-#: dnfdragora/ui.py:982
+#: dnfdragora/ui.py:988
 msgid "Error checking package signatures"
 msgstr "Napaka preverjanja podpisov paketov"
 
-#: dnfdragora/ui.py:986
+#: dnfdragora/ui.py:992
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Napaka prenosa"
@@ -1155,7 +1162,7 @@ msgstr[1] "Napaki prenosa"
 msgstr[2] "Napake prenosa"
 msgstr[3] "Napake prenosa"
 
-#: dnfdragora/ui.py:991
+#: dnfdragora/ui.py:997
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Napaka v transakciji"
@@ -1163,27 +1170,36 @@ msgstr[1] "Napaki v transakciji"
 msgstr[2] "Napake v transakciji"
 msgstr[3] "Napake v transakciji"
 
-#: dnfdragora/ui.py:1003
+#: dnfdragora/ui.py:1009
 msgid "BuildTransaction failure"
 msgstr "Napaka BuildTransaction"
 
-#: dnfdragora/ui.py:1047
+#: dnfdragora/ui.py:1053
 msgid "Not implemented yet"
 msgstr "Ni še podprto"
 
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "Izbrani so tudi zaščiteni paketi"
-
-#: dnfdragora/ui.py:1075
+#: dnfdragora/ui.py:1081
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Paketa/-ov %s ni mogoče odstraniti"
 
-#: dnfdragora/ui.py:1151
+#: dnfdragora/ui.py:1081
+msgid "Protected package selected"
+msgstr "Izbrani so tudi zaščiteni paketi"
+
+#: dnfdragora/ui.py:1157
 msgid "Unmanaged widget"
 msgstr "Neupravljan gradnik"
 
-#: dnfdragora/ui.py:1153
+#: dnfdragora/ui.py:1159
 msgid "Unmanaged event"
 msgstr "Neupravljan dogodek"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "pojavila se je atribut napaka dnfdaemon: %s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "pojavila se je imenska napaka dnfdaemon: %s%s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "pojavila se je napaka odjemalca dnfdaemon: %s%s"

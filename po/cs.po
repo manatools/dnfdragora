@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-04-25 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Luděk Janča <joelp@email.cz>, 2017\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
@@ -54,14 +54,10 @@ msgid "use full screen for dialogs"
 msgstr "Použít celou obrazovku pro dialogy"
 
 #: bin/dnfdragora:38
-msgid "show updates only dialog"
-msgstr "Ukázat dialog pouze aktualizace"
-
-#: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr "Vynutit novou cestu pro skupinové ikony (namísto /usr/share/icons)"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -69,38 +65,51 @@ msgstr ""
 "Vynutit novou cestu pro všechny potřebné obrázky (namísto /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
 msgstr "Adresář obsahující jazykové řetězce (pouze vývojář)"
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:42
 msgid "install packages"
 msgstr "Nainstalovat balíčky"
 
+#: bin/dnfdragora:43
+msgid "show updates only dialog"
+msgstr "Ukázat dialog pouze aktualizace"
+
 #: bin/dnfdragora:44
+msgid "show application version and exit"
+msgstr ""
+
+#: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr "Vynutit ukončení služeb dbus dnfdaemon používané dnfdragora"
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:70
+#, python-format
+msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
+msgstr ""
+
+#: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
-#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
+#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1053
 msgid "Sorry"
 msgstr "Promiňte"
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:84
 #, python-format
-msgid "dnfdaemon client error occurred:%s%s"
-msgstr "Vyskytla se chyba klienta dnfdaemon: %s%s"
+msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
+msgstr ""
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:87
 #, python-format
-msgid "dnfdaemon name error occurred:%s%s"
-msgstr "Vyskytla se chyba názvu dnfdaemon: %s%s"
+msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
+msgstr ""
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:90
 #, python-format
-msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr "Vyskytla se chyba vlastnosti dnfdaemon: %s%s"
+msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
+msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -186,8 +195,8 @@ msgstr "Základní systém"
 msgid "Content"
 msgstr "Obsah"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
-#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
+#: dnfdragora/ui.py:346
 msgid "All"
 msgstr "Vše"
 
@@ -199,51 +208,51 @@ msgstr "Prázdný"
 msgid "Search result"
 msgstr "Výsledek hledání"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:100
 msgid "Getting installed packages"
 msgstr "Získávání nainstalovaných balíčků"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:101
 msgid "Getting available packages"
 msgstr "Získávání dostupných balíčků"
 
-#: dnfdragora/const.py:103
+#: dnfdragora/const.py:102
 msgid "Getting available updates"
 msgstr "Získávání dostupných aktualizací"
 
-#: dnfdragora/const.py:104
+#: dnfdragora/const.py:103
 msgid "Getting all packages"
 msgstr "Získávání všech balíčků"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:116
 msgid "Updated packages"
 msgstr "Aktualizované balíčky"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:117
 msgid "Downgraded packages"
 msgstr "Ponížené balíčky"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:118
 msgid "Obsoleting packages"
 msgstr "Zastarávající balíčky"
 
-#: dnfdragora/const.py:120
+#: dnfdragora/const.py:119
 msgid "Obsoleted packages"
 msgstr "Zastaralé balíčky"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:120
 msgid "Erased packages"
 msgstr "Smazané balíčky"
 
-#: dnfdragora/const.py:122 dnfdragora/const.py:123
+#: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
 msgstr "Nainstalované balíčky"
 
-#: dnfdragora/const.py:124
+#: dnfdragora/const.py:123
 msgid "Installed for dependencies"
 msgstr "Instalované kvůli závislostem"
 
-#: dnfdragora/const.py:125
+#: dnfdragora/const.py:124
 msgid "Reinstalled packages"
 msgstr "Znovu instalované balíčky"
 
@@ -307,19 +316,34 @@ msgstr "Ponižování: %s"
 msgid "Verifying: %s"
 msgstr "Ověřování: %s"
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:145
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr ""
+
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr ""
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr ""
+
+#: dnfdragora/const.py:157
 msgid "Bugfix"
 msgstr "Oprava chyby"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:158
 msgid "New Package"
 msgstr "Nový balíček"
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Bezpečnost"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:160
 msgid "Enhancement"
 msgstr "Vylepšení"
 
@@ -331,14 +355,12 @@ msgstr "Výsledek transakce"
 msgid "Transaction dependency"
 msgstr "Závislost transakce"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
-#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
-#: dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
+#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
-#: dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Zrušit"
 
@@ -366,11 +388,11 @@ msgstr "Správa repozitáře"
 msgid "Enabled"
 msgstr "Povoleno"
 
-#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:318
 msgid "Name"
 msgstr "Název"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:440
 msgid "&Apply"
 msgstr "&Použít"
 
@@ -420,7 +442,7 @@ msgstr "Stahování balíčků"
 msgid "Checking package signatures"
 msgstr "Ověřování podpisů balíčků"
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:956
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:962
 msgid "Applying changes to the system"
 msgstr "Použití změn v systému"
 
@@ -966,17 +988,17 @@ msgstr "Síťový server"
 msgid "Web/FTP"
 msgstr "Web/FTP"
 
-#: dnfdragora/progress_ui.py:130
+#: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr "Stahování:  %(files)d souborů,  %(size)d bytů"
 
-#: dnfdragora/progress_ui.py:157
+#: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
 msgstr "Začíná se stahovat: %s "
 
-#: dnfdragora/progress_ui.py:178
+#: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Postup souborů (%(downloaded)d/%(total)d)"
@@ -997,174 +1019,183 @@ msgstr "Seznam změn"
 msgid "Requirements"
 msgstr "Požadavky"
 
-#: dnfdragora/ui.py:272
+#: dnfdragora/ui.py:266
 msgid "Software Management - dnfdragora"
 msgstr "Správa softwaru - dnfdragora"
 
-#: dnfdragora/ui.py:304
+#: dnfdragora/ui.py:298
 msgid "Software Management"
 msgstr "Správa softwaru"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Arch"
 msgstr "Arch."
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Release"
 msgstr "Vydání"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Summary"
 msgstr "Souhrn"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Version"
 msgstr "Verze"
 
-#: dnfdragora/ui.py:331
+#: dnfdragora/ui.py:325
 msgid "Status"
 msgstr "Stav"
 
-#: dnfdragora/ui.py:339
+#: dnfdragora/ui.py:333
 msgid "Installed"
 msgstr "Nainstalováno"
 
-#: dnfdragora/ui.py:340
+#: dnfdragora/ui.py:334
 msgid "Not installed"
 msgstr "Není instalováno"
 
-#: dnfdragora/ui.py:341
+#: dnfdragora/ui.py:335
 msgid "To update"
 msgstr "K aktualizaci"
 
-#: dnfdragora/ui.py:347
+#: dnfdragora/ui.py:341
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Ukazuje %s a jen noarch"
 
-#: dnfdragora/ui.py:353
+#: dnfdragora/ui.py:347
 msgid "Groups"
 msgstr "Skupiny"
 
-#: dnfdragora/ui.py:394
+#: dnfdragora/ui.py:400
 msgid "in names"
 msgstr "v názvech"
 
-#: dnfdragora/ui.py:395
+#: dnfdragora/ui.py:401
 msgid "in descriptions"
 msgstr "v popisech"
 
-#: dnfdragora/ui.py:396
+#: dnfdragora/ui.py:402
 msgid "in summaries"
 msgstr "ve shrnutích"
 
-#: dnfdragora/ui.py:397
+#: dnfdragora/ui.py:403
 msgid "in file names"
 msgstr "v názvech souborů"
 
-#: dnfdragora/ui.py:418
+#: dnfdragora/ui.py:424
 msgid "&Search"
 msgstr "&Hledat"
 
-#: dnfdragora/ui.py:424
+#: dnfdragora/ui.py:430
 msgid "&Clear search"
 msgstr "&Smazat hledání"
 
-#: dnfdragora/ui.py:438
+#: dnfdragora/ui.py:444
 msgid "Ch&eck all"
 msgstr "&Prověřit vše"
 
-#: dnfdragora/ui.py:442 dnfdragora/ui.py:451
+#: dnfdragora/ui.py:448 dnfdragora/ui.py:457
 msgid "&Quit"
 msgstr "U&končit"
 
-#: dnfdragora/ui.py:447
+#: dnfdragora/ui.py:453
 msgid "&File"
 msgstr "&Soubor"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:454
 msgid "Reset the selection"
 msgstr "Nulovat výběr"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:455
 msgid "Refresh Metadata"
 msgstr "Obnovit popisná data"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:456
 msgid "Repositories"
 msgstr "Repozitáře"
 
-#: dnfdragora/ui.py:461
+#: dnfdragora/ui.py:467
 msgid "&Help"
 msgstr "&Nápověda"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:468
 msgid "Manual"
 msgstr "Ruční"
 
-#: dnfdragora/ui.py:463
+#: dnfdragora/ui.py:469
 msgid "&About"
 msgstr "O programu"
 
-#: dnfdragora/ui.py:489
+#: dnfdragora/ui.py:495
 msgid "update"
 msgstr "Aktualizace"
 
-#: dnfdragora/ui.py:492
+#: dnfdragora/ui.py:498
 msgid "locked"
 msgstr "Uzamknuto"
 
-#: dnfdragora/ui.py:495
+#: dnfdragora/ui.py:501
 msgid "installed"
 msgstr "Nainstalováno"
 
-#: dnfdragora/ui.py:793
+#: dnfdragora/ui.py:799
 msgid "Missing information"
 msgstr "Chybí informace"
 
-#: dnfdragora/ui.py:920
+#: dnfdragora/ui.py:926
 msgid "Search"
 msgstr "Hledat"
 
-#: dnfdragora/ui.py:982
+#: dnfdragora/ui.py:988
 msgid "Error checking package signatures"
 msgstr "Chyba při ověřování podpisů balíčků"
 
-#: dnfdragora/ui.py:986
+#: dnfdragora/ui.py:992
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Chyba při stahování"
 msgstr[1] "Chyby při stahování"
 msgstr[2] "Chyby při stahování"
 
-#: dnfdragora/ui.py:991
+#: dnfdragora/ui.py:997
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Chyba v transakci"
 msgstr[1] "Chyby v transakci"
 msgstr[2] "Chyby v transakci"
 
-#: dnfdragora/ui.py:1003
+#: dnfdragora/ui.py:1009
 msgid "BuildTransaction failure"
 msgstr "Selhání při vytváření transakce"
 
-#: dnfdragora/ui.py:1047
+#: dnfdragora/ui.py:1053
 msgid "Not implemented yet"
 msgstr "Zatím neuděláno"
 
-#: dnfdragora/ui.py:1075
+#: dnfdragora/ui.py:1081
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Balíček %s nelze odstranit"
 
-#: dnfdragora/ui.py:1075
+#: dnfdragora/ui.py:1081
 msgid "Protected package selected"
 msgstr "Vybrán chráněný balíček"
 
-#: dnfdragora/ui.py:1151
+#: dnfdragora/ui.py:1157
 msgid "Unmanaged widget"
 msgstr "Nespravovaný doplněk"
 
-#: dnfdragora/ui.py:1153
+#: dnfdragora/ui.py:1159
 msgid "Unmanaged event"
 msgstr "Nespravovaná událost"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "Vyskytla se chyba vlastnosti dnfdaemon: %s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "Vyskytla se chyba názvu dnfdaemon: %s%s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "Vyskytla se chyba klienta dnfdaemon: %s%s"

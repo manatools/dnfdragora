@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 18:52+0100\n"
+"POT-Creation-Date: 2017-04-25 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
@@ -40,50 +40,59 @@ msgid "use full screen for dialogs"
 msgstr ""
 
 #: bin/dnfdragora:38
-msgid "show updates only dialog"
-msgstr ""
-
-#: bin/dnfdragora:40
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
 msgstr ""
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:42
 msgid "install packages"
 msgstr ""
 
+#: bin/dnfdragora:43
+msgid "show updates only dialog"
+msgstr ""
+
 #: bin/dnfdragora:44
+msgid "show application version and exit"
+msgstr ""
+
+#: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 
-#: bin/dnfdragora:76 bin/dnfdragora:79 bin/dnfdragora:82
+#: bin/dnfdragora:70
+#, python-format
+msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
+msgstr ""
+
+#: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
-#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
+#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1053
 msgid "Sorry"
 msgstr ""
 
-#: bin/dnfdragora:76
+#: bin/dnfdragora:84
 #, python-format
-msgid "dnfdaemon client error occurred:%s%s"
+msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
 msgstr ""
 
-#: bin/dnfdragora:79
+#: bin/dnfdragora:87
 #, python-format
-msgid "dnfdaemon name error occurred:%s%s"
+msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
 msgstr ""
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:90
 #, python-format
-msgid "dnfdaemon attribute error occurred:%s%s"
+msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr ""
 
 #: dnfdragora/basedragora.py:55
@@ -164,8 +173,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:338
-#: dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
+#: dnfdragora/ui.py:346
 msgid "All"
 msgstr "Όλα"
 
@@ -177,51 +186,51 @@ msgstr "Κενό"
 msgid "Search result"
 msgstr ""
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:100
 msgid "Getting installed packages"
 msgstr ""
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:101
 msgid "Getting available packages"
 msgstr ""
 
-#: dnfdragora/const.py:103
+#: dnfdragora/const.py:102
 msgid "Getting available updates"
 msgstr ""
 
-#: dnfdragora/const.py:104
+#: dnfdragora/const.py:103
 msgid "Getting all packages"
 msgstr ""
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:116
 msgid "Updated packages"
 msgstr ""
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:117
 msgid "Downgraded packages"
 msgstr ""
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:118
 msgid "Obsoleting packages"
 msgstr ""
 
-#: dnfdragora/const.py:120
+#: dnfdragora/const.py:119
 msgid "Obsoleted packages"
 msgstr ""
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:120
 msgid "Erased packages"
 msgstr ""
 
-#: dnfdragora/const.py:122 dnfdragora/const.py:123
+#: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
 msgstr ""
 
-#: dnfdragora/const.py:124
+#: dnfdragora/const.py:123
 msgid "Installed for dependencies"
 msgstr ""
 
-#: dnfdragora/const.py:125
+#: dnfdragora/const.py:124
 msgid "Reinstalled packages"
 msgstr ""
 
@@ -285,19 +294,34 @@ msgstr ""
 msgid "Verifying: %s"
 msgstr ""
 
-#: dnfdragora/const.py:154
+#: dnfdragora/const.py:145
+#, python-format
+msgid "Running scriptlet: %s"
+msgstr ""
+
+#: dnfdragora/const.py:146
+#, python-format
+msgid "Preparing transaction: %s"
+msgstr ""
+
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Post-transaction script: %s"
+msgstr ""
+
+#: dnfdragora/const.py:157
 msgid "Bugfix"
 msgstr ""
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:158
 msgid "New Package"
 msgstr ""
 
-#: dnfdragora/const.py:156 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Ασφάλεια"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:160
 msgid "Enhancement"
 msgstr ""
 
@@ -342,11 +366,11 @@ msgstr ""
 msgid "Enabled"
 msgstr ""
 
-#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:318
 msgid "Name"
 msgstr "Όνομα"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:440
 msgid "&Apply"
 msgstr ""
 
@@ -390,7 +414,7 @@ msgstr ""
 msgid "Checking package signatures"
 msgstr ""
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:956
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:962
 msgid "Applying changes to the system"
 msgstr ""
 
@@ -936,17 +960,17 @@ msgstr "Εξυπηρετητής δικτύου"
 msgid "Web/FTP"
 msgstr "Ιστός/FTP"
 
-#: dnfdragora/progress_ui.py:130
+#: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:157
+#: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
 msgstr ""
 
-#: dnfdragora/progress_ui.py:178
+#: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr ""
@@ -967,172 +991,172 @@ msgstr ""
 msgid "Requirements"
 msgstr ""
 
-#: dnfdragora/ui.py:272
+#: dnfdragora/ui.py:266
 msgid "Software Management - dnfdragora"
 msgstr ""
 
-#: dnfdragora/ui.py:304
+#: dnfdragora/ui.py:298
 msgid "Software Management"
 msgstr "Λογισμικό"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Arch"
 msgstr "Αρχιτεκ."
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Release"
 msgstr "Έκδοση κυκλοφορίας"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Summary"
 msgstr "Σύνοψη"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Version"
 msgstr "Έκδοση"
 
-#: dnfdragora/ui.py:331
+#: dnfdragora/ui.py:325
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: dnfdragora/ui.py:339
+#: dnfdragora/ui.py:333
 msgid "Installed"
 msgstr "Εγκατεστημένα"
 
-#: dnfdragora/ui.py:340
+#: dnfdragora/ui.py:334
 msgid "Not installed"
 msgstr "Μη εγκατεστημένα"
 
-#: dnfdragora/ui.py:341
+#: dnfdragora/ui.py:335
 msgid "To update"
 msgstr ""
 
-#: dnfdragora/ui.py:347
+#: dnfdragora/ui.py:341
 #, python-format
 msgid "Show %s and noarch only"
 msgstr ""
 
-#: dnfdragora/ui.py:353
+#: dnfdragora/ui.py:347
 msgid "Groups"
 msgstr "Ομάδες"
 
-#: dnfdragora/ui.py:394
+#: dnfdragora/ui.py:400
 msgid "in names"
 msgstr "στα ονόματα"
 
-#: dnfdragora/ui.py:395
+#: dnfdragora/ui.py:401
 msgid "in descriptions"
 msgstr "στις περιγραφές"
 
-#: dnfdragora/ui.py:396
+#: dnfdragora/ui.py:402
 msgid "in summaries"
 msgstr "στις περιλήψεις"
 
-#: dnfdragora/ui.py:397
+#: dnfdragora/ui.py:403
 msgid "in file names"
 msgstr "στα ονόματα αρχείων"
 
-#: dnfdragora/ui.py:418
+#: dnfdragora/ui.py:424
 msgid "&Search"
 msgstr ""
 
-#: dnfdragora/ui.py:424
+#: dnfdragora/ui.py:430
 msgid "&Clear search"
 msgstr ""
 
-#: dnfdragora/ui.py:438
+#: dnfdragora/ui.py:444
 msgid "Ch&eck all"
 msgstr ""
 
-#: dnfdragora/ui.py:442 dnfdragora/ui.py:451
+#: dnfdragora/ui.py:448 dnfdragora/ui.py:457
 msgid "&Quit"
 msgstr "Έ&ξοδος"
 
-#: dnfdragora/ui.py:447
+#: dnfdragora/ui.py:453
 msgid "&File"
 msgstr "&Αρχείο"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:454
 msgid "Reset the selection"
 msgstr "Επαναφορά της επιλογής"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:455
 msgid "Refresh Metadata"
 msgstr ""
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:456
 msgid "Repositories"
 msgstr ""
 
-#: dnfdragora/ui.py:461
+#: dnfdragora/ui.py:467
 msgid "&Help"
 msgstr "&Βοήθεια"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:468
 msgid "Manual"
 msgstr "Χειροκίνητα"
 
-#: dnfdragora/ui.py:463
+#: dnfdragora/ui.py:469
 msgid "&About"
 msgstr "&Περί"
 
-#: dnfdragora/ui.py:489
+#: dnfdragora/ui.py:495
 msgid "update"
 msgstr ""
 
-#: dnfdragora/ui.py:492
+#: dnfdragora/ui.py:498
 msgid "locked"
 msgstr ""
 
-#: dnfdragora/ui.py:495
+#: dnfdragora/ui.py:501
 msgid "installed"
 msgstr ""
 
-#: dnfdragora/ui.py:793
+#: dnfdragora/ui.py:799
 msgid "Missing information"
 msgstr ""
 
-#: dnfdragora/ui.py:920
+#: dnfdragora/ui.py:926
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: dnfdragora/ui.py:982
+#: dnfdragora/ui.py:988
 msgid "Error checking package signatures"
 msgstr ""
 
-#: dnfdragora/ui.py:986
+#: dnfdragora/ui.py:992
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dnfdragora/ui.py:991
+#: dnfdragora/ui.py:997
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dnfdragora/ui.py:1003
+#: dnfdragora/ui.py:1009
 msgid "BuildTransaction failure"
 msgstr ""
 
-#: dnfdragora/ui.py:1047
+#: dnfdragora/ui.py:1053
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:1075
+#: dnfdragora/ui.py:1081
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr ""
 
-#: dnfdragora/ui.py:1075
+#: dnfdragora/ui.py:1081
 msgid "Protected package selected"
 msgstr ""
 
-#: dnfdragora/ui.py:1151
+#: dnfdragora/ui.py:1157
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:1153
+#: dnfdragora/ui.py:1159
 msgid "Unmanaged event"
 msgstr ""

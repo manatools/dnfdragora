@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 1.00\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-05 18:40+0200\n"
+"POT-Creation-Date: 2017-04-25 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -33,46 +33,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:18
-#, python-format
-msgid "Current recursion limit: %s"
-msgstr "Limit de recursivitat actual: %s"
-
-#: bin/dnfdragora:21
-#, python-format
-msgid "Raised recursion limit to: %s"
-msgstr "Limit de recursivitat elevat a: %s"
-
-#: bin/dnfdragora:35
+#: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [opcions]"
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
 msgstr "inicia l'ús de la implementació del connector yui GTK+"
 
-#: bin/dnfdragora:39
+#: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
 msgstr "inicia l'ús de la implementació del connector yui ncurses"
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
 msgstr "inicia l'ús de la implementació del connector yui Qt"
 
-#: bin/dnfdragora:41
+#: bin/dnfdragora:35
 msgid "use full screen for dialogs"
 msgstr "utilitza la pantalla completa per als diàlegs"
 
-#: bin/dnfdragora:44
-msgid "show updates only dialog"
-msgstr "mostra el diàleg només d'actualitzacions"
-
-#: bin/dnfdragora:46
+#: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr "força un camí nou per a icones de grup (en lloc de /usr/share/icons)"
 
-#: bin/dnfdragora:47
+#: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -80,40 +66,53 @@ msgstr ""
 "força un camí nou per a totes les imatges necessàries (en lloc de /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:48
+#: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
 msgstr ""
 "directori que conté cadenes de localització (només per a desenvolupadors)"
 
-#: bin/dnfdragora:49
+#: bin/dnfdragora:42
 msgid "install packages"
 msgstr "instal·la els paquets"
 
-#: bin/dnfdragora:50
+#: bin/dnfdragora:43
+msgid "show updates only dialog"
+msgstr "mostra el diàleg només d'actualitzacions"
+
+#: bin/dnfdragora:44
+msgid "show application version and exit"
+msgstr ""
+
+#: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 "força la sortida dels serveis dbus de dnfdaemon utilitzats amb dnfdragora"
 
-#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88
+#: bin/dnfdragora:70
+#, python-format
+msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
+msgstr ""
+
+#: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
-#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1047
+#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1053
 msgid "Sorry"
 msgstr "Perdó!"
 
-#: bin/dnfdragora:82
+#: bin/dnfdragora:84
 #, python-format
-msgid "dnfdaemon client error occurred:%s%s"
-msgstr "S'ha produït un error de client de dnfdaemon:%s%s"
+msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
+msgstr ""
 
-#: bin/dnfdragora:85
+#: bin/dnfdragora:87
 #, python-format
-msgid "dnfdaemon name error occurred:%s%s"
-msgstr "S'ha produït un error de nom de dnfdaemon:%s%s"
+msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
+msgstr ""
 
-#: bin/dnfdragora:88
+#: bin/dnfdragora:90
 #, python-format
-msgid "dnfdaemon attribute error occurred:%s%s"
-msgstr "S'ha produït un error d'atribut de dnfdaemon:%s%s"
+msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
+msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -198,8 +197,8 @@ msgstr "Sistema de base"
 msgid "Content"
 msgstr "Contingut"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
-#: dnfdragora/ui.py:338 dnfdragora/ui.py:352
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
+#: dnfdragora/ui.py:346
 msgid "All"
 msgstr "Tot"
 
@@ -211,142 +210,142 @@ msgstr "Buit"
 msgid "Search result"
 msgstr "Resultat de la cerca"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:100
 msgid "Getting installed packages"
 msgstr "Obtenció dels paquets instal·lats"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:101
 msgid "Getting available packages"
 msgstr "Obtenció dels paquets disponibles"
 
-#: dnfdragora/const.py:103
+#: dnfdragora/const.py:102
 msgid "Getting available updates"
 msgstr "Obtenció de les actualitzacions disponibles"
 
-#: dnfdragora/const.py:104
+#: dnfdragora/const.py:103
 msgid "Getting all packages"
 msgstr "Obtenció de tots els paquets"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:116
 msgid "Updated packages"
 msgstr "Paquets actualitzats"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:117
 msgid "Downgraded packages"
 msgstr "Paquets revertits"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:118
 msgid "Obsoleting packages"
 msgstr "Paquets devaluats"
 
-#: dnfdragora/const.py:120
+#: dnfdragora/const.py:119
 msgid "Obsoleted packages"
 msgstr "Paquets obsolets"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:120
 msgid "Erased packages"
 msgstr "Paquets eliminats"
 
-#: dnfdragora/const.py:122 dnfdragora/const.py:123
+#: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
 msgstr "Paquets instal·lats"
 
-#: dnfdragora/const.py:124
+#: dnfdragora/const.py:123
 msgid "Installed for dependencies"
 msgstr "Instal·lats per a les dependències"
 
-#: dnfdragora/const.py:125
+#: dnfdragora/const.py:124
 msgid "Reinstalled packages"
 msgstr "Paquets reinstal·lats"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:129
 msgid "Installing"
 msgstr "Instal·lació"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:130
 msgid "Updating"
 msgstr "Actualització"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:131
 msgid "Removing"
 msgstr "Supressió"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:132
 msgid "Downgrading"
 msgstr "Reversió"
 
-#: dnfdragora/const.py:134
+#: dnfdragora/const.py:133
 msgid "Replacing"
 msgstr "Substitució"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
 msgstr "Actualització: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
 msgstr "Instal·lació: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Reinstal·lació: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Neteja: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
 msgstr "Supressió: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Devaluació: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Reversió: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verificació: %s"
 
-#: dnfdragora/const.py:146
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Execució de l'scriptlet: %s"
 
-#: dnfdragora/const.py:147
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Preparació de la transacció: %s"
 
-#: dnfdragora/const.py:148
+#: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Script de la post transacció: %s"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:157
 msgid "Bugfix"
 msgstr "Correcció d'error"
 
-#: dnfdragora/const.py:159
+#: dnfdragora/const.py:158
 msgid "New Package"
 msgstr "Paquet nou"
 
-#: dnfdragora/const.py:160 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
 msgstr "Seguretat"
 
-#: dnfdragora/const.py:161
+#: dnfdragora/const.py:160
 msgid "Enhancement"
 msgstr "Millora"
 
@@ -358,14 +357,12 @@ msgstr "Resultat de la transacció"
 msgid "Transaction dependency"
 msgstr "Dependència de la transacció"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378
-#: dnfdragora/dialogs.py:416 dnfdragora/dialogs.py:452
-#: dnfdragora/dialogs.py:495
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:378 dnfdragora/dialogs.py:416
+#: dnfdragora/dialogs.py:452 dnfdragora/dialogs.py:495
 msgid "&Ok"
 msgstr "D'acord"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
-#: dnfdragora/dialogs.py:496
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:496
 msgid "&Cancel"
 msgstr "&Cancel·la"
 
@@ -390,15 +387,15 @@ msgstr ""
 msgid "Repository Management"
 msgstr "Gestió dels dipòsits"
 
-#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:324
-msgid "Name"
-msgstr "Nom"
-
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
 msgstr "Habilitat"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:434
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:318
+msgid "Name"
+msgstr "Nom"
+
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:440
 msgid "&Apply"
 msgstr "&Aplica"
 
@@ -448,7 +445,7 @@ msgstr "Es baixen els paquets"
 msgid "Checking package signatures"
 msgstr "Comprovació de les signatures dels paquets"
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:956
+#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:962
 msgid "Applying changes to the system"
 msgstr "S'apliquen els canvis al sistema"
 
@@ -994,17 +991,17 @@ msgstr "Servidor de xarxa"
 msgid "Web/FTP"
 msgstr "Web/FTP"
 
-#: dnfdragora/progress_ui.py:130
+#: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr "Baixada:  %(files)d fitxers,  %(size)d bytes"
 
-#: dnfdragora/progress_ui.py:157
+#: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
 msgstr "S'inicia la baixada: %s"
 
-#: dnfdragora/progress_ui.py:178
+#: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Progrés dels fitxers (%(downloaded)d/%(total)d)"
@@ -1025,172 +1022,187 @@ msgstr "Registre de canvis"
 msgid "Requirements"
 msgstr "Requisits"
 
-#: dnfdragora/ui.py:272
+#: dnfdragora/ui.py:266
 msgid "Software Management - dnfdragora"
 msgstr "Gestió de programari - dnfdragora"
 
-#: dnfdragora/ui.py:304
+#: dnfdragora/ui.py:298
 msgid "Software Management"
 msgstr "Gestió de programari"
 
-#: dnfdragora/ui.py:324
-msgid "Summary"
-msgstr "Resum"
-
-#: dnfdragora/ui.py:324
-msgid "Version"
-msgstr "Versió"
-
-#: dnfdragora/ui.py:324
-msgid "Release"
-msgstr "Llançament"
-
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:318
 msgid "Arch"
 msgstr "Arquitectura"
 
-#: dnfdragora/ui.py:331
+#: dnfdragora/ui.py:318
+msgid "Release"
+msgstr "Llançament"
+
+#: dnfdragora/ui.py:318
+msgid "Summary"
+msgstr "Resum"
+
+#: dnfdragora/ui.py:318
+msgid "Version"
+msgstr "Versió"
+
+#: dnfdragora/ui.py:325
 msgid "Status"
 msgstr "Estat"
 
-#: dnfdragora/ui.py:339
+#: dnfdragora/ui.py:333
 msgid "Installed"
 msgstr "Instal·lat"
 
-#: dnfdragora/ui.py:340
+#: dnfdragora/ui.py:334
 msgid "Not installed"
 msgstr "No instal·lat"
 
-#: dnfdragora/ui.py:341
+#: dnfdragora/ui.py:335
 msgid "To update"
 msgstr "Per actualitzar"
 
-#: dnfdragora/ui.py:347
+#: dnfdragora/ui.py:341
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Mostra només %s i noarch"
 
-#: dnfdragora/ui.py:353
+#: dnfdragora/ui.py:347
 msgid "Groups"
 msgstr "Grups"
 
-#: dnfdragora/ui.py:394
+#: dnfdragora/ui.py:400
 msgid "in names"
 msgstr "als noms"
 
-#: dnfdragora/ui.py:395
+#: dnfdragora/ui.py:401
 msgid "in descriptions"
 msgstr "a les descripcions"
 
-#: dnfdragora/ui.py:396
+#: dnfdragora/ui.py:402
 msgid "in summaries"
 msgstr "als resums"
 
-#: dnfdragora/ui.py:397
+#: dnfdragora/ui.py:403
 msgid "in file names"
 msgstr "als noms dels fitxers"
 
-#: dnfdragora/ui.py:418
+#: dnfdragora/ui.py:424
 msgid "&Search"
 msgstr "&Cerca"
 
-#: dnfdragora/ui.py:424
+#: dnfdragora/ui.py:430
 msgid "&Clear search"
 msgstr "&Neteja la cerca"
 
-#: dnfdragora/ui.py:438
+#: dnfdragora/ui.py:444
 msgid "Ch&eck all"
 msgstr "&Marca-ho tot"
 
-#: dnfdragora/ui.py:442 dnfdragora/ui.py:451
+#: dnfdragora/ui.py:448 dnfdragora/ui.py:457
 msgid "&Quit"
 msgstr "&Surt"
 
-#: dnfdragora/ui.py:447
+#: dnfdragora/ui.py:453
 msgid "&File"
 msgstr "&Fitxer"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:454
 msgid "Reset the selection"
 msgstr "Restableix la selecció"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:455
 msgid "Refresh Metadata"
 msgstr "Refresca les metadades"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:456
 msgid "Repositories"
 msgstr "Dipòsits"
 
-#: dnfdragora/ui.py:461
+#: dnfdragora/ui.py:467
 msgid "&Help"
 msgstr "&Ajuda"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:468
 msgid "Manual"
 msgstr "Manual"
 
-#: dnfdragora/ui.py:463
+#: dnfdragora/ui.py:469
 msgid "&About"
 msgstr "&Quant a"
 
-#: dnfdragora/ui.py:489
+#: dnfdragora/ui.py:495
 msgid "update"
 msgstr "actualització"
 
-#: dnfdragora/ui.py:492
+#: dnfdragora/ui.py:498
 msgid "locked"
 msgstr "bloquejat"
 
-#: dnfdragora/ui.py:495
+#: dnfdragora/ui.py:501
 msgid "installed"
 msgstr "instal·lat"
 
-#: dnfdragora/ui.py:793
+#: dnfdragora/ui.py:799
 msgid "Missing information"
 msgstr "No s'ha trobat informació"
 
-#: dnfdragora/ui.py:920
+#: dnfdragora/ui.py:926
 msgid "Search"
 msgstr "Cerca"
 
-#: dnfdragora/ui.py:982
+#: dnfdragora/ui.py:988
 msgid "Error checking package signatures"
 msgstr "Error en la verificació de les signatures dels paquets"
 
-#: dnfdragora/ui.py:986
+#: dnfdragora/ui.py:992
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Error en la baixada"
 msgstr[1] "Errors en la baixada"
 
-#: dnfdragora/ui.py:991
+#: dnfdragora/ui.py:997
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Error en la transacció"
 msgstr[1] "Errors en la transacció"
 
-#: dnfdragora/ui.py:1003
+#: dnfdragora/ui.py:1009
 msgid "BuildTransaction failure"
 msgstr "Fallada de BuildTransaction"
 
-#: dnfdragora/ui.py:1047
+#: dnfdragora/ui.py:1053
 msgid "Not implemented yet"
 msgstr "No implementat encara"
 
-#: dnfdragora/ui.py:1075
-msgid "Protected package selected"
-msgstr "S'han seleccionat un paquet protegit"
-
-#: dnfdragora/ui.py:1075
+#: dnfdragora/ui.py:1081
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "No es pot eliminar el paquet %s"
 
-#: dnfdragora/ui.py:1151
+#: dnfdragora/ui.py:1081
+msgid "Protected package selected"
+msgstr "S'han seleccionat un paquet protegit"
+
+#: dnfdragora/ui.py:1157
 msgid "Unmanaged widget"
 msgstr "Estri no gestionat"
 
-#: dnfdragora/ui.py:1153
+#: dnfdragora/ui.py:1159
 msgid "Unmanaged event"
 msgstr "Esdeveniment no gestionat"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "S'ha produït un error d'atribut de dnfdaemon:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "S'ha produït un error de nom de dnfdaemon:%s%s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "S'ha produït un error de client de dnfdaemon:%s%s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Limit de recursivitat elevat a: %s"
+
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Limit de recursivitat actual: %s"
