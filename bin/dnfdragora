@@ -35,12 +35,13 @@ if __name__ == "__main__":
     parser.add_argument('--fullscreen', help=_('use full screen for dialogs'), action='store_true')
 
     # Application arguments
-    parser.add_argument('--update-only', help=_('show updates only dialog'), action='store_true')
-
     parser.add_argument('--group-icons-path', nargs='?', help=_('force a new path for group icons (instead of /usr/share/icons)'))
     parser.add_argument('--images-path', nargs='?', help=_('force a new path for all the needed images (instead of /usr/share/dnfdragora/images)'))
     parser.add_argument('--locales-dir', nargs='?', help=_('directory containing localization strings (developer only)'))
+
     parser.add_argument('--install',     nargs='+', help=_('install packages'))
+    parser.add_argument('--update-only', help=_('show updates only dialog'), action='store_true')
+    parser.add_argument('--version',     help=_('show application version and exit'), action='store_true')
     parser.add_argument('--exit',        help=_('force dnfdaemon dbus services used by dnfdragora to exit'), action='store_true')
     args = parser.parse_args()
 
@@ -62,8 +63,15 @@ if __name__ == "__main__":
         options['locales_dir'] = args.locales_dir
     if args.install:
         options['install'] = args.install
-    if args.exit:
+    if args.exit :
         misc.dbus_dnfsystem('Exit')
+    elif args.version:
+        import dnfdragora.version
+        print (_("%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"%
+                 {'prog'   :'dnfdragora',
+                  'version': dnfdragora.version.__version__,
+                  'site'   : "https://github.com/manatools/dnfdragora",
+                  'NL'     : "\n"}))
     else:
         main_gui = None
         try:
@@ -73,13 +81,13 @@ if __name__ == "__main__":
 
         except dnfdaemon.client.DaemonError as e:
             logger.error("dnfdaemon client error: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon client error occurred:%{NL}s%{error}s")%{'NL': "\n",'error' : str(e)}})
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon client error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except NameError as e:
             logger.error("dnfdaemon NameError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%{NL}s%{error}s")%{'NL': "\n",'error' : str(e)}})
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except AttributeError as e:
             logger.error("dnfdaemon AttributeError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%{NL}s%{error}s")%{'NL': "\n",'error' : str(e)}})
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except:
             logger.error("Unexpected error: %s ", sys.exc_info()[0])
         finally:
