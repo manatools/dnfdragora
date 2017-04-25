@@ -9,4 +9,5 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 '''
 
+''' dnfdragora version '''
 __version__ = "@PROJECT_VERSION@"
