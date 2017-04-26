@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-25 23:36+0200\n"
-"PO-Revision-Date: 2017-04-06 21:34+0300\n"
+"PO-Revision-Date: 2017-04-26 17:18+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -67,7 +67,7 @@ msgstr "показати вікно лише оновлень"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "показати дані щодо версії програми і завершити роботу"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -78,7 +78,7 @@ msgstr ""
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sверсія: %(version)s%(NL)sсайт: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -89,17 +89,17 @@ msgstr "Вибачте"
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Сталася помилка клієнта dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Сталася помилка назви dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Сталася помилка атрибута dnfdaemon:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -390,15 +390,15 @@ msgstr "&Застосувати"
 
 #: dnfdragora/dialogs.py:370 dnfdragora/ui.py:477
 msgid "User preferences"
-msgstr ""
+msgstr "Налаштування користувача"
 
 #: dnfdragora/dialogs.py:397
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Показувати оновлення після наступного запуску"
 
 #: dnfdragora/dialogs.py:398
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Не показувати панель груп після наступного запуску"
 
 #: dnfdragora/dialogs.py:644
 msgid "&Yes"
@@ -1122,7 +1122,7 @@ msgstr "Сховища"
 
 #: dnfdragora/ui.py:476
 msgid "&Options"
-msgstr ""
+msgstr "П&араметри"
 
 #: dnfdragora/ui.py:488
 msgid "&Help"
