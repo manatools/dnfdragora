@@ -1,26 +1,12 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dnfdragora package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 1.00\n"
+"Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-25 23:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -81,7 +67,7 @@ msgstr "Toon voor updates alleen de dialoog"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "Toon applicatie versie en sluit af"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -92,7 +78,7 @@ msgstr ""
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sversie: %(version)s%(NL)swebsite: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -103,17 +89,17 @@ msgstr "Sorry"
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Er is een client fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Er is een naam fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Er is een attribuut fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -198,8 +184,8 @@ msgstr "Basissysteem"
 msgid "Content"
 msgstr "Inhoud"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
-#: dnfdragora/ui.py:346
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:332 dnfdragora/ui.py:346
 msgid "All"
 msgstr "Alle"
 
@@ -358,13 +344,14 @@ msgstr "Transactieresultaat"
 msgid "Transaction dependency"
 msgstr "Transactie afhankelijkheid"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:515
-#: dnfdragora/dialogs.py:551 dnfdragora/dialogs.py:594
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:477
+#: dnfdragora/dialogs.py:515 dnfdragora/dialogs.py:551
+#: dnfdragora/dialogs.py:594
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:403
-#: dnfdragora/dialogs.py:595
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:403 dnfdragora/dialogs.py:595
 msgid "&Cancel"
 msgstr "&Annuleren"
 
@@ -403,15 +390,15 @@ msgstr "&Toepassen"
 
 #: dnfdragora/dialogs.py:370 dnfdragora/ui.py:477
 msgid "User preferences"
-msgstr ""
+msgstr "Gebruikersinstellingen"
 
 #: dnfdragora/dialogs.py:397
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Toon updates bij de volgende opstart"
 
 #: dnfdragora/dialogs.py:398
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Toon geen groepen bij de volgende opstart"
 
 #: dnfdragora/dialogs.py:644
 msgid "&Yes"
@@ -1136,7 +1123,7 @@ msgstr "Softwarebronnen"
 
 #: dnfdragora/ui.py:476
 msgid "&Options"
-msgstr ""
+msgstr "&Opties"
 
 #: dnfdragora/ui.py:488
 msgid "&Help"
@@ -1212,12 +1199,3 @@ msgstr "Onbeheerde widget"
 #: dnfdragora/ui.py:1217
 msgid "Unmanaged event"
 msgstr "Onbeheerde gebeurtenis"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "Er is een client fout opgetreden in dnfdaemon:%s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "Er is een naam fout opgetreden in dnfdaemon:%s%s"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "Er is een attribuut fout opgetreden in dnfdaemon:%s%s"
