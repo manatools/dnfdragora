@@ -230,8 +230,7 @@ class RepoDialog:
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
 
-        if not self.hideStandard :
-            self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode"))
+        self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode") if self.hideStandard else _("Standard mode"))
         repoList_header = yui.YTableHeader()
         columns = [ _('Name'), _("Enabled")]
 
