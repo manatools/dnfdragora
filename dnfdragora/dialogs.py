@@ -187,12 +187,10 @@ class RepoDialog:
         self.expert = False
         self.config_repos = dnfdragora.config.AppConfig('dnfdragora-repos')
         self.hideStandard = False
-        try:
-            self.config_repos.load()
-            self.simplified = self.config_repos.content
-        except Exception as e:
-            print ("Exception: %s" % str(e))
-            exc = "Configuration file <%s> problem" % self.config_repos.fileName
+        self.config_repos.load()
+        self.simplified = self.config_repos.content
+        if self.simplified == None:
+            print ("Config file dnfdragora-repos.yaml not found. Expert mode selected")
             self.expert = True
             self.hideStandard = True
         
@@ -230,7 +228,10 @@ class RepoDialog:
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
 
-        self.cb_expert = self.factory.createPushButton(hbox_top, _("Standard mode") if self.hideStandard else _("Expert mode"))
+        if not self.hideStandard:
+            self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode"))
+        else:
+            self.cb_expert = None
         repoList_header = yui.YTableHeader()
         columns = [ _('Name'), _("Enabled")]
 
