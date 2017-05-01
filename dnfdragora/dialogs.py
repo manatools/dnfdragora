@@ -230,7 +230,7 @@ class RepoDialog:
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
 
-        self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode") if self.hideStandard else _("Standard mode"))
+        self.cb_expert = self.factory.createPushButton(hbox_top, _("Standard mode") if self.hideStandard else _("Expert mode"))
         repoList_header = yui.YTableHeader()
         columns = [ _('Name'), _("Enabled")]
 
@@ -346,10 +346,10 @@ class RepoDialog:
                                 enabled_repos.append(k)
                             else:
                                for c in self.simplified['categs']:
-                                    if c['name'] == self.itemList[k]['name']:
-                                        if c['disabling']:
-                                            for r in c['repos']:
-                                                enabled_repos.append(r)
+                                   #  Enabling categories which can't be disabled an selected ones
+                                    if c['name'] == self.itemList[k]['name'] or not c['disabling']:
+                                        for r in c['repos']:
+                                            enabled_repos.append(r)
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
                     self.backend.SetEnabledRepos(enabled_repos)
                     break
