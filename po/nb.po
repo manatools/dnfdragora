@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-25 23:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2017\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
 "teams/9361/nb/)\n"
 "Language: nb\n"
@@ -22,93 +22,98 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [options]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "start å bruke  yui GTK+ plugg inn implementasjonen"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "start å bruke yui ncurses plugg inn implementasjonen"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "start å bruke yui Qt plugg inn implementasjonen"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "bruk helskjerm for dialoger"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
+"tving en ny sti for gruppe ikoner (isteden for å bruke /usr/share/icons)"
 
 #: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"tving en ny sti for alle nødvendige bilder (isteden for å bruke /usr/share/"
+"dnfdragora/images)"
 
 #: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "katalog som inneholder lokaliseringsstrenger (kun for utviklere)"
 
 #: bin/dnfdragora:42
 msgid "install packages"
-msgstr ""
+msgstr "installer pakker"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr ""
+msgstr "vis kun oppdateringer dialogen"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "vis applikasjonsversjon og gå ut"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "tving dnfdemon dbus tjenester som brukes av dnfdragora til å avslutte"
 
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1111
 msgid "Sorry"
-msgstr ""
+msgstr "Beklager"
 
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Feil oppsto i dnfdemonklienten: %(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Det oppsto dnfdemon navnefeil: %(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon attribute feil oppsto:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Oppfrisker Metadata Repositoriet"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "Kunne ikke oppfriske DNF cache (root)"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF root backend var ikke autorisert\n"
+"Dnfdragora vil avslutte"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -116,46 +121,49 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF er låst av en annen prosess\n"
+"\n"
+"Dnfdragora vil avslutte"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE-skrivebord"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce Desktop"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Programmer"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE-skrivebord"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt Skrivebord"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon Desktop"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE Desktop"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii Desktop"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar Desktop Environment"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME-skrivebord"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -168,14 +176,14 @@ msgstr "Tjenere"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "Basissystem"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "Innhold"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:332
-#: dnfdragora/ui.py:346
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:332 dnfdragora/ui.py:346
 msgid "All"
 msgstr "Alle"
 
@@ -185,138 +193,138 @@ msgstr "Tom"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Søkeresultat"
 
 #: dnfdragora/const.py:100
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Viser installerte pakker"
 
 #: dnfdragora/const.py:101
 msgid "Getting available packages"
-msgstr ""
+msgstr "Viser tilgjengelige pakker"
 
 #: dnfdragora/const.py:102
 msgid "Getting available updates"
-msgstr ""
+msgstr "Viser tilgjengelige oppdateringer"
 
 #: dnfdragora/const.py:103
 msgid "Getting all packages"
-msgstr ""
+msgstr "Viser alle pakker"
 
 #: dnfdragora/const.py:116
 msgid "Updated packages"
-msgstr ""
+msgstr "Oppdaterte pakker"
 
 #: dnfdragora/const.py:117
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Nedgraderte pakker"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Gøre pakker foreldet"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Foreldete pakker"
 
 #: dnfdragora/const.py:120
 msgid "Erased packages"
-msgstr ""
+msgstr "Slettede pakker"
 
 #: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
-msgstr ""
+msgstr "Installerte pakker"
 
 #: dnfdragora/const.py:123
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Innstallert pga avhenggigheter"
 
 #: dnfdragora/const.py:124
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Ominstallerte pakker"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "Installerer"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "Oppdaterer"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "Fjerner"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "Nedraderer"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "Erstatter"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Oppdaterer: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Installerer: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Ominstallerer: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Renser: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Gjør foreldet: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Gjør foreldet: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Nedgraderer: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Verifiserer: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Kjører lite skript: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Forbereder transaksjon: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Post-transaksjonsskript: %s"
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
-msgstr ""
+msgstr "Feilretting"
 
 #: dnfdragora/const.py:158
 msgid "New Package"
-msgstr ""
+msgstr "Ny pakke"
 
 #: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -324,49 +332,50 @@ msgstr "Sikkerhet"
 
 #: dnfdragora/const.py:160
 msgid "Enhancement"
-msgstr ""
+msgstr "Forbedring"
 
 #: dnfdragora/dialogs.py:44
 msgid "Transaction result"
-msgstr ""
+msgstr "Transaksjonsresultat"
 
 #: dnfdragora/dialogs.py:50
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Transaksjonsavhengighet"
 
-#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:515
-#: dnfdragora/dialogs.py:551 dnfdragora/dialogs.py:594
+#: dnfdragora/dialogs.py:55 dnfdragora/dialogs.py:477
+#: dnfdragora/dialogs.py:515 dnfdragora/dialogs.py:551
+#: dnfdragora/dialogs.py:594
 msgid "&Ok"
-msgstr ""
+msgstr "&OK"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232 dnfdragora/dialogs.py:403
-#: dnfdragora/dialogs.py:595
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:232
+#: dnfdragora/dialogs.py:403 dnfdragora/dialogs.py:595
 msgid "&Cancel"
-msgstr ""
+msgstr "&Avbryt"
 
 #: dnfdragora/dialogs.py:75
 msgid "replacing "
-msgstr ""
+msgstr "erstatter"
 
 #: dnfdragora/dialogs.py:81
 msgid "Total size "
-msgstr ""
+msgstr "Total størrelse"
 
 #: dnfdragora/dialogs.py:146
 msgid "Developers"
-msgstr ""
+msgstr "Utviklere"
 
 #: dnfdragora/dialogs.py:149
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "dnfdragora er en DNF forside som fungerer og bruker GTK, ncurses og QT"
 
 #: dnfdragora/dialogs.py:192 dnfdragora/dialogs.py:207
 msgid "Repository Management"
-msgstr ""
+msgstr "Håndetring av lagringssted"
 
 #: dnfdragora/dialogs.py:218
 msgid "Enabled"
-msgstr ""
+msgstr "I bruk"
 
 #: dnfdragora/dialogs.py:218 dnfdragora/ui.py:318
 msgid "Name"
@@ -374,27 +383,27 @@ msgstr "Navn"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/dialogs.py:400 dnfdragora/ui.py:449
 msgid "&Apply"
-msgstr ""
+msgstr "&Bruk"
 
 #: dnfdragora/dialogs.py:370 dnfdragora/ui.py:477
 msgid "User preferences"
-msgstr ""
+msgstr "Brukerpreferanser"
 
 #: dnfdragora/dialogs.py:397
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Vis oppdatering ved neste start"
 
 #: dnfdragora/dialogs.py:398
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Ikke vis oppdateringer ved neste start"
 
 #: dnfdragora/dialogs.py:644
 msgid "&Yes"
-msgstr ""
+msgstr "&Ja"
 
 #: dnfdragora/dialogs.py:645
 msgid "&No"
-msgstr ""
+msgstr "&Nei"
 
 #: dnfdragora/dialogs.py:668
 #, python-format
@@ -403,10 +412,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Vil du importere denne GPG nøkkelen <br>som kreves for for å verifisere "
+"%(pkg)s pakkene?<br><br>Nøkkel: 0x%(id)s:<br>Brukerid: \"%(user)s\"<br>Fra: "
+"%(file)s"
 
 #: dnfdragora/dialogs.py:675
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG nøkkel mangler"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -415,35 +427,38 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdemon api versjon: %(actual)d\n"
+"stemmer ikke\n"
+"påkrevet api versjon : %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "Start transaksjon"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "Laster ned pakker"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Sjekker pakkesignaturer"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:998
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Utfører systemendringer"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Verifiserer systemendringene"
 
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Laster ned %(count_files)d filer (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:544
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Mellomlagrer grupper fra pakkene"
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -481,27 +496,27 @@ msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:54
 msgid "Dial-Up"
-msgstr ""
+msgstr "Ring opp"
 
 #: dnfdragora/groupicons.py:58
 msgid "Fax"
-msgstr ""
+msgstr "Faks"
 
 #: dnfdragora/groupicons.py:62
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 #: dnfdragora/groupicons.py:66
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: dnfdragora/groupicons.py:70
 msgid "Serial"
-msgstr ""
+msgstr "Seriell"
 
 #: dnfdragora/groupicons.py:74
 msgid "Telephony"
-msgstr ""
+msgstr "Telefonisk"
 
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
@@ -509,7 +524,7 @@ msgstr "Databaser"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
-msgstr ""
+msgstr "Basis"
 
 #: dnfdragora/groupicons.py:89
 msgid "C"
@@ -521,15 +536,15 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:95
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:103
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 #: dnfdragora/groupicons.py:107
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:111
 msgid "GNOME and GTK+"
@@ -549,7 +564,7 @@ msgstr "Kjerne"
 
 #: dnfdragora/groupicons.py:127
 msgid "OCaml"
-msgstr ""
+msgstr "OCami"
 
 #: dnfdragora/groupicons.py:135
 msgid "Perl"
@@ -618,11 +633,11 @@ msgstr "Tenkespill"
 
 #: dnfdragora/groupicons.py:207
 msgid "Shooter"
-msgstr ""
+msgstr "Skytter"
 
 #: dnfdragora/groupicons.py:211
 msgid "Simulation"
-msgstr ""
+msgstr "Simulering"
 
 #: dnfdragora/groupicons.py:215
 msgid "Sports"
@@ -670,12 +685,12 @@ msgstr "Grafikk"
 
 #: dnfdragora/groupicons.py:263
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 #: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
 #: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
-msgstr ""
+msgstr "Editorer og konvertere"
 
 #: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
 #: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
@@ -684,15 +699,15 @@ msgstr "Verktøy"
 
 #: dnfdragora/groupicons.py:275
 msgid "Photography"
-msgstr ""
+msgstr "Fotografering"
 
 #: dnfdragora/groupicons.py:279
 msgid "Scanning"
-msgstr ""
+msgstr "Skanning"
 
 #: dnfdragora/groupicons.py:283
 msgid "Viewers"
-msgstr ""
+msgstr "Forhåndsvisere"
 
 #: dnfdragora/groupicons.py:288
 msgid "Monitoring"
@@ -736,31 +751,31 @@ msgstr "Kontorstøtte"
 
 #: dnfdragora/groupicons.py:331
 msgid "Dictionary"
-msgstr ""
+msgstr "Ordbok"
 
 #: dnfdragora/groupicons.py:335
 msgid "Finance"
-msgstr ""
+msgstr "Finans"
 
 #: dnfdragora/groupicons.py:339
 msgid "Management"
-msgstr ""
+msgstr "Ledelse"
 
 #: dnfdragora/groupicons.py:343
 msgid "Organizer"
-msgstr ""
+msgstr "Organiserer"
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Regneark"
 
 #: dnfdragora/groupicons.py:355
 msgid "Suite"
-msgstr ""
+msgstr "Svite"
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr ""
+msgstr "Ordbehandler"
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
@@ -808,15 +823,15 @@ msgstr "Lyd"
 
 #: dnfdragora/groupicons.py:419
 msgid "Midi"
-msgstr ""
+msgstr "Midi"
 
 #: dnfdragora/groupicons.py:423
 msgid "Mixers"
-msgstr ""
+msgstr "Miksere"
 
 #: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
 msgid "Players"
-msgstr ""
+msgstr "Spillere"
 
 #: dnfdragora/groupicons.py:436
 msgid "System"
@@ -892,7 +907,7 @@ msgstr "Video"
 
 #: dnfdragora/groupicons.py:527
 msgid "Television"
-msgstr ""
+msgstr "TV"
 
 #: dnfdragora/groupicons.py:537
 msgid "Workstation"
@@ -977,37 +992,37 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Laster ned :  %(files)d filer,  %(size)d bytes"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Starter nedlasting : %s"
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Framdrift filer  (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:157
 msgid "Update information"
-msgstr ""
+msgstr "Oppdateringsinformasjon"
 
 #: dnfdragora/ui.py:158
 msgid "File list"
-msgstr ""
+msgstr "Filliste"
 
 #: dnfdragora/ui.py:159
 msgid "Changelog"
-msgstr ""
+msgstr "Endringslogg"
 
 #: dnfdragora/ui.py:160
 msgid "Requirements"
-msgstr ""
+msgstr "Krav"
 
 #: dnfdragora/ui.py:266
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Programvarehåndtering - dnfdragora"
 
 #: dnfdragora/ui.py:298
 msgid "Software Management"
@@ -1043,12 +1058,12 @@ msgstr "Ikke installert"
 
 #: dnfdragora/ui.py:335
 msgid "To update"
-msgstr ""
+msgstr "Skal oppdateres"
 
 #: dnfdragora/ui.py:341
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Vis %s og bare noarch "
 
 #: dnfdragora/ui.py:347
 msgid "Groups"
@@ -1072,43 +1087,43 @@ msgstr "i filnavn"
 
 #: dnfdragora/ui.py:433
 msgid "&Search"
-msgstr ""
+msgstr "&Søk"
 
 #: dnfdragora/ui.py:439
 msgid "&Clear search"
-msgstr ""
+msgstr "&Tøm søk"
 
 #: dnfdragora/ui.py:453
 msgid "Ch&eck all"
-msgstr ""
+msgstr "&Sjekk alle"
 
 #: dnfdragora/ui.py:457 dnfdragora/ui.py:466
 msgid "&Quit"
-msgstr ""
+msgstr "&Avslutt"
 
 #: dnfdragora/ui.py:462
 msgid "&File"
-msgstr ""
+msgstr "&Fil"
 
 #: dnfdragora/ui.py:463
 msgid "Reset the selection"
-msgstr ""
+msgstr "Resett valg"
 
 #: dnfdragora/ui.py:464
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Oppfrisk Metadata"
 
 #: dnfdragora/ui.py:465
 msgid "Repositories"
-msgstr ""
+msgstr "Lagringssted"
 
 #: dnfdragora/ui.py:476
 msgid "&Options"
-msgstr ""
+msgstr "&Alternativer"
 
 #: dnfdragora/ui.py:488
 msgid "&Help"
-msgstr ""
+msgstr "&Hjelp"
 
 #: dnfdragora/ui.py:489
 msgid "Manual"
@@ -1116,31 +1131,31 @@ msgstr "Manuell"
 
 #: dnfdragora/ui.py:490
 msgid "&About"
-msgstr ""
+msgstr "&Om"
 
 #: dnfdragora/ui.py:516
 msgid "update"
-msgstr ""
+msgstr "oppdater"
 
 #: dnfdragora/ui.py:519
 msgid "locked"
-msgstr ""
+msgstr "låst"
 
 #: dnfdragora/ui.py:522
 msgid "installed"
-msgstr ""
+msgstr "installert"
 
 #: dnfdragora/ui.py:835
 msgid "Missing information"
-msgstr ""
+msgstr "Mangler informasjon"
 
 #: dnfdragora/ui.py:962
 msgid "Search"
-msgstr ""
+msgstr "Søk"
 
 #: dnfdragora/ui.py:1024
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Feil ved sjekking av pakkesignaturer"
 
 #: dnfdragora/ui.py:1028
 msgid "Downloading error"
@@ -1156,25 +1171,25 @@ msgstr[1] ""
 
 #: dnfdragora/ui.py:1045
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "Byggtransaksjonsfeil"
 
 #: dnfdragora/ui.py:1111
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Ennå ikke implementert"
 
 #: dnfdragora/ui.py:1139
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Pakke%s kan ikke fjernes"
 
 #: dnfdragora/ui.py:1139
 msgid "Protected package selected"
-msgstr ""
+msgstr "Beskyttet pakke er valgt"
 
 #: dnfdragora/ui.py:1215
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Widget er ikke håndtert"
 
 #: dnfdragora/ui.py:1217
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Hendelse er ikke håndtert"
