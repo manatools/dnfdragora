@@ -56,7 +56,7 @@ set(CMAKE_INSTALL_FULL_SYSCONFDIR "/etc")
 
 # Configure files
 configure_file(${CMAKE_SOURCE_DIR}/etc/dnfdragora.yaml.in ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/dnfdragora/version.py.in ${CMAKE_SOURCE_DIR}/dnfdragora/version.py @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/dnfdragora/version.py.in ${CMAKE_BINARY_DIR}/dnfdragora/version.py @ONLY)
 
 # Build and install translations
 if(GETTEXT_FOUND)
@@ -71,6 +71,7 @@ endif(NOT SPHINX_EXECUTABLE-NOTFOUND)
 # Installing application code
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/dnfdragora DESTINATION ${CMAKE_INSTALL_BINDIR})
 file(GLOB_RECURSE PY_SRC LIST_DIRECTORIES false RELATIVE ${CMAKE_SOURCE_DIR} dnfdragora/*.py)
+install(FILES ${PY_SRC} ${CMAKE_BINARY_DIR}/dnfdragora/version.py DESTINATION ${PYTHON_INSTALL_DIR}/dnfdragora)
 
 # Installing configuration
 install(FILES ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/dnfdragora)
