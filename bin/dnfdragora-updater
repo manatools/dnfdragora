@@ -11,6 +11,15 @@
 #    License: GPLv3
 #
 
+import os, sys
+
+if sys.path[0] is not '/usr/bin':
+    # We know this script is running from a git checkout
+    SCRIPT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+    SRC_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, "./"))
+    SRC_BIN_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "bin/"))
+    sys.path.insert(0, SRC_DIR)
+
 if __name__ == "__main__":
     import dnfdragora.updater
     dnfdragora.updater.Updater().main()
