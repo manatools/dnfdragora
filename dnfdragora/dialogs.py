@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8 :
 '''
 dnfdragora is a graphical package management tool based on libyui python bindings
 
