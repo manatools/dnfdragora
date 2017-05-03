@@ -369,7 +369,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
-            show_item = self.update_only
+            show_item = 'all'
             if not self.update_only and 'show' in view.keys():
                 show_item = view['show']
 
@@ -391,7 +391,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for f in ordered_filters:
             item = yui.YItem(self.filters[f]['title'], False)
 
-            filter_item = self.update_only
+            filter_item = 'to_update'
             if not self.update_only and 'filter' in view.keys():
                 filter_item = view['filter']
 
@@ -1239,7 +1239,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.loop_has_finished = True
         self.dialog.destroy()
-        self.backend.Unlock()
+        #self.backend.quit()
 
-    def quit():
+    def quit(self):
         self.running = False
