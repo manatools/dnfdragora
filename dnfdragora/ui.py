@@ -131,6 +131,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         constructor
         '''
 
+        self.running = True
+        self.loop_has_finished = False
         self.options = options
         self._progressBar = None
         self.packageQueue = PackageQueue()
@@ -1069,7 +1071,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         Event-handler for the maindialog
         """
-        while True:
+        while self.running == True:
 
             event = self.dialog.waitForEvent()
 
@@ -1235,8 +1237,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # Save user prefs on exit
         self.saveUserPreference()
 
+        self.loop_has_finished = True
         self.dialog.destroy()
+        self.backend.Unlock()
 
-        # next line seems to be a workaround to prevent the qt-app from crashing
-        # see https://github.com/libyui/libyui-qt/issues/41
-        yui.YUILoader.deleteUI()
+    def quit():
+        self.running = False

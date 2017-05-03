@@ -56,8 +56,8 @@ class Updater:
         try:
             self.__running = False
             self.__updater.join()
-            self.__main_gui.running = False
-            while self.__main_gui.has_finished != True:
+            self.__main_gui.quit()
+            while self.__main_gui.loop_has_finished != True:
                 time.sleep(1)
             self.__main_gui.backend.quit()
             yui.YDialog.deleteAllDialogs()
