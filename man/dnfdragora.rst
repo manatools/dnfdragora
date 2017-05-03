@@ -77,6 +77,9 @@ can be run using Qt 5, GTK+ 3, or ncurses interfaces.
 ``--install <RPM-Packages …>``
     Install local rpm packages.
 
+``--version``
+    Show application version and exit.
+
 ``--exit``
     Force dnfdaemon dbus services used by dnfdragora to exit.
 
