@@ -1081,6 +1081,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             group = None
             #event type checking
             if (eventType == yui.YEvent.CancelEvent) :
+                self.running = False
                 break
             elif (eventType == yui.YEvent.MenuEvent) :
                 ### MENU ###
@@ -1105,6 +1106,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         rd = None
                     elif item == self.fileMenu['quit'] :
                         #### QUIT
+                        self.running = False
                         break
                     elif item == self.optionsMenu['user_prefs'] :
                         up = dialogs.UserPrefsDialog(self)
@@ -1128,6 +1130,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 widget  = event.widget()
                 if (widget == self.quitButton) :
                     #### QUIT
+                    self.running = False
                     break
                 elif (widget == self.packageList) :
                     wEvent = yui.toYWidgetEvent(event)
@@ -1239,6 +1242,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.loop_has_finished = True
         self.dialog.destroy()
+        try:
+            self.backend.Unlock()
+        except:
+            pass
         #self.backend.quit()
 
     def quit(self):

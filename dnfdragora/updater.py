@@ -75,7 +75,11 @@ class Updater:
             self.__main_gui.quit()
             while self.__main_gui.loop_has_finished != True:
                 time.sleep(1)
-            self.__main_gui.backend.quit()
+            try:
+                self.__backend.Unlock()
+                self.__main_gui.backend.quit()
+            except:
+                pass
             yui.YDialog.deleteAllDialogs()
             yui.YUILoader.deleteUI()
 
@@ -91,11 +95,7 @@ class Updater:
                         pass
 
             self.__tray.stop()
-
-            try:
-                self.__backend.Exit()
-            except:
-                pass
+            self.__backend.Exit()
 
 
     def __run_dialog(self, args, *kwargs):

@@ -292,8 +292,11 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
     @ExceptionHandler
     def quit(self):
         """Quit the dnf backend daemon."""
-        self.Unlock()
-        self.Exit()
+        try:
+            self.Unlock()
+            self.Exit()
+        except:
+            pass
 
     @ExceptionHandler
     def reload(self):
