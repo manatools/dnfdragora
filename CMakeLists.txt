@@ -70,15 +70,18 @@ endif(NOT SPHINX_EXECUTABLE-NOTFOUND)
 
 # Installing application code
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/dnfdragora DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/dnfdragora-updater DESTINATION ${CMAKE_INSTALL_BINDIR})
 file(GLOB_RECURSE PY_SRC LIST_DIRECTORIES false RELATIVE ${CMAKE_SOURCE_DIR} dnfdragora/*.py)
 install(FILES ${PY_SRC} ${CMAKE_BINARY_DIR}/dnfdragora/version.py DESTINATION ${PYTHON_INSTALL_DIR}/dnfdragora)
 
 # Installing configuration
 install(FILES ${CMAKE_BINARY_DIR}/etc/dnfdragora.yaml DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/dnfdragora)
+install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora-updater.desktop DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/xdg/autostart)
 
 # Installing data files
 install(FILES ${CMAKE_SOURCE_DIR}/share/metainfo/org.mageia.dnfdragora.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata)
 install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora-updater.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora-localinstall.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 install(FILES ${CMAKE_SOURCE_DIR}/share/images/16x16/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/16x16/apps RENAME dnfdragora.png)
 install(FILES ${CMAKE_SOURCE_DIR}/share/images/32x32/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/32x32/apps RENAME dnfdragora.png)
