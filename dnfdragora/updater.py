@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8 :
 '''
 dnfdragora is a graphical package management tool based on libyui python bindings
 
@@ -47,7 +48,7 @@ class Updater:
         try:
             self.__backend = dnfdaemon.client.Client()
         except dnfdaemon.client.DaemonError as error:
-            print('Error starting dnfdaemon service: [%s]', str(error))
+            print(_('Error starting dnfdaemon service: [%s]'), str(error))
             sys.exit(1)
 
         try:
@@ -59,10 +60,10 @@ class Updater:
 
         self.__icon  = Image.open(icon_path)
         self.__menu  = Menu(
-            MenuItem('Update', self.__run_update),
-            MenuItem('Open dnfdragora dialog', self.__run_dnfdragora),
-            MenuItem('Check for updates', self.__get_updates_forced),
-            MenuItem('Exit', self.__shutdown)
+            MenuItem(_('Update'), self.__run_update),
+            MenuItem(_('Open dnfdragora dialog'), self.__run_dnfdragora),
+            MenuItem(_('Check for updates'), self.__get_updates_forced),
+            MenuItem(_('Exit'), self.__shutdown)
         )
         self.__name  = 'dnfdragora-updater'
         self.__tray  = Tray(self.__name, self.__icon, self.__name, self.__menu)
@@ -131,7 +132,7 @@ class Updater:
                     '-i', 'dnfdragora',
                     '-u', 'normal',
                     'dnfdragora',
-                    '%d updates available.' % update_count
+                    _('%d updates available.') % update_count
                 )
         else:
             update_count = -1
