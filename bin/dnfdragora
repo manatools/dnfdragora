@@ -92,7 +92,9 @@ if __name__ == "__main__":
             logger.error("Unexpected error: %s ", sys.exc_info()[0])
         finally:
             if (main_gui is not None) :
-                main_gui.backend.quit()
+                if main_gui.running :
+                    main_gui.backend.quit()
+
             import yui
             yui.YDialog.deleteAllDialogs()
             # next line seems to be a workaround to prevent the qt-app from crashing
