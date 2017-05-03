@@ -55,6 +55,12 @@ The configuration-file will be looked up in the previous order of options.
     If enabled, dnfdragora will assume ``Yes`` where it would normally prompt
     for confirmation from user input. Default is False.
 
+``update_interval``
+    :ref:`integer <integer-label>`
+
+    Sets the interval in minutes, dnfdragora-updater continuously checks for
+    new available updates.
+
 ``log_filename``
     :ref:`string <string-label>`
 
@@ -83,7 +89,12 @@ The configuration-file will be looked up in the previous order of options.
 ``boolean``
     This is a data type with only two possible values.
 
-    One of following options can be used: 1, 0, True, False, yes, no
+    One of following options can be used: True, False
+
+.. _integer-label:
+
+``integer``
+    It is a whole number that can be written without a fractional component.
 
 .. _string-label:
 

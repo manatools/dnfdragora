@@ -1,6 +1,7 @@
 settings:
     use_comps: @USE_COMPS@
     always_yes: False
+    update_interval: 180
 #    log_filename: PATH/TO/dnfdragora.log
 #    log_level_debug: True
 
