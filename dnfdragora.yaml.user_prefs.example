@@ -13,3 +13,4 @@ view:
 settings:
     'show updates at startup': False
     'do not show groups at startup': False
+    'interval for checking updates': 180

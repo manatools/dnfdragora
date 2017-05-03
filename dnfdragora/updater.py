@@ -11,7 +11,7 @@ Author:  Björn Esser <besser82@fedoraproject.org>
 import dnfdaemon.client, gettext, sched, sh, sys, threading, time, yui
 
 from PIL import Image
-from dnfdragora import misc, ui
+from dnfdragora import config, misc, ui
 from gettext import gettext as _
 from pystray import Menu, MenuItem
 from pystray import Icon as Tray
@@ -25,6 +25,22 @@ class Updater:
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
         self.__scheduler = sched.scheduler(time.time, time.sleep)
+
+        self.__config         = config.AppConfig('dnfdragora')
+        self.__updateInterval = 180
+
+        if self.__config.systemSettings :
+            settings = {}
+            if 'settings' in self.__config.systemSettings.keys() :
+                settings = self.__config.systemSettings['settings']
+                if 'update_interval' in settings.keys() :
+                    self.__updateInterval = int(settings['update_interval'])
+
+        if self.__config.userPreferences:
+            if 'settings' in self.__config.userPreferences.keys() :
+                settings = self.__config.userPreferences['settings']
+                if 'interval for checking updates' in settings.keys() :
+                    self.__updateInterval = int(settings['interval for checking updates'])
 
         icon_path = '/usr/share/icons/hicolor/128x128/apps/dnfdragora.png'
 
@@ -124,7 +140,7 @@ class Updater:
     def __update_loop(self):
         while self.__running == True:
             if self.__scheduler.empty():
-                self.__scheduler.enter(30 * 60, 1, self.__get_updates)
+                self.__scheduler.enter(self.__updateInterval * 60, 1, self.__get_updates)
             self.__scheduler.run(blocking=False)
             time.sleep(1)
 

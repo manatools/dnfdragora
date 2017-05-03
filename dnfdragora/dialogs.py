@@ -384,6 +384,13 @@ class UserPrefsDialog:
         hbox_footbar.setWeight(1,10)
 
         settings = {}
+        if self.parent.config.systemSettings :
+            if 'settings' in self.parent.config.systemSettings.keys() :
+                settings = self.parent.config.systemSettings['settings']
+                if 'update_interval' in settings.keys() :
+                    updateInterval = int(settings['update_interval'])
+
+        settings = {}
         if self.parent.config.userPreferences:
             if 'settings' in self.parent.config.userPreferences.keys() :
                 settings = self.parent.config.userPreferences['settings']
@@ -393,9 +400,12 @@ class UserPrefsDialog:
             showUpdates = settings['show updates at startup']
         if 'do not show groups at startup' in settings.keys() :
             showAll = settings['do not show groups at startup']
+        if 'interval for checking updates' in settings.keys() :
+            updateInterval = int(settings['interval for checking updates'])
 
         self.showUpdates =  self.factory.createCheckBox(hbox_middle , _("Show updates next startup"), showUpdates )
         self.showAll  =  self.factory.createCheckBox(hbox_middle , _("Do not show groups view next startup"), showAll )
+        self.updateInterval = self.factory.createIntField(hbox_middle, _("Interval in minutes to check for updates:"), 30, 720, updateInterval )
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
@@ -427,7 +437,8 @@ class UserPrefsDialog:
                 elif (widget == self.applyButton) :
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
-                        'do not show groups at startup'  : self.showAll.isChecked()
+                        'do not show groups at startup' : self.showAll.isChecked(),
+                        'interval for checking updates' : self.updateInterval.value()
                         }
                     break
 
