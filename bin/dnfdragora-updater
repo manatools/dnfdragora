@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+# vim: set et ts=4 sw=4:
+#    Copyright 2017 Björn Esser <besser82@fedoraproject.org>
+#
+#    dnfdragora is a graphical package management tool based on libyui
+#    python bindings
+#
+#    dnfdragora is an external manatools module
+#
+#    License: GPLv3
+#
+
+if __name__ == "__main__":
+    import dnfdragora.updater
+    dnfdragora.updater.Updater().main()
