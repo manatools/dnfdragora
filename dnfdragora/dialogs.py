@@ -142,10 +142,11 @@ class AboutDialog:
         self.name    = parent.appname
         self.version = const.VERSION
         self.license = "GPLv3"
-        self.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li></ul>"%(
+        self.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li><li>%s</li></ul>"%(
                             _("Developers"),
                             "Angelo Naselli &lt;anaselli@linux.it&gt;",
-                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;")
+                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;",
+                            "Björn  Esser   &lt;besser82@fedoraproject.org&gt;")
         self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
         self.dialog_mode = yui.YMGAAboutDialog.TABBED
         # TODO
