@@ -386,6 +386,7 @@ class UserPrefsDialog:
         hbox_footbar.setWeight(1,10)
 
         settings = {}
+        updateInterval = 180
         if self.parent.config.systemSettings :
             if 'settings' in self.parent.config.systemSettings.keys() :
                 settings = self.parent.config.systemSettings['settings']
@@ -398,16 +399,28 @@ class UserPrefsDialog:
                 settings = self.parent.config.userPreferences['settings']
         showUpdates = False
         showAll = False
+        always_yes = self.parent.always_yes
+
         if 'show updates at startup' in settings.keys() :
             showUpdates = settings['show updates at startup']
         if 'do not show groups at startup' in settings.keys() :
             showAll = settings['do not show groups at startup']
         if 'interval for checking updates' in settings.keys() :
             updateInterval = int(settings['interval for checking updates'])
+        if 'always_yes' in settings.keys() :
+            always_yes = settings['always_yes']
 
-        self.showUpdates =  self.factory.createCheckBox(hbox_middle , _("Show updates next startup"), showUpdates )
-        self.showAll  =  self.factory.createCheckBox(hbox_middle , _("Do not show groups view next startup"), showAll )
-        self.updateInterval = self.factory.createIntField(hbox_middle, _("Interval in minutes to check for updates:"), 30, 720, updateInterval )
+        vbox1 = self.factory.createVBox(hbox_middle)
+
+        frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Layout") )
+        hbox = self.factory.createHBox(frame)
+        self.showUpdates =  self.factory.createCheckBox(hbox , _("Show updates next startup"), showUpdates )
+        self.showAll  =  self.factory.createCheckBox(hbox , _("Do not show groups view next startup"), showAll )
+
+        frame = self.factory.createFrame( vbox1, _("System options") )
+        hbox = self.factory.createHBox(frame)
+        self.always_yes  =  self.factory.createCheckBox(hbox , _("Proceed without asking for confirmation"), always_yes )
+        self.updateInterval = self.factory.createIntField(hbox, _("Interval in minutes to check for updates:"), 30, 720, updateInterval )
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
@@ -440,8 +453,10 @@ class UserPrefsDialog:
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
                         'do not show groups at startup' : self.showAll.isChecked(),
-                        'interval for checking updates' : self.updateInterval.value()
+                        'interval for checking updates' : self.updateInterval.value(),
+                        'always_yes' : self.always_yes.isChecked()
                         }
+                    self.parent.always_yes = self.always_yes.isChecked()
                     break
 
     def run(self):

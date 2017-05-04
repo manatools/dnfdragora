@@ -366,6 +366,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'do not show groups at startup' in settings.keys() :
                 if settings['do not show groups at startup'] :
                     view['show'] = 'all'
+            if 'always_yes' in settings.keys() :
+                self.always_yes = settings['always_yes']
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
