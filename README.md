@@ -74,10 +74,11 @@ Example with ncurses:
     * python3-devel >= 3.4.0
     * optional: gettext        (for locales)
     * optional: python3-sphinx (for manpages)
-* Configure: `mkdir build && cd build && cmake ..`
+* Configure: `mkdir build && cd build && cmake .. && cd ..`
     * -DCMAKE_INSTALL_PREFIX=/usr      - Sets the install path, eg. /usr, /usr/local or /opt
     * -DCHECK_RUNTIME_DEPENDENCIES=ON  - Checks if the needed runtime dependencies are met.
     * -DENABLE_COMPS=ON                - Useful if your distribution uses COMPS for groups, eg. Fedora, RHEL, CentOS
+* Copy build/dnfdragora/version.py to dnfdragora/
 * Run:       `bin/dnfdragora` (from the top source dir, add '--locales-dir' option if you want to test localization locally)
 
 
