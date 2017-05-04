@@ -1,5 +1,7 @@
 2017-XX-YY v. 1.1.0
 ---------------------
+- Added answer always yes to user preferences
+. New dnfdragora-updater notifier (besser82)
 - Added Option Menu and User preferences dialog
 - Group caching (Fedora) is invoked only when needed now
 - Managed showing by all or groups and filtering (to_update, 
