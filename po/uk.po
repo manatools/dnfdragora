@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
-"PO-Revision-Date: 2017-04-26 17:18+0300\n"
+"PO-Revision-Date: 2017-05-05 09:07+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -394,7 +394,7 @@ msgstr "Налаштування користувача"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "Компонування"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
@@ -406,15 +406,15 @@ msgstr "Не показувати панель груп після наступ�
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Параметри системи"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Продовжити без підтвердження"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Інтервал у хвилинах між пошуками оновлень:"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
