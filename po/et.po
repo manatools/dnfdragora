@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Marek Laane <bald@smail.ee>, 2017\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2017\n"
 "Language-Team: Estonian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "et/)\n"
 "Language: et\n"
@@ -22,93 +36,98 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [võtmed]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "käivitamine yui GTK+ pluginaga"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "käivitamine yui ncursesi pluginaga"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "käivitamine yui Qt pluginaga"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "dialoogide kuvamine täisekraanirežiimis"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "grupiikoonide uue asukoha määramine (/usr/share/icons asemele)"
 
 #: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"kõigi vajalike piltide uue asukoha määramine (/usr/share/dnfdragora/images "
+"asemele)"
 
 #: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "kataloog lokaliseerimisstringidega (ainult arendajatele)"
 
 #: bin/dnfdragora:42
 msgid "install packages"
-msgstr ""
+msgstr "pakettide paigaldamine"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr ""
+msgstr "ainult uuendustedialoogi kuvamine"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "rakenduse versiooni näitamine"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"dnfdragora kasutatud dnfdaemon'i DBus-teenuste kasutamise jõuga lõpetamine"
 
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sversioon: %(version)s%(NL)ssait: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1117
 msgid "Sorry"
-msgstr ""
+msgstr "Vabandust"
 
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "tekkis dnfdaemon'i kliendi tõrge:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "tekkis dnfdaemon'i nime tõrge:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "tekkis dnfdaemon'i atribuudi tõrge:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Hoidla metaandmete värskendamine"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "DNF-puhvri (juur) värskendamine nurjus"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF-juure taustaprogrammil polnud vajalikke õigusi.\n"
+"dnfdragora lõpetab töö"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -116,46 +135,49 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"Teine protsess on DNF-i lukustanud.\n"
+"\n"
+"dnfdragora lõpetab töö"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE töölaud"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce töölaud"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Rakendused"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE töölaud"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt töölaud"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamoni töölaud"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE töölaud"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii töölaud"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugari töökeskkond"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME töölaud"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -168,14 +190,14 @@ msgstr "Serverid"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "Baassüsteem"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "Sisu"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
 msgid "All"
 msgstr "Kõik"
 
@@ -185,138 +207,138 @@ msgstr "Tühi"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Otsingutulemus"
 
 #: dnfdragora/const.py:100
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Paigaldatud pakettide tuvastamine"
 
 #: dnfdragora/const.py:101
 msgid "Getting available packages"
-msgstr ""
+msgstr "Saadaolevate pakettide tuvastamine"
 
 #: dnfdragora/const.py:102
 msgid "Getting available updates"
-msgstr ""
+msgstr "Saadaolevate uuenduste tuvastamine"
 
 #: dnfdragora/const.py:103
 msgid "Getting all packages"
-msgstr ""
+msgstr "Kõigi pakettide tuvastamine"
 
 #: dnfdragora/const.py:116
 msgid "Updated packages"
-msgstr ""
+msgstr "Uuendatud paketid"
 
 #: dnfdragora/const.py:117
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Alandatud versiooniga paketid"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Igandavad paketid"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Iganenud paketid"
 
 #: dnfdragora/const.py:120
 msgid "Erased packages"
-msgstr ""
+msgstr "Kustutatud paketid"
 
 #: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
-msgstr ""
+msgstr "Paigaldatud paketid"
 
 #: dnfdragora/const.py:123
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Paigaldatud sõltuvuste tõttu"
 
 #: dnfdragora/const.py:124
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Taaspaigaldatud paketid"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "Paigaldamine"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "Uuendamine"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "Eemaldamine"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "Versiooni alandamine"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "Asendamine"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Uuendamine: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Paigaldamine: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Taaspaigaldamine: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Puhastamine: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Eemaldamine: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Igandamine: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Versiooni alandamine: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Verifitseerimine: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Skripti käivitamine: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Tehingu ettevalmistamine: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Tehingujärgne skript: %s"
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
-msgstr ""
+msgstr "Veaparandus"
 
 #: dnfdragora/const.py:158
 msgid "New Package"
-msgstr ""
+msgstr "Uus pakett"
 
 #: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -324,49 +346,52 @@ msgstr "Turve"
 
 #: dnfdragora/const.py:160
 msgid "Enhancement"
-msgstr ""
+msgstr "Täiendus"
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
-msgstr ""
+msgstr "Tehingu tulemus"
 
 #: dnfdragora/dialogs.py:51
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Tehingu sõltuvus"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
+#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:622
 msgid "&Ok"
-msgstr ""
+msgstr "&Olgu"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
+#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
 msgid "&Cancel"
-msgstr ""
+msgstr "&Loobu"
 
 #: dnfdragora/dialogs.py:76
 msgid "replacing "
-msgstr ""
+msgstr "asendades "
 
 #: dnfdragora/dialogs.py:82
 msgid "Total size "
-msgstr ""
+msgstr "Kogusuurus "
 
 #: dnfdragora/dialogs.py:147
 msgid "Developers"
-msgstr ""
+msgstr "Arendajad"
 
 #: dnfdragora/dialogs.py:151
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora on DNF-i kasutajaliides, millel omakorda on GTK, ncursesi ja Qt "
+"liidesed"
 
 #: dnfdragora/dialogs.py:194 dnfdragora/dialogs.py:209
 msgid "Repository Management"
-msgstr ""
+msgstr "Hoidlahaldus"
 
 #: dnfdragora/dialogs.py:220
 msgid "Enabled"
-msgstr ""
+msgstr "Lubatud"
 
 #: dnfdragora/dialogs.py:220 dnfdragora/ui.py:320
 msgid "Name"
@@ -378,39 +403,39 @@ msgstr "&Rakenda"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "Kasutaja eelistused"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "Paigutus"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Uuenduste näitamine järgmisel käivitamisel"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Grupivaadet järgmisel käivitamisel ei näidata"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Süsteemi valikud"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Jätkamine kinnitust küsimata"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Uuenduste kontrollimise intervall minutites:"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
-msgstr ""
+msgstr "&Jah"
 
 #: dnfdragora/dialogs.py:673
 msgid "&No"
-msgstr ""
+msgstr "&Ei"
 
 #: dnfdragora/dialogs.py:696
 #, python-format
@@ -419,10 +444,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Kas importida see GPG võti, <br>mid aon vaja paketi %(pkg)s "
+"verifitseerimiseks?<br><br>Võti        : 0x%(id)s:<br>Kasutaja ID     : "
+"\"%(user)s\"<br>Asukoht       : %(file)s"
 
 #: dnfdragora/dialogs.py:703
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG võti puudub"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -431,35 +459,38 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon'i api versioon : %(actual)d\n"
+"ei klapi\n"
+"nõutava api versiooniga : %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "Tehingu alustamine"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "Pakettide allalaadimine"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Pakettide allkirjade kontrollimine"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Muudatuste rakendamine süsteemis"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Muudatuste verifitseerimine süsteemis"
 
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Laaditakse alla %(count_files)d faili (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Pakettidest gruppide puhverdamine ..."
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -993,37 +1024,37 @@ msgstr "Veeb/FTP"
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Allalaadimine :  %(files)d faili,  %(size)d baiti"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Allalaadimise alustamine : %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Failide edenemine (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:159
 msgid "Update information"
-msgstr ""
+msgstr "Uuendamisteave"
 
 #: dnfdragora/ui.py:160
 msgid "File list"
-msgstr ""
+msgstr "Faililoend"
 
 #: dnfdragora/ui.py:161
 msgid "Changelog"
-msgstr ""
+msgstr "Muutuste logi"
 
 #: dnfdragora/ui.py:162
 msgid "Requirements"
-msgstr ""
+msgstr "Nõuded"
 
 #: dnfdragora/ui.py:268
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Tarkvarahaldus - dnfdragora"
 
 #: dnfdragora/ui.py:300
 msgid "Software Management"
@@ -1059,7 +1090,7 @@ msgstr "Paigaldamata"
 
 #: dnfdragora/ui.py:337
 msgid "To update"
-msgstr ""
+msgstr "Uuendatavad"
 
 #: dnfdragora/ui.py:343
 #, python-format
@@ -1088,15 +1119,15 @@ msgstr "failinimedes"
 
 #: dnfdragora/ui.py:437
 msgid "&Search"
-msgstr ""
+msgstr "&Otsi"
 
 #: dnfdragora/ui.py:443
 msgid "&Clear search"
-msgstr ""
+msgstr "&Puhasta otsing"
 
 #: dnfdragora/ui.py:457
 msgid "Ch&eck all"
-msgstr ""
+msgstr "&Märgi kõik"
 
 #: dnfdragora/ui.py:461 dnfdragora/ui.py:470
 msgid "&Quit"
@@ -1112,15 +1143,15 @@ msgstr "Lähtesta valik"
 
 #: dnfdragora/ui.py:468
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Värskenda metaandmeid"
 
 #: dnfdragora/ui.py:469
 msgid "Repositories"
-msgstr ""
+msgstr "Hoidlad"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
-msgstr ""
+msgstr "&Valikud"
 
 #: dnfdragora/ui.py:492
 msgid "&Help"
@@ -1136,19 +1167,19 @@ msgstr "&Teave"
 
 #: dnfdragora/ui.py:520
 msgid "update"
-msgstr ""
+msgstr "uuendatav"
 
 #: dnfdragora/ui.py:523
 msgid "locked"
-msgstr ""
+msgstr "lukustatud"
 
 #: dnfdragora/ui.py:526
 msgid "installed"
-msgstr ""
+msgstr "paigaldatud"
 
 #: dnfdragora/ui.py:839
 msgid "Missing information"
-msgstr ""
+msgstr "Teave puudub"
 
 #: dnfdragora/ui.py:966
 msgid "Search"
@@ -1156,41 +1187,41 @@ msgstr "Otsi"
 
 #: dnfdragora/ui.py:1028
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Tõrge pakettide allkirjade kontrollimisel"
 
 #: dnfdragora/ui.py:1032
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Allalaadimistõrge"
+msgstr[1] "Allalaadmistõrked"
 
 #: dnfdragora/ui.py:1037
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tehingutõrge"
+msgstr[1] "Tehingutõrked"
 
 #: dnfdragora/ui.py:1049
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "Tehinguloomise tõrge"
 
 #: dnfdragora/ui.py:1117
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Ei ole veel võimalik"
 
 #: dnfdragora/ui.py:1146
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Paketti %s ei saa eemaldada"
 
 #: dnfdragora/ui.py:1146
 msgid "Protected package selected"
-msgstr ""
+msgstr "Valitud on kaitstud pakett"
 
 #: dnfdragora/ui.py:1222
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Haldamata vidin"
 
 #: dnfdragora/ui.py:1224
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Haldamata sündmus"
