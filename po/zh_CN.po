@@ -20,7 +20,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 1.00\n"
+"Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -79,7 +79,7 @@ msgstr "显示“仅更新”对话框"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "显示程序版本，然后退出"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -88,7 +88,7 @@ msgstr "强行终止 dnfdragora 使用的 dnfdaemon dbus 服务"
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)s 版本：%(version)s%(NL)s 网站：%(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -99,17 +99,17 @@ msgstr "抱歉"
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon 客户端出错：%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon 名称出错：%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon 属性出错：%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -194,8 +194,8 @@ msgstr "基础系统"
 msgid "Content"
 msgstr "内容"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
 msgid "All"
 msgstr "全部"
 
@@ -354,13 +354,14 @@ msgstr "事务处理结果"
 msgid "Transaction dependency"
 msgstr "事务依赖"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
+#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:622
 msgid "&Ok"
 msgstr "确定(&O)"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
+#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
 msgid "&Cancel"
 msgstr "取消(&C)"
 
@@ -398,31 +399,31 @@ msgstr "应用(&A)"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "首选项"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "布局"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr ""
+msgstr "下次启动时显示更新"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "下次启动时不显示组视图"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "系统选项"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "处理前不进行提示"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "检查更新的间隔（单位是分钟）："
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -1147,7 +1148,7 @@ msgstr "仓库"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
-msgstr ""
+msgstr "选项(&O)"
 
 #: dnfdragora/ui.py:492
 msgid "&Help"
@@ -1219,12 +1220,3 @@ msgstr "组件未被管理"
 #: dnfdragora/ui.py:1224
 msgid "Unmanaged event"
 msgstr "事件未被管理"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon 属性有误：%s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon 名称有误：%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon客户端有误：%s%s"
