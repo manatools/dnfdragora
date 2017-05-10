@@ -20,7 +20,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 1.00\n"
+"Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -81,7 +81,7 @@ msgstr "sadece güncelleme iletişim kutusu göster"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "uygulama sürümünü göster ve çık"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -92,7 +92,7 @@ msgstr ""
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)ssürüm: %(version)s%(NL)ssite: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -103,17 +103,17 @@ msgstr "Üzgünüz"
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon client error occurred:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon isim hatası oluştu:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon iyelik hatası oluştu: %(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -198,8 +198,8 @@ msgstr "Temel Sistem"
 msgid "Content"
 msgstr "İçerik"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
 msgid "All"
 msgstr "Hepsi"
 
@@ -358,13 +358,14 @@ msgstr "İşlem sonucu"
 msgid "Transaction dependency"
 msgstr "İşlem bağımlılığı"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
+#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:622
 msgid "&Ok"
 msgstr "&Tamam"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
+#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
 msgid "&Cancel"
 msgstr "&İptal"
 
@@ -402,31 +403,31 @@ msgstr "&Uygula"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "Kullanıcı ayarları"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "Düzen"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Bir sonraki başlangıçta güncellemeleri görüntüle"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Bir sonraki başlangıçta grup görünümünü görüntüleme"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Sistem seçenekleri"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Onaylama sormadan devam et"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Dakika cinsinden güncellemeleri denetleme sıklığı:"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -1150,7 +1151,7 @@ msgstr "Depolar"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
-msgstr ""
+msgstr "&Seçenekler"
 
 #: dnfdragora/ui.py:492
 msgid "&Help"
@@ -1224,12 +1225,3 @@ msgstr "Yönetilmeyen programcık"
 #: dnfdragora/ui.py:1224
 msgid "Unmanaged event"
 msgstr "Yönetilmeyen olay"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon iyelik hatası oluştu:%s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon isim hatası oluştu:%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon istemci hatası oluştu:%s%s"
