@@ -53,7 +53,7 @@ msgstr ""
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "använd fullskärm för dialogrutor"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -71,15 +71,15 @@ msgstr "mapp som innehåller lokalisationssträngar (endast utvecklare)"
 
 #: bin/dnfdragora:42
 msgid "install packages"
-msgstr ""
+msgstr "installera paket"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr ""
+msgstr "visa endast uppdateringar"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "visa programmets version och avsluta"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -192,8 +192,8 @@ msgstr "Bas-system"
 msgid "Content"
 msgstr "Innehåll"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
 msgid "All"
 msgstr "Alla"
 
@@ -352,13 +352,14 @@ msgstr "Överföringsresultat"
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
+#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:622
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
+#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
 msgid "&Cancel"
 msgstr "&Avbryt"
 
