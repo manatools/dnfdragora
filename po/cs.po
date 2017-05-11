@@ -20,7 +20,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 1.00\n"
+"Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -79,7 +79,7 @@ msgstr "Ukázat dialog pouze aktualizace"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "Ukázat verzi programu a ukončit"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -88,7 +88,7 @@ msgstr "Vynutit ukončení služeb dbus dnfdaemon používané dnfdragora"
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sverze: %(version)s%(NL)ssite: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -97,19 +97,19 @@ msgid "Sorry"
 msgstr "Promiňte"
 
 #: bin/dnfdragora:84
-#, fuzzy, python-format
+#, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr "Vyskytla se chyba klienta dnfdaemon: %s%s"
+msgstr "Vyskytla se chyba klienta dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
-#, fuzzy, python-format
+#, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr "Vyskytla se chyba názvu dnfdaemon: %s%s"
+msgstr "Vyskytla se chyba názvu dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
-#, fuzzy, python-format
+#, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr "Vyskytla se chyba vlastnosti dnfdaemon: %s%s"
+msgstr "Vyskytla se chyba vlastnosti dnfdaemon:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -195,8 +195,8 @@ msgstr "Základní systém"
 msgid "Content"
 msgstr "Obsah"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
 msgid "All"
 msgstr "Vše"
 
@@ -319,7 +319,7 @@ msgstr "Ověřování: %s"
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Spouští se scriptlet: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
@@ -329,7 +329,7 @@ msgstr "Příprava transakce: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Potransakční skript: %s"
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
@@ -355,13 +355,14 @@ msgstr "Výsledek transakce"
 msgid "Transaction dependency"
 msgstr "Závislost transakce"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
+#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:622
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
+#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
 msgid "&Cancel"
 msgstr "&Zrušit"
 
@@ -399,31 +400,31 @@ msgstr "&Použít"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "Uživatelská nastavení"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "Rozvržení"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Ukázat aktualizace při příštím spuštění"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Neukazovat pohled na skupiny při příštím spuštění"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Systémové volby"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Pokračovat bez žádání o potvrzení"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Interval v minutách pro zkontrolování aktualizací:"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -1147,7 +1148,7 @@ msgstr "Repozitáře"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
-msgstr ""
+msgstr "&Volby"
 
 #: dnfdragora/ui.py:492
 msgid "&Help"
