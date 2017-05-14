@@ -20,7 +20,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 1.00\n"
+"Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -74,7 +74,7 @@ msgstr "instalatu paketeak"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr ""
+msgstr "Erakutsi soilik eguneraketak"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
@@ -87,7 +87,7 @@ msgstr ""
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sbertsioa: %(version)s%(NL)sgunea: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -188,8 +188,8 @@ msgstr "Base Sistema"
 msgid "Content"
 msgstr "Edukia"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
+#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
 msgid "All"
 msgstr "Denak"
 
@@ -227,7 +227,7 @@ msgstr "Atzeratutako paketeak"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Paketea zaharkituak"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleted packages"
@@ -297,7 +297,7 @@ msgstr "Kentzen: %s"
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Zaharkituak: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
@@ -338,7 +338,7 @@ msgstr "Segurtasuna"
 
 #: dnfdragora/const.py:160
 msgid "Enhancement"
-msgstr ""
+msgstr "Hobekuntza"
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
@@ -348,13 +348,14 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
+#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:622
 msgid "&Ok"
 msgstr "&Ados"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
+#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
 msgid "&Cancel"
 msgstr "&Utzi"
 
