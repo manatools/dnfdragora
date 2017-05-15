@@ -52,7 +52,7 @@ msgstr ""
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "Erabili elkarrizketa pantaila osoan"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -98,17 +98,17 @@ msgstr "Barkatu"
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon bezeroaren errorea:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon izen errorea:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon atributu errorea:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -247,7 +247,7 @@ msgstr "Mendekotasunetarako instalatuta"
 
 #: dnfdragora/const.py:124
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Berrinstalatutako paketeak"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
@@ -282,12 +282,12 @@ msgstr "Instalatzen: %s"
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Berrinstalatzen: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Garbiketa: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -307,7 +307,7 @@ msgstr "Atzeratzen: %s"
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Egiaztatzen: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
@@ -330,7 +330,7 @@ msgstr ""
 
 #: dnfdragora/const.py:158
 msgid "New Package"
-msgstr ""
+msgstr "Pakete Berria"
 
 #: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -377,7 +377,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:194 dnfdragora/dialogs.py:209
 msgid "Repository Management"
-msgstr ""
+msgstr "Biltegi Kudeaketa"
 
 #: dnfdragora/dialogs.py:220
 msgid "Enabled"
@@ -393,11 +393,11 @@ msgstr "&Aplikatu"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "Erabiltzaile lehentasunak"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "Diseinua"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
@@ -409,7 +409,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Sistema aukerak"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
@@ -1008,7 +1008,7 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Deskargatzen:  %(files)d fitxategi,  %(size)d byteak"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
@@ -1074,7 +1074,7 @@ msgstr "Instalatu gabe"
 
 #: dnfdragora/ui.py:337
 msgid "To update"
-msgstr ""
+msgstr "Eguneratzeko"
 
 #: dnfdragora/ui.py:343
 #, python-format
@@ -1131,11 +1131,11 @@ msgstr ""
 
 #: dnfdragora/ui.py:469
 msgid "Repositories"
-msgstr ""
+msgstr "Biltegiak"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
-msgstr ""
+msgstr "&Aukerak"
 
 #: dnfdragora/ui.py:492
 msgid "&Help"
