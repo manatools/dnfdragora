@@ -78,7 +78,7 @@ msgstr "Erakutsi soilik eguneraketak"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "erakutsi aplikazio bertsioa eta irten"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -326,7 +326,7 @@ msgstr ""
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
-msgstr ""
+msgstr "Akats-zuzenketa"
 
 #: dnfdragora/const.py:158
 msgid "New Package"
