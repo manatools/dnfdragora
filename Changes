@@ -1,5 +1,7 @@
 2017-XX-YY v. 1.1.0
 ---------------------
+- Caught GLib.Error exception to avoid a crash, see
+  https://bugs.mageia.org/show_bug.cgi?id=20975
 - Added answer always yes to user preferences
 . New dnfdragora-updater notifier (besser82)
 - Added Option Menu and User preferences dialog
