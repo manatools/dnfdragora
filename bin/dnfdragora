@@ -45,12 +45,20 @@ if __name__ == "__main__":
     parser.add_argument('--exit',        help=_('force dnfdaemon dbus services used by dnfdragora to exit'), action='store_true')
     args = parser.parse_args()
 
-    import dnfdaemon.client
+    from gi.repository import GLib
+    import logging
+    logger = logging.getLogger('dnfdragora')
+    try:
+        import dnfdaemon.client
+    except GLib.Error as err:
+        logger.error(_('dnfdaemon client failure [%s]'), err)
+        if "g-io-error-quark" in str(err):
+           logger.error(_('Try again using a login shell'))
+        exit(-1)
+
     import dnfdragora.ui as ui
     import dnfdragora.dialogs as dialogs
     import dnfdragora.misc as misc
-    import logging
-    logger = logging.getLogger('dnfdragora')
 
     options = {}
     if args.update_only:
