@@ -108,4 +108,4 @@ if __name__ == "__main__":
             # next line seems to be a workaround to prevent the qt-app from crashing
             # see https://github.com/libyui/libyui-qt/issues/41
             yui.YUILoader.deleteUI()
-            logger.critical("Closing dnfdragora")
+            logger.info("Closing dnfdragora")
