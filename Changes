@@ -1,5 +1,8 @@
 2017-XX-YY v. 1.1.0
 ---------------------
+- Do not exit if cancel is pressed on run transaction 
+  authentication see:
+  https://bugs.mageia.org/show_bug.cgi?id=20923
 - Caught GLib.Error exception to avoid a crash, see
   https://bugs.mageia.org/show_bug.cgi?id=20975
 - Added answer always yes to user preferences

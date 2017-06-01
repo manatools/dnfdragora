@@ -19,6 +19,7 @@ import os.path
 import re
 import subprocess
 import sys
+import re
 
 import dnfdaemon.client
 
@@ -115,6 +116,15 @@ def format_block(block, indent):
         result += spaces + line + '\n'
     return result
 
+def parse_dbus_error():
+    '''parse values from a DBus releated exception '''
+    DBUS_ERR_RE = re.compile('.*GDBus.Error:([\w\.]*): (.*)$')
+
+    (type, value, traceback) = sys.exc_info()
+    res = DBUS_ERR_RE.match(str(value))
+    if res:
+        return res.groups()
+    return "", ""
 
 def ExceptionHandler(func):
     """

@@ -16,6 +16,7 @@ import sys
 import platform
 import yui
 import webbrowser
+import dnfdaemon.client
 
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
@@ -991,63 +992,74 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         Run a transaction after an apply button or a package given by CLI
         '''
-        rc, result = self.backend.BuildTransaction()
-        if rc :
-            ok = True
-            if not always_yes:
-                transaction_result_dlg = dialogs.TransactionResult(self)
-                ok = transaction_result_dlg.run(result)
+        locked = False
+        try:
+            rc, result = self.backend.BuildTransaction()
+            if rc :
+                ok = True
+                if not always_yes:
+                    transaction_result_dlg = dialogs.TransactionResult(self)
+                    ok = transaction_result_dlg.run(result)
 
-            if ok:  # Ok pressed
-                self.infobar.info(_('Applying changes to the system'))
-                rc, result = self.backend.RunTransaction()
-                # This can happen more than once (more gpg keys to be
-                # imported)
-                while rc == 1:
-                    logger.debug('GPG key missing: %s' % repr(result))
-                    # get info about gpgkey to be comfirmed
-                    values = self.backend._gpg_confirm
-                    if values:  # There is a gpgkey to be verified
-                        (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
-                        logger.debug('GPGKey : %s' % repr(values))
-                        resp = dialogs.ask_for_gpg_import(values)
-                        self.backend.ConfirmGPGImport(hexkeyid, resp)
-                        # tell the backend that the gpg key is confirmed
-                        # rerun the transaction
-                        # FIXME: It should not be needed to populate
-                        # the transaction again
-                        if resp:
-                            self._populate_transaction()
-                            rc, result = self.backend.BuildTransaction()
-                            rc, result = self.backend.RunTransaction()
-                        else:
-                            # NOTE TODO answer no is the only way to exit, since it seems not
-                            # to install the key :(
+                if ok:  # Ok pressed
+                    self.infobar.info(_('Applying changes to the system'))
+                    rc, result = self.backend.RunTransaction()
+                    # This can happen more than once (more gpg keys to be
+                    # imported)
+                    while rc == 1:
+                        logger.debug('GPG key missing: %s' % repr(result))
+                        # get info about gpgkey to be comfirmed
+                        values = self.backend._gpg_confirm
+                        if values:  # There is a gpgkey to be verified
+                            (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                            logger.debug('GPGKey : %s' % repr(values))
+                            resp = dialogs.ask_for_gpg_import(values)
+                            self.backend.ConfirmGPGImport(hexkeyid, resp)
+                            # tell the backend that the gpg key is confirmed
+                            # rerun the transaction
+                            # FIXME: It should not be needed to populate
+                            # the transaction again
+                            if resp:
+                                self._populate_transaction()
+                                rc, result = self.backend.BuildTransaction()
+                                rc, result = self.backend.RunTransaction()
+                            else:
+                                # NOTE TODO answer no is the only way to exit, since it seems not
+                                # to install the key :(
+                                break
+                        else:  # error in signature verification
+                            dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
+                                                'text' : '<br>'.join(result), 'richtext' : True })
                             break
-                    else:  # error in signature verification
-                        dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
-                                            'text' : '<br>'.join(result), 'richtext' : True })
-                        break
-                if rc == 4:  # Download errors
-                    dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
-                        'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-                    logger.error('Download error')
-                    logger.error(result)
-                elif rc != 0:  # other transaction errors
-                    dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
-                                'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-                    logger.error('RunTransaction failure')
-                    logger.error(result)
+                    if rc == 4:  # Download errors
+                        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
+                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
+                        logger.error('Download error')
+                        logger.error(result)
+                    elif rc != 0:  # other transaction errors
+                        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
+                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
+                        logger.error('RunTransaction failure')
+                        logger.error(result)
 
-                self.release_root_backend()
-                self.packageQueue.clear()
-                self.backend.reload()
-        else:
-            logger.error('BuildTransaction failure')
-            logger.error(result)
-            s = "%s"%result
-            dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
-
+                    self.release_root_backend()
+                    self.packageQueue.clear()
+                    self.backend.reload()
+            else:
+                logger.error('BuildTransaction failure')
+                logger.error(result)
+                s = "%s"%result
+                dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
+        except dnfdaemon.client.AccessDeniedError as e:
+            logger.error("dnfdaemon client AccessDeniedError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+        except:
+            exc, msg = misc.parse_dbus_error()
+            if 'AccessDeniedError' in exc:
+                logger.warning("User pressed cancel button in policykit window")
+                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
+            else:
+                pass
 
     def saveUserPreference(self):
         '''
