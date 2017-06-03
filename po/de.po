@@ -487,7 +487,7 @@ msgstr "Änderungen auf dem System werden verifiziert"
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr "Herunterladen %(count_files)d Dateien (%(count_bytes)sB)..."
+msgstr "Lade %(count_files)d Dateien herunter (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
