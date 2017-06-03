@@ -1188,7 +1188,7 @@ msgstr "Suchen"
 
 #: dnfdragora/ui.py:1028
 msgid "Error checking package signatures"
-msgstr "Fehler beim überprüfen der Paketsignaturen "
+msgstr "Fehler beim Überprüfen der Paketsignaturen "
 
 #: dnfdragora/ui.py:1032
 msgid "Downloading error"
