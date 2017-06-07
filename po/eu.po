@@ -112,7 +112,7 @@ msgstr "dnfdaemon atributu errorea:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Metadata Biltegia Freskatzen"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
@@ -342,11 +342,11 @@ msgstr "Hobekuntza"
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
-msgstr ""
+msgstr "Transakzio emaitza"
 
 #: dnfdragora/dialogs.py:51
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Transakzio mendekotasuna"
 
 #: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
 #: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
@@ -449,11 +449,11 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "Transakzioa hasi"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "Paketeak deskargatzen"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
@@ -1038,7 +1038,7 @@ msgstr "Eskakizunak"
 
 #: dnfdragora/ui.py:268
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Software Kudeaketa - dnfdragora"
 
 #: dnfdragora/ui.py:300
 msgid "Software Management"
@@ -1127,7 +1127,7 @@ msgstr "Aukeraketa berrezarri"
 
 #: dnfdragora/ui.py:468
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Metadata Freskatzen"
 
 #: dnfdragora/ui.py:469
 msgid "Repositories"
@@ -1208,4 +1208,4 @@ msgstr ""
 
 #: dnfdragora/ui.py:1224
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Kudeatu gabeko gertaera"
