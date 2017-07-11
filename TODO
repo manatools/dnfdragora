@@ -5,10 +5,8 @@ as soon as possible.
 === Critical ===
 
 === Important ===
-*   Write help/manual pages, maybe html to be run in a browser
 
 === Nice to have ===
-*   Add a user specific configuration file for saving user preferences.
 *   Modifying repository configuration to override settings per repository.
 *   Add a way to search, enable, and disable COPR repositories
 
