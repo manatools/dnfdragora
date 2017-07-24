@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
+"Last-Translator: Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/MageiaLinux/teams/9361/"
 "eu/)\n"
 "Language: eu\n"
@@ -40,33 +40,35 @@ msgstr "%(prog)s [aukerak]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "has zaitez yui GTK+ plugin-inplementazioa erabiltzen"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "has zaitez yui ncurses plugin-inplementazioa erabiltzen"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "has zaitez yui Qt plugin-inplementazioa erabiltzen"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr "Erabili elkarrizketa pantaila osoan"
+msgstr "eErabili elkarrizketa pantaila osoan"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "talde ikonoentzako bide berria behartu (/usr/share/icons ordez)"
 
 #: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"behar diren irudi guztiei bide berria behartu (/usr/share/dnfdragora/images "
+"ordez)"
 
 #: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "lokalizazio kateak dituen direktorioa (sustatzaileak soilik)"
 
 #: bin/dnfdragora:42
 msgid "install packages"
@@ -74,7 +76,7 @@ msgstr "instalatu paketeak"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr "Erakutsi soilik eguneraketak"
+msgstr "erakutsi soilik eguneraketak"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
@@ -83,6 +85,7 @@ msgstr "erakutsi aplikazio bertsioa eta irten"
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"dnfdaemon dbus dnfdragora-k erabilitako zerbitzuetatik irtetera behartu"
 
 #: bin/dnfdragora:70
 #, python-format
@@ -116,7 +119,7 @@ msgstr "Metadata Biltegia Freskatzen"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "Ezin izan da DNF cachea freskatu (root)"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
@@ -188,8 +191,8 @@ msgstr "Base Sistema"
 msgid "Content"
 msgstr "Edukia"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19
-#: dnfdragora/ui.py:334 dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
+#: dnfdragora/ui.py:348
 msgid "All"
 msgstr "Denak"
 
@@ -312,17 +315,17 @@ msgstr "Egiaztatzen: %s"
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Scriptlet exekutatzen: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Transakzioa prestatzen: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Transakzio script ondorengoak: %s"
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
@@ -348,24 +351,23 @@ msgstr "Transakzio emaitza"
 msgid "Transaction dependency"
 msgstr "Transakzio mendekotasuna"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505
-#: dnfdragora/dialogs.py:543 dnfdragora/dialogs.py:579
-#: dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
+#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
 msgid "&Ok"
 msgstr "&Ados"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234
-#: dnfdragora/dialogs.py:428 dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
+#: dnfdragora/dialogs.py:623
 msgid "&Cancel"
 msgstr "&Utzi"
 
 #: dnfdragora/dialogs.py:76
 msgid "replacing "
-msgstr "ordezten"
+msgstr "ordezten "
 
 #: dnfdragora/dialogs.py:82
 msgid "Total size "
-msgstr "Guztira tamaina"
+msgstr "Guztira tamaina "
 
 #: dnfdragora/dialogs.py:147
 msgid "Developers"
@@ -373,7 +375,7 @@ msgstr "Garatzaileak"
 
 #: dnfdragora/dialogs.py:151
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "dnfdragora GTK, ncurses eta QT erabiltzen duten DNF frontend bat da"
 
 #: dnfdragora/dialogs.py:194 dnfdragora/dialogs.py:209
 msgid "Repository Management"
@@ -401,11 +403,11 @@ msgstr "Diseinua"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Erakutsi eguneraketak hurrengo abiaraztean"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Ez erakutsi talde ikuspegia hurrengo abiaraztean"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
@@ -413,11 +415,11 @@ msgstr "Sistema aukerak"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Jarraitu berrespena eskatu gabe"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Tartea minututan eguneratzeak egiaztatzeko:"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -457,15 +459,15 @@ msgstr "Paketeak deskargatzen"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Pakete sinadurak egiaztatzen"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Sistema aldaketak aplikatzen"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Egiaztatu aldaketak sisteman"
 
 #: dnfdragora/dnf_backend.py:245
 #, python-format
@@ -474,7 +476,7 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Pakete-taldeetako cachean biltegiratzea ..."
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -1013,12 +1015,12 @@ msgstr "Deskargatzen:  %(files)d fitxategi,  %(size)d byteak"
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Deskargatzen hasita : %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Aurrerapen fitxategiak (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:159
 msgid "Update information"
@@ -1030,7 +1032,7 @@ msgstr "Fitxategi zerrenda"
 
 #: dnfdragora/ui.py:161
 msgid "Changelog"
-msgstr "Aldaketen historia:"
+msgstr "Aldaketen historia"
 
 #: dnfdragora/ui.py:162
 msgid "Requirements"
@@ -1107,11 +1109,11 @@ msgstr "&Bilatu"
 
 #: dnfdragora/ui.py:443
 msgid "&Clear search"
-msgstr ""
+msgstr "&Garbitu bilaketa"
 
 #: dnfdragora/ui.py:457
 msgid "Ch&eck all"
-msgstr ""
+msgstr "B&egiratu guztiak"
 
 #: dnfdragora/ui.py:461 dnfdragora/ui.py:470
 msgid "&Quit"
@@ -1163,7 +1165,7 @@ msgstr "instalatuta"
 
 #: dnfdragora/ui.py:839
 msgid "Missing information"
-msgstr ""
+msgstr "Informazio falta"
 
 #: dnfdragora/ui.py:966
 msgid "Search"
@@ -1171,40 +1173,40 @@ msgstr "Bilatu"
 
 #: dnfdragora/ui.py:1028
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Errorea pakete sinadurak egiaztatzean"
 
 #: dnfdragora/ui.py:1032
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Akatsa deskargatzen"
+msgstr[1] "Akatsak deskargatzen"
 
 #: dnfdragora/ui.py:1037
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Errorea transakzioan"
+msgstr[1] "Erroreak transakzioan"
 
 #: dnfdragora/ui.py:1049
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "BuildTransaction hutsegitea"
 
 #: dnfdragora/ui.py:1117
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Ez da oraindik ezarri"
 
 #: dnfdragora/ui.py:1146
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Ezin da %s paketea kendu"
 
 #: dnfdragora/ui.py:1146
 msgid "Protected package selected"
-msgstr ""
+msgstr "Babestutako paketea hautatuta"
 
 #: dnfdragora/ui.py:1222
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Kudeatu gabeko trepeta"
 
 #: dnfdragora/ui.py:1224
 msgid "Unmanaged event"
