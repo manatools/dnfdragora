@@ -1124,7 +1124,7 @@ msgstr "&Smazat hledání"
 
 #: dnfdragora/ui.py:457
 msgid "Ch&eck all"
-msgstr "&Prověřit vše"
+msgstr "&Vybrat vše"
 
 #: dnfdragora/ui.py:461 dnfdragora/ui.py:470
 msgid "&Quit"
