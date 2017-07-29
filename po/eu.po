@@ -133,6 +133,9 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF beste prozesu batek blokeatutik dauka.\n"
+"\n"
+"dnfdragora irtengo da"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
@@ -448,6 +451,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon api bertsioa : %(actual)d\n"
+"ez dator bat\n"
+"beharrezko api bertsioarekin : %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
@@ -472,7 +478,7 @@ msgstr "Egiaztatu aldaketak sisteman"
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Jaisten %(count_files)d fitxategiak (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
