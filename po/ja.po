@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuki Shira <shirayuking@gmail.com>, 2017\n"
+"Last-Translator: Kakura Masanori <kakurasan@gmail.com>, 2017\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ja/)\n"
 "Language: ja\n"
@@ -22,58 +36,59 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [オプション]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "yui の GTK+ プラグイン実装を用いて開始する"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "yui の ncurses プラグイン実装を用いて開始する"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "yui の Qt プラグイン実装を用いて開始する"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "ダイアログを全画面で表示する"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "グループ アイコンのパスを強制 (/usr/share/icons の代わりとして)"
 
 #: bin/dnfdragora:39
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"全ての必要な画像のパスを強制 (/usr/share/dnfdragora/images の代わりとして)"
 
 #: bin/dnfdragora:40
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "翻訳ファイルを含んだディレクトリを指定 (開発者用)"
 
 #: bin/dnfdragora:42
 msgid "install packages"
-msgstr ""
+msgstr "指定したパッケージをインストールする"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr ""
+msgstr "アップデートのみを行うダイアログを表示"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "アプリケーションのバージョンを表示して終了"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "dnfdragora から使用される dnfdaemon dbus サービスを強制終了"
 
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sバージョン: %(version)s%(NL)sサイト: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
@@ -98,7 +113,7 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "リポジトリのメタデータを読み込み中"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
@@ -116,46 +131,49 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF は別のプロセスによってロックされています。\n"
+"\n"
+"dnfdragora は終了します。"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE デスクトップ"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce デスクトップ"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "アプリケーション"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE デスクトップ"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt デスクトップ"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon デスクトップ"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE デスクトップ"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii デスクトップ"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar デスクトップ環境"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME デスクトップ"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -237,7 +255,7 @@ msgstr ""
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "インストール中"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
@@ -337,12 +355,12 @@ msgstr ""
 #: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
 #: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
 msgid "&Ok"
-msgstr ""
+msgstr "OK(&O)"
 
 #: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
 #: dnfdragora/dialogs.py:623
 msgid "&Cancel"
-msgstr ""
+msgstr "キャンセル(&C)"
 
 #: dnfdragora/dialogs.py:76
 msgid "replacing "
@@ -350,23 +368,24 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:82
 msgid "Total size "
-msgstr ""
+msgstr "合計サイズ"
 
 #: dnfdragora/dialogs.py:147
 msgid "Developers"
-msgstr ""
+msgstr "開発者"
 
 #: dnfdragora/dialogs.py:151
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora は DNF のフロントエンドで、 GTK, ncurses, QT を用いて動作します"
 
 #: dnfdragora/dialogs.py:194 dnfdragora/dialogs.py:209
 msgid "Repository Management"
-msgstr ""
+msgstr "リポジトリの管理"
 
 #: dnfdragora/dialogs.py:220
 msgid "Enabled"
-msgstr ""
+msgstr "有効"
 
 #: dnfdragora/dialogs.py:220 dnfdragora/ui.py:320
 msgid "Name"
@@ -374,7 +393,7 @@ msgstr "名前"
 
 #: dnfdragora/dialogs.py:231 dnfdragora/dialogs.py:425 dnfdragora/ui.py:453
 msgid "&Apply"
-msgstr ""
+msgstr "適用(&A)"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
@@ -406,11 +425,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
-msgstr ""
+msgstr "はい(&Y)"
 
 #: dnfdragora/dialogs.py:673
 msgid "&No"
-msgstr ""
+msgstr "いいえ(&N)"
 
 #: dnfdragora/dialogs.py:696
 #, python-format
@@ -1108,15 +1127,15 @@ msgstr "ファイル(&F)"
 
 #: dnfdragora/ui.py:467
 msgid "Reset the selection"
-msgstr ""
+msgstr "選択を全て解除"
 
 #: dnfdragora/ui.py:468
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "メタデータを再読み込み"
 
 #: dnfdragora/ui.py:469
 msgid "Repositories"
-msgstr ""
+msgstr "リポジトリ"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
