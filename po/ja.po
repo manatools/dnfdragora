@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Kakura Masanori <kakurasan@gmail.com>, 2017\n"
+"Last-Translator: Masanori Kakura <kakurasan@gmail.com>, 2017\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ja/)\n"
 "Language: ja\n"
@@ -94,36 +94,38 @@ msgstr "%(prog)s %(NL)sバージョン: %(version)s%(NL)sサイト: %(site)s"
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1117
 msgid "Sorry"
-msgstr ""
+msgstr "申し訳ありません"
 
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon クライアント のエラーが発生しました:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon の名前エラーが発生しました:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon の属性エラーが発生しました:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr "リポジトリのメタデータを読み込み中"
+msgstr "リポジトリのメタデータを更新中"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "DNF のキャッシュを更新できませんでした (root)"
 
 #: dnfdragora/basedragora.py:83
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF root バックエンドは認証されていません。\n"
+"dnfdragora は終了します。"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -186,11 +188,11 @@ msgstr "サーバ"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "ベースシステム"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "雑多なパッケージ"
 
 #: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
 #: dnfdragora/ui.py:348
@@ -203,7 +205,7 @@ msgstr "空"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "検索結果"
 
 #: dnfdragora/const.py:100
 msgid "Getting installed packages"
@@ -255,48 +257,48 @@ msgstr ""
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr "インストール中"
+msgstr "インストール"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "アップデート"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "削除"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "ダウングレード"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "置き換え"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "アップデート中: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "インストール中: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "再インストール中: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "後始末: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "削除中: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
@@ -306,12 +308,12 @@ msgstr ""
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "ダウングレード中: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "検証中: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
@@ -346,11 +348,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
-msgstr ""
+msgstr "トランザクション結果"
 
 #: dnfdragora/dialogs.py:51
 msgid "Transaction dependency"
-msgstr ""
+msgstr "トランザクション依存関係"
 
 #: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
 #: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
@@ -465,16 +467,17 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "システムに変更を適用中"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "システム上の変更を検証"
 
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr ""
+"%(count_files)d 個のファイルをダウンロード中 (%(count_bytes)s バイト)..."
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
@@ -516,27 +519,27 @@ msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:54
 msgid "Dial-Up"
-msgstr ""
+msgstr "ダイヤルアップ"
 
 #: dnfdragora/groupicons.py:58
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 #: dnfdragora/groupicons.py:62
 msgid "Mobile"
-msgstr ""
+msgstr "モバイル"
 
 #: dnfdragora/groupicons.py:66
 msgid "Radio"
-msgstr ""
+msgstr "ラジオ"
 
 #: dnfdragora/groupicons.py:70
 msgid "Serial"
-msgstr ""
+msgstr "シリアル"
 
 #: dnfdragora/groupicons.py:74
 msgid "Telephony"
-msgstr ""
+msgstr "テレフォニー"
 
 #: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
 msgid "Databases"
@@ -544,7 +547,7 @@ msgstr "データベース"
 
 #: dnfdragora/groupicons.py:86
 msgid "Basic"
-msgstr ""
+msgstr "Basic"
 
 #: dnfdragora/groupicons.py:89
 msgid "C"
@@ -556,15 +559,15 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:95
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:103
 msgid "Debug"
-msgstr ""
+msgstr "デバッグ"
 
 #: dnfdragora/groupicons.py:107
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:111
 msgid "GNOME and GTK+"
@@ -584,7 +587,7 @@ msgstr "カーネル"
 
 #: dnfdragora/groupicons.py:127
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: dnfdragora/groupicons.py:135
 msgid "Perl"
@@ -653,11 +656,11 @@ msgstr "パズル"
 
 #: dnfdragora/groupicons.py:207
 msgid "Shooter"
-msgstr ""
+msgstr "シューティング"
 
 #: dnfdragora/groupicons.py:211
 msgid "Simulation"
-msgstr ""
+msgstr "シミュレータ"
 
 #: dnfdragora/groupicons.py:215
 msgid "Sports"
@@ -705,12 +708,12 @@ msgstr "グラフィックス"
 
 #: dnfdragora/groupicons.py:263
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 #: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
 #: dnfdragora/groupicons.py:519
 msgid "Editors and Converters"
-msgstr ""
+msgstr "エディタとコンバータ"
 
 #: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
 #: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
@@ -719,15 +722,15 @@ msgstr "ユーティリティ"
 
 #: dnfdragora/groupicons.py:275
 msgid "Photography"
-msgstr ""
+msgstr "写真撮影"
 
 #: dnfdragora/groupicons.py:279
 msgid "Scanning"
-msgstr ""
+msgstr "スキャン"
 
 #: dnfdragora/groupicons.py:283
 msgid "Viewers"
-msgstr ""
+msgstr "ビューア"
 
 #: dnfdragora/groupicons.py:288
 msgid "Monitoring"
@@ -771,15 +774,15 @@ msgstr "オフィス"
 
 #: dnfdragora/groupicons.py:331
 msgid "Dictionary"
-msgstr ""
+msgstr "辞書"
 
 #: dnfdragora/groupicons.py:335
 msgid "Finance"
-msgstr ""
+msgstr "財務"
 
 #: dnfdragora/groupicons.py:339
 msgid "Management"
-msgstr ""
+msgstr "管理"
 
 #: dnfdragora/groupicons.py:343
 msgid "Organizer"
@@ -787,15 +790,15 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
-msgstr ""
+msgstr "表計算"
 
 #: dnfdragora/groupicons.py:355
 msgid "Suite"
-msgstr ""
+msgstr "スイート"
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr ""
+msgstr "ワードプロセッサ"
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
@@ -843,15 +846,15 @@ msgstr "サウンド"
 
 #: dnfdragora/groupicons.py:419
 msgid "Midi"
-msgstr ""
+msgstr "MIDI"
 
 #: dnfdragora/groupicons.py:423
 msgid "Mixers"
-msgstr ""
+msgstr "ミキサー"
 
 #: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
 msgid "Players"
-msgstr ""
+msgstr "プレーヤ"
 
 #: dnfdragora/groupicons.py:436
 msgid "System"
@@ -863,7 +866,7 @@ msgstr "ベース"
 
 #: dnfdragora/groupicons.py:443
 msgid "Boot and Init"
-msgstr "Boot と Init"
+msgstr "起動"
 
 #: dnfdragora/groupicons.py:447
 msgid "Cluster"
@@ -1012,37 +1015,37 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "ダウンロード中 :  %(files)d ファイル,  %(size)d バイト"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "ダウンロードを開始 : %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "ファイルの進捗 (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:159
 msgid "Update information"
-msgstr ""
+msgstr "アップデート情報"
 
 #: dnfdragora/ui.py:160
 msgid "File list"
-msgstr ""
+msgstr "ファイル一覧"
 
 #: dnfdragora/ui.py:161
 msgid "Changelog"
-msgstr ""
+msgstr "変更履歴"
 
 #: dnfdragora/ui.py:162
 msgid "Requirements"
-msgstr ""
+msgstr "要求パッケージ"
 
 #: dnfdragora/ui.py:268
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "ソフトウェアの管理 - dnfdragora"
 
 #: dnfdragora/ui.py:300
 msgid "Software Management"
@@ -1058,7 +1061,7 @@ msgstr "リリース"
 
 #: dnfdragora/ui.py:320
 msgid "Summary"
-msgstr "まとめ"
+msgstr "概要"
 
 #: dnfdragora/ui.py:320
 msgid "Version"
@@ -1074,16 +1077,16 @@ msgstr "インストール済み"
 
 #: dnfdragora/ui.py:336
 msgid "Not installed"
-msgstr "インストールなし"
+msgstr "未インストール"
 
 #: dnfdragora/ui.py:337
 msgid "To update"
-msgstr ""
+msgstr "アップデート可能"
 
 #: dnfdragora/ui.py:343
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "%s と noarch のみを表示"
 
 #: dnfdragora/ui.py:349
 msgid "Groups"
@@ -1091,15 +1094,15 @@ msgstr "グループ"
 
 #: dnfdragora/ui.py:413
 msgid "in names"
-msgstr "名前"
+msgstr "パッケージ名"
 
 #: dnfdragora/ui.py:414
 msgid "in descriptions"
-msgstr "説明"
+msgstr "説明文"
 
 #: dnfdragora/ui.py:415
 msgid "in summaries"
-msgstr "要約"
+msgstr "概要"
 
 #: dnfdragora/ui.py:416
 msgid "in file names"
@@ -1107,15 +1110,15 @@ msgstr "中のファイル名"
 
 #: dnfdragora/ui.py:437
 msgid "&Search"
-msgstr ""
+msgstr "検索(&S)"
 
 #: dnfdragora/ui.py:443
 msgid "&Clear search"
-msgstr ""
+msgstr "検索をクリア(&C)"
 
 #: dnfdragora/ui.py:457
 msgid "Ch&eck all"
-msgstr ""
+msgstr "すべてチェック(&E)"
 
 #: dnfdragora/ui.py:461 dnfdragora/ui.py:470
 msgid "&Quit"
@@ -1131,7 +1134,7 @@ msgstr "選択を全て解除"
 
 #: dnfdragora/ui.py:468
 msgid "Refresh Metadata"
-msgstr "メタデータを再読み込み"
+msgstr "メタデータを更新"
 
 #: dnfdragora/ui.py:469
 msgid "Repositories"
@@ -1139,7 +1142,7 @@ msgstr "リポジトリ"
 
 #: dnfdragora/ui.py:480
 msgid "&Options"
-msgstr ""
+msgstr "オプション(&O)"
 
 #: dnfdragora/ui.py:492
 msgid "&Help"
@@ -1147,23 +1150,23 @@ msgstr "ヘルプ(&H)"
 
 #: dnfdragora/ui.py:493
 msgid "Manual"
-msgstr "手動"
+msgstr "マニュアル"
 
 #: dnfdragora/ui.py:494
 msgid "&About"
-msgstr ""
+msgstr "情報(&A)"
 
 #: dnfdragora/ui.py:520
 msgid "update"
-msgstr ""
+msgstr "アップデート可"
 
 #: dnfdragora/ui.py:523
 msgid "locked"
-msgstr ""
+msgstr "ロック"
 
 #: dnfdragora/ui.py:526
 msgid "installed"
-msgstr ""
+msgstr "インストール済み"
 
 #: dnfdragora/ui.py:839
 msgid "Missing information"
@@ -1193,7 +1196,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:1117
 msgid "Not implemented yet"
-msgstr ""
+msgstr "まだ実装されていません"
 
 #: dnfdragora/ui.py:1146
 #, python-format
