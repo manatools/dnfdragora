@@ -399,31 +399,31 @@ msgstr "適用(&A)"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "ユーザ設定"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "レイアウト"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr ""
+msgstr "次回起動時にアップデートを表示"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "次回起動時にパッケージのグループ表示を行われない"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "システム オプション"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "確認なしに操作を続行する"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "アップデートのチェック間隔(分単位):"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -786,7 +786,7 @@ msgstr "管理"
 
 #: dnfdragora/groupicons.py:343
 msgid "Organizer"
-msgstr ""
+msgstr "整理"
 
 #: dnfdragora/groupicons.py:351
 msgid "Spreadsheet"
