@@ -1,4 +1,3 @@
-from gettext import gettext as _
 import os.path
 
 class CompsIcons:

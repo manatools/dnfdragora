@@ -5,8 +5,6 @@ import yui
 
 import dnf.callback
 
-from gettext import gettext as _
-
 
 class TransactionProgress(dnf.callback.TransactionProgress):
 

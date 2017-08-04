@@ -17,8 +17,6 @@ import sys
 
 import hawkey
 
-from gettext import gettext as _
-
 from dnfdragora.version import __version__ as VERSION
 
 NEEDED_DAEMON_API = 2  # The needed dnfdaemon API version

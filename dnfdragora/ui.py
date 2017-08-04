@@ -29,7 +29,6 @@ import dnfdragora.config
 from dnfdragora import const
 
 import gettext
-from gettext import gettext as _, ngettext
 import logging
 logger = logging.getLogger('dnfdragora.ui')
 
@@ -153,8 +152,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if 'locales_dir' in self.options.keys() :
             self.locales_dir = self.options['locales_dir']
 
-        gettext.bindtextdomain(self.appname, localedir=self.locales_dir)
-        gettext.textdomain(self.appname)
+        gettext.install(self.appname, localedir=self.locales_dir)
 
         self.infoshown = {
             'updateinfo' : { 'title' : _("Update information"), 'show' : False },

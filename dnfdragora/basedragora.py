@@ -23,7 +23,6 @@ import dnfdragora.const as const
 import dnfdragora.dialogs as dialogs
 import dnfdragora.dnf_backend
 import yui
-from gettext import gettext as _
 
 
 logger = logging.getLogger('dnfdragora.base')
