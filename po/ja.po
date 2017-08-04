@@ -318,25 +318,25 @@ msgstr "検証中: %s"
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "スクリプトを実行中: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "トランザクションを準備中: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "トランザクション後のスクリプト: %s"
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
-msgstr ""
+msgstr "バグ修正"
 
 #: dnfdragora/const.py:158
 msgid "New Package"
-msgstr ""
+msgstr "新規パッケージ"
 
 #: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -344,7 +344,7 @@ msgstr "セキュリティ"
 
 #: dnfdragora/const.py:160
 msgid "Enhancement"
-msgstr ""
+msgstr "改善"
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
@@ -411,7 +411,7 @@ msgstr "次回起動時にアップデートを表示"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
-msgstr "次回起動時にパッケージのグループ表示を行われない"
+msgstr "次回起動時にパッケージのグループ表示を行わない"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
@@ -459,11 +459,11 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "パッケージをダウンロード中"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr ""
+msgstr "パッケージの署名を確認中"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
 msgid "Applying changes to the system"
