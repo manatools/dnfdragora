@@ -148,11 +148,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # {
         #    localized_name = { "item" : item, "name" : groupName }
         # }
-        self.locales_dir = "/usr/share/locale"
-        if 'locales_dir' in self.options.keys() :
-            self.locales_dir = self.options['locales_dir']
-
-        gettext.install(self.appname, localedir=self.locales_dir)
 
         self.infoshown = {
             'updateinfo' : { 'title' : _("Update information"), 'show' : False },

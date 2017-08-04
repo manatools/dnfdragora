@@ -23,6 +23,10 @@ if sys.path[0] is not '/usr/bin':
 
 if __name__ == "__main__":
 
+    # We need to call this as early as possible because
+    # command-line help strings are translated
+    gettext.install('dnfdragora', localedir='/usr/share/locale', names=('ngettext',))
+
     import argparse
 
     parser = argparse.ArgumentParser(prog='dnfdragora', usage=_('%(prog)s [options]'))
@@ -43,6 +47,10 @@ if __name__ == "__main__":
     parser.add_argument('--version',     help=_('show application version and exit'), action='store_true')
     parser.add_argument('--exit',        help=_('force dnfdaemon dbus services used by dnfdragora to exit'), action='store_true')
     args = parser.parse_args()
+
+    # Change localedir if "--locales-dir" option is specified
+    if args.locales_dir:
+        gettext.install('dnfdragora', localedir=args.locales_dir, names=('ngettext',))
 
     from gi.repository import GLib
     import logging
@@ -66,8 +74,6 @@ if __name__ == "__main__":
         options['group_icons_path'] = args.group_icons_path
     if args.images_path:
         options['images_path'] = args.images_path
-    if args.locales_dir:
-        options['locales_dir'] = args.locales_dir
     if args.install:
         options['install'] = args.install
     if args.exit :
