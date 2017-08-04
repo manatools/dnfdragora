@@ -1,5 +1,3 @@
-from gettext import gettext as _
-
 class GroupIcons:
     '''
     This class manages the access to group name and icons

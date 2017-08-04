@@ -18,7 +18,6 @@ import dnfdragora.misc as misc
 from dnfdragora import const
 
 import gettext
-from gettext import gettext as _
 import logging
 logger = logging.getLogger('dnfdragora.dialogs')
 

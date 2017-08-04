@@ -20,8 +20,6 @@ import dnfdragora.misc
 import dnfdragora.const as const
 from dnfdragora.misc import ExceptionHandler, TimeFunction
 
-from gettext import gettext as _
-
 logger = logging.getLogger('dnfdragora.dnf_backend')
 
 

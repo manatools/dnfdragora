@@ -13,7 +13,6 @@ import dnfdaemon.client, gettext, sched, sh, sys, threading, time, yui
 
 from PIL import Image
 from dnfdragora import config, misc, ui
-from gettext import gettext as _
 from pystray import Menu, MenuItem
 from pystray import Icon as Tray
 
