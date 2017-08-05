@@ -318,7 +318,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree.setNotify(True)
 
         packageList_header = yui.YTableHeader()
-        columns = [ _('Name'), _('Summary'), _('Version'), _('Release'), _('Arch')]
+        columns = [ _('Name'), _('Summary'), _('Version'), _('Release'), _('Arch'), _('Size')]
 
         packageList_header.addColumn("")
         for col in (columns):
@@ -580,7 +580,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
-                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch, pkg.sizeM)
                         pkg_name = pkg.fullname
                         if sel_pkg :
                             if sel_pkg.fullname == pkg_name :
@@ -606,7 +606,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
-                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch, pkg.sizeM)
                         pkg_name = pkg.fullname
                         if sel_pkg :
                             if sel_pkg.fullname == pkg_name :
@@ -632,7 +632,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
                     if not skip_insert :
-                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                        item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch, pkg.sizeM)
                         pkg_name = pkg.fullname
                         if sel_pkg :
                             if sel_pkg.fullname == pkg_name :
@@ -930,7 +930,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if (filter == 'all' or (filter == 'to_update' and pkg.is_update ) or (filter == 'installed' and pkg.installed) or
                     (filter == 'not_installed' and not pkg.installed) or
                     (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch)
+                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch, pkg.sizeM)
                     pkg_name = pkg.fullname
                     if sel_pkg :
                         if sel_pkg.fullname == pkg_name :
