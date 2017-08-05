@@ -854,14 +854,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     else :
                         s+= missing
 
+            if pkg.repository:
+                s += "<br>"
+                s += '<b> %s: %s</b>'%(_("Repository"), pkg.repository)
+                s += "<br>"
+
             if pkg.URL:
                 s += "<br>"
-                s+= '<b><a href="%s">%s</a></b>'%(pkg.URL, pkg.URL)
+                s += '<b><a href="%s">%s</a></b>'%(pkg.URL, pkg.URL)
                 s += "<br>"
 
             t = 'requirements'
             s += "<br>"
-            s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
+            s += '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
             s += "<br>"
             if self.infoshown[t]["show"]:
                 if pkg.requirements :
@@ -871,7 +876,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             t = 'files'
             s += "<br>"
-            s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
+            s += '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
             s += "<br>"
             if self.infoshown[t]["show"]:
                 if pkg.filelist :
@@ -881,7 +886,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             t = 'changelog'
             s += "<br>"
-            s+= '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
+            s += '<b>%s</b>'%self._formatLink(self.infoshown[t]['title'], t)
             s += "<br>"
             if self.infoshown[t]["show"]:
                 if pkg.changelog:
