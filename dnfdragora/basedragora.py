@@ -108,6 +108,7 @@ class BaseDragora:
         if quit_dnfdaemon:
             logger.debug('Exit the DNF root daemon')
             self._root_backend.Exit()
+            self._root_backend = None
 
     def exception_handler(self, e):
         """Called if exception occours in methods with the
