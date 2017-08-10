@@ -303,7 +303,7 @@ msgstr "削除中: %s"
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "削除中 (obsolete): %s"
 
 #: dnfdragora/const.py:143
 #, python-format
@@ -440,10 +440,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"パッケージ %(pkg)s を検証するためにはこの GPG キーが必要です。<br>インポート"
+"しますか?<br><br>キー       : 0x%(id)s:<br>ユーザ ID  : \"%(user)s\"<br>場"
+"所       : %(file)s"
 
 #: dnfdragora/dialogs.py:703
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG キーがありません"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -452,10 +455,13 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon api のバージョン : %(actual)d\n"
+"が一致しません\n"
+"要求される api のバージョン : %(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "トランザクションを開始"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
@@ -481,7 +487,7 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "パッケージからグループをキャッシュしています... "
 
 #: dnfdragora/groupicons.py:23
 msgid "Accessibility"
@@ -930,7 +936,7 @@ msgstr "動画"
 
 #: dnfdragora/groupicons.py:527
 msgid "Television"
-msgstr ""
+msgstr "テレビ"
 
 #: dnfdragora/groupicons.py:537
 msgid "Workstation"
@@ -1158,7 +1164,7 @@ msgstr "情報(&A)"
 
 #: dnfdragora/ui.py:520
 msgid "update"
-msgstr "アップデート可"
+msgstr "更新可能"
 
 #: dnfdragora/ui.py:523
 msgid "locked"
@@ -1170,29 +1176,29 @@ msgstr "インストール済み"
 
 #: dnfdragora/ui.py:839
 msgid "Missing information"
-msgstr ""
+msgstr "情報がありません"
 
 #: dnfdragora/ui.py:966
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: dnfdragora/ui.py:1028
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "パッケージの署名確認エラー"
 
 #: dnfdragora/ui.py:1032
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
+msgstr[0] "ダウンロード エラー"
 
 #: dnfdragora/ui.py:1037
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
+msgstr[0] "トランザクション エラー"
 
 #: dnfdragora/ui.py:1049
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "BuildTransaction が失敗しました"
 
 #: dnfdragora/ui.py:1117
 msgid "Not implemented yet"
@@ -1201,16 +1207,16 @@ msgstr "まだ実装されていません"
 #: dnfdragora/ui.py:1146
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "パッケージ %s は削除できません"
 
 #: dnfdragora/ui.py:1146
 msgid "Protected package selected"
-msgstr ""
+msgstr "保護されたパッケージが選択されました"
 
 #: dnfdragora/ui.py:1222
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "管理されていないウィジェットです"
 
 #: dnfdragora/ui.py:1224
 msgid "Unmanaged event"
-msgstr ""
+msgstr "管理されていないイベントです"
