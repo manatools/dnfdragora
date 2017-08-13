@@ -18,6 +18,7 @@ import os.path
 import shutil
 import subprocess
 import sys
+import time
 
 import dnfdragora.const as const
 import dnfdragora.dialogs as dialogs
@@ -35,6 +36,8 @@ class BaseDragora:
         self._root_locked = False
         self.is_working = False
         self._use_comps = use_comps
+        # TODO allow to setup if 2 seconds is not enough for slow PCs
+        self._time2wait_new_backend = 2
 
     def set_working(self, state, insensitive=False):
         """Set the working state."""
@@ -108,6 +111,12 @@ class BaseDragora:
             logger.debug('Exit the DNF root daemon')
             self._root_backend.Exit()
             self._root_backend = None
+
+    def restart_root_backend(self):
+        ''' Release and reload backend '''
+        self.release_root_backend(True)
+        time.sleep(self._time2wait_new_backend)
+        self.get_root_backend()
 
     def exception_handler(self, e):
         """Called if exception occours in methods with the
