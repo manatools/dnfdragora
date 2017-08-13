@@ -135,7 +135,7 @@ class ArchFilter(BaseFilter):
 
     def __init__(self, name, active=False):
         BaseFilter.__init__(self, name, active)
-        self.archs = ['noarch', 'i586', 'i686', 'x86_64', 'armv7hl']
+        self.archs = ['noarch', 'i586', 'i686', 'x86_64', 'armv5tl', 'armv6hl', 'armv7hl', 'aarch64', 'ppc64', 'ppc64le', 's390x']
 
     def run(self, pkgs):
         BaseFilter.run(self, pkgs)
