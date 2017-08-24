@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Amy Xi <fyou1535@gmail.com>, 2017\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -26,7 +40,7 @@ msgstr ""
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "開始使用yui GTK +插件實​​現"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
@@ -56,15 +70,15 @@ msgstr ""
 
 #: bin/dnfdragora:42
 msgid "install packages"
-msgstr ""
+msgstr "安裝包"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr ""
+msgstr "僅顯示更新對話框"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "顯示應用程序的版本並退出"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -73,13 +87,13 @@ msgstr ""
 #: bin/dnfdragora:70
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s%(NL)s版本:%(version)s%(NL)s場地: %(site)s"
 
 #: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1117
 msgid "Sorry"
-msgstr ""
+msgstr "抱歉"
 
 #: bin/dnfdragora:84
 #, python-format
@@ -98,7 +112,7 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "刷新存儲庫元數據"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
@@ -119,43 +133,43 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE 桌面"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce桌面"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "應用程式"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE 桌面"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt 桌面"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon桌面"
 
 #: dnfdragora/compsicons.py:26
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE桌面"
 
 #: dnfdragora/compsicons.py:27
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii 桌面"
 
 #: dnfdragora/compsicons.py:28
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar桌面環境"
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "Gnome 桌面"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -168,11 +182,11 @@ msgstr "伺服器"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr ""
+msgstr "基礎系統"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "內容"
 
 #: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
 #: dnfdragora/ui.py:348
@@ -185,100 +199,100 @@ msgstr "空白"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "搜索結果"
 
 #: dnfdragora/const.py:100
 msgid "Getting installed packages"
-msgstr ""
+msgstr "獲取安裝的套件"
 
 #: dnfdragora/const.py:101
 msgid "Getting available packages"
-msgstr ""
+msgstr "獲取可用的套件"
 
 #: dnfdragora/const.py:102
 msgid "Getting available updates"
-msgstr ""
+msgstr "獲取可用更新"
 
 #: dnfdragora/const.py:103
 msgid "Getting all packages"
-msgstr ""
+msgstr "獲取所有套件"
 
 #: dnfdragora/const.py:116
 msgid "Updated packages"
-msgstr ""
+msgstr "更新套件"
 
 #: dnfdragora/const.py:117
 msgid "Downgraded packages"
-msgstr ""
+msgstr "降級套件"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "已廢棄套件"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "已淘汰套件"
 
 #: dnfdragora/const.py:120
 msgid "Erased packages"
-msgstr ""
+msgstr "已擦除套件"
 
 #: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
-msgstr ""
+msgstr "已安裝套件"
 
 #: dnfdragora/const.py:123
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "依賴性安裝"
 
 #: dnfdragora/const.py:124
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "重新安裝套件"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "正在安裝"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "正在更新"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "正在移除"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "正在降級"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "正在替換"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "正在更新:%s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "正在安裝 :%s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "正在重新安裝：%s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "正在清理：%s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "正在移除:%s "
 
 #: dnfdragora/const.py:142
 #, python-format
@@ -288,17 +302,17 @@ msgstr ""
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "正在降級：%s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "正在驗證：%s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "正在運行腳本：%s"
 
 #: dnfdragora/const.py:146
 #, python-format
@@ -312,11 +326,11 @@ msgstr ""
 
 #: dnfdragora/const.py:157
 msgid "Bugfix"
-msgstr ""
+msgstr "修正錯誤"
 
 #: dnfdragora/const.py:158
 msgid "New Package"
-msgstr ""
+msgstr "新套件"
 
 #: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -324,7 +338,7 @@ msgstr "安全"
 
 #: dnfdragora/const.py:160
 msgid "Enhancement"
-msgstr ""
+msgstr "增強"
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
@@ -366,7 +380,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:220
 msgid "Enabled"
-msgstr ""
+msgstr "是否啟用？"
 
 #: dnfdragora/dialogs.py:220 dnfdragora/ui.py:320
 msgid "Name"
