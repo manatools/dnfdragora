@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Oresti Koxhaj <oresti185@gmail.com>, 2017\n"
 "Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +43,7 @@ msgstr ""
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "έναρξη χρησιμοποιώντας την ενσωμάτωση του πρόσθετου yui ncurses"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
@@ -37,7 +51,7 @@ msgstr ""
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "χρήση της πλήρους οθόνης για τους διαλόγους"
 
 #: bin/dnfdragora:38
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -118,23 +132,23 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE"
 
 #: dnfdragora/compsicons.py:21
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Επιφάνεια εργασίας Xfce"
 
 #: dnfdragora/compsicons.py:22
 msgid "Applications"
-msgstr ""
+msgstr "Εφαρμογές"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "Περιβάλλον εργασίας LXDE"
 
 #: dnfdragora/compsicons.py:24
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "Περιβάλλον εργασίας LXQt"
 
 #: dnfdragora/compsicons.py:25
 msgid "Cinnamon Desktop"
@@ -154,7 +168,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:29
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
 #: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
@@ -236,7 +250,7 @@ msgstr ""
 
 #: dnfdragora/const.py:129
 msgid "Installing"
-msgstr ""
+msgstr "Εγκατάσταση"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
@@ -336,12 +350,12 @@ msgstr ""
 #: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
 #: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
 msgid "&Ok"
-msgstr ""
+msgstr "&Εντάξει"
 
 #: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
 #: dnfdragora/dialogs.py:623
 msgid "&Cancel"
-msgstr ""
+msgstr "&Ακύρωση"
 
 #: dnfdragora/dialogs.py:76
 msgid "replacing "
@@ -365,7 +379,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:220
 msgid "Enabled"
-msgstr ""
+msgstr "Ενεργοποιημένο"
 
 #: dnfdragora/dialogs.py:220 dnfdragora/ui.py:320
 msgid "Name"
@@ -373,7 +387,7 @@ msgstr "Όνομα"
 
 #: dnfdragora/dialogs.py:231 dnfdragora/dialogs.py:425 dnfdragora/ui.py:453
 msgid "&Apply"
-msgstr ""
+msgstr "&Εφαρμογή"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
@@ -405,11 +419,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
-msgstr ""
+msgstr "&Ναί"
 
 #: dnfdragora/dialogs.py:673
 msgid "&No"
-msgstr ""
+msgstr "&Όχι"
 
 #: dnfdragora/dialogs.py:696
 #, python-format
@@ -1063,7 +1077,7 @@ msgstr ""
 #: dnfdragora/ui.py:343
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Εμφάνιση μόνο των %s και noarch"
 
 #: dnfdragora/ui.py:349
 msgid "Groups"
@@ -1087,7 +1101,7 @@ msgstr "στα ονόματα αρχείων"
 
 #: dnfdragora/ui.py:437
 msgid "&Search"
-msgstr ""
+msgstr "&Αναζήτηση"
 
 #: dnfdragora/ui.py:443
 msgid "&Clear search"
@@ -1135,11 +1149,11 @@ msgstr "&Περί"
 
 #: dnfdragora/ui.py:520
 msgid "update"
-msgstr ""
+msgstr "ενημέρωση"
 
 #: dnfdragora/ui.py:523
 msgid "locked"
-msgstr ""
+msgstr "Κλειδωμένο"
 
 #: dnfdragora/ui.py:526
 msgid "installed"
