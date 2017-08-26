@@ -35,19 +35,19 @@ msgstr ""
 #: bin/dnfdragora:29
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s[επιλογές]"
 
 #: bin/dnfdragora:32
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "εκινήστε να χρησιμοποιείτε την ενσωμάτωση του πρόσθετου GTK+"
 
 #: bin/dnfdragora:33
 msgid "start using yui ncurses plugin implementation"
-msgstr "έναρξη χρησιμοποιώντας την ενσωμάτωση του πρόσθετου yui ncurses"
+msgstr "ξεκινήστε να χρησιμοποιείτε την ενσωμάτωση του πρόσθετου yui ncurses"
 
 #: bin/dnfdragora:34
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "εκινήστε να χρησιμοποιείτε την ενσωμάτωση του πρόσθετου Qt"
 
 #: bin/dnfdragora:35
 msgid "use full screen for dialogs"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: bin/dnfdragora:42
 msgid "install packages"
-msgstr ""
+msgstr "εγκαταστήστε πακέτα"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
@@ -77,7 +77,7 @@ msgstr ""
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
-msgstr ""
+msgstr "δείξτε την εκδοχή της εφαρμογής και βγείτε"
 
 #: bin/dnfdragora:45
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -92,7 +92,7 @@ msgstr ""
 #: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
 #: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1117
 msgid "Sorry"
-msgstr ""
+msgstr "Λυπούμαστε"
 
 #: bin/dnfdragora:84
 #, python-format
@@ -185,7 +185,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
-msgstr ""
+msgstr "Περιεχόμενα"
 
 #: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
 #: dnfdragora/ui.py:348
@@ -198,31 +198,31 @@ msgstr "Κενό"
 
 #: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
 msgid "Search result"
-msgstr ""
+msgstr "Αποτέλεσμα αναζήτησης"
 
 #: dnfdragora/const.py:100
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Φόρτωση εγκατεστημένων πακέτων"
 
 #: dnfdragora/const.py:101
 msgid "Getting available packages"
-msgstr ""
+msgstr "Φόρτωση διαθέσιμων πακέτων"
 
 #: dnfdragora/const.py:102
 msgid "Getting available updates"
-msgstr ""
+msgstr "Φόρτωση διαθέσιμων ενημερώσεων"
 
 #: dnfdragora/const.py:103
 msgid "Getting all packages"
-msgstr ""
+msgstr "Φόρτωση όλων των πακέτων"
 
 #: dnfdragora/const.py:116
 msgid "Updated packages"
-msgstr ""
+msgstr "Ενημερωμένα πακέτα"
 
 #: dnfdragora/const.py:117
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Υποβαθμίσμένα πακετα"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleting packages"
@@ -238,7 +238,7 @@ msgstr ""
 
 #: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
-msgstr ""
+msgstr "Εγκαταστημένα πακέτα"
 
 #: dnfdragora/const.py:123
 msgid "Installed for dependencies"
@@ -254,44 +254,44 @@ msgstr "Εγκατάσταση"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr ""
+msgstr "Ενημέρωση"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
-msgstr ""
+msgstr "Αφαίρεση"
 
 #: dnfdragora/const.py:132
 msgid "Downgrading"
-msgstr ""
+msgstr "Υποβάθμιση"
 
 #: dnfdragora/const.py:133
 msgid "Replacing"
-msgstr ""
+msgstr "Αντικατάσταση"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Ενημέρωση του: %s "
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Εγκατάσταση του: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Επανεγκατάσταση του: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Καθαρισμός του: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Αφαίρεση του: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
@@ -306,7 +306,7 @@ msgstr ""
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Επαλήθευση%s"
 
 #: dnfdragora/const.py:145
 #, python-format
@@ -329,7 +329,7 @@ msgstr ""
 
 #: dnfdragora/const.py:158
 msgid "New Package"
-msgstr ""
+msgstr "Νέο πακέτο"
 
 #: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
 msgid "Security"
@@ -337,11 +337,11 @@ msgstr "Ασφάλεια"
 
 #: dnfdragora/const.py:160
 msgid "Enhancement"
-msgstr ""
+msgstr "Βελτιστοποίηση"
 
 #: dnfdragora/dialogs.py:45
 msgid "Transaction result"
-msgstr ""
+msgstr "Αποτέλεσμα συναλλαγής"
 
 #: dnfdragora/dialogs.py:51
 msgid "Transaction dependency"
@@ -359,15 +359,15 @@ msgstr "&Ακύρωση"
 
 #: dnfdragora/dialogs.py:76
 msgid "replacing "
-msgstr ""
+msgstr "αντικατάσταση"
 
 #: dnfdragora/dialogs.py:82
 msgid "Total size "
-msgstr ""
+msgstr "Συνολικό μέγεθος"
 
 #: dnfdragora/dialogs.py:147
 msgid "Developers"
-msgstr ""
+msgstr " Δημιουργοί"
 
 #: dnfdragora/dialogs.py:151
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
@@ -391,7 +391,7 @@ msgstr "&Εφαρμογή"
 
 #: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
 msgid "User preferences"
-msgstr ""
+msgstr "Προτιμήσεις"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
@@ -407,7 +407,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Ρυθμίσεις συστήματος"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
@@ -447,11 +447,11 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
-msgstr ""
+msgstr "Έναρξη συναλλαγής"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr ""
+msgstr "Λήψη των πακέτων"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
