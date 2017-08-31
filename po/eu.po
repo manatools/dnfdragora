@@ -126,6 +126,8 @@ msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNFren root-backend-a ez da baimendu.\n"
+"Mandragora orain irtengo da."
 
 #: dnfdragora/basedragora.py:88
 msgid ""
