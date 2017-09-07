@@ -278,17 +278,17 @@ msgstr "置き換え"
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr "アップデート中: %s"
+msgstr "アップデートしています: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Installing: %s"
-msgstr "インストール中: %s"
+msgstr "インストールしています: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Reinstalling: %s"
-msgstr "再インストール中: %s"
+msgstr "再インストールしています: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
@@ -298,7 +298,7 @@ msgstr "後始末: %s"
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Removing: %s"
-msgstr "削除中: %s"
+msgstr "削除しています: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
@@ -308,22 +308,22 @@ msgstr "削除中 (obsolete): %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Downgrading: %s"
-msgstr "ダウングレード中: %s"
+msgstr "ダウングレードしています: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Verifying: %s"
-msgstr "検証中: %s"
+msgstr "検証しています: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr "スクリプトを実行中: %s"
+msgstr "スクリプトを実行しています: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr "トランザクションを準備中: %s"
+msgstr "トランザクションを準備しています: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
@@ -525,7 +525,7 @@ msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:54
 msgid "Dial-Up"
-msgstr "ダイヤルアップ"
+msgstr "ダイヤル アップ"
 
 #: dnfdragora/groupicons.py:58
 msgid "Fax"
@@ -634,7 +634,7 @@ msgstr "エミュレータ"
 
 #: dnfdragora/groupicons.py:176
 msgid "File tools"
-msgstr "ファイルツール"
+msgstr "ファイル ツール"
 
 #: dnfdragora/groupicons.py:180
 msgid "Games"
@@ -650,11 +650,11 @@ msgstr "アーケード"
 
 #: dnfdragora/groupicons.py:191
 msgid "Boards"
-msgstr "ボードゲーム"
+msgstr "ボード ゲーム"
 
 #: dnfdragora/groupicons.py:195
 msgid "Cards"
-msgstr "トランプ"
+msgstr "カード ゲーム"
 
 #: dnfdragora/groupicons.py:203
 msgid "Puzzles"
@@ -682,7 +682,7 @@ msgstr "地理"
 
 #: dnfdragora/groupicons.py:228
 msgid "Graphical desktop"
-msgstr "グラフィカルデスクトップ"
+msgstr "グラフィカル デスクトップ"
 
 #: dnfdragora/groupicons.py:231
 msgid "Enlightenment"
@@ -756,7 +756,7 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:303
 msgid "Instant messaging"
-msgstr "インスタントメッセージ"
+msgstr "インスタント メッセージ"
 
 #: dnfdragora/groupicons.py:307 dnfdragora/groupicons.py:628
 msgid "Mail"
@@ -768,7 +768,7 @@ msgstr "ニュース"
 
 #: dnfdragora/groupicons.py:319
 msgid "Remote access"
-msgstr "リモートアクセス"
+msgstr "リモート アクセス"
 
 #: dnfdragora/groupicons.py:323
 msgid "WWW"
@@ -804,7 +804,7 @@ msgstr "スイート"
 
 #: dnfdragora/groupicons.py:359
 msgid "Word processor"
-msgstr "ワードプロセッサ"
+msgstr "ワード プロセッサ"
 
 #: dnfdragora/groupicons.py:364
 msgid "Publishing"
@@ -812,7 +812,7 @@ msgstr "出版"
 
 #: dnfdragora/groupicons.py:368
 msgid "Sciences"
-msgstr "サイエンス"
+msgstr "科学"
 
 #: dnfdragora/groupicons.py:371
 msgid "Astronomy"
@@ -912,7 +912,7 @@ msgstr "ライブラリ"
 
 #: dnfdragora/groupicons.py:487
 msgid "Packaging"
-msgstr "RPM の管理"
+msgstr "パッケージング"
 
 #: dnfdragora/groupicons.py:491
 msgid "Printing"
@@ -920,11 +920,11 @@ msgstr "印刷"
 
 #: dnfdragora/groupicons.py:504
 msgid "Terminals"
-msgstr "ターミナル"
+msgstr "端末"
 
 #: dnfdragora/groupicons.py:508
 msgid "Text tools"
-msgstr "テキストツール"
+msgstr "テキスト ツール"
 
 #: dnfdragora/groupicons.py:512
 msgid "Toys"
@@ -944,27 +944,27 @@ msgstr "ワークステーション"
 
 #: dnfdragora/groupicons.py:544
 msgid "Console Tools"
-msgstr "コンソールツール"
+msgstr "コンソール ツール"
 
 #: dnfdragora/groupicons.py:552
 msgid "Game station"
-msgstr "ゲームステーション"
+msgstr "ゲーム ステーション"
 
 #: dnfdragora/groupicons.py:556
 msgid "Internet station"
-msgstr "インターネットステーション"
+msgstr "インターネット ステーション"
 
 #: dnfdragora/groupicons.py:560
 msgid "Multimedia station"
-msgstr "マルチメディアステーション"
+msgstr "マルチメディア ステーション"
 
 #: dnfdragora/groupicons.py:564
 msgid "Network Computer (client)"
-msgstr "ネットワークコンピュータ (クライアント)"
+msgstr "ネットワーク コンピュータ (クライアント)"
 
 #: dnfdragora/groupicons.py:568
 msgid "Office Workstation"
-msgstr "オフィスワークステーション"
+msgstr "オフィス ワークステーション"
 
 #: dnfdragora/groupicons.py:572
 msgid "Scientific Workstation"
@@ -988,7 +988,7 @@ msgstr "KDE ワークステーション"
 
 #: dnfdragora/groupicons.py:592
 msgid "Other Graphical Desktops"
-msgstr "その他のグラフィカルデスクトップ"
+msgstr "その他のグラフィカル デスクトップ"
 
 #: dnfdragora/groupicons.py:613
 msgid "Server"
@@ -1012,7 +1012,7 @@ msgstr "メール/グループウェア/ニュース"
 
 #: dnfdragora/groupicons.py:636
 msgid "Network Computer server"
-msgstr "ネットワークコンピュータ (サーバ)"
+msgstr "ネットワーク コンピュータ サーバ"
 
 #: dnfdragora/groupicons.py:640
 msgid "Web/FTP"
