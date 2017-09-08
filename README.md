@@ -72,15 +72,24 @@ Example with ncurses:
 * Packages needed to build:
     * cmake >= 3.4.0
     * python3-devel >= 3.4.0
+    * python3-virtualenv
     * optional: gettext        (for locales)
     * optional: python3-sphinx (for manpages)
-* Configure: `mkdir build && cd build && cmake .. && cd ..`
-    * -DCMAKE_INSTALL_PREFIX=/usr      - Sets the install path, eg. /usr, /usr/local or /opt
-    * -DCHECK_RUNTIME_DEPENDENCIES=ON  - Checks if the needed runtime dependencies are met.
-    * -DENABLE_COMPS=ON                - Useful if your distribution uses COMPS for groups, eg. Fedora, RHEL, CentOS
-* Copy build/dnfdragora/version.py to dnfdragora/
-* Run:       `bin/dnfdragora` (from the top source dir, add '--locales-dir' option if you want to test localization locally)
-
+* Setup your virtual environment
+    * cd $DNFDRAGORA_PROJ_DIR                 # DNFDRAGORA_PROJ_DIR is the dnfdragora project directory
+    * virtualenv --system-site-packages venv  # create virtual environment under venv directory
+    * . venv/bin/activate                     # activate virtual environment
+* Configure: `mkdir build && cd build && cmake -D... .. && make install`
+    * needed cmake options are
+        * -DCMAKE_INSTALL_PREFIX=$DNFDRAGORA_PROJ_DIR/venv              - venv install prefix 
+        * -DCMAKE_INSTALL_FULL_SYSCONFDIR=$DNFDRAGORA_PROJ_DIR/venv/etc - venv sysconfig directory
+    * useful cmake options are
+        * -DCHECK_RUNTIME_DEPENDENCIES=ON  - Checks if the needed runtime dependencies are met.
+        * -DENABLE_COMPS=ON                - Useful if your distribution uses COMPS for groups, eg. Fedora, RHEL, CentOS
+* Run: `dnfdragora` into virtual environment, add '--locales-dir' option if you want to test localization locally)
+    * useful dnfdragora options are
+        * --locales-dir         - if you want to test localization locally
+        * --images-path         - local icons and images (set to $DNFDRAGORA_PROJ_DIR/venv/share/dnfdragora/images/)
 
 ## LICENSE AND COPYRIGHT
 
