@@ -477,7 +477,7 @@ msgstr "Contrôle des signatures de paquetage"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
 msgid "Applying changes to the system"
-msgstr "Aplication des changements au système"
+msgstr "Application des changements au système"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
@@ -1127,7 +1127,7 @@ msgstr "Effa&cer la recherche"
 
 #: dnfdragora/ui.py:457
 msgid "Ch&eck all"
-msgstr "Tout vérifi&er"
+msgstr "Tout cocher"
 
 #: dnfdragora/ui.py:461 dnfdragora/ui.py:470
 msgid "&Quit"
