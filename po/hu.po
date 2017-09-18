@@ -103,17 +103,17 @@ msgstr "Sajnáljuk"
 #: bin/dnfdragora:84
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon kliens hiba történt:%(NL)s%(error)s"
 
 #: bin/dnfdragora:87
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon név hiba történt:%(NL)s%(error)s"
 
 #: bin/dnfdragora:90
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon attribútum hiba történt:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
@@ -128,6 +128,8 @@ msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF gyökérháttér nincs hitelesítve.\n"
+"dnfdragora kilép"
 
 #: dnfdragora/basedragora.py:88
 msgid ""
@@ -1117,7 +1119,7 @@ msgstr "&Törölje a keresést"
 
 #: dnfdragora/ui.py:457
 msgid "Ch&eck all"
-msgstr ""
+msgstr "Összes ellenőrzése"
 
 #: dnfdragora/ui.py:461 dnfdragora/ui.py:470
 msgid "&Quit"
@@ -1188,8 +1190,8 @@ msgstr[1] "Letöltési hiba"
 #: dnfdragora/ui.py:1037
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hiba történt a tranzakciók során"
+msgstr[1] "Hiba történt a tranzakció során"
 
 #: dnfdragora/ui.py:1049
 msgid "BuildTransaction failure"
