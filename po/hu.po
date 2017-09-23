@@ -137,6 +137,9 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"A DNF-et egy másik folyamat  zárolja.\n"
+"\n"
+" dnfdragora kilép"
 
 #: dnfdragora/compsicons.py:20
 msgid "KDE Desktop"
