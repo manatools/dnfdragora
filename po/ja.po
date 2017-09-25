@@ -75,7 +75,7 @@ msgstr "指定したパッケージをインストールする"
 
 #: bin/dnfdragora:43
 msgid "show updates only dialog"
-msgstr "アップデートのみを行うダイアログを表示"
+msgstr "更新のみを行うダイアログを表示"
 
 #: bin/dnfdragora:44
 msgid "show application version and exit"
@@ -113,7 +113,7 @@ msgstr "dnfdaemon の属性エラーが発生しました:%(NL)s%(error)s"
 
 #: dnfdragora/basedragora.py:55
 msgid "Refreshing Repository Metadata"
-msgstr "リポジトリのメタデータを更新中"
+msgstr "リポジトリのメタ データを更新しています"
 
 #: dnfdragora/basedragora.py:60
 msgid "Could not refresh the DNF cache (root)"
@@ -124,7 +124,7 @@ msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
-"DNF root バックエンドは認証されていません。\n"
+"DNF root バック エンドは認証されていません。\n"
 "dnfdragora は終了します。"
 
 #: dnfdragora/basedragora.py:88
@@ -188,7 +188,7 @@ msgstr "サーバ"
 
 #: dnfdragora/compsicons.py:32
 msgid "Base System"
-msgstr "ベースシステム"
+msgstr "ベース システム"
 
 #: dnfdragora/compsicons.py:33
 msgid "Content"
@@ -209,51 +209,51 @@ msgstr "検索結果"
 
 #: dnfdragora/const.py:100
 msgid "Getting installed packages"
-msgstr ""
+msgstr "インストール済みのパッケージを読み込んでいます"
 
 #: dnfdragora/const.py:101
 msgid "Getting available packages"
-msgstr ""
+msgstr "利用可能なパッケージを読み込んでいます"
 
 #: dnfdragora/const.py:102
 msgid "Getting available updates"
-msgstr ""
+msgstr "利用可能な更新を読み込んでいます"
 
 #: dnfdragora/const.py:103
 msgid "Getting all packages"
-msgstr ""
+msgstr "すべてのパッケージを読み込んでいます"
 
 #: dnfdragora/const.py:116
 msgid "Updated packages"
-msgstr ""
+msgstr "更新されたパッケージ"
 
 #: dnfdragora/const.py:117
 msgid "Downgraded packages"
-msgstr ""
+msgstr "ダウングレードされたパッケージ"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Obsolete したパッケージ"
 
 #: dnfdragora/const.py:119
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Obsolete されたパッケージ"
 
 #: dnfdragora/const.py:120
 msgid "Erased packages"
-msgstr ""
+msgstr "削除されたパッケージ"
 
 #: dnfdragora/const.py:121 dnfdragora/const.py:122
 msgid "Installed packages"
-msgstr ""
+msgstr "インストールされたパッケージ"
 
 #: dnfdragora/const.py:123
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "依存関係を満たすためにインストールされたパッケージ"
 
 #: dnfdragora/const.py:124
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "再インストールされたパッケージ"
 
 #: dnfdragora/const.py:129
 msgid "Installing"
@@ -261,7 +261,7 @@ msgstr "インストール"
 
 #: dnfdragora/const.py:130
 msgid "Updating"
-msgstr "アップデート"
+msgstr "更新"
 
 #: dnfdragora/const.py:131
 msgid "Removing"
@@ -278,7 +278,7 @@ msgstr "置き換え"
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Updating: %s"
-msgstr "アップデートしています: %s"
+msgstr "更新しています: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
@@ -303,7 +303,7 @@ msgstr "削除しています: %s"
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Obsoleting: %s"
-msgstr "削除中 (obsolete): %s"
+msgstr "削除 (Obsolete) しています: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
@@ -352,7 +352,7 @@ msgstr "トランザクション結果"
 
 #: dnfdragora/dialogs.py:51
 msgid "Transaction dependency"
-msgstr "トランザクション依存関係"
+msgstr "トランザクションの依存関係"
 
 #: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
 #: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
@@ -366,7 +366,7 @@ msgstr "キャンセル(&C)"
 
 #: dnfdragora/dialogs.py:76
 msgid "replacing "
-msgstr ""
+msgstr "名前を置換 "
 
 #: dnfdragora/dialogs.py:82
 msgid "Total size "
@@ -379,7 +379,7 @@ msgstr "開発者"
 #: dnfdragora/dialogs.py:151
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
-"dnfdragora は DNF のフロントエンドで、 GTK, ncurses, QT を用いて動作します"
+"dnfdragora は DNF のフロント エンドで GTK, ncurses, QT を用いて動作します"
 
 #: dnfdragora/dialogs.py:194 dnfdragora/dialogs.py:209
 msgid "Repository Management"
@@ -407,7 +407,7 @@ msgstr "レイアウト"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
-msgstr "次回起動時にアップデートを表示"
+msgstr "次回起動時に更新を表示"
 
 #: dnfdragora/dialogs.py:418
 msgid "Do not show groups view next startup"
@@ -423,7 +423,7 @@ msgstr "確認なしに操作を続行する"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr "アップデートのチェック間隔(分単位):"
+msgstr "更新のチェック間隔 (分単位):"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -440,13 +440,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"パッケージ %(pkg)s を検証するためにはこの GPG キーが必要です。<br>インポート"
-"しますか?<br><br>キー       : 0x%(id)s:<br>ユーザ ID  : \"%(user)s\"<br>場"
+"パッケージ %(pkg)s を検証するためにはこの GPG 鍵が必要です。<br>インポートし"
+"ますか?<br><br>鍵       : 0x%(id)s:<br>ユーザ ID  : \"%(user)s\"<br>場"
 "所       : %(file)s"
 
 #: dnfdragora/dialogs.py:703
 msgid "GPG key missed"
-msgstr "GPG キーがありません"
+msgstr "GPG 鍵がありません"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -465,15 +465,15 @@ msgstr "トランザクションを開始"
 
 #: dnfdragora/dnf_backend.py:179
 msgid "Downloading packages"
-msgstr "パッケージをダウンロード中"
+msgstr "パッケージをダウンロードしています"
 
 #: dnfdragora/dnf_backend.py:186
 msgid "Checking package signatures"
-msgstr "パッケージの署名を確認中"
+msgstr "パッケージの署名を確認しています"
 
 #: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
 msgid "Applying changes to the system"
-msgstr "システムに変更を適用中"
+msgstr "システムに変更を適用しています"
 
 #: dnfdragora/dnf_backend.py:200
 msgid "Verify changes on the system"
@@ -483,7 +483,8 @@ msgstr "システム上の変更を検証"
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr ""
-"%(count_files)d 個のファイルをダウンロード中 (%(count_bytes)s バイト)..."
+"%(count_files)d 個のファイルをダウンロードしています (%(count_bytes)s バイ"
+"ト)..."
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
@@ -1021,12 +1022,12 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr "ダウンロード中 :  %(files)d ファイル,  %(size)d バイト"
+msgstr "ダウンロード中です :  %(files)d ファイル,  %(size)d バイト"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr "ダウンロードを開始 : %s "
+msgstr "ダウンロードを開始しています : %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
@@ -1035,7 +1036,7 @@ msgstr "ファイルの進捗 (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:159
 msgid "Update information"
-msgstr "アップデート情報"
+msgstr "更新の情報"
 
 #: dnfdragora/ui.py:160
 msgid "File list"
@@ -1087,7 +1088,7 @@ msgstr "未インストール"
 
 #: dnfdragora/ui.py:337
 msgid "To update"
-msgstr "アップデート可能"
+msgstr "更新可能"
 
 #: dnfdragora/ui.py:343
 #, python-format
@@ -1140,7 +1141,7 @@ msgstr "選択を全て解除"
 
 #: dnfdragora/ui.py:468
 msgid "Refresh Metadata"
-msgstr "メタデータを更新"
+msgstr "メタ データを更新"
 
 #: dnfdragora/ui.py:469
 msgid "Repositories"
