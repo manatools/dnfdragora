@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 00:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
+"Last-Translator: Egy G <takacsgergely.soundman@gmail.com>, 2017\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
 "Language: hu\n"
@@ -445,6 +445,10 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Szeretné importálni  a GPG kulcsot?<br>A %(pkg)s csomaghoz szükségesnek "
+"tartja? \n"
+"<br>Kulcs      :0x%(id)s:<br>Felhasználó azonosítás           :\"%(user)s"
+"\"<br>al%(file)s"
 
 #: dnfdragora/dialogs.py:703
 msgid "GPG key missed"
@@ -457,6 +461,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"DNFdeamon api verziója: %(actual)d\n"
+" nem egyezik \n"
+"a szükséges api verzióval%(required)d"
 
 #: dnfdragora/dnf_backend.py:176
 msgid "Start transaction"
@@ -481,7 +488,7 @@ msgstr "Változások ellenőrzése a rendszeren"
 #: dnfdragora/dnf_backend.py:245
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Töltse le a %(count_files)d fájlt (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:547
 msgid "Caching groups from packages... "
@@ -1019,7 +1026,7 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Letöltés: %(files)d fájlok, %(size)d bájt"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
@@ -1029,7 +1036,7 @@ msgstr "A letöltés indítása:%s"
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Futó fájlok (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:159
 msgid "Update information"
@@ -1085,12 +1092,12 @@ msgstr "Nincs telepítve"
 
 #: dnfdragora/ui.py:337
 msgid "To update"
-msgstr ""
+msgstr "Aktualizálás."
 
 #: dnfdragora/ui.py:343
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Mutassa a %s és jelenítse meg a noarch csomagot."
 
 #: dnfdragora/ui.py:349
 msgid "Groups"
@@ -1198,7 +1205,7 @@ msgstr[1] "Hiba történt a tranzakció során"
 
 #: dnfdragora/ui.py:1049
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "A Tranzakció meghibásodott."
 
 #: dnfdragora/ui.py:1117
 msgid "Not implemented yet"
