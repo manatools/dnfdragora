@@ -441,6 +441,9 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"%(pkg)sPaketea egiaztatzeko beharrezko GPG gakoa <br><br> inportatu nahi al "
+"duzu? <br>Gakoa        : 0x%(id)s:<br>Userid     : \"%(user)s"
+"\"<br>Hemendik       : %(file)s"
 
 #: dnfdragora/dialogs.py:703
 msgid "GPG key missed"
