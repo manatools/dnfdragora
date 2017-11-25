@@ -1,7 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dnfdragora is a graphical package management tool
+# based on libyui python bindings
+#
+# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
+# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #, fuzzy
 msgid ""
@@ -392,7 +406,7 @@ msgstr "Preferències de l'usuari"
 
 #: dnfdragora/dialogs.py:415
 msgid "Layout"
-msgstr ""
+msgstr "Disposició"
 
 #: dnfdragora/dialogs.py:417
 msgid "Show updates next startup"
@@ -404,15 +418,15 @@ msgstr "No mostris la vista de grups la següent arrencada"
 
 #: dnfdragora/dialogs.py:420
 msgid "System options"
-msgstr ""
+msgstr "Opcions del sistema"
 
 #: dnfdragora/dialogs.py:422
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Procedeix sense demanar-ne la confirmació"
 
 #: dnfdragora/dialogs.py:423
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Interval en minuts per comprovar si hi ha actualitzacions:"
 
 #: dnfdragora/dialogs.py:672
 msgid "&Yes"
@@ -577,7 +591,7 @@ msgstr "KDE i Qt"
 
 #: dnfdragora/groupicons.py:123
 msgid "Kernel"
-msgstr "Nucli"
+msgstr "Kernel"
 
 #: dnfdragora/groupicons.py:127
 msgid "OCaml"
@@ -872,7 +886,7 @@ msgstr "Configuració"
 
 #: dnfdragora/groupicons.py:455
 msgid "Fonts"
-msgstr "Tipus de lletra"
+msgstr "Lletres"
 
 #: dnfdragora/groupicons.py:458
 msgid "True type"
@@ -892,7 +906,7 @@ msgstr "Internacionalització"
 
 #: dnfdragora/groupicons.py:475
 msgid "Kernel and hardware"
-msgstr "Nucli i maquinari"
+msgstr "Kernel i maquinari"
 
 #: dnfdragora/groupicons.py:479
 msgid "Libraries"
