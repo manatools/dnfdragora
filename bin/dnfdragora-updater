@@ -21,5 +21,22 @@ if sys.path[0] is not '/usr/bin':
     sys.path.insert(0, SRC_DIR)
 
 if __name__ == "__main__":
+    import dnfdaemon.client
     import dnfdragora.updater
-    dnfdragora.updater.Updater().main()
+    try:
+        dnfdragora.updater.Updater().main()
+    except dnfdaemon.client.DaemonError as e:
+        print("dnfdaemon client error: %s ", e)
+    except NameError as e:
+        print("dnfdaemon NameError: %s ", e)
+    except AttributeError as e:
+        print("dnfdaemon AttributeError: %s ", e)
+    except:
+        print("Unexpected error: %s ", sys.exc_info()[0])
+    finally:
+        import yui
+        yui.YDialog.deleteAllDialogs()
+        # next line seems to be a workaround to prevent the qt-app from crashing
+        # see https://github.com/libyui/libyui-qt/issues/41
+        yui.YUILoader.deleteUI()
+        print("Closing dnfdragorai-updater")
