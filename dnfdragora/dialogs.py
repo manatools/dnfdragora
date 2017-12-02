@@ -13,6 +13,8 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 import yui
 import sys
+import datetime
+
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
@@ -20,6 +22,251 @@ from dnfdragora import const
 import gettext
 import logging
 logger = logging.getLogger('dnfdragora.dialogs')
+
+class HistoryView:
+    ''' History View Class'''
+
+    def __init__(self, parent):
+        self.parent = parent
+        self.factory = self.parent.factory
+        ''' _tid: hash containing tid: YItem'''
+        self._tid = {}
+
+    def _getTID(self, selectedItem):
+        ''' get the tid connected to selected item '''
+        tid = None
+        for t in self._tid.keys():
+            if self._tid[t] == selectedItem:
+                tid = t
+                break
+        return tid
+
+    def _populateHistory(self, selected=None):
+        '''
+        Populate history packages
+        @param selected: selected date from tree
+        '''
+        itemVect = []
+        if selected:
+            pkgs = []
+            tid = self._getTID(selected)
+            if tid:
+                pkgs = self.parent.backend.GetHistoryPackages(tid)
+
+            # Order by package name.arch
+            names = {}
+            names_pair = {}
+            for elem in pkgs:
+                pkg_id, state, is_inst = elem
+                (n, e, v, r, a, repo_id) = misc.to_pkg_tuple(pkg_id)
+                na = "%s.%s" % (n, a)
+                if state in const.HISTORY_UPDATE_STATES:  # part of a pair
+                    if na in names_pair:
+                        # this is the updating pkg
+                        if state in const.HISTORY_NEW_STATES:
+                            names_pair[na].insert(0, elem)  # add first in list
+                        else:
+                            names_pair[na].append(elem)
+                    else:
+                        names_pair[na] = [elem]
+                else:
+                    names[na] = [elem]
+
+            # order by primary state
+            states = {}
+            # pkgs without relatives
+            for na in sorted(list(names)):
+                pkg_list = names[na]
+                pkg_id, state, is_inst = pkg_list[
+                    0]  # Get first element (the primary (new) one )
+                if state in states:
+                    states[state].append(pkg_list)
+                else:
+                    states[state] = [pkg_list]
+            # pkgs with releatives
+            for na in sorted(list(names_pair)):
+                pkg_list = names_pair[na]
+                pkg_id, state, is_inst = pkg_list[
+                    0]  # Get first element (the primary (new) one )
+                if state in states:
+                    states[state].append(pkg_list)
+                else:
+                    states[state] = [pkg_list]
+
+            # filling tree view items
+            for state in const.HISTORY_SORT_ORDER:
+                if state in states:
+                    num = len(states[state])
+                    cat = yui.YTreeItem("%s (%i)" %
+                            (const.HISTORY_STATE_LABLES[state], num), True)
+                    cat.this.own(False)
+
+                    for pkg_list in states[state]:
+                        pkg_id, st, is_inst = pkg_list[0]
+                        name = misc.pkg_id_to_full_name(pkg_id)
+                        pkg_cat = yui.YTreeItem(cat, name, True)
+                        pkg_cat.this.own(False)
+
+                        if len(pkg_list) == 2:
+                            pkg_id, st, is_inst = pkg_list[1]
+                            name = misc.pkg_id_to_full_name(pkg_id)
+                            item = yui.YTreeItem(pkg_cat, name, True)
+                            item.this.own(False)
+
+                    itemVect.append(cat)
+
+        itemCollection = None
+        yui.YUI.app().busyCursor()
+        if selected:
+            itemCollection = yui.YItemCollection(itemVect)
+        self._historyView.startMultipleChanges()
+        self._historyView.deleteAllItems()
+        if selected:
+            self._historyView.addItems(itemCollection)
+        self._historyView.doneMultipleChanges()
+        yui.YUI.app().normalCursor()
+
+    def _populateTree(self, data):
+        '''
+        Populate history date tree
+        @param data list of date and tid
+        '''
+        self._tid = {}
+
+        main = {}
+        for tid, dt in data:
+            # example of dt : 2017-11-01T13:37:50
+            date = datetime.datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S")
+
+            # year
+            if date.year not in main.keys():
+                main[date.year] = {}
+                item = yui.YTreeItem(date.strftime("%Y"), True)
+                item.this.own(False)
+                main[date.year]['item'] = item
+
+            mdict = main[date.year]
+            # month
+            if date.month not in mdict.keys():
+                mdict[date.month] = {}
+                item = yui.YTreeItem(main[date.year]['item'], date.strftime("%m"), True)
+                item.this.own(False)
+                mdict[date.month]['item'] = item
+
+            ddict = mdict[date.month]
+            # day
+            if date.day not in ddict.keys():
+                ddict[date.day] = {}
+                item = yui.YTreeItem(mdict[date.month]['item'], date.strftime("%d"), True)
+                item.this.own(False)
+                ddict[date.day]['item'] = item
+            ddict[date.day][date.strftime("%H:%M:%S")] = tid
+            item = yui.YTreeItem(ddict[date.day]['item'], date.strftime("%H:%M:%S"), False)
+            item.this.own(False)
+            self._tid[tid]= item
+
+        itemVect = []
+        for year in main.keys():
+            itemVect.append(main[year]['item'])
+
+        self._dlg .pollEvent()
+
+        yui.YUI.app().busyCursor()
+        itemCollection = yui.YItemCollection(itemVect)
+        self._historyTree.startMultipleChanges()
+        self._historyTree.deleteAllItems()
+        self._historyTree.addItems(itemCollection)
+        self._historyTree.doneMultipleChanges()
+        yui.YUI.app().normalCursor()
+
+    def _on_history_undo(self):
+        '''Handle the undo button'''
+
+        sel = self._historyTree.selectedItem()
+        tid = self._getTID(sel)
+        if tid:
+            logger.debug('History Undo : %s', tid)
+            #TODO got an exception here
+            # rc, messages = self.parent.backend.HistoryUndo(tid)
+            rc = True
+            if rc:
+                #self._process_actions(from_queue=False)
+                warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+            else:
+                msg = "Can't undo history transaction :\n%s" % \
+                    ("\n".join(messages))
+                logger.debug(msg)
+                warningMsgBox({
+                    "title": _("History undo"),
+                    "text":  msg,
+                    "richtext": False,
+                    })
+
+
+    def run(self, data):
+        '''
+        Populate the TreeView with data and rund the dialog
+        @param data: list of transaction information date
+        @return if undo action has been performed
+        '''
+
+        ## push application title
+        appTitle = yui.YUI.app().applicationTitle()
+        ## set new title to get it in dialog
+        yui.YUI.app().setApplicationTitle(_("History") )
+        minWidth  = 80;
+        minHeight = 25;
+        self._dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        minSize = self.factory.createMinSize(self._dlg , minWidth, minHeight)
+        layout  = self.factory.createVBox(minSize)
+        hbox = self.factory.createHBox(layout)
+        self._historyTree = self.factory.createTree(hbox, _("History (Date/Time)"))
+        self._historyTree.setNotify(True)
+        self._historyView = self.factory.createTree(hbox,_("History Packages"))
+
+        align = self.factory.createRight(layout)
+        hbox = self.factory.createHBox(align)
+        self._undoButton = self.factory.createPushButton(hbox, _("&Undo"))
+        self._undoButton.setDisabled()
+        self._closeButton = self.factory.createPushButton(hbox, _("&Close"))
+
+        self._populateTree(data)
+        self._populateHistory()
+
+        self._dlg .setDefaultButton(self._closeButton)
+
+        performedUndo = False
+        while (True) :
+            event = self._dlg.waitForEvent()
+            eventType = event.eventType()
+            #event type checking
+            if (eventType == yui.YEvent.CancelEvent) :
+                break
+            elif (eventType == yui.YEvent.WidgetEvent) :
+                # widget selected
+                widget = event.widget()
+
+                if (widget == self._undoButton) :
+                    self._on_history_undo()
+                    performedUndo=True
+                elif (widget == self._closeButton) :
+                    break
+                elif (widget == self._historyTree):
+                    sel = self._historyTree.selectedItem()
+                    if sel :
+                        show_info = sel in self._tid.values()
+                        self._undoButton.setEnabled(show_info)
+                        self._closeButton.setDefaultButton()
+                        if not show_info:
+                            sel = None
+                    self._populateHistory(sel)
+
+        self._dlg.destroy()
+
+        #restore old application title
+        yui.YUI.app().setApplicationTitle(appTitle)
+        return performedUndo
+
 
 class TransactionResult:
     '''

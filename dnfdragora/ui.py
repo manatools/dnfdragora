@@ -470,6 +470,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.fileMenu['widget'].rebuildMenuTree();
 
         # build Options menu
+        self.infoMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
+            'history' : yui.YMenuItem(_("History")),
+        }
+
+        #NOTE following the same behavior to simplfy further menu entry addtion
+        ordered_menu_lines = ['history']
+        for l in ordered_menu_lines :
+            self.infoMenu['widget'].addItem(self.infoMenu[l])
+        self.infoMenu['widget'].rebuildMenuTree();
+
+        # build Options menu
         self.optionsMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
             'user_prefs' : yui.YMenuItem(_("User preferences")),
@@ -1079,6 +1091,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.config.userPreferences['view']['show'] = 'all'
         self.config.saveUserPreferences()
 
+    def _load_history(self):
+        '''
+        Load history and populate view.
+        @return if undo action has been performed
+        '''
+
+        result = self.backend.GetHistoryByDays(
+                    0, 120) #TODO add in config file
+
+        hw = dialogs.HistoryView(self)
+        undo = hw.run(result)
+        hw = None
+        return undo
+
     def handleevent(self):
         """
         Event-handler for the maindialog
@@ -1123,6 +1149,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     elif item == self.optionsMenu['user_prefs'] :
                         up = dialogs.UserPrefsDialog(self)
                         up.run()
+                    elif item == self.infoMenu['history'] :
+                        performedUNDO = self._load_history()
+                        if performedUNDO:
+                            sel = self.tree.selectedItem()
+                            if sel :
+                                group = self._groupNameFromItem(self.groupList, sel)
+                                filter = self._filterNameSelected()
+                                if (group == "Search"):
+                                    # force tree rebuilding to show new pacakge status
+                                    if not self._searchPackages(filter, True) :
+                                        rebuild_package_list = True
+                                else:
+                                    if filter == "to_update":
+                                        self._fillGroupTree()
+                                    rebuild_package_list = True
+
                     elif item == self.helpMenu['help']  :
                         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
