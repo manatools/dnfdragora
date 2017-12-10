@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-05 00:21+0200\n"
+"POT-Creation-Date: 2017-12-10 18:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -33,32 +33,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:29
+#: bin/dnfdragora:24
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [opcions]"
 
-#: bin/dnfdragora:32
+#: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
 msgstr "inicia l'ús de la implementació del connector yui GTK+"
 
-#: bin/dnfdragora:33
+#: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
 msgstr "inicia l'ús de la implementació del connector yui ncurses"
 
-#: bin/dnfdragora:34
+#: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
 msgstr "inicia l'ús de la implementació del connector yui Qt"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:30
 msgid "use full screen for dialogs"
 msgstr "utilitza la pantalla completa per als diàlegs"
 
-#: bin/dnfdragora:38
+#: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr "força un camí nou per a icones de grup (en lloc de /usr/share/icons)"
 
-#: bin/dnfdragora:39
+#: bin/dnfdragora:34
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
@@ -66,63 +66,72 @@ msgstr ""
 "força un camí nou per a totes les imatges necessàries (en lloc de /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:40
+#: bin/dnfdragora:35
 msgid "directory containing localization strings (developer only)"
 msgstr ""
 "directori que conté cadenes de localització (només per a desenvolupadors)"
 
-#: bin/dnfdragora:42
+#: bin/dnfdragora:37
 msgid "install packages"
 msgstr "instal·la els paquets"
 
-#: bin/dnfdragora:43
+#: bin/dnfdragora:38
 msgid "show updates only dialog"
 msgstr "mostra el diàleg només d'actualitzacions"
 
-#: bin/dnfdragora:44
+#: bin/dnfdragora:39
 msgid "show application version and exit"
 msgstr "mostra la versió de l'aplicació i surt"
 
-#: bin/dnfdragora:45
+#: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 "força la sortida dels serveis dbus de dnfdaemon utilitzats amb dnfdragora"
 
-#: bin/dnfdragora:70
+#: bin/dnfdragora:53
+#, python-format
+msgid "dnfdaemon client failure [%s]"
+msgstr ""
+
+#: bin/dnfdragora:55
+msgid "Try again using a login shell (i.e. \"su -\")"
+msgstr ""
+
+#: bin/dnfdragora:75
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sversió: %(version)s%(NL)slloc: %(site)s"
 
-#: bin/dnfdragora:84 bin/dnfdragora:87 bin/dnfdragora:90
-#: dnfdragora/basedragora.py:60 dnfdragora/basedragora.py:91
-#: dnfdragora/basedragora.py:131 dnfdragora/ui.py:1117
+#: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
+#: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
+#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1169
 msgid "Sorry"
 msgstr "Perdó!"
 
-#: bin/dnfdragora:84
+#: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
 msgstr "s'ha produït un error de client de dnfdaemon:%(NL)s%(error)s"
 
-#: bin/dnfdragora:87
+#: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
 msgstr "s'ha produït un error de nom de dnfdaemon:%(NL)s%(error)s"
 
-#: bin/dnfdragora:90
+#: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr "s'ha produït un error d'atribut de dnfdaemon:%(NL)s%(error)s"
 
-#: dnfdragora/basedragora.py:55
+#: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
 msgstr "Refresc de les metadades dels dipòsits"
 
-#: dnfdragora/basedragora.py:60
+#: dnfdragora/basedragora.py:62
 msgid "Could not refresh the DNF cache (root)"
 msgstr "No s'ha pogut actualitzar la memòria cau de DNF (root)"
 
-#: dnfdragora/basedragora.py:83
+#: dnfdragora/basedragora.py:85
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
@@ -130,7 +139,7 @@ msgstr ""
 "El frontal root de DNF no ha estat autoritzat.\n"
 "dnfdragora sortirà"
 
-#: dnfdragora/basedragora.py:88
+#: dnfdragora/basedragora.py:90
 msgid ""
 "DNF is locked by another process.\n"
 "\n"
@@ -140,303 +149,358 @@ msgstr ""
 "\n"
 "dnfdragora sortirà"
 
-#: dnfdragora/compsicons.py:20
+#: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
 msgstr "Escriptori KDE"
 
-#: dnfdragora/compsicons.py:21
+#: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
 msgstr "Escriptori Xfce"
 
-#: dnfdragora/compsicons.py:22
+#: dnfdragora/compsicons.py:21
 msgid "Applications"
 msgstr "Aplicacions"
 
-#: dnfdragora/compsicons.py:23
+#: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
 msgstr "Escriptori LXDE"
 
-#: dnfdragora/compsicons.py:24
+#: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
 msgstr "Escriptori LXQt"
 
-#: dnfdragora/compsicons.py:25
+#: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
 msgstr "Escriptori Cinnamon"
 
-#: dnfdragora/compsicons.py:26
+#: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
 msgstr "Escriptori MATE"
 
-#: dnfdragora/compsicons.py:27
+#: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
 msgstr "Escriptori Hawaii"
 
-#: dnfdragora/compsicons.py:28
+#: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
 msgstr "Entorn d'escriptori Sugar"
 
-#: dnfdragora/compsicons.py:29
+#: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
 msgstr "Escriptori GNOME"
 
-#: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:83
-#: dnfdragora/groupicons.py:597 dnfdragora/groupicons.py:600
+#: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
+#: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
 msgid "Development"
 msgstr "Desenvolupament"
 
-#: dnfdragora/compsicons.py:31 dnfdragora/groupicons.py:495
+#: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:493
 msgid "Servers"
 msgstr "Servidors"
 
-#: dnfdragora/compsicons.py:32
+#: dnfdragora/compsicons.py:31
 msgid "Base System"
 msgstr "Sistema de base"
 
-#: dnfdragora/compsicons.py:33
+#: dnfdragora/compsicons.py:32
 msgid "Content"
 msgstr "Contingut"
 
-#: dnfdragora/compsicons.py:40 dnfdragora/groupicons.py:19 dnfdragora/ui.py:334
-#: dnfdragora/ui.py:348
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:328
+#: dnfdragora/ui.py:342
 msgid "All"
 msgstr "Tot"
 
-#: dnfdragora/compsicons.py:42 dnfdragora/groupicons.py:168
+#: dnfdragora/compsicons.py:41 dnfdragora/groupicons.py:166
 msgid "Empty"
 msgstr "Buit"
 
-#: dnfdragora/compsicons.py:44 dnfdragora/groupicons.py:609
+#: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
 msgstr "Resultat de la cerca"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:98
 msgid "Getting installed packages"
 msgstr "Obtenció dels paquets instal·lats"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:99
 msgid "Getting available packages"
 msgstr "Obtenció dels paquets disponibles"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:100
 msgid "Getting available updates"
 msgstr "Obtenció de les actualitzacions disponibles"
 
-#: dnfdragora/const.py:103
+#: dnfdragora/const.py:101
 msgid "Getting all packages"
 msgstr "Obtenció de tots els paquets"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:114
 msgid "Updated packages"
 msgstr "Paquets actualitzats"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:115
 msgid "Downgraded packages"
 msgstr "Paquets revertits"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:116
 msgid "Obsoleting packages"
 msgstr "Paquets devaluats"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:117
 msgid "Obsoleted packages"
 msgstr "Paquets obsolets"
 
-#: dnfdragora/const.py:120
+#: dnfdragora/const.py:118
 msgid "Erased packages"
 msgstr "Paquets eliminats"
 
-#: dnfdragora/const.py:121 dnfdragora/const.py:122
+#: dnfdragora/const.py:119 dnfdragora/const.py:120
 msgid "Installed packages"
 msgstr "Paquets instal·lats"
 
-#: dnfdragora/const.py:123
+#: dnfdragora/const.py:121
 msgid "Installed for dependencies"
 msgstr "Instal·lats per a les dependències"
 
-#: dnfdragora/const.py:124
+#: dnfdragora/const.py:122
 msgid "Reinstalled packages"
 msgstr "Paquets reinstal·lats"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:127
 msgid "Installing"
 msgstr "Instal·lació"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:128
 msgid "Updating"
 msgstr "Actualització"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:129
 msgid "Removing"
 msgstr "Supressió"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:130
 msgid "Downgrading"
 msgstr "Reversió"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:131
 msgid "Replacing"
 msgstr "Substitució"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:135
 #, python-format
 msgid "Updating: %s"
 msgstr "Actualització: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:136
 #, python-format
 msgid "Installing: %s"
 msgstr "Instal·lació: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Reinstal·lació: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Neteja: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Removing: %s"
 msgstr "Supressió: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Devaluació: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Reversió: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verificació: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Execució de l'scriptlet: %s"
 
-#: dnfdragora/const.py:146
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Preparació de la transacció: %s"
 
-#: dnfdragora/const.py:147
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Script de la post transacció: %s"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:155
 msgid "Bugfix"
 msgstr "Correcció d'error"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:156
 msgid "New Package"
 msgstr "Paquet nou"
 
-#: dnfdragora/const.py:159 dnfdragora/groupicons.py:404
+#: dnfdragora/const.py:157 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Seguretat"
 
-#: dnfdragora/const.py:160
+#: dnfdragora/const.py:158
 msgid "Enhancement"
 msgstr "Millora"
 
-#: dnfdragora/dialogs.py:45
+#: dnfdragora/dialogs.py:200
+msgid "Undo transacion"
+msgstr ""
+
+#: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
+msgid "Error checking package signatures"
+msgstr "Error en la verificació de les signatures dels paquets"
+
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:1045
+msgid "Downloading error"
+msgid_plural "Downloading errors"
+msgstr[0] "Error en la baixada"
+msgstr[1] "Errors en la baixada"
+
+#: dnfdragora/dialogs.py:234 dnfdragora/ui.py:1050
+msgid "Error in transaction"
+msgid_plural "Errors in transaction"
+msgstr[0] "Error en la transacció"
+msgstr[1] "Errors en la transacció"
+
+#: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1062
+#: dnfdragora/ui.py:1065
+msgid "BuildTransaction failure"
+msgstr "Fallada de BuildTransaction"
+
+#: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
+#, python-format
+msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
+msgstr ""
+
+#: dnfdragora/dialogs.py:276
+msgid "History undo"
+msgstr ""
+
+#: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
+msgid "History"
+msgstr ""
+
+#: dnfdragora/dialogs.py:299
+msgid "History (Date/Time)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:301
+msgid "History Packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:305
+msgid "&Undo"
+msgstr ""
+
+#: dnfdragora/dialogs.py:307
+msgid "&Close"
+msgstr ""
+
+#: dnfdragora/dialogs.py:369
 msgid "Transaction result"
 msgstr "Resultat de la transacció"
 
-#: dnfdragora/dialogs.py:51
+#: dnfdragora/dialogs.py:375
 msgid "Transaction dependency"
 msgstr "Dependència de la transacció"
 
-#: dnfdragora/dialogs.py:56 dnfdragora/dialogs.py:505 dnfdragora/dialogs.py:543
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:829
+#: dnfdragora/dialogs.py:867 dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:946
 msgid "&Ok"
 msgstr "D'acord"
 
-#: dnfdragora/dialogs.py:57 dnfdragora/dialogs.py:234 dnfdragora/dialogs.py:428
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:558
+#: dnfdragora/dialogs.py:752 dnfdragora/dialogs.py:947
 msgid "&Cancel"
 msgstr "&Cancel·la"
 
-#: dnfdragora/dialogs.py:76
+#: dnfdragora/dialogs.py:400
 msgid "replacing "
 msgstr "substitució"
 
-#: dnfdragora/dialogs.py:82
+#: dnfdragora/dialogs.py:406
 msgid "Total size "
 msgstr "Mida total"
 
-#: dnfdragora/dialogs.py:147
+#: dnfdragora/dialogs.py:471
 msgid "Developers"
 msgstr "Desenvolupadors"
 
-#: dnfdragora/dialogs.py:151
+#: dnfdragora/dialogs.py:475
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
 "dnfdragora és un frontal de DNF que funciona mitjançant GTK, ncurses i QT"
 
-#: dnfdragora/dialogs.py:194 dnfdragora/dialogs.py:209
+#: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:533
 msgid "Repository Management"
 msgstr "Gestió dels dipòsits"
 
-#: dnfdragora/dialogs.py:220
+#: dnfdragora/dialogs.py:544
 msgid "Enabled"
 msgstr "Habilitat"
 
-#: dnfdragora/dialogs.py:220 dnfdragora/ui.py:320
+#: dnfdragora/dialogs.py:544 dnfdragora/ui.py:314
 msgid "Name"
 msgstr "Nom"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/dialogs.py:425 dnfdragora/ui.py:453
+#: dnfdragora/dialogs.py:555 dnfdragora/dialogs.py:749 dnfdragora/ui.py:447
 msgid "&Apply"
 msgstr "&Aplica"
 
-#: dnfdragora/dialogs.py:372 dnfdragora/ui.py:481
+#: dnfdragora/dialogs.py:696 dnfdragora/ui.py:487
 msgid "User preferences"
 msgstr "Preferències de l'usuari"
 
-#: dnfdragora/dialogs.py:415
+#: dnfdragora/dialogs.py:739
 msgid "Layout"
 msgstr "Disposició"
 
-#: dnfdragora/dialogs.py:417
+#: dnfdragora/dialogs.py:741
 msgid "Show updates next startup"
 msgstr "Mostra les actualitzacions la següent arrencada"
 
-#: dnfdragora/dialogs.py:418
+#: dnfdragora/dialogs.py:742
 msgid "Do not show groups view next startup"
 msgstr "No mostris la vista de grups la següent arrencada"
 
-#: dnfdragora/dialogs.py:420
+#: dnfdragora/dialogs.py:744
 msgid "System options"
 msgstr "Opcions del sistema"
 
-#: dnfdragora/dialogs.py:422
+#: dnfdragora/dialogs.py:746
 msgid "Proceed without asking for confirmation"
 msgstr "Procedeix sense demanar-ne la confirmació"
 
-#: dnfdragora/dialogs.py:423
+#: dnfdragora/dialogs.py:747
 msgid "Interval in minutes to check for updates:"
 msgstr "Interval en minuts per comprovar si hi ha actualitzacions:"
 
-#: dnfdragora/dialogs.py:672
+#: dnfdragora/dialogs.py:996
 msgid "&Yes"
 msgstr "&Sí"
 
-#: dnfdragora/dialogs.py:673
+#: dnfdragora/dialogs.py:997
 msgid "&No"
 msgstr "&No"
 
-#: dnfdragora/dialogs.py:696
+#: dnfdragora/dialogs.py:1020
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -447,11 +511,11 @@ msgstr ""
 "paquet %(pkg)s?<br><br>Clau: 0x%(id)s:<br>Id. d'usuari: \"%(user)s\"<br>De: "
 "%(file)s"
 
-#: dnfdragora/dialogs.py:703
+#: dnfdragora/dialogs.py:1027
 msgid "GPG key missed"
 msgstr "Falta la clau GPG"
 
-#: dnfdragora/dnf_backend.py:167
+#: dnfdragora/dnf_backend.py:165
 #, python-format
 msgid ""
 "dnfdaemon api version : %(actual)d\n"
@@ -462,765 +526,757 @@ msgstr ""
 "no coincideix\n"
 "Versió de l'API necessària: %(required)d"
 
-#: dnfdragora/dnf_backend.py:176
+#: dnfdragora/dnf_backend.py:174
 msgid "Start transaction"
 msgstr "Inicia la transacció"
 
-#: dnfdragora/dnf_backend.py:179
+#: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
 msgstr "Es baixen els paquets"
 
-#: dnfdragora/dnf_backend.py:186
+#: dnfdragora/dnf_backend.py:184
 msgid "Checking package signatures"
 msgstr "Comprovació de les signatures dels paquets"
 
-#: dnfdragora/dnf_backend.py:196 dnfdragora/ui.py:1002
+#: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1015
 msgid "Applying changes to the system"
 msgstr "S'apliquen els canvis al sistema"
 
-#: dnfdragora/dnf_backend.py:200
+#: dnfdragora/dnf_backend.py:198
 msgid "Verify changes on the system"
 msgstr "Verificació dels canvis al sistema"
 
-#: dnfdragora/dnf_backend.py:245
+#: dnfdragora/dnf_backend.py:243
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "S'estan baixant %(count_files)d fitxers (%(count_bytes)sB)..."
 
-#: dnfdragora/dnf_backend.py:547
+#: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
 msgstr "S'estan capturant els grups a partir dels paquets... "
 
-#: dnfdragora/groupicons.py:23
+#: dnfdragora/groupicons.py:21
 msgid "Accessibility"
 msgstr "Accessibilitat"
 
-#: dnfdragora/groupicons.py:27
+#: dnfdragora/groupicons.py:25
 msgid "Archiving"
 msgstr "Arxivament"
 
-#: dnfdragora/groupicons.py:30
+#: dnfdragora/groupicons.py:28
 msgid "Backup"
 msgstr "Còpia de seguretat"
 
-#: dnfdragora/groupicons.py:34
+#: dnfdragora/groupicons.py:32
 msgid "Cd burning"
 msgstr "Gravació de CD"
 
-#: dnfdragora/groupicons.py:38
+#: dnfdragora/groupicons.py:36
 msgid "Compression"
 msgstr "Compressió"
 
-#: dnfdragora/groupicons.py:42 dnfdragora/groupicons.py:131
-#: dnfdragora/groupicons.py:199 dnfdragora/groupicons.py:247
-#: dnfdragora/groupicons.py:315 dnfdragora/groupicons.py:395
+#: dnfdragora/groupicons.py:40 dnfdragora/groupicons.py:129
+#: dnfdragora/groupicons.py:197 dnfdragora/groupicons.py:245
+#: dnfdragora/groupicons.py:313 dnfdragora/groupicons.py:393
 msgid "Other"
 msgstr "Altres"
 
-#: dnfdragora/groupicons.py:47
+#: dnfdragora/groupicons.py:45
 msgid "Communications"
 msgstr "Comunicacions"
 
-#: dnfdragora/groupicons.py:50
+#: dnfdragora/groupicons.py:48
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
-#: dnfdragora/groupicons.py:54
+#: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
 msgstr "Marcatge"
 
-#: dnfdragora/groupicons.py:58
+#: dnfdragora/groupicons.py:56
 msgid "Fax"
 msgstr "Fax"
 
-#: dnfdragora/groupicons.py:62
+#: dnfdragora/groupicons.py:60
 msgid "Mobile"
 msgstr "Mòbil"
 
-#: dnfdragora/groupicons.py:66
+#: dnfdragora/groupicons.py:64
 msgid "Radio"
 msgstr "Ràdio"
 
-#: dnfdragora/groupicons.py:70
+#: dnfdragora/groupicons.py:68
 msgid "Serial"
 msgstr "Sèrie"
 
-#: dnfdragora/groupicons.py:74
+#: dnfdragora/groupicons.py:72
 msgid "Telephony"
 msgstr "Telefonia"
 
-#: dnfdragora/groupicons.py:79 dnfdragora/groupicons.py:99
+#: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
 msgstr "Bases de dades"
 
-#: dnfdragora/groupicons.py:86
+#: dnfdragora/groupicons.py:84
 msgid "Basic"
 msgstr "Bàsic"
 
-#: dnfdragora/groupicons.py:89
+#: dnfdragora/groupicons.py:87
 msgid "C"
 msgstr "C"
 
-#: dnfdragora/groupicons.py:92
+#: dnfdragora/groupicons.py:90
 msgid "C++"
 msgstr "C++"
 
-#: dnfdragora/groupicons.py:95
+#: dnfdragora/groupicons.py:93
 msgid "C#"
 msgstr "C#"
 
-#: dnfdragora/groupicons.py:103
+#: dnfdragora/groupicons.py:101
 msgid "Debug"
 msgstr "Depuració"
 
-#: dnfdragora/groupicons.py:107
+#: dnfdragora/groupicons.py:105
 msgid "Erlang"
 msgstr "Erlang"
 
-#: dnfdragora/groupicons.py:111
+#: dnfdragora/groupicons.py:109
 msgid "GNOME and GTK+"
 msgstr "GNOME i GTK+"
 
-#: dnfdragora/groupicons.py:115
+#: dnfdragora/groupicons.py:113
 msgid "Java"
 msgstr "Java"
 
-#: dnfdragora/groupicons.py:119
+#: dnfdragora/groupicons.py:117
 msgid "KDE and Qt"
 msgstr "KDE i Qt"
 
-#: dnfdragora/groupicons.py:123
+#: dnfdragora/groupicons.py:121
 msgid "Kernel"
 msgstr "Kernel"
 
-#: dnfdragora/groupicons.py:127
+#: dnfdragora/groupicons.py:125
 msgid "OCaml"
 msgstr "OCaml"
 
-#: dnfdragora/groupicons.py:135
+#: dnfdragora/groupicons.py:133
 msgid "Perl"
 msgstr "Perl"
 
-#: dnfdragora/groupicons.py:139
+#: dnfdragora/groupicons.py:137
 msgid "PHP"
 msgstr "PHP"
 
-#: dnfdragora/groupicons.py:143
+#: dnfdragora/groupicons.py:141
 msgid "Python"
 msgstr "Python"
 
-#: dnfdragora/groupicons.py:147
+#: dnfdragora/groupicons.py:145
 msgid "Tools"
 msgstr "Eines"
 
-#: dnfdragora/groupicons.py:151 dnfdragora/groupicons.py:499
+#: dnfdragora/groupicons.py:149 dnfdragora/groupicons.py:497
 msgid "X11"
 msgstr "X11"
 
-#: dnfdragora/groupicons.py:156 dnfdragora/groupicons.py:548
-#: dnfdragora/groupicons.py:604
+#: dnfdragora/groupicons.py:154 dnfdragora/groupicons.py:546
+#: dnfdragora/groupicons.py:602
 msgid "Documentation"
 msgstr "Documentació"
 
-#: dnfdragora/groupicons.py:160
+#: dnfdragora/groupicons.py:158
 msgid "Editors"
 msgstr "Editors"
 
-#: dnfdragora/groupicons.py:164
+#: dnfdragora/groupicons.py:162
 msgid "Education"
 msgstr "Educació"
 
-#: dnfdragora/groupicons.py:172
+#: dnfdragora/groupicons.py:170
 msgid "Emulators"
 msgstr "Emuladors"
 
-#: dnfdragora/groupicons.py:176
+#: dnfdragora/groupicons.py:174
 msgid "File tools"
 msgstr "Eines de fitxers"
 
-#: dnfdragora/groupicons.py:180
+#: dnfdragora/groupicons.py:178
 msgid "Games"
 msgstr "Jocs"
 
-#: dnfdragora/groupicons.py:183
+#: dnfdragora/groupicons.py:181
 msgid "Adventure"
 msgstr "Aventura"
 
-#: dnfdragora/groupicons.py:187
+#: dnfdragora/groupicons.py:185
 msgid "Arcade"
 msgstr "Arcade"
 
-#: dnfdragora/groupicons.py:191
+#: dnfdragora/groupicons.py:189
 msgid "Boards"
 msgstr "Taulers"
 
-#: dnfdragora/groupicons.py:195
+#: dnfdragora/groupicons.py:193
 msgid "Cards"
 msgstr "Targetes"
 
-#: dnfdragora/groupicons.py:203
+#: dnfdragora/groupicons.py:201
 msgid "Puzzles"
 msgstr "Trencaclosques"
 
-#: dnfdragora/groupicons.py:207
+#: dnfdragora/groupicons.py:205
 msgid "Shooter"
 msgstr "Tirador"
 
-#: dnfdragora/groupicons.py:211
+#: dnfdragora/groupicons.py:209
 msgid "Simulation"
 msgstr "Simulació"
 
-#: dnfdragora/groupicons.py:215
+#: dnfdragora/groupicons.py:213
 msgid "Sports"
 msgstr "Esports"
 
-#: dnfdragora/groupicons.py:219
+#: dnfdragora/groupicons.py:217
 msgid "Strategy"
 msgstr "Estratègia"
 
-#: dnfdragora/groupicons.py:224
+#: dnfdragora/groupicons.py:222
 msgid "Geography"
 msgstr "Geografia"
 
-#: dnfdragora/groupicons.py:228
+#: dnfdragora/groupicons.py:226
 msgid "Graphical desktop"
 msgstr "Escriptori gràfic"
 
-#: dnfdragora/groupicons.py:231
+#: dnfdragora/groupicons.py:229
 msgid "Enlightenment"
 msgstr "Enlightenment"
 
-#: dnfdragora/groupicons.py:235
+#: dnfdragora/groupicons.py:233
 msgid "GNOME"
 msgstr "GNOME"
 
-#: dnfdragora/groupicons.py:239
+#: dnfdragora/groupicons.py:237
 msgid "Icewm"
 msgstr "Icewm"
 
-#: dnfdragora/groupicons.py:243
+#: dnfdragora/groupicons.py:241
 msgid "KDE"
 msgstr "KDE"
 
-#: dnfdragora/groupicons.py:251
+#: dnfdragora/groupicons.py:249
 msgid "WindowMaker"
 msgstr "WindowMaker"
 
-#: dnfdragora/groupicons.py:255
+#: dnfdragora/groupicons.py:253
 msgid "Xfce"
 msgstr "Xfce"
 
-#: dnfdragora/groupicons.py:260
+#: dnfdragora/groupicons.py:258
 msgid "Graphics"
 msgstr "Gràfics"
 
-#: dnfdragora/groupicons.py:263
+#: dnfdragora/groupicons.py:261
 msgid "3D"
 msgstr "3D"
 
-#: dnfdragora/groupicons.py:267 dnfdragora/groupicons.py:415
-#: dnfdragora/groupicons.py:519
+#: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
+#: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
 msgstr "Editors i convertidors"
 
-#: dnfdragora/groupicons.py:271 dnfdragora/groupicons.py:347
-#: dnfdragora/groupicons.py:431 dnfdragora/groupicons.py:531
+#: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
+#: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
 msgid "Utilities"
 msgstr "Utilitats"
 
-#: dnfdragora/groupicons.py:275
+#: dnfdragora/groupicons.py:273
 msgid "Photography"
 msgstr "Fotografia"
 
-#: dnfdragora/groupicons.py:279
+#: dnfdragora/groupicons.py:277
 msgid "Scanning"
 msgstr "Escaneig"
 
-#: dnfdragora/groupicons.py:283
+#: dnfdragora/groupicons.py:281
 msgid "Viewers"
 msgstr "Visualitzadors"
 
-#: dnfdragora/groupicons.py:288
+#: dnfdragora/groupicons.py:286
 msgid "Monitoring"
 msgstr "Monitoratge"
 
-#: dnfdragora/groupicons.py:292 dnfdragora/groupicons.py:483
+#: dnfdragora/groupicons.py:290 dnfdragora/groupicons.py:481
 msgid "Networking"
 msgstr "Xarxa"
 
-#: dnfdragora/groupicons.py:295
+#: dnfdragora/groupicons.py:293
 msgid "File transfer"
 msgstr "Transferència de fitxers"
 
-#: dnfdragora/groupicons.py:299
+#: dnfdragora/groupicons.py:297
 msgid "IRC"
 msgstr "IRC"
 
-#: dnfdragora/groupicons.py:303
+#: dnfdragora/groupicons.py:301
 msgid "Instant messaging"
 msgstr "Missatgeria instantània"
 
-#: dnfdragora/groupicons.py:307 dnfdragora/groupicons.py:628
+#: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
 msgstr "Correu"
 
-#: dnfdragora/groupicons.py:311
+#: dnfdragora/groupicons.py:309
 msgid "News"
 msgstr "Notícies"
 
-#: dnfdragora/groupicons.py:319
+#: dnfdragora/groupicons.py:317
 msgid "Remote access"
 msgstr "Accés remot"
 
-#: dnfdragora/groupicons.py:323
+#: dnfdragora/groupicons.py:321
 msgid "WWW"
 msgstr "WWW"
 
-#: dnfdragora/groupicons.py:328
+#: dnfdragora/groupicons.py:326
 msgid "Office"
 msgstr "Oficina"
 
-#: dnfdragora/groupicons.py:331
+#: dnfdragora/groupicons.py:329
 msgid "Dictionary"
 msgstr "Diccionari"
 
-#: dnfdragora/groupicons.py:335
+#: dnfdragora/groupicons.py:333
 msgid "Finance"
 msgstr "Finances"
 
-#: dnfdragora/groupicons.py:339
+#: dnfdragora/groupicons.py:337
 msgid "Management"
 msgstr "Gestió"
 
-#: dnfdragora/groupicons.py:343
+#: dnfdragora/groupicons.py:341
 msgid "Organizer"
 msgstr "Organitzador"
 
-#: dnfdragora/groupicons.py:351
+#: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
 msgstr "Full de càlcul"
 
-#: dnfdragora/groupicons.py:355
+#: dnfdragora/groupicons.py:353
 msgid "Suite"
 msgstr "Paquet ofimàtic"
 
-#: dnfdragora/groupicons.py:359
+#: dnfdragora/groupicons.py:357
 msgid "Word processor"
 msgstr "Processador de textos"
 
-#: dnfdragora/groupicons.py:364
+#: dnfdragora/groupicons.py:362
 msgid "Publishing"
 msgstr "Publicació"
 
-#: dnfdragora/groupicons.py:368
+#: dnfdragora/groupicons.py:366
 msgid "Sciences"
 msgstr "Ciències"
 
-#: dnfdragora/groupicons.py:371
+#: dnfdragora/groupicons.py:369
 msgid "Astronomy"
 msgstr "Astronomia"
 
-#: dnfdragora/groupicons.py:375
+#: dnfdragora/groupicons.py:373
 msgid "Biology"
 msgstr "Biologia"
 
-#: dnfdragora/groupicons.py:379
+#: dnfdragora/groupicons.py:377
 msgid "Chemistry"
 msgstr "Química"
 
-#: dnfdragora/groupicons.py:383
+#: dnfdragora/groupicons.py:381
 msgid "Computer science"
 msgstr "Informàtica"
 
-#: dnfdragora/groupicons.py:387
+#: dnfdragora/groupicons.py:385
 msgid "Geosciences"
 msgstr "Geociències"
 
-#: dnfdragora/groupicons.py:391
+#: dnfdragora/groupicons.py:389
 msgid "Mathematics"
 msgstr "Matemàtiques"
 
-#: dnfdragora/groupicons.py:399
+#: dnfdragora/groupicons.py:397
 msgid "Physics"
 msgstr "Física"
 
-#: dnfdragora/groupicons.py:408
+#: dnfdragora/groupicons.py:406
 msgid "Shells"
 msgstr "Intèrprets d'ordres"
 
-#: dnfdragora/groupicons.py:412
+#: dnfdragora/groupicons.py:410
 msgid "Sound"
 msgstr "So"
 
-#: dnfdragora/groupicons.py:419
+#: dnfdragora/groupicons.py:417
 msgid "Midi"
 msgstr "Midi"
 
-#: dnfdragora/groupicons.py:423
+#: dnfdragora/groupicons.py:421
 msgid "Mixers"
 msgstr "Mescladors"
 
-#: dnfdragora/groupicons.py:427 dnfdragora/groupicons.py:523
+#: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
 msgstr "Reproductors"
 
-#: dnfdragora/groupicons.py:436
+#: dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "Sistema"
 
-#: dnfdragora/groupicons.py:439
+#: dnfdragora/groupicons.py:437
 msgid "Base"
 msgstr "Base"
 
-#: dnfdragora/groupicons.py:443
+#: dnfdragora/groupicons.py:441
 msgid "Boot and Init"
 msgstr "Arrencada i inici"
 
-#: dnfdragora/groupicons.py:447
+#: dnfdragora/groupicons.py:445
 msgid "Cluster"
 msgstr "Clúster"
 
-#: dnfdragora/groupicons.py:451 dnfdragora/groupicons.py:540
+#: dnfdragora/groupicons.py:449 dnfdragora/groupicons.py:538
 msgid "Configuration"
 msgstr "Configuració"
 
-#: dnfdragora/groupicons.py:455
+#: dnfdragora/groupicons.py:453
 msgid "Fonts"
 msgstr "Lletres"
 
-#: dnfdragora/groupicons.py:458
+#: dnfdragora/groupicons.py:456
 msgid "True type"
 msgstr "Tipus True"
 
-#: dnfdragora/groupicons.py:462
+#: dnfdragora/groupicons.py:460
 msgid "Type1"
 msgstr "Tipus1"
 
-#: dnfdragora/groupicons.py:466
+#: dnfdragora/groupicons.py:464
 msgid "X11 bitmap"
 msgstr "Mapa de bits X11"
 
-#: dnfdragora/groupicons.py:471
+#: dnfdragora/groupicons.py:469
 msgid "Internationalization"
 msgstr "Internacionalització"
 
-#: dnfdragora/groupicons.py:475
+#: dnfdragora/groupicons.py:473
 msgid "Kernel and hardware"
 msgstr "Kernel i maquinari"
 
-#: dnfdragora/groupicons.py:479
+#: dnfdragora/groupicons.py:477
 msgid "Libraries"
 msgstr "Biblioteques"
 
-#: dnfdragora/groupicons.py:487
+#: dnfdragora/groupicons.py:485
 msgid "Packaging"
 msgstr "Empaquetament"
 
-#: dnfdragora/groupicons.py:491
+#: dnfdragora/groupicons.py:489
 msgid "Printing"
 msgstr "Impressió"
 
-#: dnfdragora/groupicons.py:504
+#: dnfdragora/groupicons.py:502
 msgid "Terminals"
 msgstr "Terminals"
 
-#: dnfdragora/groupicons.py:508
+#: dnfdragora/groupicons.py:506
 msgid "Text tools"
 msgstr "Eines de text"
 
-#: dnfdragora/groupicons.py:512
+#: dnfdragora/groupicons.py:510
 msgid "Toys"
 msgstr "Joguines"
 
-#: dnfdragora/groupicons.py:516
+#: dnfdragora/groupicons.py:514
 msgid "Video"
 msgstr "Vídeo"
 
-#: dnfdragora/groupicons.py:527
+#: dnfdragora/groupicons.py:525
 msgid "Television"
 msgstr "Televisió"
 
-#: dnfdragora/groupicons.py:537
+#: dnfdragora/groupicons.py:535
 msgid "Workstation"
 msgstr "Estació de treball"
 
-#: dnfdragora/groupicons.py:544
+#: dnfdragora/groupicons.py:542
 msgid "Console Tools"
 msgstr "Eines de consola"
 
-#: dnfdragora/groupicons.py:552
+#: dnfdragora/groupicons.py:550
 msgid "Game station"
 msgstr "Estació de jocs"
 
-#: dnfdragora/groupicons.py:556
+#: dnfdragora/groupicons.py:554
 msgid "Internet station"
 msgstr "Estació d'Internet"
 
-#: dnfdragora/groupicons.py:560
+#: dnfdragora/groupicons.py:558
 msgid "Multimedia station"
 msgstr "Estació multimèdia"
 
-#: dnfdragora/groupicons.py:564
+#: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
 msgstr "Ordinador de xarxa (client)"
 
-#: dnfdragora/groupicons.py:568
+#: dnfdragora/groupicons.py:566
 msgid "Office Workstation"
 msgstr "Estació de treball d'oficina"
 
-#: dnfdragora/groupicons.py:572
+#: dnfdragora/groupicons.py:570
 msgid "Scientific Workstation"
 msgstr "Estació de treball científica"
 
-#: dnfdragora/groupicons.py:577
+#: dnfdragora/groupicons.py:575
 msgid "Graphical Environment"
 msgstr "Entorn gràfic"
 
-#: dnfdragora/groupicons.py:580
+#: dnfdragora/groupicons.py:578
 msgid "GNOME Workstation"
 msgstr "Estació de treball GNOME"
 
-#: dnfdragora/groupicons.py:584
+#: dnfdragora/groupicons.py:582
 msgid "IceWm Desktop"
 msgstr "Escriptori IceWm"
 
-#: dnfdragora/groupicons.py:588
+#: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
 msgstr "Estació de treball KDE"
 
-#: dnfdragora/groupicons.py:592
+#: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
 msgstr "Altres escriptoris gràfics"
 
-#: dnfdragora/groupicons.py:613
+#: dnfdragora/groupicons.py:611
 msgid "Server"
 msgstr "Servidor"
 
-#: dnfdragora/groupicons.py:616
+#: dnfdragora/groupicons.py:614
 msgid "DNS/NIS"
 msgstr "DNS/NIS"
 
-#: dnfdragora/groupicons.py:620
+#: dnfdragora/groupicons.py:618
 msgid "Database"
 msgstr "Base de dades"
 
-#: dnfdragora/groupicons.py:624
+#: dnfdragora/groupicons.py:622
 msgid "Firewall/Router"
 msgstr "Tallafoc / encaminador"
 
-#: dnfdragora/groupicons.py:632
+#: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
 msgstr "Correu/Programari de grup/Notícies"
 
-#: dnfdragora/groupicons.py:636
+#: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
 msgstr "Servidor de xarxa"
 
-#: dnfdragora/groupicons.py:640
+#: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
 msgstr "Web/FTP"
 
-#: dnfdragora/progress_ui.py:133
+#: dnfdragora/progress_ui.py:131
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr "Baixada:  %(files)d fitxers,  %(size)d bytes"
 
-#: dnfdragora/progress_ui.py:160
+#: dnfdragora/progress_ui.py:158
 #, python-format
 msgid "Starting to download : %s "
 msgstr "S'inicia la baixada: %s"
 
-#: dnfdragora/progress_ui.py:181
+#: dnfdragora/progress_ui.py:179
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Progrés dels fitxers (%(downloaded)d/%(total)d)"
 
-#: dnfdragora/ui.py:159
+#: dnfdragora/ui.py:153
 msgid "Update information"
 msgstr "Informació de l'actualització"
 
-#: dnfdragora/ui.py:160
+#: dnfdragora/ui.py:154
 msgid "File list"
 msgstr "Llista de fitxes"
 
-#: dnfdragora/ui.py:161
+#: dnfdragora/ui.py:155
 msgid "Changelog"
 msgstr "Registre de canvis"
 
-#: dnfdragora/ui.py:162
+#: dnfdragora/ui.py:156
 msgid "Requirements"
 msgstr "Requisits"
 
-#: dnfdragora/ui.py:268
+#: dnfdragora/ui.py:262
 msgid "Software Management - dnfdragora"
 msgstr "Gestió de programari - dnfdragora"
 
-#: dnfdragora/ui.py:300
+#: dnfdragora/ui.py:294
 msgid "Software Management"
 msgstr "Gestió de programari"
 
-#: dnfdragora/ui.py:320
+#: dnfdragora/ui.py:314
 msgid "Arch"
 msgstr "Arquitectura"
 
-#: dnfdragora/ui.py:320
+#: dnfdragora/ui.py:314
 msgid "Release"
 msgstr "Llançament"
 
-#: dnfdragora/ui.py:320
+#: dnfdragora/ui.py:314
+msgid "Size"
+msgstr ""
+
+#: dnfdragora/ui.py:314
 msgid "Summary"
 msgstr "Resum"
 
-#: dnfdragora/ui.py:320
+#: dnfdragora/ui.py:314
 msgid "Version"
 msgstr "Versió"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:321
 msgid "Status"
 msgstr "Estat"
 
-#: dnfdragora/ui.py:335
+#: dnfdragora/ui.py:329
 msgid "Installed"
 msgstr "Instal·lat"
 
-#: dnfdragora/ui.py:336
+#: dnfdragora/ui.py:330
 msgid "Not installed"
 msgstr "No instal·lat"
 
-#: dnfdragora/ui.py:337
+#: dnfdragora/ui.py:331
 msgid "To update"
 msgstr "Per actualitzar"
 
-#: dnfdragora/ui.py:343
+#: dnfdragora/ui.py:337
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Mostra només %s i noarch"
 
-#: dnfdragora/ui.py:349
+#: dnfdragora/ui.py:343
 msgid "Groups"
 msgstr "Grups"
 
-#: dnfdragora/ui.py:413
+#: dnfdragora/ui.py:407
 msgid "in names"
 msgstr "als noms"
 
-#: dnfdragora/ui.py:414
+#: dnfdragora/ui.py:408
 msgid "in descriptions"
 msgstr "a les descripcions"
 
-#: dnfdragora/ui.py:415
+#: dnfdragora/ui.py:409
 msgid "in summaries"
 msgstr "als resums"
 
-#: dnfdragora/ui.py:416
+#: dnfdragora/ui.py:410
 msgid "in file names"
 msgstr "als noms dels fitxers"
 
-#: dnfdragora/ui.py:437
+#: dnfdragora/ui.py:431
 msgid "&Search"
 msgstr "&Cerca"
 
-#: dnfdragora/ui.py:443
+#: dnfdragora/ui.py:437
 msgid "&Clear search"
 msgstr "&Neteja la cerca"
 
-#: dnfdragora/ui.py:457
+#: dnfdragora/ui.py:451
 msgid "Ch&eck all"
 msgstr "&Marca-ho tot"
 
-#: dnfdragora/ui.py:461 dnfdragora/ui.py:470
+#: dnfdragora/ui.py:455 dnfdragora/ui.py:464
 msgid "&Quit"
 msgstr "&Surt"
 
-#: dnfdragora/ui.py:466
+#: dnfdragora/ui.py:460
 msgid "&File"
 msgstr "&Fitxer"
 
-#: dnfdragora/ui.py:467
+#: dnfdragora/ui.py:461
 msgid "Reset the selection"
 msgstr "Restableix la selecció"
 
-#: dnfdragora/ui.py:468
+#: dnfdragora/ui.py:462
 msgid "Refresh Metadata"
 msgstr "Refresca les metadades"
 
-#: dnfdragora/ui.py:469
+#: dnfdragora/ui.py:463
 msgid "Repositories"
 msgstr "Dipòsits"
 
-#: dnfdragora/ui.py:480
+#: dnfdragora/ui.py:474
+msgid "&Information"
+msgstr ""
+
+#: dnfdragora/ui.py:486
 msgid "&Options"
 msgstr "&Opcions"
 
-#: dnfdragora/ui.py:492
+#: dnfdragora/ui.py:498
 msgid "&Help"
 msgstr "&Ajuda"
 
-#: dnfdragora/ui.py:493
+#: dnfdragora/ui.py:499
 msgid "Manual"
 msgstr "Manual"
 
-#: dnfdragora/ui.py:494
+#: dnfdragora/ui.py:500
 msgid "&About"
 msgstr "&Quant a"
 
-#: dnfdragora/ui.py:520
+#: dnfdragora/ui.py:526
 msgid "update"
 msgstr "actualització"
 
-#: dnfdragora/ui.py:523
+#: dnfdragora/ui.py:529
 msgid "locked"
 msgstr "bloquejat"
 
-#: dnfdragora/ui.py:526
+#: dnfdragora/ui.py:532
 msgid "installed"
 msgstr "instal·lat"
 
-#: dnfdragora/ui.py:839
+#: dnfdragora/ui.py:845
 msgid "Missing information"
 msgstr "No s'ha trobat informació"
 
-#: dnfdragora/ui.py:966
+#: dnfdragora/ui.py:864
+msgid "Repository"
+msgstr ""
+
+#: dnfdragora/ui.py:977
 msgid "Search"
 msgstr "Cerca"
 
-#: dnfdragora/ui.py:1028
-msgid "Error checking package signatures"
-msgstr "Error en la verificació de les signatures dels paquets"
-
-#: dnfdragora/ui.py:1032
-msgid "Downloading error"
-msgid_plural "Downloading errors"
-msgstr[0] "Error en la baixada"
-msgstr[1] "Errors en la baixada"
-
-#: dnfdragora/ui.py:1037
-msgid "Error in transaction"
-msgid_plural "Errors in transaction"
-msgstr[0] "Error en la transacció"
-msgstr[1] "Errors en la transacció"
-
-#: dnfdragora/ui.py:1049
-msgid "BuildTransaction failure"
-msgstr "Fallada de BuildTransaction"
-
-#: dnfdragora/ui.py:1117
+#: dnfdragora/ui.py:1169
 msgid "Not implemented yet"
 msgstr "No implementat encara"
 
-#: dnfdragora/ui.py:1146
+#: dnfdragora/ui.py:1198
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "No es pot eliminar el paquet %s"
 
-#: dnfdragora/ui.py:1146
+#: dnfdragora/ui.py:1198
 msgid "Protected package selected"
 msgstr "S'han seleccionat un paquet protegit"
 
-#: dnfdragora/ui.py:1222
+#: dnfdragora/ui.py:1274
 msgid "Unmanaged widget"
 msgstr "Estri no gestionat"
 
-#: dnfdragora/ui.py:1224
+#: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
 msgstr "Esdeveniment no gestionat"
