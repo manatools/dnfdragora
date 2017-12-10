@@ -1,5 +1,6 @@
 2017-XX-YY v. 1.1.0
 ---------------------
+- managed undo operation from history view
 - added history view
 - dnfdragora can be installed and run into python3 
   virtualenv now
