@@ -14,6 +14,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import yui
 import sys
 import datetime
+import dnfdaemon.client
 
 from dnfdragora import const
 import dnfdragora.misc as misc
@@ -179,19 +180,94 @@ class HistoryView:
         self._historyTree.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
+    def _run_transaction(self):
+        '''
+        Run the undo transaction
+        '''
+        locked = False
+        parent = self.parent
+        if not parent :
+            raise ValueError("Null parent")
+        performedUndo = False
+
+        try:
+            rc, result = parent.backend.GetTransaction()
+            if rc :
+                transaction_result_dlg = TransactionResult(parent)
+                ok = transaction_result_dlg.run(result)
+
+                if ok:  # Ok pressed
+                    parent.infobar.info(_('Undo transacion'))
+                    rc, result = parent.backend.RunTransaction()
+                    # This can happen more than once (more gpg keys to be
+                    # imported)
+                    while rc == 1:
+                        logger.debug('GPG key missing: %s' % repr(result))
+                        # get info about gpgkey to be comfirmed
+                        values = parent.backend._gpg_confirm
+                        if values:  # There is a gpgkey to be verified
+                            (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                            logger.debug('GPGKey : %s' % repr(values))
+                            resp = ask_for_gpg_import(values)
+                            parent.backend.ConfirmGPGImport(hexkeyid, resp)
+                            # tell the backend that the gpg key is confirmed
+                            # rerun the transaction
+                            # FIXME: It should not be needed to populate
+                            # the transaction again
+                            if resp:
+                                rc, result = parent.backend.GetTransaction()
+                                rc, result = parent.backend.RunTransaction()
+                            else:
+                                # NOTE TODO answer no is the only way to exit, since it seems not
+                                # to install the key :(
+                                break
+                        else:  # error in signature verification
+                            infoMsgBox({'title' : _('Error checking package signatures'),
+                                                'text' : '<br>'.join(result), 'richtext' : True })
+                            break
+                    if rc == 4:  # Download errors
+                        infoMsgBox({'title'  : ngettext('Downloading error',
+                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
+                        logger.error('Download error')
+                        logger.error(result)
+                    elif rc != 0:  # other transaction errors
+                        infoMsgBox({'title'  : ngettext('Error in transaction',
+                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
+                        logger.error('RunTransaction failure')
+                        logger.error(result)
+
+                    parent.release_root_backend()
+                    parent.backend.reload()
+                    performedUndo = (rc == 0)
+            else:
+                logger.error('BuildTransaction failure')
+                logger.error(result)
+                s = "%s"%result
+                warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
+        except dnfdaemon.client.AccessDeniedError as e:
+            logger.error("dnfdaemon client AccessDeniedError: %s ", e)
+            warningMsgBox({'title' : _("BuildTransaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+        except:
+            exc, msg = misc.parse_dbus_error()
+            if 'AccessDeniedError' in exc:
+                logger.warning("User pressed cancel button in policykit window")
+                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
+            else:
+                pass
+
+        return performedUndo
+
     def _on_history_undo(self):
         '''Handle the undo button'''
 
         sel = self._historyTree.selectedItem()
         tid = self._getTID(sel)
+        undo = False
         if tid:
             logger.debug('History Undo : %s', tid)
-            #TODO got an exception here
-            # rc, messages = self.parent.backend.HistoryUndo(tid)
-            rc = True
+            rc, messages = self.parent.backend.HistoryUndo(tid)
             if rc:
-                #self._process_actions(from_queue=False)
-                warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+                undo = self._run_transaction()
             else:
                 msg = "Can't undo history transaction :\n%s" % \
                     ("\n".join(messages))
@@ -201,7 +277,7 @@ class HistoryView:
                     "text":  msg,
                     "richtext": False,
                     })
-
+        return undo
 
     def run(self, data):
         '''
@@ -247,8 +323,9 @@ class HistoryView:
                 widget = event.widget()
 
                 if (widget == self._undoButton) :
-                    self._on_history_undo()
-                    performedUndo=True
+                    performedUndo = self._on_history_undo()
+                    if performedUndo:
+                        break
                 elif (widget == self._closeButton) :
                     break
                 elif (widget == self._historyTree):
@@ -265,6 +342,7 @@ class HistoryView:
 
         #restore old application title
         yui.YUI.app().setApplicationTitle(appTitle)
+
         return performedUndo
 
 
