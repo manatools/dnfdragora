@@ -360,7 +360,7 @@ msgid "Enhancement"
 msgstr "Aprimoramento"
 
 #: dnfdragora/dialogs.py:200
-msgid "Undo transacion"
+msgid "Undo transaction"
 msgstr ""
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041

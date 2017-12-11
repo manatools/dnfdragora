@@ -356,7 +356,7 @@ msgid "Enhancement"
 msgstr "功能增强"
 
 #: dnfdragora/dialogs.py:200
-msgid "Undo transacion"
+msgid "Undo transaction"
 msgstr ""
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
