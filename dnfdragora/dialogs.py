@@ -197,7 +197,7 @@ class HistoryView:
                 ok = transaction_result_dlg.run(result)
 
                 if ok:  # Ok pressed
-                    parent.infobar.info(_('Undo transacion'))
+                    parent.infobar.info(_('Undo transaction'))
                     rc, result = parent.backend.RunTransaction()
                     # This can happen more than once (more gpg keys to be
                     # imported)
@@ -348,7 +348,7 @@ class HistoryView:
 
 class TransactionResult:
     '''
-    TransactionResult is a dialog that shows the transacion dependencies before
+    TransactionResult is a dialog that shows the transaction dependencies before
     running the transaction.
     '''
 
