@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 18:58+0100\n"
-"PO-Revision-Date: 2017-05-05 09:07+0300\n"
+"PO-Revision-Date: 2017-12-11 08:49+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: bin/dnfdragora:24
 #, python-format
@@ -78,11 +78,12 @@ msgstr ""
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "Помилка клієнта dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
 msgstr ""
+"Спробуйте ще раз за допомогою оболонки входу до системи (тобто \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -343,11 +344,11 @@ msgstr "Безпека"
 
 #: dnfdragora/const.py:158
 msgid "Enhancement"
-msgstr "Покращення"
+msgstr "Поліпшення"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Скасувати дію"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -375,31 +376,31 @@ msgstr "Помилка побудови дії"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "Клієнт dnfdaemon не уповноважено:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "Журнал скасовування"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Журнал"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Журнал (Дата/Час)"
 
 #: dnfdragora/dialogs.py:301
 msgid "History Packages"
-msgstr ""
+msgstr "Журнал пакунків"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "&Вернути"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "За&крити"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -1123,7 +1124,7 @@ msgstr "Випуск"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1208,7 +1209,7 @@ msgstr "Сховища"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Інформація"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1244,7 +1245,7 @@ msgstr "Немає даних"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "Сховище"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
