@@ -17,14 +17,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#, fuzzy
+# Translators:
+# Miklos Horvath <hmiki@blackpantheros.eu>, 2017
+# Charles Barcza <charles.barcza@blackpantheros.eu>, 2017
+# Takács Gergely <takacsgergely.soundman@gmail.com>, 2017
+
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 18:58+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Egy G <takacsgergely.soundman@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-12-13 00:50+0100\n"
+"Last-Translator: Miklos Horvath <hmiki@blackpantheros.eu>\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
 "Language: hu\n"
@@ -32,6 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: bin/dnfdragora:24
 #, python-format
@@ -52,7 +57,7 @@ msgstr "Megjelenítés Qt bővítmény használatával"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr "Teljes képernyős dialógus ablakok használata"
+msgstr "Teljes képernyős párbeszédablakok használata"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -70,33 +75,34 @@ msgstr ""
 
 #: bin/dnfdragora:35
 msgid "directory containing localization strings (developer only)"
-msgstr "A könyvtár tartalmazza a nyelvi fájlokat is (fejlesztő esetén)"
+msgstr "A könyvtár tartalmazza a nyelvi fájlokat is (csak fejlesztőknek)"
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr "Csomag telepítése"
+msgstr "Csomagok telepítése"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "Csak a frissítések megjelenítése dialógus ablakban"
+msgstr "Frissítések megjelenítése csak párbeszédablakban"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr "Megjeleníti az alkalmazás verzióját és kilép"
+msgstr "Az alkalmazás verziójának megjelenítése és kilépés"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
-"dbus által igénybe vett szolgáltatások a dnfdragora kényszerített kilépéséhez"
+"A dnfdragora által használt dnfdaemon dbus szolgáltatások kilépésre "
+"kényszerítése"
 
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "dnfdaemon kliens oldali hiba [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Próbáld újra egy login shellt használva (\"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -210,7 +216,7 @@ msgstr "Tartalom"
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:328
 #: dnfdragora/ui.py:342
 msgid "All"
-msgstr "Mind"
+msgstr "Összes"
 
 #: dnfdragora/compsicons.py:41 dnfdragora/groupicons.py:166
 msgid "Empty"
@@ -361,7 +367,7 @@ msgstr "Kiemelés"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Tranczakció visszavonása"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -387,31 +393,31 @@ msgstr "A Tranzakció meghibásodott."
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon kliens nincs felhatalmazva:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "Visszavonási előzmények"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Előzmények"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Előzmények (Dátum/Idő)"
 
 #: dnfdragora/dialogs.py:301
 msgid "History Packages"
-msgstr ""
+msgstr "Csomagok előzménye"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "Visszavonás"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "Bezárás"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -509,10 +515,9 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"Szeretné importálni  a GPG kulcsot?<br>A %(pkg)s csomaghoz szükségesnek "
-"tartja? \n"
-"<br>Kulcs      :0x%(id)s:<br>Felhasználó azonosítás           :\"%(user)s"
-"\"<br>al%(file)s"
+"Szeretné importálni  a GPG kulcsot?<br>Szükséges a %(pkg)s csomag "
+"hitelesítéséhez?<br><br>Kulcs      :0x%(id)s:<br>Felhasználó "
+"azonosító:           :\"%(user)s\"<br>Innen:%(file)s"
 
 #: dnfdragora/dialogs.py:1027
 msgid "GPG key missed"
@@ -531,7 +536,7 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:174
 msgid "Start transaction"
-msgstr "Tranzakció elkezdése"
+msgstr "Tranzakció indítása"
 
 #: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
@@ -552,7 +557,7 @@ msgstr "Változások ellenőrzése a rendszeren"
 #: dnfdragora/dnf_backend.py:243
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr "Töltse le a %(count_files)d fájlt (%(count_bytes)sB)..."
+msgstr "%(count_files)d fájl letöltése (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
@@ -576,7 +581,7 @@ msgstr "CD-írás"
 
 #: dnfdragora/groupicons.py:36
 msgid "Compression"
-msgstr "Tömörítőprogramok"
+msgstr "Tömörítés"
 
 #: dnfdragora/groupicons.py:40 dnfdragora/groupicons.py:129
 #: dnfdragora/groupicons.py:197 dnfdragora/groupicons.py:245
@@ -610,7 +615,7 @@ msgstr "Rádió"
 
 #: dnfdragora/groupicons.py:68
 msgid "Serial"
-msgstr "Sorozat"
+msgstr "Soros"
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
@@ -997,7 +1002,7 @@ msgstr "Szövegkezelő eszközök"
 
 #: dnfdragora/groupicons.py:510
 msgid "Toys"
-msgstr "Mütyürkék"
+msgstr "Játékok"
 
 #: dnfdragora/groupicons.py:514
 msgid "Video"
@@ -1136,7 +1141,7 @@ msgstr "Kiadás"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Méret"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1221,7 +1226,7 @@ msgstr "Tárolók"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Információ"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1237,7 +1242,7 @@ msgstr "Kézi"
 
 #: dnfdragora/ui.py:500
 msgid "&About"
-msgstr "&Magunkról"
+msgstr "&Rólunk"
 
 #: dnfdragora/ui.py:526
 msgid "update"
@@ -1257,7 +1262,7 @@ msgstr "Hiányos információ"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "Tároló"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
@@ -1265,7 +1270,7 @@ msgstr "Keresés"
 
 #: dnfdragora/ui.py:1169
 msgid "Not implemented yet"
-msgstr "Még nem hajtották végre"
+msgstr "Még nincs implementálva"
 
 #: dnfdragora/ui.py:1198
 #, python-format
