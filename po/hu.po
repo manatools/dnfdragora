@@ -82,7 +82,8 @@ msgstr "dnfdaemon kliens oldali hiba [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr "Próbáld újra egy login shellt használva (\"su -\")"
+msgstr ""
+"Próbálja újra egy bejelentkezési parancsértelmező használatával (\"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -347,7 +348,7 @@ msgstr "Kiemelés"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr "Tranczakció visszavonása"
+msgstr "Tranzakció visszavonása"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -373,7 +374,7 @@ msgstr "A Tranzakció meghibásodott."
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr "dnfdaemon kliens nincs felhatalmazva:%(NL)s%(error)s"
+msgstr "nincs hitelesítés a dnfdaemon alkalmazással:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
@@ -1207,7 +1208,7 @@ msgstr "Tárolók"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr "&Információ"
+msgstr "Információ"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
