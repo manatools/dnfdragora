@@ -1,21 +1,7 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dnfdragora package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
@@ -91,11 +77,11 @@ msgstr ""
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "Ha fallat el client de dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Torneu-ho a provar usant un intèrpret d'entrada (p.e. \"su -\")."
 
 #: bin/dnfdragora:75
 #, python-format
@@ -360,7 +346,7 @@ msgstr "Millora"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Desfés la transacció"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -386,31 +372,31 @@ msgstr "Fallada de BuildTransaction"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "Client de dnfdaemon no autoritzat:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "Desfés l'historial"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Historial"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Historial (data / hora)"
 
 #: dnfdragora/dialogs.py:301
 msgid "History Packages"
-msgstr ""
+msgstr "Paquets de l'historial"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "&Desfés"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Tanca"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -1133,7 +1119,7 @@ msgstr "Llançament"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Mida"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1218,7 +1204,7 @@ msgstr "Dipòsits"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Informació"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1254,7 +1240,7 @@ msgstr "No s'ha trobat informació"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "Repositori"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
