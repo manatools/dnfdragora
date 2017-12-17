@@ -1,21 +1,7 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dnfdragora package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
@@ -24,7 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-10 18:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Michael Ferreira Martins <michaelfm21@gmail.com>, 2017\n"
+"Last-Translator: Rodrigo de Almeida Sottomaior Macedo "
+"<rmsolucoeseminformatic4@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -40,63 +27,61 @@ msgstr "%(prog)s [opções]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "Começar a usar a implementação de plugin do yui GTK+"
+msgstr "começe a usar a implementação de plugin do yui GTK+"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "Comece a usar a implementação do plugin do yui ncurses"
+msgstr "comece a usar a implementação do plugin do yui ncurses"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "Começar a usar a implementação de plugin do yui Qt"
+msgstr "começe a usar a implementação de plugin do yui Qt"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr "Usar tela cheia para diálogos"
+msgstr "use tela cheia para diálogos"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
-"Forçar um novo caminho para ícones de grupo (em vez de /usr/share/icons)"
+"forçe um novo caminho para ícones de grupo (em vez de /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
-"Forçar um novo caminho para todas as imagens necessárias (em vez de /usr/"
+"forçe um novo caminho para todas as imagens necessárias (em vez de /usr/"
 "share/dnfdragora/images)"
 
 #: bin/dnfdragora:35
 msgid "directory containing localization strings (developer only)"
-msgstr ""
-"Forçar um novo caminho para todas as imagens necessárias (em vez de /usr/"
-"share/dnfdragora/images)"
+msgstr "diretório contendo cadeias de localização (somente desenvolvedor)"
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr "Instalar pacotes"
+msgstr "instalar pacotes"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "Mostrar apenas as atualizações"
+msgstr "diálogo exibi somente atualizações"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr "mostrar a versão do aplicativo e sair"
+msgstr "mostra a versão do aplicativo e sair"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr "Força serviços dnfdaemon dbus usados por dnfdragora para sair"
+msgstr "força serviços dnfdaemon dbus usados por dnfdragora para sair"
 
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "Falha no dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Tente novamente usando um login para o shell  (i.e. \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -361,7 +346,7 @@ msgstr "Aprimoramento"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Desfazer a transação"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -370,14 +355,14 @@ msgstr "Erro ao verificar assinaturas de pacote"
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:1045
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] "Erro de download"
-msgstr[1] "Downloading errors"
+msgstr[0] "Erro no download"
+msgstr[1] "Erro nos downloads"
 
 #: dnfdragora/dialogs.py:234 dnfdragora/ui.py:1050
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Erros na transação"
-msgstr[1] "Errors in transaction"
+msgstr[1] "Erro nas transações"
 
 #: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1062
 #: dnfdragora/ui.py:1065
@@ -387,31 +372,31 @@ msgstr "Falha na transação de compilação"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "cliente dnfdaemon não autorizado: %(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "Desfazer Histórico"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Histórico"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Historico (Data/Tempo)"
 
 #: dnfdragora/dialogs.py:301
 msgid "History Packages"
-msgstr ""
+msgstr "Historicos de pacotes"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "&Desfazer"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Fechar"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -434,11 +419,11 @@ msgstr "&Cancelar"
 
 #: dnfdragora/dialogs.py:400
 msgid "replacing "
-msgstr "Substituindo"
+msgstr "substituindo"
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
-msgstr "Tamanho total"
+msgstr "tamanho total "
 
 #: dnfdragora/dialogs.py:471
 msgid "Developers"
@@ -553,7 +538,7 @@ msgstr "Baixando %(count_files)d arquivos (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
-msgstr "Colocando em cache grupos de pacotes ..."
+msgstr "Colocando em cache grupos de pacotes... "
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -619,7 +604,7 @@ msgstr "Base de dados"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr "Basic"
+msgstr "Básico"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -1092,7 +1077,7 @@ msgstr "Baixando :  %(files)d arquivos, %(size)d bytes"
 #: dnfdragora/progress_ui.py:158
 #, python-format
 msgid "Starting to download : %s "
-msgstr "Começando a fazer o download : %s"
+msgstr "Começando a fazer o download : %s "
 
 #: dnfdragora/progress_ui.py:179
 #, python-format
@@ -1133,7 +1118,7 @@ msgstr "Lançamento"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Tamanho"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1182,7 +1167,7 @@ msgstr "resumido"
 
 #: dnfdragora/ui.py:410
 msgid "in file names"
-msgstr "Nomes de arquivos"
+msgstr "nomes de arquivos"
 
 #: dnfdragora/ui.py:431
 msgid "&Search"
@@ -1218,7 +1203,7 @@ msgstr "Repositórios"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Informação"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1238,11 +1223,11 @@ msgstr "&Sobre"
 
 #: dnfdragora/ui.py:526
 msgid "update"
-msgstr "Atualizar"
+msgstr "atualizar"
 
 #: dnfdragora/ui.py:529
 msgid "locked"
-msgstr "Bloqueado"
+msgstr "bloqueado"
 
 #: dnfdragora/ui.py:532
 msgid "installed"
@@ -1254,7 +1239,7 @@ msgstr "Faltando informação"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "Repositório"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
