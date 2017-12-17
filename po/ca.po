@@ -81,7 +81,8 @@ msgstr "Ha fallat el client de dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr "Torneu-ho a provar usant un intèrpret d'entrada (p.e. \"su -\")."
+msgstr ""
+"Torneu-ho a provar mitjançant un shell d'inici de sessió (p. ex. «su -»)."
 
 #: bin/dnfdragora:75
 #, python-format
@@ -396,7 +397,7 @@ msgstr "&Desfés"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr "&Tanca"
+msgstr "Tan&ca"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -1240,7 +1241,7 @@ msgstr "No s'ha trobat informació"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr "Repositori"
+msgstr "Dipòsit"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
