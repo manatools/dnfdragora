@@ -74,11 +74,11 @@ msgstr "dnfdragora から使用される dnfdaemon dbus サービスを強制終
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "dnfdaemon クライアントの失敗です [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "ログイン シェル (例 \"su -\") を用いて再度試してください"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -94,7 +94,7 @@ msgstr "申し訳ありません"
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr "dnfdaemon クライアント のエラーが発生しました:%(NL)s%(error)s"
+msgstr "dnfdaemon クライアントのエラーが発生しました:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
@@ -343,7 +343,7 @@ msgstr "改善"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "トランザクションを取り消す"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -367,11 +367,11 @@ msgstr "BuildTransaction が失敗しました"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon クライアントは認証されていません:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "履歴の取り消し"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
@@ -379,15 +379,15 @@ msgstr "履歴"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "履歴 (日付/時刻)"
 
 #: dnfdragora/dialogs.py:301
 msgid "History Packages"
-msgstr ""
+msgstr "パッケージの履歴"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "取り消し(&U)"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
@@ -1201,7 +1201,7 @@ msgstr "リポジトリ"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "情報(&I)"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1237,7 +1237,7 @@ msgstr "情報がありません"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "リポジトリ"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
