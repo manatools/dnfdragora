@@ -405,7 +405,7 @@ msgstr "Resultat de la transacció"
 
 #: dnfdragora/dialogs.py:375
 msgid "Transaction dependency"
-msgstr "Dependència de la transacció"
+msgstr "Dependències de la transacció"
 
 #: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:829
 #: dnfdragora/dialogs.py:867 dnfdragora/dialogs.py:903
@@ -424,7 +424,7 @@ msgstr "substitució"
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
-msgstr "Mida total"
+msgstr "Mida total "
 
 #: dnfdragora/dialogs.py:471
 msgid "Developers"
@@ -527,7 +527,7 @@ msgstr "Comprovació de les signatures dels paquets"
 
 #: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1015
 msgid "Applying changes to the system"
-msgstr "S'apliquen els canvis al sistema"
+msgstr "Aplicació dels canvis al sistema"
 
 #: dnfdragora/dnf_backend.py:198
 msgid "Verify changes on the system"
