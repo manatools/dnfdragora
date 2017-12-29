@@ -1,5 +1,11 @@
 2017-XX-YY v. 1.1.0
 ---------------------
+- dnfdragora-updater: hide icon if no updates (some problems 
+  on QT desktops)
+- dnfdragora-updater: hide icon if dnfdragora update is chosen 
+  (some problems on QT desktops)
+- dnfdragora-updater: lock dnf backend only for updates requests 
+- dnfdragora: quit dnf backend on exit
 - managed undo operation from history view
 - added history view
 - dnfdragora can be installed and run into python3 
