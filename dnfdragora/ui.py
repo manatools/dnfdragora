@@ -131,7 +131,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         constructor
         '''
 
-        self.running = True
+        self.running = False
         self.loop_has_finished = False
         self.options = options
         self._progressBar = None
@@ -1109,8 +1109,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         Event-handler for the maindialog
         """
+        self.running = True
         while self.running == True:
-
             event = self.dialog.waitForEvent()
 
             eventType = event.eventType()
@@ -1294,13 +1294,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # Save user prefs on exit
         self.saveUserPreference()
 
-        self.loop_has_finished = True
         self.dialog.destroy()
         try:
-            self.backend.Unlock()
+            self.backend.quit()
         except:
             pass
+        self.loop_has_finished = True
         #self.backend.quit()
+        #self.backend.release_root_backend()
 
     def quit(self):
         self.running = False
