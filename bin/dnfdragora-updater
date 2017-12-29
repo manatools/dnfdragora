@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # vim: set fileencoding=utf-8 :
 # vim: set et ts=4 sw=4:
 #    Copyright 2017 Björn Esser <besser82@fedoraproject.org>
@@ -12,31 +12,46 @@
 #
 
 import os, sys
-
-if sys.path[0] is not '/usr/bin':
-    # We know this script is running from a git checkout
-    SCRIPT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
-    SRC_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, "./"))
-    SRC_BIN_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "bin/"))
-    sys.path.insert(0, SRC_DIR)
+import gettext
 
 if __name__ == "__main__":
+    # We need to call this as early as possible because
+    # command-line help strings are translated
+    gettext.install('dnfdragora', localedir='/usr/share/locale', names=('ngettext',))
+    import argparse
+    parser = argparse.ArgumentParser(prog='dnfdragora-updater', usage=_('%(prog)s [options]'))
+    # Application arguments
+    parser.add_argument('--icon-path', nargs='?', help=_('force a new path for all the needed icons (instead of /usr/share/icons/hicolor/128x128/apps/)'))
+    parser.add_argument('--locales-dir', nargs='?', help=_('directory containing localization strings (developer only)'))
+    args = parser.parse_args()
+
+    # Change localedir if "--locales-dir" option is specified
+    if args.locales_dir:
+        gettext.install('dnfdragora', localedir=args.locales_dir, names=('ngettext',))
+
     import dnfdaemon.client
     import dnfdragora.updater
+    options = {}
+    if args.icon_path:
+        options['icon-path'] = args.icon_path
+
     try:
-        dnfdragora.updater.Updater().main()
+        upd = dnfdragora.updater.Updater(options)
+        upd.main()
     except dnfdaemon.client.DaemonError as e:
         print("dnfdaemon client error: %s ", e)
     except NameError as e:
         print("dnfdaemon NameError: %s ", e)
     except AttributeError as e:
         print("dnfdaemon AttributeError: %s ", e)
+    except Exception as e:
+        print("Unexpected error: ", e)
     except:
-        print("Unexpected error: %s ", sys.exc_info()[0])
+        print("Unexpected error: ", sys.exc_info()[0])
     finally:
         import yui
         yui.YDialog.deleteAllDialogs()
         # next line seems to be a workaround to prevent the qt-app from crashing
         # see https://github.com/libyui/libyui-qt/issues/41
         yui.YUILoader.deleteUI()
-        print("Closing dnfdragorai-updater")
+        print("Closing dnfdragora-updater")
