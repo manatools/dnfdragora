@@ -1,21 +1,7 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dnfdragora package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
@@ -93,11 +79,11 @@ msgstr ""
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "défaillance du client dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Réessayez en utilisant un shell de connexion (soit « su - »)"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -157,7 +143,7 @@ msgstr "Bureau KDE"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr "Bureau Xfce."
+msgstr "Bureau Xfce"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
@@ -362,7 +348,7 @@ msgstr "Amélioration"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Annuler la transaction"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -388,7 +374,7 @@ msgstr "La construction de la transaction a échoué"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "client dnfdaemon non autorisé :%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
@@ -396,11 +382,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Historique"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Historique (date/heure)"
 
 #: dnfdragora/dialogs.py:301
 msgid "History Packages"
@@ -412,7 +398,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Fermer"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -1134,7 +1120,7 @@ msgstr "Révision"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1219,7 +1205,7 @@ msgstr "Dépôts"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Information"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1255,7 +1241,7 @@ msgstr "Information manquante"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "Dépôt"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
