@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-10 18:58+0100\n"
+"POT-Creation-Date: 2017-12-30 08:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jose Manuel López <joselp@outlook.es>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:24
+#: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [opciones]"
@@ -67,7 +67,7 @@ msgstr ""
 "Forzar una nueva ruta para todas las imágenes necesarias (en lugar de /usr/"
 "share/dnfdragora/images)"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
 msgstr "Directorio que contiene cadenas de localización (sólo desarrollador)"
 
@@ -123,6 +123,12 @@ msgstr "Se ha producido un error de nombre en el demonio dnf:%(NL)s%(error)s"
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr ""
 "Se ha producido un error de atributo en el demonio dnf::%(NL)s%(error)s"
+
+#: bin/dnfdragora-updater:24
+msgid ""
+"force a new path for all the needed icons (instead of /usr/share/icons/"
+"hicolor/128x128/apps/)"
+msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -219,142 +225,142 @@ msgstr "Vacío"
 msgid "Search result"
 msgstr "Resultado de búlsqueda"
 
-#: dnfdragora/const.py:98
+#: dnfdragora/const.py:99
 msgid "Getting installed packages"
 msgstr "Obteniendo paquetes instalados"
 
-#: dnfdragora/const.py:99
+#: dnfdragora/const.py:100
 msgid "Getting available packages"
 msgstr "Obteniendo paquetes disponibles"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:101
 msgid "Getting available updates"
 msgstr "Obteniendo actualizaciones disponibles"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:102
 msgid "Getting all packages"
 msgstr "Obteniendo todos los paquetes"
 
-#: dnfdragora/const.py:114
+#: dnfdragora/const.py:115
 msgid "Updated packages"
 msgstr "Paquetes actualizados"
 
-#: dnfdragora/const.py:115
+#: dnfdragora/const.py:116
 msgid "Downgraded packages"
 msgstr "Paquetes degradados"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:117
 msgid "Obsoleting packages"
 msgstr "Paquetes obsoletos"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:118
 msgid "Obsoleted packages"
 msgstr "Paquetes obsoletos"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:119
 msgid "Erased packages"
 msgstr "Paquetes eliminados"
 
-#: dnfdragora/const.py:119 dnfdragora/const.py:120
+#: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
 msgstr "Paquetes instalados"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:122
 msgid "Installed for dependencies"
 msgstr "Instalados por dependencias"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:123
 msgid "Reinstalled packages"
 msgstr "Paquetes reinstalados"
 
-#: dnfdragora/const.py:127
+#: dnfdragora/const.py:128
 msgid "Installing"
 msgstr "Instalando"
 
-#: dnfdragora/const.py:128
+#: dnfdragora/const.py:129
 msgid "Updating"
 msgstr "Actualizando"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Removing"
 msgstr "Eliminando"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Downgrading"
 msgstr "Degradación"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Replacing"
 msgstr "Reemplazando"
 
-#: dnfdragora/const.py:135
+#: dnfdragora/const.py:136
 #, python-format
 msgid "Updating: %s"
 msgstr "Actualizando: %s"
 
-#: dnfdragora/const.py:136
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Installing: %s"
 msgstr "Instalando: %s"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Reinstalando: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Limpiando: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Removing: %s"
 msgstr "Eliminando: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Marcando como obsoleto: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Degradación: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Verifying: %s"
 msgstr "Comprobando: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Ejecutando scriptlet: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Preparando transacción: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Script post-transacción: %s"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:156
 msgid "Bugfix"
 msgstr "Corrección de errores"
 
-#: dnfdragora/const.py:156
+#: dnfdragora/const.py:157
 msgid "New Package"
 msgstr "Nuevo Paquete"
 
-#: dnfdragora/const.py:157 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Seguridad"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:159
 msgid "Enhancement"
 msgstr "Mejora"
 
@@ -1279,3 +1285,38 @@ msgstr "Widget sin configurar"
 #: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
 msgstr "Evento no gestionado"
+
+#: dnfdragora/updater.py:65
+msgid "Update"
+msgstr ""
+
+#: dnfdragora/updater.py:66
+msgid "Open dnfdragora dialog"
+msgstr ""
+
+#: dnfdragora/updater.py:67
+msgid "Check for updates"
+msgstr ""
+
+#: dnfdragora/updater.py:68
+msgid "Exit"
+msgstr ""
+
+#: dnfdragora/updater.py:114
+msgid "Running dnfdragora failure"
+msgstr ""
+
+#: dnfdragora/updater.py:150 dnfdragora/updater.py:154
+#, python-format
+msgid "Error starting dnfdaemon service: [%s]"
+msgstr ""
+
+#: dnfdragora/updater.py:171
+#, python-format
+msgid "%d updates available."
+msgstr ""
+
+#: dnfdragora/updater.py:181
+#, python-format
+msgid "Exception caught: [%s]"
+msgstr ""

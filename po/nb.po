@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-10 18:58+0100\n"
+"POT-Creation-Date: 2017-12-30 08:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2017\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:24
+#: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [options]"
@@ -67,7 +67,7 @@ msgstr ""
 "tving en ny sti for alle nødvendige bilder (isteden for å bruke /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
 msgstr "katalog som inneholder lokaliseringsstrenger (kun for utviklere)"
 
@@ -121,6 +121,12 @@ msgstr "Det oppsto dnfdemon navnefeil: %(NL)s%(error)s"
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr "dnfdaemon attribute feil oppsto:%(NL)s%(error)s"
+
+#: bin/dnfdragora-updater:24
+msgid ""
+"force a new path for all the needed icons (instead of /usr/share/icons/"
+"hicolor/128x128/apps/)"
+msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -218,142 +224,142 @@ msgstr "Tom"
 msgid "Search result"
 msgstr "Søkeresultat"
 
-#: dnfdragora/const.py:98
+#: dnfdragora/const.py:99
 msgid "Getting installed packages"
 msgstr "Viser installerte pakker"
 
-#: dnfdragora/const.py:99
+#: dnfdragora/const.py:100
 msgid "Getting available packages"
 msgstr "Viser tilgjengelige pakker"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:101
 msgid "Getting available updates"
 msgstr "Viser tilgjengelige oppdateringer"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:102
 msgid "Getting all packages"
 msgstr "Viser alle pakker"
 
-#: dnfdragora/const.py:114
+#: dnfdragora/const.py:115
 msgid "Updated packages"
 msgstr "Oppdaterte pakker"
 
-#: dnfdragora/const.py:115
+#: dnfdragora/const.py:116
 msgid "Downgraded packages"
 msgstr "Nedgraderte pakker"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:117
 msgid "Obsoleting packages"
 msgstr "Gøre pakker foreldet"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:118
 msgid "Obsoleted packages"
 msgstr "Foreldete pakker"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:119
 msgid "Erased packages"
 msgstr "Slettede pakker"
 
-#: dnfdragora/const.py:119 dnfdragora/const.py:120
+#: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
 msgstr "Installerte pakker"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:122
 msgid "Installed for dependencies"
 msgstr "Innstallert pga avhenggigheter"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:123
 msgid "Reinstalled packages"
 msgstr "Ominstallerte pakker"
 
-#: dnfdragora/const.py:127
+#: dnfdragora/const.py:128
 msgid "Installing"
 msgstr "Installerer"
 
-#: dnfdragora/const.py:128
+#: dnfdragora/const.py:129
 msgid "Updating"
 msgstr "Oppdaterer"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Removing"
 msgstr "Fjerner"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Downgrading"
 msgstr "Nedraderer"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Replacing"
 msgstr "Erstatter"
 
-#: dnfdragora/const.py:135
+#: dnfdragora/const.py:136
 #, python-format
 msgid "Updating: %s"
 msgstr "Oppdaterer: %s"
 
-#: dnfdragora/const.py:136
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Installing: %s"
 msgstr "Installerer: %s"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Ominstallerer: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Renser: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Removing: %s"
 msgstr "Gjør foreldet: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Gjør foreldet: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Nedgraderer: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verifiserer: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Kjører lite skript: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Forbereder transaksjon: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Post-transaksjonsskript: %s"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:156
 msgid "Bugfix"
 msgstr "Feilretting"
 
-#: dnfdragora/const.py:156
+#: dnfdragora/const.py:157
 msgid "New Package"
 msgstr "Ny pakke"
 
-#: dnfdragora/const.py:157 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Sikkerhet"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:159
 msgid "Enhancement"
 msgstr "Forbedring"
 
@@ -1278,3 +1284,38 @@ msgstr "Widget er ikke håndtert"
 #: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
 msgstr "Hendelse er ikke håndtert"
+
+#: dnfdragora/updater.py:65
+msgid "Update"
+msgstr ""
+
+#: dnfdragora/updater.py:66
+msgid "Open dnfdragora dialog"
+msgstr ""
+
+#: dnfdragora/updater.py:67
+msgid "Check for updates"
+msgstr ""
+
+#: dnfdragora/updater.py:68
+msgid "Exit"
+msgstr ""
+
+#: dnfdragora/updater.py:114
+msgid "Running dnfdragora failure"
+msgstr ""
+
+#: dnfdragora/updater.py:150 dnfdragora/updater.py:154
+#, python-format
+msgid "Error starting dnfdaemon service: [%s]"
+msgstr ""
+
+#: dnfdragora/updater.py:171
+#, python-format
+msgid "%d updates available."
+msgstr ""
+
+#: dnfdragora/updater.py:181
+#, python-format
+msgid "Exception caught: [%s]"
+msgstr ""

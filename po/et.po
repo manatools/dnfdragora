@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-10 18:58+0100\n"
+"POT-Creation-Date: 2017-12-30 08:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2017\n"
 "Language-Team: Estonian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/dnfdragora:24
+#: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [võtmed]"
@@ -66,7 +66,7 @@ msgstr ""
 "kõigi vajalike piltide uue asukoha määramine (/usr/share/dnfdragora/images "
 "asemele)"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
 msgstr "kataloog lokaliseerimisstringidega (ainult arendajatele)"
 
@@ -121,6 +121,12 @@ msgstr "tekkis dnfdaemon'i nime tõrge:%(NL)s%(error)s"
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr "tekkis dnfdaemon'i atribuudi tõrge:%(NL)s%(error)s"
+
+#: bin/dnfdragora-updater:24
+msgid ""
+"force a new path for all the needed icons (instead of /usr/share/icons/"
+"hicolor/128x128/apps/)"
+msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -218,142 +224,142 @@ msgstr "Tühi"
 msgid "Search result"
 msgstr "Otsingutulemus"
 
-#: dnfdragora/const.py:98
+#: dnfdragora/const.py:99
 msgid "Getting installed packages"
 msgstr "Paigaldatud pakettide tuvastamine"
 
-#: dnfdragora/const.py:99
+#: dnfdragora/const.py:100
 msgid "Getting available packages"
 msgstr "Saadaolevate pakettide tuvastamine"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:101
 msgid "Getting available updates"
 msgstr "Saadaolevate uuenduste tuvastamine"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:102
 msgid "Getting all packages"
 msgstr "Kõigi pakettide tuvastamine"
 
-#: dnfdragora/const.py:114
+#: dnfdragora/const.py:115
 msgid "Updated packages"
 msgstr "Uuendatud paketid"
 
-#: dnfdragora/const.py:115
+#: dnfdragora/const.py:116
 msgid "Downgraded packages"
 msgstr "Alandatud versiooniga paketid"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:117
 msgid "Obsoleting packages"
 msgstr "Igandavad paketid"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:118
 msgid "Obsoleted packages"
 msgstr "Iganenud paketid"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:119
 msgid "Erased packages"
 msgstr "Kustutatud paketid"
 
-#: dnfdragora/const.py:119 dnfdragora/const.py:120
+#: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
 msgstr "Paigaldatud paketid"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:122
 msgid "Installed for dependencies"
 msgstr "Paigaldatud sõltuvuste tõttu"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:123
 msgid "Reinstalled packages"
 msgstr "Taaspaigaldatud paketid"
 
-#: dnfdragora/const.py:127
+#: dnfdragora/const.py:128
 msgid "Installing"
 msgstr "Paigaldamine"
 
-#: dnfdragora/const.py:128
+#: dnfdragora/const.py:129
 msgid "Updating"
 msgstr "Uuendamine"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Removing"
 msgstr "Eemaldamine"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Downgrading"
 msgstr "Versiooni alandamine"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Replacing"
 msgstr "Asendamine"
 
-#: dnfdragora/const.py:135
+#: dnfdragora/const.py:136
 #, python-format
 msgid "Updating: %s"
 msgstr "Uuendamine: %s"
 
-#: dnfdragora/const.py:136
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Installing: %s"
 msgstr "Paigaldamine: %s"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Taaspaigaldamine: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Puhastamine: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Removing: %s"
 msgstr "Eemaldamine: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Igandamine: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Versiooni alandamine: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verifitseerimine: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Skripti käivitamine: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Tehingu ettevalmistamine: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Tehingujärgne skript: %s"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:156
 msgid "Bugfix"
 msgstr "Veaparandus"
 
-#: dnfdragora/const.py:156
+#: dnfdragora/const.py:157
 msgid "New Package"
 msgstr "Uus pakett"
 
-#: dnfdragora/const.py:157 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Turve"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:159
 msgid "Enhancement"
 msgstr "Täiendus"
 
@@ -1280,3 +1286,38 @@ msgstr "Haldamata vidin"
 #: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
 msgstr "Haldamata sündmus"
+
+#: dnfdragora/updater.py:65
+msgid "Update"
+msgstr ""
+
+#: dnfdragora/updater.py:66
+msgid "Open dnfdragora dialog"
+msgstr ""
+
+#: dnfdragora/updater.py:67
+msgid "Check for updates"
+msgstr ""
+
+#: dnfdragora/updater.py:68
+msgid "Exit"
+msgstr ""
+
+#: dnfdragora/updater.py:114
+msgid "Running dnfdragora failure"
+msgstr ""
+
+#: dnfdragora/updater.py:150 dnfdragora/updater.py:154
+#, python-format
+msgid "Error starting dnfdaemon service: [%s]"
+msgstr ""
+
+#: dnfdragora/updater.py:171
+#, python-format
+msgid "%d updates available."
+msgstr ""
+
+#: dnfdragora/updater.py:181
+#, python-format
+msgid "Exception caught: [%s]"
+msgstr ""

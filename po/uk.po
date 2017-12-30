@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-10 18:58+0100\n"
+"POT-Creation-Date: 2017-12-30 08:19+0100\n"
 "PO-Revision-Date: 2017-12-11 08:49+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: bin/dnfdragora:24
+#: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
 msgstr "%(prog)s [параметри]"
@@ -53,7 +53,7 @@ msgstr ""
 "примусово вказати новий шлях до усіх потрібних зображень (замість /usr/share/"
 "dnfdragora/images)"
 
-#: bin/dnfdragora:35
+#: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
 msgstr "каталог, у якому містяться переклади (лише для розробників)"
 
@@ -110,6 +110,12 @@ msgstr "Сталася помилка назви dnfdaemon:%(NL)s%(error)s"
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr "Сталася помилка атрибута dnfdaemon:%(NL)s%(error)s"
+
+#: bin/dnfdragora-updater:24
+msgid ""
+"force a new path for all the needed icons (instead of /usr/share/icons/"
+"hicolor/128x128/apps/)"
+msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -207,142 +213,142 @@ msgstr "Порожньо"
 msgid "Search result"
 msgstr "Результат пошуку"
 
-#: dnfdragora/const.py:98
+#: dnfdragora/const.py:99
 msgid "Getting installed packages"
 msgstr "Отримання списку встановлених пакунків"
 
-#: dnfdragora/const.py:99
+#: dnfdragora/const.py:100
 msgid "Getting available packages"
 msgstr "Отримання списку доступних пакунків"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:101
 msgid "Getting available updates"
 msgstr "Отримання списку доступних оновлень"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:102
 msgid "Getting all packages"
 msgstr "Отримання списку всіх пакунків"
 
-#: dnfdragora/const.py:114
+#: dnfdragora/const.py:115
 msgid "Updated packages"
 msgstr "Оновлено пакунки"
 
-#: dnfdragora/const.py:115
+#: dnfdragora/const.py:116
 msgid "Downgraded packages"
 msgstr "Пакунки, версію яких понижено"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:117
 msgid "Obsoleting packages"
 msgstr "Вилучення застарілих пакунків"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:118
 msgid "Obsoleted packages"
 msgstr "Застарілі пакунки"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:119
 msgid "Erased packages"
 msgstr "Вилучені пакунки"
 
-#: dnfdragora/const.py:119 dnfdragora/const.py:120
+#: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
 msgstr "Встановлені пакунки"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:122
 msgid "Installed for dependencies"
 msgstr "Встановлено як залежність"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:123
 msgid "Reinstalled packages"
 msgstr "Повторно встановлені пакунки"
 
-#: dnfdragora/const.py:127
+#: dnfdragora/const.py:128
 msgid "Installing"
 msgstr "Встановлення"
 
-#: dnfdragora/const.py:128
+#: dnfdragora/const.py:129
 msgid "Updating"
 msgstr "Оновлення"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:130
 msgid "Removing"
 msgstr "Вилучення"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:131
 msgid "Downgrading"
 msgstr "Зниження версії"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:132
 msgid "Replacing"
 msgstr "Замінюємо"
 
-#: dnfdragora/const.py:135
+#: dnfdragora/const.py:136
 #, python-format
 msgid "Updating: %s"
 msgstr "Оновлюємо: %s"
 
-#: dnfdragora/const.py:136
+#: dnfdragora/const.py:137
 #, python-format
 msgid "Installing: %s"
 msgstr "Встановлюємо: %s"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:138
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Повторно встановлюємо: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Спорожнення: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:140
 #, python-format
 msgid "Removing: %s"
 msgstr "Вилучаємо: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Робимо застарілими: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Знижуємо версію: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:143
 #, python-format
 msgid "Verifying: %s"
 msgstr "Перевіряємо: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Виконуємо дієсценарій: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Готуємо дію: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Скрипт після дії: %s"
 
-#: dnfdragora/const.py:155
+#: dnfdragora/const.py:156
 msgid "Bugfix"
 msgstr "Виправлення вади"
 
-#: dnfdragora/const.py:156
+#: dnfdragora/const.py:157
 msgid "New Package"
 msgstr "Новий пакунок"
 
-#: dnfdragora/const.py:157 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Безпека"
 
-#: dnfdragora/const.py:158
+#: dnfdragora/const.py:159
 msgid "Enhancement"
 msgstr "Поліпшення"
 
@@ -1271,6 +1277,41 @@ msgstr "Некерований віджет"
 #: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
 msgstr "Некерована подія"
+
+#: dnfdragora/updater.py:65
+msgid "Update"
+msgstr ""
+
+#: dnfdragora/updater.py:66
+msgid "Open dnfdragora dialog"
+msgstr ""
+
+#: dnfdragora/updater.py:67
+msgid "Check for updates"
+msgstr ""
+
+#: dnfdragora/updater.py:68
+msgid "Exit"
+msgstr ""
+
+#: dnfdragora/updater.py:114
+msgid "Running dnfdragora failure"
+msgstr ""
+
+#: dnfdragora/updater.py:150 dnfdragora/updater.py:154
+#, python-format
+msgid "Error starting dnfdaemon service: [%s]"
+msgstr ""
+
+#: dnfdragora/updater.py:171
+#, python-format
+msgid "%d updates available."
+msgstr ""
+
+#: dnfdragora/updater.py:181
+#, python-format
+msgid "Exception caught: [%s]"
+msgstr ""
 
 #~ msgid "Current recursion limit: %s"
 #~ msgstr "Поточне обмеження на рекурсію: %s"
