@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-30 08:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Miklos Horvath <szubotaj@gmail.com>, 2017\n"
+"Last-Translator: Márton Fazekas <zseliakiraly@gmail.com>, 2017\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
 "Language: hu\n"
@@ -116,6 +116,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"Az alapértelmezett (/usr/share/icons/hicolor/128x128/apps/) útvonal helyett "
+"másik útvonal megadása"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -1279,19 +1281,19 @@ msgstr "Nem kezelt esemény"
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "Frissítés"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "dnfdragora párbeszédablak megnyitása"
 
 #: dnfdragora/updater.py:67
 msgid "Check for updates"
-msgstr ""
+msgstr "Frissítések keresése"
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "Kilépés"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
@@ -1300,12 +1302,12 @@ msgstr ""
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:154
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr ""
+msgstr "Hiba történt a dnfdaemon szolgáltatás indításakor: [%s]"
 
 #: dnfdragora/updater.py:171
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d frissítés elérhető."
 
 #: dnfdragora/updater.py:181
 #, python-format
