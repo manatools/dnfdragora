@@ -1297,7 +1297,7 @@ msgstr "Kilépés"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "A dnfdagora hibába futott"
 
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:154
 #, python-format
@@ -1312,4 +1312,4 @@ msgstr "%d frissítés elérhető."
 #: dnfdragora/updater.py:181
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Kivételbe ragadt: [1%s]"
