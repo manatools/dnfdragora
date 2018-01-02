@@ -1,14 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import errno, glob, polib, re, os, getopt, sys
 from time import strftime
 
 def usage():
-    print '\nUsage: python %s [OPTION]' %os.path.basename(sys.argv[0])
-    print '       generate pot catalogs and updates po files for desktop resources in the specified directory'
-    print 'Options: -h, --help                              : usage'
-    print '         -d <directory>, --directory <directory> : directory with desktop files'
+    print('\nUsage: python %s [OPTION]' %os.path.basename(sys.argv[0]))
+    print('       generate pot catalogs and updates po files for desktop resources in the specified directory')
+    print('Options: -h, --help                              : usage')
+    print('         -d <directory>, --directory <directory> : directory with desktop files')
     sys.exit(2)
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hd:", ["help", "directory="])
@@ -60,7 +60,7 @@ for langfile in files:
   # Create localization directories if needed
   try:
     os.makedirs(podir)
-  except OSError, e:
+  except OSError as e:
     if e.errno != errno.EEXIST:
         raise
   #open desktop file
@@ -72,15 +72,15 @@ for langfile in files:
     message_comment, message_id = mblock.strip('\n').split('=')
     potentry = polib.POEntry(
       msgctxt = message_comment,
-      msgid = message_id.decode('utf-8'),
+      msgid = message_id,
       msgstr = '',
       occurrences=[(langfile,'')]
       )
     if message_id != '':
       try:
-	pot.append(potentry)
+        pot.append(potentry)
       except ValueError:
-	print 'The entry already exists'
+        print('The entry already exists')
 pot.save('po/desktop/dnfdragora_desktop.pot')
 
 # Merge translations
@@ -106,10 +106,10 @@ for langfile in files:
     pofilename = pofile
     po = polib.pofile(pofilename)
     for entry in po.translated_entries():
-      if entry.msgid.encode('utf-8') in text:
-	origmessage = ('\n' + entry.msgctxt + '=' + entry.msgid + '\n').encode('utf-8')
-	origandtranslated = ('\n' + entry.msgctxt + '=' + entry.msgid + '\n' + entry.msgctxt + '[' + lang + ']=' + entry.msgstr + '\n').encode('utf-8')
-	text = text.replace(origmessage, origandtranslated)
+      if entry.msgid in text:
+        origmessage = '\n' + entry.msgctxt + '=' + entry.msgid + '\n'
+        origandtranslated = '\n' + entry.msgctxt + '=' + entry.msgid + '\n' + entry.msgctxt + '[' + lang + ']=' + entry.msgstr + '\n'
+        text = text.replace(origmessage, origandtranslated)
 
   deskfile.write(text)
   deskfile.close()
