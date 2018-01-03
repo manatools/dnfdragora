@@ -1,12 +1,14 @@
 [Desktop Entry]
 Name=dnfdragora-updater
 Name[ca]=Actualitzador de dnfdragora
+Name[cs]=dnfdragora-aktualizátor
 Name[fr]=dnfdragora-updater
 Name[hu]=Csomagfrissítő
 Name[nb]=dnfdragora oppdaterer
 Name[uk]=Оновлювач dnfdragora
 GenericName=Tray-icon to check for updates
 GenericName[ca]=Icona per comprovar les actualitzacions
+GenericName[cs]=Ikona v oznamovací části panelu pro zkontrolování aktualizací
 GenericName[hu]=Tálca-ikon a frissítések ellenőrzéséhez
 GenericName[nb]=Dokk ikon for sjekking av oppdateringer
 GenericName[uk]=Піктограма лотка для перевірки оновлень
@@ -14,6 +16,7 @@ Icon=dnfdragora
 Exec=dnfdragora-updater
 Comment=Automatically check for updates and notify
 Comment[ca]=Comprova automàticament si hi ha actualitzacions i notifica-m'ho
+Comment[cs]=Automaticky zkontrolovat aktualizace a dát zprávu
 Comment[fr]=Vérifier automatiquement les mises à jour et me le faire savoir
 Comment[hu]=Frissítések automatikus ellenőrzése és értesítés
 Comment[nb]=Automatisk sjekk for oppdateringer med varsel
