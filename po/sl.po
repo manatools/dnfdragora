@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2017-12-30 08:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
-"Language-Team: Slovenian (https://www.transifex.com/MageiaLinux/teams/9361/sl/)\n"
+"Language-Team: Slovenian (https://www.transifex.com/MageiaLinux/teams/9361/"
+"sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
@@ -45,11 +47,11 @@ msgstr "vsili novo pot za ikone skupin (namesto privzete /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
-"force a new path for all the needed images (instead of "
-"/usr/share/dnfdragora/images)"
+"force a new path for all the needed images (instead of /usr/share/dnfdragora/"
+"images)"
 msgstr ""
-"vsili novo pot za vse potrebne slike (namesto privzete "
-"/usr/share/dnfdragora/images)"
+"vsili novo pot za vse potrebne slike (namesto privzete /usr/share/dnfdragora/"
+"images)"
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
@@ -69,8 +71,7 @@ msgstr "prikaz verzije programa in izhod"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
-"vsiljen zaključek dnfdaemon dbus storitev, ki jih uporablja dnfdragora"
+msgstr "vsiljen zaključek dnfdaemon dbus storitev, ki jih uporablja dnfdragora"
 
 #: bin/dnfdragora:53
 #, python-format
@@ -109,11 +110,11 @@ msgstr "pojavila se je atribut napaka dnfdaemon: %(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
-"force a new path for all the needed icons (instead of "
-"/usr/share/icons/hicolor/128x128/apps/)"
+"force a new path for all the needed icons (instead of /usr/share/icons/"
+"hicolor/128x128/apps/)"
 msgstr ""
-"vsili novo pot za vse potrebne ikone (namesto privzete "
-"/usr/share/icons/hicolor/128x128/apps/)"
+"vsili novo pot za vse potrebne ikone (namesto privzete /usr/share/icons/"
+"hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -198,8 +199,8 @@ msgstr "osnovni sistem"
 msgid "Content"
 msgstr "Vsebina"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17
-#: dnfdragora/ui.py:328 dnfdragora/ui.py:342
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:328
+#: dnfdragora/ui.py:342
 msgid "All"
 msgstr "Vse"
 
@@ -500,13 +501,12 @@ msgstr "&Ne"
 #: dnfdragora/dialogs.py:1020
 #, python-format
 msgid ""
-"Do you want to import this GPG key <br>needed to verify the %(pkg)s "
-"package?<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From"
-"       : %(file)s"
-msgstr ""
-"Želite uvozitita ključ GPG, ki je <br>potreben za preverjanje paketa "
-"%(pkg)s?<br><br>Ključ 0x%(id)s:<br>Uporabniški ID: \"%(user)s\"<br>Od: "
+"Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
+"<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
+msgstr ""
+"Želite uvozitita ključ GPG, ki je <br>potreben za preverjanje paketa %(pkg)s?"
+"<br><br>Ključ 0x%(id)s:<br>Uporabniški ID: \"%(user)s\"<br>Od: %(file)s"
 
 #: dnfdragora/dialogs.py:1027
 msgid "GPG key missed"
