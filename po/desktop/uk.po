@@ -1,0 +1,57 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dnfdragora desktop files translation\n"
+"Report-Msgid-Bugs-To: i18n-discuss@mageia.org\n"
+"POT-Creation-Date: 2018-01-03 14:55+0200\n"
+"PO-Revision-Date: 2018-01-03 14:55+0200\n"
+"Last-Translator: Duffy Duck <d_duck@nowhere.net>\n"
+"Language-Team: uk <mageia-uk@ml.mageia.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Name"
+msgid "dnfdragora"
+msgstr "dnfdragora"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "GenericName"
+msgid "Install & Remove Software"
+msgstr "Встановлення або вилучення програм"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Comment"
+msgid "A graphical front end for installing, removing and updating packages"
+msgstr "Графічний інтерфейс для встановлення, вилучення і оновлення пакунків"
+
+#: ./share/applications/org.mageia.dnfdragora-updater.desktop
+msgctxt "Name"
+msgid "dnfdragora-updater"
+msgstr "Оновлювач dnfdragora"
+
+#: ./share/applications/org.mageia.dnfdragora-updater.desktop
+msgctxt "GenericName"
+msgid "Tray-icon to check for updates"
+msgstr "Піктограма лотка для перевірки оновлень"
+
+#: ./share/applications/org.mageia.dnfdragora-updater.desktop
+msgctxt "Comment"
+msgid "Automatically check for updates and notify"
+msgstr "Автоматично шукає оновлення і сповіщає про них"
+
+#: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
+msgctxt "Name"
+msgid "dnfdragora Package Installer"
+msgstr "Засіб встановлення пакунків dnfdragora"
+
+#: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
+msgctxt "GenericName"
+msgid "RPM Package Installer"
+msgstr "Встановлювач пакунків RPM"
+
+#: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
+msgctxt "Comment"
+msgid "Install local packages on the system"
+msgstr "Встановлює локальні пакунки у системі"
