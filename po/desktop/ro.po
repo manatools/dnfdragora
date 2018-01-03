@@ -1,15 +1,18 @@
-#
+# Translators:
+# Florin Cătălin RUSSEN <cfrussen@yahoo.co.uk>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 15:11+0200\n"
+"POT-Creation-Date: 2018-01-03 14:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Florin Cătălin RUSSEN <cfrussen@yahoo.co.uk>, 2018\n"
+"Language-Team: Romanian (https://www.transifex.com/MageiaLinux/teams/9361/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
@@ -19,12 +22,14 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr ""
+msgstr "Instalați & Înlăturați aplicații"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
 msgstr ""
+"O interfață grafică pentru instalarea, înlăturarea și actualizarea "
+"pachetelor"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"

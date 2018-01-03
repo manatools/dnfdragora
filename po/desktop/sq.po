@@ -1,15 +1,18 @@
-#
+# Translators:
+# Ardit Dani <ardit.dani@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 15:11+0200\n"
+"POT-Creation-Date: 2018-01-03 14:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Ardit Dani <ardit.dani@gmail.com>, 2018\n"
+"Language-Team: Albanian (https://www.transifex.com/MageiaLinux/teams/9361/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
@@ -19,7 +22,7 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr ""
+msgstr "Instalo & Hiq Programe"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
