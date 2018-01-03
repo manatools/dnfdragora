@@ -1,14 +1,17 @@
 [Desktop Entry]
 Name=dnfdragora Package Installer
 Name[ca]=Instal·lador de paquets dnfdragora
+Name[hu]=dnfdragora Csomagtelepítő
 Name[uk]=Засіб встановлення пакунків dnfdragora
 GenericName=RPM Package Installer
 GenericName[ca]=Instal·lador de paquets RPM
+GenericName[hu]=RPM Csomagtelepítő
 GenericName[uk]=Встановлювач пакунків RPM
 Icon=dnfdragora
 Exec=dnfdragora --install %F
 Comment=Install local packages on the system
 Comment[ca]=Instal·leu paquets locals al sistema
+Comment[hu]=Helyi csomagok telepítése a rendszerre
 Comment[uk]=Встановлює локальні пакунки у системі
 Terminal=false
 Type=Application
