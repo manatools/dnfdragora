@@ -2,6 +2,7 @@
 Name=dnfdragora-updater
 Name[ca]=Actualitzador de dnfdragora
 Name[cs]=dnfdragora-aktualizátor
+Name[de]=dnfdragora-updater
 Name[fr]=dnfdragora-updater
 Name[hu]=Csomagfrissítő
 Name[nb]=dnfdragora oppdaterer
@@ -17,6 +18,7 @@ Exec=dnfdragora-updater
 Comment=Automatically check for updates and notify
 Comment[ca]=Comprova automàticament si hi ha actualitzacions i notifica-m'ho
 Comment[cs]=Automaticky zkontrolovat aktualizace a dát zprávu
+Comment[de]=Automatisch nach Aktualisierungen suchen und benachrichtigen
 Comment[fr]=Vérifier automatiquement les mises à jour et me le faire savoir
 Comment[hu]=Frissítések automatikus ellenőrzése és értesítés
 Comment[nb]=Automatisk sjekk for oppdateringer med varsel
