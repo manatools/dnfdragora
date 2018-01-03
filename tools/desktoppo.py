@@ -81,7 +81,7 @@ for langfile in files:
         pot.append(potentry)
       except ValueError:
         print('The entry already exists')
-pot.save('po/desktop/dnfdragora_desktop.pot')
+pot.save('./po/desktop/dnfdragora_desktop.pot')
 
 # Merge translations
 for pofile in glob.glob(podir + '/*.po'):
