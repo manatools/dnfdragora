@@ -114,6 +114,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"erzwinge einen neuen Pfad für alle benötigten Symbole (anstatt /usr/share/"
+"icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -352,7 +354,7 @@ msgstr "Verbesserung"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Vorgang rückgängig machen"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -1276,19 +1278,19 @@ msgstr "Nicht unterstützter Event"
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "Aktualisieren"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "dnfdragora-Dialog öffnen"
 
 #: dnfdragora/updater.py:67
 msgid "Check for updates"
-msgstr ""
+msgstr "Nach Updates suchen"
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "Verlassen"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
@@ -1297,14 +1299,14 @@ msgstr ""
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:154
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr ""
+msgstr "Fehler beim Start des dnfdaemon Dienst: [%s]"
 
 #: dnfdragora/updater.py:171
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d Aktualisierungen verfügbar."
 
 #: dnfdragora/updater.py:181
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Ausnahme abgefangen: [%s]"
