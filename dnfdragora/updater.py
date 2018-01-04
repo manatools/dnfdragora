@@ -147,11 +147,14 @@ class Updater:
         try:
             self.__backend = dnfdaemon.client.Client()
         except dnfdaemon.client.DaemonError as error:
-            print(_('Error starting dnfdaemon service: [%s]'), str(error))
+            print(_('Error starting dnfdaemon service: [%s]')%(str(error)))
             self.__update_count = -1
             self.__tray.icon = None
+            return
         except Exception as e:
-            print(_('Error starting dnfdaemon service: [%s]'), str(e))
+            print(_('Error starting dnfdaemon service: [%s]')%( str(e)))
+            self.__update_count = -1
+            self.__tray.icon = None
             return
 
         try:
@@ -178,7 +181,7 @@ class Updater:
                 self.__tray.icon = None
                 self.__backend = None
         except Exception as e:
-            print(_('Exception caught: [%s]'), str(e))
+            print(_('Exception caught: [%s]')%(str(e)))
 
 
     def __update_loop(self):
