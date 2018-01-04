@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 08:19+0100\n"
+"POT-Creation-Date: 2018-01-04 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Luděk Janča <joelp@email.cz>, 2017\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
@@ -1306,17 +1306,39 @@ msgstr ""
 msgid "Running dnfdragora failure"
 msgstr ""
 
-#: dnfdragora/updater.py:150 dnfdragora/updater.py:154
+#: dnfdragora/updater.py:150 dnfdragora/updater.py:155
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr ""
 
-#: dnfdragora/updater.py:171
+#: dnfdragora/updater.py:174
 #, python-format
 msgid "%d updates available."
 msgstr ""
 
-#: dnfdragora/updater.py:181
+#: dnfdragora/updater.py:184
 #, python-format
 msgid "Exception caught: [%s]"
+msgstr ""
+
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
+msgid "dnfdragora"
+msgstr ""
+
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
+msgid "A frontend for DNF using libyui UI abstraction library"
+msgstr ""
+
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
+msgid ""
+"dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
+"rpmdrake)."
+msgstr ""
+
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
+msgid ""
+"dnfdragora is written in Python 3 and uses libYui, the widget abstraction "
+"library written by SUSE, so that it can be run using Qt 5, GTK+ 3, or "
+"ncurses interfaces. It provides a frontend for the DNF package manager that "
+"can be used in any kind of system environment."
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 08:19+0100\n"
+"POT-Creation-Date: 2018-01-04 23:15+0200\n"
 "PO-Revision-Date: 2017-12-31 16:06+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
@@ -116,9 +116,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
-"примусово вказати новий шлях для усіх потрібних піктограм (замість"
-" /usr/share/icons/"
-"hicolor/128x128/apps/)"
+"примусово вказати новий шлях для усіх потрібних піктограм (замість /usr/"
+"share/icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -1301,41 +1300,45 @@ msgstr "Вийти"
 msgid "Running dnfdragora failure"
 msgstr "Не вдалося запустити dnfdragora"
 
-#: dnfdragora/updater.py:150 dnfdragora/updater.py:154
+#: dnfdragora/updater.py:150 dnfdragora/updater.py:155
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Помилка під час спроби запустити службу dnfdaemon: [%s]"
 
-#: dnfdragora/updater.py:171
+#: dnfdragora/updater.py:174
 #, python-format
 msgid "%d updates available."
 msgstr "Доступні оновлення (%d)."
 
-#: dnfdragora/updater.py:181
+#: dnfdragora/updater.py:184
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Отримано повідомлення про виключення: [%s]"
 
-#~ msgid "Current recursion limit: %s"
-#~ msgstr "Поточне обмеження на рекурсію: %s"
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
+msgid "dnfdragora"
+msgstr ""
 
-#~ msgid "Raised recursion limit to: %s"
-#~ msgstr "Збільшено обмеження на рекурсію до %s"
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
+msgid "A frontend for DNF using libyui UI abstraction library"
+msgstr ""
 
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
+msgid ""
+"dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
+"rpmdrake)."
+msgstr ""
 
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+#: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
+msgid ""
+"dnfdragora is written in Python 3 and uses libYui, the widget abstraction "
+"library written by SUSE, so that it can be run using Qt 5, GTK+ 3, or "
+"ncurses interfaces. It provides a frontend for the DNF package manager that "
+"can be used in any kind of system environment."
+msgstr ""
 
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
-
-#~ msgid "Error in transaction\n"
-#~ msgid_plural "Errors in transaction\n"
-#~ msgstr[0] "Помилка під час виконання дії\n"
-#~ msgstr[1] "Помилки під час виконання дії\n"
-#~ msgstr[2] "Помилки під час виконання дії\n"
+#~ msgid "Error checking package signatures\n"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
 
 #~ msgid "Downloading error\n"
 #~ msgid_plural "Downloading errors\n"
@@ -1343,5 +1346,23 @@ msgstr "Отримано повідомлення про виключення: [
 #~ msgstr[1] "Помилки під час отримання\n"
 #~ msgstr[2] "Помилки під час отримання\n"
 
-#~ msgid "Error checking package signatures\n"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
+#~ msgid "Error in transaction\n"
+#~ msgid_plural "Errors in transaction\n"
+#~ msgstr[0] "Помилка під час виконання дії\n"
+#~ msgstr[1] "Помилки під час виконання дії\n"
+#~ msgstr[2] "Помилки під час виконання дії\n"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Збільшено обмеження на рекурсію до %s"
+
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Поточне обмеження на рекурсію: %s"
