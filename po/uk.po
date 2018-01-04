@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2017.
+# Yuri Chornoivan <yurchor@ukr.net>, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
-"PO-Revision-Date: 2017-12-31 16:06+0200\n"
+"POT-Creation-Date: 2018-01-04 20:49+0200\n"
+"PO-Revision-Date: 2018-01-04 21:01+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
@@ -1317,17 +1317,22 @@ msgstr "Отримано повідомлення про виключення: [
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
 msgstr ""
+"Оболонка до DNF, створена з використання бібліотеки абстрагування від"
+" інтерфейсу користувача libyui"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora — оболонка DNF, натхненням для створення якої стала rpmdragora з"
+" Mageia (початково "
+"rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1336,15 +1341,26 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
+"dnfdragora написано мовою програмування Python 3, для чого використано"
+" libYui, бібліотеку абстрагування від віджетів, написану SUSE. Таким чином,"
+" програма може працювати з використанням інтерфейсів Qt 5, GTK+ 3 або"
+" ncurses. Вона забезпечує роботу оболонки програми для керування пакунками"
+" DNF, якою можна скористатися у будь-якому типі системного середовища."
 
-#~ msgid "Error checking package signatures\n"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Поточне обмеження на рекурсію: %s"
 
-#~ msgid "Downloading error\n"
-#~ msgid_plural "Downloading errors\n"
-#~ msgstr[0] "Помилка під час отримання\n"
-#~ msgstr[1] "Помилки під час отримання\n"
-#~ msgstr[2] "Помилки під час отримання\n"
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Збільшено обмеження на рекурсію до %s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
 
 #~ msgid "Error in transaction\n"
 #~ msgid_plural "Errors in transaction\n"
@@ -1352,17 +1368,11 @@ msgstr ""
 #~ msgstr[1] "Помилки під час виконання дії\n"
 #~ msgstr[2] "Помилки під час виконання дії\n"
 
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
+#~ msgid "Downloading error\n"
+#~ msgid_plural "Downloading errors\n"
+#~ msgstr[0] "Помилка під час отримання\n"
+#~ msgstr[1] "Помилки під час отримання\n"
+#~ msgstr[2] "Помилки під час отримання\n"
 
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
-
-#~ msgid "Raised recursion limit to: %s"
-#~ msgstr "Збільшено обмеження на рекурсію до %s"
-
-#~ msgid "Current recursion limit: %s"
-#~ msgstr "Поточне обмеження на рекурсію: %s"
+#~ msgid "Error checking package signatures\n"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
