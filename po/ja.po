@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-04 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -111,6 +111,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"必要なアイコンへの新しいパスを強制します (/usr/share/icons/hicolor/128x128/"
+"apps/ の代わりに)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -1272,52 +1274,54 @@ msgstr "管理されていないイベントです"
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "dnfdragora のダイアログを開く"
 
 #: dnfdragora/updater.py:67
 msgid "Check for updates"
-msgstr ""
+msgstr "更新を確認"
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "終了"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "dnfdragora の実行に失敗しました"
 
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:155
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr ""
+msgstr "dnfdaemon サービスの開始時にエラーが発生しました: [%s]"
 
 #: dnfdragora/updater.py:174
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d 件の更新が利用可能です。"
 
 #: dnfdragora/updater.py:184
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "例外を捕捉しました: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
-msgstr ""
+msgstr "libyui UI 抽象化ライブラリを用いた DNF フロント エンド"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora は DNF のフロント エンドで、Mageia の rpmdragora (元をたどれば "
+"rpmdrake) から発想を得たものです。"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1326,3 +1330,8 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
+"dnfdragora は Python 3 で書かれており、SUSE によって書かれたウィジェット抽象"
+"化ライブラリ libYui を使用しています。そのため、これは Qt 5, GTK+ 3, ncurses "
+"のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
+"テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
+"します。"
