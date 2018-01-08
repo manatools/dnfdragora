@@ -1,11 +1,12 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Davidmp <medipas@gmail.com>, 2018
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 14:55+0200\n"
+"POT-Creation-Date: 2018-01-07 22:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/ca/)\n"
@@ -43,7 +44,7 @@ msgstr "Icona per comprovar les actualitzacions"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr "Comprova automàticament si hi ha actualitzacions i notifica-m'ho"
+msgstr "Comprova automàticament si hi ha actualitzacions i notifica-m'ho."
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
