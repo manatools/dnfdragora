@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-04 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -1269,7 +1269,7 @@ msgstr "Beskyttet pakke valgt"
 
 #: dnfdragora/ui.py:1274
 msgid "Unmanaged widget"
-msgstr "Uhånderet widget"
+msgstr "Uhåndteret widget"
 
 #: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
@@ -1312,17 +1312,20 @@ msgstr "Undtagelse fanget: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
 msgstr ""
+"En frontend til DNF som bruger libyui brugerflade-abstraktionsbibliotek"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora er en DNF-frontend, inspireret af rpmdragora fra Mageia "
+"(oprindeligt rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1331,3 +1334,7 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
+"dnfdragora er skrevet i Python 3 og bruger libYui, widget-"
+"abstraktionsbiblioteket som er skrevet af SUSE, så det kan køres med Qt 5-, "
+"GTK+ 3- eller ncurses-brugerflader. Den leverer en frontenhed til DNF-"
+"pakkehåndteringen som kan bruges i alle slags systemmiljøer."
