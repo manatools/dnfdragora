@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-04 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -1313,17 +1313,20 @@ msgstr "Ausnahme abgefangen: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
 msgstr ""
+"Ein Frontend für DNF welches die libyui UI Abstraktionsbibliothek verwendet"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora ist ein DNF-Frontend, inspiriert durch rpmdragora von Mageia "
+"(original rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1332,3 +1335,8 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
+"dnfdragora ist in Python 3 geschrieben und verwendet libYui, die von SUSE "
+"geschriebene Widget-Abstraktionsbibliothek, wodurch es mit Qt5, GTK+3 oder "
+"ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
+"die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
+"kann."
