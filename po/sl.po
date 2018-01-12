@@ -1315,17 +1315,21 @@ msgstr "Izjema: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
 msgstr ""
+"Začelje DNF uporablja knjižnico libyui  za upodabljanje uporabniškega "
+"vmesnika"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora je začelje za DNF, navdahnjen z rpmdragora od Mageje (v originalu "
+"rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1334,3 +1338,7 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
+"dnfdragora je napisan v jeziku Python 3 in uporablja libYui, gradnik za "
+"upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
+"v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
+"DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
