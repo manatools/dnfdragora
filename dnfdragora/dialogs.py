@@ -298,7 +298,7 @@ class HistoryView:
         hbox = self.factory.createHBox(layout)
         self._historyTree = self.factory.createTree(hbox, _("History (Date/Time)"))
         self._historyTree.setNotify(True)
-        self._historyView = self.factory.createTree(hbox,_("History Packages"))
+        self._historyView = self.factory.createTree(hbox,_("Transaction History"))
 
         align = self.factory.createRight(layout)
         hbox = self.factory.createHBox(align)
