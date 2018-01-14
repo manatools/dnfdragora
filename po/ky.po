@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
+"POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Kyrgyz (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -382,7 +382,7 @@ msgid "History (Date/Time)"
 msgstr ""
 
 #: dnfdragora/dialogs.py:301
-msgid "History Packages"
+msgid "Transaction History"
 msgstr ""
 
 #: dnfdragora/dialogs.py:305

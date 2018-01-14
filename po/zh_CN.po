@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
+"POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -389,8 +389,8 @@ msgid "History (Date/Time)"
 msgstr "历史（日期/时间）"
 
 #: dnfdragora/dialogs.py:301
-msgid "History Packages"
-msgstr "历史软件包"
+msgid "Transaction History"
+msgstr ""
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1329,3 +1329,6 @@ msgstr ""
 "dnfdragora 使用 Python 3 编写，并使用了来自 SUSE 的 libYui 抽象库以便兼容 "
 "Qt5、GTK+ 3 或 ncurses 接口。它为 DNF 软件包管理器提供了图形化前端，以便在多"
 "种系统环境中使用 DNF。"
+
+#~ msgid "History Packages"
+#~ msgstr "历史软件包"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
+"POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -398,8 +398,8 @@ msgid "History (Date/Time)"
 msgstr "Zgodovina (datum/čas)"
 
 #: dnfdragora/dialogs.py:301
-msgid "History Packages"
-msgstr "Paketi zgodovine"
+msgid "Transaction History"
+msgstr ""
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1342,3 +1342,6 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
+
+#~ msgid "History Packages"
+#~ msgstr "Paketi zgodovine"

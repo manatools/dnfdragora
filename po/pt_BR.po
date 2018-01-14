@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
+"POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rodrigo de Almeida Sottomaior Macedo "
 "<rmsolucoeseminformatic4@gmail.com>, 2017\n"
@@ -393,8 +393,8 @@ msgid "History (Date/Time)"
 msgstr "Historico (Data/Tempo)"
 
 #: dnfdragora/dialogs.py:301
-msgid "History Packages"
-msgstr "Historicos de pacotes"
+msgid "Transaction History"
+msgstr ""
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1328,3 +1328,6 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
+
+#~ msgid "History Packages"
+#~ msgstr "Historicos de pacotes"

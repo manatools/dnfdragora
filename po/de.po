@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
+"POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Peter Grun <p.grun@bluewin.ch>, 2018\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -395,8 +395,8 @@ msgid "History (Date/Time)"
 msgstr "Verlauf (Datum/Zeit)"
 
 #: dnfdragora/dialogs.py:301
-msgid "History Packages"
-msgstr "Verlauf der Pakete"
+msgid "Transaction History"
+msgstr ""
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1340,3 +1340,6 @@ msgstr ""
 "ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
 "die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
 "kann."
+
+#~ msgid "History Packages"
+#~ msgstr "Verlauf der Pakete"

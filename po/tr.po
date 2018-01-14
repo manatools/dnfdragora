@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 23:15+0200\n"
+"POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -396,8 +396,8 @@ msgid "History (Date/Time)"
 msgstr "Geçmiş (Tarih/Zaman)"
 
 #: dnfdragora/dialogs.py:301
-msgid "History Packages"
-msgstr "Paket geçmişi"
+msgid "Transaction History"
+msgstr ""
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1339,3 +1339,6 @@ msgstr ""
 "soyutlama kütüphanesini kullanır. Böylece QT 5, GTK+3 veya ncurses "
 "arayüzleri kullanılarak çalıştırılabilir. Her türlü sistem çevresinde "
 "kullanılabilen DNF paket yöneticisine bir ön yüz sağlar."
+
+#~ msgid "History Packages"
+#~ msgstr "Paket geçmişi"
