@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -398,7 +398,7 @@ msgstr "Historique (date/heure)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "Historique des transactions"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1096,11 +1096,11 @@ msgstr "Progression des fichiers (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:153
 msgid "Update information"
-msgstr "Mettre à jour les informations"
+msgstr "Informations de mise à jour"
 
 #: dnfdragora/ui.py:154
 msgid "File list"
-msgstr "Liste de fichier"
+msgstr "Liste de fichiers"
 
 #: dnfdragora/ui.py:155
 msgid "Changelog"
@@ -1108,7 +1108,7 @@ msgstr "Historique"
 
 #: dnfdragora/ui.py:156
 msgid "Requirements"
-msgstr "Requis"
+msgstr "Prérequis"
 
 #: dnfdragora/ui.py:262
 msgid "Software Management - dnfdragora"
