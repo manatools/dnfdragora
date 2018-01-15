@@ -397,7 +397,7 @@ msgstr "Historial (data / hora)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "Historial de transaccions"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1341,6 +1341,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid "History Packages"
-#~ msgstr "Paquets de l'historial"
