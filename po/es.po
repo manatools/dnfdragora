@@ -396,7 +396,7 @@ msgstr "Historial (fecha/hora)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "Histórico de transacciones"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1337,6 +1337,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid "History Packages"
-#~ msgstr "Historial de paquetes"
