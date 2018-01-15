@@ -391,7 +391,7 @@ msgstr "履歴 (日付/時刻)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "トランザクションの履歴"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -403,7 +403,7 @@ msgstr "閉じる(&C)"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
-msgstr "トランザクション結果"
+msgstr "トランザクションの結果"
 
 #: dnfdragora/dialogs.py:375
 msgid "Transaction dependency"
@@ -1335,6 +1335,3 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
-
-#~ msgid "History Packages"
-#~ msgstr "パッケージの履歴"
