@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -395,7 +395,7 @@ msgstr "Historie (Dato/Tid)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "Transaksjonshistorikk"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1310,17 +1310,18 @@ msgstr "Avvik oppfanget: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
-msgstr ""
+msgstr "En frontend for DNF som bruker libyui UI abstraksjonsbibliotek."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora er en DNF frontend, inspirert av Mageia (originalt rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1329,6 +1330,7 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "History Packages"
-#~ msgstr "Historie pakker"
+"dnfdragora er skrevet i Python 3 og bruker libYui, et widget "
+"abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
+"+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
+"pakkehåndtereren som kan benyttes i ethvert system miljø."
