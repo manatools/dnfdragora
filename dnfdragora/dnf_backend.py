@@ -44,7 +44,7 @@ class DnfPackage(dnfdragora.backend.Package):
         self.summary = summary
         self.grp = group
         self.size = size
-        self.sizeM = dnfdragora.misc.format_number(size)
+        self.sizeM = dnfdragora.misc.format_size(size)
         # cache
         self._description = None
 

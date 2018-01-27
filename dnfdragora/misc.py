@@ -202,6 +202,13 @@ def format_number(number, SI=0, space=' '):
 
     return(fmt % (float(number or 0), space, symbols[depth]))
 
+def format_size(number):
+    """Turn size number in KBytes """
+    step = 1024.0
+    number = number / step
+    fmt = '%10.1f%s'
+
+    return(fmt % (float(number or 0), "K"))
 
 
 def logger_setup(file_name,
