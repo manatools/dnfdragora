@@ -595,7 +595,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             'pkg' : pkg, 'item' : item
                             }
                         if not self.update_only:
-                            item.addCell("")
+                            item.addCell(" ")
                             self._setStatusToItem(pkg,item)
                         item.this.own(False)
 
@@ -621,7 +621,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             'pkg' : pkg, 'item' : item
                             }
                         if not self.update_only:
-                            item.addCell("")
+                            item.addCell(" ")
                             self._setStatusToItem(pkg,item)
                         item.this.own(False)
 
@@ -647,7 +647,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             'pkg' : pkg, 'item' : item
                             }
                         if not self.update_only:
-                            item.addCell("")
+                            item.addCell(" ")
                             self._setStatusToItem(pkg,item)
                         item.this.own(False)
 
@@ -950,7 +950,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         'pkg' : pkg, 'item' : item
                         }
                     if not self.update_only:
-                        item.addCell("")
+                        item.addCell(" ")
                         self._setStatusToItem(pkg,item)
                     item.this.own(False)
 
