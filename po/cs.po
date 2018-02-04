@@ -74,11 +74,11 @@ msgstr "Vynutit ukončení služeb dbus dnfdaemon používané dnfdragora"
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "Selhání klienta dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Zkuste znovu pomocí přihlašovacího shellu (to jest \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -350,7 +350,7 @@ msgstr "Vylepšení"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Zpět transakci"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
@@ -378,11 +378,11 @@ msgstr "Selhání při vytváření transakce"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "Klient dnfdaemon nepovolen:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "Zpět historie"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
@@ -390,7 +390,7 @@ msgstr "Historie"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr "Historie (Datum/Čas)"
+msgstr "Historie (datum/čas)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
@@ -398,7 +398,7 @@ msgstr "Historie transakcí"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "&Zpět"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
@@ -1209,7 +1209,7 @@ msgstr "Repozitáře"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Informace"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
@@ -1278,7 +1278,7 @@ msgstr "Aktualizovat"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "Otevřít dialog dnfdragora"
 
 #: dnfdragora/updater.py:67
 msgid "Check for updates"
@@ -1290,12 +1290,12 @@ msgstr "Ukončit"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "Selhání běhu dnfdragora"
 
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:155
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr "Nastala chyba při startu služby dnfdaemon: [%s]"
+msgstr "Nastala chyba při spouštění služby dnfdaemon: [%s]"
 
 #: dnfdragora/updater.py:174
 #, python-format
@@ -1305,7 +1305,7 @@ msgstr "%d dostupných aktualizací."
 #: dnfdragora/updater.py:184
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Zachycena výjimka: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -1313,14 +1313,14 @@ msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
-msgstr "Grafické rozhraní DNF používající libyui abstraktní knihovnu "
+msgstr "Grafické rozhraní DNF používající abstraktní knihovnu rozhraní libyui"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
-"dnfdragora je grafická nadstavba DNF, inspirována rpmdragora z  Mageie "
+"dnfdragora je grafická nadstavba DNF, inspirována rpmdragora z  Mageii "
 "(původně rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
@@ -1330,7 +1330,7 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-"dnfdragora je napsána v Python 3 a používá libYui, abstraktní knihovnu "
-"widgetů napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
+"dnfdragora je napsána v Python 3 a používá libYui, abstraktní knihovnu pro "
+"doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
