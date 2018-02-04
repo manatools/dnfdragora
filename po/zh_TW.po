@@ -1,30 +1,16 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Amy Xi <fyou1535@gmail.com>, 2017\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -389,7 +375,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "歷史紀錄"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -1121,7 +1107,7 @@ msgstr "釋出"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1186,7 +1172,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:455 dnfdragora/ui.py:464
 msgid "&Quit"
-msgstr ""
+msgstr "&退出"
 
 #: dnfdragora/ui.py:460
 msgid "&File"
@@ -1214,15 +1200,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:498
 msgid "&Help"
-msgstr ""
+msgstr "&幫助"
 
 #: dnfdragora/ui.py:499
 msgid "Manual"
-msgstr "手動"
+msgstr "說明文件"
 
 #: dnfdragora/ui.py:500
 msgid "&About"
-msgstr ""
+msgstr "&關於"
 
 #: dnfdragora/ui.py:526
 msgid "update"
@@ -1271,7 +1257,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
@@ -1283,7 +1269,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "離開"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
@@ -1306,7 +1292,7 @@ msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
