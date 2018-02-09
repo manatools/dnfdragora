@@ -1,11 +1,11 @@
 # Translators:
-# Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2018
+# Iñigo Salvador Azurmendi <xalba@euskalnet.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 14:55+0200\n"
+"POT-Creation-Date: 2018-01-20 10:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rémi Verschelde <akien@mageia.org>, 2018\n"
 "Language-Team: Basque (https://www.transifex.com/MageiaLinux/teams/9361/eu/)\n"
@@ -18,12 +18,12 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr "Instalatu & Kendu Softwarea"
+msgstr "Softwarea instalatu eta kendu"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
@@ -33,29 +33,29 @@ msgstr "Paketeak instalatu, ezabatu eta eguneratzeko bitarteko grafiko bat"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-updater"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr ""
+msgstr "Erretilu-ikonoa eguneraketak egiaztatzeko"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr ""
+msgstr "Automatikoki eguneraketak egiaztatu eta jakinarazi"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "dnfdragora pakete instalatzailea"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "RPM pakete instalatzailea"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "Instalatu sisteman pakete lokalak"
