@@ -905,7 +905,7 @@ msgstr "Física"
 
 #: dnfdragora/groupicons.py:406
 msgid "Shells"
-msgstr "Intèrprets d'ordres"
+msgstr "Shells"
 
 #: dnfdragora/groupicons.py:410
 msgid "Sound"
