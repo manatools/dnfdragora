@@ -1,12 +1,12 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Rémi Verschelde <akien@mageia.org>, 2018
+# Cheng-Chia Tseng <pswo10680@gmail.com>, 2018
 # Jeff Huang <s8321414@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 21:13+0200\n"
+"POT-Creation-Date: 2018-01-20 10:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/teams/9361/zh_TW/)\n"
@@ -29,7 +29,7 @@ msgstr "安裝與移除軟體"
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr "安裝、移除與更新套件"
+msgstr "安裝、移除與更新軟體"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
