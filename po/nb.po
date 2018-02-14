@@ -106,7 +106,7 @@ msgstr "Det oppsto dnfdemon navnefeil: %(NL)s%(error)s"
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr "dnfdaemon attribute feil oppsto:%(NL)s%(error)s"
+msgstr "dnfdaemon atributtfeil oppsto:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -118,7 +118,7 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
-msgstr "Oppfrisker Metadata Repositoriet"
+msgstr "Oppfrisker Metadata pakkebrønnen"
 
 #: dnfdragora/basedragora.py:62
 msgid "Could not refresh the DNF cache (root)"
@@ -164,19 +164,19 @@ msgstr "LXQt Skrivebord"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr "Cinnamon Desktop"
+msgstr "Cinnamon Skrivebord"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr "MATE Desktop"
+msgstr "MATE Skrivebord"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr "Hawaii Desktop"
+msgstr "Hawaii Skrivebord"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr "Sugar Desktop Environment"
+msgstr "Sugar Skrivebordsmiljø"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
@@ -189,7 +189,7 @@ msgstr "Utvikling"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:493
 msgid "Servers"
-msgstr "Tjenere"
+msgstr "Servere"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
@@ -238,7 +238,7 @@ msgstr "Nedgraderte pakker"
 
 #: dnfdragora/const.py:117
 msgid "Obsoleting packages"
-msgstr "Gøre pakker foreldet"
+msgstr "Gjøre pakker foreldet"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleted packages"
@@ -1050,7 +1050,7 @@ msgstr "Andre grafiske skrivebord"
 
 #: dnfdragora/groupicons.py:611
 msgid "Server"
-msgstr "Tjener"
+msgstr "Server"
 
 #: dnfdragora/groupicons.py:614
 msgid "DNS/NIS"
@@ -1070,7 +1070,7 @@ msgstr "E-post, gruppevare og diskusjonsgrupper"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
-msgstr "Nettverksmaskintjener"
+msgstr "Nettverksmaskinserver"
 
 #: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
@@ -1198,7 +1198,7 @@ msgstr "&Fil"
 
 #: dnfdragora/ui.py:461
 msgid "Reset the selection"
-msgstr "Resett valg"
+msgstr "Tilbakestill valg"
 
 #: dnfdragora/ui.py:462
 msgid "Refresh Metadata"
