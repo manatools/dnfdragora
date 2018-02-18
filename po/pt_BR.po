@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -114,6 +114,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"Forçar um novo caminho para todos os ícones necessários (em vez de /usr/"
+"share/icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -394,7 +396,7 @@ msgstr "Historico (Data/Tempo)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "Histórico de transações"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
@@ -1274,52 +1276,54 @@ msgstr "Evento não gerenciado"
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "Atualizar"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "Abrir diálogo dnfdragora"
 
 #: dnfdragora/updater.py:67
 msgid "Check for updates"
-msgstr ""
+msgstr "Verifique atualizações"
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "Sair"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "Executando falha de dnfdragora"
 
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:155
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr ""
+msgstr "Erro ao iniciar o serviço dnfdaemon: [%s]"
 
 #: dnfdragora/updater.py:174
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%datualizações disponíveis."
 
 #: dnfdragora/updater.py:184
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Exceção capturada: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
-msgstr ""
+msgstr "Um frontend para DNF usando libyui UI biblioteca de abstração"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora é um frontend de DNF, inspirado por rpmdragora de Mageia "
+"(originalmente rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -1328,6 +1332,8 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "History Packages"
-#~ msgstr "Historicos de pacotes"
+"dnfdragora está escrito em Python 3 e usa o libYui, a biblioteca de "
+"abstração de widgets escrita pelo SUSE, para que possa ser executada usando "
+"as interfaces Qt 5, GTK + 3 ou ncurses. Ele fornece uma interface para o "
+"gerenciador de pacotes DNF que pode ser usado em qualquer tipo de ambiente "
+"de sistema."
