@@ -27,7 +27,7 @@ msgstr "%(prog)s [opções]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "começe a usar a implementação de plugin do yui GTK+"
+msgstr "comece a usar a implementação de plugin do yui GTK+"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
@@ -35,7 +35,7 @@ msgstr "comece a usar a implementação do plugin do yui ncurses"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "começe a usar a implementação de plugin do yui Qt"
+msgstr "comece a usar a implementação de plugin do yui Qt"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
@@ -44,14 +44,14 @@ msgstr "use tela cheia para diálogos"
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
-"forçe um novo caminho para ícones de grupo (em vez de /usr/share/icons)"
+"force um novo caminho para ícones de grupo (em vez de /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
-"forçe um novo caminho para todas as imagens necessárias (em vez de /usr/"
+"force um novo caminho para todas as imagens necessárias (em vez de /usr/"
 "share/dnfdragora/images)"
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
@@ -64,11 +64,11 @@ msgstr "instalar pacotes"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "diálogo exibi somente atualizações"
+msgstr "diálogo exibe somente atualizações"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr "mostra a versão do aplicativo e sair"
+msgstr "exibir a versão do aplicativo e sair"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -431,7 +431,7 @@ msgstr "substituindo"
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
-msgstr "tamanho total "
+msgstr "Tamanho total "
 
 #: dnfdragora/dialogs.py:471
 msgid "Developers"
@@ -546,7 +546,7 @@ msgstr "Baixando %(count_files)d arquivos (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
-msgstr "Colocando em cache grupos de pacotes... "
+msgstr "Colocando grupos de pacotes em cache... "
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1085,7 +1085,7 @@ msgstr "Baixando :  %(files)d arquivos, %(size)d bytes"
 #: dnfdragora/progress_ui.py:158
 #, python-format
 msgid "Starting to download : %s "
-msgstr "Começando a fazer o download : %s "
+msgstr "Iniciando o download : %s "
 
 #: dnfdragora/progress_ui.py:179
 #, python-format
@@ -1175,7 +1175,7 @@ msgstr "resumido"
 
 #: dnfdragora/ui.py:410
 msgid "in file names"
-msgstr "nomes de arquivos"
+msgstr "em nomes de arquivos"
 
 #: dnfdragora/ui.py:431
 msgid "&Search"
