@@ -1,15 +1,14 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Rémi Verschelde <akien@mageia.org>, 2018
+# psyca, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2018
-# Peter Grun <p.grun@bluewin.ch>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 21:13+0200\n"
+"POT-Creation-Date: 2018-02-22 16:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Peter Grun <p.grun@bluewin.ch>, 2018\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2018\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,8 +30,8 @@ msgstr "Installieren & Entfernen von Software"
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
 msgstr ""
-"Eine grafische Benutzerschnittstelle zum Installieren, Entfernen und Updaten"
-" von Paketen"
+"Eine grafische Benutzerschnittstelle zum Installieren, Entfernen und "
+"Aktualisieren von Paketen"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
@@ -42,7 +41,7 @@ msgstr "dnfdragora-updater"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr "Tray-Symbol um nach Updates suchen"
+msgstr "Tray-Symbol um nach Updates zu suchen"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
