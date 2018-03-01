@@ -1,16 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# rao <rvrao@centrum.cz>, 2018.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"PO-Revision-Date: 2018-03-01 HO:MI+ZONE\n"
+"Last-Translator: rao <rvrao@centrum.cz>, 2018\n"
 "Language-Team: Slovak (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sk/)\n"
 "Language: sk\n"
@@ -22,27 +21,27 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [volby]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "Začať používať prídavný modul yui s GTK+"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "Začať používať prídavný modul yui s ncurses"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "Začať používať prídavný modul yui s Qt"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "Použiť celú obrazovku pre dialógy"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "Vynútiť novú cestu pre skupinové ikony (namiesto /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
@@ -52,58 +51,58 @@ msgstr ""
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "Adresár obsahujúci jazykové retazce (len vývojár)"
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr ""
+msgstr "Nainstalovať balíčky"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "Ukázat dialóg len aktualizácie"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr ""
+msgstr "Ukázať verziu programu a ukončit"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "Vynútiť ukončenie služieb dbus dnfdaemon používané dnfdragora"
 
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "chyba klienta dnfdaemon [% s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Skúste znova pomocou prihlasovacieho shellu (i.e. \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sverzia: %(version)s%(NL)ssite: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
 #: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
 #: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1169
 msgid "Sorry"
-msgstr ""
+msgstr "Prepáčte"
 
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla sa chyba klienta dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla sa chyba názvu dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla sa chyba vlastnosti dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -113,17 +112,18 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Obnovovanie popisných dát repozitára"
 
 #: dnfdragora/basedragora.py:62
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "Nebolo možné obnoviť vyrovnávaciu pamäť DNF (root)"
 
 #: dnfdragora/basedragora.py:85
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
-msgstr ""
+msgstr "Podporná vrstva root DNF nebola schválená.\n"
+"dnfdragora bude ukončená"
 
 #: dnfdragora/basedragora.py:90
 msgid ""
@@ -131,46 +131,49 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF je uzamknutý iným procesom.\n"
+"\n"
+"dnfdragora bude ukončená"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr ""
+msgstr "Prostredie KDE"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Pracovné prostredie Xfce"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr ""
+msgstr "Aplikácie"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "Prostredie LXDE"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "Prostredie LXQt"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Pracovné prostredie Cinnamon"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr ""
+msgstr "Pracovné prostredie MATE"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Pracovné prostredie Hawaii"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Pracovné prostredie Sugar"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "Prostredie GNOME"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -183,11 +186,11 @@ msgstr "Servery"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr ""
+msgstr "Základný systém"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
-msgstr ""
+msgstr "Obsah"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:328
 #: dnfdragora/ui.py:342
@@ -200,138 +203,138 @@ msgstr "Prázdny"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr ""
+msgstr "Výsledok hľadania"
 
 #: dnfdragora/const.py:99
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Získávanie nainstalovaných balíčkov"
 
 #: dnfdragora/const.py:100
 msgid "Getting available packages"
-msgstr ""
+msgstr "Získávanie dostupných balíčkov"
 
 #: dnfdragora/const.py:101
 msgid "Getting available updates"
-msgstr ""
+msgstr "Získávanie dostupných aktualizácií"
 
 #: dnfdragora/const.py:102
 msgid "Getting all packages"
-msgstr ""
+msgstr "Získávanie všetkých balíčkov"
 
 #: dnfdragora/const.py:115
 msgid "Updated packages"
-msgstr ""
+msgstr "Aktualizované balíčky"
 
 #: dnfdragora/const.py:116
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Staršie balíčky"
 
 #: dnfdragora/const.py:117
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Zastarávajúce balíčky"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Staré balíčky"
 
 #: dnfdragora/const.py:119
 msgid "Erased packages"
-msgstr ""
+msgstr "Zmazané balíčky"
 
 #: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
-msgstr ""
+msgstr "Nainštalované balíčky"
 
 #: dnfdragora/const.py:122
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Instalované kvôli závislostiam"
 
 #: dnfdragora/const.py:123
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Znova instalované balíčky"
 
 #: dnfdragora/const.py:128
 msgid "Installing"
-msgstr ""
+msgstr "Inštalácia"
 
 #: dnfdragora/const.py:129
 msgid "Updating"
-msgstr ""
+msgstr "Aktualizácia"
 
 #: dnfdragora/const.py:130
 msgid "Removing"
-msgstr ""
+msgstr "Odstránenie"
 
 #: dnfdragora/const.py:131
 msgid "Downgrading"
-msgstr ""
+msgstr "Zníženie"
 
 #: dnfdragora/const.py:132
 msgid "Replacing"
-msgstr ""
+msgstr "Nahrádzanie"
 
 #: dnfdragora/const.py:136
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Aktualizácia: %s"
 
 #: dnfdragora/const.py:137
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Inštalácia: %s"
 
 #: dnfdragora/const.py:138
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Preinštalovanie: %s"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Čistenie: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Odstraňovanie: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Zastarávanie: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Znižovanie: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Overovanie: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Spúšťa sa scriptlet: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Príprava transakcie: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Potransakčný skript: %s"
 
 #: dnfdragora/const.py:156
 msgid "Bugfix"
-msgstr ""
+msgstr "Oprava chyby"
 
 #: dnfdragora/const.py:157
 msgid "New Package"
-msgstr ""
+msgstr "Nový balíček"
 
 #: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
@@ -339,150 +342,150 @@ msgstr "Bezpečnosť"
 
 #: dnfdragora/const.py:159
 msgid "Enhancement"
-msgstr ""
+msgstr "Vylepšenie"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Vrátiť transakcie"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Chyba pri overovaní podpisov balíčkov"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:1045
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Chyba pri sťahovaní"
+msgstr[1] "Chyby pri sťahovaní"
+msgstr[2] "Chyby pri sťahovaní"
 
 #: dnfdragora/dialogs.py:234 dnfdragora/ui.py:1050
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Chyba v transakcii"
+msgstr[1] "Chyby v transakcii"
+msgstr[2] "Chyby v transakcii"
 
 #: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1062
 #: dnfdragora/ui.py:1065
 msgid "BuildTransaction failure"
-msgstr ""
+msgstr "Zlyhanie pri vytváraní transakcie"
 
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "klient dnfdaemon nemá oprávnenie:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
-msgstr ""
+msgstr "História späť"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "História"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "História (Dátum/Čas)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "História transakcií"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "&Späť"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Zavrieť"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
-msgstr ""
+msgstr "Výsledok transakcie"
 
 #: dnfdragora/dialogs.py:375
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Závislosť transakcie"
 
 #: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:829
 #: dnfdragora/dialogs.py:867 dnfdragora/dialogs.py:903
 #: dnfdragora/dialogs.py:946
 msgid "&Ok"
-msgstr ""
+msgstr "&Ok"
 
 #: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:558
 #: dnfdragora/dialogs.py:752 dnfdragora/dialogs.py:947
 msgid "&Cancel"
-msgstr ""
+msgstr "&Zrušit"
 
 #: dnfdragora/dialogs.py:400
 msgid "replacing "
-msgstr ""
+msgstr "Nahradenie"
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
-msgstr ""
+msgstr "Celková veľkosť"
 
 #: dnfdragora/dialogs.py:471
 msgid "Developers"
-msgstr ""
+msgstr "Vývojári"
 
 #: dnfdragora/dialogs.py:475
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "dnfdragora je rozhranie DNF pracujúce s GTK, ncurses a QT"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:533
 msgid "Repository Management"
-msgstr ""
+msgstr "Správa repozitára"
 
 #: dnfdragora/dialogs.py:544
 msgid "Enabled"
-msgstr ""
+msgstr "Povolené"
 
 #: dnfdragora/dialogs.py:544 dnfdragora/ui.py:314
 msgid "Name"
-msgstr "Meno"
+msgstr "Názov"
 
 #: dnfdragora/dialogs.py:555 dnfdragora/dialogs.py:749 dnfdragora/ui.py:447
 msgid "&Apply"
-msgstr ""
+msgstr "&Použiť"
 
 #: dnfdragora/dialogs.py:696 dnfdragora/ui.py:487
 msgid "User preferences"
-msgstr ""
+msgstr "Uživatelské nastavenie"
 
 #: dnfdragora/dialogs.py:739
 msgid "Layout"
-msgstr ""
+msgstr "Usporiadanie"
 
 #: dnfdragora/dialogs.py:741
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Ukázat aktualizácie pri ďalšom spustení"
 
 #: dnfdragora/dialogs.py:742
 msgid "Do not show groups view next startup"
-msgstr ""
+msgstr "Neukazovat pohľad na skupiny pri ďalšom spustení"
 
 #: dnfdragora/dialogs.py:744
 msgid "System options"
-msgstr ""
+msgstr "Systémové voľby"
 
 #: dnfdragora/dialogs.py:746
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Pokračovať bez žiadania o potvdenie"
 
 #: dnfdragora/dialogs.py:747
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Interval v minutách pre zkontrolovanie aktualizácií:"
 
 #: dnfdragora/dialogs.py:996
 msgid "&Yes"
-msgstr ""
+msgstr "&Áno"
 
 #: dnfdragora/dialogs.py:997
 msgid "&No"
-msgstr ""
+msgstr "&Nie"
 
 #: dnfdragora/dialogs.py:1020
 #, python-format
@@ -491,10 +494,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Chcete importovať tento kľúč GPG <br>potrebný k overeniu balíka %(pkg)s?"
+"<br><br>Kľúč        : 0x%(id)s:<br>ID užívateľa     : \"%(user)s"
+"\"<br>Z       : %(file)s"
 
 #: dnfdragora/dialogs.py:1027
 msgid "GPG key missed"
-msgstr ""
+msgstr "Kľúč GPG chýba"
 
 #: dnfdragora/dnf_backend.py:165
 #, python-format
@@ -503,39 +509,42 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"Verzia api dnfdaemon: %(actual)d\n"
+"nezodpovedá\n"
+"požadovanej verzii api : %(required)d"
 
 #: dnfdragora/dnf_backend.py:174
 msgid "Start transaction"
-msgstr ""
+msgstr "Spustiť transakciu"
 
 #: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
-msgstr ""
+msgstr "Sťahovanie balíčkov"
 
 #: dnfdragora/dnf_backend.py:184
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Overovanie podpisov balíčkov"
 
 #: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1015
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Použitie zmien v systéme"
 
 #: dnfdragora/dnf_backend.py:198
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Overovanie zmien v systéme"
 
 #: dnfdragora/dnf_backend.py:243
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Stahovanie %(count_files)d súborov (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Ukladanie skupín z balíčkov do vyrovnávacej pamäte..."
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
-msgstr "Prístupnosť"
+msgstr "Zprístupnenie"
 
 #: dnfdragora/groupicons.py:25
 msgid "Archiving"
@@ -597,7 +606,7 @@ msgstr "Databázy"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr "Basic"
+msgstr "Základné"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -613,7 +622,7 @@ msgstr "C#"
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
-msgstr "Debug"
+msgstr "Ladenie"
 
 #: dnfdragora/groupicons.py:105
 msgid "Erlang"
@@ -686,7 +695,7 @@ msgstr "Hry"
 
 #: dnfdragora/groupicons.py:181
 msgid "Adventure"
-msgstr "Adventúry"
+msgstr "Dobrodružné"
 
 #: dnfdragora/groupicons.py:185
 msgid "Arcade"
@@ -694,7 +703,7 @@ msgstr "Arkády"
 
 #: dnfdragora/groupicons.py:189
 msgid "Boards"
-msgstr "Boards"
+msgstr "Stolné hry"
 
 #: dnfdragora/groupicons.py:193
 msgid "Cards"
@@ -702,7 +711,7 @@ msgstr "Karty"
 
 #: dnfdragora/groupicons.py:201
 msgid "Puzzles"
-msgstr "Puzzle"
+msgstr "Hlavolamy"
 
 #: dnfdragora/groupicons.py:205
 msgid "Shooter"
@@ -780,7 +789,7 @@ msgstr "Skenovanie"
 
 #: dnfdragora/groupicons.py:281
 msgid "Viewers"
-msgstr "Zobrazovače"
+msgstr "Prehliadače"
 
 #: dnfdragora/groupicons.py:286
 msgid "Monitoring"
@@ -800,7 +809,7 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:301
 msgid "Instant messaging"
-msgstr "Instant messaging"
+msgstr "Komunikátory"
 
 #: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
@@ -816,7 +825,7 @@ msgstr "Vzdialený prístup"
 
 #: dnfdragora/groupicons.py:321
 msgid "WWW"
-msgstr "WWW"
+msgstr "Internet"
 
 #: dnfdragora/groupicons.py:326
 msgid "Office"
@@ -840,7 +849,7 @@ msgstr "Organizér"
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
-msgstr "Tabuľkový procesor"
+msgstr "Tabuľkový kalkulátor"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
@@ -856,7 +865,7 @@ msgstr "Publikovanie"
 
 #: dnfdragora/groupicons.py:366
 msgid "Sciences"
-msgstr "Vedy"
+msgstr "Veda"
 
 #: dnfdragora/groupicons.py:369
 msgid "Astronomy"
@@ -916,7 +925,7 @@ msgstr "Základ"
 
 #: dnfdragora/groupicons.py:441
 msgid "Boot and Init"
-msgstr "Štart s inicializácia"
+msgstr "Štart a inicializácia"
 
 #: dnfdragora/groupicons.py:445
 msgid "Cluster"
@@ -956,11 +965,11 @@ msgstr "Knižnice"
 
 #: dnfdragora/groupicons.py:485
 msgid "Packaging"
-msgstr "Balíkovanie"
+msgstr "Balíčky"
 
 #: dnfdragora/groupicons.py:489
 msgid "Printing"
-msgstr "Tlačenie"
+msgstr "Tlač"
 
 #: dnfdragora/groupicons.py:502
 msgid "Terminals"
@@ -1065,37 +1074,37 @@ msgstr "Web/FTP"
 #: dnfdragora/progress_ui.py:131
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Sťahovanie:  %(files)d súborov,  %(size)d bajtov"
 
 #: dnfdragora/progress_ui.py:158
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Začína sa sťahovanie: %s "
 
 #: dnfdragora/progress_ui.py:179
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Postup súborov (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:153
 msgid "Update information"
-msgstr ""
+msgstr "Informácie o aktualizácii"
 
 #: dnfdragora/ui.py:154
 msgid "File list"
-msgstr ""
+msgstr "Zoznam súborov"
 
 #: dnfdragora/ui.py:155
 msgid "Changelog"
-msgstr ""
+msgstr "Zoznam zmien"
 
 #: dnfdragora/ui.py:156
 msgid "Requirements"
-msgstr ""
+msgstr "Požiadavky"
 
 #: dnfdragora/ui.py:262
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Správa softwéru - dnfdragora"
 
 #: dnfdragora/ui.py:294
 msgid "Software Management"
@@ -1111,7 +1120,7 @@ msgstr "Vydanie"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Veľkosť"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1127,7 +1136,7 @@ msgstr "Stav"
 
 #: dnfdragora/ui.py:329
 msgid "Installed"
-msgstr "Inštalované"
+msgstr "Nainštalované"
 
 #: dnfdragora/ui.py:330
 msgid "Not installed"
@@ -1135,12 +1144,12 @@ msgstr "Nenainštalované"
 
 #: dnfdragora/ui.py:331
 msgid "To update"
-msgstr ""
+msgstr "K aktualizácii"
 
 #: dnfdragora/ui.py:337
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Ukazuje %s a len noarch"
 
 #: dnfdragora/ui.py:343
 msgid "Groups"
@@ -1164,23 +1173,23 @@ msgstr "v menách súborov"
 
 #: dnfdragora/ui.py:431
 msgid "&Search"
-msgstr ""
+msgstr "&Hľadať"
 
 #: dnfdragora/ui.py:437
 msgid "&Clear search"
-msgstr ""
+msgstr "&Zmazať vyhľadávanie"
 
 #: dnfdragora/ui.py:451
 msgid "Ch&eck all"
-msgstr ""
+msgstr "&Vybrať všetko"
 
 #: dnfdragora/ui.py:455 dnfdragora/ui.py:464
 msgid "&Quit"
-msgstr "Koniec"
+msgstr "&Ukončiť"
 
 #: dnfdragora/ui.py:460
 msgid "&File"
-msgstr "Súbor"
+msgstr "&Súbor"
 
 #: dnfdragora/ui.py:461
 msgid "Reset the selection"
@@ -1188,23 +1197,23 @@ msgstr "Resetovať výber"
 
 #: dnfdragora/ui.py:462
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Obnovit Metadáta"
 
 #: dnfdragora/ui.py:463
 msgid "Repositories"
-msgstr ""
+msgstr "Repozitáre"
 
 #: dnfdragora/ui.py:474
 msgid "&Information"
-msgstr ""
+msgstr "&Informácie"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
-msgstr ""
+msgstr "&Volby"
 
 #: dnfdragora/ui.py:498
 msgid "&Help"
-msgstr "Pomoc"
+msgstr "&Pomoc"
 
 #: dnfdragora/ui.py:499
 msgid "Manual"
@@ -1212,27 +1221,27 @@ msgstr "Manuál"
 
 #: dnfdragora/ui.py:500
 msgid "&About"
-msgstr "O programe"
+msgstr "&O programe"
 
 #: dnfdragora/ui.py:526
 msgid "update"
-msgstr ""
+msgstr "Aktualizácia"
 
 #: dnfdragora/ui.py:529
 msgid "locked"
-msgstr ""
+msgstr "Uzamknuté"
 
 #: dnfdragora/ui.py:532
 msgid "installed"
-msgstr ""
+msgstr "Nainštalované"
 
 #: dnfdragora/ui.py:845
 msgid "Missing information"
-msgstr ""
+msgstr "Chýba informácia"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr ""
+msgstr "Repozitáre"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
@@ -1240,63 +1249,63 @@ msgstr "Hľadať"
 
 #: dnfdragora/ui.py:1169
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Zatial neurobené"
 
 #: dnfdragora/ui.py:1198
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Balíček %s nie je možné odstránit"
 
 #: dnfdragora/ui.py:1198
 msgid "Protected package selected"
-msgstr ""
+msgstr "Vybratý chránený balíček"
 
 #: dnfdragora/ui.py:1274
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Nespravovaný doplnok"
 
 #: dnfdragora/ui.py:1276
 msgid "Unmanaged event"
-msgstr ""
+msgstr "Nespravovaná udalosť"
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "Aktualizácia"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "Otvoriť dialóg dnfdragora"
 
 #: dnfdragora/updater.py:67
 msgid "Check for updates"
-msgstr ""
+msgstr "Skontrolovať aktualizácie"
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "Koniec"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "Zlyhanie spúšťania dnfdragora"
 
 #: dnfdragora/updater.py:150 dnfdragora/updater.py:155
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr ""
+msgstr "Chyba pri spúšťaní služby dnfdaemon: [%s]"
 
 #: dnfdragora/updater.py:174
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d aktualizácie sú k dispozícii"
 
 #: dnfdragora/updater.py:184
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Zachytená výnimka: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
@@ -1307,6 +1316,8 @@ msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora je rozhranie DNF, inšpirované rpmdragorou od Mageia (pôvodne "
+"RPMdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
