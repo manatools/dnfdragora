@@ -1,15 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
-# rao <rvrao@centrum.cz>, 2018.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
-"PO-Revision-Date: 2018-03-01 HO:MI+ZONE\n"
-"Last-Translator: rao <rvrao@centrum.cz>, 2018\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Retep Ondrej <rvrao@centrum.cz>, 2018\n"
 "Language-Team: Slovak (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sk/)\n"
 "Language: sk\n"
@@ -21,7 +22,7 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr "%(prog)s [volby]"
+msgstr "%(prog)s [voľby]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
@@ -122,7 +123,8 @@ msgstr "Nebolo možné obnoviť vyrovnávaciu pamäť DNF (root)"
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
-msgstr "Podporná vrstva root DNF nebola schválená.\n"
+msgstr ""
+"Podporná vrstva root DNF nebola schválená.\n"
 "dnfdragora bude ukončená"
 
 #: dnfdragora/basedragora.py:90
@@ -1104,7 +1106,7 @@ msgstr "Požiadavky"
 
 #: dnfdragora/ui.py:262
 msgid "Software Management - dnfdragora"
-msgstr "Správa softwéru - dnfdragora"
+msgstr "Správa softvéru - dnfdragora"
 
 #: dnfdragora/ui.py:294
 msgid "Software Management"
@@ -1209,7 +1211,7 @@ msgstr "&Informácie"
 
 #: dnfdragora/ui.py:486
 msgid "&Options"
-msgstr "&Volby"
+msgstr "&Voľby"
 
 #: dnfdragora/ui.py:498
 msgid "&Help"
@@ -1241,7 +1243,7 @@ msgstr "Chýba informácia"
 
 #: dnfdragora/ui.py:864
 msgid "Repository"
-msgstr "Repozitáre"
+msgstr "Repozitár"
 
 #: dnfdragora/ui.py:977
 msgid "Search"
