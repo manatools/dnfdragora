@@ -1,16 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-14 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hr/)\n"
 "Language: hr\n"
@@ -135,7 +135,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE "
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
@@ -143,11 +143,11 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr ""
+msgstr "Aplikacije"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE radno okruženje"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
@@ -171,7 +171,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME radno okruženje"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -253,7 +253,7 @@ msgstr ""
 
 #: dnfdragora/const.py:128
 msgid "Installing"
-msgstr ""
+msgstr "Instaliram"
 
 #: dnfdragora/const.py:129
 msgid "Updating"
@@ -380,7 +380,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Povijest"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -410,12 +410,12 @@ msgstr ""
 #: dnfdragora/dialogs.py:867 dnfdragora/dialogs.py:903
 #: dnfdragora/dialogs.py:946
 msgid "&Ok"
-msgstr ""
+msgstr "&U redu"
 
 #: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:558
 #: dnfdragora/dialogs.py:752 dnfdragora/dialogs.py:947
 msgid "&Cancel"
-msgstr ""
+msgstr "&Otkaži"
 
 #: dnfdragora/dialogs.py:400
 msgid "replacing "
@@ -439,7 +439,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:544
 msgid "Enabled"
-msgstr ""
+msgstr "Omogućeno"
 
 #: dnfdragora/dialogs.py:544 dnfdragora/ui.py:314
 msgid "Name"
@@ -1112,7 +1112,7 @@ msgstr "Izdanje"
 
 #: dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Veličina"
 
 #: dnfdragora/ui.py:314
 msgid "Summary"
@@ -1262,7 +1262,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "Ažuriraj"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
@@ -1274,7 +1274,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "Izađi"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
@@ -1297,7 +1297,7 @@ msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
