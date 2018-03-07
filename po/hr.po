@@ -39,17 +39,19 @@ msgstr ""
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "koristi cijeli zaslon za dijaloge"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "prisili novu putanju za ikone grupe (umjesto /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"prisili novu putanju za sve potrebne slike (umjesto /usr/share/dnfdragora/"
+"images)"
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
@@ -57,7 +59,7 @@ msgstr ""
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr ""
+msgstr "instaliraj pakete"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
@@ -65,7 +67,7 @@ msgstr ""
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr ""
+msgstr "pokaži inačicu programa i izađi"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
