@@ -1138,10 +1138,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                 rebuild_package_list = True
                     elif item == self.fileMenu['reload'] :
                         self.reset_cache()
-                    elif item == self.fileMenu['repos'] :
+                    elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
-                        rd.run()
+                        refresh_data=rd.run()
                         rd = None
+                        if refresh_data:
+                          self.release_root_backend()
+                          self.backend.reload()
+                          self._fillGroupTree()
+                          rebuild_package_list = True
                     elif item == self.fileMenu['quit'] :
                         #### QUIT
                         self.running = False

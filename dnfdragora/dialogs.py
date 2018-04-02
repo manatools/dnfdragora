@@ -606,10 +606,9 @@ class RepoDialog:
 
     def _handleEvents(self):
         '''
-        manage dialog events
+        returns if sack should be filled again for new enabled/disabled repositories
         '''
         while True:
-
             event = self.dialog.waitForEvent()
 
             eventType = event.eventType()
@@ -632,7 +631,7 @@ class RepoDialog:
                            enabled_repos.append(k)
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
                     self.backend.SetEnabledRepos(enabled_repos)
-                    break
+                    return True
                 elif (widget == self.repoList) :
                     wEvent = yui.toYWidgetEvent(event)
                     if (wEvent.reason() == yui.YEvent.ValueChanged) :
@@ -659,19 +658,21 @@ class RepoDialog:
                         logger.error("Unexpected error: %s ", sys.exc_info()[0])
                     self.info.setText(s)
 
+        return False
+
     def run(self):
         '''
         show and run the dialog
         '''
         self._setupUI()
-        self._handleEvents()
+        refresh_data=self._handleEvents()
 
         #restore old application title
         yui.YUI.app().setApplicationTitle(self.appTitle)
 
         self.dialog.destroy()
         self.dialog = None
-
+        return refresh_data
 
 class UserPrefsDialog:
     '''
