@@ -606,7 +606,7 @@ class RepoDialog:
 
     def _handleEvents(self):
         '''
-        returns if sack should be filled again for new enabled/disabled repositories
+        manages dialog events and returns if sack should be filled again for new enabled/disabled repositories
         '''
         while True:
             event = self.dialog.waitForEvent()
