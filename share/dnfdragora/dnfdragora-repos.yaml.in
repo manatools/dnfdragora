@@ -1,0 +1,22 @@
+categs:
+  - name: Core
+    disabling: False
+    repos:
+      - mageia-x86_64
+      - updates-x86_64
+      - mageia-i586
+      - updates-i586
+  - name: Nonfree
+    disabling True
+    repos:
+    - mageia-x86_64-nonfree
+    - updates-x86_64-nonfree
+    - mageia-i586-nonfree
+    - updates-i586-nonfree
+  - name: Tainted
+    disabling: True
+    repos':
+      - mageia-x86_64-tainted
+      - updates-x86_64-tainted
+      - mageia-i586-tainted
+      - updates-i586-tainted

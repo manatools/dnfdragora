@@ -19,6 +19,8 @@ import dnfdaemon.client
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
+import dnfdragora.config
+
 
 import gettext
 import logging
@@ -508,7 +510,17 @@ class RepoDialog:
         self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
-
+        self.expert = False
+        self.config_repos = dnfdragora.config.AppConfig('dnfdragora-repos')
+        self.hideStandard = False
+        self.config_repos.load()
+        self.simplified = self.config_repos.content
+        if self.simplified == None:
+            print ("Config file dnfdragora-repos.yaml not found. Expert mode selected")
+            self.expert = True
+            self.hideStandard = True
+        
+            
     def _setupUI(self):
         '''
         setup the dialog layout
@@ -532,14 +544,20 @@ class RepoDialog:
 
         self.factory.createHeading(hbox_iconbar, _("Repository Management"))
 
+        hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
         hbox_bottom = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
+        hbox_footbar.setWeight(1,10)
         hbox_middle.setWeight(1,50)
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
 
+        if not self.hideStandard:
+            self.cb_expert = self.factory.createPushButton(hbox_top, _("Expert mode"))
+        else:
+            self.cb_expert = None
         repoList_header = yui.YTableHeader()
         columns = [ _('Name'), _("Enabled")]
 
@@ -558,23 +576,39 @@ class RepoDialog:
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
         self.quitButton.setWeight(0,3)
         self.dialog.setDefaultButton(self.quitButton)
+        self.drawList()
 
+    def drawList(self):
         self.itemList = {}
         # TODO fix the workaround when GetRepo(id) works again
         repos = self.backend.get_repo_ids("*")
-        for r in repos:
-            item = yui.YCBTableItem(r)
-            # TODO name from repo info
-            self.itemList[r] = {
-                'item' : item, 'name': r, 'enabled' : False
-            }
-            item.this.own(False)
-        enabled_repos = self.backend.get_repo_ids("enabled")
-        for r in enabled_repos:
-            if r in self.itemList.keys():
-                self.itemList[r]["enabled"] = True
-                self.itemList[r]["item"].check(True)
-
+        if self.expert:
+            for r in repos:
+                item = yui.YCBTableItem(r)
+                # TODO name from repo info
+                self.itemList[r] = {
+                    'item' : item, 'name': r, 'enabled' : False
+                }
+                item.this.own(False)
+            enabled_repos = self.backend.get_repo_ids("enabled")
+            for r in enabled_repos:
+                if r in self.itemList.keys():
+                    self.itemList[r]["enabled"] = True
+                    self.itemList[r]["item"].check(True)
+        else:   # Standard mode
+            cat = self.simplified['categs']
+            enabled_repos = self.backend.get_repo_ids("enabled")
+            for c in cat:
+                item = yui.YCBTableItem(c['name'])
+                # TODO name from repo info
+                self.itemList[c['name']] = {
+                    'item' : item, 'name': c['name'], 'enabled' : False
+                }
+                item.this.own(False)
+                r = c['repos'][0]
+                if r in enabled_repos:
+                    self.itemList[c['name']]['enabled'] = True
+                    self.itemList[c['name']]['item'].check(True)
         keylist = sorted(self.itemList.keys())
         v = []
         for key in keylist :
@@ -590,6 +624,12 @@ class RepoDialog:
         self.repoList.addItems(itemCollection)
         self.repoList.doneMultipleChanges()
 
+    def toogle_expert(self):
+        self.expert = not self.expert
+        self.cb_expert.setLabel(  _("Standard mode") if self.expert else   _("Expert mode"))
+        self.drawList()
+        self.dialog.recalcLayout()
+        
     def _selectedRepository(self) :
         '''
         gets the selected repository id from repo list, if any selected
@@ -628,7 +668,14 @@ class RepoDialog:
                     enabled_repos = []
                     for k in self.itemList.keys():
                         if self.itemList[k]['enabled'] :
-                           enabled_repos.append(k)
+                            if self.expert:
+                                enabled_repos.append(k)
+                            else:
+                               for c in self.simplified['categs']:
+                                   #  Enabling categories which can't be disabled an selected ones
+                                    if c['name'] == self.itemList[k]['name'] or not c['disabling']:
+                                        for r in c['repos']:
+                                            enabled_repos.append(r)
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
                     self.backend.SetEnabledRepos(enabled_repos)
                     return True
@@ -640,23 +687,45 @@ class RepoDialog:
                             for it in self.itemList:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     self.itemList[it]['enabled'] = changedItem.checked()
-                    repo_id = self._selectedRepository()
-                    s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
-                    # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
-                    try:
-                        ri = self.backend.GetRepo(repo_id)
-                        logger.debug(ri)
-                        s = ""
-                        for k in sorted(ri.keys()):
-                            if (ri[k]):
-                                s+= "<b>%s</b>: %s<br>"%(k, ri[k])
-                    except NameError as e:
-                        logger.error("dnfdaemon NameError: %s ", e)
-                    except AttributeError as e:
-                        logger.error("dnfdaemon AttributeError: %s ", e)
-                    except:
-                        logger.error("Unexpected error: %s ", sys.exc_info()[0])
-                    self.info.setText(s)
+                    if self.expert:
+                        repo_id = self._selectedRepository()
+                        s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
+                        # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
+                        try:
+                            ri = self.backend.GetRepo(repo_id)
+                            logger.debug(ri)
+                            s = ""
+                            for k in sorted(ri.keys()):
+                                if (ri[k]):
+                                    s+= "<b>%s</b>: %s<br>"%(k, ri[k])
+                        except NameError as e:
+                            logger.error("dnfdaemon NameError: %s ", e)
+                        except AttributeError as e:
+                            logger.error("dnfdaemon AttributeError: %s ", e)
+                        except:
+                            logger.error("Unexpected error: %s ", sys.exc_info()[0])
+                        self.info.setText(s)
+                    else:
+                        cat = self.simplified['categs']
+                        for it in self.itemList:
+                            if (self.itemList[it]['item'] == changedItem) :
+                                if (self.itemList[it]['enabled']):
+                                    s=_("Enabling:<br>")
+                                else:
+                                    s=_("Disabling:<br>")
+                                for c in cat:
+                                    if c['name']==self.itemList[it]['name']:
+                                        if c['disabling']:
+                                            for r in c['repos']:
+                                                s+="- %s<br>"%r
+                                        else:
+                                            s = _("Disabling is not allowed.")
+                                        break
+                                break
+                        self.info.setText(s)
+                elif(widget == self.cb_expert):
+                    logger.info('Toogle expert mode')
+                    self.toogle_expert()
 
         return False
 
