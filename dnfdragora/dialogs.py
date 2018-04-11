@@ -508,6 +508,51 @@ class RepoDialog:
         self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
+        self.infoKeys = {
+          'bandwidth'              : _('Bandwidth'),
+          'basecachedir'           : _('Base cache dir'),
+          'baseurl'                : _('Base URL'),
+          'cost'                   : _('Cost'),
+          'deltarpm'               : _('DeltaRPM'),
+          'deltarpm_percentage'    : _('DeltaRPM percentage'),
+          'enabled'                : _('Enabled'),
+          'enabled_metadata'       : _('Enabled metadata'),
+          'enablegroups'           : _('Enable groups'),
+          'exclude'                : _('Exclude'),
+          'excludepkgs'            : _('Exclude packages'),
+          'failovermethod'         : _('Failover method'),
+          'fastestmirror'          : _('Fastest mirror'),
+          'gpgcheck'               : _('GPG check'),
+          'gpgkey'                 : _('GPG key'),
+          'includepkgs'            : _('Include packages'),
+          'ip_resolve'             : _('IP resolve'),
+          'max_parallel_download'  : _('Max parallel download'),
+          'mediaid'                : _('Media ID'),
+          'metadata_expire'        : _('Metadata expire'),
+          'metalink'               : _('Meta link'),
+          'minrate'                : _('Min rate'),
+          'mirrorlist'             : _('Mirror list'),
+          'name'                   : _('Name'),
+          'packages'               : _('Packages'),
+          'password'               : _('Password'),
+          'priority'               : _('Priority'),
+          'protected_packages'     : _('Protected packages'),
+          'proxy'                  : _('Proxy'),
+          'proxy_password'         : _('Proxy password'),
+          'proxy_username'         : _('Proxy username'),
+          'repo_gpgcheck'          : _('Repo GPG check'),
+          'retries'                : _('Retries'),
+          'size'                   : _('Size'),
+          'skip_if_unavailable'    : _('Skip if unavailable'),
+          'sslcacert'              : _('SSL CA cert'),
+          'sslclientcert'          : _('SSL client cert'),
+          'sslclientkey'           : _('SSL client key'),
+          'sslverify'              : _('SSL verify'),
+          'throttle'               : _('Throttle'),
+          'timeout'                : _('Timeout'),
+          'type'                   : _('Type'),
+          'username'               : _('Username'),
+        }
 
     def _setupUI(self):
         '''
@@ -548,9 +593,16 @@ class RepoDialog:
 
         self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header,yui.YCBTableCheckBoxOnLastColumn)
         self.repoList.setImmediateMode(True)
-        self.info = self.factory.createRichText(hbox_bottom,"")
-        self.info.setWeight(0,40)
-        self.info.setWeight(1,40)
+
+        info_header = yui.YTableHeader()
+        columns = [_('Information'), _('Value') ]
+        for col in (columns):
+            info_header.addColumn(col)
+        self.info = self.factory.createTable(hbox_bottom, info_header)
+
+        #self.info = self.factory.createRichText(hbox_bottom,"")
+        #self.info.setWeight(0,40)
+        #self.info.setWeight(1,40)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
@@ -643,20 +695,48 @@ class RepoDialog:
                     repo_id = self._selectedRepository()
                     s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
                     # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
+                    v=[]
                     try:
                         ri = self.backend.GetRepo(repo_id)
                         logger.debug(ri)
-                        s = ""
                         for k in sorted(ri.keys()):
-                            if (ri[k]):
-                                s+= "<b>%s</b>: %s<br>"%(k, ri[k])
+                          key = None
+                          if ri[k]:
+                            #FIXME key translation and value representation
+                            key = self.infoKeys[k] if k in self.infoKeys.keys() else k
+                            if k == 'size':
+                              value = misc.format_number(ri[k])
+                            elif k == 'metadata_expire':
+                              if ri[k] <= -1:
+                                value = _('Never')
+                              else:
+                                value = _("%s second(s)"%(ri[k]))
+                            else:
+                              value = "%s"%(ri[k])
+                          else:
+                            if k == 'metadata_expire':
+                              key = self.infoKeys[k]
+                              value = _('Now')
+                          if key:
+                            item = yui.YTableItem(key, value)
+                            item.this.own(False)
+                            v.append(item)
+
                     except NameError as e:
                         logger.error("dnfdaemon NameError: %s ", e)
                     except AttributeError as e:
                         logger.error("dnfdaemon AttributeError: %s ", e)
                     except:
                         logger.error("Unexpected error: %s ", sys.exc_info()[0])
-                    self.info.setText(s)
+
+                    #NOTE workaround to get YItemCollection working in python
+                    itemCollection = yui.YItemCollection(v)
+
+                    self.info.startMultipleChanges()
+                    # cleanup old changed items since we are removing all of them
+                    self.info.deleteAllItems()
+                    self.info.addItems(itemCollection)
+                    self.info.doneMultipleChanges()
 
         return False
 
