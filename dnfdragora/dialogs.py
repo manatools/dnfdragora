@@ -705,7 +705,6 @@ class RepoDialog:
                             continue
                           key = None
                           if ri[k]:
-                            #FIXME key translation and value representation
                             key = self.infoKeys[k] if k in self.infoKeys.keys() else k
                             if k == 'size':
                               value = misc.format_number(ri[k])
