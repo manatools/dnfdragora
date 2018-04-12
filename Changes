@@ -1,5 +1,7 @@
 2018-XX-YY v. 1.1.0
 ---------------------
+- Updated repository information dialog with repo size and its package
+  number issue #97
 - enabling/disabling repository does not update packages (issue #98)
 - dnfdragora-updater: hide icon if no updates (some problems 
   on QT desktops)
