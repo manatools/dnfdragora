@@ -700,6 +700,9 @@ class RepoDialog:
                         ri = self.backend.GetRepo(repo_id)
                         logger.debug(ri)
                         for k in sorted(ri.keys()):
+                          if k == "enabled":
+                            # NOTE: skipping 'enabled' since it is fake and it is better shown as checkbox
+                            continue
                           key = None
                           if ri[k]:
                             #FIXME key translation and value representation
