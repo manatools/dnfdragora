@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-14 18:38+0200\n"
+"POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rémi Verschelde <akien@mageia.org>, 2017\n"
 "Language-Team: Azerbaijani (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
 #: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
-#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1169
+#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1174
 msgid "Sorry"
 msgstr ""
 
@@ -403,14 +403,14 @@ msgstr ""
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:829
-#: dnfdragora/dialogs.py:867 dnfdragora/dialogs.py:903
-#: dnfdragora/dialogs.py:946
+#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:912
+#: dnfdragora/dialogs.py:950 dnfdragora/dialogs.py:986
+#: dnfdragora/dialogs.py:1029
 msgid "&Ok"
 msgstr ""
 
-#: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:558
-#: dnfdragora/dialogs.py:752 dnfdragora/dialogs.py:947
+#: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:610
+#: dnfdragora/dialogs.py:835 dnfdragora/dialogs.py:1030
 msgid "&Cancel"
 msgstr ""
 
@@ -430,59 +430,244 @@ msgstr ""
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
 
-#: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:533
-msgid "Repository Management"
+#: dnfdragora/dialogs.py:512
+msgid "Bandwidth"
 msgstr ""
 
-#: dnfdragora/dialogs.py:544
+#: dnfdragora/dialogs.py:513
+msgid "Base cache dir"
+msgstr ""
+
+#: dnfdragora/dialogs.py:514
+msgid "Base URL"
+msgstr ""
+
+#: dnfdragora/dialogs.py:515
+msgid "Cost"
+msgstr ""
+
+#: dnfdragora/dialogs.py:516
+msgid "DeltaRPM"
+msgstr ""
+
+#: dnfdragora/dialogs.py:517
+msgid "DeltaRPM percentage"
+msgstr ""
+
+#: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
 msgstr ""
 
-#: dnfdragora/dialogs.py:544 dnfdragora/ui.py:314
+#: dnfdragora/dialogs.py:519
+msgid "Enabled metadata"
+msgstr ""
+
+#: dnfdragora/dialogs.py:520
+msgid "Enable groups"
+msgstr ""
+
+#: dnfdragora/dialogs.py:521
+msgid "Exclude"
+msgstr ""
+
+#: dnfdragora/dialogs.py:522
+msgid "Exclude packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:523
+msgid "Failover method"
+msgstr ""
+
+#: dnfdragora/dialogs.py:524
+msgid "Fastest mirror"
+msgstr ""
+
+#: dnfdragora/dialogs.py:525
+msgid "GPG check"
+msgstr ""
+
+#: dnfdragora/dialogs.py:526
+msgid "GPG key"
+msgstr ""
+
+#: dnfdragora/dialogs.py:527
+msgid "Include packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:528
+msgid "IP resolve"
+msgstr ""
+
+#: dnfdragora/dialogs.py:529
+msgid "Max parallel download"
+msgstr ""
+
+#: dnfdragora/dialogs.py:530
+msgid "Media ID"
+msgstr ""
+
+#: dnfdragora/dialogs.py:531
+msgid "Metadata expire"
+msgstr ""
+
+#: dnfdragora/dialogs.py:532
+msgid "Meta link"
+msgstr ""
+
+#: dnfdragora/dialogs.py:533
+msgid "Min rate"
+msgstr ""
+
+#: dnfdragora/dialogs.py:534
+msgid "Mirror list"
+msgstr ""
+
+#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
 msgstr "Ad"
 
-#: dnfdragora/dialogs.py:555 dnfdragora/dialogs.py:749 dnfdragora/ui.py:447
+#: dnfdragora/dialogs.py:536
+msgid "Packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:537
+msgid "Password"
+msgstr ""
+
+#: dnfdragora/dialogs.py:538
+msgid "Priority"
+msgstr ""
+
+#: dnfdragora/dialogs.py:539
+msgid "Protected packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:540
+msgid "Proxy"
+msgstr ""
+
+#: dnfdragora/dialogs.py:541
+msgid "Proxy password"
+msgstr ""
+
+#: dnfdragora/dialogs.py:542
+msgid "Proxy username"
+msgstr ""
+
+#: dnfdragora/dialogs.py:543
+msgid "Repo GPG check"
+msgstr ""
+
+#: dnfdragora/dialogs.py:544
+msgid "Retries"
+msgstr ""
+
+#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
+msgid "Size"
+msgstr ""
+
+#: dnfdragora/dialogs.py:546
+msgid "Skip if unavailable"
+msgstr ""
+
+#: dnfdragora/dialogs.py:547
+msgid "SSL CA cert"
+msgstr ""
+
+#: dnfdragora/dialogs.py:548
+msgid "SSL client cert"
+msgstr ""
+
+#: dnfdragora/dialogs.py:549
+msgid "SSL client key"
+msgstr ""
+
+#: dnfdragora/dialogs.py:550
+msgid "SSL verify"
+msgstr ""
+
+#: dnfdragora/dialogs.py:551
+msgid "Throttle"
+msgstr ""
+
+#: dnfdragora/dialogs.py:552
+msgid "Timeout"
+msgstr ""
+
+#: dnfdragora/dialogs.py:553
+msgid "Type"
+msgstr ""
+
+#: dnfdragora/dialogs.py:554
+msgid "Username"
+msgstr ""
+
+#: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
+msgid "Repository Management"
+msgstr ""
+
+#: dnfdragora/dialogs.py:598
+msgid "Information"
+msgstr ""
+
+#: dnfdragora/dialogs.py:598
+msgid "Value"
+msgstr ""
+
+#: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
 msgstr ""
 
-#: dnfdragora/dialogs.py:696 dnfdragora/ui.py:487
+#: dnfdragora/dialogs.py:713
+msgid "Never"
+msgstr ""
+
+#: dnfdragora/dialogs.py:715
+#, python-format
+msgid "%s second(s)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:721
+msgid "Now"
+msgstr ""
+
+#: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
 msgstr ""
 
-#: dnfdragora/dialogs.py:739
+#: dnfdragora/dialogs.py:822
 msgid "Layout"
 msgstr ""
 
-#: dnfdragora/dialogs.py:741
+#: dnfdragora/dialogs.py:824
 msgid "Show updates next startup"
 msgstr ""
 
-#: dnfdragora/dialogs.py:742
+#: dnfdragora/dialogs.py:825
 msgid "Do not show groups view next startup"
 msgstr ""
 
-#: dnfdragora/dialogs.py:744
+#: dnfdragora/dialogs.py:827
 msgid "System options"
 msgstr ""
 
-#: dnfdragora/dialogs.py:746
+#: dnfdragora/dialogs.py:829
 msgid "Proceed without asking for confirmation"
 msgstr ""
 
-#: dnfdragora/dialogs.py:747
+#: dnfdragora/dialogs.py:830
 msgid "Interval in minutes to check for updates:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:996
+#: dnfdragora/dialogs.py:1079
 msgid "&Yes"
 msgstr ""
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1080
 msgid "&No"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1020
+#: dnfdragora/dialogs.py:1103
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -490,7 +675,7 @@ msgid ""
 "%(file)s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1027
+#: dnfdragora/dialogs.py:1110
 msgid "GPG key missed"
 msgstr ""
 
@@ -1108,10 +1293,6 @@ msgid "Release"
 msgstr ""
 
 #: dnfdragora/ui.py:314
-msgid "Size"
-msgstr ""
-
-#: dnfdragora/ui.py:314
 msgid "Summary"
 msgstr "İcmal"
 
@@ -1236,24 +1417,24 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: dnfdragora/ui.py:1169
+#: dnfdragora/ui.py:1174
 msgid "Not implemented yet"
 msgstr ""
 
-#: dnfdragora/ui.py:1198
+#: dnfdragora/ui.py:1203
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr ""
 
-#: dnfdragora/ui.py:1198
+#: dnfdragora/ui.py:1203
 msgid "Protected package selected"
 msgstr ""
 
-#: dnfdragora/ui.py:1274
+#: dnfdragora/ui.py:1279
 msgid "Unmanaged widget"
 msgstr ""
 
-#: dnfdragora/ui.py:1276
+#: dnfdragora/ui.py:1281
 msgid "Unmanaged event"
 msgstr ""
 

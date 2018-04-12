@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-14 18:38+0200\n"
+"POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: 2018-01-14 18:40+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
@@ -92,7 +92,7 @@ msgstr "%(prog)s %(NL)sверсія: %(version)s%(NL)sсайт: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
 #: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
-#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1169
+#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1174
 msgid "Sorry"
 msgstr "Вибачте"
 
@@ -418,14 +418,14 @@ msgstr "Результат операції"
 msgid "Transaction dependency"
 msgstr "Залежність операції"
 
-#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:829
-#: dnfdragora/dialogs.py:867 dnfdragora/dialogs.py:903
-#: dnfdragora/dialogs.py:946
+#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:912
+#: dnfdragora/dialogs.py:950 dnfdragora/dialogs.py:986
+#: dnfdragora/dialogs.py:1029
 msgid "&Ok"
 msgstr "&Гаразд"
 
-#: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:558
-#: dnfdragora/dialogs.py:752 dnfdragora/dialogs.py:947
+#: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:610
+#: dnfdragora/dialogs.py:835 dnfdragora/dialogs.py:1030
 msgid "&Cancel"
 msgstr "&Скасувати"
 
@@ -447,59 +447,244 @@ msgstr ""
 "dnfdragora — оболонка DNF, яка працює за допомогою інтерфейсів GTK, ncurses "
 "та Qt"
 
-#: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:533
-msgid "Repository Management"
-msgstr "Керування сховищами"
+#: dnfdragora/dialogs.py:512
+msgid "Bandwidth"
+msgstr ""
 
-#: dnfdragora/dialogs.py:544
+#: dnfdragora/dialogs.py:513
+msgid "Base cache dir"
+msgstr ""
+
+#: dnfdragora/dialogs.py:514
+msgid "Base URL"
+msgstr ""
+
+#: dnfdragora/dialogs.py:515
+msgid "Cost"
+msgstr ""
+
+#: dnfdragora/dialogs.py:516
+msgid "DeltaRPM"
+msgstr ""
+
+#: dnfdragora/dialogs.py:517
+msgid "DeltaRPM percentage"
+msgstr ""
+
+#: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
 msgstr "Увімкнено"
 
-#: dnfdragora/dialogs.py:544 dnfdragora/ui.py:314
+#: dnfdragora/dialogs.py:519
+msgid "Enabled metadata"
+msgstr ""
+
+#: dnfdragora/dialogs.py:520
+msgid "Enable groups"
+msgstr ""
+
+#: dnfdragora/dialogs.py:521
+msgid "Exclude"
+msgstr ""
+
+#: dnfdragora/dialogs.py:522
+msgid "Exclude packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:523
+msgid "Failover method"
+msgstr ""
+
+#: dnfdragora/dialogs.py:524
+msgid "Fastest mirror"
+msgstr ""
+
+#: dnfdragora/dialogs.py:525
+msgid "GPG check"
+msgstr ""
+
+#: dnfdragora/dialogs.py:526
+msgid "GPG key"
+msgstr ""
+
+#: dnfdragora/dialogs.py:527
+msgid "Include packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:528
+msgid "IP resolve"
+msgstr ""
+
+#: dnfdragora/dialogs.py:529
+msgid "Max parallel download"
+msgstr ""
+
+#: dnfdragora/dialogs.py:530
+msgid "Media ID"
+msgstr ""
+
+#: dnfdragora/dialogs.py:531
+msgid "Metadata expire"
+msgstr ""
+
+#: dnfdragora/dialogs.py:532
+msgid "Meta link"
+msgstr ""
+
+#: dnfdragora/dialogs.py:533
+msgid "Min rate"
+msgstr ""
+
+#: dnfdragora/dialogs.py:534
+msgid "Mirror list"
+msgstr ""
+
+#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
 msgstr "Назва"
 
-#: dnfdragora/dialogs.py:555 dnfdragora/dialogs.py:749 dnfdragora/ui.py:447
+#: dnfdragora/dialogs.py:536
+msgid "Packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:537
+msgid "Password"
+msgstr ""
+
+#: dnfdragora/dialogs.py:538
+msgid "Priority"
+msgstr ""
+
+#: dnfdragora/dialogs.py:539
+msgid "Protected packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:540
+msgid "Proxy"
+msgstr ""
+
+#: dnfdragora/dialogs.py:541
+msgid "Proxy password"
+msgstr ""
+
+#: dnfdragora/dialogs.py:542
+msgid "Proxy username"
+msgstr ""
+
+#: dnfdragora/dialogs.py:543
+msgid "Repo GPG check"
+msgstr ""
+
+#: dnfdragora/dialogs.py:544
+msgid "Retries"
+msgstr ""
+
+#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
+msgid "Size"
+msgstr "Розмір"
+
+#: dnfdragora/dialogs.py:546
+msgid "Skip if unavailable"
+msgstr ""
+
+#: dnfdragora/dialogs.py:547
+msgid "SSL CA cert"
+msgstr ""
+
+#: dnfdragora/dialogs.py:548
+msgid "SSL client cert"
+msgstr ""
+
+#: dnfdragora/dialogs.py:549
+msgid "SSL client key"
+msgstr ""
+
+#: dnfdragora/dialogs.py:550
+msgid "SSL verify"
+msgstr ""
+
+#: dnfdragora/dialogs.py:551
+msgid "Throttle"
+msgstr ""
+
+#: dnfdragora/dialogs.py:552
+msgid "Timeout"
+msgstr ""
+
+#: dnfdragora/dialogs.py:553
+msgid "Type"
+msgstr ""
+
+#: dnfdragora/dialogs.py:554
+msgid "Username"
+msgstr ""
+
+#: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
+msgid "Repository Management"
+msgstr "Керування сховищами"
+
+#: dnfdragora/dialogs.py:598
+msgid "Information"
+msgstr ""
+
+#: dnfdragora/dialogs.py:598
+msgid "Value"
+msgstr ""
+
+#: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
 msgstr "&Застосувати"
 
-#: dnfdragora/dialogs.py:696 dnfdragora/ui.py:487
+#: dnfdragora/dialogs.py:713
+msgid "Never"
+msgstr ""
+
+#: dnfdragora/dialogs.py:715
+#, python-format
+msgid "%s second(s)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:721
+msgid "Now"
+msgstr ""
+
+#: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
 msgstr "Налаштування користувача"
 
-#: dnfdragora/dialogs.py:739
+#: dnfdragora/dialogs.py:822
 msgid "Layout"
 msgstr "Компонування"
 
-#: dnfdragora/dialogs.py:741
+#: dnfdragora/dialogs.py:824
 msgid "Show updates next startup"
 msgstr "Показувати оновлення після наступного запуску"
 
-#: dnfdragora/dialogs.py:742
+#: dnfdragora/dialogs.py:825
 msgid "Do not show groups view next startup"
 msgstr "Не показувати панель груп після наступного запуску"
 
-#: dnfdragora/dialogs.py:744
+#: dnfdragora/dialogs.py:827
 msgid "System options"
 msgstr "Параметри системи"
 
-#: dnfdragora/dialogs.py:746
+#: dnfdragora/dialogs.py:829
 msgid "Proceed without asking for confirmation"
 msgstr "Продовжити без підтвердження"
 
-#: dnfdragora/dialogs.py:747
+#: dnfdragora/dialogs.py:830
 msgid "Interval in minutes to check for updates:"
 msgstr "Інтервал у хвилинах між пошуками оновлень:"
 
-#: dnfdragora/dialogs.py:996
+#: dnfdragora/dialogs.py:1079
 msgid "&Yes"
 msgstr "&Так"
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1080
 msgid "&No"
 msgstr "&Ні"
 
-#: dnfdragora/dialogs.py:1020
+#: dnfdragora/dialogs.py:1103
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -510,7 +695,7 @@ msgstr ""
 "%(pkg)s?<br><br>Ключ       : 0x%(id)s:<br>Ід. корист. : \"%(user)s"
 "\"<br>Від        : %(file)s"
 
-#: dnfdragora/dialogs.py:1027
+#: dnfdragora/dialogs.py:1110
 msgid "GPG key missed"
 msgstr "Не вистачає ключа GPG"
 
@@ -1131,10 +1316,6 @@ msgid "Release"
 msgstr "Випуск"
 
 #: dnfdragora/ui.py:314
-msgid "Size"
-msgstr "Розмір"
-
-#: dnfdragora/ui.py:314
 msgid "Summary"
 msgstr "Резюме"
 
@@ -1259,24 +1440,24 @@ msgstr "Сховище"
 msgid "Search"
 msgstr "Пошук"
 
-#: dnfdragora/ui.py:1169
+#: dnfdragora/ui.py:1174
 msgid "Not implemented yet"
 msgstr "Ще не реалізовано"
 
-#: dnfdragora/ui.py:1198
+#: dnfdragora/ui.py:1203
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Не можна вилучати пакунок %s"
 
-#: dnfdragora/ui.py:1198
+#: dnfdragora/ui.py:1203
 msgid "Protected package selected"
 msgstr "Позначено захищений пакунок"
 
-#: dnfdragora/ui.py:1274
+#: dnfdragora/ui.py:1279
 msgid "Unmanaged widget"
 msgstr "Некерований віджет"
 
-#: dnfdragora/ui.py:1276
+#: dnfdragora/ui.py:1281
 msgid "Unmanaged event"
 msgstr "Некерована подія"
 
@@ -1346,14 +1527,23 @@ msgstr ""
 "ncurses. Вона забезпечує роботу оболонки програми для керування пакунками "
 "DNF, якою можна скористатися у будь-якому типі системного середовища."
 
-#~ msgid "Error checking package signatures\n"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
+#~ msgid "History Packages"
+#~ msgstr "Журнал пакунків"
 
-#~ msgid "Downloading error\n"
-#~ msgid_plural "Downloading errors\n"
-#~ msgstr[0] "Помилка під час отримання\n"
-#~ msgstr[1] "Помилки під час отримання\n"
-#~ msgstr[2] "Помилки під час отримання\n"
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Поточне обмеження на рекурсію: %s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Збільшено обмеження на рекурсію до %s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
 
 #~ msgid "Error in transaction\n"
 #~ msgid_plural "Errors in transaction\n"
@@ -1361,20 +1551,11 @@ msgstr ""
 #~ msgstr[1] "Помилки під час виконання дії\n"
 #~ msgstr[2] "Помилки під час виконання дії\n"
 
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
+#~ msgid "Downloading error\n"
+#~ msgid_plural "Downloading errors\n"
+#~ msgstr[0] "Помилка під час отримання\n"
+#~ msgstr[1] "Помилки під час отримання\n"
+#~ msgstr[2] "Помилки під час отримання\n"
 
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
-
-#~ msgid "Raised recursion limit to: %s"
-#~ msgstr "Збільшено обмеження на рекурсію до %s"
-
-#~ msgid "Current recursion limit: %s"
-#~ msgstr "Поточне обмеження на рекурсію: %s"
-
-#~ msgid "History Packages"
-#~ msgstr "Журнал пакунків"
+#~ msgid "Error checking package signatures\n"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
