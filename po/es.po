@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Adolfo Jayme-Barrientos <fitoschido@gmail.com>, 2017\n"
+"Last-Translator: Adolfo Jayme-Barrientos, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -443,27 +443,27 @@ msgstr "Mandragora es un frontend DNF que funciona con GTK, ncurses y QT"
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Ancho de banda"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Dir de caché base"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "URL base"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Costo"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "deltarpm"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "Porcentaje DeltaRPM"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -471,67 +471,67 @@ msgstr "Habilitado"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Metadatos habilitados"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Grupos habilitados"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Excluir"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Paquetes excluidos"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Método de conmutación por error"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "El espejo más rápido"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "Verificación de GPG"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "Clave GPG"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Incluye paquetes"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "Resolución IP"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Descarga máxima en paralelo"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "ID de medios"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Los metadatos caducan"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Meta enlace"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "Tasa mínima"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Lista de espejos"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -539,39 +539,39 @@ msgstr "Nombre"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Paquetes"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Prioridad"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Paquetes protegidos"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Contraseña Proxy"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Usuario Proxy"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Verificación repo GPG"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "Reintentos"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
 msgid "Size"
@@ -579,39 +579,39 @@ msgstr "Tamaño"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Omitir si no está disponible"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
-msgstr ""
+msgstr "Certificado SSL CA"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr ""
+msgstr "Certificado cliente SSL"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr ""
+msgstr "Clave cliente SSL"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "Verificar SSL"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "Acelerador"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "Tiempo acabado"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Escribir"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -619,11 +619,11 @@ msgstr "Administración de repositorios"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -631,16 +631,16 @@ msgstr "Aplicar"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "1%s Segundo (s)"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Ahora"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
