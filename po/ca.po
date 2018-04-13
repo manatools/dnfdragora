@@ -445,7 +445,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Amplada de banda"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
@@ -453,19 +453,19 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "URL base"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Cost"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "Percentatge deltaRPM"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -473,67 +473,67 @@ msgstr "Habilitat"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Metadades habilitades"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Habilita els grups"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Exclou"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Exclou paquets"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Mètode de tolerància a falles"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Rèplica més ràpida"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "Comprovació GPG"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "Clau GPG"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Inclou paquets"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "Resolució IP"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Baixada màxima en paral·lel"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "ID del mitjà"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Venciment de les metadades"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Metaenllaç"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "Taxa mínima"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Llista de rèpliques"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -541,39 +541,39 @@ msgstr "Nom"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Paquets"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Contrasenya"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Prioritat"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Paquets protegits"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Servidor intermediari"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Contrasenya del servidor intermediari"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Usuari del servidor intermediari"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Comprovació GPG del dipòsit"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "Reintents"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
 msgid "Size"
@@ -581,39 +581,39 @@ msgstr "Mida"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Omet si no està disponible"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
-msgstr ""
+msgstr "Certificat de l'AC SSL"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr ""
+msgstr "Certificat de client SSL"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr ""
+msgstr "Clau de client SSL"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "Verificació SSL"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "Regulador del flux"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "Temps d'espera"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Nom d'usuari"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -621,11 +621,11 @@ msgstr "Gestió dels dipòsits"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Informació"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -633,16 +633,16 @@ msgstr "&Aplica"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s segon(s)"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Ara"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
