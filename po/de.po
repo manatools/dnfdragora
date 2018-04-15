@@ -449,11 +449,11 @@ msgstr "Bandbreite"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Cache-Hauptverzeichnis"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Haupt-URL"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
