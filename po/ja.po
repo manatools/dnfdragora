@@ -439,27 +439,27 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "帯域幅"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "ベース キャッシュ ディレクトリ"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "ベース URL"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "コスト"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM のパーセンテージ"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -467,67 +467,67 @@ msgstr "有効"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "有効なメタ データ"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "グループを有効化"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "除外"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "パッケージを除外"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "フェイルオーバーの方式"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "最も速いミラー"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "GPG チェック"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "GPG 鍵"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "パッケージを含む"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "IP の解決"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "最大並行ダウンロード数"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "メディア ID"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "メタ データの有効期限"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "メタ リンク"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "最低速度"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "ミラーの一覧"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -535,39 +535,39 @@ msgstr "名前"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "パッケージ"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "優先度"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "保護されたパッケージ"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "プロキシ"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "プロキシのパスワード"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "プロキシのユーザ名"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "リポジトリの GPG のチェック"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "再試行数"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
 msgid "Size"
@@ -575,39 +575,39 @@ msgstr "サイズ"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "利用不能な場合にスキップ"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
-msgstr ""
+msgstr "SSL CA 証明書"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr ""
+msgstr "SSL クライアント証明書"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr ""
+msgstr "SSL クライアント鍵"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "SSL の検証"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "速度制限"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "タイムアウト"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "種類"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "ユーザ名"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -615,11 +615,11 @@ msgstr "リポジトリの管理"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "情報"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "値"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -627,16 +627,16 @@ msgstr "適用(&A)"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "行わない"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s 秒"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "現在"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
