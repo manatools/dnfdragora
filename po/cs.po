@@ -111,6 +111,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"Vynutit novou cestu pro všechny potřebné ikony (namísto /usr/share/icons/"
+"hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -441,7 +443,7 @@ msgstr "dnfdragora je rozhraní DNF pracující s GTK, ncurses a QT"
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Šířka pásma"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
@@ -449,7 +451,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Základní adresa (URL)"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
@@ -457,11 +459,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "Procento DeltaRPM"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -469,19 +471,19 @@ msgstr "Povoleno"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Popisná data povolena"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Povolit skupiny"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Vyloučit"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Vyloučit balíčky"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
@@ -489,47 +491,47 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Nejrychlejší zrcadlo"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "Kontrola GPG"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "Klíč GPG"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Zahrnout balíčky"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "Řešení IP"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Největší počet souběžných stahování"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "ID média"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Vypršení popisných dat"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Metaodkaz"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "Nejmenší rychlost"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Seznam zrcadel"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -537,39 +539,39 @@ msgstr "Název"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Balíčky"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Přednost"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Chráněné balíčky"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Heslo proxy"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Uživatelské jméno proxy"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Kontrola GPG úložiště"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "Opakování pokusů"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
 msgid "Size"
@@ -577,39 +579,39 @@ msgstr "Velikost"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Přeskočit při nedostupnosti"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
-msgstr ""
+msgstr "Certifikát CA SSL"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr ""
+msgstr "Certifikát klienta SSL"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr ""
+msgstr "Klíč klienta SSL"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "Ověření SSL"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "Přiškrtit"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "Překročení času"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Uživatelské jméno"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -617,11 +619,11 @@ msgstr "Správa repozitáře"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Informace"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Hodnota"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -629,16 +631,16 @@ msgstr "&Použít"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Nikdy"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s sekund"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Nyní"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
