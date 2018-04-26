@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"Last-Translator: mahmut özcan <mahmutozcan65@yahoo.com>, 2018\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "tr/)\n"
 "Language: tr\n"
@@ -444,7 +444,7 @@ msgstr "dnfdragora, GTK, ncurses ve QT kullanan bir DNF önyüzüdür"
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Bant Genişliği"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
@@ -452,19 +452,19 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Temel URL"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Maliyet"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM yüzdesi"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -472,7 +472,7 @@ msgstr "Etkin"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Etkinleştirilmiş üstveri"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
@@ -492,7 +492,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "En hızlı yansı"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
@@ -532,7 +532,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Yansı listesi"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -540,31 +540,31 @@ msgstr "Ad"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Paketler"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Parola"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Öncelik"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Korunan paketler"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Vekil Sunucu"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Vekil sunucu parolası"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Vekil sunucu kullanıcı adı"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
@@ -580,7 +580,7 @@ msgstr "Boyut"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Kullanılamıyorsa atla"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
@@ -604,15 +604,15 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "Zamanaşımı"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Tür"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Kullanıcı adı"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -620,11 +620,11 @@ msgstr "Depo Yönetimi"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Bilgi"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Değer"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -632,12 +632,12 @@ msgstr "&Uygula"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Hiç bir zaman"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s saniye"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
