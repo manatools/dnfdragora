@@ -654,11 +654,11 @@ msgstr "Disposició"
 
 #: dnfdragora/dialogs.py:824
 msgid "Show updates next startup"
-msgstr "Mostra les actualitzacions la següent arrencada"
+msgstr "Mostra les actualitzacions en el següent inici"
 
 #: dnfdragora/dialogs.py:825
 msgid "Do not show groups view next startup"
-msgstr "No mostris la vista de grups la següent arrencada"
+msgstr "No mostris la vista de grups en el següent inici"
 
 #: dnfdragora/dialogs.py:827
 msgid "System options"
