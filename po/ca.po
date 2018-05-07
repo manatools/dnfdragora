@@ -449,7 +449,7 @@ msgstr "Amplada de banda"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Directori base de la cau"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
@@ -489,7 +489,7 @@ msgstr "Exclou paquets"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr "Mètode de tolerància a falles"
+msgstr "Mètode de commutació per fallada"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
@@ -654,11 +654,11 @@ msgstr "Disposició"
 
 #: dnfdragora/dialogs.py:824
 msgid "Show updates next startup"
-msgstr "Mostra les actualitzacions en el següent inici"
+msgstr "Mostra les actualitzacions a l'inici següent"
 
 #: dnfdragora/dialogs.py:825
 msgid "Do not show groups view next startup"
-msgstr "No mostris la vista de grups en el següent inici"
+msgstr "No mostris la vista de grups a l'inici següent"
 
 #: dnfdragora/dialogs.py:827
 msgid "System options"
