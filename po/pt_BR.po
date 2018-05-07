@@ -77,7 +77,7 @@ msgstr "força serviços dnfdaemon dbus usados por dnfdragora para sair"
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr "falha cliente dnfdaemon [%s]"
+msgstr "falha no cliente dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
@@ -475,7 +475,7 @@ msgstr "Metadata Habilitado"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr "Grupos habilitado"
+msgstr "Grupos habilitados"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
@@ -491,11 +491,11 @@ msgstr "Metodo falhou"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr "Midia rapida"
+msgstr "Espelho mais rápido"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr "Verificação GPG"
+msgstr "Verificação de GPG"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
@@ -519,7 +519,7 @@ msgstr "ID de mídia"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr "Metadados expirado"
+msgstr "Metadados expirados"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
@@ -531,7 +531,7 @@ msgstr "Taxa mínima"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr "Lista de Mídias"
+msgstr "Lista de espelhos"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -559,7 +559,7 @@ msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr "Senha proxy"
+msgstr "Senha do proxy"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
