@@ -115,8 +115,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
-"força un ruta camí nou per a totes les icones necessàries (en comptes de /"
-"usr/share/icons/hicolor/128x128/apps/)"
+"força un camí nou per a totes les icones necessàries (en comptes de /usr/"
+"share/icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
@@ -240,7 +240,7 @@ msgstr "Paquets revertits"
 
 #: dnfdragora/const.py:117
 msgid "Obsoleting packages"
-msgstr "Paquets devaluats"
+msgstr "Devaluació dels paquets"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleted packages"
@@ -712,7 +712,7 @@ msgstr "Inicia la transacció"
 
 #: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
-msgstr "Es baixen els paquets"
+msgstr "Baixada del paquets"
 
 #: dnfdragora/dnf_backend.py:184
 msgid "Checking package signatures"
@@ -1050,7 +1050,7 @@ msgstr "Paquet ofimàtic"
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
-msgstr "Processador de textos"
+msgstr "Processador de texts"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
