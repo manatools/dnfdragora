@@ -1,57 +1,60 @@
-#
+# Translators:
+# Panwar108 <caspian7pena@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-05-14 17:09+0300\n"
+"POT-Creation-Date: 2018-04-23 08:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018\n"
+"Language-Team: Hindi (https://www.transifex.com/MageiaLinux/teams/9361/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr ""
+msgstr "सॉफ्टवेयर इंस्टॉल करें व हटाएँ"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr ""
+msgstr "पैकेजों को इंस्टॉल करने, हटाने व अपडेट करने हेतु एक ग्राफिकल माध्यम"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-updater"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr ""
+msgstr "अपडेट खोजने हेतु ट्रे-आइकन "
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr ""
+msgstr "स्वतः ही अपडेट खोजकर सूचित करें"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "dnfdragora पैकेज इंस्टॉलर"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "RPM पैकेज इंस्टॉलर"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "सिस्टम में स्थानीय पैकेज इंस्टॉल करें"
