@@ -16,13 +16,16 @@ from PIL import Image
 from dnfdragora import config, misc, dialogs, ui
 from pystray import Menu, MenuItem
 from pystray import Icon as Tray
+import notify2
+
+notify2.init('dnfdragora-updater')
 
 
 class Updater:
 
     def __init__(self, options={}):
         self.__main_gui  = None
-        self.__notifier  = sh.Command("/usr/bin/notify-send")
+        self.__notifier  = notify2.Notification('dnfdragora', '', 'dnfdragora')
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
         self.__scheduler = sched.scheduler(time.time, time.sleep)
@@ -166,15 +169,16 @@ class Updater:
                 time.sleep(0.5)
                 self.__backend = None
                 if (self.__update_count >= 1) or forced:
-                    self.__notifier(
-                        '-a', 'dnfdragora-updater',
-                        '-i', 'dnfdragora',
-                        '-u', 'normal',
+                    self.__notifier.update(
                         'dnfdragora',
-                        _('%d updates available.') % self.__update_count
+                        _('%d updates available.') % self.__update_count,
+                        'dnfdragora'
                     )
+                    self.__notifier.show()
                     self.__tray.icon = self.__icon
                     self.__tray.visible = True
+                else:
+                    self.__notifier.close()
             else:
                 print("DNF backend already locked cannot check for updates")
                 self.__update_count = -1

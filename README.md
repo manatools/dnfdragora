@@ -18,6 +18,9 @@ Example with ncurses:
 ### DNF Daemon
 * https://github.com/manatools/dnfdaemon/
 
+### notify2
+* https://bitbucket.org/takluyver/pynotify2/
+
 ### SUSE libyui
 * https://github.com/libyui/libyui
 * Consider to check some not yet approved changes here https://github.com/anaselli/libyui
