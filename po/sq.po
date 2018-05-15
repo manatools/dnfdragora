@@ -1,26 +1,12 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -73,7 +59,7 @@ msgstr ""
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr ""
+msgstr "Instalo paketat"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
@@ -394,7 +380,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
 msgid "History"
-msgstr ""
+msgstr "Histori"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -410,7 +396,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Mbylle"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -549,7 +535,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "fjalëkalim"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
@@ -561,7 +547,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
@@ -581,7 +567,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
 msgid "Size"
-msgstr ""
+msgstr "Madhësia"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
@@ -613,11 +599,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Tipi"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Emri i përdoruesit"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -625,11 +611,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Informacion"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Vlera"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -637,7 +623,7 @@ msgstr "&Apliko"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Kurrë"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -1457,7 +1443,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:65
 msgid "Update"
-msgstr ""
+msgstr "Përditëso"
 
 #: dnfdragora/updater.py:66
 msgid "Open dnfdragora dialog"
@@ -1469,7 +1455,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:68
 msgid "Exit"
-msgstr ""
+msgstr "Braktise"
 
 #: dnfdragora/updater.py:114
 msgid "Running dnfdragora failure"
