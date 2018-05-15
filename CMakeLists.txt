@@ -37,6 +37,9 @@ if(CHECK_RUNTIME_DEPENDENCIES)
 
 	# Find yaml module
 	find_python_module(yaml REQUIRED)
+
+	# Find notify2 module
+	find_python_module(notify2 REQUIRED)
 endif(CHECK_RUNTIME_DEPENDENCIES)
 
 option(ENABLE_COMPS "Use comps data for organizing packages?" OFF)
