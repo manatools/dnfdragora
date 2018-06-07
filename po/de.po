@@ -457,7 +457,7 @@ msgstr "Haupt-URL"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Kosten"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
@@ -465,7 +465,7 @@ msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "Verbleibender RPM Prozentsatz"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -489,7 +489,7 @@ msgstr "Pakete ausschließen"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Methode zur Ausfallsicherung"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
@@ -497,7 +497,7 @@ msgstr "Schnellster Spiegelserver"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "GPG Überprüfung"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
@@ -509,7 +509,7 @@ msgstr "Pakete inkludieren"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "IP Auflösung"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
@@ -517,15 +517,15 @@ msgstr "Max parallele Downloads"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "Medien ID"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Metadaten Auslauf"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Meta Link"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
@@ -569,7 +569,7 @@ msgstr "Proxy Benutzername"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Repo GPG Prüfung"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
@@ -597,7 +597,7 @@ msgstr "SSL-Clientschlüssel"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "SSL Verifizierung"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
