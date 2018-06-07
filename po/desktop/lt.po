@@ -1,0 +1,61 @@
+# Translators:
+# Moo, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: dnfdragora desktop files translation\n"
+"Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
+"POT-Creation-Date: 2018-06-01 20:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Moo, 2018\n"
+"Language-Team: Lithuanian (https://www.transifex.com/MageiaLinux/teams/9361/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Name"
+msgid "dnfdragora"
+msgstr "dnfdragora"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "GenericName"
+msgid "Install & Remove Software"
+msgstr "Įdiegti ir šalinti programinę įrangą"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Comment"
+msgid "A graphical front end for installing, removing and updating packages"
+msgstr ""
+"Grafinės naudotojo sąsaja, skirta diegti, šalinti ir atnaujinti paketus"
+
+#: ./share/applications/org.mageia.dnfdragora-updater.desktop
+msgctxt "Name"
+msgid "dnfdragora-updater"
+msgstr "dnfdragora-updater"
+
+#: ./share/applications/org.mageia.dnfdragora-updater.desktop
+msgctxt "GenericName"
+msgid "Tray-icon to check for updates"
+msgstr "Dėklo piktograma, skirta tikrinti ar yra atnaujinimų"
+
+#: ./share/applications/org.mageia.dnfdragora-updater.desktop
+msgctxt "Comment"
+msgid "Automatically check for updates and notify"
+msgstr "Automatiškai tikrinti ir pranešti ar yra atnaujinimų"
+
+#: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
+msgctxt "Name"
+msgid "dnfdragora Package Installer"
+msgstr "dnfdragora paketų diegimo programa"
+
+#: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
+msgctxt "GenericName"
+msgid "RPM Package Installer"
+msgstr "RPM paketų diegimo programa"
+
+#: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
+msgctxt "Comment"
+msgid "Install local packages on the system"
+msgstr "Įdiegti vietinius paketus sistemoje"
