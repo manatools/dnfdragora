@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Antoine DUMONDEL <antoine.dumondel@gmail.com>, 2018\n"
+"Last-Translator: Antoine DUMONDEL, 2018\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -445,7 +445,7 @@ msgstr "dnfdragora est une interface à DNF utilisant Qt, GTK ou ncurses"
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Bande passante"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
@@ -533,7 +533,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Liste de miroirs"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
 msgid "Name"
@@ -545,7 +545,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
@@ -557,7 +557,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Serveur mandataire"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
@@ -609,11 +609,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -621,11 +621,11 @@ msgstr "Gestionnaire de Dépôt"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Valeur"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
 msgid "&Apply"
@@ -633,7 +633,7 @@ msgstr "&Appliquer"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Jamais"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -1455,7 +1455,7 @@ msgstr "Widget non géré"
 
 #: dnfdragora/ui.py:1281
 msgid "Unmanaged event"
-msgstr "Evènement non géré"
+msgstr "Évènement non géré"
 
 #: dnfdragora/updater.py:65
 msgid "Update"
