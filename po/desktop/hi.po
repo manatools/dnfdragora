@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-04-23 08:11+0300\n"
+"POT-Creation-Date: 2018-06-07 21:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018\n"
 "Language-Team: Hindi (https://www.transifex.com/MageiaLinux/teams/9361/hi/)\n"
@@ -27,17 +27,17 @@ msgstr "सॉफ्टवेयर इंस्टॉल करें व ह�
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr "पैकेजों को इंस्टॉल करने, हटाने व अपडेट करने हेतु एक ग्राफिकल माध्यम"
+msgstr "पैकेज इंस्टॉल करने, हटाने व अपडेट करने हेतु एक चित्रात्मक माध्यम"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr "dnfdragora-updater"
+msgstr "dnfdragora-अपडेट साधन"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr "अपडेट खोजने हेतु ट्रे-आइकन "
+msgstr "अपडेट खोजने हेतु ट्रे रुपी प्रतीक"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
