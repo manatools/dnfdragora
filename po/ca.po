@@ -489,7 +489,7 @@ msgstr "Exclou paquets"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr "Mètode de commutació per fallada"
+msgstr "Mètode de tolerància a falles"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
@@ -712,7 +712,7 @@ msgstr "Inicia la transacció"
 
 #: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
-msgstr "Baixada del paquets"
+msgstr "Baixada dels paquets"
 
 #: dnfdragora/dnf_backend.py:184
 msgid "Checking package signatures"
@@ -1508,7 +1508,7 @@ msgid ""
 "rpmdrake)."
 msgstr ""
 "dnfdragora és una interfície gràfica de DNF, que està inspirada amb "
-"rpmdragora de Mageia (rpmdrake originàriament)"
+"rpmdragora de Mageia (rpmdrake originàriament)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
