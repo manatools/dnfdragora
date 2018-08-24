@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-12 10:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Antoine DUMONDEL, 2018\n"
+"Last-Translator: stroibe974 <sebsweb@gmail.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -449,23 +449,23 @@ msgstr "Bande passante"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Dossier cache principal"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Adresse internet"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Coût"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "Pourcentage DeltaRPM"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -473,63 +473,63 @@ msgstr "Activé "
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Méta-données activées"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Activer les groupes"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Exclure"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Exclure les paquetages"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Méthode de secours"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Miroir le plus rapide"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "Vérification de la clé GPG"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "Clé GPG"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Inclure les paquetages"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "Résolution de l'adresse IP"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Nombre maximum de téléchargements en parallèle"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "Nom du média"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Délai d'expiration des méta-données"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Metalink"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "Taux minimum"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
@@ -541,7 +541,7 @@ msgstr "Nom"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Paquetages"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
@@ -549,11 +549,11 @@ msgstr "Mot de passe"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Priorité"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Paquetages protégés"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
@@ -561,19 +561,19 @@ msgstr "Serveur mandataire"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Mot de passe du serveur mandataire"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Identifiant du serveur mandataire"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Dépôt de vérification GPG"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "Nombre de tentatives"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
 msgid "Size"
@@ -581,31 +581,31 @@ msgstr "Taille"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Passer si indisponible"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
-msgstr ""
+msgstr "Certificat SSL CA"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr ""
+msgstr "Certificat du client SSL"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr ""
+msgstr "Clé du client SSL"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "Vérification SSL"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "Régulateur"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "Délai d'expiration"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
@@ -638,11 +638,11 @@ msgstr "Jamais"
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%sseconde(s)"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Maintenant"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
 msgid "User preferences"
