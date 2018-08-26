@@ -817,17 +817,30 @@ class UserPrefsDialog:
         if 'always_yes' in settings.keys() :
             always_yes = settings['always_yes']
 
+        #Already read from system and user settings
+        match_all = self.parent.match_all
+        newest_only = self.parent.newest_only
+
         vbox1 = self.factory.createVBox(hbox_middle)
 
-        frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Layout") )
-        hbox = self.factory.createHBox(frame)
-        self.showUpdates =  self.factory.createCheckBox(hbox , _("Show updates next startup"), showUpdates )
-        self.showAll  =  self.factory.createCheckBox(hbox , _("Do not show groups view next startup"), showAll )
-
+        #System settings
         frame = self.factory.createFrame( vbox1, _("System options") )
         hbox = self.factory.createHBox(frame)
         self.always_yes  =  self.factory.createCheckBox(hbox , _("Proceed without asking for confirmation"), always_yes )
         self.updateInterval = self.factory.createIntField(hbox, _("Interval in minutes to check for updates:"), 30, 720, updateInterval )
+
+        #Layout (view) settings
+        frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Layout options") )
+        hbox = self.factory.createHBox(frame)
+        self.showUpdates =  self.factory.createCheckBox(hbox , _("Show updates next startup"), showUpdates )
+        self.showAll  =  self.factory.createCheckBox(hbox , _("Do not show groups view next startup"), showAll )
+
+
+        #Search settings
+        frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Search options") )
+        hbox = self.factory.createHBox(frame)
+        self.newest_only = self.factory.createCheckBox(hbox , _("Show newest packages only"), newest_only )
+        self.match_all   = self.factory.createCheckBox(hbox , _("Match all words"), match_all )
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
@@ -857,13 +870,20 @@ class UserPrefsDialog:
                     #### QUIT
                     break
                 elif (widget == self.applyButton) :
+                    search = {
+                      'match_all': self.match_all.isChecked(),
+                      'newest_only': self.newest_only.isChecked()
+                      }
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
                         'do not show groups at startup' : self.showAll.isChecked(),
                         'interval for checking updates' : self.updateInterval.value(),
-                        'always_yes' : self.always_yes.isChecked()
+                        'always_yes' : self.always_yes.isChecked(),
+                        'search' : search
                         }
                     self.parent.always_yes = self.always_yes.isChecked()
+                    self.parent.match_all = search['match_all']
+                    self.parent.newest_only = search['newest_only']
                     break
 
     def run(self):
