@@ -14,6 +14,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import os
 import sys
 import platform
+import re
 import yui
 import webbrowser
 import dnfdaemon.client
@@ -942,7 +943,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     break
 
             yui.YUI.app().busyCursor()
-            strings = search_string.split(" ,|:;")
+            strings = re.split('[ ,|:;]',search_string)
             ### TODO manage tags
             tags =""
             packages = self.backend.search(fields, strings, self.match_all, self.newest_only, tags )
