@@ -831,16 +831,16 @@ class UserPrefsDialog:
 
         #Layout (view) settings
         frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Layout options") )
-        hbox = self.factory.createHBox(frame)
-        self.showUpdates =  self.factory.createCheckBox(hbox , _("Show updates next startup"), showUpdates )
-        self.showAll  =  self.factory.createCheckBox(hbox , _("Do not show groups view next startup"), showAll )
+        box = self.factory.createVBox(frame)
+        self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Show updates next startup"), showUpdates )
+        self.showAll  =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Do not show groups view next startup"), showAll )
 
 
         #Search settings
         frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Search options") )
-        hbox = self.factory.createHBox(frame)
-        self.newest_only = self.factory.createCheckBox(hbox , _("Show newest packages only"), newest_only )
-        self.match_all   = self.factory.createCheckBox(hbox , _("Match all words"), match_all )
+        box = self.factory.createVBox(frame)
+        self.newest_only = self.factory.createCheckBox(self.factory.createLeft(box) , _("Show newest packages only"), newest_only )
+        self.match_all   = self.factory.createCheckBox(self.factory.createLeft(box) , _("Match all words"), match_all )
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
