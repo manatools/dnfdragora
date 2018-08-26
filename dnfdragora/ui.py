@@ -159,6 +159,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
+        self.match_all = False
+        self.newest_only = False
         self.log_filename = None
         self.level_debug = False
         self.config = dnfdragora.config.AppConfig(self.appname)
@@ -254,6 +256,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self.group_icon_path = path_settings['group_icons']
             if 'images' in path_settings.keys():
                 self.images_path = path_settings['images']
+
+            # config['settings']['search']
+            search = {}
+            if 'search' in settings.keys():
+                search = settings['search']
+            if 'match_all' in search.keys():
+                self.match_all = search['match_all']
+            if 'newest_only' in search.keys():
+                self.newest_only = search['newest_only']
+
 
     def _setupUI(self) :
         '''
@@ -352,6 +364,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.config.userPreferences:
             if 'settings' in self.config.userPreferences.keys() :
                 settings = self.config.userPreferences['settings']
+                if 'search' in settings.keys():
+                    search = settings['search']
+                    if 'newest_only' in search.keys():
+                        self.newest_only = search['newest_only']
+                    if 'match_all' in search.keys():
+                        self.match_all = search['match_all']
+
             if 'view' in self.config.userPreferences.keys() :
                 view = self.config.userPreferences['view']
             if 'show updates at startup' in settings.keys() :
@@ -924,11 +943,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             yui.YUI.app().busyCursor()
             strings = search_string.split(" ,|:;")
-            ### TODO manage match_all, newest_only, tags
-            match_all = False
-            newest_only = False
+            ### TODO manage tags
             tags =""
-            packages = self.backend.search(fields, strings, match_all, newest_only, tags )
+            packages = self.backend.search(fields, strings, self.match_all, self.newest_only, tags )
 
             self.itemList = {}
             # {
@@ -1082,8 +1099,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'filter': filter
             }
 
+        search = {
+            'match_all': self.match_all,
+            'newest_only': self.newest_only
+          }
+
         if 'settings' in self.config.userPreferences.keys() :
             settings = self.config.userPreferences['settings']
+            settings['search'] = search
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
                     self.config.userPreferences['view']['filter'] = 'to_update'
