@@ -4,10 +4,13 @@
 dnfdragora is written in Python 3 and uses libYui, the widget abstraction library written by SUSE, so that it can be run using Qt 5, GTK+ 3, or ncurses interfaces.
 
 Example with Qt:
-![dnfdragora with Qt UI](http://anaselli.belinux.it/test/dnfdragora.png "dnfdragora with Qt UI")
+![dnfdragora with Qt UI](screenshots/dnfdragora-qt.png "dnfdragora with Qt UI")
+
+Example with GtK:
+![dnfdragora with GtK UI](screenshots/dnfdragora-gtk.png "dnfdragora with GtK UI")
 
 Example with ncurses:
-![dnfdragora with ncurses UI](http://anaselli.belinux.it/test/dnfdragora-ncurses.png "dnfdragora with ncurses UI")
+![dnfdragora with ncurses UI](screenshots/dnfdragora-ncurses.png "dnfdragora with ncurses UI")
 
 ## REQUIREMENTS
 
