@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 10:32+0200\n"
+"POT-Creation-Date: 2018-08-26 23:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: stroibe974 <sebsweb@gmail.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -92,7 +92,7 @@ msgstr "%(prog)s %(NL)sversion : %(version)s%(NL)ssite : %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
 #: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
-#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1174
+#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1198
 msgid "Sorry"
 msgstr "Désolé"
 
@@ -202,8 +202,8 @@ msgstr "Système de base"
 msgid "Content"
 msgstr "Contenu"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:328
-#: dnfdragora/ui.py:342
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:341
+#: dnfdragora/ui.py:355
 msgid "All"
 msgstr "Tous"
 
@@ -358,28 +358,28 @@ msgstr "Amélioration"
 msgid "Undo transaction"
 msgstr "Annuler la transaction"
 
-#: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1041
+#: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1059
 msgid "Error checking package signatures"
 msgstr "Erreur lors de la vérification des signatures des paquetages"
 
-#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:1045
+#: dnfdragora/dialogs.py:229 dnfdragora/ui.py:1063
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Erreur de téléchargement"
 msgstr[1] "Erreurs de téléchargement"
 
-#: dnfdragora/dialogs.py:234 dnfdragora/ui.py:1050
+#: dnfdragora/dialogs.py:234 dnfdragora/ui.py:1068
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Erreur pendant la transaction"
 msgstr[1] "Erreurs pendant la transaction"
 
-#: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1062
-#: dnfdragora/ui.py:1065
+#: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1080
+#: dnfdragora/ui.py:1083
 msgid "BuildTransaction failure"
 msgstr "La construction de la transaction a échoué"
 
-#: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1065
+#: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1083
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "client dnfdaemon non autorisé :%(NL)s%(error)s"
@@ -388,7 +388,7 @@ msgstr "client dnfdaemon non autorisé :%(NL)s%(error)s"
 msgid "History undo"
 msgstr "Défaire l'historique"
 
-#: dnfdragora/dialogs.py:292 dnfdragora/ui.py:475
+#: dnfdragora/dialogs.py:292 dnfdragora/ui.py:495
 msgid "History"
 msgstr "Historique"
 
@@ -416,14 +416,14 @@ msgstr "Résultat de la transaction"
 msgid "Transaction dependency"
 msgstr "Dépendance de transaction"
 
-#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:912
-#: dnfdragora/dialogs.py:950 dnfdragora/dialogs.py:986
-#: dnfdragora/dialogs.py:1029
+#: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:932
+#: dnfdragora/dialogs.py:970 dnfdragora/dialogs.py:1006
+#: dnfdragora/dialogs.py:1049
 msgid "&Ok"
 msgstr "Ok"
 
 #: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:610
-#: dnfdragora/dialogs.py:835 dnfdragora/dialogs.py:1030
+#: dnfdragora/dialogs.py:848 dnfdragora/dialogs.py:1050
 msgid "&Cancel"
 msgstr "Annuler"
 
@@ -535,7 +535,7 @@ msgstr "Taux minimum"
 msgid "Mirror list"
 msgstr "Liste de miroirs"
 
-#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:314
+#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
 msgid "Name"
 msgstr "Nom"
 
@@ -575,7 +575,7 @@ msgstr "Dépôt de vérification GPG"
 msgid "Retries"
 msgstr "Nombre de tentatives"
 
-#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:314
+#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
 msgid "Size"
 msgstr "Taille"
 
@@ -627,7 +627,7 @@ msgstr "Information"
 msgid "Value"
 msgstr "Valeur"
 
-#: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:832 dnfdragora/ui.py:447
+#: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
 msgstr "&Appliquer"
 
@@ -644,21 +644,9 @@ msgstr "%sseconde(s)"
 msgid "Now"
 msgstr "Maintenant"
 
-#: dnfdragora/dialogs.py:779 dnfdragora/ui.py:487
+#: dnfdragora/dialogs.py:779 dnfdragora/ui.py:507
 msgid "User preferences"
 msgstr "Préférences de l'utilisateur"
-
-#: dnfdragora/dialogs.py:822
-msgid "Layout"
-msgstr "Canevas"
-
-#: dnfdragora/dialogs.py:824
-msgid "Show updates next startup"
-msgstr "Montrer les mises à jour au prochain démarrage"
-
-#: dnfdragora/dialogs.py:825
-msgid "Do not show groups view next startup"
-msgstr "Ne pas montrer la vue des groupes au prochain démarrage"
 
 #: dnfdragora/dialogs.py:827
 msgid "System options"
@@ -672,15 +660,39 @@ msgstr "Procéder sans demander de confirmation"
 msgid "Interval in minutes to check for updates:"
 msgstr "Intervalle de vérification des mises à jour (minutes) :"
 
-#: dnfdragora/dialogs.py:1079
+#: dnfdragora/dialogs.py:833
+msgid "Layout options"
+msgstr ""
+
+#: dnfdragora/dialogs.py:835
+msgid "Show updates next startup"
+msgstr "Montrer les mises à jour au prochain démarrage"
+
+#: dnfdragora/dialogs.py:836
+msgid "Do not show groups view next startup"
+msgstr "Ne pas montrer la vue des groupes au prochain démarrage"
+
+#: dnfdragora/dialogs.py:840
+msgid "Search options"
+msgstr ""
+
+#: dnfdragora/dialogs.py:842
+msgid "Show newest packages only"
+msgstr ""
+
+#: dnfdragora/dialogs.py:843
+msgid "Match all words"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1099
 msgid "&Yes"
 msgstr "&Oui"
 
-#: dnfdragora/dialogs.py:1080
+#: dnfdragora/dialogs.py:1100
 msgid "&No"
 msgstr "&Non"
 
-#: dnfdragora/dialogs.py:1103
+#: dnfdragora/dialogs.py:1123
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -691,7 +703,7 @@ msgstr ""
 "paquetage %(pkg)s ?<br><br>Clé        : 0x%(id)s:<br>Identifiant     : "
 "\"%(user)s\"<br>De       : %(file)s"
 
-#: dnfdragora/dialogs.py:1110
+#: dnfdragora/dialogs.py:1130
 msgid "GPG key missed"
 msgstr "Clé GPG manquante"
 
@@ -718,7 +730,7 @@ msgstr "Téléchargement des paquetages"
 msgid "Checking package signatures"
 msgstr "Contrôle des signatures de paquetage"
 
-#: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1015
+#: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1033
 msgid "Applying changes to the system"
 msgstr "Application des changements au système"
 
@@ -1279,205 +1291,205 @@ msgstr "Démarrage du téléchargement : %s"
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Progression des fichiers (%(downloaded)d/%(total)d)"
 
-#: dnfdragora/ui.py:153
+#: dnfdragora/ui.py:154
 msgid "Update information"
 msgstr "Informations de mise à jour"
 
-#: dnfdragora/ui.py:154
+#: dnfdragora/ui.py:155
 msgid "File list"
 msgstr "Liste de fichiers"
 
-#: dnfdragora/ui.py:155
+#: dnfdragora/ui.py:156
 msgid "Changelog"
 msgstr "Historique"
 
-#: dnfdragora/ui.py:156
+#: dnfdragora/ui.py:157
 msgid "Requirements"
 msgstr "Prérequis"
 
-#: dnfdragora/ui.py:262
+#: dnfdragora/ui.py:275
 msgid "Software Management - dnfdragora"
 msgstr "Gestionnaire de logiciels - dnfdragora"
 
-#: dnfdragora/ui.py:294
+#: dnfdragora/ui.py:307
 msgid "Software Management"
 msgstr "Gestion des logiciels"
 
-#: dnfdragora/ui.py:314
+#: dnfdragora/ui.py:327
 msgid "Arch"
 msgstr "Arch"
 
-#: dnfdragora/ui.py:314
+#: dnfdragora/ui.py:327
 msgid "Release"
 msgstr "Révision"
 
-#: dnfdragora/ui.py:314
+#: dnfdragora/ui.py:327
 msgid "Summary"
 msgstr "Résumé"
 
-#: dnfdragora/ui.py:314
+#: dnfdragora/ui.py:327
 msgid "Version"
 msgstr "Version"
 
-#: dnfdragora/ui.py:321
+#: dnfdragora/ui.py:334
 msgid "Status"
 msgstr "Statut"
 
-#: dnfdragora/ui.py:329
+#: dnfdragora/ui.py:342
 msgid "Installed"
 msgstr "Installé"
 
-#: dnfdragora/ui.py:330
+#: dnfdragora/ui.py:343
 msgid "Not installed"
 msgstr "Non installé"
 
-#: dnfdragora/ui.py:331
+#: dnfdragora/ui.py:344
 msgid "To update"
 msgstr "À mettre à jour"
 
-#: dnfdragora/ui.py:337
+#: dnfdragora/ui.py:350
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Afficher uniquement %s et noarch"
 
-#: dnfdragora/ui.py:343
+#: dnfdragora/ui.py:356
 msgid "Groups"
 msgstr "Groupes"
 
-#: dnfdragora/ui.py:407
+#: dnfdragora/ui.py:427
 msgid "in names"
 msgstr "parmi les noms"
 
-#: dnfdragora/ui.py:408
+#: dnfdragora/ui.py:428
 msgid "in descriptions"
 msgstr "parmi les descriptions"
 
-#: dnfdragora/ui.py:409
+#: dnfdragora/ui.py:429
 msgid "in summaries"
 msgstr "parmi les résumés"
 
-#: dnfdragora/ui.py:410
+#: dnfdragora/ui.py:430
 msgid "in file names"
 msgstr "dans les noms de fichiers"
 
-#: dnfdragora/ui.py:431
+#: dnfdragora/ui.py:451
 msgid "&Search"
 msgstr "&Rechercher"
 
-#: dnfdragora/ui.py:437
+#: dnfdragora/ui.py:457
 msgid "&Clear search"
 msgstr "Effa&cer la recherche"
 
-#: dnfdragora/ui.py:451
+#: dnfdragora/ui.py:471
 msgid "Ch&eck all"
 msgstr "Tout coch&er"
 
-#: dnfdragora/ui.py:455 dnfdragora/ui.py:464
+#: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
 msgstr "&Quitter"
 
-#: dnfdragora/ui.py:460
+#: dnfdragora/ui.py:480
 msgid "&File"
 msgstr "&Fichier"
 
-#: dnfdragora/ui.py:461
+#: dnfdragora/ui.py:481
 msgid "Reset the selection"
 msgstr "_Remettre à zéro la sélection"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:482
 msgid "Refresh Metadata"
 msgstr "Actualiser les métadonnées"
 
-#: dnfdragora/ui.py:463
+#: dnfdragora/ui.py:483
 msgid "Repositories"
 msgstr "Dépôts"
 
-#: dnfdragora/ui.py:474
+#: dnfdragora/ui.py:494
 msgid "&Information"
 msgstr "&Information"
 
-#: dnfdragora/ui.py:486
+#: dnfdragora/ui.py:506
 msgid "&Options"
 msgstr "&Options"
 
-#: dnfdragora/ui.py:498
+#: dnfdragora/ui.py:518
 msgid "&Help"
 msgstr "&Aide"
 
-#: dnfdragora/ui.py:499
+#: dnfdragora/ui.py:519
 msgid "Manual"
 msgstr "Manuel"
 
-#: dnfdragora/ui.py:500
+#: dnfdragora/ui.py:520
 msgid "&About"
 msgstr "À &propos"
 
-#: dnfdragora/ui.py:526
+#: dnfdragora/ui.py:546
 msgid "update"
 msgstr "mettre à jour"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:549
 msgid "locked"
 msgstr "verrouillé"
 
-#: dnfdragora/ui.py:532
+#: dnfdragora/ui.py:552
 msgid "installed"
 msgstr "installé"
 
-#: dnfdragora/ui.py:845
+#: dnfdragora/ui.py:865
 msgid "Missing information"
 msgstr "Information manquante"
 
-#: dnfdragora/ui.py:864
+#: dnfdragora/ui.py:884
 msgid "Repository"
 msgstr "Dépôt"
 
-#: dnfdragora/ui.py:977
+#: dnfdragora/ui.py:995
 msgid "Search"
 msgstr "Rechercher"
 
-#: dnfdragora/ui.py:1174
+#: dnfdragora/ui.py:1198
 msgid "Not implemented yet"
 msgstr "Pas encore développé"
 
-#: dnfdragora/ui.py:1203
+#: dnfdragora/ui.py:1227
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Le paquetage %s ne peut pas être supprimé"
 
-#: dnfdragora/ui.py:1203
+#: dnfdragora/ui.py:1227
 msgid "Protected package selected"
 msgstr "Paquetage sélectionné protégé"
 
-#: dnfdragora/ui.py:1279
+#: dnfdragora/ui.py:1303
 msgid "Unmanaged widget"
 msgstr "Widget non géré"
 
-#: dnfdragora/ui.py:1281
+#: dnfdragora/ui.py:1305
 msgid "Unmanaged event"
 msgstr "Évènement non géré"
 
-#: dnfdragora/updater.py:65
+#: dnfdragora/updater.py:68
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: dnfdragora/updater.py:66
+#: dnfdragora/updater.py:69
 msgid "Open dnfdragora dialog"
 msgstr "Ouvrir la fenêtre dnfdragora"
 
-#: dnfdragora/updater.py:67
+#: dnfdragora/updater.py:70
 msgid "Check for updates"
 msgstr "Vérifier les mises à jour"
 
-#: dnfdragora/updater.py:68
+#: dnfdragora/updater.py:71
 msgid "Exit"
 msgstr "Quitter"
 
-#: dnfdragora/updater.py:114
+#: dnfdragora/updater.py:117
 msgid "Running dnfdragora failure"
 msgstr "Erreur d'exécution de dnfdragora"
 
-#: dnfdragora/updater.py:150 dnfdragora/updater.py:155
+#: dnfdragora/updater.py:153 dnfdragora/updater.py:158
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Erreur lors du démarrage du service dnfdaemon : [%s]"
@@ -1487,7 +1499,7 @@ msgstr "Erreur lors du démarrage du service dnfdaemon : [%s]"
 msgid "%d updates available."
 msgstr "%d mises à jour disponibles."
 
-#: dnfdragora/updater.py:184
+#: dnfdragora/updater.py:188
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Exception interceptée : [%s]"
@@ -1521,3 +1533,6 @@ msgstr ""
 "d'abstraction d'objet graphique écrite par Suse, qui permet une interface en "
 "utilisant Qt 5, GTK+3 ou ncurses. Cette interface graphique au  gestionnaire "
 "de logiciels DNF peut être utilisée dans tout type d'environnement système."
+
+#~ msgid "Layout"
+#~ msgstr "Canevas"
