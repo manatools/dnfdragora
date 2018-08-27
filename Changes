@@ -1,5 +1,6 @@
 2018-XX-YY v. 1.1.0
 ---------------------
+- Fixed issue #70, aligned check boxes into user preferences
 - Fixed issue #113, adding user preferences to get newest package only
   on searching
 - Updated repository information dialog with repo size and its package
