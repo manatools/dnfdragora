@@ -662,7 +662,7 @@ msgstr "Zeitabstand in Minuten, um nach Aktualisierungen zu prüfen:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Layoutoptionen"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -674,11 +674,11 @@ msgstr "Gruppenansicht beim nächsten Start nicht anzeigen"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Suchoptionen"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Zeige nur die neusten Pakete"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
@@ -1533,6 +1533,3 @@ msgstr ""
 "ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
 "die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
 "kann."
-
-#~ msgid "Layout"
-#~ msgstr "Layout"
