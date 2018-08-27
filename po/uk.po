@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: 2018-04-12 17:15+0200\n"
+"PO-Revision-Date: 2018-08-27 11:34+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
@@ -666,7 +666,7 @@ msgstr "Інтервал у хвилинах між пошуками оновл�
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Параметри компонування"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -678,15 +678,15 @@ msgstr "Не показувати панель груп після наступ�
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Параметри пошуку"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Показувати лише найновіші пакунки"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Збіг за усіма словами"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
