@@ -662,7 +662,7 @@ msgstr "Intervalle de vérification des mises à jour (minutes) :"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Options de mise en page"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -674,15 +674,15 @@ msgstr "Ne pas montrer la vue des groupes au prochain démarrage"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Options de la recherche"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Voir uniquement les paquetages les plus récents"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Trouver tous les mots"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1533,6 +1533,3 @@ msgstr ""
 "d'abstraction d'objet graphique écrite par Suse, qui permet une interface en "
 "utilisant Qt 5, GTK+3 ou ncurses. Cette interface graphique au  gestionnaire "
 "de logiciels DNF peut être utilisée dans tout type d'environnement système."
-
-#~ msgid "Layout"
-#~ msgstr "Canevas"
