@@ -1,13 +1,14 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
+# AlexL <loginov.alex.valer@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 14:55+0200\n"
+"POT-Creation-Date: 2018-06-10 11:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rémi Verschelde <akien@mageia.org>, 2018\n"
+"Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2018\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +19,7 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
@@ -33,29 +34,29 @@ msgstr "Графический интерфейс для установки, у�
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-updater"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr ""
+msgstr "Пиктограмма трея для проверки обновлений"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr ""
+msgstr "Автоматически искать обновления и сообщать о них"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "Средство установки пакетов dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "Установщик пакетов RPM"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "Установить локальные пакеты в систему"
