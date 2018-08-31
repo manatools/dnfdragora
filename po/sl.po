@@ -665,7 +665,7 @@ msgstr "Minutni interval za preverjanje posodobitev:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Možnosti videza"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -677,15 +677,15 @@ msgstr "Ne prikazuj skupinskega pogleda ob naslednjem zagonu"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Možnosti iskanja"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Prikaz samo najnovejših paketov"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Ujemanje vseh besed"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1535,6 +1535,3 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
-
-#~ msgid "Layout"
-#~ msgstr "Razpored"
