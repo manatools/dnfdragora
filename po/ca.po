@@ -662,7 +662,7 @@ msgstr "Interval en minuts per comprovar si hi ha actualitzacions:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Opcions del disseny"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -674,15 +674,15 @@ msgstr "No mostris la vista de grups a l'inici següent"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Opcions de la cerca"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Mostra només els paquets més recents"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Coincideix amb totes les paraules"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1534,6 +1534,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid "Layout"
-#~ msgstr "Disposició"
