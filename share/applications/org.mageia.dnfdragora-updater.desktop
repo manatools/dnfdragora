@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=dnfdragora-updater
+Name[bg]=dnfdragora-updater
 Name[ca]=Actualitzador de dnfdragora
 Name[cs]=dnfdragora-aktualizátor
 Name[de]=dnfdragora-updater
@@ -25,6 +26,7 @@ Name[uk]=Оновлювач dnfdragora
 Name[zh_CN]=dnfdragora-updater
 Name[zh_TW]=dnfdragora 更新程式
 GenericName=Tray-icon to check for updates
+GenericName[bg]=Икона за уведомления при проверка за актуализации
 GenericName[ca]=Icona per comprovar les actualitzacions
 GenericName[cs]=Ikona v oznamovací části panelu pro zkontrolování aktualizací
 GenericName[de]=Tray-Symbol um nach Updates zu suchen
@@ -52,6 +54,7 @@ GenericName[zh_TW]=用來檢查更新的系統匣圖示
 Icon=dnfdragora
 Exec=dnfdragora-updater
 Comment=Automatically check for updates and notify
+Comment[bg]=Автоматична проверка за актуализации с уведомяване
 Comment[ca]=Comprova automàticament si hi ha actualitzacions i notifica-m'ho
 Comment[cs]=Automaticky zkontrolovat aktualizace a dát zprávu
 Comment[de]=Automatisch nach Aktualisierungen suchen und benachrichtigen

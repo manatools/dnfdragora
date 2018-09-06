@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=dnfdragora
+Name[bg]=dnfdragora
 Name[ca]=dnfdragora
 Name[cs]=dnfdragora
 Name[de]=dnfdragora
@@ -86,6 +87,7 @@ Exec=dnfdragora
 Comment=A graphical front end for installing, removing and updating packages
 Comment[ar]=واجهة رسومية لتثبيت الحزم وإزالتها وتحديثها
 Comment[ast]=Un frontal gráficu pa instalar, desaniciar y anovar paquetes
+Comment[bg]=Графична среда за инсталиране, премахване и обновяване на пакети
 Comment[br]=Un etrefas evit staliañ, distaliañ ha bremanaet pakadoù
 Comment[ca]=Una interfície gràfica per instal·lar, eliminar i actualitzar paquets
 Comment[cs]=Grafický nástroj pro instalaci, odstranění a aktualizaci balíčků

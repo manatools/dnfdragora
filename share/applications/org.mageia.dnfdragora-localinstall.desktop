@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=dnfdragora Package Installer
+Name[bg]=Инсталатор на dnfdragora пакети
 Name[ca]=Instal·lador de paquets dnfdragora
 Name[cs]=Instalátor balíčků dnfdragora
 Name[de]=dnfdragora Paket-Installationsprogramm
@@ -26,6 +27,7 @@ Name[uk]=Засіб встановлення пакунків dnfdragora
 Name[zh_CN]=dnfdragora软件包安装器
 Name[zh_TW]=dnfdragora 軟體包安裝程式
 GenericName=RPM Package Installer
+GenericName[bg]=Инсталатор на RPM пакети
 GenericName[ca]=Instal·lador de paquets RPM
 GenericName[cs]=Instalátor balíčků RPM
 GenericName[de]=RPM-Paket-Installationsprogramm
@@ -54,6 +56,7 @@ GenericName[zh_TW]=RPM 軟體包安裝程式
 Icon=dnfdragora
 Exec=dnfdragora --install %F
 Comment=Install local packages on the system
+Comment[bg]=Инсталирайте локални пакети в системата
 Comment[ca]=Instal·leu paquets locals al sistema
 Comment[cs]=Instalovat místní balíčky do systému
 Comment[de]=Lokale Pakete auf dem System installieren
