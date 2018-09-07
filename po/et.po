@@ -661,7 +661,7 @@ msgstr "Uuenduste kontrollimise intervall minutites:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Paigutusvalikud"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -673,15 +673,15 @@ msgstr "Grupivaadet järgmisel käivitamisel ei näidata"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Otsinguvalikud"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Näidatakse ainult uusimaid pakette"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Kõik sõnad peavad sobima"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1530,6 +1530,3 @@ msgstr ""
 "abstraheerimise teeki libYui, mis tähendab, et see võib töötada Qt 5, GTK+ 3 "
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
-
-#~ msgid "Layout"
-#~ msgstr "Paigutus"
