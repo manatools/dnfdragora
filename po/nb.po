@@ -659,7 +659,7 @@ msgstr "Intervall i minutter for å sjekke etter oppdateringer:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Layout alternativer"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -671,15 +671,15 @@ msgstr "Ikke vis oppdateringer ved neste start"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Søkealternativer"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Vis bare de nyeste pakkene"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Match alle ord"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1527,6 +1527,3 @@ msgstr ""
 "abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
 "+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
 "pakkehåndtereren som kan benyttes i ethvert system miljø."
-
-#~ msgid "Layout"
-#~ msgstr "Layout"
