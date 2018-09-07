@@ -1,30 +1,16 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
-#
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 1.00\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: alfalb_mansil <inactive+alfalb_mansil@transifex.com>, 2017\n"
+"Last-Translator: alfalb_mansil, 2017\n"
 "Language-Team: Portuguese (https://www.transifex.com/MageiaLinux/teams/9361/"
 "pt/)\n"
 "Language: pt\n"
@@ -152,7 +138,7 @@ msgstr "Área de Trabalho KDE"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Ambiente de Trabalho Xfce"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
@@ -160,19 +146,19 @@ msgstr "Aplicações"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr "Ecrâ LXDE"
+msgstr "Área de Trabalho LXDE"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "Ambiente de Trabalho LXQt"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Ambiente de Trabalho Cinnamon"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr ""
+msgstr "Ambiente de Trabalho MATE"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
@@ -391,7 +377,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:495
 msgid "History"
-msgstr ""
+msgstr "Histórico"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -407,7 +393,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Fechar"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -534,7 +520,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Lista de espelhos"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
 msgid "Name"
@@ -546,7 +532,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Palavra-passe"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
@@ -558,7 +544,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
@@ -578,7 +564,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
 msgid "Size"
-msgstr ""
+msgstr "Tamanho"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
@@ -610,11 +596,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Nome de utilizador"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -622,11 +608,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Informação"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
@@ -634,7 +620,7 @@ msgstr "&Aplicar"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -806,7 +792,7 @@ msgstr "Bases de Dados"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr "Básico"
+msgstr "Basic"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -935,7 +921,7 @@ msgstr "Geografia"
 
 #: dnfdragora/groupicons.py:226
 msgid "Graphical desktop"
-msgstr "Ecrã Gráfico"
+msgstr "Área de Trabalho Gráfica"
 
 #: dnfdragora/groupicons.py:229
 msgid "Enlightenment"
@@ -1261,11 +1247,11 @@ msgstr "Firewall/Encaminhador (Router)"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr "Correio/Groupware/Noticias"
+msgstr "Correio/Software Colaborativo/Noticias"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
-msgstr "Servidor/Computador de Rede"
+msgstr "Servidor de Computador de Rede"
 
 #: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
@@ -1466,7 +1452,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:68
 msgid "Update"
-msgstr ""
+msgstr "Atualizar"
 
 #: dnfdragora/updater.py:69
 msgid "Open dnfdragora dialog"
@@ -1478,7 +1464,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:71
 msgid "Exit"
-msgstr ""
+msgstr "Sair"
 
 #: dnfdragora/updater.py:117
 msgid "Running dnfdragora failure"
@@ -1501,7 +1487,7 @@ msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
