@@ -644,7 +644,7 @@ msgstr "ユーザ設定"
 
 #: dnfdragora/dialogs.py:827
 msgid "System options"
-msgstr "システム オプション"
+msgstr "システムの設定"
 
 #: dnfdragora/dialogs.py:829
 msgid "Proceed without asking for confirmation"
@@ -656,7 +656,7 @@ msgstr "更新のチェック間隔 (分単位):"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "レイアウトの設定"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -668,15 +668,15 @@ msgstr "次回起動時にパッケージのグループ表示を行わない"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "検索の設定"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "最新のパッケージのみ表示"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "すべての単語にマッチ"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1406,7 +1406,7 @@ msgstr "情報(&I)"
 
 #: dnfdragora/ui.py:506
 msgid "&Options"
-msgstr "オプション(&O)"
+msgstr "設定(&O)"
 
 #: dnfdragora/ui.py:518
 msgid "&Help"
@@ -1528,6 +1528,3 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
-
-#~ msgid "Layout"
-#~ msgstr "レイアウト"
