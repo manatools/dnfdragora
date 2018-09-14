@@ -682,7 +682,7 @@ msgstr "Zeige nur die neusten Pakete"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Alle Wörter stimmen überein"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
