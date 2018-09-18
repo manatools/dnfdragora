@@ -134,12 +134,16 @@ TRANSACTION_RESULT_TYPES = {
 
 RPM_ACTIONS = {
     'update': _("Updating: %s"),
+    'updated': _("Updated: %s"),
     'install': _("Installing: %s"),
     'reinstall': _("Reinstalling: %s"),
+    'reinstalled': _("Reinstalled: %s"),
     'cleanup': _("Cleanup: %s"),
     'erase': _("Removing: %s"),
     'obsolete': _("Obsoleting: %s"),
+    'obsoleted': _("Obsoleted: %s"),
     'downgrade': _("Downgrading: %s"),
+    'downgraded': _("Downgraded: %s"),
     'verify': _("Verifying: %s"),
     'scriptlet': _("Running scriptlet: %s"),
     'preptrans': _("Preparing transaction: %s"),
