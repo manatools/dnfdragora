@@ -220,7 +220,10 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
             #let's log once
             logger.debug('on_RPMProgress : [%s]', package)
             #print (const.RPM_ACTIONS[action] % name)
-            self.frontend.infobar.info_sub(const.RPM_ACTIONS[action] % name)
+            try:
+                self.frontend.infobar.info_sub(const.RPM_ACTIONS[action] % name)
+            except KeyError:
+                logger.debug('on_RPMProgress: unknown action %s', action)
         self._package_name = name
         if ts_current > 0 and ts_current <= ts_total:
             frac = float(ts_current) / float(ts_total)
