@@ -660,7 +660,7 @@ msgstr "Intervalo em minutos para verificar atualizações:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Opções de layout"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -672,7 +672,7 @@ msgstr "Não mostrar grupos Exibir na próxima inicialização"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Opções de pesquisa"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
@@ -1530,6 +1530,3 @@ msgstr ""
 "as interfaces Qt 5, GTK + 3 ou ncurses. Ele fornece uma interface para o "
 "gerenciador de pacotes DNF que pode ser usado em qualquer tipo de ambiente "
 "de sistema."
-
-#~ msgid "Layout"
-#~ msgstr "Layout"
