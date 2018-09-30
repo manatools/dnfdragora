@@ -10,14 +10,15 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Retep Ondrej <rvrao@centrum.cz>, 2018\n"
+"Last-Translator: retepsk <rvrao@centrum.cz>, 2018\n"
 "Language-Team: Slovak (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sk/)\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n "
+">= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
@@ -363,6 +364,7 @@ msgid_plural "Downloading errors"
 msgstr[0] "Chyba pri sťahovaní"
 msgstr[1] "Chyby pri sťahovaní"
 msgstr[2] "Chyby pri sťahovaní"
+msgstr[3] "Chyby pri sťahovaní"
 
 #: dnfdragora/dialogs.py:234 dnfdragora/ui.py:1068
 msgid "Error in transaction"
@@ -370,6 +372,7 @@ msgid_plural "Errors in transaction"
 msgstr[0] "Chyba v transakcii"
 msgstr[1] "Chyby v transakcii"
 msgstr[2] "Chyby v transakcii"
+msgstr[3] "Chyby v transakcii"
 
 #: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1080
 #: dnfdragora/ui.py:1083
@@ -659,7 +662,7 @@ msgstr "Interval v minutách pre zkontrolovanie aktualizácií:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Možnosti rozloženia"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -671,11 +674,11 @@ msgstr "Neukazovat pohľad na skupiny pri ďalšom spustení"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr " Možnosti vyhľadávania"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Zobraziť iba najnovšie balíky"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
@@ -1528,6 +1531,3 @@ msgstr ""
 "spoločnosťou SUSE, aby mohla byť spustená pomocou rozhrania Qt 5, GTK + 3 "
 "alebo ncurses. Poskytuje rozhranie pre správcu balíkov DNF, ktoré je možné "
 "použiť v akomkoľvek prostredí systému."
-
-#~ msgid "Layout"
-#~ msgstr "Usporiadanie"
