@@ -458,7 +458,7 @@ msgstr "Základní adresa (URL)"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Cena"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
@@ -490,7 +490,7 @@ msgstr "Vyloučit balíčky"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Metoda při selhání"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
@@ -663,7 +663,7 @@ msgstr "Interval v minutách pro zkontrolování aktualizací:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Možnosti rozložení"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -675,15 +675,15 @@ msgstr "Neukazovat pohled na skupiny při příštím spuštění"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Možnosti vyhledávání"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Zobrazit pouze nejnovější balíčky"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Odpovídá všem slovům"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1532,6 +1532,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "Layout"
-#~ msgstr "Rozvržení"
