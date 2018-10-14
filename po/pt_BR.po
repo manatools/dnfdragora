@@ -676,11 +676,11 @@ msgstr "Opções de pesquisa"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Mostrar apenas os pacotes mais recentes"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Corresponder todas as palavras"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
