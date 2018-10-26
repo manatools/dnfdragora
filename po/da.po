@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: scootergrisen <scootergrisen@gmail.com>, 2017\n"
+"Last-Translator: scootergrisen, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "da/)\n"
 "Language: da\n"
@@ -442,15 +442,15 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Båndbredde"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Grund mellemlager-mappe"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Grund-URL"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
@@ -458,11 +458,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM procent"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -470,59 +470,59 @@ msgstr "Aktiveret"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Aktiveret metadata"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Aktivér grupper"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Ekskluder"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Ekskluder-pakker"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Failover-metode"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Hurtigste spejl"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "GPG-tjek"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "GPG-nøgle"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Inkluder-pakker"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "IP-løsning"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Maks. parallelle download"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "Medie-id"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Metadata udløbet"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Metalink"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
@@ -530,7 +530,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Spejlliste"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
 msgid "Name"
@@ -538,31 +538,31 @@ msgstr "Navn"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Pakker"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Adgangskode"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Adgangskode for proxy"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Adgangskode for proxy"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Brugernavn for proxy"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
@@ -570,7 +570,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "Forsøg"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
 msgid "Size"
@@ -578,7 +578,7 @@ msgstr "Størrelse"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Spring over hvis tilgængelig"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
@@ -602,15 +602,15 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr ""
+msgstr "Timeout"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Brugernavn"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -618,11 +618,11 @@ msgstr "Arkivhåndtering"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Værdi"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
@@ -630,16 +630,16 @@ msgstr "&Anvend"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Aldrig"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s sekund(er)"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Nu"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:507
 msgid "User preferences"
@@ -675,11 +675,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Vis kun nyeste pakker"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Match alle ord"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1531,6 +1531,3 @@ msgstr ""
 "abstraktionsbiblioteket som er skrevet af SUSE, så det kan køres med Qt 5-, "
 "GTK+ 3- eller ncurses-brugerflader. Den leverer en frontenhed til DNF-"
 "pakkehåndteringen som kan bruges i alle slags systemmiljøer."
-
-#~ msgid "Layout"
-#~ msgstr "Layout"
