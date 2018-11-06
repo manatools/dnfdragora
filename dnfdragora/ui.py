@@ -450,7 +450,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         icon_file = self.images_path + "find.png"
         self.find_button = self.factory.createIconButton(hbox_top, icon_file, _("&Search"))
         self.find_button.setWeight(0,6)
-        self.dialog.setDefaultButton(self.find_button)
+        self.find_button.setDefaultButton(True)
         self.find_entry.setKeyboardFocus()
 
         icon_file = self.images_path + "clear_22x22.png"
