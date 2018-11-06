@@ -3,14 +3,24 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Jose Manuel López <inactive+rocholc@transifex.com>, 2017
+# Adolfo Jayme-Barrientos, 2017
+# Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2017
+# William Moreno <williamjmorenor@gmail.com>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Jose Manuel López <joselp@outlook.es>, 2018
+# Miguel, 2018
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: William Moreno <williamjmorenor@gmail.com>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Miguel, 2018\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -660,7 +670,7 @@ msgstr "Intervalo en minutos para buscar actualizaciones:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Opciones de diseño"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -672,15 +682,15 @@ msgstr "No mostrar vista de grupos en el siguiente inicio"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Opciones de búsqueda"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Muestra solamente los paquetes más recientes"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Coincidir todas las palabras"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -1530,6 +1540,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid "Layout"
-#~ msgstr "Diseño"
