@@ -226,6 +226,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if sel_pkg :
             self._setInfoOnWidget(sel_pkg)
 
+        self.find_entry.setKeyboardFocus()
 
     def _configFileRead(self) :
         '''
@@ -451,7 +452,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.find_button = self.factory.createIconButton(hbox_top, icon_file, _("&Search"))
         self.find_button.setWeight(0,6)
         self.find_button.setDefaultButton(True)
-        self.find_entry.setKeyboardFocus()
 
         icon_file = self.images_path + "clear_22x22.png"
         self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Clear search"))
