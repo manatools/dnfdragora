@@ -1,14 +1,16 @@
 # Translators:
 # alfalb_mansil, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
-# Manuela Silva <manuela.silva@sky.com>, 2018
+# MS <manuelarodsilva@gmail.com>, 2018
+# Rui <xymarior@yandex.com>, 2018
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-03-06 16:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Manuela Silva <manuela.silva@sky.com>, 2018\n"
+"POT-Creation-Date: 2018-11-10 16:33+0200\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>, 2018\n"
 "Language-Team: Portuguese (https://www.transifex.com/MageiaLinux/teams/9361/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,17 +41,17 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr ""
+msgstr "Ícone da barra de tarefas para verificar por atualizações"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr ""
+msgstr "Verifica automaticamente por atualizações e notifica"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "dnfdragora Instalador de Pacotes"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
@@ -59,4 +61,4 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "Instalar pacotes locais no sistema"
