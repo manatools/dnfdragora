@@ -3,14 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# lantw44 <lantw44@gmail.com>, 2017
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Amy Xi <fyou1535@gmail.com>, 2017
+# Jeff Huang <s8321414@gmail.com>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# You-Cheng Hsieh <yochenhsieh@gmail.com>, 2018
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: You-Cheng Hsieh <yochenhsieh@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -22,19 +30,19 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr "%(prog)s [options]"
+msgstr ""
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "開始使用 yui GTK + 附加元件實​​現"
+msgstr "使用 yui GTK + 附加元件執行"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "開始使用 yui ncurses 附加元件實​​現"
+msgstr "使用 yui ncurses 附加元件執行"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "開始使用 yui Qt 附加元件實​​現"
+msgstr "使用 yui Qt 附加元件執行"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
@@ -56,7 +64,7 @@ msgstr "包含本地化字串的目錄（僅開發者）"
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr "安裝軟體包"
+msgstr "安裝軟體套件"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
@@ -73,7 +81,7 @@ msgstr "強制 dnfdragora 使用 dnfdaemon dbus 服務退出"
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr "dnfdaemon 客戶端失敗 [%s]"
+msgstr "dnfdaemon 用戶端失敗 [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
@@ -93,7 +101,7 @@ msgstr "抱歉"
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr "dnfdaemon 客戶端發生錯誤：%(NL)s%(error)s"
+msgstr "dnfdaemon 用戶端發生錯誤：%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
@@ -211,11 +219,11 @@ msgstr "搜尋結果"
 
 #: dnfdragora/const.py:99
 msgid "Getting installed packages"
-msgstr "取得安裝的軟體包"
+msgstr "取得安裝的軟體套件"
 
 #: dnfdragora/const.py:100
 msgid "Getting available packages"
-msgstr "取得可用的軟體包"
+msgstr "取得可用的軟體套件"
 
 #: dnfdragora/const.py:101
 msgid "Getting available updates"
@@ -223,31 +231,31 @@ msgstr "取得可用的更新"
 
 #: dnfdragora/const.py:102
 msgid "Getting all packages"
-msgstr "取得所有軟體包"
+msgstr "取得所有軟體套件"
 
 #: dnfdragora/const.py:115
 msgid "Updated packages"
-msgstr "已更新的軟體包"
+msgstr "已更新的軟體套件"
 
 #: dnfdragora/const.py:116
 msgid "Downgraded packages"
-msgstr "已降級的軟體包"
+msgstr "已降級的軟體套件"
 
 #: dnfdragora/const.py:117
 msgid "Obsoleting packages"
-msgstr "正在被廢棄的軟體包"
+msgstr "正在被廢棄的軟體套件"
 
 #: dnfdragora/const.py:118
 msgid "Obsoleted packages"
-msgstr "已廢棄的軟體包"
+msgstr "已廢棄的軟體套件"
 
 #: dnfdragora/const.py:119
 msgid "Erased packages"
-msgstr "已擦除的軟體包"
+msgstr "已擦除的軟體套件"
 
 #: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
-msgstr "已安裝的軟體包"
+msgstr "已安裝的軟體套件"
 
 #: dnfdragora/const.py:122
 msgid "Installed for dependencies"
@@ -255,7 +263,7 @@ msgstr "已安裝的相依軟體包"
 
 #: dnfdragora/const.py:123
 msgid "Reinstalled packages"
-msgstr "重新安裝軟體包"
+msgstr "重新安裝軟體套件"
 
 #: dnfdragora/const.py:128
 msgid "Installing"
@@ -338,7 +346,7 @@ msgstr "修正錯誤"
 
 #: dnfdragora/const.py:157
 msgid "New Package"
-msgstr "新軟體包"
+msgstr "新軟體套件"
 
 #: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
@@ -354,7 +362,7 @@ msgstr "復原處理事項"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1059
 msgid "Error checking package signatures"
-msgstr "檢查軟體包簽名時錯誤"
+msgstr "檢查軟體套件簽章時錯誤"
 
 #: dnfdragora/dialogs.py:229 dnfdragora/ui.py:1063
 msgid "Downloading error"
@@ -374,7 +382,7 @@ msgstr "BuildTransaction 錯誤"
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1083
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr "dnfdaemon 客戶端沒有授權：%(NL)s%(error)s"
+msgstr "dnfdaemon 用戶端沒有授權：%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:276
 msgid "History undo"
@@ -453,11 +461,11 @@ msgstr "成本"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr "增量 RPM"
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr "增量 RPM 百分比"
+msgstr "DeltaRPM 百分比"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
@@ -477,7 +485,7 @@ msgstr "排除"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr "排除的軟體包"
+msgstr "排除的軟體套件"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
@@ -493,11 +501,11 @@ msgstr "GPG 檢查"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr "GPG 密鑰"
+msgstr "GPG 金鑰"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr "包含的軟體包"
+msgstr "包含的軟體套件"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
@@ -533,7 +541,7 @@ msgstr "名稱"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr "軟體包"
+msgstr "軟體套件"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
@@ -545,7 +553,7 @@ msgstr "優先級"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr "被保護的軟體包"
+msgstr "被保護的軟體套件"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
@@ -581,11 +589,11 @@ msgstr "SSL CA 憑證"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr "SSL 客戶端憑證"
+msgstr "SSL 用戶端憑證"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr "SSL 客戶端密鑰"
+msgstr "SSL 用戶端金鑰"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
@@ -597,7 +605,7 @@ msgstr "Throttle"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
-msgstr "超時"
+msgstr "逾時"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
@@ -691,12 +699,12 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"你想要匯入驗證 %(pkg)s 軟體包所需的<br>GPG 密鑰嗎？<br><br>密鑰        : 0x"
+"你想要匯入驗證 %(pkg)s 軟體套件所需的<br>GPG 金鑰嗎？<br><br>金鑰        : 0x"
 "%(id)s:<br>用戶識別碼     : \"%(user)s\"<br>來自       : %(file)s"
 
 #: dnfdragora/dialogs.py:1130
 msgid "GPG key missed"
-msgstr "遺失 GPG 密鑰"
+msgstr "遺失 GPG 金鑰"
 
 #: dnfdragora/dnf_backend.py:165
 #, python-format
@@ -715,11 +723,11 @@ msgstr "開始處理事項"
 
 #: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
-msgstr "正在下載軟體包"
+msgstr "正在下載軟體套件"
 
 #: dnfdragora/dnf_backend.py:184
 msgid "Checking package signatures"
-msgstr "正在檢查軟體包簽名"
+msgstr "正在檢查軟體套件簽章"
 
 #: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1033
 msgid "Applying changes to the system"
@@ -736,7 +744,7 @@ msgstr "正在下載 %(count_files)d 個檔案 (%(count_bytes)sB)…"
 
 #: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
-msgstr "正在快取軟體包群組…"
+msgstr "正在快取軟體套件群組…"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1209,7 +1217,7 @@ msgstr "多媒體平台"
 
 #: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
-msgstr "網路電腦 (客戶端)"
+msgstr "網路電腦 (用戶端)"
 
 #: dnfdragora/groupicons.py:566
 msgid "Office Workstation"
@@ -1300,11 +1308,11 @@ msgstr "需求"
 
 #: dnfdragora/ui.py:275
 msgid "Software Management - dnfdragora"
-msgstr "軟體包管理工具 - dnfdragora"
+msgstr "軟體管理工具 - dnfdragora"
 
 #: dnfdragora/ui.py:307
 msgid "Software Management"
-msgstr "軟體包管理工具"
+msgstr "軟體管理工具"
 
 #: dnfdragora/ui.py:327
 msgid "Arch"
@@ -1446,11 +1454,11 @@ msgstr "還沒有執行"
 #: dnfdragora/ui.py:1227
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr "軟體包 %s 無法移除"
+msgstr "軟體套件%s 無法移除"
 
 #: dnfdragora/ui.py:1227
 msgid "Protected package selected"
-msgstr "已選取保護軟體包"
+msgstr "已選取保護軟體套件"
 
 #: dnfdragora/ui.py:1303
 msgid "Unmanaged widget"
@@ -1520,6 +1528,3 @@ msgstr ""
 "dnfdragora 編寫於 Python 3 且使用了 libYui，SUSE 編寫的小程式抽象庫，所以它可"
 "以使用 Qt 5、GTK+ 3 或 ncurses 介面上執行。它提供了 DNF 軟體包管理器的後端，"
 "使它可以使用在任何類型的桌面環境。"
-
-#~ msgid "Layout"
-#~ msgstr "版面配置"
