@@ -259,7 +259,7 @@ msgstr "已安裝的軟體套件"
 
 #: dnfdragora/const.py:122
 msgid "Installed for dependencies"
-msgstr "已安裝的相依軟體包"
+msgstr "已安裝的相依軟體套件"
 
 #: dnfdragora/const.py:123
 msgid "Reinstalled packages"
@@ -1125,7 +1125,7 @@ msgstr "系統"
 
 #: dnfdragora/groupicons.py:437
 msgid "Base"
-msgstr "基礎軟體包"
+msgstr "基礎軟體套件"
 
 #: dnfdragora/groupicons.py:441
 msgid "Boot and Init"
