@@ -54,13 +54,14 @@ class Updater:
             icon_path = icon_path + 'dnfdragora.png'
         else:
             icon_path = icon_path + '/dnfdragora.png'
-
+        issue_82_workaround_icon_path = icon_path
         try:
             from gi.repository import Gtk
             icon_theme = Gtk.IconTheme.get_default()
             icon_path  = icon_theme.lookup_icon("dnfdragora", 128, 0).get_filename()
+            issue_82_workaround_test = Image.open(icon_path) #Apperantly PIL (or Pillow?) doesn't support svg icons. If the filetype isn't supported an exception will be thrown
         except:
-            pass
+            icon_path = issue_82_workaround_icon_path # Use backup icon path.
 
         print("icon %s"%(icon_path))
         self.__icon  = Image.open(icon_path)
