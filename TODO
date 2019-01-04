@@ -5,6 +5,7 @@ as soon as possible.
 === Critical ===
 
 === Important ===
+*   Document run time dependency
 
 === Nice to have ===
 *   Modifying repository configuration to override settings per repository.

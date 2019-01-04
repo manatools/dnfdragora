@@ -1,3 +1,7 @@
+2019-MM-DD v. Z.X.Y
+---------------------
+- Fixed issue #82, dnfdragora-updater crashed when using Papirus-Dark icon theme
+
 2018-09-15 v. 1.1.0
 ---------------------
 - Fixed issue #70, aligned check boxes into user preferences
