@@ -47,7 +47,9 @@ class Updater:
                 if 'interval for checking updates' in settings.keys() :
                     self.__updateInterval = int(settings['interval for checking updates'])
 
-        icon_path = '/usr/share/icons/hicolor/128x128/apps'
+        # if missing gets the default icon from our folder (same as dnfdragora)
+        icon_path = '/usr/share/dnfdragora/images/'
+
         if 'icon-path' in options.keys() :
             icon_path = options['icon-path']
         if icon_path.endswith('/'):
@@ -55,15 +57,21 @@ class Updater:
         else:
             icon_path = icon_path + '/dnfdragora.png'
 
+        theme_icon_pathname = self.__get_theme_icon_pathname() or icon_path
+        print("Icon: %s"%(theme_icon_pathname))
+        #empty icon as last chance
+        self.__icon = Image.Image()
         try:
-            from gi.repository import Gtk
-            icon_theme = Gtk.IconTheme.get_default()
-            icon_path  = icon_theme.lookup_icon("dnfdragora", 128, 0).get_filename()
-        except:
-            pass
+          if theme_icon_pathname.endswith('.svg'):
+              with open(theme_icon_pathname, 'rb') as svg:
+                  self.__icon = self.__svg_to_Image(svg.read())
+          else:
+              self.__icon  = Image.open(theme_icon_pathname)
+        except Exception as e:
+          print(e)
+          print("Cannot open theme icon using default one %s"%(icon_path))
+          self.__icon  = Image.open(icon_path)
 
-        print("icon %s"%(icon_path))
-        self.__icon  = Image.open(icon_path)
         self.__menu  = Menu(
             MenuItem(_('Update'), self.__run_update),
             MenuItem(_('Open dnfdragora dialog'), self.__run_dnfdragora),
@@ -73,6 +81,30 @@ class Updater:
         self.__name  = 'dnfdragora-updater'
         self.__tray  = Tray(self.__name, self.__icon, self.__name, self.__menu)
 
+
+    def __get_theme_icon_pathname(self):
+      '''
+        return theme icon pathname or None if missing
+      '''
+      try:
+          import xdg.IconTheme
+      except ImportError:
+          print ("Error: module xdg.IconTheme is missing")
+          return None
+      else:
+          pathname = xdg.IconTheme.getIconPath("dnfdragora", 128)
+          return pathname
+      return None
+
+    def __svg_to_Image(self, svg_string):
+      '''
+        gets svg content and returns a PIL.Image object
+      '''
+      import cairosvg
+      import io
+      in_mem_file = io.BytesIO()
+      cairosvg.svg2png(bytestring=svg_string, write_to=in_mem_file)
+      return Image.open(io.BytesIO(in_mem_file.getvalue()))
 
     def __shutdown(self, *kwargs):
         print("shutdown")
