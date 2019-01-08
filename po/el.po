@@ -1,30 +1,24 @@
-# dnfdragora is a graphical package management tool
-# based on libyui python bindings
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Copyright (C) 2016-2017  Angelo Naselli  <anaselli@linux.it>
-# Copyright (C) 2016-2017  Neal Gompa      <ngompa13@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Translators:
+# Geiger David <david.david@mageialinux-online.org>, 2017
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# tsallinia <tsallinia@riseup.net>, 2017
+# Oresti Koxhaj, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Dimitrios Glentadakis <dglent@free.fr>, 2018
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Oresti Koxhaj <oresti185@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Dimitrios Glentadakis <dglent@free.fr>, 2018\n"
 "Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -390,7 +384,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:495
 msgid "History"
-msgstr ""
+msgstr "Ιστορία"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -406,7 +400,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Κλείσιμο"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
@@ -533,7 +527,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Λίστα καθρεπτισμών"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
 msgid "Name"
@@ -545,7 +539,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Κωδικός πρόσβασης"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
@@ -557,7 +551,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Διαμεσολαβητής"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
@@ -577,7 +571,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
 msgid "Size"
-msgstr ""
+msgstr "Μέγεθος"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
@@ -609,11 +603,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Τύπος"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Όνομα χρήστη"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -621,11 +615,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Πληροφορίες"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Τιμή"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
@@ -633,7 +627,7 @@ msgstr "&Εφαρμογή"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Ποτέ"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -1096,7 +1090,7 @@ msgstr "Φυσική"
 
 #: dnfdragora/groupicons.py:406
 msgid "Shells"
-msgstr "Κελύφοι"
+msgstr "Κελύφη"
 
 #: dnfdragora/groupicons.py:410
 msgid "Sound"
@@ -1465,7 +1459,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:68
 msgid "Update"
-msgstr ""
+msgstr "Ενημέρωση"
 
 #: dnfdragora/updater.py:69
 msgid "Open dnfdragora dialog"
@@ -1477,7 +1471,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:71
 msgid "Exit"
-msgstr ""
+msgstr "Έξοδος"
 
 #: dnfdragora/updater.py:117
 msgid "Running dnfdragora failure"
@@ -1500,7 +1494,7 @@ msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
