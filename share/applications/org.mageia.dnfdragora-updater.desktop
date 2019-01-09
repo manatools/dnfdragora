@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=dnfdragora-updater
+Name[af]=dnfdragora-bywerkings
 Name[bg]=dnfdragora-updater
 Name[ca]=Actualitzador de dnfdragora
 Name[cs]=dnfdragora-aktualizátor
@@ -60,6 +61,7 @@ GenericName[zh_TW]=用來檢查更新的系統列圖示
 Icon=dnfdragora
 Exec=dnfdragora-updater
 Comment=Automatically check for updates and notify
+Comment[af]=Kontroleer outomaties vir bywerkings en gee ’n kennisgewing
 Comment[bg]=Автоматична проверка за актуализации с уведомяване
 Comment[ca]=Comprova automàticament si hi ha actualitzacions i notifica-m'ho
 Comment[cs]=Automaticky zkontrolovat aktualizace a dát zprávu

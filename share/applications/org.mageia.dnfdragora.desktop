@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=dnfdragora
+Name[af]=dnfdragora
 Name[bg]=dnfdragora
 Name[ca]=dnfdragora
 Name[cs]=dnfdragora
@@ -31,6 +32,7 @@ Name[uk]=dnfdragora
 Name[zh_CN]=dnfdragora
 Name[zh_TW]=dnfdragora
 GenericName=Install & Remove Software
+GenericName[af]=Installeer en verwyder sagteware
 GenericName[ar]=تثبيت وحذف البرمجيات
 GenericName[ast]=Instalar y Desaniciar Software
 GenericName[bg]=Инсталиране и премахване на софтуер
@@ -88,6 +90,7 @@ GenericName[zh_TW]=安裝與移除軟體
 Icon=dnfdragora
 Exec=dnfdragora
 Comment=A graphical front end for installing, removing and updating packages
+Comment[af]=’n Grafiese program vir die installasie, verwydering en bywerking van pakkette
 Comment[ar]=واجهة رسومية لتثبيت الحزم وإزالتها وتحديثها
 Comment[ast]=Un frontal gráficu pa instalar, desaniciar y anovar paquetes
 Comment[bg]=Графична среда за инсталиране, премахване и обновяване на пакети
