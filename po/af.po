@@ -1,16 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Rémi Verschelde <akien@mageia.org>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# F Wolff <friedel@translate.org.za>, 2019
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rémi Verschelde <akien@mageia.org>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: F Wolff <friedel@translate.org.za>, 2019\n"
 "Language-Team: Afrikaans (https://www.transifex.com/MageiaLinux/teams/9361/"
 "af/)\n"
 "Language: af\n"
@@ -22,7 +27,7 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [opsies]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
@@ -113,7 +118,7 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Verfris tans stoorplek-metadata"
 
 #: dnfdragora/basedragora.py:62
 msgid "Could not refresh the DNF cache (root)"
@@ -134,43 +139,43 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE-werkskerm"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce-werkskerm"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr ""
+msgstr "Toepassings"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE-werkskerm"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt-werkskerm"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon-werkskerm"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE-werkskerm"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii-werkskerm"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar-werkskermomgewing"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME-werkskerm"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -183,11 +188,11 @@ msgstr "Bedieners"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr ""
+msgstr "Basisstelsel"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
-msgstr ""
+msgstr "Inhoud"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:341
 #: dnfdragora/ui.py:355
@@ -200,31 +205,31 @@ msgstr "Leeg"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr ""
+msgstr "Soekresultate"
 
 #: dnfdragora/const.py:99
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Kry tans geïnstalleerde pakkette"
 
 #: dnfdragora/const.py:100
 msgid "Getting available packages"
-msgstr ""
+msgstr "Kry tans beskikbare pakkette"
 
 #: dnfdragora/const.py:101
 msgid "Getting available updates"
-msgstr ""
+msgstr "Kry tans beskikbare bywerkings"
 
 #: dnfdragora/const.py:102
 msgid "Getting all packages"
-msgstr ""
+msgstr "Kry tans alle pakkette"
 
 #: dnfdragora/const.py:115
 msgid "Updated packages"
-msgstr ""
+msgstr "Bygewerkte pakkette"
 
 #: dnfdragora/const.py:116
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Afgegradeerde pakkette"
 
 #: dnfdragora/const.py:117
 msgid "Obsoleting packages"
@@ -236,39 +241,39 @@ msgstr ""
 
 #: dnfdragora/const.py:119
 msgid "Erased packages"
-msgstr ""
+msgstr "Verwyderde pakkette"
 
 #: dnfdragora/const.py:120 dnfdragora/const.py:121
 msgid "Installed packages"
-msgstr ""
+msgstr "Geïnstalleerde pakkette"
 
 #: dnfdragora/const.py:122
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Geïnstalleer vir afhanklikhede"
 
 #: dnfdragora/const.py:123
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Geherinstalleerde pakkette"
 
 #: dnfdragora/const.py:128
 msgid "Installing"
-msgstr ""
+msgstr "Installeer tans"
 
 #: dnfdragora/const.py:129
 msgid "Updating"
-msgstr ""
+msgstr "Werk tans by"
 
 #: dnfdragora/const.py:130
 msgid "Removing"
-msgstr ""
+msgstr "Verwyder tans"
 
 #: dnfdragora/const.py:131
 msgid "Downgrading"
-msgstr ""
+msgstr "Gradeer tans af"
 
 #: dnfdragora/const.py:132
 msgid "Replacing"
-msgstr ""
+msgstr "Vervang tans"
 
 #: dnfdragora/const.py:136
 #, python-format
@@ -318,7 +323,7 @@ msgstr ""
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Berei transaksie voor: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
@@ -327,11 +332,11 @@ msgstr ""
 
 #: dnfdragora/const.py:156
 msgid "Bugfix"
-msgstr ""
+msgstr "Foutkorreksie"
 
 #: dnfdragora/const.py:157
 msgid "New Package"
-msgstr ""
+msgstr "Nuwe pakket"
 
 #: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
 msgid "Security"
@@ -339,11 +344,11 @@ msgstr "Sekuriteit"
 
 #: dnfdragora/const.py:159
 msgid "Enhancement"
-msgstr ""
+msgstr "Verbetering"
 
 #: dnfdragora/dialogs.py:200
 msgid "Undo transaction"
-msgstr ""
+msgstr "Ontdoen transaksie"
 
 #: dnfdragora/dialogs.py:225 dnfdragora/ui.py:1059
 msgid "Error checking package signatures"
@@ -377,42 +382,42 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:495
 msgid "History"
-msgstr ""
+msgstr "Geskiedenis"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Geskiedenis (datum/tyd)"
 
 #: dnfdragora/dialogs.py:301
 msgid "Transaction History"
-msgstr ""
+msgstr "Transaksiegeskiedenis"
 
 #: dnfdragora/dialogs.py:305
 msgid "&Undo"
-msgstr ""
+msgstr "&Ontdoen"
 
 #: dnfdragora/dialogs.py:307
 msgid "&Close"
-msgstr ""
+msgstr "&Sluit"
 
 #: dnfdragora/dialogs.py:369
 msgid "Transaction result"
-msgstr ""
+msgstr "Transaksieresultaat"
 
 #: dnfdragora/dialogs.py:375
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Transaksieafhanklikheid"
 
 #: dnfdragora/dialogs.py:380 dnfdragora/dialogs.py:932
 #: dnfdragora/dialogs.py:970 dnfdragora/dialogs.py:1006
 #: dnfdragora/dialogs.py:1049
 msgid "&Ok"
-msgstr ""
+msgstr "Regs&o"
 
 #: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:610
 #: dnfdragora/dialogs.py:848 dnfdragora/dialogs.py:1050
 msgid "&Cancel"
-msgstr ""
+msgstr "&Kanselleer"
 
 #: dnfdragora/dialogs.py:400
 msgid "replacing "
@@ -420,11 +425,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
-msgstr ""
+msgstr "Totale grootte "
 
 #: dnfdragora/dialogs.py:471
 msgid "Developers"
-msgstr ""
+msgstr "Ontwikkelaars"
 
 #: dnfdragora/dialogs.py:475
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
@@ -432,47 +437,47 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Bandwydte"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Basis-kasgids"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Basis-URL"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Koste"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM-persentasie"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
-msgstr ""
+msgstr "Geaktiveer"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Geaktiveerde metadata"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Aktiveer groepe"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Sluit uit"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Sluit pakkette uit"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
@@ -480,19 +485,19 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Vinnigste spieëlwerf"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "GPG-kontrole"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "GPG-sleutel"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Sluit pakkette in"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
@@ -520,7 +525,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Spieëlwerflys"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
 msgid "Name"
@@ -528,31 +533,31 @@ msgstr "Naam"
 
 #: dnfdragora/dialogs.py:536
 msgid "Packages"
-msgstr ""
+msgstr "Pakkette"
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Wagwoord"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteit"
 
 #: dnfdragora/dialogs.py:539
 msgid "Protected packages"
-msgstr ""
+msgstr "Beskermde pakkette"
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Instaanbediener"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
-msgstr ""
+msgstr "Instaanbedienerwagwoord"
 
 #: dnfdragora/dialogs.py:542
 msgid "Proxy username"
-msgstr ""
+msgstr "Instaanbedienergebruikernaam"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
@@ -564,11 +569,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
 msgid "Size"
-msgstr ""
+msgstr "Grootte"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Slaan oor indien nie beskikbaar nie"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
@@ -596,64 +601,64 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Tipe"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Gebruikernaam"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
-msgstr ""
+msgstr "Stoorplekbestuur"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Inligting"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Waarde"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
-msgstr ""
+msgstr "P&as toe"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Nooit"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s sekonde(s)"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Nou"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:507
 msgid "User preferences"
-msgstr ""
+msgstr "Gebruikervoorkeure"
 
 #: dnfdragora/dialogs.py:827
 msgid "System options"
-msgstr ""
+msgstr "Stelselkeuses"
 
 #: dnfdragora/dialogs.py:829
 msgid "Proceed without asking for confirmation"
-msgstr ""
+msgstr "Gaan voort sonder om bevestiging te vra"
 
 #: dnfdragora/dialogs.py:830
 msgid "Interval in minutes to check for updates:"
-msgstr ""
+msgstr "Interval in minute om vir bywerkings te kontroleer:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Uitlegkeuses"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
-msgstr ""
+msgstr "Wys bywerkings met volgende begin"
 
 #: dnfdragora/dialogs.py:836
 msgid "Do not show groups view next startup"
@@ -661,23 +666,23 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Soekkeuses"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Wys slegs jongste pakkette"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Pas alle woorde"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
-msgstr ""
+msgstr "&Ja"
 
 #: dnfdragora/dialogs.py:1100
 msgid "&No"
-msgstr ""
+msgstr "&Nee"
 
 #: dnfdragora/dialogs.py:1123
 #, python-format
@@ -701,23 +706,23 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:174
 msgid "Start transaction"
-msgstr ""
+msgstr "Begin transaksie"
 
 #: dnfdragora/dnf_backend.py:177
 msgid "Downloading packages"
-msgstr ""
+msgstr "Laai tans pakkette af"
 
 #: dnfdragora/dnf_backend.py:184
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Kontroleer tans pakkethandtekeninge"
 
 #: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1033
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Pas veranderinge toe op die stelsel"
 
 #: dnfdragora/dnf_backend.py:198
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Verifieer tans veranderinge aan die stelsel"
 
 #: dnfdragora/dnf_backend.py:243
 #, python-format
@@ -734,7 +739,7 @@ msgstr "Toeganklikheid"
 
 #: dnfdragora/groupicons.py:25
 msgid "Archiving"
-msgstr "Data Wegbêre"
+msgstr "Argivering"
 
 #: dnfdragora/groupicons.py:28
 msgid "Backup"
@@ -742,7 +747,7 @@ msgstr "Rugsteun"
 
 #: dnfdragora/groupicons.py:32
 msgid "Cd burning"
-msgstr "Skryf van CDs"
+msgstr "Skryf van CD’s"
 
 #: dnfdragora/groupicons.py:36
 msgid "Compression"
@@ -760,11 +765,11 @@ msgstr "Kommunikasie"
 
 #: dnfdragora/groupicons.py:48
 msgid "Bluetooth"
-msgstr ""
+msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
-msgstr ""
+msgstr "Inbel"
 
 #: dnfdragora/groupicons.py:56
 msgid "Fax"
@@ -772,27 +777,27 @@ msgstr "Faks"
 
 #: dnfdragora/groupicons.py:60
 msgid "Mobile"
-msgstr ""
+msgstr "Selfoon"
 
 #: dnfdragora/groupicons.py:64
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: dnfdragora/groupicons.py:68
 msgid "Serial"
-msgstr ""
+msgstr "Serie"
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
-msgstr ""
+msgstr "Telefonie"
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
-msgstr "databasise"
+msgstr "Databasisse"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr ""
+msgstr "Basic"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -804,15 +809,15 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:93
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
-msgstr ""
+msgstr "Ontfouting"
 
 #: dnfdragora/groupicons.py:105
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:109
 msgid "GNOME and GTK+"
@@ -828,11 +833,11 @@ msgstr "KDE en Qt"
 
 #: dnfdragora/groupicons.py:121
 msgid "Kernel"
-msgstr "Kernel"
+msgstr "Kern"
 
 #: dnfdragora/groupicons.py:125
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: dnfdragora/groupicons.py:133
 msgid "Perl"
@@ -840,7 +845,7 @@ msgstr "Perl"
 
 #: dnfdragora/groupicons.py:137
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: dnfdragora/groupicons.py:141
 msgid "Python"
@@ -852,7 +857,7 @@ msgstr "Nutsprogramme"
 
 #: dnfdragora/groupicons.py:149 dnfdragora/groupicons.py:497
 msgid "X11"
-msgstr ""
+msgstr "X11"
 
 #: dnfdragora/groupicons.py:154 dnfdragora/groupicons.py:546
 #: dnfdragora/groupicons.py:602
@@ -889,7 +894,7 @@ msgstr "Arkade"
 
 #: dnfdragora/groupicons.py:189
 msgid "Boards"
-msgstr "Borde"
+msgstr "Bordspelletjies"
 
 #: dnfdragora/groupicons.py:193
 msgid "Cards"
@@ -901,11 +906,11 @@ msgstr "Legkaarte"
 
 #: dnfdragora/groupicons.py:205
 msgid "Shooter"
-msgstr ""
+msgstr "Skietspeletjies"
 
 #: dnfdragora/groupicons.py:209
 msgid "Simulation"
-msgstr ""
+msgstr "Simulasie"
 
 #: dnfdragora/groupicons.py:213
 msgid "Sports"
@@ -917,11 +922,11 @@ msgstr "Strategie"
 
 #: dnfdragora/groupicons.py:222
 msgid "Geography"
-msgstr ""
+msgstr "Geografie"
 
 #: dnfdragora/groupicons.py:226
 msgid "Graphical desktop"
-msgstr "Grafiese gebruikskoppelvlak"
+msgstr "Grafiese werkskerm"
 
 #: dnfdragora/groupicons.py:229
 msgid "Enlightenment"
@@ -945,7 +950,7 @@ msgstr "WindowMaker"
 
 #: dnfdragora/groupicons.py:253
 msgid "Xfce"
-msgstr ""
+msgstr "Xfce"
 
 #: dnfdragora/groupicons.py:258
 msgid "Graphics"
@@ -953,12 +958,12 @@ msgstr "Grafika"
 
 #: dnfdragora/groupicons.py:261
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 #: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
 #: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
-msgstr ""
+msgstr "Redigering en omskakeling"
 
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
@@ -967,19 +972,19 @@ msgstr "Nutsprogramme"
 
 #: dnfdragora/groupicons.py:273
 msgid "Photography"
-msgstr ""
+msgstr "Fotografie"
 
 #: dnfdragora/groupicons.py:277
 msgid "Scanning"
-msgstr ""
+msgstr "Skandering"
 
 #: dnfdragora/groupicons.py:281
 msgid "Viewers"
-msgstr ""
+msgstr "Bekykers"
 
 #: dnfdragora/groupicons.py:286
 msgid "Monitoring"
-msgstr "Monitor"
+msgstr "Monitering"
 
 #: dnfdragora/groupicons.py:290 dnfdragora/groupicons.py:481
 msgid "Networking"
@@ -999,7 +1004,7 @@ msgstr "Kitsboodskappe"
 
 #: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
-msgstr "e-Pos"
+msgstr "E-pos"
 
 #: dnfdragora/groupicons.py:309
 msgid "News"
@@ -1019,31 +1024,31 @@ msgstr "Kantoor"
 
 #: dnfdragora/groupicons.py:329
 msgid "Dictionary"
-msgstr ""
+msgstr "Woordeboek"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
-msgstr ""
+msgstr "Finansies"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
-msgstr ""
+msgstr "Bestuur"
 
 #: dnfdragora/groupicons.py:341
 msgid "Organizer"
-msgstr ""
+msgstr "Organiseerder"
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Sigblad"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
-msgstr ""
+msgstr "Suite"
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
-msgstr ""
+msgstr "Woordverwerker"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
@@ -1067,7 +1072,7 @@ msgstr "Chemie"
 
 #: dnfdragora/groupicons.py:381
 msgid "Computer science"
-msgstr "Rekenaarswetenskap"
+msgstr "Rekenaarwetenskap"
 
 #: dnfdragora/groupicons.py:385
 msgid "Geosciences"
@@ -1091,19 +1096,19 @@ msgstr "Klank"
 
 #: dnfdragora/groupicons.py:417
 msgid "Midi"
-msgstr ""
+msgstr "Midi"
 
 #: dnfdragora/groupicons.py:421
 msgid "Mixers"
-msgstr ""
+msgstr "Mengbanke"
 
 #: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
-msgstr ""
+msgstr "Spelers"
 
 #: dnfdragora/groupicons.py:434
 msgid "System"
-msgstr "Rekenaar"
+msgstr "Stelsel"
 
 #: dnfdragora/groupicons.py:437
 msgid "Base"
@@ -1111,11 +1116,11 @@ msgstr "Basis"
 
 #: dnfdragora/groupicons.py:441
 msgid "Boot and Init"
-msgstr "Selflaai en Init"
+msgstr "Selflaai en inisialisering"
 
 #: dnfdragora/groupicons.py:445
 msgid "Cluster"
-msgstr ""
+msgstr "Trosverwerking"
 
 #: dnfdragora/groupicons.py:449 dnfdragora/groupicons.py:538
 msgid "Configuration"
@@ -1123,11 +1128,11 @@ msgstr "Konfigurasie"
 
 #: dnfdragora/groupicons.py:453
 msgid "Fonts"
-msgstr "Fonte"
+msgstr "Skriftipes"
 
 #: dnfdragora/groupicons.py:456
 msgid "True type"
-msgstr "Egte Tipe"
+msgstr "TrueType"
 
 #: dnfdragora/groupicons.py:460
 msgid "Type1"
@@ -1143,11 +1148,11 @@ msgstr "Internasionalisering"
 
 #: dnfdragora/groupicons.py:473
 msgid "Kernel and hardware"
-msgstr "Kernel en hardeware"
+msgstr "Kern en hardeware"
 
 #: dnfdragora/groupicons.py:477
 msgid "Libraries"
-msgstr "Programmateke"
+msgstr "Biblioteke"
 
 #: dnfdragora/groupicons.py:485
 msgid "Packaging"
@@ -1163,7 +1168,7 @@ msgstr "Terminale"
 
 #: dnfdragora/groupicons.py:506
 msgid "Text tools"
-msgstr "Teksverwante Nutsprogramme "
+msgstr "Teksverwante nutsprogramme"
 
 #: dnfdragora/groupicons.py:510
 msgid "Toys"
@@ -1175,7 +1180,7 @@ msgstr "Video"
 
 #: dnfdragora/groupicons.py:525
 msgid "Television"
-msgstr ""
+msgstr "Televisie"
 
 #: dnfdragora/groupicons.py:535
 msgid "Workstation"
@@ -1183,7 +1188,7 @@ msgstr "Werkstasie"
 
 #: dnfdragora/groupicons.py:542
 msgid "Console Tools"
-msgstr "Konsole Hulpprogramme"
+msgstr "Konsolehulpprogramme"
 
 #: dnfdragora/groupicons.py:550
 msgid "Game station"
@@ -1207,11 +1212,11 @@ msgstr "Kantoorwerkstasie"
 
 #: dnfdragora/groupicons.py:570
 msgid "Scientific Workstation"
-msgstr "Wetenskaplike Werkstasie"
+msgstr "Wetenskaplike werkstasie"
 
 #: dnfdragora/groupicons.py:575
 msgid "Graphical Environment"
-msgstr "Grafiese Omgewing"
+msgstr "Grafiese omgewing"
 
 #: dnfdragora/groupicons.py:578
 msgid "GNOME Workstation"
@@ -1219,15 +1224,15 @@ msgstr "GNOME-werkstasie"
 
 #: dnfdragora/groupicons.py:582
 msgid "IceWm Desktop"
-msgstr ""
+msgstr "IceWm-werkskerm"
 
 #: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
-msgstr "KDE Werkstasie"
+msgstr "KDE-werkstasie"
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
-msgstr "Ander Grafiese Werkskerms"
+msgstr "Ander grafiese werkskerms"
 
 #: dnfdragora/groupicons.py:611
 msgid "Server"
@@ -1243,11 +1248,11 @@ msgstr "Databasis"
 
 #: dnfdragora/groupicons.py:622
 msgid "Firewall/Router"
-msgstr "Vuurmuur/Netwerkroteerder"
+msgstr "Brandmuur/Netwerkroeteerder"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr ""
+msgstr "Pos/Groepware/Nuus"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
@@ -1265,7 +1270,7 @@ msgstr ""
 #: dnfdragora/progress_ui.py:158
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Begin om af te laai: %s "
 
 #: dnfdragora/progress_ui.py:179
 #, python-format
@@ -1278,23 +1283,23 @@ msgstr ""
 
 #: dnfdragora/ui.py:155
 msgid "File list"
-msgstr ""
+msgstr "Lêerlys"
 
 #: dnfdragora/ui.py:156
 msgid "Changelog"
-msgstr ""
+msgstr "Veranderingstaaflêer"
 
 #: dnfdragora/ui.py:157
 msgid "Requirements"
-msgstr ""
+msgstr "Vereistes"
 
 #: dnfdragora/ui.py:275
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Sagtewarebestuur – dnfdragora"
 
 #: dnfdragora/ui.py:307
 msgid "Software Management"
-msgstr "Sagteware Beheer"
+msgstr "Sagtewarebestuur"
 
 #: dnfdragora/ui.py:327
 msgid "Arch"
@@ -1302,7 +1307,7 @@ msgstr "Arg."
 
 #: dnfdragora/ui.py:327
 msgid "Release"
-msgstr ""
+msgstr "Vrystelling"
 
 #: dnfdragora/ui.py:327
 msgid "Summary"
@@ -1310,11 +1315,11 @@ msgstr "Opsomming"
 
 #: dnfdragora/ui.py:327
 msgid "Version"
-msgstr ""
+msgstr "Weergawe"
 
 #: dnfdragora/ui.py:334
 msgid "Status"
-msgstr "Stand"
+msgstr "Status"
 
 #: dnfdragora/ui.py:342
 msgid "Installed"
@@ -1322,7 +1327,7 @@ msgstr "Geïnstalleer"
 
 #: dnfdragora/ui.py:343
 msgid "Not installed"
-msgstr "Nie geïnstalleeer"
+msgstr "Nie geïnstalleer nie"
 
 #: dnfdragora/ui.py:344
 msgid "To update"
@@ -1331,7 +1336,7 @@ msgstr ""
 #: dnfdragora/ui.py:350
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Wys slegs %s en noarch"
 
 #: dnfdragora/ui.py:356
 msgid "Groups"
@@ -1347,7 +1352,7 @@ msgstr "in beskrywings"
 
 #: dnfdragora/ui.py:429
 msgid "in summaries"
-msgstr ""
+msgstr "in opsommings"
 
 #: dnfdragora/ui.py:430
 msgid "in file names"
@@ -1355,11 +1360,11 @@ msgstr "in lêername"
 
 #: dnfdragora/ui.py:451
 msgid "&Search"
-msgstr ""
+msgstr "&Soek"
 
 #: dnfdragora/ui.py:457
 msgid "&Clear search"
-msgstr ""
+msgstr "&Maak soektog skoon"
 
 #: dnfdragora/ui.py:471
 msgid "Ch&eck all"
@@ -1367,43 +1372,43 @@ msgstr ""
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
-msgstr ""
+msgstr "&Sluit af"
 
 #: dnfdragora/ui.py:480
 msgid "&File"
-msgstr ""
+msgstr "&Lêer"
 
 #: dnfdragora/ui.py:481
 msgid "Reset the selection"
-msgstr ""
+msgstr "Maak seleksie skoon"
 
 #: dnfdragora/ui.py:482
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Verfris metadata"
 
 #: dnfdragora/ui.py:483
 msgid "Repositories"
-msgstr ""
+msgstr "Stoorplekke"
 
 #: dnfdragora/ui.py:494
 msgid "&Information"
-msgstr ""
+msgstr "&Inligting"
 
 #: dnfdragora/ui.py:506
 msgid "&Options"
-msgstr ""
+msgstr "&Keuses"
 
 #: dnfdragora/ui.py:518
 msgid "&Help"
-msgstr ""
+msgstr "&Hulp"
 
 #: dnfdragora/ui.py:519
 msgid "Manual"
-msgstr "Selfdoen"
+msgstr "Handleiding"
 
 #: dnfdragora/ui.py:520
 msgid "&About"
-msgstr ""
+msgstr "&Aangaande"
 
 #: dnfdragora/ui.py:546
 msgid "update"
@@ -1411,19 +1416,19 @@ msgstr ""
 
 #: dnfdragora/ui.py:549
 msgid "locked"
-msgstr ""
+msgstr "vasgesluit"
 
 #: dnfdragora/ui.py:552
 msgid "installed"
-msgstr ""
+msgstr "geïnstalleer"
 
 #: dnfdragora/ui.py:865
 msgid "Missing information"
-msgstr ""
+msgstr "Ontbrekende inligting"
 
 #: dnfdragora/ui.py:884
 msgid "Repository"
-msgstr ""
+msgstr "Stoorplek"
 
 #: dnfdragora/ui.py:995
 msgid "Search"
@@ -1431,12 +1436,12 @@ msgstr "Soek"
 
 #: dnfdragora/ui.py:1198
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Nog nie geïmplementeer nie"
 
 #: dnfdragora/ui.py:1227
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Pakket %s kan nie verwyder word nie"
 
 #: dnfdragora/ui.py:1227
 msgid "Protected package selected"
@@ -1452,7 +1457,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:68
 msgid "Update"
-msgstr ""
+msgstr "Opdateer"
 
 #: dnfdragora/updater.py:69
 msgid "Open dnfdragora dialog"
@@ -1460,11 +1465,11 @@ msgstr ""
 
 #: dnfdragora/updater.py:70
 msgid "Check for updates"
-msgstr ""
+msgstr "Kontroleer vir bywerkings"
 
 #: dnfdragora/updater.py:71
 msgid "Exit"
-msgstr ""
+msgstr "Verlaat"
 
 #: dnfdragora/updater.py:117
 msgid "Running dnfdragora failure"
@@ -1478,7 +1483,7 @@ msgstr ""
 #: dnfdragora/updater.py:174
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d bywerkings beskikbaar."
 
 #: dnfdragora/updater.py:188
 #, python-format
@@ -1487,7 +1492,7 @@ msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
