@@ -1,16 +1,32 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Zoltan Siposs, 2017
+# Rémi Verschelde <akien@mageia.org>, 2017
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Zsolt Bölöny <bolony.zsolt@gmail.com>, 2017
+# Csaba Mészáros <pingvin@y2k.hu>, 2017
+# Egy G <takacsgergely.soundman@gmail.com>, 2017
+# Balzamon, 2017
+# Márton Fazekas <zseliakiraly@gmail.com>, 2017
+# Ferenc Teknős <teknos.ferenc@gmail.com>, 2018
+# Kardos László, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Laszlo Espadas, 2018
+# István Norbert Péter <peter.norbert.istvan@gmail.com>, 2018
+# Miklos <szubotaj@gmail.com>, 2018
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Márton Fazekas <zseliakiraly@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Miklos <szubotaj@gmail.com>, 2018\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
 "Language: hu\n"
@@ -535,7 +551,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Tükörlista"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
 msgid "Name"
@@ -547,7 +563,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
@@ -559,7 +575,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
@@ -611,11 +627,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Típus"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -623,11 +639,11 @@ msgstr "Csomagtároló kezelés"
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Információ"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
-msgstr ""
+msgstr "Érték"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
@@ -635,7 +651,7 @@ msgstr "&Alkalmaz"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Soha"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -1385,7 +1401,7 @@ msgstr "&Törölje a keresést"
 
 #: dnfdragora/ui.py:471
 msgid "Ch&eck all"
-msgstr "Összes ellenőrzése"
+msgstr "Összes kijelölése"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1509,7 +1525,7 @@ msgstr "Kivételbe ragadt: [1%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
@@ -1528,9 +1544,3 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "History Packages"
-#~ msgstr "Csomagok előzménye"
-
-#~ msgid "Layout"
-#~ msgstr "Elrendezés"
