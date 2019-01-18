@@ -18,8 +18,8 @@
   </p>
  </description>
  <screenshots>
-   <screenshot type="default" width="1920" height="1020">
-       http://anaselli.belinux.it/test/dnfdragora.png
+   <screenshot type="default" width="1706" height="862">
+       https://raw.githubusercontent.com/manatools/dnfdragora/master/screenshots/dnfdragora-qt.png
    </screenshot>
  </screenshots>
  <url type="homepage">https://github.com/anaselli/dnfdragora</url>
