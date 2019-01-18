@@ -10,7 +10,7 @@ Author:  Björn Esser <besser82@fedoraproject.org>
 @package dnfdragora
 '''
 
-import dnfdaemon.client, gettext, sched, sh, sys, threading, time, yui
+import dnfdaemon.client, gettext, sched, sys, threading, time, yui
 
 from PIL import Image
 from dnfdragora import config, misc, dialogs, ui
