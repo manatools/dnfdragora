@@ -468,7 +468,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.applyButton.setWeight(0,3)
         self.applyButton.setEnabled(False)
 
-        self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Ch&eck all"))
+        self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Sel&ect all"))
         self.checkAllButton.setWeight(0,3)
         self.checkAllButton.setEnabled(False)
 
