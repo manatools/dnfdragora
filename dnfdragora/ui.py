@@ -392,7 +392,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             if show_item == v :
                 item.setSelected(True)
-                
+
             # adding item to views to find the item selected
             self.views[v]['item'] = item
             itemColl.push_back(item)
