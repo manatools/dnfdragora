@@ -40,6 +40,19 @@ if(CHECK_RUNTIME_DEPENDENCIES)
 
 	# Find notify2 module
 	find_python_module(notify2 REQUIRED)
+
+	# Find xdg module
+	find_python_module(xdg REQUIRED)
+
+	# Find cairosvg module
+	find_python_module(cairosvg REQUIRED)
+
+	# Find PIL module
+	find_python_module(PIL REQUIRED)
+
+	# Find pystray module
+	find_python_module(pystray REQUIRED)
+
 endif(CHECK_RUNTIME_DEPENDENCIES)
 
 option(ENABLE_COMPS "Use comps data for organizing packages?" OFF)
