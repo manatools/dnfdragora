@@ -3,14 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Jajo Pajo, 2017
+# Milan Baša <minkob@mail.t-com.sk>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# retepsk <rvrao@centrum.cz>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: retepsk <rvrao@centrum.cz>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: retepsk <rvrao@centrum.cz>, 2019\n"
 "Language-Team: Slovak (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sk/)\n"
 "Language: sk\n"
@@ -682,7 +688,7 @@ msgstr "Zobraziť iba najnovšie balíky"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Zhoda všetkých slov"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
