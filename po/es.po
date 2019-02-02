@@ -221,7 +221,7 @@ msgstr "Vacío"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr "Resultado de búlsqueda"
+msgstr "Resultado de búsqueda"
 
 #: dnfdragora/const.py:99
 msgid "Getting installed packages"
