@@ -46,7 +46,10 @@ ARCH = subprocess.check_output(
 ARCH_DICT = {
     "x86_64": set(['x86_64', 'i686', 'i586', 'i386', 'noarch']),
     "i586": set(['i686', 'i586', 'i386', 'noarch']),
-    "arm": set(['armv7hl', 'noarch'])
+    "arm": set(['armv7hl', 'armv7hnl', 'armv8hnl', 'noarch']),
+    "aarch64": set(['aarch64', 'noarch']),
+    "ppc64le": set(['ppc64le', 'noarch']),
+    "s390x": set(['s390x', 'noarch'])
 }
 
 # arch for this platform
