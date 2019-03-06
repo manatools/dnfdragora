@@ -3,14 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Fırat Kutlu <firatkutlu@yandex.com>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2017
+# tarakbumba <tarakbumba@gmail.com>, 2018
+# mahmut özcan <faradundamarti@yandex.com>, 2018
+# mahmut özcan <mahmutozcan65@yahoo.com>, 2018
+# Serdar Sağlam <teknomobil@msn.com>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-26 23:17+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: mahmut özcan <mahmutozcan65@yahoo.com>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Serdar Sağlam <teknomobil@msn.com>, 2019\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "tr/)\n"
 "Language: tr\n"
@@ -204,7 +213,7 @@ msgstr "İçerik"
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:341
 #: dnfdragora/ui.py:355
 msgid "All"
-msgstr "Hepsi"
+msgstr "Tümü"
 
 #: dnfdragora/compsicons.py:41 dnfdragora/groupicons.py:166
 msgid "Empty"
@@ -280,7 +289,7 @@ msgstr "Sürümü düşürülüyor"
 
 #: dnfdragora/const.py:132
 msgid "Replacing"
-msgstr "Başkası ile değiştiriliyor"
+msgstr "Değiştiriliyor"
 
 #: dnfdragora/const.py:136
 #, python-format
@@ -428,7 +437,7 @@ msgstr "&İptal"
 
 #: dnfdragora/dialogs.py:400
 msgid "replacing "
-msgstr "başkası ile değiştiriliyor"
+msgstr "değiştiriliyor"
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
@@ -448,7 +457,7 @@ msgstr "Bant Genişliği"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Temel önbellek dizini"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
@@ -476,19 +485,19 @@ msgstr "Etkinleştirilmiş üstveri"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Grupları etkinleştir"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Hariç tut"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Paketleri hariç tut"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Yük devretme yöntemi"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
@@ -496,39 +505,39 @@ msgstr "En hızlı yansı"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "GPG kontrolü"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "GPG anahtarı"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Paketleri dahil et"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "IP çözümlemesi"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Azami eş zamanlı indirme"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "Ortam Kimliği"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Üstveri geçerliliği"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Meta bağlantı"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "Asgari oran"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
@@ -568,11 +577,11 @@ msgstr "Vekil sunucu kullanıcı adı"
 
 #: dnfdragora/dialogs.py:543
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Depo GPG kontrolü"
 
 #: dnfdragora/dialogs.py:544
 msgid "Retries"
-msgstr ""
+msgstr "Deneme sayısı"
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
 msgid "Size"
@@ -584,23 +593,23 @@ msgstr "Kullanılamıyorsa atla"
 
 #: dnfdragora/dialogs.py:547
 msgid "SSL CA cert"
-msgstr ""
+msgstr "SSL CA sertifikası"
 
 #: dnfdragora/dialogs.py:548
 msgid "SSL client cert"
-msgstr ""
+msgstr "SSH istemci sertifikası"
 
 #: dnfdragora/dialogs.py:549
 msgid "SSL client key"
-msgstr ""
+msgstr "SSH istemci anahtarı"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL verify"
-msgstr ""
+msgstr "SSL doğrula"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "Kısıtla"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
@@ -632,7 +641,7 @@ msgstr "&Uygula"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr "Hiç bir zaman"
+msgstr "Asla"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -641,7 +650,7 @@ msgstr "%s saniye"
 
 #: dnfdragora/dialogs.py:721
 msgid "Now"
-msgstr ""
+msgstr "Şimdi"
 
 #: dnfdragora/dialogs.py:779 dnfdragora/ui.py:507
 msgid "User preferences"
@@ -661,7 +670,7 @@ msgstr "Dakika cinsinden güncellemeleri denetleme sıklığı:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
-msgstr ""
+msgstr "Düzen seçenekleri"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
@@ -673,15 +682,15 @@ msgstr "Bir sonraki başlangıçta grup görünümünü görüntüleme"
 
 #: dnfdragora/dialogs.py:840
 msgid "Search options"
-msgstr ""
+msgstr "Arama seçenekleri"
 
 #: dnfdragora/dialogs.py:842
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Sadece en yeni paketleri göster"
 
 #: dnfdragora/dialogs.py:843
 msgid "Match all words"
-msgstr ""
+msgstr "Tüm kelimeleri eşleştir"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
@@ -967,7 +976,7 @@ msgstr "Xfce"
 
 #: dnfdragora/groupicons.py:258
 msgid "Graphics"
-msgstr "Graphics"
+msgstr "Grafik"
 
 #: dnfdragora/groupicons.py:261
 msgid "3D"
@@ -1425,7 +1434,7 @@ msgstr "&Hakkında"
 
 #: dnfdragora/ui.py:546
 msgid "update"
-msgstr "güncelleme"
+msgstr "güncelle"
 
 #: dnfdragora/ui.py:549
 msgid "locked"
@@ -1505,7 +1514,7 @@ msgstr "İstisna yakalandı: [%s]"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr "dnfdragora"
+msgstr "DnfDragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
@@ -1532,6 +1541,3 @@ msgstr ""
 "soyutlama kütüphanesini kullanır. Böylece QT 5, GTK+3 veya ncurses "
 "arayüzleri kullanılarak çalıştırılabilir. Her türlü sistem çevresinde "
 "kullanılabilen DNF paket yöneticisine bir ön yüz sağlar."
-
-#~ msgid "Layout"
-#~ msgstr "Düzen"
