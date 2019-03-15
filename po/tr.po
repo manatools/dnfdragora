@@ -289,7 +289,7 @@ msgstr "Sürümü düşürülüyor"
 
 #: dnfdragora/const.py:132
 msgid "Replacing"
-msgstr "Değiştiriliyor"
+msgstr "Üzerine yazılıyor"
 
 #: dnfdragora/const.py:136
 #, python-format
@@ -437,7 +437,7 @@ msgstr "&İptal"
 
 #: dnfdragora/dialogs.py:400
 msgid "replacing "
-msgstr "değiştiriliyor"
+msgstr "üzerine yazılıyor"
 
 #: dnfdragora/dialogs.py:406
 msgid "Total size "
@@ -753,7 +753,7 @@ msgstr "%(count_files)d adet dosya (%(count_bytes)sB) ile indiriliyor..."
 
 #: dnfdragora/dnf_backend.py:545
 msgid "Caching groups from packages... "
-msgstr "Gruplar paketlerden önbelleğe alınıyor"
+msgstr "Gruplar paketlerden önbelleğe alınıyor..."
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -994,7 +994,7 @@ msgstr "Yardımcı Uygulamalar"
 
 #: dnfdragora/groupicons.py:273
 msgid "Photography"
-msgstr "Fotograf"
+msgstr "Fotoğrafçılık"
 
 #: dnfdragora/groupicons.py:277
 msgid "Scanning"
@@ -1390,7 +1390,7 @@ msgstr "Aramayı &temizle"
 
 #: dnfdragora/ui.py:471
 msgid "Ch&eck all"
-msgstr "Tümünü &işaretle"
+msgstr "Tümünü &kontrol et"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1406,7 +1406,7 @@ msgstr "Seçimi sıfırla"
 
 #: dnfdragora/ui.py:482
 msgid "Refresh Metadata"
-msgstr "Meta Verisini Yenile"
+msgstr "Üst veriyi yenile"
 
 #: dnfdragora/ui.py:483
 msgid "Repositories"
@@ -1483,7 +1483,7 @@ msgstr "Güncelle"
 
 #: dnfdragora/updater.py:69
 msgid "Open dnfdragora dialog"
-msgstr "dnfdragora ileti penceresini aç"
+msgstr "Dnfdragora ileti penceresini aç"
 
 #: dnfdragora/updater.py:70
 msgid "Check for updates"
