@@ -211,12 +211,12 @@ def format_size(number):
     return(fmt % (float(number or 0), "K"))
 
 
-def logger_setup(file_name,
+def logger_setup(file_name='dnfdragora.log',
                  logroot='dnfdragora',
                  logfmt='%(asctime)s: %(message)s',
                  loglvl=logging.INFO):
     """Setup Python logging."""
-    logging.basicConfig(filename='dnfdragora.log', format='%(asctime)s [%(name)s](%(levelname)s) %(message)s', level=loglvl)
+    logging.basicConfig(filename=file_name, format='%(asctime)s [%(name)s](%(levelname)s) %(message)s', level=loglvl)
     #logger = logging.getLogger(logroot)
     #logger.setLevel(loglvl)
     #formatter = logging.Formatter(logfmt, '%H:%M:%S')
