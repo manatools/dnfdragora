@@ -1,6 +1,9 @@
-2019-MM-DD v. X.Y.Z
+2019-04-26 v. 1.1.2
 ---------------------
-- 
+- Fix screenshot referenced in dnfdragora metainfo file
+- Add support for more ARM architectures and POWER-based architectures
+- Refer to the architectures by their basearch names
+- Really use given file for logging
 
 2019-01-17 v. 1.1.1
 ---------------------
