@@ -295,7 +295,7 @@ msgstr "Përditësim: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Përditësuar: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -310,7 +310,7 @@ msgstr "Ri-instalim: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Riinstaluar: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -330,7 +330,7 @@ msgstr "Heqje: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Vjetruar: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -340,7 +340,7 @@ msgstr "Degradim: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Reduktuar: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1407,7 +1407,7 @@ msgstr "&Kërkim pastër"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "P&ërzgjidh t'gjithë"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1556,6 +1556,3 @@ msgstr ""
 "shkruar nga SUSE, në mënyrë që mund të përdoret Qt 5, GTK+ 3, ose ndërfaqja "
 "ncurses. Ai siguron një frontend për administrimin e paketave DNF qç mund të "
 "përdoret në çdo lloj mjedisi të sistemit."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Kontrollo t'gjitha"
