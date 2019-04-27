@@ -3,14 +3,27 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Eric Barbero <dune06@free.fr>, 2017
+# Fabien Degomme <morphalus@gmail.com>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2017
+# Antoine DUMONDEL, 2018
+# Charles Monzat <c.monzat@laposte.net>, 2018
+# Rémi Verschelde <akien@mageia.org>, 2018
+# Kévin R., 2018
+# Nicolas Jourdain, 2018
+# Sébastien Morin <sebsweb@gmail.com>, 2018
+# Yves Brungard, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: stroibe974 <sebsweb@gmail.com>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Yves Brungard, 2019\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -291,7 +304,7 @@ msgstr "Mise à jour : %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Mis à jour : 1%s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -306,7 +319,7 @@ msgstr "Réinstallation : %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Réinstallés : 1%s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -326,7 +339,7 @@ msgstr "Obsolescence : %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Périmés : %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -336,7 +349,7 @@ msgstr "Rétrogradage : %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Rétrogradés : %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1402,7 +1415,7 @@ msgstr "Effa&cer la recherche"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Sél&ectionner tout"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1553,6 +1566,3 @@ msgstr ""
 "d'abstraction d'objet graphique écrite par Suse, qui permet une interface en "
 "utilisant Qt 5, GTK+3 ou ncurses. Cette interface graphique au  gestionnaire "
 "de logiciels DNF peut être utilisée dans tout type d'environnement système."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Tout coch&er"
