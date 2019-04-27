@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 23:17+0200\n"
+"POT-Creation-Date: 2019-04-27 11:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -211,8 +211,8 @@ msgstr "Base Sistema"
 msgid "Content"
 msgstr "Edukia"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:341
-#: dnfdragora/ui.py:355
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:342
+#: dnfdragora/ui.py:356
 msgid "All"
 msgstr "Denak"
 
@@ -224,142 +224,162 @@ msgstr "Hutsik"
 msgid "Search result"
 msgstr "Bilaketaren emaitza"
 
-#: dnfdragora/const.py:99
+#: dnfdragora/const.py:102
 msgid "Getting installed packages"
 msgstr "Instalatutako paketeak eskuratzen"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:103
 msgid "Getting available packages"
 msgstr "Pakete erabilgarriak eskuratzen"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:104
 msgid "Getting available updates"
 msgstr "Eguneraketa erabilgarriak eskuratzen"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:105
 msgid "Getting all packages"
 msgstr "Pakete guztiak eskuratzen"
 
-#: dnfdragora/const.py:115
+#: dnfdragora/const.py:118
 msgid "Updated packages"
 msgstr "Pakete eguneratuak"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:119
 msgid "Downgraded packages"
 msgstr "Atzeratutako paketeak"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:120
 msgid "Obsoleting packages"
 msgstr "Paketea zaharkituak"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:121
 msgid "Obsoleted packages"
 msgstr "Zaharkitutako paketeak"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:122
 msgid "Erased packages"
 msgstr "Ezabatutako paketeak"
 
-#: dnfdragora/const.py:120 dnfdragora/const.py:121
+#: dnfdragora/const.py:123 dnfdragora/const.py:124
 msgid "Installed packages"
 msgstr "Instalatutasko paketeak"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:125
 msgid "Installed for dependencies"
 msgstr "Mendekotasunetarako instalatuta"
 
-#: dnfdragora/const.py:123
+#: dnfdragora/const.py:126
 msgid "Reinstalled packages"
 msgstr "Berrinstalatutako paketeak"
 
-#: dnfdragora/const.py:128
+#: dnfdragora/const.py:131
 msgid "Installing"
 msgstr "Instalatzen"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:132
 msgid "Updating"
 msgstr "Eguneratzen"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:133
 msgid "Removing"
 msgstr "Kentzen"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:134
 msgid "Downgrading"
 msgstr "Atzeratzen"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:135
 msgid "Replacing"
 msgstr "Ordezten"
 
-#: dnfdragora/const.py:136
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
 msgstr "Eguneratzen: %s"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:140
+#, python-format
+msgid "Updated: %s"
+msgstr ""
+
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Installing: %s"
 msgstr "Instalatzen: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Berrinstalatzen: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:143
+#, python-format
+msgid "Reinstalled: %s"
+msgstr ""
+
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Garbiketa: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Removing: %s"
 msgstr "Kentzen: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Zaharkituak: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Obsoleted: %s"
+msgstr ""
+
+#: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Atzeratzen: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:149
+#, python-format
+msgid "Downgraded: %s"
+msgstr ""
+
+#: dnfdragora/const.py:150
 #, python-format
 msgid "Verifying: %s"
 msgstr "Egiaztatzen: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:151
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Scriptlet exekutatzen: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:152
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Transakzioa prestatzen: %s"
 
-#: dnfdragora/const.py:146
+#: dnfdragora/const.py:153
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Transakzio script ondorengoak: %s"
 
-#: dnfdragora/const.py:156
+#: dnfdragora/const.py:163
 msgid "Bugfix"
 msgstr "Akats-zuzenketa"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:164
 msgid "New Package"
 msgstr "Pakete Berria"
 
-#: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Segurtasuna"
 
-#: dnfdragora/const.py:159
+#: dnfdragora/const.py:166
 msgid "Enhancement"
 msgstr "Hobekuntza"
 
@@ -544,7 +564,7 @@ msgstr ""
 msgid "Mirror list"
 msgstr ""
 
-#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
+#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:328
 msgid "Name"
 msgstr "Izena"
 
@@ -584,7 +604,7 @@ msgstr ""
 msgid "Retries"
 msgstr ""
 
-#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
+#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:328
 msgid "Size"
 msgstr ""
 
@@ -747,12 +767,12 @@ msgstr "Sistema aldaketak aplikatzen"
 msgid "Verify changes on the system"
 msgstr "Egiaztatu aldaketak sisteman"
 
-#: dnfdragora/dnf_backend.py:243
+#: dnfdragora/dnf_backend.py:246
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Jaisten %(count_files)d fitxategiak (%(count_bytes)sB)..."
 
-#: dnfdragora/dnf_backend.py:545
+#: dnfdragora/dnf_backend.py:548
 msgid "Caching groups from packages... "
 msgstr "Pakete-taldeetako cachean biltegiratzea ..."
 
@@ -1316,72 +1336,72 @@ msgstr "Aldaketen historia"
 msgid "Requirements"
 msgstr "Eskakizunak"
 
-#: dnfdragora/ui.py:275
+#: dnfdragora/ui.py:276
 msgid "Software Management - dnfdragora"
 msgstr "Software Kudeaketa - dnfdragora"
 
-#: dnfdragora/ui.py:307
+#: dnfdragora/ui.py:308
 msgid "Software Management"
 msgstr "Software kudeaketa"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Arch"
 msgstr "Arkit"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Release"
 msgstr "Askapena"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Summary"
 msgstr "Laburpena"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Version"
 msgstr "Bertsioa"
 
-#: dnfdragora/ui.py:334
+#: dnfdragora/ui.py:335
 msgid "Status"
 msgstr "Egoera"
 
-#: dnfdragora/ui.py:342
+#: dnfdragora/ui.py:343
 msgid "Installed"
 msgstr "Instalatuta"
 
-#: dnfdragora/ui.py:343
+#: dnfdragora/ui.py:344
 msgid "Not installed"
 msgstr "Instalatu gabe"
 
-#: dnfdragora/ui.py:344
+#: dnfdragora/ui.py:345
 msgid "To update"
 msgstr "Eguneratzeko"
 
-#: dnfdragora/ui.py:350
+#: dnfdragora/ui.py:351
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Erakutsi %s eta noarch soilik"
 
-#: dnfdragora/ui.py:356
+#: dnfdragora/ui.py:357
 msgid "Groups"
 msgstr "Taldeak"
 
-#: dnfdragora/ui.py:427
+#: dnfdragora/ui.py:428
 msgid "in names"
 msgstr "izenetan"
 
-#: dnfdragora/ui.py:428
+#: dnfdragora/ui.py:429
 msgid "in descriptions"
 msgstr "azalpenetan"
 
-#: dnfdragora/ui.py:429
+#: dnfdragora/ui.py:430
 msgid "in summaries"
 msgstr "laburpenetan"
 
-#: dnfdragora/ui.py:430
+#: dnfdragora/ui.py:431
 msgid "in file names"
 msgstr "fitxategi-izenetan"
 
-#: dnfdragora/ui.py:451
+#: dnfdragora/ui.py:452
 msgid "&Search"
 msgstr "&Bilatu"
 
@@ -1390,8 +1410,8 @@ msgid "&Clear search"
 msgstr "&Garbitu bilaketa"
 
 #: dnfdragora/ui.py:471
-msgid "Ch&eck all"
-msgstr "B&egiratu guztiak"
+msgid "Sel&ect all"
+msgstr ""
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1478,37 +1498,37 @@ msgstr "Kudeatu gabeko trepeta"
 msgid "Unmanaged event"
 msgstr "Kudeatu gabeko gertaera"
 
-#: dnfdragora/updater.py:68
+#: dnfdragora/updater.py:76
 msgid "Update"
 msgstr ""
 
-#: dnfdragora/updater.py:69
+#: dnfdragora/updater.py:77
 msgid "Open dnfdragora dialog"
 msgstr ""
 
-#: dnfdragora/updater.py:70
+#: dnfdragora/updater.py:78
 msgid "Check for updates"
 msgstr ""
 
-#: dnfdragora/updater.py:71
+#: dnfdragora/updater.py:79
 msgid "Exit"
 msgstr ""
 
-#: dnfdragora/updater.py:117
+#: dnfdragora/updater.py:149
 msgid "Running dnfdragora failure"
 msgstr ""
 
-#: dnfdragora/updater.py:153 dnfdragora/updater.py:158
+#: dnfdragora/updater.py:185 dnfdragora/updater.py:190
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr ""
 
-#: dnfdragora/updater.py:174
+#: dnfdragora/updater.py:206
 #, python-format
 msgid "%d updates available."
 msgstr ""
 
-#: dnfdragora/updater.py:188
+#: dnfdragora/updater.py:220
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr ""
@@ -1537,3 +1557,6 @@ msgstr ""
 
 #~ msgid "Layout"
 #~ msgstr "Diseinua"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "B&egiratu guztiak"

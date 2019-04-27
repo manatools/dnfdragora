@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 23:17+0200\n"
+"POT-Creation-Date: 2019-04-27 11:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -197,8 +197,8 @@ msgstr "ベース システム"
 msgid "Content"
 msgstr "雑多なパッケージ"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:341
-#: dnfdragora/ui.py:355
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:342
+#: dnfdragora/ui.py:356
 msgid "All"
 msgstr "すべて"
 
@@ -210,142 +210,162 @@ msgstr "空"
 msgid "Search result"
 msgstr "検索結果"
 
-#: dnfdragora/const.py:99
+#: dnfdragora/const.py:102
 msgid "Getting installed packages"
 msgstr "インストール済みのパッケージを読み込んでいます"
 
-#: dnfdragora/const.py:100
+#: dnfdragora/const.py:103
 msgid "Getting available packages"
 msgstr "利用可能なパッケージを読み込んでいます"
 
-#: dnfdragora/const.py:101
+#: dnfdragora/const.py:104
 msgid "Getting available updates"
 msgstr "利用可能な更新を読み込んでいます"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:105
 msgid "Getting all packages"
 msgstr "すべてのパッケージを読み込んでいます"
 
-#: dnfdragora/const.py:115
+#: dnfdragora/const.py:118
 msgid "Updated packages"
 msgstr "更新されたパッケージ"
 
-#: dnfdragora/const.py:116
+#: dnfdragora/const.py:119
 msgid "Downgraded packages"
 msgstr "ダウングレードされたパッケージ"
 
-#: dnfdragora/const.py:117
+#: dnfdragora/const.py:120
 msgid "Obsoleting packages"
 msgstr "Obsolete したパッケージ"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:121
 msgid "Obsoleted packages"
 msgstr "Obsolete されたパッケージ"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:122
 msgid "Erased packages"
 msgstr "削除されたパッケージ"
 
-#: dnfdragora/const.py:120 dnfdragora/const.py:121
+#: dnfdragora/const.py:123 dnfdragora/const.py:124
 msgid "Installed packages"
 msgstr "インストールされたパッケージ"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:125
 msgid "Installed for dependencies"
 msgstr "依存関係を満たすためにインストールされたパッケージ"
 
-#: dnfdragora/const.py:123
+#: dnfdragora/const.py:126
 msgid "Reinstalled packages"
 msgstr "再インストールされたパッケージ"
 
-#: dnfdragora/const.py:128
+#: dnfdragora/const.py:131
 msgid "Installing"
 msgstr "インストール"
 
-#: dnfdragora/const.py:129
+#: dnfdragora/const.py:132
 msgid "Updating"
 msgstr "更新"
 
-#: dnfdragora/const.py:130
+#: dnfdragora/const.py:133
 msgid "Removing"
 msgstr "削除"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:134
 msgid "Downgrading"
 msgstr "ダウングレード"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:135
 msgid "Replacing"
 msgstr "置き換え"
 
-#: dnfdragora/const.py:136
+#: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
 msgstr "更新しています: %s"
 
-#: dnfdragora/const.py:137
+#: dnfdragora/const.py:140
+#, python-format
+msgid "Updated: %s"
+msgstr ""
+
+#: dnfdragora/const.py:141
 #, python-format
 msgid "Installing: %s"
 msgstr "インストールしています: %s"
 
-#: dnfdragora/const.py:138
+#: dnfdragora/const.py:142
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "再インストールしています: %s"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:143
+#, python-format
+msgid "Reinstalled: %s"
+msgstr ""
+
+#: dnfdragora/const.py:144
 #, python-format
 msgid "Cleanup: %s"
 msgstr "後始末: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:145
 #, python-format
 msgid "Removing: %s"
 msgstr "削除しています: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "削除 (Obsolete) しています: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:147
+#, python-format
+msgid "Obsoleted: %s"
+msgstr ""
+
+#: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
 msgstr "ダウングレードしています: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:149
+#, python-format
+msgid "Downgraded: %s"
+msgstr ""
+
+#: dnfdragora/const.py:150
 #, python-format
 msgid "Verifying: %s"
 msgstr "検証しています: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:151
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "スクリプトを実行しています: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:152
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "トランザクションを準備しています: %s"
 
-#: dnfdragora/const.py:146
+#: dnfdragora/const.py:153
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "トランザクション後のスクリプト: %s"
 
-#: dnfdragora/const.py:156
+#: dnfdragora/const.py:163
 msgid "Bugfix"
 msgstr "バグ修正"
 
-#: dnfdragora/const.py:157
+#: dnfdragora/const.py:164
 msgid "New Package"
 msgstr "新規パッケージ"
 
-#: dnfdragora/const.py:158 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "セキュリティ"
 
-#: dnfdragora/const.py:159
+#: dnfdragora/const.py:166
 msgid "Enhancement"
 msgstr "改善"
 
@@ -529,7 +549,7 @@ msgstr "最低速度"
 msgid "Mirror list"
 msgstr "ミラーの一覧"
 
-#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:327
+#: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:328
 msgid "Name"
 msgstr "名前"
 
@@ -569,7 +589,7 @@ msgstr "リポジトリの GPG のチェック"
 msgid "Retries"
 msgstr "再試行数"
 
-#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:327
+#: dnfdragora/dialogs.py:545 dnfdragora/ui.py:328
 msgid "Size"
 msgstr "サイズ"
 
@@ -732,14 +752,14 @@ msgstr "システムに変更を適用しています"
 msgid "Verify changes on the system"
 msgstr "システム上の変更を検証"
 
-#: dnfdragora/dnf_backend.py:243
+#: dnfdragora/dnf_backend.py:246
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr ""
 "%(count_files)d 個のファイルをダウンロードしています (%(count_bytes)s バイ"
 "ト)..."
 
-#: dnfdragora/dnf_backend.py:545
+#: dnfdragora/dnf_backend.py:548
 msgid "Caching groups from packages... "
 msgstr "パッケージからグループをキャッシュしています... "
 
@@ -1303,72 +1323,72 @@ msgstr "変更履歴"
 msgid "Requirements"
 msgstr "要求パッケージ"
 
-#: dnfdragora/ui.py:275
+#: dnfdragora/ui.py:276
 msgid "Software Management - dnfdragora"
 msgstr "ソフトウェアの管理 - dnfdragora"
 
-#: dnfdragora/ui.py:307
+#: dnfdragora/ui.py:308
 msgid "Software Management"
 msgstr "ソフトウェアの管理"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Arch"
 msgstr "Arch"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Release"
 msgstr "リリース"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Summary"
 msgstr "概要"
 
-#: dnfdragora/ui.py:327
+#: dnfdragora/ui.py:328
 msgid "Version"
 msgstr "バージョン"
 
-#: dnfdragora/ui.py:334
+#: dnfdragora/ui.py:335
 msgid "Status"
 msgstr "状態"
 
-#: dnfdragora/ui.py:342
+#: dnfdragora/ui.py:343
 msgid "Installed"
 msgstr "インストール済み"
 
-#: dnfdragora/ui.py:343
+#: dnfdragora/ui.py:344
 msgid "Not installed"
 msgstr "未インストール"
 
-#: dnfdragora/ui.py:344
+#: dnfdragora/ui.py:345
 msgid "To update"
 msgstr "更新可能"
 
-#: dnfdragora/ui.py:350
+#: dnfdragora/ui.py:351
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "%s と noarch のみを表示"
 
-#: dnfdragora/ui.py:356
+#: dnfdragora/ui.py:357
 msgid "Groups"
 msgstr "グループ"
 
-#: dnfdragora/ui.py:427
+#: dnfdragora/ui.py:428
 msgid "in names"
 msgstr "パッケージ名"
 
-#: dnfdragora/ui.py:428
+#: dnfdragora/ui.py:429
 msgid "in descriptions"
 msgstr "説明文"
 
-#: dnfdragora/ui.py:429
+#: dnfdragora/ui.py:430
 msgid "in summaries"
 msgstr "概要"
 
-#: dnfdragora/ui.py:430
+#: dnfdragora/ui.py:431
 msgid "in file names"
 msgstr "中のファイル名"
 
-#: dnfdragora/ui.py:451
+#: dnfdragora/ui.py:452
 msgid "&Search"
 msgstr "検索(&S)"
 
@@ -1377,8 +1397,8 @@ msgid "&Clear search"
 msgstr "検索をクリア(&C)"
 
 #: dnfdragora/ui.py:471
-msgid "Ch&eck all"
-msgstr "すべてチェック(&E)"
+msgid "Sel&ect all"
+msgstr ""
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1465,37 +1485,37 @@ msgstr "管理されていないウィジェットです"
 msgid "Unmanaged event"
 msgstr "管理されていないイベントです"
 
-#: dnfdragora/updater.py:68
+#: dnfdragora/updater.py:76
 msgid "Update"
 msgstr "更新"
 
-#: dnfdragora/updater.py:69
+#: dnfdragora/updater.py:77
 msgid "Open dnfdragora dialog"
 msgstr "dnfdragora のダイアログを開く"
 
-#: dnfdragora/updater.py:70
+#: dnfdragora/updater.py:78
 msgid "Check for updates"
 msgstr "更新を確認"
 
-#: dnfdragora/updater.py:71
+#: dnfdragora/updater.py:79
 msgid "Exit"
 msgstr "終了"
 
-#: dnfdragora/updater.py:117
+#: dnfdragora/updater.py:149
 msgid "Running dnfdragora failure"
 msgstr "dnfdragora の実行に失敗しました"
 
-#: dnfdragora/updater.py:153 dnfdragora/updater.py:158
+#: dnfdragora/updater.py:185 dnfdragora/updater.py:190
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "dnfdaemon サービスの開始時にエラーが発生しました: [%s]"
 
-#: dnfdragora/updater.py:174
+#: dnfdragora/updater.py:206
 #, python-format
 msgid "%d updates available."
 msgstr "%d 件の更新が利用可能です。"
 
-#: dnfdragora/updater.py:188
+#: dnfdragora/updater.py:220
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "例外を捕捉しました: [%s]"
@@ -1528,3 +1548,6 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "すべてチェック(&E)"
