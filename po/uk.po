@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2017, 2018.
+# Yuri Chornoivan <yurchor@ukr.net>, 2017, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: 2018-08-27 11:34+0200\n"
+"PO-Revision-Date: 2019-04-27 11:34+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "uk/)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 19.03.70\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
@@ -291,7 +291,7 @@ msgstr "Оновлюємо: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Оновлено: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -306,7 +306,7 @@ msgstr "Повторно встановлюємо: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Повторно встановлено: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -326,7 +326,7 @@ msgstr "Робимо застарілими: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Застаріло: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -336,7 +336,7 @@ msgstr "Знижуємо версію: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Знижено версію: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1406,7 +1406,7 @@ msgstr "Споро&жнити поле пошуку"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Поз&начити усі"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
