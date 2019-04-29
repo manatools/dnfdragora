@@ -3,14 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018
+# Davidmp <medipas@gmail.com>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ca/)\n"
 "Language: ca\n"
@@ -240,7 +246,7 @@ msgstr "Paquets revertits"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleting packages"
-msgstr "Devaluació dels paquets"
+msgstr "Paquets que es fan obsolets"
 
 #: dnfdragora/const.py:121
 msgid "Obsoleted packages"
@@ -248,7 +254,7 @@ msgstr "Paquets obsolets"
 
 #: dnfdragora/const.py:122
 msgid "Erased packages"
-msgstr "Paquets eliminats"
+msgstr "Paquets suprimits"
 
 #: dnfdragora/const.py:123 dnfdragora/const.py:124
 msgid "Installed packages"
@@ -290,7 +296,7 @@ msgstr "Actualització: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Actualitzat: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -305,7 +311,7 @@ msgstr "Reinstal·lació: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Reinstal·lat: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -320,12 +326,12 @@ msgstr "Supressió: %s"
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
-msgstr "Devaluació: %s"
+msgstr "Es fa obsolet: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Obsolet: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -335,7 +341,7 @@ msgstr "Reversió: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Degradat: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1402,7 +1408,7 @@ msgstr "&Neteja la cerca"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Sel&ecciona-ho tot"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1475,7 +1481,7 @@ msgstr "No implementat encara"
 #: dnfdragora/ui.py:1227
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr "No es pot eliminar el paquet %s"
+msgstr "No es pot suprimir el paquet %s"
 
 #: dnfdragora/ui.py:1227
 msgid "Protected package selected"
@@ -1554,6 +1560,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Marca-ho tot"
