@@ -3,14 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Валентин Сайков <saikov.vb@gmail.com>, 2018
+# AlexL <loginov.alex.valer@gmail.com>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Filip Komar <filip.komar@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2019\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ru/)\n"
 "Language: ru\n"
@@ -292,7 +298,7 @@ msgstr "Обновление: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Обновлён: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -307,7 +313,7 @@ msgstr "Переустановка: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Переустановлен: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -327,7 +333,7 @@ msgstr "Устаревание: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Устарел: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -337,7 +343,7 @@ msgstr "Понижение: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Понижен: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1409,7 +1415,7 @@ msgstr "&Очистить поиск"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "&Выбрать все"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1562,6 +1568,3 @@ msgstr ""
 "Qt 5, GTK+ 3 или ncurses. Она обеспечивает работу оболочки программы "
 "управления пакетами DNF, которой можно воспользоваться в любом типе "
 "системной среды."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "О&тметить все"
