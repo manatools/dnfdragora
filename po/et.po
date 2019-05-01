@@ -3,14 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Marek Laane <qiilaq69@gmail.com>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2019\n"
 "Language-Team: Estonian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "et/)\n"
 "Language: et\n"
@@ -288,7 +292,7 @@ msgstr "Uuendamine: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Uuendatud: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -303,7 +307,7 @@ msgstr "Taaspaigaldamine: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Taaspaigaldatud: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -323,7 +327,7 @@ msgstr "Igandamine: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Igandatud: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -333,7 +337,7 @@ msgstr "Versiooni alandamine: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Versioon alandatud: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1401,7 +1405,7 @@ msgstr "&Puhasta otsing"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Va&li kõik"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1550,6 +1554,3 @@ msgstr ""
 "abstraheerimise teeki libYui, mis tähendab, et see võib töötada Qt 5, GTK+ 3 "
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Märgi kõik"
