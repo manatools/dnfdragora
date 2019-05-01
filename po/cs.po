@@ -3,14 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Jiří Vírava <appukonrad@gmail.com>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# fri, 2018
+# Luděk Janča <joelp@email.cz>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Luděk Janča <joelp@email.cz>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Luděk Janča <joelp@email.cz>, 2019\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +294,7 @@ msgstr "Aktualizace: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Aktualizováno: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -303,7 +309,7 @@ msgstr "Přeinstalování: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Reinstalováno: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -323,7 +329,7 @@ msgstr "Zastarávání: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Zastaralé: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -333,7 +339,7 @@ msgstr "Ponižování: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Snížena verze: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1403,7 +1409,7 @@ msgstr "&Smazat hledání"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Vybrat &vše"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1552,6 +1558,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Vybrat vše"
