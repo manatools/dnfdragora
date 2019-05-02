@@ -3,14 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Rémi Verschelde <akien@mageia.org>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2019\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
 "teams/9361/nb/)\n"
 "Language: nb\n"
@@ -288,7 +293,7 @@ msgstr "Oppdaterer: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Oppdatert: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -303,7 +308,7 @@ msgstr "Ominstallerer: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Ominstallert: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -323,7 +328,7 @@ msgstr "Gjør foreldet: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Foreldet: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -333,7 +338,7 @@ msgstr "Nedgraderer: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Nedgradert: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1399,7 +1404,7 @@ msgstr "&Tøm søk"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Velg alt"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1547,6 +1552,3 @@ msgstr ""
 "abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
 "+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
 "pakkehåndtereren som kan benyttes i ethvert system miljø."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Sjekk alle"
