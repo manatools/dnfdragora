@@ -3,15 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatic4@gmail.com>, 2017
+# Carlos Filho <caffilhobr@gmail.com>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Michael Martins <michaelfm21@gmail.com>, 2018
+# Marcio Andre Padula <padula1000@gmail.com>, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rodrigo de Almeida Sottomaior Macedo "
-"<rmsolucoeseminformatic4@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Marcio Andre Padula <padula1000@gmail.com>, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -289,7 +296,7 @@ msgstr "Atualizando: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Atualizado: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -304,7 +311,7 @@ msgstr "Reinstalando: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Reinstalado: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -324,7 +331,7 @@ msgstr "Obsoleto:%s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Obsoleto: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -334,7 +341,7 @@ msgstr "Downgrade: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Rebaixado: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1400,7 +1407,7 @@ msgstr "&Limpar pesquisa"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "&Selecionar todos"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1550,6 +1557,3 @@ msgstr ""
 "as interfaces Qt 5, GTK + 3 ou ncurses. Ele fornece uma interface para o "
 "gerenciador de pacotes DNF que pode ser usado em qualquer tipo de ambiente "
 "de sistema."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Verificar tudo"
