@@ -3,14 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Marc Lattemann, 2017
+# Peter Grun, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Ettore Atalan <atalanttore@googlemail.com>, 2018
+# Walter Marek <wm6369@gmx.net>, 2018
+# psyca, 2019
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Walter Marek <wm6369@gmx.net>, 2018\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: psyca, 2019\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
 "de/)\n"
 "Language: de\n"
@@ -289,7 +298,7 @@ msgstr "Aktualisiere: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Aktualisiert: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -304,7 +313,7 @@ msgstr "Installiere erneut: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Erneut installiert: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -324,7 +333,7 @@ msgstr "Markieren als veraltet: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Veraltet: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -334,7 +343,7 @@ msgstr "Downgrade: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Heruntergestuft: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1402,7 +1411,7 @@ msgstr "Suche &löschen"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "All&e auswählen"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1553,6 +1562,3 @@ msgstr ""
 "ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
 "die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
 "kann."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Alle au&swählen"
