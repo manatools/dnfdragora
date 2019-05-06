@@ -6,12 +6,12 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Jose Manuel López <inactive+rocholc@transifex.com>, 2017
-# Adolfo Jayme-Barrientos, 2017
-# Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2017
-# William Moreno <williamjmorenor@gmail.com>, 2018
+# Fito JB, 2017
+# Egoitz Rodriguez <egoitzro@gmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Jose Manuel López <joselp@outlook.es>, 2018
-# Miguel, 2018
+# William Moreno <williamjmorenor@gmail.com>, 2018
+# Miguel, 2019
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Miguel, 2018\n"
+"Last-Translator: Miguel, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -221,7 +221,7 @@ msgstr "Vacío"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr "Resultado de búsqueda"
+msgstr "Resultado de búlsqueda"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -299,7 +299,7 @@ msgstr "Actualizando: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Actualizado(s): %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -314,7 +314,7 @@ msgstr "Reinstalando: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Reinstalado(s): %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -334,7 +334,7 @@ msgstr "Marcando como obsoleto: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Obsoleto(s): %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -344,7 +344,7 @@ msgstr "Degradación: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Degradado(s) (a versiones antiguas): %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1410,7 +1410,7 @@ msgstr "Borrar búsqueda"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Sel&ecionar todo"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1560,6 +1560,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Seleccionar todo"
