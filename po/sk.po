@@ -293,7 +293,7 @@ msgstr "Aktualizácia: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Aktualizované %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -308,7 +308,7 @@ msgstr "Preinštalovanie: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Preinštalované: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -328,7 +328,7 @@ msgstr "Zastarávanie: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Zastaralé: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -338,7 +338,7 @@ msgstr "Znižovanie: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Nižšia verzia: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1408,7 +1408,7 @@ msgstr "&Zmazať vyhľadávanie"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Vybrať &všetko"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1557,6 +1557,3 @@ msgstr ""
 "spoločnosťou SUSE, aby mohla byť spustená pomocou rozhrania Qt 5, GTK + 3 "
 "alebo ncurses. Poskytuje rozhranie pre správcu balíkov DNF, ktoré je možné "
 "použiť v akomkoľvek prostredí systému."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Vybrať všetko"
