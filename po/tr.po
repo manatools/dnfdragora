@@ -299,7 +299,7 @@ msgstr "Güncelleniyor: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Güncellenen: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -314,7 +314,7 @@ msgstr "Yeniden kuruluyor: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Yeniden kurulan: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -334,7 +334,7 @@ msgstr "Eski ve kullanılmaz hale getiriliyor: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Eskiyenler: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -344,7 +344,7 @@ msgstr "Sürümü düşürülüyor: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Sürümü düşürülen: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -1410,7 +1410,7 @@ msgstr "Aramayı &temizle"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Tümünü &seç"
 
 #: dnfdragora/ui.py:475 dnfdragora/ui.py:484
 msgid "&Quit"
@@ -1561,6 +1561,3 @@ msgstr ""
 "soyutlama kütüphanesini kullanır. Böylece QT 5, GTK+3 veya ncurses "
 "arayüzleri kullanılarak çalıştırılabilir. Her türlü sistem çevresinde "
 "kullanılabilen DNF paket yöneticisine bir ön yüz sağlar."
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Tümünü &kontrol et"
