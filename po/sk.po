@@ -1343,7 +1343,7 @@ msgstr "Správa softvéru"
 
 #: dnfdragora/ui.py:328
 msgid "Arch"
-msgstr "Arch"
+msgstr "Archív"
 
 #: dnfdragora/ui.py:328
 msgid "Release"
