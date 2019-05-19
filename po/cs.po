@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# fri, 2018
 # Luděk Janča <joelp@email.cz>, 2019
+# fri, 2019
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Luděk Janča <joelp@email.cz>, 2019\n"
+"Last-Translator: fri, 2019\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -339,7 +339,7 @@ msgstr "Ponižování: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr "Snížena verze: %s"
+msgstr "Ponížena verze: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
