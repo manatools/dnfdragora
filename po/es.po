@@ -6,12 +6,12 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Jose Manuel López <inactive+rocholc@transifex.com>, 2017
-# Fito JB, 2017
 # Egoitz Rodriguez <egoitzro@gmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Jose Manuel López <joselp@outlook.es>, 2018
 # William Moreno <williamjmorenor@gmail.com>, 2018
 # Miguel, 2019
+# José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2019
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Miguel, 2019\n"
+"Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -36,15 +36,15 @@ msgstr "%(prog)s [opciones]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "Inicio usando complemento de implementación GTK+ yui"
+msgstr "Comenzando a usar complemento GTK+ de  yui"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "Inicio usando implementación de plugin yui"
+msgstr "Comenzando a usar complemento ncurses de yui"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "Inicio usando implementación de plugin yui Qt"
+msgstr "Comenzando a usar complemento Qt de yui"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
@@ -53,7 +53,7 @@ msgstr "Utilizar pantalla completa para diálogos"
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
-"Forzar una nueva ruta para los iconos de grupo (en lugar de /usr/share/icons)"
+"Forzar una nueva ruta para grupo de iconos  (en lugar de /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
@@ -82,7 +82,7 @@ msgstr "Mostrar la versión de la aplicación y salir"
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
-"Forzar servicios dbus de demonio dnf utilizados por dnfdragora para salir"
+"Forzar  terminación de servicios dbus de dnfdaemon utilizados por dnfdragora"
 
 #: bin/dnfdragora:53
 #, python-format
@@ -107,25 +107,24 @@ msgstr "Lo siento"
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr "Se produjo un error de cliente del demonio dnf:%(NL)s%(error)s"
+msgstr "Se produjo un error en cliente de dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr "Se ha producido un error de nombre en el demonio dnf:%(NL)s%(error)s"
+msgstr "Se ha producido un error de nombre en dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
-"Se ha producido un error de atributo en el demonio dnf::%(NL)s%(error)s"
+msgstr "Se ha producido un error de atributo en dnfdaemon::%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
-"fuerza una nueva ruta para los iconos (en vez de /usr/share/icons/"
+"Forzar una nueva ruta para los iconos (en vez de /usr/share/icons/"
 "hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
@@ -142,7 +141,7 @@ msgid ""
 "dnfdragora will exit"
 msgstr ""
 "El backend raiz de DNF no ha sido autorizado.\n"
-"Mandragora saldrá ahora."
+"dnfdragora saldrá ahora."
 
 #: dnfdragora/basedragora.py:90
 msgid ""
@@ -151,7 +150,7 @@ msgid ""
 "dnfdragora will exit"
 msgstr ""
 "DNF está bloqueado por otro proceso.\n"
-"Mandragora saldrá ahora."
+"dnfdragora saldrá ahora."
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
@@ -285,7 +284,7 @@ msgstr "Eliminando"
 
 #: dnfdragora/const.py:134
 msgid "Downgrading"
-msgstr "Degradación"
+msgstr "Revirtiendo"
 
 #: dnfdragora/const.py:135
 msgid "Replacing"
@@ -339,12 +338,12 @@ msgstr "Obsoleto(s): %s"
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr "Degradación: %s"
+msgstr "Revertido(s): %s"
 
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr "Degradado(s) (a versiones antiguas): %s"
+msgstr "Revertido(s) (a versiones antiguas): %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -405,7 +404,7 @@ msgstr[1] "Errores en transacción"
 #: dnfdragora/dialogs.py:246 dnfdragora/dialogs.py:249 dnfdragora/ui.py:1080
 #: dnfdragora/ui.py:1083
 msgid "BuildTransaction failure"
-msgstr "Error de instalación"
+msgstr "Error en BuildTransaction (transacción de construcción)"
 
 #: dnfdragora/dialogs.py:249 dnfdragora/ui.py:1083
 #, python-format
@@ -418,7 +417,7 @@ msgstr "Deshacer historial"
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:495
 msgid "History"
-msgstr "Historia"
+msgstr "Historial"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -469,7 +468,7 @@ msgstr "Desarrolladores"
 
 #: dnfdragora/dialogs.py:475
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr "Mandragora es un frontend DNF que funciona con GTK, ncurses y QT"
+msgstr "dnfdragora es un frontend para DNF que funciona con GTK, ncurses y QT"
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
@@ -477,7 +476,7 @@ msgstr "Ancho de banda"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr "Dir de caché base"
+msgstr "Directorio caché base"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
@@ -489,7 +488,7 @@ msgstr "Costo"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr "deltarpm"
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
@@ -505,7 +504,7 @@ msgstr "Metadatos habilitados"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr "Grupos habilitados"
+msgstr "Activar grupos"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
@@ -517,7 +516,7 @@ msgstr "Paquetes excluidos"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr "Método de conmutación por error"
+msgstr "Método de tolerancia a fallos"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
@@ -541,7 +540,7 @@ msgstr "Resolución IP"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr "Descarga máxima en paralelo"
+msgstr "Numero máximo de descargas  en paralelo"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
@@ -637,7 +636,7 @@ msgstr "Tiempo acabado"
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr "Escribir"
+msgstr "Tipo"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
@@ -657,7 +656,7 @@ msgstr "Valor"
 
 #: dnfdragora/dialogs.py:607 dnfdragora/dialogs.py:845 dnfdragora/ui.py:467
 msgid "&Apply"
-msgstr "Aplicar"
+msgstr "&Aplicar"
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
@@ -714,11 +713,11 @@ msgstr "Coincidir todas las palabras"
 
 #: dnfdragora/dialogs.py:1099
 msgid "&Yes"
-msgstr "Sí"
+msgstr "&Sí"
 
 #: dnfdragora/dialogs.py:1100
 msgid "&No"
-msgstr "No"
+msgstr "&No"
 
 #: dnfdragora/dialogs.py:1123
 #, python-format
@@ -742,8 +741,8 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
-"Versión api demonio dnf: %(actual)d\n"
-"No conicide\n"
+"Versión api dnfdaemon: %(actual)d\n"
+"No coincide\n"
 "Versión api necesaria: %(required)d"
 
 #: dnfdragora/dnf_backend.py:174
@@ -773,7 +772,7 @@ msgstr "Descargando %(count_files)d ficheros (%(count_bytes)sB)..."
 
 #: dnfdragora/dnf_backend.py:548
 msgid "Caching groups from packages... "
-msgstr "Almacenando caché de grupos de paquetes..."
+msgstr "Almacenando grupos en caché desde paquetes..."
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1246,7 +1245,7 @@ msgstr "Estación Multimedia"
 
 #: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
-msgstr "Computador de red (cliente)"
+msgstr "Estación de red (cliente)"
 
 #: dnfdragora/groupicons.py:566
 msgid "Office Workstation"
@@ -1298,7 +1297,7 @@ msgstr "Correo/Groupware/Noticias"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
-msgstr "Computador Servidor de red"
+msgstr "Estación en red (servidor)"
 
 #: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
@@ -1329,7 +1328,7 @@ msgstr "Lista de ficheros"
 
 #: dnfdragora/ui.py:156
 msgid "Changelog"
-msgstr "Log de cambios"
+msgstr "Registro de cambios"
 
 #: dnfdragora/ui.py:157
 msgid "Requirements"
@@ -1337,7 +1336,7 @@ msgstr "Requerimientos"
 
 #: dnfdragora/ui.py:276
 msgid "Software Management - dnfdragora"
-msgstr "Gestión de software - mandragora"
+msgstr "Gestión de software - dnfdragora"
 
 #: dnfdragora/ui.py:308
 msgid "Software Management"
@@ -1373,7 +1372,7 @@ msgstr "No instalado"
 
 #: dnfdragora/ui.py:345
 msgid "To update"
-msgstr "Actualizar"
+msgstr "Por actualizar"
 
 #: dnfdragora/ui.py:351
 #, python-format
@@ -1402,11 +1401,11 @@ msgstr "en nombres de archivo"
 
 #: dnfdragora/ui.py:452
 msgid "&Search"
-msgstr "Buscar"
+msgstr "&Buscar"
 
 #: dnfdragora/ui.py:457
 msgid "&Clear search"
-msgstr "Borrar búsqueda"
+msgstr "&Limpiar búsqueda"
 
 #: dnfdragora/ui.py:471
 msgid "Sel&ect all"
@@ -1442,7 +1441,7 @@ msgstr " &Opciones"
 
 #: dnfdragora/ui.py:518
 msgid "&Help"
-msgstr "&Ayuda"
+msgstr "A&yuda"
 
 #: dnfdragora/ui.py:519
 msgid "Manual"
@@ -1450,7 +1449,7 @@ msgstr "Manual"
 
 #: dnfdragora/ui.py:520
 msgid "&About"
-msgstr "&Acerca de"
+msgstr "A&cerca de"
 
 #: dnfdragora/ui.py:546
 msgid "update"
