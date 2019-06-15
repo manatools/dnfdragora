@@ -8,10 +8,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: her_tor_es_ar <inactive+her_tor_es_ar@transifex.com>, 2018\n"
 "Language-Team: Spanish (Latin America) (https://www.transifex.com/MageiaLinux/teams/9361/es_419/)\n"
+"Language: es_419\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_419\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop

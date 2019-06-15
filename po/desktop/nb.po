@@ -10,10 +10,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2018\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/teams/9361/nb/)\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop

@@ -8,10 +8,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018\n"
 "Language-Team: Hindi (https://www.transifex.com/MageiaLinux/teams/9361/hi/)\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
