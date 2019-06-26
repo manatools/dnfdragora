@@ -1,16 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Rémi Verschelde <akien@mageia.org>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# tomaja <toma.jankovic@gmail.com>, 2019
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: tomaja <toma.jankovic@gmail.com>, 2019\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sr/)\n"
 "Language: sr\n"
@@ -143,7 +148,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr ""
+msgstr "Програми"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
@@ -253,7 +258,7 @@ msgstr ""
 
 #: dnfdragora/const.py:131
 msgid "Installing"
-msgstr ""
+msgstr "Инсталирам"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
@@ -400,7 +405,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:292 dnfdragora/ui.py:495
 msgid "History"
-msgstr ""
+msgstr "Историјат"
 
 #: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
@@ -479,7 +484,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
-msgstr ""
+msgstr "Укључи"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
@@ -543,7 +548,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
-msgstr ""
+msgstr "Листа мирора"
 
 #: dnfdragora/dialogs.py:535 dnfdragora/dialogs.py:589 dnfdragora/ui.py:328
 msgid "Name"
@@ -555,7 +560,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:537
 msgid "Password"
-msgstr ""
+msgstr "Лозинка"
 
 #: dnfdragora/dialogs.py:538
 msgid "Priority"
@@ -567,7 +572,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:540
 msgid "Proxy"
-msgstr ""
+msgstr "Прокси"
 
 #: dnfdragora/dialogs.py:541
 msgid "Proxy password"
@@ -587,7 +592,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:545 dnfdragora/ui.py:328
 msgid "Size"
-msgstr ""
+msgstr "Величина"
 
 #: dnfdragora/dialogs.py:546
 msgid "Skip if unavailable"
@@ -619,11 +624,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:553
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: dnfdragora/dialogs.py:554
 msgid "Username"
-msgstr ""
+msgstr "Корисничко име"
 
 #: dnfdragora/dialogs.py:563 dnfdragora/dialogs.py:578
 msgid "Repository Management"
@@ -631,7 +636,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:598
 msgid "Information"
-msgstr ""
+msgstr "Информације"
 
 #: dnfdragora/dialogs.py:598
 msgid "Value"
@@ -643,7 +648,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:713
 msgid "Never"
-msgstr ""
+msgstr "Никада"
 
 #: dnfdragora/dialogs.py:715
 #, python-format
@@ -783,11 +788,11 @@ msgstr "Комуникације"
 
 #: dnfdragora/groupicons.py:48
 msgid "Bluetooth"
-msgstr ""
+msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
-msgstr ""
+msgstr "Dial-up"
 
 #: dnfdragora/groupicons.py:56
 msgid "Fax"
@@ -795,19 +800,19 @@ msgstr "Факс"
 
 #: dnfdragora/groupicons.py:60
 msgid "Mobile"
-msgstr ""
+msgstr "Мобилни"
 
 #: dnfdragora/groupicons.py:64
 msgid "Radio"
-msgstr ""
+msgstr "Радио"
 
 #: dnfdragora/groupicons.py:68
 msgid "Serial"
-msgstr ""
+msgstr "Серијски"
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
-msgstr ""
+msgstr "Телефонија"
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
@@ -815,7 +820,7 @@ msgstr "Базе података"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr ""
+msgstr "Основно"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -827,15 +832,15 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:93
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 #: dnfdragora/groupicons.py:105
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:109
 msgid "GNOME and GTK+"
@@ -855,7 +860,7 @@ msgstr "Кернел"
 
 #: dnfdragora/groupicons.py:125
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: dnfdragora/groupicons.py:133
 msgid "Perl"
@@ -924,11 +929,11 @@ msgstr "Слагалице"
 
 #: dnfdragora/groupicons.py:205
 msgid "Shooter"
-msgstr ""
+msgstr "Пуцачина"
 
 #: dnfdragora/groupicons.py:209
 msgid "Simulation"
-msgstr ""
+msgstr "Симулација"
 
 #: dnfdragora/groupicons.py:213
 msgid "Sports"
@@ -940,7 +945,7 @@ msgstr "Стратегије"
 
 #: dnfdragora/groupicons.py:222
 msgid "Geography"
-msgstr ""
+msgstr "Географија"
 
 #: dnfdragora/groupicons.py:226
 msgid "Graphical desktop"
@@ -976,12 +981,12 @@ msgstr "Графика"
 
 #: dnfdragora/groupicons.py:261
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 #: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
 #: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
-msgstr ""
+msgstr "Едитори и Конвертери"
 
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
@@ -990,15 +995,15 @@ msgstr "Алати"
 
 #: dnfdragora/groupicons.py:273
 msgid "Photography"
-msgstr ""
+msgstr "Фотограија"
 
 #: dnfdragora/groupicons.py:277
 msgid "Scanning"
-msgstr ""
+msgstr "Скенирање"
 
 #: dnfdragora/groupicons.py:281
 msgid "Viewers"
-msgstr ""
+msgstr "Прегледници"
 
 #: dnfdragora/groupicons.py:286
 msgid "Monitoring"
@@ -1042,31 +1047,31 @@ msgstr "Канцеларија"
 
 #: dnfdragora/groupicons.py:329
 msgid "Dictionary"
-msgstr ""
+msgstr "Речници"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
-msgstr ""
+msgstr "Финансије"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
-msgstr ""
+msgstr "Менаџмент"
 
 #: dnfdragora/groupicons.py:341
 msgid "Organizer"
-msgstr ""
+msgstr "Организер"
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Табеле"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
-msgstr ""
+msgstr "Пакет"
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
-msgstr ""
+msgstr "Процесор текста"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
@@ -1114,15 +1119,15 @@ msgstr "Звук"
 
 #: dnfdragora/groupicons.py:417
 msgid "Midi"
-msgstr ""
+msgstr "Миди"
 
 #: dnfdragora/groupicons.py:421
 msgid "Mixers"
-msgstr ""
+msgstr "Миксери"
 
 #: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
-msgstr ""
+msgstr "Плејери"
 
 #: dnfdragora/groupicons.py:434
 msgid "System"
@@ -1198,7 +1203,7 @@ msgstr "Видео"
 
 #: dnfdragora/groupicons.py:525
 msgid "Television"
-msgstr ""
+msgstr "Телевизија"
 
 #: dnfdragora/groupicons.py:535
 msgid "Workstation"
@@ -1325,7 +1330,7 @@ msgstr "Арх."
 
 #: dnfdragora/ui.py:328
 msgid "Release"
-msgstr ""
+msgstr "Издање"
 
 #: dnfdragora/ui.py:328
 msgid "Summary"
@@ -1333,7 +1338,7 @@ msgstr "Сажетак"
 
 #: dnfdragora/ui.py:328
 msgid "Version"
-msgstr ""
+msgstr "Верзија"
 
 #: dnfdragora/ui.py:335
 msgid "Status"
@@ -1370,7 +1375,7 @@ msgstr "у описима"
 
 #: dnfdragora/ui.py:430
 msgid "in summaries"
-msgstr ""
+msgstr "у сажетцима"
 
 #: dnfdragora/ui.py:431
 msgid "in file names"
@@ -1450,7 +1455,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:995
 msgid "Search"
-msgstr ""
+msgstr "Тражи"
 
 #: dnfdragora/ui.py:1198
 msgid "Not implemented yet"
@@ -1475,7 +1480,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:76
 msgid "Update"
-msgstr ""
+msgstr "Надоградња"
 
 #: dnfdragora/updater.py:77
 msgid "Open dnfdragora dialog"
@@ -1487,7 +1492,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:79
 msgid "Exit"
-msgstr ""
+msgstr "Излаз"
 
 #: dnfdragora/updater.py:149
 msgid "Running dnfdragora failure"
@@ -1510,7 +1515,7 @@ msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
