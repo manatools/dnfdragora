@@ -78,20 +78,21 @@ msgstr "прикажи верзију апликације и изађи"
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
+"захтевај да се dnfdaemon dbus сервиси коришћени од стране dnfdragora зауставе"
 
 #: bin/dnfdragora:53
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "dnfdaemon клијент неуспех [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Покушај поново корићењем конзолног пријављивања (i.e. \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sверзија: %(version)s%(NL)sсајт: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
 #: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
@@ -102,37 +103,41 @@ msgstr "Извините"
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon клијент појава грешке:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon име појава грешке:%(NL)s%(error)s"
 
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon атрибут појава грешке:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"захтевај нову путању за све потребне иконице (уместо /usr/share/icons/"
+"hicolor/128x128/apps/)"
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Освежавање Спремишта за Мета податке"
 
 #: dnfdragora/basedragora.py:62
 msgid "Could not refresh the DNF cache (root)"
-msgstr ""
+msgstr "Није могуће освежавање DNF кеша (root)"
 
 #: dnfdragora/basedragora.py:85
 msgid ""
 "DNF root backend was not authorized.\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF root позадина није ауторизована.\n"
+"dnfdragora ће се затворити"
 
 #: dnfdragora/basedragora.py:90
 msgid ""
@@ -140,6 +145,9 @@ msgid ""
 "\n"
 "dnfdragora will exit"
 msgstr ""
+"DNF је закључан од стране другог процеса.\n"
+"\n"
+"dnfdragora ће се затворити"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
@@ -237,7 +245,7 @@ msgstr "Пакети враћени на претходну верзију"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Застаревање пакета"
 
 #: dnfdragora/const.py:121
 msgid "Obsoleted packages"
@@ -460,94 +468,96 @@ msgstr "Девелопери"
 #: dnfdragora/dialogs.py:475
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora је графички интерфејс за DNF који ради коришћењем GTK-а, ncurses-"
+"а и QT-а"
 
 #: dnfdragora/dialogs.py:512
 msgid "Bandwidth"
-msgstr ""
+msgstr "Проток"
 
 #: dnfdragora/dialogs.py:513
 msgid "Base cache dir"
-msgstr ""
+msgstr "Базни кеш дир"
 
 #: dnfdragora/dialogs.py:514
 msgid "Base URL"
-msgstr ""
+msgstr "Базни УРЛ"
 
 #: dnfdragora/dialogs.py:515
 msgid "Cost"
-msgstr ""
+msgstr "Цена"
 
 #: dnfdragora/dialogs.py:516
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:517
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM проценат"
 
 #: dnfdragora/dialogs.py:518 dnfdragora/dialogs.py:589
 msgid "Enabled"
-msgstr "Укључи"
+msgstr "Укључено"
 
 #: dnfdragora/dialogs.py:519
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Укључени мета подаци"
 
 #: dnfdragora/dialogs.py:520
 msgid "Enable groups"
-msgstr ""
+msgstr "Укључене групе"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr ""
+msgstr "Искључи"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr ""
+msgstr "Искључи пакете"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr ""
+msgstr "Резервни метод"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Најбржи мирор"
 
 #: dnfdragora/dialogs.py:525
 msgid "GPG check"
-msgstr ""
+msgstr "Провера GPG-a"
 
 #: dnfdragora/dialogs.py:526
 msgid "GPG key"
-msgstr ""
+msgstr "GPG кључ"
 
 #: dnfdragora/dialogs.py:527
 msgid "Include packages"
-msgstr ""
+msgstr "Укључи пакете"
 
 #: dnfdragora/dialogs.py:528
 msgid "IP resolve"
-msgstr ""
+msgstr "IP разрешавање"
 
 #: dnfdragora/dialogs.py:529
 msgid "Max parallel download"
-msgstr ""
+msgstr "Максимално паралелно преузимање"
 
 #: dnfdragora/dialogs.py:530
 msgid "Media ID"
-msgstr ""
+msgstr "ID медија"
 
 #: dnfdragora/dialogs.py:531
 msgid "Metadata expire"
-msgstr ""
+msgstr "Валидност мета података"
 
 #: dnfdragora/dialogs.py:532
 msgid "Meta link"
-msgstr ""
+msgstr "Мета линк"
 
 #: dnfdragora/dialogs.py:533
 msgid "Min rate"
-msgstr ""
+msgstr "Минималнa стопа"
 
 #: dnfdragora/dialogs.py:534
 msgid "Mirror list"
@@ -619,7 +629,7 @@ msgstr "SSL верификација"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr ""
+msgstr "Чишчење"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
@@ -732,6 +742,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon апи верзија : %(actual)d\n"
+"не одговара\n"
+"захтеваној апи верзији : %(required)d"
 
 #: dnfdragora/dnf_backend.py:174
 msgid "Start transaction"
