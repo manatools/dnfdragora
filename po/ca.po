@@ -8,6 +8,7 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018
 # Davidmp <medipas@gmail.com>, 2019
+# Rubén <rbndavid@gmail.com>, 2019
 #
 #, fuzzy
 msgid ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 11:31+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>, 2019\n"
+"Last-Translator: Rubén <rbndavid@gmail.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ca/)\n"
 "Language: ca\n"
@@ -515,7 +516,7 @@ msgstr "Exclou paquets"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
-msgstr "Mètode de tolerància a falles"
+msgstr "Mètode de tolerància a fallades"
 
 #: dnfdragora/dialogs.py:524
 msgid "Fastest mirror"
