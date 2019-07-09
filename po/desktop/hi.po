@@ -1,12 +1,13 @@
 # Translators:
-# Panwar108 <caspian7pena@gmail.com>, 2018
+# Panwar108 <caspian7pena@gmail.com>, 2019
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-06-07 21:33+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-06-26 17:11+0300\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2019\n"
 "Language-Team: Hindi (https://www.transifex.com/MageiaLinux/teams/9361/hi/)\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +38,7 @@ msgstr "dnfdragora-अपडेट साधन"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr "अपडेट खोजने हेतु ट्रे रुपी प्रतीक"
+msgstr "अपडेट खोजने हेतु ट्रे-आइकन"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
@@ -57,4 +58,4 @@ msgstr "RPM पैकेज इंस्टॉलर"
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr "सिस्टम में स्थानीय पैकेज इंस्टॉल करें"
+msgstr "सिस्टम पर लोकल पैकेज इंस्टॉल करें"
