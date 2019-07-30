@@ -1270,7 +1270,7 @@ msgstr "IceWm Десктоп"
 
 #: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
-msgstr "KDE падна станица"
+msgstr "KDE радна станица"
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
