@@ -13,6 +13,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 import yui
 import sys
+import os
 import datetime
 import dnfdaemon.client
 
@@ -807,6 +808,9 @@ class UserPrefsDialog:
         showUpdates = False
         showAll = False
         always_yes = self.parent.always_yes
+        log_enabled = False
+        level_debug = False
+        log_directory = None
 
         if 'show updates at startup' in settings.keys() :
             showUpdates = settings['show updates at startup']
@@ -816,6 +820,14 @@ class UserPrefsDialog:
             updateInterval = int(settings['interval for checking updates'])
         if 'always_yes' in settings.keys() :
             always_yes = settings['always_yes']
+        if 'log_enabled' in settings.keys() :
+          log_enabled = settings['log_enabled']
+        if 'log' in settings.keys():
+          log = settings['log']
+          if 'directory' in log.keys() :
+            log_directory = log['directory']
+          if 'level_debug' in log.keys() :
+            level_debug = log['level_debug']
 
         #Already read from system and user settings
         match_all = self.parent.match_all
@@ -835,12 +847,21 @@ class UserPrefsDialog:
         self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Show updates next startup"), showUpdates )
         self.showAll  =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Do not show groups view next startup"), showAll )
 
-
         #Search settings
         frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Search options") )
         box = self.factory.createVBox(frame)
         self.newest_only = self.factory.createCheckBox(self.factory.createLeft(box) , _("Show newest packages only"), newest_only )
         self.match_all   = self.factory.createCheckBox(self.factory.createLeft(box) , _("Match all words"), match_all )
+
+        #Log settings
+        self.log = self.factory.createCheckBoxFrame( self.factory.createLeft(vbox1), _("Log options on next startup"), log_enabled)
+        box = self.factory.createVBox(self.log)
+        hbox = self.factory.createHBox(box)
+        self.log_directory = self.factory.createLabel(hbox, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        self.log_directory.setText((log_directory if log_directory is not None else os.path.expanduser("~")))
+        self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "", _("Change &directory"))
+        self.level_debug = self.factory.createCheckBox(self.factory.createLeft(box) , _("Enable debug log level"), level_debug )
+        self.log.setEnabled(log_enabled)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
@@ -869,16 +890,30 @@ class UserPrefsDialog:
                 if (widget == self.quitButton) :
                     #### QUIT
                     break
+                elif (widget == self.choose_dir) :
+                  start_dir = self.log_directory.text() if self.log_directory.text() else os.path.expanduser("~")
+                  log_directory = yui.YUI.app().askForExistingDirectory(
+                    start_dir,
+                    _("Choose log destination directory"))
+                  if log_directory:
+                    self.log_directory.setText(log_directory)
+                    self.dialog.recalcLayout()
                 elif (widget == self.applyButton) :
                     search = {
                       'match_all': self.match_all.isChecked(),
                       'newest_only': self.newest_only.isChecked()
+                      }
+                    log_entry = {
+                      'directory': self.log_directory.text(),
+                      'level_debug': self.level_debug.isChecked()
                       }
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
                         'do not show groups at startup' : self.showAll.isChecked(),
                         'interval for checking updates' : self.updateInterval.value(),
                         'always_yes' : self.always_yes.isChecked(),
+                        'log_enabled' : self.log.value(),
+                        'log' : log_entry,
                         'search' : search
                         }
                     self.parent.always_yes = self.always_yes.isChecked()
