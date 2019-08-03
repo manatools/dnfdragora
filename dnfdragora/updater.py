@@ -57,7 +57,8 @@ class Updater:
         else:
             icon_path = icon_path + '/dnfdragora.png'
 
-        theme_icon_pathname = self.__get_theme_icon_pathname() or icon_path
+        theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname() or icon_path
+
         print("Icon: %s"%(theme_icon_pathname))
         #empty icon as last chance
         self.__icon = Image.Image()
@@ -92,7 +93,7 @@ class Updater:
           print ("Error: module xdg.IconTheme is missing")
           return None
       else:
-          pathname = xdg.IconTheme.getIconPath("dnfdragora", 128)
+          pathname = xdg.IconTheme.getIconPath("dnfdragora", 256)
           return pathname
       return None
 
