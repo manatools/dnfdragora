@@ -162,19 +162,25 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.always_yes = False
         self.match_all = False
         self.newest_only = False
-        self.log_filename = None
+        self.log_enabled = False
+        self.log_directory = None
         self.level_debug = False
         self.config = dnfdragora.config.AppConfig(self.appname)
 
         # settings from configuration file first
         self._configFileRead()
 
-        if self.log_filename:
+        if self.log_enabled:
+          if self.log_directory:
+            log_filename = os.path.join(self.log_directory, "dnfdragora.log")
             if self.level_debug:
-                misc.logger_setup(self.log_filename, loglvl=logging.DEBUG)
+              misc.logger_setup(log_filename, loglvl=logging.DEBUG)
             else:
-                misc.logger_setup(self.log_filename)
+              misc.logger_setup(log_filename)
+            print("Logging into %s, debug mode is %s"%(self.log_directory, ("enabled" if self.level_debug else "disabled")))
             logger.info("dnfdragora started")
+        else:
+           print("Logging disabled")
 
         # overrides settings from comand line
         if 'group_icons_path' in self.options.keys() :
@@ -244,11 +250,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'always_yes' in settings.keys() :
                 self.always_yes = settings['always_yes']
 
-            if 'log_filename' in settings.keys() :
-                self.log_filename = settings['log_filename']
+            if 'log_directory' in settings.keys() :
+              print("Warning logging must be set in user preferences")
 
             if 'log_level_debug' in settings.keys() :
-                self.level_debug = settings['log_level_debug']
+              print("Warning logging must be set in user preferences")
 
             # config['settings']['path']
             path_settings = {}
@@ -267,6 +273,26 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self.match_all = search['match_all']
             if 'newest_only' in search.keys():
                 self.newest_only = search['newest_only']
+
+        # User preferences overriding
+        user_settings = {}
+        if self.config.userPreferences:
+            if 'settings' in self.config.userPreferences.keys() :
+                user_settings = self.config.userPreferences['settings']
+                if 'search' in user_settings.keys():
+                    search = user_settings['search']
+                    if 'newest_only' in search.keys():
+                        self.newest_only = search['newest_only']
+                    if 'match_all' in search.keys():
+                        self.match_all = search['match_all']
+                if 'log_enabled' in user_settings.keys() :
+                  self.log_enabled = user_settings['log_enabled']
+                if self.log_enabled and 'log' in user_settings.keys():
+                  log = user_settings['log']
+                  if 'directory' in log.keys() :
+                      self.log_directory = log['directory']
+                  if 'level_debug' in log.keys() :
+                      self.level_debug = log['level_debug']
 
 
     def _setupUI(self) :
@@ -366,13 +392,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.config.userPreferences:
             if 'settings' in self.config.userPreferences.keys() :
                 settings = self.config.userPreferences['settings']
-                if 'search' in settings.keys():
-                    search = settings['search']
-                    if 'newest_only' in search.keys():
-                        self.newest_only = search['newest_only']
-                    if 'match_all' in search.keys():
-                        self.match_all = search['match_all']
-
             if 'view' in self.config.userPreferences.keys() :
                 view = self.config.userPreferences['view']
             if 'show updates at startup' in settings.keys() :
@@ -1111,6 +1130,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
                     self.config.userPreferences['view']['filter'] = 'to_update'
+            if 'do not show groups at startup' in settings.keys():
                 if settings['do not show groups at startup'] :
                     self.config.userPreferences['view']['show'] = 'all'
         self.config.saveUserPreferences()
