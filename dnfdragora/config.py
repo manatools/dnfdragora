@@ -48,9 +48,11 @@ class AppConfig() :
                 pathdir.append(os.environ.get(self.variable))
             pathdir.extend([os.curdir, self.systemDir])
 
+            print ("Try reading configuration file");
             for loc in pathdir :
                 try:
                     f = os.path.join(loc, self._fileName)
+                    print ("From %s"%f)
                     with open(f, 'r') as ymlfile:
                         self._systemSettings = yaml.load(ymlfile)
                         break
@@ -59,6 +61,7 @@ class AppConfig() :
                     pass
 
             try:
+                print ("Finally read user settings from %s"%self._userPrfesPathName)
                 with open(self._userPrfesPathName, 'r') as ymlfile:
                     self._userPrefs = yaml.load(ymlfile)
             except IOError as e:
