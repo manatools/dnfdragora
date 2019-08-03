@@ -15,6 +15,7 @@ import configparser
 import gettext
 import locale
 import logging
+import logging.handlers
 import os.path
 import re
 import subprocess
@@ -216,7 +217,10 @@ def logger_setup(file_name='dnfdragora.log',
                  logfmt='%(asctime)s: %(message)s',
                  loglvl=logging.INFO):
     """Setup Python logging."""
+    handler = logging.handlers.RotatingFileHandler(
+              file_name, maxBytes=2*1024*1024, backupCount=5)
     logging.basicConfig(filename=file_name, format='%(asctime)s [%(name)s](%(levelname)s) %(message)s', level=loglvl)
+    logger.addHandler(handler)
     #logger = logging.getLogger(logroot)
     #logger.setLevel(loglvl)
     #formatter = logging.Formatter(logfmt, '%H:%M:%S')
