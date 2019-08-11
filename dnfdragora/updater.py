@@ -10,13 +10,16 @@ Author:  Björn Esser <besser82@fedoraproject.org>
 @package dnfdragora
 '''
 
-import dnfdaemon.client, gettext, sched, sys, threading, time, yui
+import dnfdaemon.client, gettext, sched, sys, threading, time, yui, os
 
 from PIL import Image
 from dnfdragora import config, misc, dialogs, ui
 from pystray import Menu, MenuItem
 from pystray import Icon as Tray
 import notify2
+
+import logging
+logger = logging.getLogger('dnfdragora.updater')
 
 notify2.init('dnfdragora-updater')
 
@@ -34,6 +37,10 @@ class Updater:
         self.__updateInterval = 180
         self.__update_count = -1
 
+        self.__log_enabled = False
+        self.__log_directory = None
+        self.__level_debug = False
+
         if self.__config.systemSettings :
             settings = {}
             if 'settings' in self.__config.systemSettings.keys() :
@@ -46,6 +53,26 @@ class Updater:
                 settings = self.__config.userPreferences['settings']
                 if 'interval for checking updates' in settings.keys() :
                     self.__updateInterval = int(settings['interval for checking updates'])
+                if 'log_enabled' in settings.keys() :
+                  self.__log_enabled = settings['log_enabled']
+                if self.__log_enabled and 'log' in settings.keys():
+                  log = settings['log']
+                  if 'directory' in log.keys() :
+                      self.__log_directory = log['directory']
+                  if 'level_debug' in log.keys() :
+                      self.__level_debug = log['level_debug']
+
+        if self.__log_enabled:
+          if self.__log_directory:
+            log_filename = os.path.join(self.__log_directory, "dnfdragora-updater.log")
+            if self.__level_debug:
+              misc.logger_setup(log_filename, loglvl=logging.DEBUG)
+            else:
+              misc.logger_setup(log_filename)
+            print("Logging into %s, debug mode is %s"%(self.__log_directory, ("enabled" if self.__level_debug else "disabled")))
+            logger.info("dnfdragora-updater started")
+        else:
+           print("Logging disabled")
 
         # if missing gets the default icon from our folder (same as dnfdragora)
         icon_path = '/usr/share/dnfdragora/images/'
@@ -59,7 +86,7 @@ class Updater:
 
         theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname() or icon_path
 
-        print("Icon: %s"%(theme_icon_pathname))
+        logger.debug("Icon: %s"%(theme_icon_pathname))
         #empty icon as last chance
         self.__icon = Image.Image()
         try:
@@ -69,8 +96,8 @@ class Updater:
           else:
               self.__icon  = Image.open(theme_icon_pathname)
         except Exception as e:
-          print(e)
-          print("Cannot open theme icon using default one %s"%(icon_path))
+          logger.error(e)
+          logger.error("Cannot open theme icon using default one %s"%(icon_path))
           self.__icon  = Image.open(icon_path)
 
         self.__menu  = Menu(
@@ -90,7 +117,7 @@ class Updater:
       try:
           import xdg.IconTheme
       except ImportError:
-          print ("Error: module xdg.IconTheme is missing")
+          logger.error("Error: module xdg.IconTheme is missing")
           return None
       else:
           pathname = xdg.IconTheme.getIconPath("dnfdragora", 256)
@@ -108,9 +135,9 @@ class Updater:
       return Image.open(io.BytesIO(in_mem_file.getvalue()))
 
     def __shutdown(self, *kwargs):
-        print("shutdown")
+        logger.info("shutdown")
         if self.__main_gui :
-            print("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
+            loger.debug("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
             return
         try:
             self.__running = False
@@ -183,12 +210,12 @@ class Updater:
         try:
             self.__backend = dnfdaemon.client.Client()
         except dnfdaemon.client.DaemonError as error:
-            print(_('Error starting dnfdaemon service: [%s]')%(str(error)))
+            logger.error(_('Error starting dnfdaemon service: [%s]')%(str(error)))
             self.__update_count = -1
             self.__tray.icon = None
             return
         except Exception as e:
-            print(_('Error starting dnfdaemon service: [%s]')%( str(e)))
+            logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
             self.__update_count = -1
             self.__tray.icon = None
             return
@@ -197,6 +224,7 @@ class Updater:
             if self.__backend.Lock():
                 pkgs = self.__backend.GetPackages('updates')
                 self.__update_count = len(pkgs)
+                logger.debug("Found %d updates"%(self.__update_count))
                 self.__backend.Unlock()
                 self.__backend.Exit()
                 time.sleep(0.5)
@@ -213,12 +241,12 @@ class Updater:
                 else:
                     self.__notifier.close()
             else:
-                print("DNF backend already locked cannot check for updates")
+                logger.error("DNF backend already locked cannot check for updates")
                 self.__update_count = -1
                 self.__tray.icon = None
                 self.__backend = None
         except Exception as e:
-            print(_('Exception caught: [%s]')%(str(e)))
+            logger.error(_('Exception caught: [%s]')%(str(e)))
 
 
     def __update_loop(self):
@@ -237,7 +265,7 @@ class Updater:
         self.__updater.start()
         time.sleep(1)
         self.__tray.run(setup=setup)
-        print("dnfdragora-updater termination")
+        logger.info("dnfdragora-updater termination")
 
 
     def main(self):
