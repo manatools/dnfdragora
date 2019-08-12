@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2019-06-15 14:10+0300\n"
+"POT-Creation-Date: 2019-07-09 17:13+0300\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
 "Last-Translator: tomaja <toma.jankovic@gmail.com>, 2019\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/sr/)\n"
@@ -28,22 +28,22 @@ msgstr "Инсталирај и уклони софтвер"
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr "Графички фронтенд за инсталацију, уклањање и ажурирање пакета"
+msgstr "Графички фронтенд за инсталацију, уклањање и надоградњу пакета"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr "dnfdragora-алат за ажурирање"
+msgstr "dnfdragora-алат за надоградњу"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr "Иконица у траци за проверу доступности ажурирања"
+msgstr "Иконица у траци за проверу доступности надоградњи"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr "Аутоматски проверава ажурирања и обавештава"
+msgstr "Аутоматски проверава надоградње и обавештава"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
@@ -58,4 +58,4 @@ msgstr "Инсталер RPM пакета"
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr "Инсталација локалних пакета на систем"
+msgstr "Инсталирај локалне пакете на систем"
