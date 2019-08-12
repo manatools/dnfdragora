@@ -69,7 +69,7 @@ msgstr "инсталирај пакете"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "прикажи дијалог који приказује само ажурирања"
+msgstr "прикажи дијалог који приказује само надоградње"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
@@ -87,7 +87,7 @@ msgstr "dnfdaemon клијент неуспех [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr "Покушај поново корићењем конзолног пријављивања (i.e. \"su -\")"
+msgstr "Покушај поново коришћењем конзолног пријављивања (i.e. \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -125,7 +125,7 @@ msgstr ""
 
 #: dnfdragora/basedragora.py:57
 msgid "Refreshing Repository Metadata"
-msgstr "Освежавање Спремишта за Мета податке"
+msgstr "Освежавање Репозиторијума за Мета податке"
 
 #: dnfdragora/basedragora.py:62
 msgid "Could not refresh the DNF cache (root)"
@@ -229,7 +229,7 @@ msgstr "Прибављање доступних пакета"
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
-msgstr "Прибављање доступних ажурирања"
+msgstr "Прибављање доступних надоградњи"
 
 #: dnfdragora/const.py:105
 msgid "Getting all packages"
@@ -237,7 +237,7 @@ msgstr "Прибављање свих пакета"
 
 #: dnfdragora/const.py:118
 msgid "Updated packages"
-msgstr "Ажурирани пакети"
+msgstr "Надограђени пакети"
 
 #: dnfdragora/const.py:119
 msgid "Downgraded packages"
@@ -249,7 +249,7 @@ msgstr "Застаревање пакета"
 
 #: dnfdragora/const.py:121
 msgid "Obsoleted packages"
-msgstr "Заостали пакети"
+msgstr "Застарели пакети"
 
 #: dnfdragora/const.py:122
 msgid "Erased packages"
@@ -273,7 +273,7 @@ msgstr "Инсталирање"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
-msgstr "Ажурирање"
+msgstr "Надоградња"
 
 #: dnfdragora/const.py:133
 msgid "Removing"
@@ -290,12 +290,12 @@ msgstr "Замена"
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
-msgstr "Ажурирање: %s"
+msgstr "Надоградња: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr "Ажурирано: %s"
+msgstr "Надограђено: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -509,11 +509,11 @@ msgstr "Укључене групе"
 
 #: dnfdragora/dialogs.py:521
 msgid "Exclude"
-msgstr "Искључи"
+msgstr "Одбаци"
 
 #: dnfdragora/dialogs.py:522
 msgid "Exclude packages"
-msgstr "Искључи пакете"
+msgstr "Одбаци пакете"
 
 #: dnfdragora/dialogs.py:523
 msgid "Failover method"
@@ -629,7 +629,7 @@ msgstr "SSL верификација"
 
 #: dnfdragora/dialogs.py:551
 msgid "Throttle"
-msgstr "Чишчење"
+msgstr "Чишћење"
 
 #: dnfdragora/dialogs.py:552
 msgid "Timeout"
@@ -686,7 +686,7 @@ msgstr "Настави без питања за потврду"
 
 #: dnfdragora/dialogs.py:830
 msgid "Interval in minutes to check for updates:"
-msgstr "Интервал у минутама за проверу ажурирања:"
+msgstr "Интервал у минутама за проверу надоградњи:"
 
 #: dnfdragora/dialogs.py:833
 msgid "Layout options"
@@ -694,7 +694,7 @@ msgstr "Опције приказа"
 
 #: dnfdragora/dialogs.py:835
 msgid "Show updates next startup"
-msgstr "Прикажи ажурирања при следећем покретању"
+msgstr "Прикажи надоградњр при следећем покретању"
 
 #: dnfdragora/dialogs.py:836
 msgid "Do not show groups view next startup"
@@ -760,7 +760,7 @@ msgstr "Повера потписа пакета"
 
 #: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1033
 msgid "Applying changes to the system"
-msgstr "Примењујем измене на систем"
+msgstr "Примењујем измене на систему"
 
 #: dnfdragora/dnf_backend.py:198
 msgid "Verify changes on the system"
@@ -785,7 +785,7 @@ msgstr "Архивирање"
 
 #: dnfdragora/groupicons.py:28
 msgid "Backup"
-msgstr "Backup"
+msgstr "Резервна копија"
 
 #: dnfdragora/groupicons.py:32
 msgid "Cd burning"
@@ -1246,7 +1246,7 @@ msgstr "Мултимедијална станица"
 
 #: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
-msgstr "Мрежни компјутер (клијент)"
+msgstr "Мрежни рачунар (клијент)"
 
 #: dnfdragora/groupicons.py:566
 msgid "Office Workstation"
@@ -1329,7 +1329,7 @@ msgstr "Листа фајлова"
 
 #: dnfdragora/ui.py:156
 msgid "Changelog"
-msgstr "Лог о изменама"
+msgstr "Дневник измена"
 
 #: dnfdragora/ui.py:157
 msgid "Requirements"
@@ -1345,7 +1345,7 @@ msgstr "Подешавање Софтвера"
 
 #: dnfdragora/ui.py:328
 msgid "Arch"
-msgstr "Арх."
+msgstr "Arch"
 
 #: dnfdragora/ui.py:328
 msgid "Release"
@@ -1373,7 +1373,7 @@ msgstr "Није инсталирано"
 
 #: dnfdragora/ui.py:345
 msgid "To update"
-msgstr "За ажурирање"
+msgstr "За надоградњу"
 
 #: dnfdragora/ui.py:351
 #, python-format
@@ -1430,7 +1430,7 @@ msgstr "Освежи мета податке"
 
 #: dnfdragora/ui.py:483
 msgid "Repositories"
-msgstr "Спремишта"
+msgstr "Репозиторијуми"
 
 #: dnfdragora/ui.py:494
 msgid "&Information"
@@ -1454,7 +1454,7 @@ msgstr "&О..."
 
 #: dnfdragora/ui.py:546
 msgid "update"
-msgstr "ажурирање"
+msgstr "надоградња"
 
 #: dnfdragora/ui.py:549
 msgid "locked"
@@ -1470,7 +1470,7 @@ msgstr "Недостају информације"
 
 #: dnfdragora/ui.py:884
 msgid "Repository"
-msgstr "Спремиште"
+msgstr "Репозиторијум"
 
 #: dnfdragora/ui.py:995
 msgid "Search"
@@ -1507,7 +1507,7 @@ msgstr "Отвори dnfdragora дијалог"
 
 #: dnfdragora/updater.py:78
 msgid "Check for updates"
-msgstr "Провери да ли има ажурирања"
+msgstr "Провери да ли има надоградњи"
 
 #: dnfdragora/updater.py:79
 msgid "Exit"
@@ -1525,7 +1525,7 @@ msgstr "Грешка при покретању dnfdaemon сервиса: [%s]"
 #: dnfdragora/updater.py:206
 #, python-format
 msgid "%d updates available."
-msgstr "%d ажурирања доступно."
+msgstr "%d надоградњи доступно."
 
 #: dnfdragora/updater.py:220
 #, python-format
