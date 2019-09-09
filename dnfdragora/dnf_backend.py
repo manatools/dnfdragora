@@ -16,6 +16,7 @@ from os import listdir
 import dnfdaemon.client
 
 import dnfdragora.backend
+import dnfdragora.dnfd_client
 import dnfdragora.misc
 import dnfdragora.const as const
 from dnfdragora.misc import ExceptionHandler, TimeFunction
@@ -141,12 +142,12 @@ class DnfPackage(dnfdragora.backend.Package):
         return self.action == 'o' or self.action == 'u'
 
 
-class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
+class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     """Backend to do all the dnf related actions """
 
     def __init__(self, frontend, use_comps=False):
         dnfdragora.backend.Backend.__init__(self, frontend, filters=True)
-        dnfdaemon.client.Client.__init__(self)
+        dnfdragora.dnfd_client.Client.__init__(self)
         self._gpg_confirm = None
         self.dnl_progress = None
         self._files_to_download = 0
@@ -265,18 +266,18 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         #self.frontend.infobar.set_progress(1.0)
         #self.frontend.infobar.reset_all()
 
-    def on_RepoMetaDataProgress(self, name, frac):
-        """Repository Metadata Download progress."""
-        values = (name, frac)
-        #print('on_RepoMetaDataProgress (root): %s', repr(values))
-        logger.debug('on_RepoMetaDataProgress (root): %s', repr(values))
-        if frac == 0.0:
-            self.frontend.infobar.info_sub(name)
-        elif frac == 1.0:
-            self.frontend.infobar.set_progress(1.0)
-            self.frontend.infobar.reset_all()
-        else:
-            self.frontend.infobar.set_progress(frac)
+    #TODO REMOVE def on_RepoMetaDataProgress(self, name, frac):
+    #TODO REMOVE     """Repository Metadata Download progress."""
+    #TODO REMOVE     values = (name, frac)
+    #TODO REMOVE     #print('on_RepoMetaDataProgress (root): %s', repr(values))
+    #TODO REMOVE     logger.debug('on_RepoMetaDataProgress (root): %s', repr(values))
+    #TODO REMOVE     if frac == 0.0:
+    #TODO REMOVE         self.frontend.infobar.info_sub(name)
+    #TODO REMOVE     elif frac == 1.0:
+    #TODO REMOVE         self.frontend.infobar.set_progress(1.0)
+    #TODO REMOVE         self.frontend.infobar.reset_all()
+    #TODO REMOVE     else:
+    #TODO REMOVE         self.frontend.infobar.set_progress(frac)
 
     def setup(self):
         """Setup the dnf backend daemon."""
@@ -294,8 +295,12 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
     def quit(self):
         """Quit the dnf backend daemon."""
         try:
-            self.Unlock()
-            self.Exit()
+          logger.info("Quit")
+          unlock_v = self._run_dbus_sync('Unlock')
+          exit_v = self._run_dbus_sync('Exit')
+          logger.info("Unlock (%s) Exit (%s)", unlock_v, exit_v)
+          #  self.Unlock()
+          #  self.Exit()
         except:
             pass
 
@@ -320,7 +325,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         (n, e, v, r, a, repo_id) = str(pkg_id).split(',')
         return (n, e, v, r, a, repo_id)
 
-    def _make_pkg_object(self, pkgs, flt):
+    def make_pkg_object(self, pkgs, flt):
         """Get a list Package objects from a list of pkg_ids & attrs.
 
         All packages has the same action type.
@@ -390,23 +395,22 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdaemon.client.Client):
         result = []
         for pkg_flt in filters:
             # is this type of packages is already cached ?
-            if not self.cache.is_populated(pkg_flt):
-                print ("not in cache")
-                fields = ['summary', 'size', 'group']  # fields to get
-                po_list = self.GetPackages(pkg_flt, fields)
-                if pkg_flt == 'updates_all':
-                    pkg_flt = 'updates'
-                pkgs = self._make_pkg_object(po_list, pkg_flt)
-                self.cache.populate(pkg_flt, pkgs)
-            result.extend(dnfdragora.backend.Backend.get_packages(self, pkg_flt))
+            if self.cache.is_populated(pkg_flt):
+              result.extend(dnfdragora.backend.Backend.get_packages(self, pkg_flt))
+            else:
+              logger.error("Cache is not populated for %s", pkg_flt) #TODO manage
+        logger.debug('get-packages : %s ', len(result))
         return result
 
     @ExceptionHandler
     @TimeFunction
     def _get_groups_from_packages(self):
         """Get groups by looking for all packages group property."""
-        logger.debug('_get-groups-from-packages')
-        packages = self.get_packages('all')
+        try:
+          packages = self.get_packages('all')
+        except Exception as err:
+          logger.error("Exception %s"%(err))
+        logger.debug('_get-groups-from-packages got %d',len(packages))
         result = []
         append = result.append
         for pkg in packages:

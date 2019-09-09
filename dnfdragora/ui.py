@@ -17,6 +17,8 @@ import platform
 import re
 import yui
 import webbrowser
+from queue import SimpleQueue, Empty
+from enum import Enum
 import dnfdaemon.client
 
 import dnfdragora.basedragora
@@ -32,6 +34,21 @@ from dnfdragora import const
 import gettext
 import logging
 logger = logging.getLogger('dnfdragora.ui')
+
+class DNFDragoraStatus(Enum):
+    '''
+    Enum
+        STARTUP Starting
+        LOCKING Lock requested
+        RUNNING Locked, normal running no requests
+    '''
+    STARTUP = 1
+    LOCKING = 2
+    CACHING_UPDATE = 3
+    CACHING_INSTALLED = 4
+    CACHING_AVAILABLE = 5
+    RUNNING = 6
+
 
 class PackageQueue:
     '''
@@ -132,6 +149,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         constructor
         '''
 
+        self._status = DNFDragoraStatus.STARTUP
+        self._beforeLockAgain = 20 # 20 x 500 ms = 10 sec
         self.running = False
         self.loop_has_finished = False
         self.options = options
@@ -203,6 +222,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # setup UI
         self._setupUI()
 
+        self.dialog.setEnabled(False)
+
+        # TODO ADJUST
         if 'install' in self.options.keys() :
             pkgs = " ".join(self.options['install'])
             self.backend.Install(pkgs)
@@ -218,7 +240,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
 
+        self.backend
+        print("Locking")
+
+        #pkgs = self.backend.GetPackages('available', fields)
+
+
+
         self.dialog.pollEvent()
+        return
+
         self._fillGroupTree()
         sel = self.tree.selectedItem()
         group = None
@@ -1155,7 +1186,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         self.running = True
         while self.running == True:
-            event = self.dialog.waitForEvent()
+            event = self.dialog.waitForEvent(500)
 
             eventType = event.eventType()
 
@@ -1321,8 +1352,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             rebuild_package_list = True
                 else:
                     print(_("Unmanaged widget"))
+            elif (eventType == yui.YEvent.TimeoutEvent) :
+              rebuild_package_list = self._manageDnfDaemonEvent()
+              logger.debug("Rebuilding %s", rebuild_package_list)
+              if not self.backend_locked :
+                logger.debug("Status: %s", self._status)
+                if self._status != DNFDragoraStatus.LOCKING:
+                  self._beforeLockAgain -= 1
+                  if self._beforeLockAgain == 1:
+                    logger.debug("Try locking again")
+                    self._status = DNFDragoraStatus.LOCKING
+                    self._beforeLockAgain = 20
+                    self.backend.Lock()
+                    rebuild_package_list = False
+              if rebuild_package_list:
+                self._fillGroupTree()
+
             else:
-                print(_("Unmanaged event"))
+                print(_("Unmanaged event %d"), eventType)
 
             if rebuild_package_list :
                 sel = self.tree.selectedItem()
@@ -1344,13 +1391,120 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.saveUserPreference()
 
         self.dialog.destroy()
+
         try:
             self.backend.quit()
-        except:
-            pass
+        except Exception as err:
+            logger.error("Excpion on exit %s", err)
         self.loop_has_finished = True
+
+        self.backend.glib_thread.join()
+
         #self.backend.quit()
         #self.backend.release_root_backend()
+
+    def _OnRepoMetaDataProgress(self, name, frac):
+      '''Repository Metadata Download progress.'''
+      values = (name, frac)
+      #print('on_RepoMetaDataProgress (root): %s', repr(values))
+      logger.debug('OnRepoMetaDataProgress: %s', repr(values))
+      if frac == 0.0:
+        self.infobar.reset_all()
+        self.infobar.info_sub(name)
+      elif frac == 1.0:
+        self.infobar.set_progress(1.0)
+      else:
+        self.infobar.set_progress(frac)
+
+    def _cachingRequest(self, pkg_flt):
+      '''
+      request for pacakges to be cached
+      @params pkg_flt (available, installed, updates)
+      '''
+      logger.debug('Start caching %s', pkg_flt)
+      fields = ['summary', 'size', 'group']  # fields to get
+      self.infobar.info_sub("Caching %s"%(pkg_flt))
+      if pkg_flt == 'updates':
+        self._status = DNFDragoraStatus.CACHING_UPDATE
+      elif pkg_flt == 'installed':
+        self._status = DNFDragoraStatus.CACHING_INSTALLED
+      elif pkg_flt == 'available':
+        self._status = DNFDragoraStatus.CACHING_AVAILABLE
+      else:
+        logger.error("Wrong package filter %s", pkg_flt)
+        return
+      self.backend.GetPackages(pkg_flt, fields)
+
+
+    def _populateCache(self, pkg_flt, po_list) :
+      if pkg_flt == 'updates_all':
+        pkg_flt = 'updates'
+      # is this type of packages is already cached ?
+      if not self.backend.cache.is_populated(pkg_flt):
+        pkgs = self.backend.make_pkg_object(po_list, pkg_flt)
+        self.backend.cache.populate(pkg_flt, pkgs)
+
+    def _manageDnfDaemonEvent(self):
+      '''
+      get events from dnfd client queue
+      '''
+      rebuild_package_list = False
+      try:
+        item = self.backend.eventQueue.get_nowait()
+        logger.debug("Event received %s, %s - status %s", item['event'], item['value'], self._status)
+        event = item['event']
+        info = item['value']
+        if (event == 'Lock') :
+          self.backend_locked = info['result']
+          if self.backend_locked :
+            self._status = DNFDragoraStatus.RUNNING
+            self.backend.SetWatchdogState(False)
+            self.backend.ExpireCache()
+          else:
+            self.dialog.setEnabled(self.backend_locked)
+            if self._status == DNFDragoraStatus.LOCKING:
+              if not info['error']:
+                self._status = DNFDragoraStatus.STARTUP
+        elif (event == 'Unlock') :
+          self.backend_locked = False
+        elif (event == 'ExpireCache'):
+          # maybe we can check the result, but we need to clean status bar anyway
+          self.infobar.reset_all()
+          # let's build pacakge cache
+          self.backend.cache.reset()
+          self._cachingRequest('installed')
+        elif (event == 'GetPackages'):
+          if not info['error']:
+            if self._status == DNFDragoraStatus.CACHING_INSTALLED:
+              po_list = info['result']
+              # we requested installed for caching
+              self._populateCache('installed', po_list)
+              self.infobar.set_progress(0.33)
+              self._cachingRequest('updates')
+            elif self._status == DNFDragoraStatus.CACHING_UPDATE:
+              po_list = info['result']
+              # we requested updates for caching
+              self._populateCache('updates', po_list)
+              self.infobar.set_progress(0.66)
+              self._cachingRequest('available')
+            elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
+              po_list = info['result']
+              # we requested available for caching
+              self._populateCache('available', po_list)
+              self.infobar.set_progress(1.0)
+              self._status = DNFDragoraStatus.RUNNING
+              self.dialog.setEnabled(self.backend_locked)
+              self.infobar.reset_all()
+              rebuild_package_list = True
+          else:
+            logger.error("GetPackages error: %s", info['error'])
+        elif (event == 'OnRepoMetaDataProgress'):
+          self._OnRepoMetaDataProgress(info['name'], info['frac'])
+
+      except Empty as e:
+        pass
+
+      return rebuild_package_list
 
     def quit(self):
         self.running = False
