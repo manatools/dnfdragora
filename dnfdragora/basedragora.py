@@ -25,7 +25,6 @@ import dnfdragora.dialogs as dialogs
 import dnfdragora.dnf_backend
 import yui
 
-
 logger = logging.getLogger('dnfdragora.base')
 
 
@@ -51,6 +50,24 @@ class BaseDragora:
     def backend(self):
         return self.get_root_backend()
 
+    @property
+    def backend_locked(self):
+      '''
+      return backend locking status
+      '''
+      return self._root_locked
+
+    @backend_locked.setter
+    def backend_locked(self, value):
+      '''
+      set backend lockinf status
+      '''
+      if isinstance(value, (bool)):
+        self._root_locked = value
+      else:
+        #TODO raise
+        logger.error("Bool value expected")
+
     def reset_cache(self):
         logger.debug('Refresh system cache')
         self.set_working(True, True)
@@ -67,35 +84,38 @@ class BaseDragora:
         if it is not setup yet, the create it
         if it is not locked, then lock it
         """
+        logger.debug('Get root backend. Locked (%s)', self._root_locked)
         if self._root_backend is None:
-            self._root_backend = dnfdragora.dnf_backend.DnfRootBackend(self, self._use_comps)
-        if self._root_locked is False:
+          self._root_backend = dnfdragora.dnf_backend.DnfRootBackend(self, self._use_comps)
+          if self._root_locked is False:
             logger.debug('Lock the DNF root daemon')
-            locked, msg = self._root_backend.setup()
-            if locked:
-                self._root_locked = True
-                #if self._check_cache_expired('system'):
-                #    self.reset_cache()
-                self.backend.ExpireCache()
-                logger.info("Locked the DNF root daemon")
-            else:
-                logger.critical("can't get root backend lock")
-                if msg == 'not-authorized':  # user canceled the polkit dialog
-                    errmsg = _(
-                        'DNF root backend was not authorized.\n'
-                        'dnfdragora will exit')
-                # DNF is locked by another process
-                elif msg == 'locked-by-other':
-                    errmsg = _(
-                        'DNF is locked by another process.\n\n'
-                        'dnfdragora will exit')
-                logger.critical(errmsg)
-                dialogs.warningMsgBox({'title' : _("Sorry"), "text": errmsg})
-                yui.YDialog.deleteTopmostDialog()
-                # next line seems to be a workaround to prevent the qt-app from crashing
-                # see https://github.com/libyui/libyui-qt/issues/41
-                yui.YUILoader.deleteUI()
-                sys.exit(1)
+            self._root_backend.Lock()
+
+        #TODO REMOVE    locked, msg = self._root_backend.setup()
+        #TODO REMOVE    if locked:
+        #TODO REMOVE        self._root_locked = True
+        #TODO REMOVE        #if self._check_cache_expired('system'):
+        #TODO REMOVE        #    self.reset_cache()
+        #TODO REMOVE        self.backend.ExpireCache()
+        #TODO REMOVE        logger.info("Locked the DNF root daemon")
+        #TODO REMOVE    else:
+        #TODO REMOVE        logger.critical("can't get root backend lock")
+        #TODO REMOVE        if msg == 'not-authorized':  # user canceled the polkit dialog
+        #TODO REMOVE            errmsg = _(
+        #TODO REMOVE                'DNF root backend was not authorized.\n'
+        #TODO REMOVE                'dnfdragora will exit')
+        #TODO REMOVE        # DNF is locked by another process
+        #TODO REMOVE        elif msg == 'locked-by-other':
+        #TODO REMOVE            errmsg = _(
+        #TODO REMOVE                'DNF is locked by another process.\n\n'
+        #TODO REMOVE                'dnfdragora will exit')
+        #TODO REMOVE        logger.critical(errmsg)
+        #TODO REMOVE        dialogs.warningMsgBox({'title' : _("Sorry"), "text": errmsg})
+        #TODO REMOVE        yui.YDialog.deleteTopmostDialog()
+        #TODO REMOVE        # next line seems to be a workaround to prevent the qt-app from crashing
+        #TODO REMOVE        # see https://github.com/libyui/libyui-qt/issues/41
+        #TODO REMOVE        yui.YUILoader.deleteUI()
+        #TODO REMOVE        sys.exit(1)
         return self._root_backend
 
     def release_root_backend(self, quit_dnfdaemon=False):
@@ -107,6 +127,8 @@ class BaseDragora:
             self._root_backend.Unlock()
             self._root_locked = False
             logger.info("Unlocked the DNF root daemon")
+        else:
+          self._root_backend = None
         if quit_dnfdaemon:
             logger.debug('Exit the DNF root daemon')
             self._root_backend.Exit()

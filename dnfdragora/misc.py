@@ -217,9 +217,10 @@ def logger_setup(file_name='dnfdragora.log',
                  logfmt='%(asctime)s: %(message)s',
                  loglvl=logging.INFO):
     """Setup Python logging."""
+    maxbytes=10*1024*1024
     handler = logging.handlers.RotatingFileHandler(
-              file_name, maxBytes=2*1024*1024, backupCount=5)
-    logging.basicConfig(filename=file_name, format='%(asctime)s [%(name)s](%(levelname)s) %(message)s', level=loglvl)
+              file_name, maxBytes=maxbytes, backupCount=5)
+    logging.basicConfig(filename=file_name, format='%(asctime)s [%(name)s]{%(filename)s:%(lineno)d}(%(levelname)s) %(message)s', level=loglvl)
     logger.addHandler(handler)
     #logger = logging.getLogger(logroot)
     #logger.setLevel(loglvl)
