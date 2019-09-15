@@ -547,7 +547,8 @@ class DnfDaemonBase:
             pkg_id: pkg_id to get attribute from
             attr: name of attribute to get
         '''
-        return self._run_dbus_sync('GetAttribute', '(ss)', pkg_id, attr)
+        result = self._run_dbus_sync('GetAttribute', '(ss)', pkg_id, attr)
+        return json.loads(result)
 
     def GetPackagesByName(self, name, attr=[], newest_only=True):
         '''Get a list of pkg ids for starts with name
