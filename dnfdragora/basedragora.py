@@ -84,12 +84,15 @@ class BaseDragora:
         if it is not setup yet, the create it
         if it is not locked, then lock it
         """
-        logger.debug('Get root backend. Locked (%s)', self._root_locked)
         if self._root_backend is None:
           self._root_backend = dnfdragora.dnf_backend.DnfRootBackend(self, self._use_comps)
           if self._root_locked is False:
             logger.debug('Lock the DNF root daemon')
             self._root_backend.Lock()
+        else:
+          if self._root_locked is False:
+            logger.warning('Get root backend. Locked (%s)', self._root_locked)
+
 
         #TODO REMOVE    locked, msg = self._root_backend.setup()
         #TODO REMOVE    if locked:
