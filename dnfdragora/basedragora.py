@@ -70,13 +70,7 @@ class BaseDragora:
 
     def reset_cache(self):
         logger.debug('Refresh system cache')
-        self.set_working(True, True)
-        self.infobar.info(_('Refreshing Repository Metadata'))
-        rc = self._root_backend.ExpireCache()
-        self.set_working(False)
-        self.infobar.info("")
-        if not rc:
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _('Could not refresh the DNF cache (root)')})
+        self._root_backend.ExpireCache()
 
     def get_root_backend(self):
         """Get the current root backend.
