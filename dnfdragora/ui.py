@@ -1215,7 +1215,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             else:
                                 rebuild_package_list = True
                     elif item == self.fileMenu['reload'] :
+                        self.infobar.reset_all()
+                        self.infobar.info(_('Refreshing Repository Metadata'))
                         self.reset_cache()
+                        self.dialog.setEnabled(False)
                     elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
                         refresh_data=rd.run()
@@ -1433,12 +1436,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''
       logger.debug('Start caching %s', pkg_flt)
       fields = ['summary', 'size', 'group']  # fields to get
-      self.infobar.info_sub("Caching %s"%(pkg_flt))
       if pkg_flt == 'updates' or pkg_flt == 'updates_all':
+        self.infobar.info_sub(_("Caching updates"))
         self._status = DNFDragoraStatus.CACHING_UPDATE
       elif pkg_flt == 'installed':
+        self.infobar.info_sub(_("Caching installed"))
         self._status = DNFDragoraStatus.CACHING_INSTALLED
       elif pkg_flt == 'available':
+        self.infobar.info_sub(_("Caching available"))
         self._status = DNFDragoraStatus.CACHING_AVAILABLE
       else:
         logger.error("Wrong package filter %s", pkg_flt)
@@ -1492,6 +1497,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.infobar.reset_all()
           # let's build pacakge cache
           self.backend.cache.reset()
+          self.infobar.info(_('Creating packages cache'))
           self._cachingRequest('installed')
         elif (event == 'GetPackages'):
           if not info['error']:
