@@ -160,6 +160,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.toInstall = []
         self.itemList = {}
         self.appname = "dnfdragora"
+        self._selPkg = None
 
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -635,7 +636,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         sel_pkg = self._selectedPackage()
         # reset info view
-        self.info.setValue("")
+        # TODO self.info.setValue("")
 
         yui.YUI.app().busyCursor()
 
@@ -969,6 +970,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 else:
                     s+= missing
             self.info.setValue(s)
+        else:
+          logger.warning("_setInfoOnWidget without package")
 
     def _searchPackages(self, filter='all', createTreeItem=False) :
         '''
@@ -1252,10 +1255,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 else:
                     url = yui.toYMenuEvent(event).id()
                     if url :
+                        logger.debug("Url selected: %s", url)
                         if url in self.infoshown.keys():
                             self.infoshown[url]["show"] = not self.infoshown[url]["show"]
+                            logger.debug("Info to show: %s"%(self.infoshown))
                             sel_pkg = self._selectedPackage()
                             self._setInfoOnWidget(sel_pkg)
+                            self._selPkg = sel_pkg
                         else :
                             logger.debug("run browser, URL: %s"%url)
                             webbrowser.open(url, 2)
@@ -1292,6 +1298,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                             self.packageQueue.add(pkg, 'r')
                                         self._setStatusToItem(pkg, self.itemList[it]['item'], True)
                                     break
+                    else:
+                      logger.debug("pacakge list selected, but no items changed")
 
                 elif (widget == self.reset_search_button) :
                     #### RESET
@@ -1354,7 +1362,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     print(_("Unmanaged widget"))
             elif (eventType == yui.YEvent.TimeoutEvent) :
               rebuild_package_list = self._manageDnfDaemonEvent()
-              logger.debug("Rebuilding %s", rebuild_package_list)
               if not self.backend_locked :
                 logger.debug("Status: %s", self._status)
                 if self._status != DNFDragoraStatus.LOCKING:
@@ -1366,6 +1373,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.backend.Lock()
                     rebuild_package_list = False
               if rebuild_package_list:
+                logger.debug("Rebuilding %s", rebuild_package_list)
                 self._fillGroupTree()
 
             else:
@@ -1380,7 +1388,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             sel_pkg = self._selectedPackage()
             if sel_pkg :
+              if self._selPkg != sel_pkg:
                 self._setInfoOnWidget(sel_pkg)
+                self._selPkg = sel_pkg
 
             if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
                 self.applyButton.setEnabled()
@@ -1424,7 +1434,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       logger.debug('Start caching %s', pkg_flt)
       fields = ['summary', 'size', 'group']  # fields to get
       self.infobar.info_sub("Caching %s"%(pkg_flt))
-      if pkg_flt == 'updates':
+      if pkg_flt == 'updates' or pkg_flt == 'updates_all':
         self._status = DNFDragoraStatus.CACHING_UPDATE
       elif pkg_flt == 'installed':
         self._status = DNFDragoraStatus.CACHING_INSTALLED
@@ -1451,9 +1461,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       rebuild_package_list = False
       try:
         item = self.backend.eventQueue.get_nowait()
-        logger.debug("Event received %s, %s - status %s", item['event'], item['value'], self._status)
         event = item['event']
         info = item['value']
+        logger.debug("Event received %s - status %s", event, self._status)
+
+        is_dict = isinstance(info, dict)
+        if is_dict:
+          if 'error' in info.keys() and 'result' in info.keys():
+            if info['error']:
+              logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
+            elif info['result']:
+              is_list = isinstance(info['result'], list)
+              logger.debug("Event received %s, %s - status %s", event, len(info['result']) if is_list else info, self._status)
+
         if (event == 'Lock') :
           self.backend_locked = info['result']
           if self.backend_locked :
@@ -1480,7 +1500,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               # we requested installed for caching
               self._populateCache('installed', po_list)
               self.infobar.set_progress(0.33)
-              self._cachingRequest('updates')
+              self._cachingRequest('updates_all')
             elif self._status == DNFDragoraStatus.CACHING_UPDATE:
               po_list = info['result']
               # we requested updates for caching
