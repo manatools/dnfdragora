@@ -224,6 +224,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._setupUI()
 
         self.dialog.setEnabled(False)
+        self.pbar_layout.setEnabled(True)
 
         # TODO ADJUST
         if 'install' in self.options.keys() :
@@ -368,7 +369,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
         hbox_bottom = self.factory.createHBox(vbox)
-        pbar_layout = self.factory.createHBox(vbox)
+        self.pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
         hbox_headbar.setWeight(1,10)
@@ -513,7 +514,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setWeight(yui.YD_HORIZ,40)
         self.info.setWeight(yui.YD_VERT, 40)
 
-        self.infobar = progress_ui.ProgressBar(self.dialog, pbar_layout)
+        self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
         self.applyButton.setWeight(0,3)
@@ -1169,17 +1170,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.config.userPreferences['view']['show'] = 'all'
         self.config.saveUserPreferences()
 
-    def _load_history(self):
+    def _load_history(self, transactions):
         '''
         Load history and populate view.
-        @return if undo action has been performed
+        Args:
+            list of (transaction is, date-time) pairs
         '''
-
-        result = self.backend.GetHistoryByDays(
-                    0, 120) #TODO add in config file
-
         hw = dialogs.HistoryView(self)
-        undo = hw.run(result)
+        undo = hw.run(transactions)
         hw = None
         return undo
 
@@ -1219,6 +1217,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.infobar.info(_('Refreshing Repository Metadata'))
                         self.reset_cache()
                         self.dialog.setEnabled(False)
+                        self.pbar_layout.setEnabled(True)
                     elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
                         refresh_data=rd.run()
@@ -1236,21 +1235,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         up = dialogs.UserPrefsDialog(self)
                         up.run()
                     elif item == self.infoMenu['history'] :
-                        performedUNDO = self._load_history()
-                        if performedUNDO:
-                            sel = self.tree.selectedItem()
-                            if sel :
-                                group = self._groupNameFromItem(self.groupList, sel)
-                                filter = self._filterNameSelected()
-                                if (group == "Search"):
-                                    # force tree rebuilding to show new pacakge status
-                                    if not self._searchPackages(filter, True) :
-                                        rebuild_package_list = True
-                                else:
-                                    if filter == "to_update":
-                                        self._fillGroupTree()
-                                    rebuild_package_list = True
-
+                        self.backend.GetHistoryByDays(
+                          0, 120) #TODO add in config file
                     elif item == self.helpMenu['help']  :
                         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
@@ -1526,6 +1512,26 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.error("GetPackages error: %s", info['error'])
         elif (event == 'OnRepoMetaDataProgress'):
           self._OnRepoMetaDataProgress(info['name'], info['frac'])
+        elif (event == 'GetHistoryByDays'):
+          if not info['error']:
+            transaction_list = info['result']
+            self._load_history(transaction_list)
+            #### TODO fix history undo transaction
+            # TODO if performedUNDO:
+            # TODO   sel = self.tree.selectedItem()
+            # TODO   if sel :
+            # TODO       group = self._groupNameFromItem(self.groupList, sel)
+            # TODO       filter = self._filterNameSelected()
+            # TODO       if (group == "Search"):
+            # TODO           # force tree rebuilding to show new pacakge status
+            # TODO           if not self._searchPackages(filter, True) :
+            # TODO               rebuild_package_list = True
+            # TODO       else:
+            # TODO           if filter == "to_update":
+            # TODO               self._fillGroupTree()
+            # TODO           rebuild_package_list = True
+        elif (event == 'HistoryUndo'):
+          pass
 
       except Empty as e:
         pass

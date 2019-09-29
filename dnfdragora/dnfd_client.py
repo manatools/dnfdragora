@@ -813,7 +813,9 @@ class Client(DnfDaemonBase):
         Returns:
             list of (pkg_id, state, installed) pairs
         '''
-        self._run_dbus_async('GetHistoryPackages', '(i)', tid)
+        #self._run_dbus_async('GetHistoryPackages', '(i)', tid)
+        result = self._run_dbus_sync('GetHistoryPackages', '(i)', tid)
+        return json.loads(result)
 
     def HistoryUndo(self, tid):
         """Undo a given dnf history transaction id
