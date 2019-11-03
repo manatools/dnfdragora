@@ -35,6 +35,17 @@ import gettext
 import logging
 logger = logging.getLogger('dnfdragora.ui')
 
+class UIError(Exception):
+  'Raise an Error from UI'
+  def __init__(self, msg=None):
+    self.msg = msg
+
+  def __str__(self):
+    if self.msg:
+      return self.msg
+    else:
+      return ""
+
 class DNFDragoraStatus(Enum):
     '''
     Enum
@@ -223,7 +234,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # setup UI
         self._setupUI()
 
-        self.dialog.setEnabled(False)
+        self._enableAction(False)
         self.pbar_layout.setEnabled(True)
 
         # TODO ADJUST
@@ -371,6 +382,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         hbox_bottom = self.factory.createHBox(vbox)
         self.pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
+
+        #######
+        foot_align_left = self.factory.createLeft(hbox_footbar)
+        foot_align_right = self.factory.createRight(hbox_footbar)
+        hbox_footbar = self.factory.createHBox(foot_align_left)
+        right_footbar = self.factory.createHBox(foot_align_right)
+        #######
+
+        self.menu_layout = hbox_headbar
+        self.top_layout = hbox_top
+        self.middle_layout = hbox_middle
+        self.bottom_layout = hbox_bottom
+        self.footbar_layout = hbox_footbar
 
         hbox_headbar.setWeight(1,10)
         hbox_top.setWeight(1,10)
@@ -524,8 +548,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.checkAllButton.setWeight(0,3)
         self.checkAllButton.setEnabled(False)
 
-        self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Quit"))
-        self.quitButton.setWeight(0,6)
+        spacing = self.factory.createHStretch(right_footbar)
+        spacing.setWeight(0,3)
+        self.quitButton = self.factory.createIconButton(right_footbar,"",_("&Quit"))
+        self.quitButton.setWeight(0,3)
 
         # build File menu
         self.fileMenu = {
@@ -577,6 +603,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.helpMenu['widget'].rebuildMenuTree()
 
+    def _enableAction(self, value=True):
+      '''
+      disable ui actions but let's allow to quit
+      '''
+      self.menu_layout.setEnabled(value)
+      self.top_layout.setEnabled(value)
+      self.middle_layout.setEnabled(value)
+      self.bottom_layout.setEnabled(value)
+      self.footbar_layout.setEnabled(value)
 
     def _setStatusToItem(self, pkg, item, emit_changed=False) :
         '''
@@ -1216,7 +1251,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.infobar.reset_all()
                         self.infobar.info(_('Refreshing Repository Metadata'))
                         self.reset_cache()
-                        self.dialog.setEnabled(False)
+                        self._enableAction(False)
                         self.pbar_layout.setEnabled(True)
                     elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
@@ -1472,7 +1507,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.backend.SetWatchdogState(False)
             self.backend.ExpireCache()
           else:
-            self.dialog.setEnabled(self.backend_locked)
+            self._enableAction(self.backend_locked)
             if self._status == DNFDragoraStatus.LOCKING:
               if not info['error']:
                 self._status = DNFDragoraStatus.STARTUP
@@ -1505,11 +1540,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self._populateCache('available', po_list)
               self.infobar.set_progress(1.0)
               self._status = DNFDragoraStatus.RUNNING
-              self.dialog.setEnabled(self.backend_locked)
+              self._enableAction(self.backend_locked)
               self.infobar.reset_all()
               rebuild_package_list = True
           else:
             logger.error("GetPackages error: %s", info['error'])
+            raise UIError(str(info['error']))
         elif (event == 'OnRepoMetaDataProgress'):
           self._OnRepoMetaDataProgress(info['name'], info['frac'])
         elif (event == 'GetHistoryByDays'):
