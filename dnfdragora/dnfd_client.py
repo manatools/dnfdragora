@@ -276,9 +276,11 @@ class DnfDaemonBase:
             user_data['error'] = None
         #user_data['main_loop'].quit()
 
+        self._sent = False
         response = self._get_result(user_data)
         self.eventQueue.put({'event': user_data['cmd'], 'value': response})
         logger.debug("Quit return_handler error %s", user_data['error'])
+
 
 
     def _get_result(self, user_data):
@@ -407,35 +409,59 @@ class DnfDaemonBase:
         #print("TransactionEvent : %s" % event)
         #if data:
             #print("Data :\n", data)
-        pass
+        self.eventQueue.put({'event': 'OnTransactionEvent',
+                             'value':
+                               {'event':event,
+                                'data':data,  }})
 
     def on_RPMProgress(
             self, package, action, te_current, te_total, ts_current, ts_total):
         #print("RPMProgress : %s %s" % (action, package))
-        pass
+        self.eventQueue.put({'event': 'OnRPMProgress',
+                             'value':
+                               {'package':package,
+                                'action':action,
+                                'te_current':te_current,
+                                'te_total':te_total,
+                                'ts_current':ts_current,
+                                'ts_total':ts_total,}})
 
     def on_GPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
         #values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
         #print("on_GPGImport : %s" % (repr(values)))
-        pass
+        self.eventQueue.put({'event': 'OnGPGImport',
+                             'value':
+                               {'pkg_id':pkg_id,
+                                'userid':userid,
+                                'hexkeyid':hexkeyid,
+                                'keyurl':keyurl,
+                                'timestamp':timestamp,}})
 
     def on_DownloadStart(self, num_files, num_bytes):
         ''' Starting a new parallel download batch '''
         #values = (num_files, num_bytes)
         #print("on_DownloadStart : %s" % (repr(values)))
-        pass
+        self.eventQueue.put({'event': 'OnDownloadStart',
+                             'value':
+                               {'num_files':num_files,
+                                'num_bytes':num_bytes,  }})
 
     def on_DownloadProgress(self, name, frac, total_frac, total_files):
         ''' Progress for a single instance in the batch '''
         #values = (name, frac, total_frac, total_files)
         #print("on_DownloadProgress : %s" % (repr(values)))
-        pass
+        self.eventQueue.put({'event': 'OnDownloadProgress',
+                             'value':
+                               {'name':name,
+                                'frac':frac,
+                                'total_frac':total_frac,
+                                'total_files':total_files,  }})
 
     def on_DownloadEnd(self, name, status, msg):
         ''' Download of af single instace ended '''
         #values = (name, status, msg)
         #print("on_DownloadEnd : %s" % (repr(values)))
-        pass
+        self.eventQueue.put({'event': 'OnDownloadEnd', 'value': {'name':name, 'status':status, 'msg':msg,  }})
 
     def on_RepoMetaDataProgress(self, name, frac):
         ''' Repository Metadata Download progress '''
@@ -446,7 +472,8 @@ class DnfDaemonBase:
     def on_ErrorMessage(self, msg):
         ''' Error message from daemon service '''
         #print("on_ErrorMessage : %s" % (msg))
-        pass
+        self.eventQueue.put({'event': 'OnErrorMessage', 'value': {'msg':msg,  }})
+
 
 #
 # API Methods
@@ -640,7 +667,7 @@ class ClientReadOnly(DnfDaemonBase):
 
 
 class Client(DnfDaemonBase):
-    '''A class to communicate with the yumdaemon DBus services in a easy way
+    '''A class to communicate with the dnfdaemon DBus services in a easy way
     '''
 
     def __init__(self):
@@ -671,29 +698,40 @@ class Client(DnfDaemonBase):
 # API Methods
 #
 
-    def SetConfig(self, setting, value):
+    def SetConfig(self, setting, value, sync=False):
         '''Set a dnf config setting
 
         Args:
             setting: yum conf setting to set
             value: value to set
         '''
-        self._run_dbus_async(
-            'SetConfig', '(ss)', setting, json.dumps(value))
+        if not sync:
+          self._run_dbus_async(
+              'SetConfig', '(ss)', setting, json.dumps(value))
+        else:
+          return self._run_dbus_sync(
+              'SetConfig', '(ss)', setting, json.dumps(value))
 
-    def ClearTransaction(self):
+    def ClearTransaction(self, sync=False):
         '''Clear the current transaction. '''
-        self._run_dbus_async('ClearTransaction')
+        if not sync:
+          self._run_dbus_async('ClearTransaction')
+        else:
+          return self._run_dbus_sync('ClearTransaction')
 
-    def GetTransaction(self):
+    def GetTransaction(self, sync=False):
         '''Get the current transaction
 
         Returns:
             the current transaction
         '''
-        self._run_dbus_async('GetTransaction')
+        if not sync:
+          self._run_dbus_async('GetTransaction')
+        else:
+          result = self._run_dbus_sync('GetTransaction')
+          return json.loads(result)
 
-    def AddTransaction(self, id, action):
+    def AddTransaction(self, id, action, sync=False):
         '''Add an package to the current transaction
 
         Args:
@@ -701,18 +739,26 @@ class Client(DnfDaemonBase):
             action: the action to perform ( install, update, remove,
                     obsolete, reinstall, downgrade, localinstall )
         '''
-        self._run_dbus_async('AddTransaction', '(ss)', id, action)
+        if not sync:
+          self._run_dbus_async('AddTransaction', '(ss)', id, action)
+        else:
+          result = self._run_dbus_sync('AddTransaction', '(ss)', id, action)
+          return json.loads(result)
 
-    def GroupInstall(self, pattern):
+    def GroupInstall(self, pattern, sync=False):
         '''Do a group install <pattern string>,
         same as dnf group install <pattern string>
 
         Args:
             pattern: group pattern to install
         '''
-        self._run_dbus_async('GroupInstall', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('GroupInstall', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('GroupInstall', '(s)', pattern)
+          return json.loads(result)
 
-    def GroupRemove(self, pattern):
+    def GroupRemove(self, pattern, sync=False):
         '''
         Do a group remove <pattern string>,
         same as dnf group remove <pattern string>
@@ -720,28 +766,40 @@ class Client(DnfDaemonBase):
         Args:
             pattern: group pattern to remove
         '''
-        self._run_dbus_async('GroupRemove', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('GroupRemove', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('GroupRemove', '(s)', pattern)
+          return json.loads(result)
 
 
-    def Install(self, pattern):
+    def Install(self, pattern, sync=False):
         '''Do a install <pattern string>,
         same as dnf install <pattern string>
 
         Args:
             pattern: package pattern to install
         '''
-        self._run_dbus_async('Install', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('Install', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('Install', '(s)', pattern)
+          return json.loads(result)
 
-    def Remove(self, pattern):
+    def Remove(self, pattern, sync=False):
         '''Do a install <pattern string>,
         same as dnf remove <pattern string>
 
         Args:
             pattern: package pattern to remove
         '''
-        self._run_dbus_async('Remove', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('Remove', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('Remove', '(s)', pattern)
+          return json.loads(result)
 
-    def Update(self, pattern):
+    def Update(self, pattern, sync=False):
         '''Do a update <pattern string>,
         same as dnf update <pattern string>
 
@@ -749,9 +807,13 @@ class Client(DnfDaemonBase):
             pattern: package pattern to update
 
         '''
-        self._run_dbus_async('Update', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('Update', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('Update', '(s)', pattern)
+          return json.loads(result)
 
-    def Reinstall(self, pattern):
+    def Reinstall(self, pattern, sync=False):
         '''Do a reinstall <pattern string>,
         same as dnf reinstall <pattern string>
 
@@ -759,29 +821,45 @@ class Client(DnfDaemonBase):
             pattern: package pattern to reinstall
 
         '''
-        self._run_dbus_async('Reinstall', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('Reinstall', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('Reinstall', '(s)', pattern)
+          return json.loads(result)
 
-    def Downgrade(self, pattern):
+    def Downgrade(self, pattern, sync=False):
         '''Do a install <pattern string>, same as yum remove <pattern string>
 
         Args:
             pattern: package pattern to downgrade
         '''
-        self._run_dbus_async('Downgrade', '(s)', pattern)
+        if not sync:
+          self._run_dbus_async('Downgrade', '(s)', pattern)
+        else:
+          result = self._run_dbus_sync('Downgrade', '(s)', pattern)
+          return json.loads(result)
 
-    def BuildTransaction(self):
+    def BuildTransaction(self, sync=False):
         '''Get a list of pkg ids for the current availabe updates '''
-        self._run_dbus_async('BuildTransaction')
+        if not sync:
+          self._run_dbus_async('BuildTransaction')
+        else:
+          result = self._run_dbus_sync('BuildTransaction')
+          return json.loads(result)
 
-    def RunTransaction(self):
+    def RunTransaction(self, sync=False):
         ''' Get a list of pkg ids for the current availabe updates
 
         Args:
             max_err: maximun number of download error before we bail out
         '''
-        self._run_dbus_async('RunTransaction')
+        if not sync:
+          self._run_dbus_async('RunTransaction')
+        else:
+          result = self._run_dbus_sync('RunTransaction')
+          return json.loads(result)
 
-    def GetHistoryByDays(self, start_days, end_days):
+    def GetHistoryByDays(self, start_days, end_days, sync=False):
         '''Get History transaction in a interval of days from today
 
         Args:
@@ -791,9 +869,13 @@ class Client(DnfDaemonBase):
         Returns:
             list of (transaction is, date-time) pairs
         '''
-        self._run_dbus_async('GetHistoryByDays', '(ii)', start_days, end_days)
+        if not sync:
+          self._run_dbus_async('GetHistoryByDays', '(ii)', start_days, end_days)
+        else:
+          result = self._run_dbus_sync('GetHistoryByDays', '(ii)', start_days, end_days)
+          return json.loads(result)
 
-    def HistorySearch(self, pattern):
+    def HistorySearch(self, pattern, sync=False):
         '''Search the history for transaction matching a pattern
 
         Args:
@@ -802,9 +884,13 @@ class Client(DnfDaemonBase):
         Returns:
             list of (tid,isodates)
         '''
-        self._run_dbus_async('HistorySearch', '(as)', pattern)
+        if not sync:
+          self._run_dbus_async('HistorySearch', '(as)', pattern)
+        else:
+          result = self._run_dbus_sync('HistorySearch', '(as)', pattern)
+          return json.loads(result)
 
-    def GetHistoryPackages(self, tid):
+    def GetHistoryPackages(self, tid, sync=False):
         '''Get packages from a given yum history transaction id
 
         Args:
@@ -813,11 +899,13 @@ class Client(DnfDaemonBase):
         Returns:
             list of (pkg_id, state, installed) pairs
         '''
-        #self._run_dbus_async('GetHistoryPackages', '(i)', tid)
-        result = self._run_dbus_sync('GetHistoryPackages', '(i)', tid)
-        return json.loads(result)
+        if not sync:
+          self._run_dbus_async('GetHistoryPackages', '(i)', tid)
+        else:
+          result = self._run_dbus_sync('GetHistoryPackages', '(i)', tid)
+          return json.loads(result)
 
-    def HistoryUndo(self, tid):
+    def HistoryUndo(self, tid, sync=False):
         """Undo a given dnf history transaction id
 
         Args:
@@ -826,13 +914,22 @@ class Client(DnfDaemonBase):
         Returns:
             (rc, messages)
         """
-        self._run_dbus_async('HistoryUndo', '(i)', tid)
+        if not sync:
+          self._run_dbus_async('HistoryUndo', '(i)', tid)
+        else:
+          result = self._run_dbus_sync('HistoryUndo', '(i)', tid)
+          return json.loads(result)
 
-    def ConfirmGPGImport(self, hexkeyid, confirmed):
+
+
+    def ConfirmGPGImport(self, hexkeyid, confirmed, sync=False):
         '''Confirm import of at GPG Key by yum
 
         Args:
             hexkeyid: hex keyid for GPG key
             confirmed: confirm import of key (True/False)
         '''
-        self._run_dbus_async('ConfirmGPGImport', '(si)', hexkeyid, confirmed)
+        if not sync:
+          self._run_dbus_async('ConfirmGPGImport', '(si)', hexkeyid, confirmed)
+        else:
+          self._run_dbus_sync('ConfirmGPGImport', '(si)', hexkeyid, confirmed)

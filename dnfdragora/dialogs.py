@@ -259,26 +259,27 @@ class HistoryView:
         return performedUndo
 
     def _on_history_undo(self):
-        '''Handle the undo button'''
+      '''Handle the undo button'''
 
-        sel = self._historyTree.selectedItem()
-        tid = self._getTID(sel)
-        undo = False
-        if tid:
-            logger.debug('History Undo : %s', tid)
-            rc, messages = self.parent.backend.HistoryUndo(tid)
-            if rc:
-                undo = self._run_transaction()
-            else:
-                msg = "Can't undo history transaction :\n%s" % \
-                    ("\n".join(messages))
-                logger.debug(msg)
-                warningMsgBox({
-                    "title": _("History undo"),
-                    "text":  msg,
-                    "richtext": False,
-                    })
-        return undo
+      sel = self._historyTree.selectedItem()
+      tid = self._getTID(sel)
+      if tid:
+        logger.debug('History Undo : %s', tid)
+        self.parent.backend.HistoryUndo(tid)
+        ## TODO REMOVE rc, messages = self.parent.backend.HistoryUndo(tid)
+        ## TODO REMOVE if rc:
+        ## TODO REMOVE     undo = self._run_transaction()
+        ## TODO REMOVE else:
+        ## TODO REMOVE     msg = "Can't undo history transaction :\n%s" % \
+        ## TODO REMOVE         ("\n".join(messages))
+        ## TODO REMOVE     logger.debug(msg)
+        ## TODO REMOVE     warningMsgBox({
+        ## TODO REMOVE         "title": _("History undo"),
+        ## TODO REMOVE         "text":  msg,
+        ## TODO REMOVE         "richtext": False,
+        ## TODO REMOVE         })
+      return True
+
 
     def run(self, data):
         '''

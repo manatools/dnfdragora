@@ -148,7 +148,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     def __init__(self, frontend, use_comps=False):
         dnfdragora.backend.Backend.__init__(self, frontend, filters=True)
         dnfdragora.dnfd_client.Client.__init__(self)
-        self._gpg_confirm = None
         self.dnl_progress = None
         self._files_to_download = 0
         self._files_downloaded = 0
@@ -156,7 +155,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self._group_cache = None
         self._protected = None
         self._pkg_id_to_groups_cache = None
-        self._package_name = None
 
         if self.running_api_version == const.NEEDED_DAEMON_API:
             logger.debug('dnfdaemon api version (%d)',
@@ -169,115 +167,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                                    {'actual': self.running_api_version,
                                     'required': const.NEEDED_DAEMON_API})
 
-    def on_TransactionEvent(self, event, data):
-        if event == 'start-run':
-            print('on_TransactionEvent start')
-            self.frontend.infobar.info(_('Start transaction'))
-        elif event == 'download':
-            print('on_TransactionEvent download')
-            self.frontend.infobar.info(_('Downloading packages'))
-        elif event == 'pkg-to-download':
-            self._dnl_packages = data
-        elif event == 'signature-check':
-            print('on_TransactionEvent signature')
-            # self.frontend.infobar.show_progress(False)
-            self.frontend.infobar.set_progress(0.0)
-            self.frontend.infobar.info(_('Checking package signatures'))
-            self.frontend.infobar.set_progress(1.0)
-            self.frontend.infobar.info_sub('')
-        elif event == 'run-test-transaction':
-            print('on_TransactionEvent test')
-            # self.frontend.infobar.info(_('Testing Package Transactions')) #
-            # User don't care
-            pass
-        elif event == 'run-transaction':
-            print('on_TransactionEvent run transaction')
-            self.frontend.infobar.info(_('Applying changes to the system'))
-            self.frontend.infobar.info_sub('')
-        elif event == 'verify':
-            print('on_TransactionEvent verify')
-            self.frontend.infobar.info(_('Verify changes on the system'))
-            #self.frontend.infobar.hide_sublabel()
-        # elif event == '':
-        elif event == 'fail':
-            print('on_TransactionEvent fail')
-            self.frontend.infobar.reset_all()
-        elif event == 'end-run':
-            print('on_TransactionEvent end')
-            self.frontend.infobar.set_progress(1.0)
-            self.frontend.infobar.reset_all()
-        else:
-            logger.debug('TransactionEvent : %s', event)
-
-    def on_RPMProgress(self, package, action, te_current,
-                       te_total, ts_current, ts_total):
-        #print('on_RPMProgress')
-        num = ' ( %i/%i )' % (ts_current, ts_total)
-        if ',' in package:  # this is a pkg_id
-            name = dnfdragora.misc.pkg_id_to_full_name(package)
-        else:  # this is just a pkg name (cleanup)
-            name = package
-        if (not self._package_name or name != self._package_name) :
-            #let's log once
-            logger.debug('on_RPMProgress : [%s]', package)
-            #print (const.RPM_ACTIONS[action] % name)
-            try:
-                self.frontend.infobar.info_sub(const.RPM_ACTIONS[action] % name)
-            except KeyError:
-                logger.debug('on_RPMProgress: unknown action %s', action)
-        self._package_name = name
-        if ts_current > 0 and ts_current <= ts_total:
-            frac = float(ts_current) / float(ts_total)
-            self.frontend.infobar.set_progress(frac, label=num)
-
-    def on_GPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
-        print('on_GPGImport')
-        values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
-        self._gpg_confirm = values
-        logger.debug('received signal : GPGImport %s', repr(values))
-
-    def on_DownloadStart(self, num_files, num_bytes):
-        """Starting a new parallel download batch."""
-        #values =  (num_files, num_bytes)
-        #print('on_DownloadStart : %s' % (repr(values)))
-        self._files_to_download = num_files
-        self._files_downloaded = 0
-        self.frontend.infobar.set_progress(0.0)
-        self.frontend.infobar.info_sub(
-            _('Downloading %(count_files)d files (%(count_bytes)sB)...') %
-            {'count_files':num_files, 'count_bytes': dnfdragora.misc.format_number(num_bytes)})
-
-    def on_DownloadProgress(self, name, frac, total_frac, total_files):
-        """Progress for a single element in the batch."""
-        #values =  (name, frac, total_frac, total_files)
-        #print('on_DownloadProgress : %s' % (repr(values)))
-        num = '( %d/%d )' % (self._files_downloaded, self._files_to_download)
-        self.frontend.infobar.set_progress(total_frac, label=num)
-
-    def on_DownloadEnd(self, name, status, msg):
-        """Download of af single element ended."""
-        #values =  (name, status, msg)
-        #print('on_DownloadEnd : %s' % (repr(values)))
-        if status == -1 or status == 2:  # download OK or already exists
-            logger.debug('Downloaded : %s', name)
-            self._files_downloaded += 1
-        else:
-            logger.error('Download Error : %s - %s', name, msg)
-        #self.frontend.infobar.set_progress(1.0)
-        #self.frontend.infobar.reset_all()
-
-    #TODO REMOVE def on_RepoMetaDataProgress(self, name, frac):
-    #TODO REMOVE     """Repository Metadata Download progress."""
-    #TODO REMOVE     values = (name, frac)
-    #TODO REMOVE     #print('on_RepoMetaDataProgress (root): %s', repr(values))
-    #TODO REMOVE     logger.debug('on_RepoMetaDataProgress (root): %s', repr(values))
-    #TODO REMOVE     if frac == 0.0:
-    #TODO REMOVE         self.frontend.infobar.info_sub(name)
-    #TODO REMOVE     elif frac == 1.0:
-    #TODO REMOVE         self.frontend.infobar.set_progress(1.0)
-    #TODO REMOVE         self.frontend.infobar.reset_all()
-    #TODO REMOVE     else:
-    #TODO REMOVE         self.frontend.infobar.set_progress(frac)
 
     def setup(self):
         """Setup the dnf backend daemon."""
