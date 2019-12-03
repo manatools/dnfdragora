@@ -172,6 +172,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.itemList = {}
         self.appname = "dnfdragora"
         self._selPkg = None
+        # TODO... _package_name, _gpg_confirm impoorted from old event management
+        # Try to remove them when fixing progress bar
+        self._package_name = None
+        self._gpg_confirm = None
+        self._files_to_download = 0
+        self._files_downloaded = 0
+        # ...TODO
 
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -1095,32 +1102,34 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         Clear and populate a transaction
         '''
-        self.backend.ClearTransaction()
+        sync = True
+        self.backend.ClearTransaction(sync)
         for action in const.QUEUE_PACKAGE_TYPES:
             pkg_ids = self.packageQueue.get(action)
             for pkg_id in pkg_ids:
                 logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkg_id))
                 rc, trans = self.backend.AddTransaction(
-                    pkg_id, const.QUEUE_PACKAGE_TYPES[action])
+                    pkg_id, const.QUEUE_PACKAGE_TYPES[action], sync)
                 if not rc:
                     logger.error('AddTransaction result : %s: %s' % (rc, pkg_id))
 
-    def _run_transaction(self, always_yes):
+    def _undo_transaction(self):
         '''
-        Run a transaction after an apply button or a package given by CLI
+        Run the undo transaction
         '''
         locked = False
+        performedUndo = False
+        sync = True
+
         try:
-            rc, result = self.backend.BuildTransaction()
+            rc, result = self.backend.GetTransaction(sync)
             if rc :
-                ok = True
-                if not always_yes:
-                    transaction_result_dlg = dialogs.TransactionResult(self)
-                    ok = transaction_result_dlg.run(result)
+                transaction_result_dlg = dialogs.TransactionResult(self)
+                ok = transaction_result_dlg.run(result)
 
                 if ok:  # Ok pressed
-                    self.infobar.info(_('Applying changes to the system'))
-                    rc, result = self.backend.RunTransaction()
+                    self.infobar.info(_('Undo transaction'))
+                    rc, result = self.backend.RunTransaction(sync)
                     # This can happen more than once (more gpg keys to be
                     # imported)
                     while rc == 1:
@@ -1131,15 +1140,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
                             logger.debug('GPGKey : %s' % repr(values))
                             resp = dialogs.ask_for_gpg_import(values)
-                            self.backend.ConfirmGPGImport(hexkeyid, resp)
+                            self.backend.ConfirmGPGImport(hexkeyid, resp, sync)
                             # tell the backend that the gpg key is confirmed
                             # rerun the transaction
                             # FIXME: It should not be needed to populate
                             # the transaction again
                             if resp:
-                                self._populate_transaction()
-                                rc, result = self.backend.BuildTransaction()
-                                rc, result = self.backend.RunTransaction()
+                                rc, result = self.backend.GetTransaction(sync)
+                                rc, result = self.backend.RunTransaction(sync)
                             else:
                                 # NOTE TODO answer no is the only way to exit, since it seems not
                                 # to install the key :(
@@ -1148,6 +1156,83 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
                                                 'text' : '<br>'.join(result), 'richtext' : True })
                             break
+                    if rc == 4:  # Download errors
+                        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
+                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
+                        logger.error('Download error')
+                        logger.error(result)
+                    elif rc != 0:  # other transaction errors
+                        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
+                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
+                        logger.error('RunTransaction failure')
+                        logger.error(result)
+
+                    self.release_root_backend()
+                    self.backend.reload()
+                    performedUndo = (rc == 0)
+            else:
+                logger.error('BuildTransaction failure')
+                logger.error(result)
+                s = "%s"%result
+                dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
+        except dnfdaemon.client.AccessDeniedError as e:
+            logger.error("dnfdaemon client AccessDeniedError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+        except:
+            exc, msg = misc.parse_dbus_error()
+            if 'AccessDeniedError' in exc:
+                logger.warning("User pressed cancel button in policykit window")
+                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
+            else:
+                pass
+
+        return performedUndo
+
+    def _run_transaction(self, always_yes):
+        '''
+        Run a transaction after an apply button or a package given by CLI
+        '''
+        sync = True
+        locked = False
+        try:
+            rc, result = self.backend.BuildTransaction(sync)
+            if rc :
+                ok = True
+                if not always_yes:
+                    transaction_result_dlg = dialogs.TransactionResult(self)
+                    ok = transaction_result_dlg.run(result)
+
+                if ok:  # Ok pressed
+                    self.infobar.info(_('Applying changes to the system'))
+                    rc, result = self.backend.RunTransaction(sync)
+                    # This can happen more than once (more gpg keys to be
+                    # imported)
+                    while rc == 1:
+                        logger.debug('GPG key missing: %s' % repr(result))
+                        # get info about gpgkey to be comfirmed
+                        values = self._gpg_confirm
+                        if values:  # There is a gpgkey to be verified
+                            (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                            logger.debug('GPGKey : %s' % repr(values))
+                            resp = dialogs.ask_for_gpg_import(values)
+                            self.backend.ConfirmGPGImport(hexkeyid, resp, sync)
+                            # tell the backend that the gpg key is confirmed
+                            # rerun the transaction
+                            # FIXME: It should not be needed to populate
+                            # the transaction again
+                            if resp:
+                                self._populate_transaction()
+                                rc, result = self.backend.BuildTransaction(sync)
+                                rc, result = self.backend.RunTransaction(sync)
+                            else:
+                                # NOTE TODO answer no is the only way to exit, since it seems not
+                                # to install the key :(
+                                break
+                        else:  # error in signature verification
+                          logger.debug('GPG key missing: %s' % repr(result))
+                          dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
+                                              'text' : '<br>'.join(result), 'richtext' : True })
+                          break
                     if rc == 4:  # Download errors
                         dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
                             'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
@@ -1450,6 +1535,109 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       else:
         self.infobar.set_progress(frac)
 
+    def _OnTransactionEvent(self, event, data):
+      ''' Manage a transacton event'''
+      values = (event, data)
+      logger.debug('OnTransactionEvent: %s', repr(values))
+
+      if event == 'start-run':
+        self.infobar.info(_('Start transaction'))
+      elif event == 'download':
+          self.infobar.info(_('Downloading packages'))
+      elif event == 'pkg-to-download':
+        #TODO manage event pkg-to-download
+        self._dnl_packages = data
+      elif event == 'signature-check':
+        # self.infobar.show_progress(False)
+        self.infobar.set_progress(0.0)
+        self.infobar.info(_('Checking package signatures'))
+        self.infobar.set_progress(1.0)
+        self.infobar.info_sub('')
+      elif event == 'run-test-transaction':
+        # self.infobar.info(_('Testing Package Transactions')) #
+        # User don't care
+        pass
+      elif event == 'run-transaction':
+        self.infobar.info(_('Applying changes to the system'))
+        self.infobar.info_sub('')
+      elif event == 'verify':
+        self.infobar.info(_('Verify changes on the system'))
+        #self.infobar.hide_sublabel()
+      # elif event == '':
+      elif event == 'fail':
+        logger.error('TransactionEvent failure: %s', repr(values))
+        self.infobar.reset_all()
+      elif event == 'end-run':
+        self.infobar.set_progress(1.0)
+        self.infobar.reset_all()
+      else:
+        logger.error('Unmanaged transaction event : %s', str(event))
+
+    def _OnRPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
+      ''' Manage RPM Progress event '''
+      values = (package, action, te_current, te_total, ts_current, ts_total)
+      logger.debug('OnRPMProgress: %s', repr(values))
+
+      num = ' ( %i/%i )' % (ts_current, ts_total)
+      if ',' in package:  # this is a pkg_id
+        name = dnfdragora.misc.pkg_id_to_full_name(package)
+      else:  # this is just a pkg name (cleanup)
+        name = package
+
+      if (not self._package_name or name != self._package_name) :
+        #let's log once
+        logger.debug('OnRPMProgress : [%s]', package)
+        try:
+          self.infobar.info_sub(const.RPM_ACTIONS[action] % name)
+        except KeyError:
+          logger.error('OnRPMProgress: unknown action %s', action)
+        self._package_name = name
+
+      if ts_current > 0 and ts_current <= ts_total:
+          frac = float(ts_current) / float(ts_total)
+          self.infobar.set_progress(frac, label=num)
+
+    def _OnGPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
+        values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
+        self._gpg_confirm = values
+        logger.debug('OnGPGImport %s', repr(values))
+
+    def _OnDownloadStart(self, num_files, num_bytes):
+      '''Starting a new parallel download batch.'''
+      values =  (num_files, num_bytes)
+      logger.debug('OnDownloadStart %s', repr(values))
+
+      self._files_to_download = num_files
+      self._files_downloaded = 0
+      self.infobar.set_progress(0.0)
+      self.infobar.info_sub(
+          _('Downloading %(count_files)d files (%(count_bytes)sB)...') %
+          {'count_files':num_files, 'count_bytes': dnfdragora.misc.format_number(num_bytes)})
+
+    def _OnDownloadProgress(self, name, frac, total_frac, total_files):
+      '''Progress for a single element in the batch.'''
+      values =  (name, frac, total_frac, total_files)
+      logger.debug('OnDownloadProgress %s', repr(values))
+
+      num = '( %d/%d )' % (self._files_downloaded, self._files_to_download)
+      self.infobar.set_progress(total_frac, label=num)
+
+    def _OnDownloadEnd(self, name, status, msg):
+      '''Download of af single element ended.'''
+      values =  (name, status, msg)
+      logger.debug('OnDownloadEnd %s', repr(values))
+
+      if status == -1 or status == 2:  # download OK or already exists
+        logger.debug('Downloaded : %s', name)
+        self._files_downloaded += 1
+      else:
+        logger.error('Download Error : %s - %s', name, msg)
+      #self.infobar.set_progress(1.0)
+      #self.infobar.reset_all()
+
+    def _OnErrorMessage(self,  msg):
+      logger.error('OnErrorMessage %s', str(msg))
+
     def _cachingRequest(self, pkg_flt):
       '''
       request for pacakges to be cached
@@ -1548,6 +1736,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             raise UIError(str(info['error']))
         elif (event == 'OnRepoMetaDataProgress'):
           self._OnRepoMetaDataProgress(info['name'], info['frac'])
+        elif (event == 'OnTransactionEvent'):
+          self._OnTransactionEvent(info['event'], info['data'])
+        elif (event == 'OnRPMProgress'):
+          self._OnRPMProgress(info['package'], info['action'], info['te_current'],
+                              info['te_total'], info['ts_current'], info['ts_total'])
+        elif (event == 'OnGPGImport'):
+          self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
+                            info['keyurl'], info['timestamp'])
+        elif (event == 'OnDownloadStart'):
+          self._OnDownloadStart(info['num_files'], info['num_bytes'])
+        elif (event == 'OnDownloadProgress'):
+          self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
+        elif (event == 'OnDownloadEnd'):
+          self._OnDownloadEnd(info['name'], info['status'], info['msg'])
+        elif (event == 'OnErrorMessage'):
+          self._OnErrorMessage(info['msg'])
         elif (event == 'GetHistoryByDays'):
           if not info['error']:
             transaction_list = info['result']
@@ -1567,7 +1771,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             # TODO               self._fillGroupTree()
             # TODO           rebuild_package_list = True
         elif (event == 'HistoryUndo'):
-          pass
+          self._undo_transaction()
 
       except Empty as e:
         pass

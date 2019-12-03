@@ -27,3 +27,12 @@ as soon as possible.
     additional functionality (in the case where Requires only activate if something is installed).
 
 If you want to help in any of this items, or new ones please contact us
+
+Async working:
+* Improve dnd_client to handle all actions either syncihed or asynched
+* Fix transactions to make them async too
+* Check why to apply a transaction now we need to refresh window by doing someting
+* Fix searching (crashes)
+* Fix progress bar
+* Fix window layout to gain room
+
