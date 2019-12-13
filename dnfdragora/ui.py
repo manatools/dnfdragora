@@ -1574,9 +1574,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error('Unmanaged transaction event : %s', str(event))
 
     def _OnRPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
-      ''' Manage RPM Progress event '''
+      ''' _OnRPMProgress manages RPM Progress event
+          Parameters
+            @param package:    package name
+            @param action:     constant transaction set state (which ones?)
+            @param te_current: current number of bytes processed in the transaction element being processed
+            @param te_total:   total number of bytes in the transaction element being processed
+            @param ts_current: number of processes completed in whole transaction
+            @param ts_total:   total number of processes in the transaction.
+      '''
       values = (package, action, te_current, te_total, ts_current, ts_total)
-      logger.debug('OnRPMProgress: %s', repr(values))
+      if (te_current == 0 or te_current == te_total):
+        logger.debug('OnRPMProgress: %s', repr(values))
 
       num = ' ( %i/%i )' % (ts_current, ts_total)
       if ',' in package:  # this is a pkg_id
@@ -1593,8 +1602,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           logger.error('OnRPMProgress: unknown action %s', action)
         self._package_name = name
 
-      if ts_current > 0 and ts_current <= ts_total:
-          frac = float(ts_current) / float(ts_total)
+      if te_current > 0 and te_current <= te_total:
+          frac = float(te_current) / float(te_total)
           self.infobar.set_progress(frac, label=num)
 
     def _OnGPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
