@@ -840,13 +840,15 @@ class UserPrefsDialog:
         frame = self.factory.createFrame( vbox1, _("System options") )
         hbox = self.factory.createHBox(frame)
         self.always_yes  =  self.factory.createCheckBox(hbox , _("Proceed without asking for confirmation"), always_yes )
-        self.updateInterval = self.factory.createIntField(hbox, _("Interval in minutes to check for updates:"), 30, 720, updateInterval )
+        box = self.factory.createVBox(hbox)
+        self.updateInterval = self.factory.createIntField(box, _("Interval to check for updates (minutes)"), 30, 720, updateInterval )
+        self.MDupdateInterval = self.factory.createIntField(box, _("Metadata expire time (hours)"), 0, 720, self.parent.md_update_interval )
 
         #Layout (view) settings
-        frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Layout options") )
+        frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Layout options (active at next startup)") )
         box = self.factory.createVBox(frame)
-        self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Show updates next startup"), showUpdates )
-        self.showAll  =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Do not show groups view next startup"), showAll )
+        self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Show updates"), showUpdates )
+        self.showAll  =  self.factory.createCheckBox(self.factory.createLeft(box) , _("Do not show groups view"), showAll )
 
         #Search settings
         frame = self.factory.createFrame( self.factory.createLeft(vbox1), _("Search options") )
@@ -855,13 +857,13 @@ class UserPrefsDialog:
         self.match_all   = self.factory.createCheckBox(self.factory.createLeft(box) , _("Match all words"), match_all )
 
         #Log settings
-        self.log = self.factory.createCheckBoxFrame( self.factory.createLeft(vbox1), _("Log options on next startup"), log_enabled)
+        self.log = self.factory.createCheckBoxFrame( self.factory.createLeft(vbox1), _("Log options  (active at next startup)"), log_enabled)
         box = self.factory.createVBox(self.log)
         hbox = self.factory.createHBox(box)
         self.log_directory = self.factory.createLabel(hbox, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         self.log_directory.setText((log_directory if log_directory is not None else os.path.expanduser("~")))
         self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "", _("Change &directory"))
-        self.level_debug = self.factory.createCheckBox(self.factory.createLeft(box) , _("Enable debug log level"), level_debug )
+        self.level_debug = self.factory.createCheckBox(self.factory.createLeft(box) , _("Debug level"), level_debug )
         self.log.setEnabled(log_enabled)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
@@ -874,8 +876,9 @@ class UserPrefsDialog:
 
     def _handleEvents(self):
         '''
-        manage dialog events
+        manage dialog events, on exit returns if apply button has been pressed
         '''
+        applied = False
         while True:
 
             event = self.dialog.waitForEvent()
@@ -910,6 +913,7 @@ class UserPrefsDialog:
                       'enabled' : self.log.value(),
                       }
                     metadata_entry = self.parent.config.userPreferences['settings']['metadata']
+                    metadata_entry['update_interval'] = self.MDupdateInterval.value()
 
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
@@ -923,20 +927,26 @@ class UserPrefsDialog:
                     self.parent.always_yes = self.always_yes.isChecked()
                     self.parent.match_all = search['match_all']
                     self.parent.newest_only = search['newest_only']
+                    self.parent.md_update_interval = self.MDupdateInterval.value()
+                    applied = True
                     break
+
+        return applied
 
     def run(self):
         '''
-        show and run the dialog
+        show and run the dialog, returns if there were any changes
         '''
         self._setupUI()
-        self._handleEvents()
+        changes_applied = self._handleEvents()
 
         #restore old application title
         yui.YUI.app().setApplicationTitle(self.appTitle)
 
         self.dialog.destroy()
         self.dialog = None
+
+        return changes_applied
 
 
 def warningMsgBox (info) :
