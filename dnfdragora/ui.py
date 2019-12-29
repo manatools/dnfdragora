@@ -59,7 +59,9 @@ class DNFDragoraStatus(Enum):
     CACHING_UPDATE = 3
     CACHING_INSTALLED = 4
     CACHING_AVAILABLE = 5
-    RUNNING = 6
+    RUN_TRANSACTION = 6
+    RUNNING = 7
+
 
 
 class PackageQueue:
@@ -178,6 +180,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # TODO... _package_name, _gpg_confirm impoorted from old event management
         # Try to remove them when fixing progress bar
         self._package_name = None
+        self._action_name = None
         self._gpg_confirm = None
         self._files_to_download = 0
         self._files_downloaded = 0
@@ -1455,19 +1458,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.applyButton) :
                     #### APPLY
                     self._populate_transaction()
-                    self._run_transaction(self.always_yes)
-                    sel = self.tree.selectedItem()
-                    if sel :
-                        group = self._groupNameFromItem(self.groupList, sel)
-                        filter = self._filterNameSelected()
-                        if (group == "Search"):
-                            # force tree rebuilding to show new package status
-                            if not self._searchPackages(filter, True) :
-                                rebuild_package_list = True
-                        else:
-                            if filter == "to_update":
-                                self._fillGroupTree()
-                            rebuild_package_list = True
+                    self.backend.BuildTransaction()
+
+                    # TODO MANAGE self._run_transaction(self.always_yes)
+                    # TODO MANAGE sel = self.tree.selectedItem()
+                    # TODO MANAGE if sel :
+                    # TODO MANAGE     group = self._groupNameFromItem(self.groupList, sel)
+                    # TODO MANAGE     filter = self._filterNameSelected()
+                    # TODO MANAGE     if (group == "Search"):
+                    # TODO MANAGE         # force tree rebuilding to show new package status
+                    # TODO MANAGE         if not self._searchPackages(filter, True) :
+                    # TODO MANAGE             rebuild_package_list = True
+                    # TODO MANAGE     else:
+                    # TODO MANAGE         if filter == "to_update":
+                    # TODO MANAGE             self._fillGroupTree()
+                    # TODO MANAGE         rebuild_package_list = True
                 elif (widget == self.view_box) :
                     view = self._viewNameSelected()
                     filter = self._filterNameSelected()
@@ -1594,6 +1599,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif event == 'end-run':
         self.infobar.set_progress(1.0)
         self.infobar.reset_all()
+      elif event == 'start-build':
+        self.infobar.set_progress(0.0)
+        self.infobar.info(_('Build transaction'))
+      elif event == 'end-build':
+        self.infobar.set_progress(1.0)
       else:
         logger.error('Unmanaged transaction event : %s', str(event))
 
@@ -1617,14 +1627,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       else:  # this is just a pkg name (cleanup)
         name = package
 
-      if (not self._package_name or name != self._package_name) :
+      if (not self._package_name or name != self._package_name or self._action_name != action):
         #let's log once
         logger.debug('OnRPMProgress : [%s]', package)
+        self._package_name = name
+        self._action_name = action
         try:
           self.infobar.info_sub(const.RPM_ACTIONS[action] % name)
         except KeyError:
           logger.error('OnRPMProgress: unknown action %s', action)
-        self._package_name = name
+          self.infobar.info_sub(_("Unknown action %s on %s")%(action, name))
 
       if te_current > 0 and te_current <= te_total:
           frac = float(te_current) / float(te_total)
@@ -1634,6 +1646,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
         self._gpg_confirm = values
         logger.debug('OnGPGImport %s', repr(values))
+        # get info about gpgkey to be comfirmed
+        if values:  # There is a gpgkey to be verified
+            logger.debug('GPGKey : %s' % repr(values))
+            resp = dialogs.ask_for_gpg_import(values)
+            self.backend.ConfirmGPGImport(hexkeyid, resp)
 
     def _OnDownloadStart(self, num_files, num_bytes):
       '''Starting a new parallel download batch.'''
@@ -1650,9 +1667,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
     def _OnDownloadProgress(self, name, frac, total_frac, total_files):
       '''Progress for a single element in the batch.'''
       values =  (name, frac, total_frac, total_files)
-      logger.debug('OnDownloadProgress %s', repr(values))
+      if total_frac == 1.0:
+        logger.debug('OnDownloadProgress %s', repr(values))
 
-      num = '( %d/%d )' % (self._files_downloaded, self._files_to_download)
+      num = '( %d/%d - %s)' % (self._files_downloaded, self._files_to_download, name)
       self.infobar.set_progress(total_frac, label=num)
 
     def _OnDownloadEnd(self, name, status, msg):
@@ -1734,6 +1752,48 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self.infobar.info(_('Creating packages cache'))
       self._cachingRequest('installed')
 
+    def _OnBuildTransaction(self, info):
+      ''' manages BuildTransaction event from dnfdaemon '''
+      self.infobar.reset_all()
+      if not info['error']:
+        ok, result = info['result']
+        if ok and not self.always_yes:
+          transaction_result_dlg = dialogs.TransactionResult(self)
+          ok = transaction_result_dlg.run(result)
+        if ok:
+          self.infobar.info(_('Applying changes to the system'))
+          self.backend.RunTransaction()
+          self._status = DNFDragoraStatus.RUN_TRANSACTION
+          # TODO manage visibility (buttons, views, busyCursor)
+          self._enableAction(False)
+          self.pbar_layout.setEnabled(True)
+
+    def _OnRunTransaction(self, info):
+      ''' manages RunTransaction event from dnfdaemon '''
+      rc, result = info['result']
+      if rc == 1:
+        logger.warning('GPG key missing: %s' % repr(result))
+        # NOTE should have been managed into OnGPGImport.
+        dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
+                            'text' : '<br>'.join(result), 'richtext' : True })
+      elif rc == 4:
+        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
+                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
+        logger.error('Download error')
+        logger.error(result)
+      elif rc != 0:  # other transaction errors
+        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
+                            'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
+        logger.error('RunTransaction failure')
+        logger.error(result)
+
+      self.release_root_backend()
+      self.packageQueue.clear()
+      self._status = DNFDragoraStatus.STARTUP
+      self.backend
+
+
+
     def _manageDnfDaemonEvent(self):
       '''
       get events from dnfd client queue
@@ -1743,7 +1803,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         item = self.backend.eventQueue.get_nowait()
         event = item['event']
         info = item['value']
-        logger.debug("Event received %s - status %s", event, self._status)
+        if self._status != DNFDragoraStatus.RUN_TRANSACTION:
+          logger.debug("Event received %s - status %s", event, self._status)
 
         is_dict = isinstance(info, dict)
         if is_dict:
@@ -1804,6 +1865,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             raise UIError(str(info['error']))
         elif (event == 'OnRepoMetaDataProgress'):
           self._OnRepoMetaDataProgress(info['name'], info['frac'])
+        elif (event == 'BuildTransaction'):
+          self._OnBuildTransaction(info)
+        elif (event == 'RunTransaction'):
+          self._OnRunTransaction(info)
         elif (event == 'OnTransactionEvent'):
           self._OnTransactionEvent(info['event'], info['data'])
         elif (event == 'OnRPMProgress'):
