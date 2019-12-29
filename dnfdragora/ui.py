@@ -173,7 +173,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.itemList = {}
         self.appname = "dnfdragora"
         self._selPkg = None
-        self.md_update_interval = 60
+        self.md_update_interval = 48 # check any 48 hoursas default
         self.md_last_refresh_date = None
         # TODO... _package_name, _gpg_confirm impoorted from old event management
         # Try to remove them when fixing progress bar
@@ -305,10 +305,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self.always_yes = settings['always_yes']
 
             if 'log_directory' in settings.keys() :
-              print("Warning logging must be set in user preferences")
+              print("Warning logging must be set in user preferences, discarded")
 
             if 'log_level_debug' in settings.keys() :
-              print("Warning logging must be set in user preferences")
+              print("Warning logging must be set in user preferences, discarded")
 
             # config['settings']['path']
             path_settings = {}
@@ -339,17 +339,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   if 'update_interval' in metadata.keys():
                     self.md_update_interval = metadata['update_interval']
                   else:
-                    self.md_update_interval = metadata['update_interval'] = 60
+                    self.md_update_interval = metadata['update_interval'] = 48
                   if 'last_update' in metadata.keys():
                     self.md_last_refresh_date =  metadata['last_update']
-                  else:
-                    self._set_MD_cache_refreshed() # set now as refresh date
                 else:
                   self.config.userPreferences['settings']['metadata'] ={
-                    'update_interval': self.md_update_interval, # 60 Default
+                    'update_interval': self.md_update_interval, # 48 Default
                     'last_update': ''
                   }
-                  self._set_MD_cache_refreshed() # set now as refresh date
 
                 #### Search
                 if 'search' in user_settings.keys():
@@ -359,15 +356,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if 'match_all' in search.keys():
                         self.match_all = search['match_all']
                 #### Logging
-                if 'log_enabled' in user_settings.keys() :
-                  self.log_enabled = user_settings['log_enabled']
-                if self.log_enabled and 'log' in user_settings.keys():
+                if 'log' in user_settings.keys():
                   log = user_settings['log']
-                  if 'directory' in log.keys() :
-                      self.log_directory = log['directory']
-                  if 'level_debug' in log.keys() :
-                      self.level_debug = log['level_debug']
-
+                  if 'enabled' in log.keys() :
+                    self.log_enabled = log['enabled']
+                  if self.log_enabled:
+                    if 'directory' in log.keys() :
+                        self.log_directory = log['directory']
+                    if 'level_debug' in log.keys() :
+                        self.level_debug = log['level_debug']
 
     def _setupUI(self) :
         '''
@@ -1705,6 +1702,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       # check if MD cache management is disabled
       if self.md_update_interval <= 0:
         return False
+      # check this is the first time dnfdragora is run for this user
+      if not self.md_last_refresh_date:
+        return True
 
       time_fmt = '%Y-%m-%d %H:%M'
       now = datetime.datetime.now()
