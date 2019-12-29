@@ -14,6 +14,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import os
 import sys
 import platform
+import datetime
 import re
 import yui
 import webbrowser
@@ -122,7 +123,7 @@ class PackageQueue:
 
     def checked(self, pkg):
         '''
-        returns if a package has to be checked in gui pacakge-list
+        returns if a package has to be checked in gui package-list
         '''
         pkg_id = pkg.pkg_id
         if pkg_id in self.actions.keys():
@@ -131,7 +132,7 @@ class PackageQueue:
 
     def action(self, pkg):
         '''
-        returns the action of the queued package or None if pacakge is not queued
+        returns the action of the queued package or None if package is not queued
         '''
         pkg_id = pkg.pkg_id
         if pkg_id in self.actions.keys():
@@ -172,6 +173,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.itemList = {}
         self.appname = "dnfdragora"
         self._selPkg = None
+        self.md_update_interval = 60
+        self.md_last_refresh_date = None
         # TODO... _package_name, _gpg_confirm impoorted from old event management
         # Try to remove them when fixing progress bar
         self._package_name = None
@@ -330,12 +333,32 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.config.userPreferences:
             if 'settings' in self.config.userPreferences.keys() :
                 user_settings = self.config.userPreferences['settings']
+                #### MetaData
+                if 'metadata' in user_settings.keys():
+                  metadata = user_settings['metadata']
+                  if 'update_interval' in metadata.keys():
+                    self.md_update_interval = metadata['update_interval']
+                  else:
+                    self.md_update_interval = metadata['update_interval'] = 60
+                  if 'last_update' in metadata.keys():
+                    self.md_last_refresh_date =  metadata['last_update']
+                  else:
+                    self._set_MD_cache_refreshed() # set now as refresh date
+                else:
+                  self.config.userPreferences['settings']['metadata'] ={
+                    'update_interval': self.md_update_interval, # 60 Default
+                    'last_update': ''
+                  }
+                  self._set_MD_cache_refreshed() # set now as refresh date
+
+                #### Search
                 if 'search' in user_settings.keys():
                     search = user_settings['search']
                     if 'newest_only' in search.keys():
                         self.newest_only = search['newest_only']
                     if 'match_all' in search.keys():
                         self.match_all = search['match_all']
+                #### Logging
                 if 'log_enabled' in user_settings.keys() :
                   self.log_enabled = user_settings['log_enabled']
                 if self.log_enabled and 'log' in user_settings.keys():
@@ -1408,7 +1431,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                         self._setStatusToItem(pkg, self.itemList[it]['item'], True)
                                     break
                     else:
-                      logger.debug("pacakge list selected, but no items changed")
+                      logger.debug("package list selected, but no items changed")
 
                 elif (widget == self.reset_search_button) :
                     #### RESET
@@ -1437,7 +1460,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         group = self._groupNameFromItem(self.groupList, sel)
                         filter = self._filterNameSelected()
                         if (group == "Search"):
-                            # force tree rebuilding to show new pacakge status
+                            # force tree rebuilding to show new package status
                             if not self._searchPackages(filter, True) :
                                 rebuild_package_list = True
                         else:
@@ -1649,7 +1672,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _cachingRequest(self, pkg_flt):
       '''
-      request for pacakges to be cached
+      request for packages to be cached
       @params pkg_flt (available, installed, updates)
       '''
       logger.debug('Start caching %s', pkg_flt)
@@ -1677,6 +1700,36 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         pkgs = self.backend.make_pkg_object(po_list, pkg_flt)
         self.backend.cache.populate(pkg_flt, pkgs)
 
+    def _check_MD_cache_expired(self):
+      ''' Check metadata expired '''
+      # check if MD cache management is disabled
+      if self.md_update_interval <= 0:
+        return False
+
+      time_fmt = '%Y-%m-%d %H:%M'
+      now = datetime.datetime.now()
+      refresh_period = datetime.timedelta(hours=self.md_update_interval)
+      last_refresh = datetime.datetime.strptime(self.md_last_refresh_date, time_fmt)
+      period = now - last_refresh
+      return period > refresh_period
+
+    def _set_MD_cache_refreshed(self):
+      ''' set  '''
+      time_fmt = '%Y-%m-%d %H:%M'
+      now = datetime.datetime.now()
+      now_str = now.strftime(time_fmt)
+      self.config.userPreferences['settings']['metadata']['last_update'] = now_str
+      self.md_last_refresh_date =  now_str
+
+    def _start_caching_packages(self):
+      ''' Start caching packages from installed
+        next ones are requested after automatically.
+      '''
+      self.infobar.reset_all()
+      self.backend.cache.reset()
+      self.infobar.info(_('Creating packages cache'))
+      self._cachingRequest('installed')
+
     def _manageDnfDaemonEvent(self):
       '''
       get events from dnfd client queue
@@ -1702,7 +1755,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if self.backend_locked :
             self._status = DNFDragoraStatus.RUNNING
             self.backend.SetWatchdogState(False)
-            self.backend.ExpireCache()
+            # TODO only if expired
+            if self._check_MD_cache_expired():
+              self.backend.ExpireCache()
+            else:
+              self._start_caching_packages()
           else:
             self._enableAction(self.backend_locked)
             if self._status == DNFDragoraStatus.LOCKING:
@@ -1711,12 +1768,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         elif (event == 'Unlock') :
           self.backend_locked = False
         elif (event == 'ExpireCache'):
-          # maybe we can check the result, but we need to clean status bar anyway
-          self.infobar.reset_all()
-          # let's build pacakge cache
-          self.backend.cache.reset()
-          self.infobar.info(_('Creating packages cache'))
-          self._cachingRequest('installed')
+          # ExpireCache has been invoked let's refresh the date
+          self._set_MD_cache_refreshed()
+          # After metadata refresh let's build package cache
+          self._start_caching_packages()
         elif (event == 'GetPackages'):
           if not info['error']:
             if self._status == DNFDragoraStatus.CACHING_INSTALLED:
@@ -1772,7 +1827,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             # TODO       group = self._groupNameFromItem(self.groupList, sel)
             # TODO       filter = self._filterNameSelected()
             # TODO       if (group == "Search"):
-            # TODO           # force tree rebuilding to show new pacakge status
+            # TODO           # force tree rebuilding to show new package status
             # TODO           if not self._searchPackages(filter, True) :
             # TODO               rebuild_package_list = True
             # TODO       else:
