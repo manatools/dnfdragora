@@ -909,13 +909,16 @@ class UserPrefsDialog:
                       'level_debug': self.level_debug.isChecked(),
                       'enabled' : self.log.value(),
                       }
+                    metadata_entry = self.parent.config.userPreferences['settings']['metadata']
+
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
                         'do not show groups at startup' : self.showAll.isChecked(),
                         'interval for checking updates' : self.updateInterval.value(),
                         'always_yes' : self.always_yes.isChecked(),
+                        'metadata' : metadata_entry,
                         'log' : log_entry,
-                        'search' : search
+                        'search' : search,
                         }
                     self.parent.always_yes = self.always_yes.isChecked()
                     self.parent.match_all = search['match_all']
