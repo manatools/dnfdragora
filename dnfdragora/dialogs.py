@@ -821,14 +821,14 @@ class UserPrefsDialog:
             updateInterval = int(settings['interval for checking updates'])
         if 'always_yes' in settings.keys() :
             always_yes = settings['always_yes']
-        if 'log_enabled' in settings.keys() :
-          log_enabled = settings['log_enabled']
         if 'log' in settings.keys():
           log = settings['log']
           if 'directory' in log.keys() :
             log_directory = log['directory']
           if 'level_debug' in log.keys() :
             level_debug = log['level_debug']
+          if 'enabled' in log.keys() :
+            log_enabled = log['enabled']
 
         #Already read from system and user settings
         match_all = self.parent.match_all
@@ -906,14 +906,14 @@ class UserPrefsDialog:
                       }
                     log_entry = {
                       'directory': self.log_directory.text(),
-                      'level_debug': self.level_debug.isChecked()
+                      'level_debug': self.level_debug.isChecked(),
+                      'enabled' : self.log.value(),
                       }
                     self.parent.config.userPreferences['settings'] = {
                         'show updates at startup' : self.showUpdates.isChecked(),
                         'do not show groups at startup' : self.showAll.isChecked(),
                         'interval for checking updates' : self.updateInterval.value(),
                         'always_yes' : self.always_yes.isChecked(),
-                        'log_enabled' : self.log.value(),
                         'log' : log_entry,
                         'search' : search
                         }
