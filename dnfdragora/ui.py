@@ -177,6 +177,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._selPkg = None
         self.md_update_interval = 48 # check any 48 hoursas default
         self.md_last_refresh_date = None
+        self._runtime_option_managed = False
         # TODO... _package_name, _gpg_confirm impoorted from old event management
         # Try to remove them when fixing progress bar
         self._package_name = None
@@ -250,14 +251,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._enableAction(False)
         self.pbar_layout.setEnabled(True)
 
-        # TODO ADJUST
-        if 'install' in self.options.keys() :
-            pkgs = " ".join(self.options['install'])
-            self.backend.Install(pkgs)
-            #TODO evaluate if passing always_yes to False in this case
-            always_yes = self.always_yes
-            self._run_transaction(always_yes)
-
         rpm_groups = None
         if self.use_comps :
             # let's show the dialog with a poll event
@@ -268,11 +261,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.backend
         print("Locking")
-
-        #pkgs = self.backend.GetPackages('available', fields)
-
-
-
         self.dialog.pollEvent()
         return
 
@@ -1864,6 +1852,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._populateCache('available', po_list)
                 self.infobar.set_progress(1.0)
                 self._status = DNFDragoraStatus.RUNNING
+
+                # TODO ADJUST
+                if not self._runtime_option_managed and 'install' in self.options.keys() :
+                  pkgs = " ".join(self.options['install'])
+                  self.backend.Install(pkgs, sync=True)
+                  self.backend.BuildTransaction()
+                  self._runtime_option_managed = True
+                  return
+
                 self._enableAction(self.backend_locked)
                 self.infobar.reset_all()
                 rebuild_package_list = True
