@@ -614,7 +614,7 @@ class DnfDaemonBase:
                           grp_id, grp_flt, fields)
 
 
-    def Search(self, fields, keys, attrs, match_all, newest_only, tags):
+    def Search(self, fields, keys, attrs, match_all, newest_only, tags, sync=False):
         '''Search for packages where keys is matched in fields
 
         Args:
@@ -628,8 +628,16 @@ class DnfDaemonBase:
         Returns:
             list of pkg_id's
         '''
-        self._run_dbus_async('Search', '(asasasbbb)',
+
+        if not sync:
+          self._run_dbus_async('Search', '(asasasbbb)',
                           fields, keys, attrs, match_all, newest_only, tags)
+        else:
+          result = self._run_dbus_sync('Search', '(asasasbbb)',
+                          fields, keys, attrs, match_all, newest_only, tags)
+          return json.loads(result)
+
+
 
 
     def Exit(self):
