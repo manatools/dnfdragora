@@ -1849,11 +1849,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
                 po_list = info['result']
                 # we requested available for caching
-                self._populateCache('available', po_list)
                 self.infobar.set_progress(1.0)
+                self._populateCache('available', po_list)
                 self._status = DNFDragoraStatus.RUNNING
 
-                # TODO ADJUST
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
                   pkgs = " ".join(self.options['install'])
                   self.backend.Install(pkgs, sync=True)
