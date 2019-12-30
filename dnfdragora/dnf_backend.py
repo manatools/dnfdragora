@@ -354,7 +354,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         """
         attrs = ['summary', 'size', 'group', 'action']
         pkgs = self.Search(search_attrs, keys, attrs, match_all,
-                           newest_only, tags)
+                           newest_only, tags, sync=True)
         return self._make_pkg_object_with_attr(pkgs)
 
     @ExceptionHandler
