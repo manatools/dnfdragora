@@ -1330,7 +1330,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         self.running = True
         while self.running == True:
-            event = self.dialog.waitForEvent(500)
+            event = self.dialog.waitForEvent(200)
 
             eventType = event.eventType()
 
