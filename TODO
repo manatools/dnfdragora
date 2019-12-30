@@ -32,8 +32,8 @@ Async working:
 * Improve dnd_client to handle all actions either syncihed or asynched (in progress)
 * Fix transactions to make them async too (in progress)
 * Check why to apply a transaction now we need to refresh window by doing someting (done)
-* Speed up dequeing dnfdaemon event
-* Fix searching (crashes)
+* Speed up dequeing dnfdaemon event (in progress)
+* Fix searching crash (in progress)
 * Fix progress bar (in progress)
 * Fix window layout to gain room
 

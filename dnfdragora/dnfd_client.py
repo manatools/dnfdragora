@@ -638,8 +638,6 @@ class DnfDaemonBase:
           return json.loads(result)
 
 
-
-
     def Exit(self):
         '''End the daemon'''
         self._run_dbus_async('Exit')

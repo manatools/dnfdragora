@@ -1650,7 +1650,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if values:  # There is a gpgkey to be verified
             logger.debug('GPGKey : %s' % repr(values))
             resp = dialogs.ask_for_gpg_import(values)
-            self.backend.ConfirmGPGImport(hexkeyid, resp)
+            self.backend.ConfirmGPGImport(hexkeyid, resp, sync=True)
 
     def _OnDownloadStart(self, num_files, num_bytes):
       '''Starting a new parallel download batch.'''
@@ -1757,14 +1757,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self.infobar.reset_all()
       if not info['error']:
         ok, result = info['result']
-        if ok and not self.always_yes:
+        # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
+        # and we are here most probably for a GPG key confirmed during last transaction
+        if ok and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
           transaction_result_dlg = dialogs.TransactionResult(self)
           ok = transaction_result_dlg.run(result)
         if ok:
           self.infobar.info(_('Applying changes to the system'))
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
-          # TODO manage visibility (buttons, views, busyCursor)
           self._enableAction(False)
           self.pbar_layout.setEnabled(True)
 
@@ -1773,9 +1774,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       rc, result = info['result']
       if rc == 1:
         logger.warning('GPG key missing: %s' % repr(result))
-        # NOTE should have been managed into OnGPGImport.
-        dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
-                            'text' : '<br>'.join(result), 'richtext' : True })
+        # NOTE should have been managed into OnGPGImport, so we can run transaction again
+        self._populate_transaction()
+        self.backend.BuildTransaction()
+        return
       elif rc == 4:
         dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
                             'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
@@ -1792,119 +1794,124 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._status = DNFDragoraStatus.STARTUP
       self.backend
 
-
-
     def _manageDnfDaemonEvent(self):
       '''
       get events from dnfd client queue
       '''
       rebuild_package_list = False
       try:
-        item = self.backend.eventQueue.get_nowait()
-        event = item['event']
-        info = item['value']
-        if self._status != DNFDragoraStatus.RUN_TRANSACTION:
-          logger.debug("Event received %s - status %s", event, self._status)
+        counter = 0
+        # On RUNNING we manage UI events, on other status dnfdaeomon let's try to increase
+        # dequeuing when we're not in RUNNING then
+        count_max = 1000 if self._status != DNFDragoraStatus.RUNNING else 1
 
-        is_dict = isinstance(info, dict)
-        if is_dict:
-          if 'error' in info.keys() and 'result' in info.keys():
-            if info['error']:
-              logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
-            elif info['result']:
-              is_list = isinstance(info['result'], list)
-              logger.debug("Event received %s, %s - status %s", event, len(info['result']) if is_list else info, self._status)
+        while counter < count_max:
+          counter = counter + 1
+          item = self.backend.eventQueue.get_nowait()
+          event = item['event']
+          info = item['value']
+          if self._status != DNFDragoraStatus.RUN_TRANSACTION:
+            logger.debug("Event received %s - status %s", event, self._status)
 
-        if (event == 'Lock') :
-          self.backend_locked = info['result']
-          if self.backend_locked :
-            self._status = DNFDragoraStatus.RUNNING
-            self.backend.SetWatchdogState(False)
-            # TODO only if expired
-            if self._check_MD_cache_expired():
-              self.backend.ExpireCache()
-            else:
-              self._start_caching_packages()
-          else:
-            self._enableAction(self.backend_locked)
-            if self._status == DNFDragoraStatus.LOCKING:
-              if not info['error']:
-                self._status = DNFDragoraStatus.STARTUP
-        elif (event == 'Unlock') :
-          self.backend_locked = False
-        elif (event == 'ExpireCache'):
-          # ExpireCache has been invoked let's refresh the date
-          self._set_MD_cache_refreshed()
-          # After metadata refresh let's build package cache
-          self._start_caching_packages()
-        elif (event == 'GetPackages'):
-          if not info['error']:
-            if self._status == DNFDragoraStatus.CACHING_INSTALLED:
-              po_list = info['result']
-              # we requested installed for caching
-              self._populateCache('installed', po_list)
-              self.infobar.set_progress(0.33)
-              self._cachingRequest('updates_all')
-            elif self._status == DNFDragoraStatus.CACHING_UPDATE:
-              po_list = info['result']
-              # we requested updates for caching
-              self._populateCache('updates', po_list)
-              self.infobar.set_progress(0.66)
-              self._cachingRequest('available')
-            elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
-              po_list = info['result']
-              # we requested available for caching
-              self._populateCache('available', po_list)
-              self.infobar.set_progress(1.0)
+          is_dict = isinstance(info, dict)
+          if is_dict:
+            if 'error' in info.keys() and 'result' in info.keys():
+              if info['error']:
+                logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
+              elif info['result']:
+                is_list = isinstance(info['result'], list)
+                logger.debug("Event received %s, %s - status %s", event, len(info['result']) if is_list else info, self._status)
+
+          if (event == 'Lock') :
+            self.backend_locked = info['result']
+            if self.backend_locked :
               self._status = DNFDragoraStatus.RUNNING
+              self.backend.SetWatchdogState(False)
+              # TODO only if expired
+              if self._check_MD_cache_expired():
+                self.backend.ExpireCache()
+              else:
+                self._start_caching_packages()
+            else:
               self._enableAction(self.backend_locked)
-              self.infobar.reset_all()
-              rebuild_package_list = True
-          else:
-            logger.error("GetPackages error: %s", info['error'])
-            raise UIError(str(info['error']))
-        elif (event == 'OnRepoMetaDataProgress'):
-          self._OnRepoMetaDataProgress(info['name'], info['frac'])
-        elif (event == 'BuildTransaction'):
-          self._OnBuildTransaction(info)
-        elif (event == 'RunTransaction'):
-          self._OnRunTransaction(info)
-        elif (event == 'OnTransactionEvent'):
-          self._OnTransactionEvent(info['event'], info['data'])
-        elif (event == 'OnRPMProgress'):
-          self._OnRPMProgress(info['package'], info['action'], info['te_current'],
-                              info['te_total'], info['ts_current'], info['ts_total'])
-        elif (event == 'OnGPGImport'):
-          self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
-                            info['keyurl'], info['timestamp'])
-        elif (event == 'OnDownloadStart'):
-          self._OnDownloadStart(info['num_files'], info['num_bytes'])
-        elif (event == 'OnDownloadProgress'):
-          self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
-        elif (event == 'OnDownloadEnd'):
-          self._OnDownloadEnd(info['name'], info['status'], info['msg'])
-        elif (event == 'OnErrorMessage'):
-          self._OnErrorMessage(info['msg'])
-        elif (event == 'GetHistoryByDays'):
-          if not info['error']:
-            transaction_list = info['result']
-            self._load_history(transaction_list)
-            #### TODO fix history undo transaction
-            # TODO if performedUNDO:
-            # TODO   sel = self.tree.selectedItem()
-            # TODO   if sel :
-            # TODO       group = self._groupNameFromItem(self.groupList, sel)
-            # TODO       filter = self._filterNameSelected()
-            # TODO       if (group == "Search"):
-            # TODO           # force tree rebuilding to show new package status
-            # TODO           if not self._searchPackages(filter, True) :
-            # TODO               rebuild_package_list = True
-            # TODO       else:
-            # TODO           if filter == "to_update":
-            # TODO               self._fillGroupTree()
-            # TODO           rebuild_package_list = True
-        elif (event == 'HistoryUndo'):
-          self._undo_transaction()
+              if self._status == DNFDragoraStatus.LOCKING:
+                if not info['error']:
+                  self._status = DNFDragoraStatus.STARTUP
+          elif (event == 'Unlock') :
+            self.backend_locked = False
+          elif (event == 'ExpireCache'):
+            # ExpireCache has been invoked let's refresh the date
+            self._set_MD_cache_refreshed()
+            # After metadata refresh let's build package cache
+            self._start_caching_packages()
+          elif (event == 'GetPackages'):
+            if not info['error']:
+              if self._status == DNFDragoraStatus.CACHING_INSTALLED:
+                po_list = info['result']
+                # we requested installed for caching
+                self._populateCache('installed', po_list)
+                self.infobar.set_progress(0.33)
+                self._cachingRequest('updates_all')
+              elif self._status == DNFDragoraStatus.CACHING_UPDATE:
+                po_list = info['result']
+                # we requested updates for caching
+                self._populateCache('updates', po_list)
+                self.infobar.set_progress(0.66)
+                self._cachingRequest('available')
+              elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
+                po_list = info['result']
+                # we requested available for caching
+                self._populateCache('available', po_list)
+                self.infobar.set_progress(1.0)
+                self._status = DNFDragoraStatus.RUNNING
+                self._enableAction(self.backend_locked)
+                self.infobar.reset_all()
+                rebuild_package_list = True
+            else:
+              logger.error("GetPackages error: %s", info['error'])
+              raise UIError(str(info['error']))
+          elif (event == 'OnRepoMetaDataProgress'):
+            self._OnRepoMetaDataProgress(info['name'], info['frac'])
+          elif (event == 'BuildTransaction'):
+            self._OnBuildTransaction(info)
+          elif (event == 'RunTransaction'):
+            self._OnRunTransaction(info)
+          elif (event == 'OnTransactionEvent'):
+            self._OnTransactionEvent(info['event'], info['data'])
+          elif (event == 'OnRPMProgress'):
+            self._OnRPMProgress(info['package'], info['action'], info['te_current'],
+                                info['te_total'], info['ts_current'], info['ts_total'])
+          elif (event == 'OnGPGImport'):
+            self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
+                              info['keyurl'], info['timestamp'])
+          elif (event == 'OnDownloadStart'):
+            self._OnDownloadStart(info['num_files'], info['num_bytes'])
+          elif (event == 'OnDownloadProgress'):
+            self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
+          elif (event == 'OnDownloadEnd'):
+            self._OnDownloadEnd(info['name'], info['status'], info['msg'])
+          elif (event == 'OnErrorMessage'):
+            self._OnErrorMessage(info['msg'])
+          elif (event == 'GetHistoryByDays'):
+            if not info['error']:
+              transaction_list = info['result']
+              self._load_history(transaction_list)
+              #### TODO fix history undo transaction
+              # TODO if performedUNDO:
+              # TODO   sel = self.tree.selectedItem()
+              # TODO   if sel :
+              # TODO       group = self._groupNameFromItem(self.groupList, sel)
+              # TODO       filter = self._filterNameSelected()
+              # TODO       if (group == "Search"):
+              # TODO           # force tree rebuilding to show new package status
+              # TODO           if not self._searchPackages(filter, True) :
+              # TODO               rebuild_package_list = True
+              # TODO       else:
+              # TODO           if filter == "to_update":
+              # TODO               self._fillGroupTree()
+              # TODO           rebuild_package_list = True
+          elif (event == 'HistoryUndo'):
+            self._undo_transaction()
 
       except Empty as e:
         pass
