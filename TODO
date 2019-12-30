@@ -34,6 +34,8 @@ Async working:
 * Check why to apply a transaction now we need to refresh window by doing someting (done)
 * Speed up dequeing dnfdaemon event (in progress)
 * Fix searching crash (in progress)
+* Apply again search if find field is not empty, as wroked before
+* Better management of Locking/Unlocking DB
 * Fix progress bar (in progress)
 * Fix window layout to gain room
 
