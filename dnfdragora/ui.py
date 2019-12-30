@@ -1861,6 +1861,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   return
 
                 self._enableAction(self.backend_locked)
+                filter = self._filterNameSelected()
+                self.checkAllButton.setEnabled(filter == 'to_update')
                 self.infobar.reset_all()
                 rebuild_package_list = True
             else:

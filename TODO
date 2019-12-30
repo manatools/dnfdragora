@@ -32,9 +32,10 @@ Async working:
 * Improve dnd_client to handle all actions either syncihed or asynched (in progress)
 * Fix transactions to make them async too (in progress)
 * Check why to apply a transaction now we need to refresh window by doing someting (done)
-* Speed up dequeing dnfdaemon event (in progress)
-* Fix searching crash (in progress)
+* Speed up dequeing dnfdaemon event (done)
+* Fix searching crash (done)
 * Apply again search if find field is not empty, as wroked before
+* Adding a button to deselect all
 * Better management of Locking/Unlocking DB
 * Fix progress bar (in progress)
 * Fix window layout to gain room
