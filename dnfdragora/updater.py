@@ -10,13 +10,15 @@ Author:  Björn Esser <besser82@fedoraproject.org>
 @package dnfdragora
 '''
 
-import dnfdaemon.client, gettext, sched, sys, threading, time, yui, os
+import gettext, sched, sys, threading, time, yui, os
 
 from PIL import Image
-from dnfdragora import config, misc, dialogs, ui
+from dnfdragora import config, misc, dialogs, ui, dnfd_client
+
 from pystray import Menu, MenuItem
 from pystray import Icon as Tray
 import notify2
+from queue import SimpleQueue, Empty
 
 import logging
 logger = logging.getLogger('dnfdragora.updater')
@@ -28,10 +30,6 @@ class Updater:
 
     def __init__(self, options={}):
         self.__main_gui  = None
-        self.__notifier  = notify2.Notification('dnfdragora', '', 'dnfdragora')
-        self.__running   = True
-        self.__updater   = threading.Thread(target=self.__update_loop)
-        self.__scheduler = sched.scheduler(time.time, time.sleep)
 
         self.__config         = config.AppConfig('dnfdragora')
         self.__updateInterval = 180
@@ -41,26 +39,22 @@ class Updater:
         self.__log_directory = None
         self.__level_debug = False
 
-        if self.__config.systemSettings :
-            settings = {}
-            if 'settings' in self.__config.systemSettings.keys() :
-                settings = self.__config.systemSettings['settings']
-                if 'update_interval' in settings.keys() :
-                    self.__updateInterval = int(settings['update_interval'])
-
         if self.__config.userPreferences:
             if 'settings' in self.__config.userPreferences.keys() :
                 settings = self.__config.userPreferences['settings']
                 if 'interval for checking updates' in settings.keys() :
                     self.__updateInterval = int(settings['interval for checking updates'])
-                if 'log_enabled' in settings.keys() :
-                  self.__log_enabled = settings['log_enabled']
-                if self.__log_enabled and 'log' in settings.keys():
+
+                #### Logging
+                if 'log' in settings.keys():
                   log = settings['log']
-                  if 'directory' in log.keys() :
-                      self.__log_directory = log['directory']
-                  if 'level_debug' in log.keys() :
-                      self.__level_debug = log['level_debug']
+                  if 'enabled' in log.keys() :
+                    self.__log_enabled = log['enabled']
+                  if self.__log_enabled:
+                    if 'directory' in log.keys() :
+                        self.__log_directory = log['directory']
+                    if 'level_debug' in log.keys() :
+                        self.__level_debug = log['level_debug']
 
         if self.__log_enabled:
           if self.__log_directory:
@@ -100,6 +94,19 @@ class Updater:
           logger.error("Cannot open theme icon using default one %s"%(icon_path))
           self.__icon  = Image.open(icon_path)
 
+        try:
+            self.__backend = dnfd_client.Client()
+        except dnfdaemon.client.DaemonError as error:
+            logger.error(_('Error starting dnfdaemon service: [%s]')%(str(error)))
+            return
+        except Exception as e:
+            logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
+            return
+        self.__notifier  = notify2.Notification('dnfdragora', '', 'dnfdragora')
+        self.__running   = True
+        self.__updater   = threading.Thread(target=self.__update_loop)
+        self.__scheduler = sched.scheduler(time.time, time.sleep)
+
         self.__menu  = Menu(
             MenuItem(_('Update'), self.__run_update),
             MenuItem(_('Open dnfdragora dialog'), self.__run_dnfdragora),
@@ -137,15 +144,15 @@ class Updater:
     def __shutdown(self, *kwargs):
         logger.info("shutdown")
         if self.__main_gui :
-            loger.debug("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
+            logger.debug("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
             return
         try:
             self.__running = False
             self.__updater.join()
             try:
                 if self.__backend:
-                    self.__backend.Unlock()
-                    self.__backend.Exit()
+                    self.__backend.Unlock(sync=True)
+                    self.__backend.Exit(sync=True)
             except:
                 pass
             yui.YDialog.deleteAllDialogs()
@@ -207,55 +214,100 @@ class Updater:
 
 
     def __get_updates_func(self, forced, *kwargs):
-        try:
-            self.__backend = dnfdaemon.client.Client()
-        except dnfdaemon.client.DaemonError as error:
-            logger.error(_('Error starting dnfdaemon service: [%s]')%(str(error)))
-            self.__update_count = -1
-            self.__tray.icon = None
-            return
-        except Exception as e:
-            logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
-            self.__update_count = -1
-            self.__tray.icon = None
-            return
+        #TODO REMOVE try:
+        #TODO REMOVE     self.__backend = dnfd_client.Client()
+        #TODO REMOVE except dnfdaemon.client.DaemonError as error:
+        #TODO REMOVE     logger.error(_('Error starting dnfdaemon service: [%s]')%(str(error)))
+        #TODO REMOVE     self.__update_count = -1
+        #TODO REMOVE     self.__tray.icon = None
+        #TODO REMOVE     return
+        #TODO REMOVE except Exception as e:
+        #TODO REMOVE     logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
+        #TODO REMOVE     self.__update_count = -1
+        #TODO REMOVE     self.__tray.icon = None
+        #TODO REMOVE     return
 
         try:
-            if self.__backend.Lock():
-                pkgs = self.__backend.GetPackages('updates')
-                self.__update_count = len(pkgs)
-                logger.debug("Found %d updates"%(self.__update_count))
-                self.__backend.Unlock()
-                self.__backend.Exit()
-                time.sleep(0.5)
-                self.__backend = None
-                if (self.__update_count >= 1) or forced:
-                    self.__notifier.update(
-                        'dnfdragora',
-                        _('%d updates available.') % self.__update_count,
-                        'dnfdragora'
-                    )
-                    self.__notifier.show()
-                    self.__tray.icon = self.__icon
-                    self.__tray.visible = True
-                else:
-                    self.__notifier.close()
-            else:
-                logger.error("DNF backend already locked cannot check for updates")
-                self.__update_count = -1
-                self.__tray.icon = None
-                self.__backend = None
+            sync=True
+            self.__backend.Lock()
+            # TODO MOVE if locked:
+            # TODO MOVE     pkgs = self.__backend.GetPackages('updates', sync)
+            # TODO MOVE     self.__update_count = len(pkgs)
+            # TODO MOVE     logger.debug("Found %d updates"%(self.__update_count))
+            # TODO MOVE     self.__backend.Unlock(sync)
+            # TODO MOVE     self.__backend.Exit(sync)
+            # TODO MOVE     time.sleep(0.5)
+            # TODO MOVE     self.__backend = None
+            # TODO MOVE     if (self.__update_count >= 1) or forced:
+            # TODO MOVE         self.__notifier.update(
+            # TODO MOVE             'dnfdragora',
+            # TODO MOVE             _('%d updates available.') % self.__update_count,
+            # TODO MOVE             'dnfdragora'
+            # TODO MOVE         )
+            # TODO MOVE         self.__notifier.show()
+            # TODO MOVE         self.__tray.icon = self.__icon
+            # TODO MOVE         self.__tray.visible = True
+            # TODO MOVE     else:
+            # TODO MOVE         self.__notifier.close()
+            # TODO MOVE else:
+            # TODO MOVE     logger.error("DNF backend already locked cannot check for updates")
+            # TODO MOVE     self.__update_count = -1
+            # TODO MOVE     self.__tray.icon = None
+            # TODO MOVE     self.__backend = None
         except Exception as e:
             logger.error(_('Exception caught: [%s]')%(str(e)))
 
 
     def __update_loop(self):
-        self.__get_updates()
-        while self.__running == True:
-            if self.__scheduler.empty():
-                self.__scheduler.enter(self.__updateInterval * 60, 1, self.__get_updates)
-            self.__scheduler.run(blocking=False)
-            time.sleep(1)
+      self.__get_updates()
+
+      while self.__running == True:
+        update_next = 1 # self.__updateInterval
+        add_to_schedule = False
+        try:
+          item = self.__backend.eventQueue.get_nowait()
+          event = item['event']
+          info = item['value']
+          logger.debug("Event received %s - info %s", event, str(info))
+          if (event == 'Lock') :
+            backend_locked = info['result']
+            if backend_locked:
+              self.__backend.GetPackages('updates_all')
+            else:
+              # no locked try again in a minute
+              update_next = 1
+              add_to_schedule = True
+
+          elif (event == 'GetPackages'):
+            if not info['error']:
+              po_list = info['result']
+              self.__update_count = len(po_list)
+              logger.info("Found %d updates"%(self.__update_count))
+
+              if (self.__update_count >= 1):
+                self.__notifier.update(
+                    'dnfdragora',
+                    _('%d updates available.') % self.__update_count,
+                    'dnfdragora'
+                )
+                self.__notifier.show()
+                self.__tray.icon = self.__icon
+                self.__tray.visible = True
+              else:
+                  self.__notifier.close()
+
+              add_to_schedule = True
+            # Let's release the db
+            self.__backend.Unlock(sync=True)
+
+        except Empty as e:
+          pass
+
+        if (add_to_schedule and self.__scheduler.empty()):
+          self.__scheduler.enter(update_next * 60, 1, self.__get_updates)
+        self.__scheduler.run(blocking=False)
+        time.sleep(1)
+
 
 
     def __main_loop(self):

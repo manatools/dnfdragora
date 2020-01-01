@@ -34,6 +34,9 @@ Async working:
 * Better management of Locking/Unlocking DB
 * Fix progress bar (in progress)
 * Fix window layout to gain room
+* Fix dnfdragora launch from dnfdragora-update (something weird on exit)
+* Fix dnfdragora-update 'exit' (it does not really)
+* Fix dnfdragora-update 'update' (Crash)
 
 * Improve dnd_client to handle all actions either synched or asynched (done)
 * Adding a button to deselect all (not needed -> menu reset selection)
