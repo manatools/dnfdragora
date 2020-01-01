@@ -144,22 +144,22 @@ class Updater:
     def __shutdown(self, *kwargs):
         logger.info("shutdown")
         if self.__main_gui :
-            logger.debug("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
-            return
+          logger.debug("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
+          return
         try:
-            self.__running = False
-            self.__updater.join()
-            try:
-                if self.__backend:
-                    self.__backend.Unlock(sync=True)
-                    self.__backend.Exit(sync=True)
-            except:
-                pass
-            yui.YDialog.deleteAllDialogs()
-            yui.YUILoader.deleteUI()
+          self.__running = False
+          self.__updater.join()
+          try:
+            if self.__backend:
+              self.__backend.Exit()
+              self.__backend = None
+          except:
+            pass
+          yui.YDialog.deleteAllDialogs()
+          yui.YUILoader.deleteUI()
 
         except:
-            pass
+          pass
 
         finally:
             if self.__scheduler.empty() != False:
@@ -170,9 +170,10 @@ class Updater:
                         pass
 
             if self.__tray != None:
-                self.__tray.stop()
+              self.__tray.stop()
             if self.__backend:
-                self.__backend.Exit()
+              self.__backend.Exit()
+              self.__backend = None
 
 
     def __run_dialog(self, args, *kwargs):
@@ -214,46 +215,8 @@ class Updater:
 
 
     def __get_updates_func(self, forced, *kwargs):
-        #TODO REMOVE try:
-        #TODO REMOVE     self.__backend = dnfd_client.Client()
-        #TODO REMOVE except dnfdaemon.client.DaemonError as error:
-        #TODO REMOVE     logger.error(_('Error starting dnfdaemon service: [%s]')%(str(error)))
-        #TODO REMOVE     self.__update_count = -1
-        #TODO REMOVE     self.__tray.icon = None
-        #TODO REMOVE     return
-        #TODO REMOVE except Exception as e:
-        #TODO REMOVE     logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
-        #TODO REMOVE     self.__update_count = -1
-        #TODO REMOVE     self.__tray.icon = None
-        #TODO REMOVE     return
-
         try:
-            sync=True
             self.__backend.Lock()
-            # TODO MOVE if locked:
-            # TODO MOVE     pkgs = self.__backend.GetPackages('updates', sync)
-            # TODO MOVE     self.__update_count = len(pkgs)
-            # TODO MOVE     logger.debug("Found %d updates"%(self.__update_count))
-            # TODO MOVE     self.__backend.Unlock(sync)
-            # TODO MOVE     self.__backend.Exit(sync)
-            # TODO MOVE     time.sleep(0.5)
-            # TODO MOVE     self.__backend = None
-            # TODO MOVE     if (self.__update_count >= 1) or forced:
-            # TODO MOVE         self.__notifier.update(
-            # TODO MOVE             'dnfdragora',
-            # TODO MOVE             _('%d updates available.') % self.__update_count,
-            # TODO MOVE             'dnfdragora'
-            # TODO MOVE         )
-            # TODO MOVE         self.__notifier.show()
-            # TODO MOVE         self.__tray.icon = self.__icon
-            # TODO MOVE         self.__tray.visible = True
-            # TODO MOVE     else:
-            # TODO MOVE         self.__notifier.close()
-            # TODO MOVE else:
-            # TODO MOVE     logger.error("DNF backend already locked cannot check for updates")
-            # TODO MOVE     self.__update_count = -1
-            # TODO MOVE     self.__tray.icon = None
-            # TODO MOVE     self.__backend = None
         except Exception as e:
             logger.error(_('Exception caught: [%s]')%(str(e)))
 
@@ -262,7 +225,7 @@ class Updater:
       self.__get_updates()
 
       while self.__running == True:
-        update_next = 1 # self.__updateInterval
+        update_next = self.__updateInterval
         add_to_schedule = False
         try:
           item = self.__backend.eventQueue.get_nowait()
@@ -308,6 +271,7 @@ class Updater:
         self.__scheduler.run(blocking=False)
         time.sleep(1)
 
+      logger.info("Update loop end")
 
 
     def __main_loop(self):
