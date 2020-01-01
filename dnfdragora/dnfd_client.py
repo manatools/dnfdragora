@@ -538,7 +538,7 @@ class DnfDaemonBase:
           return result
 
 
-    def GetRepositories(self, repo_filter):
+    def GetRepositories(self, repo_filter, sync=False):
         '''Get a list of repository ids where name matches a filter
 
         Args:
@@ -547,9 +547,13 @@ class DnfDaemonBase:
         Returns:
             list of repo id's
         '''
-        self._run_dbus_async('GetRepositories', '(s)', repo_filter)
+        if not sync:
+          self._run_dbus_async('GetRepositories', '(s)', repo_filter)
+        else:
+          result = self._run_dbus_sync('GetRepositories', '(s)', repo_filter)
+          return [str(r) for r in result]
 
-    def GetRepo(self, repo_id):
+    def GetRepo(self, repo_id, sync=False):
         '''Get a dictionary of information about a given repo id.
 
         Args:
@@ -558,7 +562,11 @@ class DnfDaemonBase:
         Returns:
             dictionary with repo info
         '''
-        self._run_dbus_async('GetRepo', '(s)', repo_id)
+        if not sync:
+          self._run_dbus_async('GetRepo', '(s)', repo_id)
+        else:
+          result = self._run_dbus_sync('GetRepo', '(s)', repo_id)
+          return json.loads(result)
 
 
     def SetEnabledRepos(self, repo_ids):
