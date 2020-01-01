@@ -838,6 +838,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
+    def _rebuildPackageListWithSearchGroup(self):
+      '''
+      Next code is used to check if the package list must be rebuilt in
+      the case of an active search result
+      '''
+      rebuild_package_list = False
+      sel = self.tree.selectedItem()
+      if sel :
+        group = self._groupNameFromItem(self.groupList, sel)
+        if (group == "Search"):
+          filter = self._filterNameSelected()
+          if not self._searchPackages(filter) :
+            rebuild_package_list = True
+        else:
+          rebuild_package_list = True
+      return rebuild_package_list
+
     def _fillGroupTree(self) :
         '''
         fill the group tree, look for the retrieved groups and set their icons
@@ -1099,7 +1116,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 icon = self.gIcons.icon("Search")
                 treeItem = yui.YTreeItem(self.gIcons.groups['Search']['title'] , icon, False)
                 treeItem.setSelected(True)
-                self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : _("Search") }
+                self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
                 self.tree.addItem(treeItem)
                 self.tree.doneMultipleChanges()
                 self.tree.rebuildTree()
@@ -1334,15 +1351,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if (item) :
                     if  item == self.fileMenu['reset_sel'] :
                         self.packageQueue.clear()
-                        sel = self.tree.selectedItem()
-                        if sel :
-                            group = self._groupNameFromItem(self.groupList, sel)
-                            if (group == "Search"):
-                                filter = self._filterNameSelected()
-                                if not self._searchPackages(filter) :
-                                    rebuild_package_list = True
-                            else:
-                                rebuild_package_list = True
+                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                     elif item == self.fileMenu['reload'] :
                         self.infobar.reset_all()
                         self.infobar.info(_('Refreshing Repository Metadata'))
@@ -1406,15 +1415,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                     pkg = self.itemList[it]['pkg']
                                     if pkg.installed and self.backend.protected(pkg) :
                                         dialogs.warningMsgBox({'title' : _("Protected package selected"), "text": _("Package %s cannot be removed")%pkg.name, "richtext":True})
-                                        sel = self.tree.selectedItem()
-                                        if sel :
-                                            group = self._groupNameFromItem(self.groupList, sel)
-                                            if (group == "Search"):
-                                                filter = self._filterNameSelected()
-                                                if not self._searchPackages(filter) :
-                                                    rebuild_package_list = True
-                                            else:
-                                                rebuild_package_list = True
+                                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                                     else :
                                         if changedItem.checked():
                                             self.packageQueue.add(pkg, 'i')
@@ -1441,7 +1442,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     for it in self.itemList:
                         pkg = self.itemList[it]['pkg']
                         self.packageQueue.add(pkg, 'i')
-                        rebuild_package_list = True
+                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
 
                 elif (widget == self.applyButton) :
                     #### APPLY
@@ -1475,15 +1476,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         filter = self._filterNameSelected()
                         self._fillGroupTree()
                         self.checkAllButton.setEnabled(filter == 'to_update')
-                    sel = self.tree.selectedItem()
-                    if sel :
-                        group = self._groupNameFromItem(self.groupList, sel)
-                        if (group == "Search"):
-                            filter = self._filterNameSelected()
-                            if not self._searchPackages(filter) :
-                                rebuild_package_list = True
-                        else:
-                            rebuild_package_list = True
+                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                 else:
                     print(_("Unmanaged widget"))
             elif (eventType == yui.YEvent.TimeoutEvent) :
@@ -1863,8 +1856,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._enableAction(self.backend_locked)
                 filter = self._filterNameSelected()
                 self.checkAllButton.setEnabled(filter == 'to_update')
+
+                sel = self.tree.selectedItem()
+                if sel :
+                  rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                else:
+                  rebuild_package_list = True
                 self.infobar.reset_all()
-                rebuild_package_list = True
             else:
               logger.error("GetPackages error: %s", info['error'])
               raise UIError(str(info['error']))
