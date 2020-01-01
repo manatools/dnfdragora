@@ -1432,7 +1432,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.find_entry.setValue("")
                     self._fillGroupTree()
 
-                elif (widget == self.find_button) :
+                elif (widget == self.find_button) or (widget == self.search_list) :
                     #### FIND
                     filter = self._filterNameSelected()
                     if not self._searchPackages(filter, True) :

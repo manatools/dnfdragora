@@ -31,12 +31,13 @@ If you want to help in any of this items, or new ones please contact us
 Async working:
 * Improve dnd_client to handle all actions either syncihed or asynched (in progress)
 * Fix transactions to make them async too (in progress)
-* Changing search field is not applied if a search is already performed
-* Adding a button to deselect all (not needed -> menu reset selection)
+* Changing search list field to "in file names" crashes
 * Better management of Locking/Unlocking DB
 * Fix progress bar (in progress)
 * Fix window layout to gain room
 
+* Adding a button to deselect all (not needed -> menu reset selection)
+* Changing search list field is not applied if a search is already performed (done)
 * Check why to apply a transaction now we need to refresh window by doing someting (done)
 * Speed up dequeing dnfdaemon event (done)
 * Fix searching crash (done)
