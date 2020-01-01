@@ -479,31 +479,39 @@ class DnfDaemonBase:
 # API Methods
 #
 
-    def Lock(self):
+    def Lock(self, sync=False):
         '''Get the yum lock, this give exclusive access to the daemon and yum
         this must always be called before doing other actions
         '''
         try:
-          self._run_dbus_async('Lock')
+          if not sync:
+            self._run_dbus_async('Lock')
+          else:
+            self._run_dbus_sync('Lock')
         except Exception as err:
           self._handle_dbus_error(err)
 
-    def Unlock(self):
+    def Unlock(self, sync=False):
         '''Release the yum lock '''
         try:
-          self._run_dbus_async('Unlock')
-          #self.daemon.Unlock()
+          if not sync:
+            self._run_dbus_async('Unlock')
+          else:
+            self._run_dbus_sync('Unlock')
         except Exception as err:
             self._handle_dbus_error(err)
 
-    def SetWatchdogState(self, state):
+    def SetWatchdogState(self, state, sync=False):
         '''Set the Watchdog state
 
         Args:
             state: True = Watchdog active, False = Watchdog disabled
         '''
         try:
-          self._run_dbus_sync('SetWatchdogState', "(b)", state)
+          if not sync:
+            self._run_dbus_async('SetWatchdogState', "(b)", state)
+          else:
+            self._run_dbus_sync('SetWatchdogState', "(b)", state)
           #self.daemon.SetWatchdogState("(b)", state)
         except Exception as err:
             self._handle_dbus_error(err)
@@ -569,33 +577,44 @@ class DnfDaemonBase:
           return json.loads(result)
 
 
-    def SetEnabledRepos(self, repo_ids):
+    def SetEnabledRepos(self, repo_ids, sync=False):
         '''Enabled a list of repositories, disabled all other repos
 
         Args:
             repo_ids: list of repo ids to enable
         '''
-        self._run_dbus_async('SetEnabledRepos', '(as)', repo_ids)
+        if not sync:
+          self._run_dbus_async('SetEnabledRepos', '(as)', repo_ids)
+        else:
+          self._run_dbus_sync('SetEnabledRepos', '(as)', repo_ids)
 
-    def GetConfig(self, setting):
+    def GetConfig(self, setting, sync=False):
         '''Read a config setting from yum.conf
 
         Args:
             setting: setting to read
         '''
-        self._run_dbus_async('GetConfig', '(s)', setting)
+        if not sync:
+          self._run_dbus_async('GetConfig', '(s)', setting)
+        else:
+          result = self._run_dbus_sync('GetConfig', '(s)', setting)
+          return json.loads(result)
 
-    def GetAttribute(self, pkg_id, attr):
+
+    def GetAttribute(self, pkg_id, attr, sync=False):
         '''Get yum package attribute (description, filelist, changelog etc)
 
         Args:
             pkg_id: pkg_id to get attribute from
             attr: name of attribute to get
         '''
-        result = self._run_dbus_sync('GetAttribute', '(ss)', pkg_id, attr)
-        return json.loads(result)
+        if not sync:
+          self._run_dbus_async('GetAttribute', '(ss)', pkg_id, attr)
+        else:
+          result = self._run_dbus_sync('GetAttribute', '(ss)', pkg_id, attr)
+          return json.loads(result)
 
-    def GetPackagesByName(self, name, attr=[], newest_only=True):
+    def GetPackagesByName(self, name, attr=[], newest_only=True, sync=False):
         '''Get a list of pkg ids for starts with name
 
         Args:
@@ -607,18 +626,25 @@ class DnfDaemonBase:
         Returns:
             list of [pkg_id, attr1, attr2, ...]
         '''
-        result = self._run_dbus_sync('GetPackagesByName', '(sasb)',
+        if not sync:
+          self._run_dbus_async('GetPackagesByName', '(sasb)',
                           name, attr, newest_only)
-        return json.loads(result)
+        else:
+          result = self._run_dbus_sync('GetPackagesByName', '(sasb)',
+                          name, attr, newest_only)
+          return json.loads(result)
 
-        #self._run_dbus_async('GetPackagesByName', '(sasb)',
-        #                  name, attr, newest_only)
 
-    def GetGroups(self):
+    def GetGroups(self, sync=False):
         '''Get list of Groups. '''
-        self._run_dbus_async('GetGroups')
+        if not sync:
+          self._run_dbus_async('GetGroups')
+        else:
+          result = self._run_dbus_sync('GetGroups')
+          return json.loads(result)
 
-    def GetGroupPackages(self, grp_id, grp_flt, fields):
+
+    def GetGroupPackages(self, grp_id, grp_flt, fields, sync=False):
         '''Get packages in a group
 
         Args:
@@ -628,8 +654,13 @@ class DnfDaemonBase:
                      the group is installed)
             fields: extra package attributes to include in result
         '''
-        self._run_dbus_async('GetGroupPackages', '(ssas)',
+        if not sync:
+          self._run_dbus_async('GetGroupPackages', '(ssas)',
                           grp_id, grp_flt, fields)
+        else:
+          result = self._run_dbus_sync('GetGroupPackages', '(ssas)',
+                          grp_id, grp_flt, fields)
+          return json.loads(result)
 
 
     def Search(self, fields, keys, attrs, match_all, newest_only, tags, sync=False):
@@ -656,9 +687,12 @@ class DnfDaemonBase:
           return json.loads(result)
 
 
-    def Exit(self):
-        '''End the daemon'''
+    def Exit(self, sync=True):
+      '''End the daemon'''
+      if not sync:
         self._run_dbus_async('Exit')
+      else:
+        self._run_dbus_sync('Exit')
 
 #
 # Helper methods
