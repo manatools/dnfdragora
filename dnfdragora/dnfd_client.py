@@ -508,7 +508,7 @@ class DnfDaemonBase:
         except Exception as err:
             self._handle_dbus_error(err)
 
-    def GetPackages(self, pkg_filter, fields=[]):
+    def GetPackages(self, pkg_filter, fields=[], sync=False):
         '''Get a list of pkg list for a given package filter
 
         each pkg list contains [pkg_id, field,....] where field is a
@@ -520,8 +520,14 @@ class DnfDaemonBase:
                                'updates','obsoletes','recent','extras')
             fields: yum package objects attributes to get.
         '''
-        self._run_dbus_async(
-            'GetPackages', '(sas)', pkg_filter, fields)
+        if not sync:
+          self._run_dbus_async(
+              'GetPackages', '(sas)', pkg_filter, fields)
+        else:
+          result = self._run_dbus_sync(
+              'GetPackages', '(sas)', pkg_filter, fields)
+          return json.loads(result)
+
 
     def ExpireCache(self):
         '''Expire the dnf metadata, so they will be refresed'''

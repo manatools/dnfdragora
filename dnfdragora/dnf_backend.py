@@ -173,7 +173,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         try:
             self.Lock()
             self.SetWatchdogState(False)
-            self._update_config_options()
             return True, ''
         except dnfdaemon.client.AccessDeniedError:
             return False, 'not-authorized'
@@ -206,8 +205,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         #NOTE caching groups is slow let's do only once by now
         #self._pkg_id_to_groups_cache = None
 
-    def _update_config_options(self):
-        pass
 
     def to_pkg_tuple(self, pkg_id):
         """Get package nevra & repoid from an package pkg_id"""
