@@ -529,9 +529,13 @@ class DnfDaemonBase:
           return json.loads(result)
 
 
-    def ExpireCache(self):
+    def ExpireCache(self, sync=False):
         '''Expire the dnf metadata, so they will be refresed'''
-        self._run_dbus_async('ExpireCache', '()')
+        if not sync:
+          self._run_dbus_async('ExpireCache', '()')
+        else:
+          result = self._run_dbus_sync('ExpireCache', '()')
+          return result
 
 
     def GetRepositories(self, repo_filter):
