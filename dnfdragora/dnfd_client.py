@@ -487,7 +487,8 @@ class DnfDaemonBase:
           if not sync:
             self._run_dbus_async('Lock')
           else:
-            self._run_dbus_sync('Lock')
+            result = self._run_dbus_sync('Lock')
+            return result
         except Exception as err:
           self._handle_dbus_error(err)
 
@@ -497,7 +498,8 @@ class DnfDaemonBase:
           if not sync:
             self._run_dbus_async('Unlock')
           else:
-            self._run_dbus_sync('Unlock')
+            result = self._run_dbus_sync('Unlock')
+            return result
         except Exception as err:
             self._handle_dbus_error(err)
 
