@@ -1449,19 +1449,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self._populate_transaction()
                     self.backend.BuildTransaction()
 
-                    # TODO MANAGE self._run_transaction(self.always_yes)
-                    # TODO MANAGE sel = self.tree.selectedItem()
-                    # TODO MANAGE if sel :
-                    # TODO MANAGE     group = self._groupNameFromItem(self.groupList, sel)
-                    # TODO MANAGE     filter = self._filterNameSelected()
-                    # TODO MANAGE     if (group == "Search"):
-                    # TODO MANAGE         # force tree rebuilding to show new package status
-                    # TODO MANAGE         if not self._searchPackages(filter, True) :
-                    # TODO MANAGE             rebuild_package_list = True
-                    # TODO MANAGE     else:
-                    # TODO MANAGE         if filter == "to_update":
-                    # TODO MANAGE             self._fillGroupTree()
-                    # TODO MANAGE         rebuild_package_list = True
                 elif (widget == self.view_box) :
                     view = self._viewNameSelected()
                     filter = self._filterNameSelected()
@@ -1471,12 +1458,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.find_entry.setValue("")
                     self._fillGroupTree()
                 elif (widget == self.tree) or (widget == self.filter_box) :
-                    if (widget == self.filter_box) :
-                        view = self._viewNameSelected()
-                        filter = self._filterNameSelected()
-                        self._fillGroupTree()
-                        self.checkAllButton.setEnabled(filter == 'to_update')
-                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                  rebuild_package_list = True
+                  if (widget == self.filter_box) :
+                    view = self._viewNameSelected()
+                    filter = self._filterNameSelected()
+                    self._fillGroupTree()
+                    self.checkAllButton.setEnabled(filter == 'to_update')
                 else:
                     print(_("Unmanaged widget"))
             elif (eventType == yui.YEvent.TimeoutEvent) :
@@ -1499,11 +1486,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 print(_("Unmanaged event %d"), eventType)
 
             if rebuild_package_list :
+              search_string = self.find_entry.value()
+              filter = self._filterNameSelected()
+              if search_string :
+                if self._searchPackages(filter, True) :
+                  rebuild_package_list = False
+              if rebuild_package_list:
                 sel = self.tree.selectedItem()
                 if sel :
-                    group = self._groupNameFromItem(self.groupList, sel)
-                    filter = self._filterNameSelected()
-                    self._fillPackageList(group, filter)
+                  group = self._groupNameFromItem(self.groupList, sel)
+                  self._fillPackageList(group, filter)
 
             sel_pkg = self._selectedPackage()
             if sel_pkg :
