@@ -255,7 +255,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.use_comps :
             # let's show the dialog with a poll event
             self.dialog.pollEvent()
-            rpm_groups = self.backend.GetGroups()
+            rpm_groups = self.backend.GetGroups(sync=True)
 
         self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
 
@@ -1379,8 +1379,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                           # let's save prefs to get changes on next user preferences dialog open anyway even if not active
                           self.saveUserPreference()
                     elif item == self.infoMenu['history'] :
-                        self.backend.GetHistoryByDays(
-                          0, 120) #TODO add in config file
+                        self.backend.GetHistoryByDays(0, 120) #TODO add in config file
                     elif item == self.helpMenu['help']  :
                         dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
@@ -1799,7 +1798,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.backend_locked = info['result']
             if self.backend_locked :
               self._status = DNFDragoraStatus.RUNNING
-              self.backend.SetWatchdogState(False)
+              self.backend.SetWatchdogState(False, sync=True)
               # TODO only if expired
               if self._check_MD_cache_expired():
                 self.backend.ExpireCache()

@@ -171,8 +171,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     def setup(self):
         """Setup the dnf backend daemon."""
         try:
-            self.Lock()
-            self.SetWatchdogState(False)
+            self.Lock(sync=True)
+            self.SetWatchdogState(False, sync=True)
             return True, ''
         except dnfdaemon.client.AccessDeniedError:
             return False, 'not-authorized'
@@ -198,7 +198,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self.Unlock()  # Release the lock
         # time.sleep(5)
         self.Lock()  # Load & Lock the daemon
-        self.SetWatchdogState(False)
+        self.SetWatchdogState(False, sync=True)
         #self._update_config_options()
         self.cache.reset()  # Reset the cache
         self._group_cache = None
@@ -259,13 +259,14 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         # No need for 3 almost indentical way to make a list of package objects
         po_list = []
         append = po_list.append
+        sync=True
         for pkg_id in pkg_ids:
-            summary = self.GetAttribute(pkg_id, 'summary')
-            size = self.GetAttribute(pkg_id, 'size')
-            group = self.GetAttribute(pkg_id, 'group')
+            summary = self.GetAttribute(pkg_id, 'summary', sync)
+            size = self.GetAttribute(pkg_id, 'size', sync)
+            group = self.GetAttribute(pkg_id, 'group', sync)
 
             pkg_values = (pkg_id, summary, size, group)
-            action = const.BACKEND_ACTIONS[self.GetAttribute(pkg_id, 'action')]
+            action = const.BACKEND_ACTIONS[self.GetAttribute(pkg_id, 'action', sync)]
             append(DnfPackage(pkg_values, action, self))
         return self.cache.find_packages(po_list)
 
@@ -308,7 +309,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     @ExceptionHandler
     def get_downgrades(self, pkg_id):
         """Get downgrades for a given pkg_id"""
-        pkgs = self.GetAttribute(pkg_id, 'downgrades')
+        pkgs = self.GetAttribute(pkg_id, 'downgrades', sync=True)
         return self._build_package_list(pkgs)
 
     @ExceptionHandler
@@ -338,7 +339,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         :param newest_only: get lastest version only
         """
         attrs = ['summary', 'size', 'group', 'action']
-        pkgs = self.GetPackagesByName(name_key, attrs, newest_only)
+        pkgs = self.GetPackagesByName(name_key, attrs, newest_only, sync=True)
         return self._make_pkg_object_with_attr(pkgs)
 
     @ExceptionHandler
@@ -413,7 +414,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         if not self._group_cache :
             if self._use_comps:
                 self._group_cache = []
-                rpm_groups = self.GetGroups()
+                rpm_groups = self.GetGroups(sync=True)
                 self._getAllGroupIDList(rpm_groups, self._group_cache)
             else :
                 self._group_cache = self._get_groups_from_packages()
@@ -444,7 +445,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                     #NOTE fedora gets packages using the leaf and not a group called X/Y/Z
                     grp = groupName.split("/")
                     #pkgs = self.get_group_packages(grp[-1], 'all')
-                    pkgs = self.GetGroupPackages(grp[-1], 'all', [])
+                    pkgs = self.GetGroupPackages(grp[-1], 'all', [], sync=True)
                     for pkg_id in pkgs :
                         if pkg_id not in self._pkg_id_to_groups_cache.keys():
                             self._pkg_id_to_groups_cache[pkg_id] = []
@@ -466,5 +467,5 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         :param grp_flt:
         """
         attrs = ['summary', 'size', 'group', 'action']
-        pkgs = self.GetGroupPackages(grp_id, grp_flt, attrs)
+        pkgs = self.GetGroupPackages(grp_id, grp_flt, attrs, sync=True)
         return self._make_pkg_object_with_attr(pkgs)
