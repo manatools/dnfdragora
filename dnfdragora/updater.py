@@ -110,7 +110,7 @@ class Updater:
         self.__menu  = Menu(
             MenuItem(_('Update'), self.__run_update),
             MenuItem(_('Open dnfdragora dialog'), self.__run_dnfdragora),
-            MenuItem(_('Check for updates'), self.__get_updates_forced),
+            MenuItem(_('Check for updates'), self.__get_updates),
             MenuItem(_('Exit'), self.__shutdown)
         )
         self.__name  = 'dnfdragora-updater'
@@ -162,7 +162,7 @@ class Updater:
           pass
 
         finally:
-            if self.__scheduler.empty() != False:
+            if not self.__scheduler.empty():
                 for task in self.__scheduler.queue:
                     try:
                         self.__scheduler.cancel(task)
@@ -175,6 +175,24 @@ class Updater:
               self.__backend.Exit()
               self.__backend = None
 
+    def __reschedule_update_in(self, minutes):
+      '''
+      clean up scheduler and schedule update in 'minutes'
+      '''
+      logger.debug("rescheduling")
+      if not self.__scheduler.empty():
+        logger.debug("Reset scheduler")
+        for task in self.__scheduler.queue:
+          try:
+            self.__scheduler.cancel(task)
+          except:
+            pass
+      if self.__scheduler.empty():
+        self.__scheduler.enter(minutes * 60, 1, self.__get_updates)
+        logger.info("Scheduled check for updates in %d %s", minutes if minutes >= 1 else minutes*60, "minutes" if minutes >= 1 else "seconds" )
+        return True
+
+      return False
 
     def __run_dialog(self, args, *kwargs):
         if self.__tray != None and self.__main_gui == None:
@@ -182,20 +200,26 @@ class Updater:
             try:
                 self.__main_gui = ui.mainGui(args)
             except Exception as e:
-                dialogs.warningMsgBox({'title' : _("Running dnfdragora failure"), "text": str(e), "richtext":True}) 
-                yui.YDialog.deleteAllDialogs()
-                time.sleep(0.5)
-                self.__main_gui = None
-                return
+              logger.error("Exception on running dnfdragora with args %s - %s", str(args), str(e))
+              dialogs.warningMsgBox({'title' : _("Running dnfdragora failure"), "text": str(e), "richtext":True})
+              yui.YDialog.deleteAllDialogs()
+              time.sleep(0.5)
+              self.__main_gui = None
+              return
             self.__tray.icon = None
             self.__main_gui.handleevent()
 
+            logger.debug("Closing dnfdragora")
             while self.__main_gui.loop_has_finished != True:
                 time.sleep(1)
+            logger.info("Closed dnfdragora")
             yui.YDialog.deleteAllDialogs()
             time.sleep(1)
             self.__main_gui = None
-            self.__get_updates()
+            logger.debug("Look for remaining updates")
+            # Let's delay a bit the check, otherwise Lock will fail
+            done=self.__reschedule_update_in(0.5)
+            logger.debug("Scheduled %s", "done" if done else "skipped")
 
 
     def __run_dnfdragora(self, *kwargs):
@@ -207,18 +231,14 @@ class Updater:
 
 
     def __get_updates(self, *kwargs):
-        return self.__get_updates_func(False)
-
-
-    def __get_updates_forced(self, *kwargs):
-        return self.__get_updates_func(True)
-
-
-    def __get_updates_func(self, forced, *kwargs):
-        try:
-            self.__backend.Lock()
-        except Exception as e:
-            logger.error(_('Exception caught: [%s]')%(str(e)))
+      '''
+      Start get updates by simply locking the DB
+      '''
+      logger.debug("Start getting updates")
+      try:
+        self.__backend.Lock()
+      except Exception as e:
+        logger.error(_('Exception caught: [%s]')%(str(e)))
 
 
     def __update_loop(self):
@@ -231,17 +251,20 @@ class Updater:
           item = self.__backend.eventQueue.get_nowait()
           event = item['event']
           info = item['value']
-          logger.debug("Event received %s - info %s", event, str(info))
+
           if (event == 'Lock') :
+            logger.info("Event received %s - info %s", event, str(info))
             backend_locked = info['result']
             if backend_locked:
               self.__backend.GetPackages('updates_all')
+              logger.debug("Getting update packages")
             else:
               # no locked try again in a minute
               update_next = 1
               add_to_schedule = True
 
           elif (event == 'GetPackages'):
+            logger.debug("Event received %s", event)
             if not info['error']:
               po_list = info['result']
               self.__update_count = len(po_list)
@@ -254,22 +277,33 @@ class Updater:
                     'dnfdragora'
                 )
                 self.__notifier.show()
+                logger.debug("Shown notifier")
                 self.__tray.icon = self.__icon
                 self.__tray.visible = True
+                logger.debug("Shown tray")
               else:
-                  self.__notifier.close()
+                self.__notifier.close()
+                logger.debug("Close notifier")
 
               add_to_schedule = True
+            else:
+              logger.warning("Unmanaged event received %s - info %s", event, str(info))
             # Let's release the db
             self.__backend.Unlock(sync=True)
+            logger.debug("RPM DB unlocked")
 
         except Empty as e:
           pass
 
-        if (add_to_schedule and self.__scheduler.empty()):
+        if add_to_schedule:
+          self.__reschedule_update_in(update_next)
+        elif self.__scheduler.empty():
+          # if the scheduler is empty we schedule a check according
+          # to configuration file anyway
           self.__scheduler.enter(update_next * 60, 1, self.__get_updates)
+          logger.info("Scheduled check for updates in %d minutes", update_next)
         self.__scheduler.run(blocking=False)
-        time.sleep(1)
+        time.sleep(0.5)
 
       logger.info("Update loop end")
 
