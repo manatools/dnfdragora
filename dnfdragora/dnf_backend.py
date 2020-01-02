@@ -60,7 +60,7 @@ class DnfPackage(dnfdragora.backend.Package):
     @ExceptionHandler
     def get_attribute(self, attr):
         """Get a given attribute for a package."""
-        return self.backend.GetAttribute(self.pkg_id, attr)
+        return self.backend.GetAttribute(self.pkg_id, attr, sync=True)
 
     @property
     def version(self):
