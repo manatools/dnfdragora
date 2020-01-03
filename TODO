@@ -38,6 +38,7 @@ Async working:
 * Fix group caching if comp is selected (in progress)
 * Handle exceptions into dnfdragora-update loop to avoid crashing
 * Let the user know when DB is locked on dnfdragora startup
+* Add and/or change some icons if possible
 
 * Improve dnd_client to handle all actions either synched or asynched (done)
 * Adding a button to deselect all (not needed -> menu reset selection)
