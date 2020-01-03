@@ -34,8 +34,8 @@ Async working:
 * Better management of Locking/Unlocking DB
 * Fix progress bar (in progress)
 * Fix window layout to gain room
-* Fix notifiy/menu seems not to be shown after running dinfdragora
-* Fix group caching if comp is selected
+* Fix notifiy/menu seems not to be shown after running dinfdragora (in progress)
+* Fix group caching if comp is selected (in progress)
 * Handle exceptions into dnfdragora-update loop to avoid crashing
 * Let the user know when DB is locked on dnfdragora startup
 
