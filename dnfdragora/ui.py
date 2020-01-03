@@ -251,14 +251,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._enableAction(False)
         self.pbar_layout.setEnabled(True)
 
-        rpm_groups = None
-        if self.use_comps :
-            # let's show the dialog with a poll event
-            self.dialog.pollEvent()
-            rpm_groups = self.backend.GetGroups(sync=True)
-
-        self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
-
         self.backend
         print("Locking")
         self.dialog.pollEvent()
@@ -1832,6 +1824,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._cachingRequest('available')
               elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
                 po_list = info['result']
+                rpm_groups = None
+                if self.use_comps :
+                  # let's show the dialog with a poll event
+                  rpm_groups = self.backend.GetGroups(sync=True)
+                self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
+
                 # we requested available for caching
                 self.infobar.set_progress(1.0)
                 self._populateCache('available', po_list)
