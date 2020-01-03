@@ -206,7 +206,7 @@ class Updater:
               time.sleep(0.5)
               self.__main_gui = None
               return
-            self.__tray.icon = None
+            #self.__tray.icon = None
             self.__main_gui.handleevent()
 
             logger.debug("Closing dnfdragora")
@@ -282,6 +282,8 @@ class Updater:
                 self.__tray.visible = True
                 logger.debug("Shown tray")
               else:
+                self.__tray.icon = self.__icon
+                self.__tray.visible = True
                 self.__notifier.close()
                 logger.debug("Close notifier")
 
