@@ -29,6 +29,9 @@ if __name__ == "__main__":
     if args.locales_dir:
         gettext.install('dnfdragora', localedir=args.locales_dir, names=('ngettext',))
 
+    import logging
+    logger = logging.getLogger('dnfdragora.updater')
+
     import dnfdaemon.client
     import dnfdragora.updater
     options = {}
@@ -39,15 +42,15 @@ if __name__ == "__main__":
         upd = dnfdragora.updater.Updater(options)
         upd.main()
     except dnfdaemon.client.DaemonError as e:
-        print("dnfdaemon client error: %s ", e)
+      logger.error("dnfdaemon client error: %s ", str(e))
     except NameError as e:
-        print("dnfdaemon NameError: %s ", e)
+      logger.error("dnfdaemon NameError: %s ", str(e))
     except AttributeError as e:
-        print("dnfdaemon AttributeError: %s ", e)
+      logger.error("dnfdaemon AttributeError: %s ", str(e))
     except Exception as e:
-        print("Unexpected error: ", e)
+      logger.error("Unexpected error: %s ", str(e))
     except:
-        print("Unexpected error: ", sys.exc_info()[0])
+      logger.error("Unexpected error: %s ", str(sys.exc_info()[0]))
     finally:
         import yui
         yui.YDialog.deleteAllDialogs()
