@@ -287,12 +287,17 @@ class Updater:
                 self.__notifier.close()
                 logger.debug("Close notifier")
 
-              add_to_schedule = True
             else:
-              logger.warning("Unmanaged event received %s - info %s", event, str(info))
+              # error
+              logger.error("GetPackages error %s", str(info['error']))
+            #force scheduling again
+            add_to_schedule = True
             # Let's release the db
             self.__backend.Unlock(sync=True)
             logger.debug("RPM DB unlocked")
+          #elif (event == xxx)
+          else:
+              logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
         except Empty as e:
           pass
