@@ -1622,7 +1622,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       logger.debug('OnDownloadStart %s', repr(values))
 
       self._files_to_download = num_files
-      self._files_downloaded = 0
+      self._files_downloaded = 1
       self.infobar.set_progress(0.0)
       self.infobar.info_sub(
           _('Downloading %(count_files)d files (%(count_bytes)sB)...') %
