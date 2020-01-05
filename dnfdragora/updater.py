@@ -248,61 +248,72 @@ class Updater:
 
     def __update_loop(self):
       self.__get_updates()
+      backend_locked = False
 
       while self.__running == True:
         update_next = self.__updateInterval
         add_to_schedule = False
         try:
-          item = self.__backend.eventQueue.get_nowait()
-          event = item['event']
-          info = item['value']
+          counter = 0
+          count_max = 1000
 
-          if (event == 'Lock') :
-            logger.info("Event received %s - info %s", event, str(info))
-            backend_locked = info['result']
-            if backend_locked:
-              self.__backend.GetPackages('updates_all')
-              logger.debug("Getting update packages")
-            else:
-              # no locked try again in a minute
-              update_next = 1
-              add_to_schedule = True
+          #if dnfdragora is running we receive transaction/rpm progress/download etc events
+          #let's dequeue them as quick as possible
+          while counter < count_max:
+            counter = counter + 1
 
-          elif (event == 'GetPackages'):
-            logger.debug("Event received %s", event)
-            if not info['error']:
-              po_list = info['result']
-              self.__update_count = len(po_list)
-              logger.info("Found %d updates"%(self.__update_count))
+            item = self.__backend.eventQueue.get_nowait()
+            event = item['event']
+            info = item['value']
 
-              if (self.__update_count >= 1):
-                self.__notifier.update(
-                    'dnfdragora',
-                    _('%d updates available.') % self.__update_count,
-                    'dnfdragora'
-                )
-                self.__notifier.show()
-                logger.debug("Shown notifier")
-                self.__tray.icon = self.__icon
-                self.__tray.visible = True
-                logger.debug("Shown tray")
+            if (event == 'Lock') :
+              logger.info("Event received %s - info %s", event, str(info))
+              backend_locked = info['result']
+              if backend_locked:
+                self.__backend.GetPackages('updates_all')
+                logger.debug("Getting update packages")
               else:
-                self.__tray.icon = self.__icon
-                self.__tray.visible = True
-                self.__notifier.close()
-                logger.debug("Close notifier")
+                # no locked try again in a minute
+                update_next = 1
+                add_to_schedule = True
 
+            elif (event == 'GetPackages'):
+              logger.debug("Event received %s", event)
+              if not info['error']:
+                po_list = info['result']
+                self.__update_count = len(po_list)
+                logger.info("Found %d updates"%(self.__update_count))
+
+                if (self.__update_count >= 1):
+                  self.__notifier.update(
+                      'dnfdragora',
+                      _('%d updates available.') % self.__update_count,
+                      'dnfdragora'
+                  )
+                  self.__notifier.show()
+                  logger.debug("Shown notifier")
+                  self.__tray.icon = self.__icon
+                  self.__tray.visible = True
+                  logger.debug("Shown tray")
+                else:
+                  self.__tray.icon = self.__icon
+                  self.__tray.visible = True
+                  self.__notifier.close()
+                  logger.debug("Close notifier")
+
+              else:
+                # error
+                logger.error("GetPackages error %s", str(info['error']))
+              #force scheduling again
+              add_to_schedule = True
+              # Let's release the db
+              self.__backend.Unlock(sync=True)
+              backend_locked = False
+              logger.debug("RPM DB unlocked")
+            #elif (event == xxx)
             else:
-              # error
-              logger.error("GetPackages error %s", str(info['error']))
-            #force scheduling again
-            add_to_schedule = True
-            # Let's release the db
-            self.__backend.Unlock(sync=True)
-            logger.debug("RPM DB unlocked")
-          #elif (event == xxx)
-          else:
-              logger.warning("Unmanaged event received %s - info %s", event, str(info))
+              if backend_locked:
+                logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
         except Empty as e:
           pass
