@@ -699,7 +699,7 @@ class RepoDialog:
                     # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
                     v=[]
                     try:
-                        ri = self.backend.GetRepo(repo_id)
+                        ri = self.backend.GetRepo(repo_id, sync=True)
                         logger.debug(ri)
                         for k in sorted(ri.keys()):
                           if k == "enabled":
