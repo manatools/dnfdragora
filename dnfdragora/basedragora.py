@@ -121,14 +121,14 @@ class BaseDragora:
             return
         if self._root_locked is True:
             logger.debug('Unlock the DNF root daemon')
-            self._root_backend.Unlock()
-            self._root_locked = False
+            self._root_backend.Unlock(sync=quit_dnfdaemon)
             logger.info("Unlocked the DNF root daemon")
         else:
           self._root_backend = None
         if quit_dnfdaemon:
+            self._root_locked = False
             logger.debug('Exit the DNF root daemon')
-            self._root_backend.Exit()
+            self._root_backend.Exit(sync=True)
             self._root_backend = None
 
     def restart_root_backend(self):

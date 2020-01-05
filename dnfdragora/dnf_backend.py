@@ -195,16 +195,21 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     @ExceptionHandler
     def reload(self):
         """Reload the dnf backend daemon."""
-        self.Unlock()  # Release the lock
+        self.Unlock(sync=True)  # Release the lock
         # time.sleep(5)
-        self.Lock()  # Load & Lock the daemon
+        self.Lock(sync=True)  # Load & Lock the daemon
         self.SetWatchdogState(False, sync=True)
-        #self._update_config_options()
+        #NOTE caching groups is slow let's do only once by now
+        self.clear_cache()
+
+    @ExceptionHandler
+    def clear_cache(self, also_groups=False):
+        '''empty package and group cache .'''
         self.cache.reset()  # Reset the cache
         self._group_cache = None
-        #NOTE caching groups is slow let's do only once by now
-        #self._pkg_id_to_groups_cache = None
-
+        #NOTE caching groups is slow let's do it only once if needed
+        if also_groups:
+          self._pkg_id_to_groups_cache = None
 
     def to_pkg_tuple(self, pkg_id):
         """Get package nevra & repoid from an package pkg_id"""

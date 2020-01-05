@@ -1208,80 +1208,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return performedUndo
 
-    def _run_transaction(self, always_yes):
-        '''
-        Run a transaction after an apply button or a package given by CLI
-        '''
-        sync = True
-        locked = False
-        try:
-            rc, result = self.backend.BuildTransaction(sync)
-            if rc :
-                ok = True
-                if not always_yes:
-                    transaction_result_dlg = dialogs.TransactionResult(self)
-                    ok = transaction_result_dlg.run(result)
-
-                if ok:  # Ok pressed
-                    self.infobar.info(_('Applying changes to the system'))
-                    rc, result = self.backend.RunTransaction(sync)
-                    # This can happen more than once (more gpg keys to be
-                    # imported)
-                    while rc == 1:
-                        logger.debug('GPG key missing: %s' % repr(result))
-                        # get info about gpgkey to be comfirmed
-                        values = self._gpg_confirm
-                        if values:  # There is a gpgkey to be verified
-                            (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
-                            logger.debug('GPGKey : %s' % repr(values))
-                            resp = dialogs.ask_for_gpg_import(values)
-                            self.backend.ConfirmGPGImport(hexkeyid, resp, sync)
-                            # tell the backend that the gpg key is confirmed
-                            # rerun the transaction
-                            # FIXME: It should not be needed to populate
-                            # the transaction again
-                            if resp:
-                                self._populate_transaction()
-                                rc, result = self.backend.BuildTransaction(sync)
-                                rc, result = self.backend.RunTransaction(sync)
-                            else:
-                                # NOTE TODO answer no is the only way to exit, since it seems not
-                                # to install the key :(
-                                break
-                        else:  # error in signature verification
-                          logger.debug('GPG key missing: %s' % repr(result))
-                          dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
-                                              'text' : '<br>'.join(result), 'richtext' : True })
-                          break
-                    if rc == 4:  # Download errors
-                        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
-                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-                        logger.error('Download error')
-                        logger.error(result)
-                    elif rc != 0:  # other transaction errors
-                        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
-                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-                        logger.error('RunTransaction failure')
-                        logger.error(result)
-
-                    self.release_root_backend()
-                    self.packageQueue.clear()
-                    self.backend.reload()
-            else:
-                logger.error('BuildTransaction failure')
-                logger.error(result)
-                s = "%s"%result
-                dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": s, "richtext":True})
-        except dnfdaemon.client.AccessDeniedError as e:
-            logger.error("dnfdaemon client AccessDeniedError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("BuildTransaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
-        except:
-            exc, msg = misc.parse_dbus_error()
-            if 'AccessDeniedError' in exc:
-                logger.warning("User pressed cancel button in policykit window")
-                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
-            else:
-                pass
 
     def saveUserPreference(self):
         '''
@@ -1352,13 +1278,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.pbar_layout.setEnabled(True)
                     elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
-                        refresh_data=rd.run()
-                        rd = None
-                        if refresh_data:
-                          self.release_root_backend()
-                          self.backend.reload()
-                          self._fillGroupTree()
-                          rebuild_package_list = True
+                        rd.run()
                     elif item == self.fileMenu['quit'] :
                         #### QUIT
                         self.running = False
@@ -1753,10 +1673,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error('RunTransaction failure')
         logger.error(result)
 
-      self.release_root_backend()
+      self.backend.Unlock(sync=True)
+      self.backend.clear_cache()
       self.packageQueue.clear()
       self._status = DNFDragoraStatus.STARTUP
-      self.backend
+      self.backend.Lock()
 
     def _manageDnfDaemonEvent(self):
       '''
@@ -1788,6 +1709,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
           if (event == 'Lock') :
             self.backend_locked = info['result']
+            logger.info("Event %s received (%s)", event, info['result'])
             if self.backend_locked :
               self._status = DNFDragoraStatus.RUNNING
               self.backend.SetWatchdogState(False, sync=True)
@@ -1802,6 +1724,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if not info['error']:
                   self._status = DNFDragoraStatus.STARTUP
           elif (event == 'Unlock') :
+            logger.info("Event %s received (%s)", event, info['result'])
             self.backend_locked = False
           elif (event == 'ExpireCache'):
             # ExpireCache has been invoked let's refresh the date
@@ -1897,6 +1820,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               # TODO           rebuild_package_list = True
           elif (event == 'HistoryUndo'):
             self._undo_transaction()
+          elif (event == 'SetEnabledRepos'):
+            self.backend.Unlock(sync=True)
+            # Enabled repositories are changes we need to force caching again
+            self.backend.clear_cache(also_groups=True)
+            self.backend.Lock()
+
+          else:
+            logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
       except Empty as e:
         pass
