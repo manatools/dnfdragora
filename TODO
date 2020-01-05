@@ -29,14 +29,12 @@ as soon as possible.
 If you want to help in any of this items, or new ones please contact us
 
 Async working:
-* Fix transactions to make them async too (in progress)
+* Fix transactions to make them async too (in progress, missing undo)
 * Changing search list field to "in file names" crashes
-* Better management of Locking/Unlocking DB
 * Fix progress bar (in progress)
 * Fix window layout to gain room
 * Fix notifiy/menu seems not to be shown after running dinfdragora (in progress)
 * Fix group caching if comp is selected (in progress)
-* Handle exceptions into dnfdragora-update loop to avoid crashing
 * Let the user know when DB is locked on dnfdragora startup
 * Add and/or change some icons if possible
 
@@ -50,3 +48,5 @@ Async working:
 * Fix dnfdragora-update 'exit' (Done)
 * Fix dnfdragora launch from dnfdragora-update (done)
 * Fix dnfdragora-update 'update' (done)
+* Better management of Locking/Unlocking DB (done)
+* Handle exceptions into dnfdragora-update loop to avoid crashing (done into script by now)
