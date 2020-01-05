@@ -245,6 +245,12 @@ class Updater:
       except Exception as e:
         logger.error(_('Exception caught: [%s]')%(str(e)))
 
+    def __OnRepoMetaDataProgress(self, name, frac):
+      '''Repository Metadata Download progress.'''
+      values = (name, frac)
+      #print('on_RepoMetaDataProgress (root): %s', repr(values))
+      if frac == 0.0 or frac == 1.0:
+        logger.debug('OnRepoMetaDataProgress: %s', repr(values))
 
     def __update_loop(self):
       self.__get_updates()
@@ -276,7 +282,9 @@ class Updater:
                 # no locked try again in a minute
                 update_next = 1
                 add_to_schedule = True
-
+            elif (event == 'OnRepoMetaDataProgress'):
+              #let's log metadata since slows down the Lock requests
+              self.__OnRepoMetaDataProgress(info['name'], info['frac'])
             elif (event == 'GetPackages'):
               logger.debug("Event received %s", event)
               if not info['error']:
