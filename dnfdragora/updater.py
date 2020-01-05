@@ -102,6 +102,7 @@ class Updater:
         except Exception as e:
             logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
             return
+
         self.__notifier  = notify2.Notification('dnfdragora', '', 'dnfdragora')
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
@@ -144,7 +145,7 @@ class Updater:
     def __shutdown(self, *kwargs):
         logger.info("shutdown")
         if self.__main_gui :
-          logger.debug("----> %s"%("RUN" if self.__main_gui.running else "NOT RUNNING"))
+          logger.warning("Cannot exit dnfdragora is not deleted %s"%("and RUNNING" if self.__main_gui.running else "but NOT RUNNING"))
           return
         try:
           self.__running = False
@@ -220,7 +221,11 @@ class Updater:
             # Let's delay a bit the check, otherwise Lock will fail
             done=self.__reschedule_update_in(0.5)
             logger.debug("Scheduled %s", "done" if done else "skipped")
-
+        else:
+          if self.__main_gui:
+            logger.warning("Cannot run dnfdragora because it is already running")
+          else:
+            logger.warning("Cannot run dnfdragora")
 
     def __run_dnfdragora(self, *kwargs):
         return self.__run_dialog({})
