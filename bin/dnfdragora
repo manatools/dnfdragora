@@ -93,6 +93,9 @@ if __name__ == "__main__":
         except AttributeError as e:
             logger.error("dnfdaemon AttributeError: %s ", e)
             dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+        except TypeError  as e:
+            logger.error("dnfdaemon TypeError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon type error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except ui.UIError as e:
             logger.error("UI Error: %s ", e)
             dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
