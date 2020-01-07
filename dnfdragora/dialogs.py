@@ -16,6 +16,7 @@ import sys
 import os
 import datetime
 import dnfdaemon.client
+from gi.repository import GLib
 
 from dnfdragora import const
 import dnfdragora.misc as misc
@@ -528,7 +529,7 @@ class RepoDialog:
           'gpgkey'                 : _('GPG key'),
           'includepkgs'            : _('Include packages'),
           'ip_resolve'             : _('IP resolve'),
-          'max_parallel_download'  : _('Max parallel download'),
+          'max_parallel_downloads' : _('Max parallel download'),
           'mediaid'                : _('Media ID'),
           'metadata_expire'        : _('Metadata expire'),
           'metalink'               : _('Meta link'),
@@ -698,6 +699,7 @@ class RepoDialog:
                     s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
                     # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
                     v=[]
+                    yui.YUI.app().busyCursor()
                     try:
                         ri = self.backend.GetRepo(repo_id, sync=True)
                         logger.debug(ri)
@@ -730,6 +732,8 @@ class RepoDialog:
                         logger.error("dnfdaemon NameError: %s ", e)
                     except AttributeError as e:
                         logger.error("dnfdaemon AttributeError: %s ", e)
+                    except GLib.Error as err:
+                        logger.error("dnfdaemon client failure [%s]", err)
                     except:
                         logger.error("Unexpected error: %s ", sys.exc_info()[0])
 
@@ -741,6 +745,7 @@ class RepoDialog:
                     self.info.deleteAllItems()
                     self.info.addItems(itemCollection)
                     self.info.doneMultipleChanges()
+                    yui.YUI.app().normalCursor()
 
         return False
 
