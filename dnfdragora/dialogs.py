@@ -54,7 +54,7 @@ class HistoryView:
             pkgs = []
             tid = self._getTID(selected)
             if tid:
-                pkgs = self.parent.backend.GetHistoryPackages(tid)
+                pkgs = self.parent.backend.GetHistoryPackages(tid, sync=True)
 
             # Order by package name.arch
             names = {}
