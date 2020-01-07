@@ -414,7 +414,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # Tree for groups
         self.tree = self.factory.createTree(hbox_middle, "")
-        self.tree.setWeight(0,20)
+        self.tree.setWeight(0,10)
         self.tree.setNotify(True)
 
         packageList_header = yui.YTableHeader()
