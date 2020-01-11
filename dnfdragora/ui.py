@@ -1448,7 +1448,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.error("Excpion on exit %s", err)
         self.loop_has_finished = True
 
-        self.backend.glib_thread.join()
+        self.backend.waitForLastAsyncRequestTermination()
 
         if yui.YUI.app().isTextMode():
           self.glib_thread.join()
