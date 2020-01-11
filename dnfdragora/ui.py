@@ -20,6 +20,9 @@ import yui
 import webbrowser
 from queue import SimpleQueue, Empty
 from enum import Enum
+#NOTE we need a glib.MainLoop in TUI and use threading for it
+import threading
+from gi.repository import GLib
 import dnfdaemon.client
 
 import dnfdragora.basedragora
@@ -243,6 +246,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
+        if yui.YUI.app().isTextMode():
+          self.glib_loop = GLib.MainLoop()
+          self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
+          self.glib_thread.start()
+
+
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
 
         # setup UI
@@ -270,6 +279,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._setInfoOnWidget(sel_pkg)
 
         self.find_entry.setKeyboardFocus()
+
+    def glib_mainloop(self, loop):
+      '''
+      thread function for glib main loop
+      '''
+      loop.run()
 
     def _configFileRead(self) :
         '''
@@ -1422,6 +1437,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # Save user prefs on exit
         self.saveUserPreference()
 
+        if yui.YUI.app().isTextMode():
+          self.glib_loop.quit()
+
         self.dialog.destroy()
 
         try:
@@ -1431,6 +1449,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.loop_has_finished = True
 
         self.backend.glib_thread.join()
+
+        if yui.YUI.app().isTextMode():
+          self.glib_thread.join()
 
         #self.backend.quit()
         #self.backend.release_root_backend()
