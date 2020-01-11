@@ -209,6 +209,7 @@ class DnfDaemonBase:
         self._data = {'cmd': None}
         self.eventQueue = SimpleQueue()
         self.daemon = self._get_daemon(bus, org, interface)
+        self.__async_thread = None
 
         logger.debug("%s daemon loaded - version :  %s" %
                      (interface, self.daemon.GetVersion()))
@@ -332,59 +333,47 @@ class DnfDaemonBase:
 
         return result
 
-        # TODO manage dbus errors somewhere
-        #        if user_data['error']:  # Errors
-        #            self._handle_dbus_error(user_data['error'])
-        #        else:
-        #            return user_data['result']
-
-    def _glib_mainloop(self, data, *args):
+    def __async_thread_loop(self, data, *args):
       '''
       thread function for glib main loop
       '''
-      logger.debug("_glib_mainloop Command %s requested"%(data['cmd']))
+      logger.debug("__async_thread_loop Command %s requested"%(data['cmd']))
       try:
         func = getattr(self.daemon, data['cmd'])
 
-        # timeout = infinite
+        # TODO check if timeout = infinite is still needed
         func(*args, result_handler=self._return_handler,
               user_data=data, timeout=GObject.G_MAXINT)
         #data['main_loop'].run()
       except Exception as err:
-        logger.error("_glib_mainloop Exception %s"%(err))
+        logger.error("__async_thread_loop Exception %s"%(err))
         data['error'] = err
 
-      # result = self._get_result(data)
-      # if result['error']:
-      #   logger.error("Command %s executed, result %s "%(data['cmd'], result['error']))
-
+      # We enqueue one request at the time by now, monitoring _sent
       self._sent = False
-      # self.eventQueue.put({'event': data['cmd'], 'value': result})
-      # logger.debug("_glib_mainloop Command %s executed, result %s "%(data['cmd'], result))
 
     def _run_dbus_async(self, cmd, *args):
         '''Make an async call to a DBus method in the yumdaemon service
 
         cmd: method to run
         '''
+        # We enqueue one request at the time by now, monitoring _sent
         if not self._sent:
           logger.debug("run_dbus_async %s", cmd)
-          if 'main_loop' in self._data.keys():
-            logger.debug("run_dbus_async main loop running %s", self._data['main_loop'].is_running())
+          if self.__async_thread and self.__async_thread.is_alive():
+            logger.warning("run_dbus_async main loop running %s - probably last request is not terminated yet", self.__async_thread.is_alive())
+          # We enqueue one request at the time by now, monitoring _sent
           self._sent = True
-          main_loop = GLib.MainLoop()
-          self._data = {'main_loop': main_loop, 'cmd': cmd, }
+
+          # let's pass also args, it could be useful for debug at certain point...
+          self._data = {'cmd': cmd, 'args': args, }
 
           data = self._data
-          # TODO func = getattr(self.daemon, cmd)
 
-          #TODO # timeout = infinite
-          #TODO func(*args, result_handler=self._return_handler,
-          #TODO     user_data=data, timeout=GObject.G_MAXINT)
-          self.glib_thread = threading.Thread(target=self._glib_mainloop, args=(data, *args))
-          self.glib_thread.start()
+          self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args))
+          self.__async_thread.start()
         else:
-          logger.debug("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent,self._data['main_loop'].is_running())
+          logger.debug("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent, self.__async_thread.is_alive())
           result = {
             'result': False,
             'error': _("Command in progress"),
@@ -401,22 +390,23 @@ class DnfDaemonBase:
         func = getattr(self.daemon, cmd)
         return func(*args)
 
+    def waitForLastAsyncRequestTermination(self):
+      '''
+      join async thread
+      '''
+      self.__async_thread.join()
+
 #
 # Dbus Signal Handlers (Overload in child class)
 #
 
     def on_TransactionEvent(self, event, data):
-        #print("TransactionEvent : %s" % event)
-        #if data:
-            #print("Data :\n", data)
         self.eventQueue.put({'event': 'OnTransactionEvent',
                              'value':
                                {'event':event,
                                 'data':data,  }})
 
-    def on_RPMProgress(
-            self, package, action, te_current, te_total, ts_current, ts_total):
-        #print("RPMProgress : %s %s" % (action, package))
+    def on_RPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
         self.eventQueue.put({'event': 'OnRPMProgress',
                              'value':
                                {'package':package,
@@ -427,8 +417,6 @@ class DnfDaemonBase:
                                 'ts_total':ts_total,}})
 
     def on_GPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
-        #values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
-        #print("on_GPGImport : %s" % (repr(values)))
         self.eventQueue.put({'event': 'OnGPGImport',
                              'value':
                                {'pkg_id':pkg_id,
@@ -439,8 +427,6 @@ class DnfDaemonBase:
 
     def on_DownloadStart(self, num_files, num_bytes):
         ''' Starting a new parallel download batch '''
-        #values = (num_files, num_bytes)
-        #print("on_DownloadStart : %s" % (repr(values)))
         self.eventQueue.put({'event': 'OnDownloadStart',
                              'value':
                                {'num_files':num_files,
@@ -448,8 +434,6 @@ class DnfDaemonBase:
 
     def on_DownloadProgress(self, name, frac, total_frac, total_files):
         ''' Progress for a single instance in the batch '''
-        #values = (name, frac, total_frac, total_files)
-        #print("on_DownloadProgress : %s" % (repr(values)))
         self.eventQueue.put({'event': 'OnDownloadProgress',
                              'value':
                                {'name':name,
@@ -459,19 +443,14 @@ class DnfDaemonBase:
 
     def on_DownloadEnd(self, name, status, msg):
         ''' Download of af single instace ended '''
-        #values = (name, status, msg)
-        #print("on_DownloadEnd : %s" % (repr(values)))
         self.eventQueue.put({'event': 'OnDownloadEnd', 'value': {'name':name, 'status':status, 'msg':msg,  }})
 
     def on_RepoMetaDataProgress(self, name, frac):
         ''' Repository Metadata Download progress '''
-        #values = (name, frac)
-        #print("on_RepoMetaDataProgress : %s" % (repr(values)))
         self.eventQueue.put({'event': 'OnRepoMetaDataProgress', 'value': {'name':name, 'frac':frac, }})
 
     def on_ErrorMessage(self, msg):
         ''' Error message from daemon service '''
-        #print("on_ErrorMessage : %s" % (msg))
         self.eventQueue.put({'event': 'OnErrorMessage', 'value': {'msg':msg,  }})
 
 
