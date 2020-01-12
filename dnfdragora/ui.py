@@ -855,9 +855,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if sel :
         group = self._groupNameFromItem(self.groupList, sel)
         if (group == "Search"):
-          filter = self._filterNameSelected()
-          if not self._searchPackages(filter) :
-            rebuild_package_list = True
+          rebuild_package_list = not self._searchPackages()
         else:
           rebuild_package_list = True
       return rebuild_package_list
@@ -1051,85 +1049,96 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
           logger.warning("_setInfoOnWidget without package")
 
-    def _searchPackages(self, filter='all', createTreeItem=False) :
+
+    def _showSearchResult(self, packages, createTreeItem=False):
+      '''
+      Shows search result package list on pacakge view
+      if createTreeItem is True clears the table and rebuilds item list
+      '''
+      sel_pkg = self._selectedPackage()
+
+      #clean up tree
+      if createTreeItem:
+          self._fillGroupTree()
+
+      filter = self._filterNameSelected()
+      self.itemList = {}
+      # {
+      #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
+      # }
+
+      # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
+      for pkg in packages:
+        if (filter == 'all' or (filter == 'to_update' and pkg.is_update ) or (filter == 'installed' and pkg.installed) or
+            (filter == 'not_installed' and not pkg.installed) or
+            (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
+            item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch, pkg.sizeM)
+            pkg_name = pkg.fullname
+            if sel_pkg :
+                if sel_pkg.fullname == pkg_name :
+                    item.setSelected(True)
+            item.check(self.packageQueue.checked(pkg))
+            self.itemList[pkg_name] = {
+                'pkg' : pkg, 'item' : item
+                }
+            if not self.update_only:
+                item.addCell(" ")
+                self._setStatusToItem(pkg,item)
+            item.this.own(False)
+
+      keylist = sorted(self.itemList.keys())
+      v = []
+      for key in keylist :
+          item = self.itemList[key]['item']
+          v.append(item)
+
+      itemCollection = yui.YItemCollection(v)
+
+      self.packageList.startMultipleChanges()
+      # cleanup old changed items since we are removing all of them
+      self.packageList.setChangedItem(None)
+      self.packageList.deleteAllItems()
+      self.packageList.addItems(itemCollection)
+      self.packageList.doneMultipleChanges()
+
+      if createTreeItem:
+          self.tree.startMultipleChanges()
+          icon = self.gIcons.icon("Search")
+          treeItem = yui.YTreeItem(self.gIcons.groups['Search']['title'] , icon, False)
+          treeItem.setSelected(True)
+          self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
+          self.tree.addItem(treeItem)
+          self.tree.doneMultipleChanges()
+          self.tree.rebuildTree()
+
+      self._enableAction(True)
+
+
+    def _searchPackages(self) :
         '''
         retrieves the info from search input field and from the search type list
         to perform a paclage research and to fill the package list widget
 
         return False if an empty string used
         '''
-        sel_pkg = self._selectedPackage()
-
-        #clean up tree
-        if createTreeItem:
-            self._fillGroupTree()
-
         search_string = self.find_entry.value()
-        if search_string :
-            fields = []
-            type_item = self.search_list.selectedItem()
-            for field in self.local_search_types.keys():
-                if self.local_search_types[field]['item'] == type_item:
-                    fields.append(field)
-                    break
+        if not search_string :
+          return False
 
-            yui.YUI.app().busyCursor()
-            strings = re.split('[ ,|:;]',search_string)
-            ### TODO manage tags
-            tags =""
-            packages = self.backend.search(fields, strings, self.match_all, self.newest_only, tags )
+        fields = []
+        type_item = self.search_list.selectedItem()
+        for field in self.local_search_types.keys():
+            if self.local_search_types[field]['item'] == type_item:
+                fields.append(field)
+                break
 
-            self.itemList = {}
-            # {
-            #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
-            # }
+        strings = re.split('[ ,|:;]',search_string)
+        ### TODO manage tags
+        tags =""
+        attrs = ['summary', 'size', 'group', 'action']
+        self.backend.Search(fields, strings, attrs, self.match_all, self.newest_only, tags)
 
-            # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
-            for pkg in packages:
-                if (filter == 'all' or (filter == 'to_update' and pkg.is_update ) or (filter == 'installed' and pkg.installed) or
-                    (filter == 'not_installed' and not pkg.installed) or
-                    (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
-                    item = yui.YCBTableItem(pkg.name , pkg.summary , pkg.version, pkg.release, pkg.arch, pkg.sizeM)
-                    pkg_name = pkg.fullname
-                    if sel_pkg :
-                        if sel_pkg.fullname == pkg_name :
-                            item.setSelected(True)
-                    item.check(self.packageQueue.checked(pkg))
-                    self.itemList[pkg_name] = {
-                        'pkg' : pkg, 'item' : item
-                        }
-                    if not self.update_only:
-                        item.addCell(" ")
-                        self._setStatusToItem(pkg,item)
-                    item.this.own(False)
-
-            keylist = sorted(self.itemList.keys())
-            v = []
-            for key in keylist :
-                item = self.itemList[key]['item']
-                v.append(item)
-
-            itemCollection = yui.YItemCollection(v)
-
-            self.packageList.startMultipleChanges()
-            # cleanup old changed items since we are removing all of them
-            self.packageList.setChangedItem(None)
-            self.packageList.deleteAllItems()
-            self.packageList.addItems(itemCollection)
-            self.packageList.doneMultipleChanges()
-
-            if createTreeItem:
-                self.tree.startMultipleChanges()
-                icon = self.gIcons.icon("Search")
-                treeItem = yui.YTreeItem(self.gIcons.groups['Search']['title'] , icon, False)
-                treeItem.setSelected(True)
-                self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
-                self.tree.addItem(treeItem)
-                self.tree.doneMultipleChanges()
-                self.tree.rebuildTree()
-            yui.YUI.app().normalCursor()
-        else :
-            return False
+        self._enableAction(False)
 
         return True
 
@@ -1360,9 +1369,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 elif (widget == self.find_button) or (widget == self.search_list) :
                     #### FIND
-                    filter = self._filterNameSelected()
-                    if not self._searchPackages(filter, True) :
-                        rebuild_package_list = True
+                    if not self._searchPackages() :
+                      rebuild_package_list = True
+                      self._fillGroupTree()
 
                 elif (widget == self.checkAllButton) :
                     for it in self.itemList:
@@ -1383,13 +1392,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     #reset find entry, it does not make sense here
                     self.find_entry.setValue("")
                     self._fillGroupTree()
-                elif (widget == self.tree) or (widget == self.filter_box) :
+
+                elif (widget == self.tree):
                   rebuild_package_list = True
-                  if (widget == self.filter_box) :
-                    view = self._viewNameSelected()
-                    filter = self._filterNameSelected()
-                    self._fillGroupTree()
-                    self.checkAllButton.setEnabled(filter == 'to_update')
+                  self.find_entry.setValue("")
+
+                elif (widget == self.filter_box) :
+                  view = self._viewNameSelected()
+                  filter = self._filterNameSelected()
+                  self._fillGroupTree()
+                  self.checkAllButton.setEnabled(filter == 'to_update')
+                  rebuild_package_list = not self._searchPackages()
                 else:
                     print(_("Unmanaged widget"))
             elif (eventType == yui.YEvent.TimeoutEvent) :
@@ -1412,12 +1425,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 print(_("Unmanaged event %d"), eventType)
 
             if rebuild_package_list :
-              search_string = self.find_entry.value()
               filter = self._filterNameSelected()
-              if search_string :
-                if self._searchPackages(filter, True) :
-                  rebuild_package_list = False
-              if rebuild_package_list:
+              search_string = self.find_entry.value()
+              if not search_string :
                 sel = self.tree.selectedItem()
                 if sel :
                   group = self._groupNameFromItem(self.groupList, sel)
@@ -1799,6 +1809,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             else:
               logger.error("GetPackages error: %s", info['error'])
               raise UIError(str(info['error']))
+
+          elif (event == 'Search'):
+            if not info['error']:
+              packages = self.backend.make_pkg_object_with_attr(info['result'])
+              self._showSearchResult(packages, createTreeItem=True)
+
+            else:
+              logger.error("Search error: %s", info['error'])
+
           elif (event == 'OnRepoMetaDataProgress'):
             self._OnRepoMetaDataProgress(info['name'], info['frac'])
           elif (event == 'BuildTransaction'):
