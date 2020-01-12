@@ -277,9 +277,9 @@ class DnfDaemonBase:
             user_data['error'] = None
         #user_data['main_loop'].quit()
 
-        self._sent = False
         response = self._get_result(user_data)
         self.eventQueue.put({'event': user_data['cmd'], 'value': response})
+        self._sent = False
         logger.debug("Quit return_handler error %s", user_data['error'])
 
 
@@ -337,7 +337,7 @@ class DnfDaemonBase:
       '''
       thread function for glib main loop
       '''
-      logger.debug("__async_thread_loop Command %s requested"%(data['cmd']))
+      logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), str(data['args']) if data['args'] else "")
       try:
         func = getattr(self.daemon, data['cmd'])
 
@@ -373,7 +373,7 @@ class DnfDaemonBase:
           self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args))
           self.__async_thread.start()
         else:
-          logger.debug("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent, self.__async_thread.is_alive())
+          logger.warning("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent, self.__async_thread.is_alive())
           result = {
             'result': False,
             'error': _("Command in progress"),

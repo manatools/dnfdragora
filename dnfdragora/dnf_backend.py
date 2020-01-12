@@ -235,7 +235,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         return self.cache.find_packages(po_list)
 
     @TimeFunction
-    def _make_pkg_object_with_attr(self, pkgs):
+    def make_pkg_object_with_attr(self, pkgs):
         """Make list of Packages from a list of pkg_ids & attrs.
 
         Package have different action type
@@ -345,7 +345,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         """
         attrs = ['summary', 'size', 'group', 'action']
         pkgs = self.GetPackagesByName(name_key, attrs, newest_only, sync=True)
-        return self._make_pkg_object_with_attr(pkgs)
+        return self.make_pkg_object_with_attr(pkgs)
 
     @ExceptionHandler
     def search(self, search_attrs, keys, match_all, newest_only, tags):
@@ -358,7 +358,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         attrs = ['summary', 'size', 'group', 'action']
         pkgs = self.Search(search_attrs, keys, attrs, match_all,
                            newest_only, tags, sync=True)
-        return self._make_pkg_object_with_attr(pkgs)
+        return self.make_pkg_object_with_attr(pkgs)
 
     @ExceptionHandler
     @TimeFunction
@@ -473,4 +473,4 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         """
         attrs = ['summary', 'size', 'group', 'action']
         pkgs = self.GetGroupPackages(grp_id, grp_flt, attrs, sync=True)
-        return self._make_pkg_object_with_attr(pkgs)
+        return self.make_pkg_object_with_attr(pkgs)
