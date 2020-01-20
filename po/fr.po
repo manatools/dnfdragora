@@ -12,9 +12,9 @@
 # Charles Monzat <c.monzat@laposte.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
 # Kévin R., 2018
-# Nicolas Jourdain, 2018
-# Sébastien Morin <sebsweb@gmail.com>, 2018
+# d80ebd4b9692a268e2da589d73937486, 2018
 # Yves Brungard, 2019
+# stroibe974 <sebsweb@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -23,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Yves Brungard, 2019\n"
+"Last-Translator: stroibe974 <sebsweb@gmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -719,19 +719,19 @@ msgstr "Trouver tous les mots"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Options de journalisation au prochain démarrage"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "Changer &directory"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Activer le niveau du journal de débogage"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Choisir le répertoire destinataire de journalisation"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
