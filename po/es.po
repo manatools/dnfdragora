@@ -8,10 +8,10 @@
 # Jose Manuel López <inactive+rocholc@transifex.com>, 2017
 # Egoitz Rodriguez <egoitzro@gmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Jose Manuel López <joselp@outlook.es>, 2018
+# Jose Manuel López <joselp@disroot.org>, 2018
 # William Moreno <williamjmorenor@gmail.com>, 2018
-# Miguel, 2019
 # José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2019
+# Miguel, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2019\n"
+"Last-Translator: Miguel, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -713,19 +713,19 @@ msgstr "Coincidir todas las palabras"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Guardar en un fichero log en el siguiente inicio"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "Cambiar &directorio"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Activar nivel de depuración log"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Escoger el directorio para grabar los ficheros log"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
