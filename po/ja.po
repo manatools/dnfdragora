@@ -5,7 +5,7 @@
 #
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Masanori Kakura <kakurasan@gmail.com>, 2019
+# kakurasan <kakurasan@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Masanori Kakura <kakurasan@gmail.com>, 2019\n"
+"Last-Translator: kakurasan <kakurasan@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ja/)\n"
 "Language: ja\n"
@@ -704,19 +704,19 @@ msgstr "すべての単語にマッチ"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "次回起動時にログ出力を有効にする"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "ディレクトリを変更(&D)"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "デバッグ ログ レベルを有効にする"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "ログの保存先を選択"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
