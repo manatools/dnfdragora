@@ -7,7 +7,7 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Валентин Сайков <saikov.vb@gmail.com>, 2018
-# AlexL <loginov.alex.valer@gmail.com>, 2019
+# AlexL <loginov.alex.valer@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2019\n"
+"Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ru/)\n"
 "Language: ru\n"
@@ -719,19 +719,19 @@ msgstr "Совпадение по всем словам"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Параметры журналирования при следующем выпуске"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "Изменить &каталог"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Включить уровень журнала отладки"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Выбрать каталог назначения для журнала"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
