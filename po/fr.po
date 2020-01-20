@@ -723,7 +723,7 @@ msgstr "Options de journalisation au prochain démarrage"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr "Changer &directory"
+msgstr "Changer de &dossier"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
