@@ -7,8 +7,8 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018
-# Davidmp <medipas@gmail.com>, 2019
 # Rubén <rbndavid@gmail.com>, 2019
+# Davidmp <medipas@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Rubén <rbndavid@gmail.com>, 2019\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ca/)\n"
 "Language: ca\n"
@@ -713,19 +713,19 @@ msgstr "Coincideix amb totes les paraules"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Opcions de registre a la propera arrencada"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "Canvia el &directori"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Habilita el nivell de registre de depuració"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Trieu el directori de destinació del registre"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
