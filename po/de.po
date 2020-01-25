@@ -10,7 +10,7 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2018
 # Walter Marek <wm6369@gmx.net>, 2018
-# psyca, 2019
+# psyca, 2020
 #
 #, fuzzy
 msgid ""
@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: psyca, 2019\n"
+"Last-Translator: psyca, 2020\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
 "de/)\n"
 "Language: de\n"
@@ -715,19 +715,19 @@ msgstr "Alle Wörter stimmen überein"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Protokolloptionen beim nächsten Start"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "&Verzeichnis wechseln"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Aktiviere die Debug-Protokollebene"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Wähle das Protokollverzeichnis"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
