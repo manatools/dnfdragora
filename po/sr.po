@@ -6,7 +6,7 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# tomaja <toma.jankovic@gmail.com>, 2019
+# tomaja <toma.jankovic@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: tomaja <toma.jankovic@gmail.com>, 2019\n"
+"Last-Translator: tomaja <toma.jankovic@gmail.com>, 2020\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sr/)\n"
 "Language: sr\n"
@@ -714,19 +714,19 @@ msgstr "Поклапање свих речи"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Опције логовања при следећем подизању система"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "Промени &директоријум"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Омогући ниво логовања за дебаговање"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Изабери дестинациони директоријум за логовање"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
