@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-18 10:06+0200\n"
+"POT-Creation-Date: 2020-02-02 08:52+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2020\n"
 "Language-Team: Estonian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -77,7 +77,7 @@ msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
 "dnfdragora kasutatud dnfdaemon'i DBus-teenuste kasutamise jõuga lõpetamine"
 
-#: bin/dnfdragora:53
+#: bin/dnfdragora:53 bin/dnfdragora:103
 #, python-format
 msgid "dnfdaemon client failure [%s]"
 msgstr "dnfdaemon'i kliendi tõrge [%s]"
@@ -91,9 +91,8 @@ msgstr "Proovi uuesti käsurealt sisse logida (s.t. \"su -\" abil)"
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sversioon: %(version)s%(NL)ssait: %(site)s"
 
-#: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95
-#: dnfdragora/basedragora.py:62 dnfdragora/basedragora.py:93
-#: dnfdragora/basedragora.py:140 dnfdragora/ui.py:1218
+#: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1320
 msgid "Sorry"
 msgstr "Vabandust"
 
@@ -112,6 +111,16 @@ msgstr "tekkis dnfdaemon'i nime tõrge:%(NL)s%(error)s"
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
 msgstr "tekkis dnfdaemon'i atribuudi tõrge:%(NL)s%(error)s"
 
+#: bin/dnfdragora:98
+#, python-format
+msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
+msgstr ""
+
+#: bin/dnfdragora:101
+#, python-format
+msgid "Error occurred:%(NL)s%(error)s"
+msgstr ""
+
 #: bin/dnfdragora-updater:24
 msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
@@ -119,32 +128,6 @@ msgid ""
 msgstr ""
 "kõigi vajalike ikoonide uue asukoha määramine (/usr/share/icons/"
 "hicolor/128x128/apps/ asemele)"
-
-#: dnfdragora/basedragora.py:57
-msgid "Refreshing Repository Metadata"
-msgstr "Hoidla metaandmete värskendamine"
-
-#: dnfdragora/basedragora.py:62
-msgid "Could not refresh the DNF cache (root)"
-msgstr "DNF-puhvri (juur) värskendamine nurjus"
-
-#: dnfdragora/basedragora.py:85
-msgid ""
-"DNF root backend was not authorized.\n"
-"dnfdragora will exit"
-msgstr ""
-"DNF-juure taustaprogrammil polnud vajalikke õigusi.\n"
-"dnfdragora lõpetab töö"
-
-#: dnfdragora/basedragora.py:90
-msgid ""
-"DNF is locked by another process.\n"
-"\n"
-"dnfdragora will exit"
-msgstr ""
-"Teine protsess on DNF-i lukustanud.\n"
-"\n"
-"dnfdragora lõpetab töö"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
@@ -203,8 +186,8 @@ msgstr "Baassüsteem"
 msgid "Content"
 msgstr "Sisu"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:368
-#: dnfdragora/ui.py:382
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:450
+#: dnfdragora/ui.py:464
 msgid "All"
 msgstr "Kõik"
 
@@ -375,363 +358,363 @@ msgstr "Turve"
 msgid "Enhancement"
 msgstr "Täiendus"
 
-#: dnfdragora/dialogs.py:201
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1175
 msgid "Undo transaction"
 msgstr "Võta tehing tagasi"
 
-#: dnfdragora/dialogs.py:226 dnfdragora/ui.py:1078
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1200
 msgid "Error checking package signatures"
 msgstr "Tõrge pakettide allkirjade kontrollimisel"
 
-#: dnfdragora/dialogs.py:230 dnfdragora/ui.py:1082
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Allalaadimistõrge"
 msgstr[1] "Allalaadmistõrked"
 
-#: dnfdragora/dialogs.py:235 dnfdragora/ui.py:1087
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Tehingutõrge"
 msgstr[1] "Tehingutõrked"
 
-#: dnfdragora/dialogs.py:247 dnfdragora/dialogs.py:250 dnfdragora/ui.py:1099
-#: dnfdragora/ui.py:1102
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
+#: dnfdragora/ui.py:1224
 msgid "BuildTransaction failure"
 msgstr "Tehinguloomise tõrge"
 
-#: dnfdragora/dialogs.py:250 dnfdragora/ui.py:1102
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1224
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "dnfdaemon'i klient ei ole autenditud:%(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:277
-msgid "History undo"
-msgstr "Ajaloo tagasivõtmine"
-
-#: dnfdragora/dialogs.py:293 dnfdragora/ui.py:514
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:598
 msgid "History"
 msgstr "Ajalugu"
 
-#: dnfdragora/dialogs.py:300
+#: dnfdragora/dialogs.py:302
 msgid "History (Date/Time)"
 msgstr "Ajalugu (kuupäev/kellaaeg)"
 
-#: dnfdragora/dialogs.py:302
+#: dnfdragora/dialogs.py:304
 msgid "Transaction History"
 msgstr "Tehinguajalugu"
 
-#: dnfdragora/dialogs.py:306
+#: dnfdragora/dialogs.py:308
 msgid "&Undo"
 msgstr "&Võta tagasi"
 
-#: dnfdragora/dialogs.py:308
+#: dnfdragora/dialogs.py:310
 msgid "&Close"
 msgstr "Sul&ge"
 
-#: dnfdragora/dialogs.py:370
+#: dnfdragora/dialogs.py:372
 msgid "Transaction result"
 msgstr "Tehingu tulemus"
 
-#: dnfdragora/dialogs.py:376
+#: dnfdragora/dialogs.py:378
 msgid "Transaction dependency"
 msgstr "Tehingu sõltuvus"
 
-#: dnfdragora/dialogs.py:381 dnfdragora/dialogs.py:967
-#: dnfdragora/dialogs.py:1005 dnfdragora/dialogs.py:1041
-#: dnfdragora/dialogs.py:1084
+#: dnfdragora/dialogs.py:383 dnfdragora/dialogs.py:986
+#: dnfdragora/dialogs.py:1024 dnfdragora/dialogs.py:1060
+#: dnfdragora/dialogs.py:1103
 msgid "&Ok"
 msgstr "&Olgu"
 
-#: dnfdragora/dialogs.py:382 dnfdragora/dialogs.py:611
-#: dnfdragora/dialogs.py:869 dnfdragora/dialogs.py:1085
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:613
+#: dnfdragora/dialogs.py:877 dnfdragora/dialogs.py:1104
 msgid "&Cancel"
 msgstr "&Loobu"
 
-#: dnfdragora/dialogs.py:401
+#: dnfdragora/dialogs.py:403
 msgid "replacing "
 msgstr "asendades "
 
-#: dnfdragora/dialogs.py:407
+#: dnfdragora/dialogs.py:409
 msgid "Total size "
 msgstr "Kogusuurus "
 
-#: dnfdragora/dialogs.py:472
+#: dnfdragora/dialogs.py:474
 msgid "Developers"
 msgstr "Arendajad"
 
-#: dnfdragora/dialogs.py:476
+#: dnfdragora/dialogs.py:478
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
 "dnfdragora on DNF-i kasutajaliides, millel omakorda on GTK, ncursesi ja Qt "
 "liidesed"
 
-#: dnfdragora/dialogs.py:513
+#: dnfdragora/dialogs.py:515
 msgid "Bandwidth"
 msgstr "Ribalaius"
 
-#: dnfdragora/dialogs.py:514
+#: dnfdragora/dialogs.py:516
 msgid "Base cache dir"
 msgstr "Baas-puhverkataloog"
 
-#: dnfdragora/dialogs.py:515
+#: dnfdragora/dialogs.py:517
 msgid "Base URL"
 msgstr "Baas-URL"
 
-#: dnfdragora/dialogs.py:516
+#: dnfdragora/dialogs.py:518
 msgid "Cost"
 msgstr "Kulu"
 
-#: dnfdragora/dialogs.py:517
+#: dnfdragora/dialogs.py:519
 msgid "DeltaRPM"
 msgstr "DeltaRPM"
 
-#: dnfdragora/dialogs.py:518
+#: dnfdragora/dialogs.py:520
 msgid "DeltaRPM percentage"
 msgstr "DeltaRPM protsent"
 
-#: dnfdragora/dialogs.py:519 dnfdragora/dialogs.py:590
+#: dnfdragora/dialogs.py:521 dnfdragora/dialogs.py:592
 msgid "Enabled"
 msgstr "Lubatud"
 
-#: dnfdragora/dialogs.py:520
+#: dnfdragora/dialogs.py:522
 msgid "Enabled metadata"
 msgstr "Metaandmed lubatud"
 
-#: dnfdragora/dialogs.py:521
+#: dnfdragora/dialogs.py:523
 msgid "Enable groups"
 msgstr "Grupid lubatud"
 
-#: dnfdragora/dialogs.py:522
+#: dnfdragora/dialogs.py:524
 msgid "Exclude"
 msgstr "Välja jäetud"
 
-#: dnfdragora/dialogs.py:523
+#: dnfdragora/dialogs.py:525
 msgid "Exclude packages"
 msgstr "Välja jäetud paketid"
 
-#: dnfdragora/dialogs.py:524
+#: dnfdragora/dialogs.py:526
 msgid "Failover method"
 msgstr "Varumeetod"
 
-#: dnfdragora/dialogs.py:525
+#: dnfdragora/dialogs.py:527
 msgid "Fastest mirror"
 msgstr "Kiireim peegel"
 
-#: dnfdragora/dialogs.py:526
+#: dnfdragora/dialogs.py:528
 msgid "GPG check"
 msgstr "GPG kontroll"
 
-#: dnfdragora/dialogs.py:527
+#: dnfdragora/dialogs.py:529
 msgid "GPG key"
 msgstr "GPG võti"
 
-#: dnfdragora/dialogs.py:528
+#: dnfdragora/dialogs.py:530
 msgid "Include packages"
 msgstr "Kaasatud paketid"
 
-#: dnfdragora/dialogs.py:529
+#: dnfdragora/dialogs.py:531
 msgid "IP resolve"
 msgstr "IP lahendamine"
 
-#: dnfdragora/dialogs.py:530
+#: dnfdragora/dialogs.py:532
 msgid "Max parallel download"
 msgstr "Maks. paralleelseid allalaadimisi"
 
-#: dnfdragora/dialogs.py:531
+#: dnfdragora/dialogs.py:533
 msgid "Media ID"
 msgstr "Andmekandja ID"
 
-#: dnfdragora/dialogs.py:532
+#: dnfdragora/dialogs.py:534
 msgid "Metadata expire"
 msgstr "Metaandmete aegumine"
 
-#: dnfdragora/dialogs.py:533
+#: dnfdragora/dialogs.py:535
 msgid "Meta link"
 msgstr "Meta link"
 
-#: dnfdragora/dialogs.py:534
+#: dnfdragora/dialogs.py:536
 msgid "Min rate"
 msgstr "Min. kiirus"
 
-#: dnfdragora/dialogs.py:535
+#: dnfdragora/dialogs.py:537
 msgid "Mirror list"
 msgstr "Peeglite nimekiri"
 
-#: dnfdragora/dialogs.py:536 dnfdragora/dialogs.py:590 dnfdragora/ui.py:354
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:436
 msgid "Name"
 msgstr "Nimi"
 
-#: dnfdragora/dialogs.py:537
+#: dnfdragora/dialogs.py:539
 msgid "Packages"
 msgstr "Paketid"
 
-#: dnfdragora/dialogs.py:538
+#: dnfdragora/dialogs.py:540
 msgid "Password"
 msgstr "Parool"
 
-#: dnfdragora/dialogs.py:539
+#: dnfdragora/dialogs.py:541
 msgid "Priority"
 msgstr "Prioriteet"
 
-#: dnfdragora/dialogs.py:540
+#: dnfdragora/dialogs.py:542
 msgid "Protected packages"
 msgstr "Kaitstud paketid"
 
-#: dnfdragora/dialogs.py:541
+#: dnfdragora/dialogs.py:543
 msgid "Proxy"
 msgstr "Puhverserver"
 
-#: dnfdragora/dialogs.py:542
+#: dnfdragora/dialogs.py:544
 msgid "Proxy password"
 msgstr "Puhverserveri parool"
 
-#: dnfdragora/dialogs.py:543
+#: dnfdragora/dialogs.py:545
 msgid "Proxy username"
 msgstr "Puhverserveri kasutajanimi"
 
-#: dnfdragora/dialogs.py:544
+#: dnfdragora/dialogs.py:546
 msgid "Repo GPG check"
 msgstr "Hoidla GPG kontroll"
 
-#: dnfdragora/dialogs.py:545
+#: dnfdragora/dialogs.py:547
 msgid "Retries"
 msgstr "Uuestiproovimised"
 
-#: dnfdragora/dialogs.py:546 dnfdragora/ui.py:354
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:436
 msgid "Size"
 msgstr "Suurus"
 
-#: dnfdragora/dialogs.py:547
+#: dnfdragora/dialogs.py:549
 msgid "Skip if unavailable"
 msgstr "Vahelejätmine, kui pole saadaval"
 
-#: dnfdragora/dialogs.py:548
+#: dnfdragora/dialogs.py:550
 msgid "SSL CA cert"
 msgstr "SSL SK sert"
 
-#: dnfdragora/dialogs.py:549
+#: dnfdragora/dialogs.py:551
 msgid "SSL client cert"
 msgstr "SSL kliendi sert"
 
-#: dnfdragora/dialogs.py:550
+#: dnfdragora/dialogs.py:552
 msgid "SSL client key"
 msgstr "SSL kliendi võti"
 
-#: dnfdragora/dialogs.py:551
+#: dnfdragora/dialogs.py:553
 msgid "SSL verify"
 msgstr "SSL verifitseerimine"
 
-#: dnfdragora/dialogs.py:552
+#: dnfdragora/dialogs.py:554
 msgid "Throttle"
 msgstr "Ahendamine"
 
-#: dnfdragora/dialogs.py:553
+#: dnfdragora/dialogs.py:555
 msgid "Timeout"
 msgstr "Aegumine"
 
-#: dnfdragora/dialogs.py:554
+#: dnfdragora/dialogs.py:556
 msgid "Type"
 msgstr "Tüüp"
 
-#: dnfdragora/dialogs.py:555
+#: dnfdragora/dialogs.py:557
 msgid "Username"
 msgstr "Kasutajanimi"
 
-#: dnfdragora/dialogs.py:564 dnfdragora/dialogs.py:579
+#: dnfdragora/dialogs.py:566 dnfdragora/dialogs.py:581
 msgid "Repository Management"
 msgstr "Hoidlahaldus"
 
-#: dnfdragora/dialogs.py:599
+#: dnfdragora/dialogs.py:601
 msgid "Information"
 msgstr "Teave"
 
-#: dnfdragora/dialogs.py:599
+#: dnfdragora/dialogs.py:601
 msgid "Value"
 msgstr "Väärtus"
 
-#: dnfdragora/dialogs.py:608 dnfdragora/dialogs.py:866 dnfdragora/ui.py:486
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:568
 msgid "&Apply"
 msgstr "&Rakenda"
 
-#: dnfdragora/dialogs.py:714
+#: dnfdragora/dialogs.py:717
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: dnfdragora/dialogs.py:716
+#: dnfdragora/dialogs.py:719
 #, python-format
 msgid "%s second(s)"
 msgstr "%s sekund(it)"
 
-#: dnfdragora/dialogs.py:722
+#: dnfdragora/dialogs.py:725
 msgid "Now"
 msgstr "Kohe"
 
-#: dnfdragora/dialogs.py:780 dnfdragora/ui.py:526
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:610
 msgid "User preferences"
 msgstr "Kasutaja eelistused"
 
-#: dnfdragora/dialogs.py:839
+#: dnfdragora/dialogs.py:845
 msgid "System options"
 msgstr "Süsteemi valikud"
 
-#: dnfdragora/dialogs.py:841
+#: dnfdragora/dialogs.py:847
 msgid "Proceed without asking for confirmation"
 msgstr "Jätkamine kinnitust küsimata"
 
-#: dnfdragora/dialogs.py:842
-msgid "Interval in minutes to check for updates:"
-msgstr "Uuenduste kontrollimise intervall minutites:"
+#: dnfdragora/dialogs.py:849
+msgid "Interval to check for updates (minutes)"
+msgstr ""
 
-#: dnfdragora/dialogs.py:845
-msgid "Layout options"
-msgstr "Paigutusvalikud"
+#: dnfdragora/dialogs.py:850
+msgid "Metadata expire time (hours)"
+msgstr ""
 
-#: dnfdragora/dialogs.py:847
-msgid "Show updates next startup"
-msgstr "Uuenduste näitamine järgmisel käivitamisel"
+#: dnfdragora/dialogs.py:853
+msgid "Layout options (active at next startup)"
+msgstr ""
 
-#: dnfdragora/dialogs.py:848
-msgid "Do not show groups view next startup"
-msgstr "Grupivaadet järgmisel käivitamisel ei näidata"
+#: dnfdragora/dialogs.py:855
+msgid "Show updates"
+msgstr ""
 
-#: dnfdragora/dialogs.py:851
+#: dnfdragora/dialogs.py:856
+msgid "Do not show groups view"
+msgstr ""
+
+#: dnfdragora/dialogs.py:859
 msgid "Search options"
 msgstr "Otsinguvalikud"
 
-#: dnfdragora/dialogs.py:853
+#: dnfdragora/dialogs.py:861
 msgid "Show newest packages only"
 msgstr "Näidatakse ainult uusimaid pakette"
 
-#: dnfdragora/dialogs.py:854
+#: dnfdragora/dialogs.py:862
 msgid "Match all words"
 msgstr "Kõik sõnad peavad sobima"
 
-#: dnfdragora/dialogs.py:857
-msgid "Log options on next startup"
-msgstr "Logivalikud järgmisel käivitamisel"
+#: dnfdragora/dialogs.py:865
+msgid "Log options  (active at next startup)"
+msgstr ""
 
-#: dnfdragora/dialogs.py:862
+#: dnfdragora/dialogs.py:870
 msgid "Change &directory"
 msgstr "&Muuda kataloogi"
 
-#: dnfdragora/dialogs.py:863
-msgid "Enable debug log level"
-msgstr "Logitaseme silumise lubamine"
+#: dnfdragora/dialogs.py:871
+msgid "Debug level"
+msgstr ""
 
-#: dnfdragora/dialogs.py:897
+#: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
 msgstr "Logi sihtkatloogi valimine"
 
-#: dnfdragora/dialogs.py:1134
+#: dnfdragora/dialogs.py:1153
 msgid "&Yes"
 msgstr "&Jah"
 
-#: dnfdragora/dialogs.py:1135
+#: dnfdragora/dialogs.py:1154
 msgid "&No"
 msgstr "&Ei"
 
-#: dnfdragora/dialogs.py:1158
+#: dnfdragora/dialogs.py:1177
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -742,11 +725,11 @@ msgstr ""
 "verifitseerimiseks?<br><br>Võti        : 0x%(id)s:<br>Kasutaja ID     : "
 "\"%(user)s\"<br>Asukoht       : %(file)s"
 
-#: dnfdragora/dialogs.py:1165
+#: dnfdragora/dialogs.py:1184
 msgid "GPG key missed"
 msgstr "GPG võti puudub"
 
-#: dnfdragora/dnf_backend.py:165
+#: dnfdragora/dnf_backend.py:164
 #, python-format
 msgid ""
 "dnfdaemon api version : %(actual)d\n"
@@ -757,32 +740,7 @@ msgstr ""
 "ei klapi\n"
 "nõutava api versiooniga : %(required)d"
 
-#: dnfdragora/dnf_backend.py:174
-msgid "Start transaction"
-msgstr "Tehingu alustamine"
-
-#: dnfdragora/dnf_backend.py:177
-msgid "Downloading packages"
-msgstr "Pakettide allalaadimine"
-
-#: dnfdragora/dnf_backend.py:184
-msgid "Checking package signatures"
-msgstr "Pakettide allkirjade kontrollimine"
-
-#: dnfdragora/dnf_backend.py:194 dnfdragora/ui.py:1052
-msgid "Applying changes to the system"
-msgstr "Muudatuste rakendamine süsteemis"
-
-#: dnfdragora/dnf_backend.py:198
-msgid "Verify changes on the system"
-msgstr "Muudatuste verifitseerimine süsteemis"
-
-#: dnfdragora/dnf_backend.py:246
-#, python-format
-msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr "Laaditakse alla %(count_files)d faili (%(count_bytes)sB)..."
-
-#: dnfdragora/dnf_backend.py:548
+#: dnfdragora/dnf_backend.py:444
 msgid "Caching groups from packages... "
 msgstr "Pakettidest gruppide puhverdamine ..."
 
@@ -1330,218 +1288,269 @@ msgstr "Allalaadimise alustamine : %s "
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Failide edenemine (%(downloaded)d/%(total)d)"
 
-#: dnfdragora/ui.py:154
+#: dnfdragora/ui.py:202
 msgid "Update information"
 msgstr "Uuendamisteave"
 
-#: dnfdragora/ui.py:155
+#: dnfdragora/ui.py:203
 msgid "File list"
 msgstr "Faililoend"
 
-#: dnfdragora/ui.py:156
+#: dnfdragora/ui.py:204
 msgid "Changelog"
 msgstr "Muutuste logi"
 
-#: dnfdragora/ui.py:157
+#: dnfdragora/ui.py:205
 msgid "Requirements"
 msgstr "Nõuded"
 
-#: dnfdragora/ui.py:302
+#: dnfdragora/ui.py:371
 msgid "Software Management - dnfdragora"
 msgstr "Tarkvarahaldus - dnfdragora"
 
-#: dnfdragora/ui.py:334
+#: dnfdragora/ui.py:403
 msgid "Software Management"
 msgstr "Tarkvarahaldur"
 
-#: dnfdragora/ui.py:354
+#: dnfdragora/ui.py:436
 msgid "Arch"
 msgstr "Arhitektuur"
 
-#: dnfdragora/ui.py:354
+#: dnfdragora/ui.py:436
 msgid "Release"
 msgstr "Väljalase"
 
-#: dnfdragora/ui.py:354
+#: dnfdragora/ui.py:436
 msgid "Summary"
 msgstr "Kokkuvõte"
 
-#: dnfdragora/ui.py:354
+#: dnfdragora/ui.py:436
 msgid "Version"
 msgstr "Versioon"
 
-#: dnfdragora/ui.py:361
+#: dnfdragora/ui.py:443
 msgid "Status"
 msgstr "Olek"
 
-#: dnfdragora/ui.py:369
+#: dnfdragora/ui.py:451
 msgid "Installed"
 msgstr "Paigaldatud"
 
-#: dnfdragora/ui.py:370
+#: dnfdragora/ui.py:452
 msgid "Not installed"
 msgstr "Paigaldamata"
 
-#: dnfdragora/ui.py:371
+#: dnfdragora/ui.py:453
 msgid "To update"
 msgstr "Uuendatavad"
 
-#: dnfdragora/ui.py:377
+#: dnfdragora/ui.py:459
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Ainult %s ja noarch näitamine"
 
-#: dnfdragora/ui.py:383
+#: dnfdragora/ui.py:465
 msgid "Groups"
 msgstr "Grupid"
 
-#: dnfdragora/ui.py:447
+#: dnfdragora/ui.py:529
 msgid "in names"
 msgstr "nimedes"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:530
 msgid "in descriptions"
 msgstr "kirjeldustes"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:531
 msgid "in summaries"
 msgstr "kokkuvõtetes"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:532
 msgid "in file names"
 msgstr "failinimedes"
 
-#: dnfdragora/ui.py:471
+#: dnfdragora/ui.py:553
 msgid "&Search"
 msgstr "&Otsi"
 
-#: dnfdragora/ui.py:476
+#: dnfdragora/ui.py:558
 msgid "&Clear search"
 msgstr "&Puhasta otsing"
 
-#: dnfdragora/ui.py:490
+#: dnfdragora/ui.py:572
 msgid "Sel&ect all"
 msgstr "Va&li kõik"
 
-#: dnfdragora/ui.py:494 dnfdragora/ui.py:503
+#: dnfdragora/ui.py:578 dnfdragora/ui.py:587
 msgid "&Quit"
 msgstr "&Välju"
 
-#: dnfdragora/ui.py:499
+#: dnfdragora/ui.py:583
 msgid "&File"
 msgstr "&Fail"
 
-#: dnfdragora/ui.py:500
+#: dnfdragora/ui.py:584
 msgid "Reset the selection"
 msgstr "Lähtesta valik"
 
-#: dnfdragora/ui.py:501
+#: dnfdragora/ui.py:585
 msgid "Refresh Metadata"
 msgstr "Värskenda metaandmeid"
 
-#: dnfdragora/ui.py:502
+#: dnfdragora/ui.py:586
 msgid "Repositories"
 msgstr "Hoidlad"
 
-#: dnfdragora/ui.py:513
+#: dnfdragora/ui.py:597
 msgid "&Information"
 msgstr "&Teave"
 
-#: dnfdragora/ui.py:525
+#: dnfdragora/ui.py:609
 msgid "&Options"
 msgstr "&Valikud"
 
-#: dnfdragora/ui.py:537
+#: dnfdragora/ui.py:621
 msgid "&Help"
 msgstr "&Abi"
 
-#: dnfdragora/ui.py:538
+#: dnfdragora/ui.py:622
 msgid "Manual"
 msgstr "Käsiraamat"
 
-#: dnfdragora/ui.py:539
+#: dnfdragora/ui.py:623
 msgid "&About"
 msgstr "&Teave"
 
-#: dnfdragora/ui.py:565
+#: dnfdragora/ui.py:658
 msgid "update"
 msgstr "uuendatav"
 
-#: dnfdragora/ui.py:568
+#: dnfdragora/ui.py:661
 msgid "locked"
 msgstr "lukustatud"
 
-#: dnfdragora/ui.py:571
+#: dnfdragora/ui.py:664
 msgid "installed"
 msgstr "paigaldatud"
 
-#: dnfdragora/ui.py:884
+#: dnfdragora/ui.py:992
 msgid "Missing information"
 msgstr "Teave puudub"
 
-#: dnfdragora/ui.py:903
+#: dnfdragora/ui.py:1011
 msgid "Repository"
 msgstr "Hoidla"
 
-#: dnfdragora/ui.py:1014
-msgid "Search"
-msgstr "Otsi"
+#: dnfdragora/ui.py:1299
+msgid "Refreshing Repository Metadata"
+msgstr "Hoidla metaandmete värskendamine"
 
-#: dnfdragora/ui.py:1218
+#: dnfdragora/ui.py:1320
 msgid "Not implemented yet"
 msgstr "Ei ole veel võimalik"
 
-#: dnfdragora/ui.py:1247
+#: dnfdragora/ui.py:1352
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Paketti %s ei saa eemaldada"
 
-#: dnfdragora/ui.py:1247
+#: dnfdragora/ui.py:1352
 msgid "Protected package selected"
 msgstr "Valitud on kaitstud pakett"
 
-#: dnfdragora/ui.py:1323
+#: dnfdragora/ui.py:1407
 msgid "Unmanaged widget"
 msgstr "Haldamata vidin"
 
-#: dnfdragora/ui.py:1325
-msgid "Unmanaged event"
-msgstr "Haldamata sündmus"
+#: dnfdragora/ui.py:1425
+#, python-format
+msgid "Unmanaged event %d"
+msgstr ""
 
-#: dnfdragora/updater.py:104
-msgid "Update"
-msgstr "Uuenda"
+#: dnfdragora/ui.py:1488
+msgid "Start transaction"
+msgstr "Tehingu alustamine"
 
-#: dnfdragora/updater.py:105
-msgid "Open dnfdragora dialog"
-msgstr "Ava dnfdragora dialoog"
+#: dnfdragora/ui.py:1490
+msgid "Downloading packages"
+msgstr "Pakettide allalaadimine"
 
-#: dnfdragora/updater.py:106
-msgid "Check for updates"
-msgstr "Kontrolli uuendusi"
+#: dnfdragora/ui.py:1497
+msgid "Checking package signatures"
+msgstr "Pakettide allkirjade kontrollimine"
 
-#: dnfdragora/updater.py:107
-msgid "Exit"
-msgstr "Välju"
+#: dnfdragora/ui.py:1505 dnfdragora/ui.py:1681
+msgid "Applying changes to the system"
+msgstr "Muudatuste rakendamine süsteemis"
 
-#: dnfdragora/updater.py:177
-msgid "Running dnfdragora failure"
-msgstr "dnfdragora käivitamise tõrge"
+#: dnfdragora/ui.py:1508
+msgid "Verify changes on the system"
+msgstr "Muudatuste verifitseerimine süsteemis"
 
-#: dnfdragora/updater.py:213 dnfdragora/updater.py:218
+#: dnfdragora/ui.py:1519
+msgid "Build transaction"
+msgstr ""
+
+#: dnfdragora/ui.py:1554
+#, python-format
+msgid "Unknown action %s on %s"
+msgstr ""
+
+#: dnfdragora/ui.py:1579
+#, python-format
+msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
+msgstr "Laaditakse alla %(count_files)d faili (%(count_bytes)sB)..."
+
+#: dnfdragora/ui.py:1615
+msgid "Caching updates"
+msgstr ""
+
+#: dnfdragora/ui.py:1618
+msgid "Caching installed"
+msgstr ""
+
+#: dnfdragora/ui.py:1621
+msgid "Caching available"
+msgstr ""
+
+#: dnfdragora/ui.py:1667
+msgid "Creating packages cache"
+msgstr ""
+
+#: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Tõrge dnfdaemon'i teenuse käivitamisel: [%s]"
 
-#: dnfdragora/updater.py:235
-#, python-format
-msgid "%d updates available."
-msgstr "Saadaval on %d uuendust."
+#: dnfdragora/updater.py:112
+msgid "Update"
+msgstr "Uuenda"
 
-#: dnfdragora/updater.py:249
+#: dnfdragora/updater.py:113
+msgid "Open dnfdragora dialog"
+msgstr "Ava dnfdragora dialoog"
+
+#: dnfdragora/updater.py:114
+msgid "Check for updates"
+msgstr "Kontrolli uuendusi"
+
+#: dnfdragora/updater.py:115
+msgid "Exit"
+msgstr "Välju"
+
+#: dnfdragora/updater.py:205
+msgid "Running dnfdragora failure"
+msgstr "dnfdragora käivitamise tõrge"
+
+#: dnfdragora/updater.py:246
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Tekkis erind: [%s]"
+
+#: dnfdragora/updater.py:298
+#, python-format
+msgid "%d updates available."
+msgstr "Saadaval on %d uuendust."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -1570,3 +1579,49 @@ msgstr ""
 "abstraheerimise teeki libYui, mis tähendab, et see võib töötada Qt 5, GTK+ 3 "
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Haldamata sündmus"
+
+#~ msgid "Search"
+#~ msgstr "Otsi"
+
+#~ msgid "Enable debug log level"
+#~ msgstr "Logitaseme silumise lubamine"
+
+#~ msgid "Log options on next startup"
+#~ msgstr "Logivalikud järgmisel käivitamisel"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Grupivaadet järgmisel käivitamisel ei näidata"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Uuenduste näitamine järgmisel käivitamisel"
+
+#~ msgid "Layout options"
+#~ msgstr "Paigutusvalikud"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Uuenduste kontrollimise intervall minutites:"
+
+#~ msgid "History undo"
+#~ msgstr "Ajaloo tagasivõtmine"
+
+#~ msgid ""
+#~ "DNF is locked by another process.\n"
+#~ "\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Teine protsess on DNF-i lukustanud.\n"
+#~ "\n"
+#~ "dnfdragora lõpetab töö"
+
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF-juure taustaprogrammil polnud vajalikke õigusi.\n"
+#~ "dnfdragora lõpetab töö"
+
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "DNF-puhvri (juur) värskendamine nurjus"
