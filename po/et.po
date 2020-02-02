@@ -114,12 +114,12 @@ msgstr "tekkis dnfdaemon'i atribuudi tõrge:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "tekkis dnfdaemoni tüübi tõrge:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Tekkis tõrge:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -660,23 +660,23 @@ msgstr "Jätkamine kinnitust küsimata"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Uuenduste kontrollimise intervall (minutites)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Metaandmete aegumise aeg (tundides)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Paigutuse valikud (rakenduvad järgmisel käivitamisel)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Uuenduste näitamine"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Rühmavaadet ei näidata"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -692,7 +692,7 @@ msgstr "Kõik sõnad peavad sobima"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Logivalikud (rakenduvad järgmisel käivitamisel)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -700,7 +700,7 @@ msgstr "&Muuda kataloogi"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Silumistase"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1465,7 +1465,7 @@ msgstr "Haldamata vidin"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Haldamata sündmus %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1489,12 +1489,12 @@ msgstr "Muudatuste verifitseerimine süsteemis"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Tehingu loomine"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Tundmatu toiming %s  %s-ga"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1503,19 +1503,19 @@ msgstr "Laaditakse alla %(count_files)d faili (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Uuenduste puhverdamine"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Puhver paigaldatud"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Puhver saadaval"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Paketipuhvri loomine"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1579,49 +1579,3 @@ msgstr ""
 "abstraheerimise teeki libYui, mis tähendab, et see võib töötada Qt 5, GTK+ 3 "
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Haldamata sündmus"
-
-#~ msgid "Search"
-#~ msgstr "Otsi"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Logitaseme silumise lubamine"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Logivalikud järgmisel käivitamisel"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Grupivaadet järgmisel käivitamisel ei näidata"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Uuenduste näitamine järgmisel käivitamisel"
-
-#~ msgid "Layout options"
-#~ msgstr "Paigutusvalikud"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Uuenduste kontrollimise intervall minutites:"
-
-#~ msgid "History undo"
-#~ msgstr "Ajaloo tagasivõtmine"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Teine protsess on DNF-i lukustanud.\n"
-#~ "\n"
-#~ "dnfdragora lõpetab töö"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF-juure taustaprogrammil polnud vajalikke õigusi.\n"
-#~ "dnfdragora lõpetab töö"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "DNF-puhvri (juur) värskendamine nurjus"
