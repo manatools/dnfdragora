@@ -6,7 +6,7 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2019
+# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-18 10:06+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2019\n"
+"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
 "teams/9361/nb/)\n"
 "Language: nb\n"
@@ -708,19 +708,19 @@ msgstr "Match alle ord"
 
 #: dnfdragora/dialogs.py:857
 msgid "Log options on next startup"
-msgstr ""
+msgstr "Loggalternativer ved neste oppstart"
 
 #: dnfdragora/dialogs.py:862
 msgid "Change &directory"
-msgstr ""
+msgstr "Endre &plassering"
 
 #: dnfdragora/dialogs.py:863
 msgid "Enable debug log level"
-msgstr ""
+msgstr "Aktiver debug loggingsnivå"
 
 #: dnfdragora/dialogs.py:897
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Velg destinasjonskatalog for logg"
 
 #: dnfdragora/dialogs.py:1134
 msgid "&Yes"
