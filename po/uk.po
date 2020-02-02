@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-02 08:52+0200\n"
-"PO-Revision-Date: 2020-01-18 10:09+0200\n"
+"PO-Revision-Date: 2020-02-02 09:02+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -112,12 +112,12 @@ msgstr "Сталася помилка атрибута dnfdaemon:%(NL)s%(error)s
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Сталася помилка типів dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Сталася помилка:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -662,23 +662,23 @@ msgstr "Продовжити без підтвердження"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Інтервал між пошуками оновлень (у хвилинах)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Строк застарівання метаданих (у годинах)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Параметри компонування (буде задіяно під час наступного запуску)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Показувати оновлення"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Не показувати панель груп"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -694,7 +694,7 @@ msgstr "Збіг за усіма словами"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Параметри журналу (буде задіяно під час наступного запуску)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -702,7 +702,7 @@ msgstr "Змінити &каталог"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Рівень діагностики"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1467,7 +1467,7 @@ msgstr "Некерований віджет"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Некерована подія %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1491,12 +1491,12 @@ msgstr "Перевірити зміни у системі"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Будуємо операцію"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Невідома дія %s над %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1505,19 +1505,19 @@ msgstr "Отримуємо %(count_files)d файлів (%(count_bytes)s Б)…"
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Кешуємо оновлення"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Встановлено кешування"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Доступне кешування"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Створюємо кеш пакунків"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
