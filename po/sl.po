@@ -114,12 +114,12 @@ msgstr "pojavila se je atribut napaka dnfdaemon: %(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "pojavila se je tipska napaka dnfdaemon: %(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Pojavila se je napaka: %(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -664,23 +664,23 @@ msgstr "Nadaljevanje brez vprašanja za potrditev"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Interval za preverjanje posodobitev (v minutah)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Časovni pretek metapodatkov (v urah)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Možnosti razporeditve tipk (aktivno ob naslednjem zagonu)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Prikaži posodobitve"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Ne prikazuj skupinskega pogleda"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -696,7 +696,7 @@ msgstr "Ujemanje vseh besed"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Možnosti dnevnika (aktivno ob naslednjem zagonu)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -704,7 +704,7 @@ msgstr "Spremeni &mapo"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Stopnja podrobnosti razhroščevanja"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1468,7 +1468,7 @@ msgstr "Neupravljan gradnik"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Neupravljan dogodek %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1492,12 +1492,12 @@ msgstr "Preverjanje sprememb v sistemu"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Transakcija izgradnje"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Neznana akcija %s na %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1506,19 +1506,19 @@ msgstr "Prenos %(count_files)d datotek (%(count_bytes)sB) …"
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Predpomnjenje posodobitev"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Predpomnjenje nameščeno"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Predpomnjenje na voljo"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Ustvarjanje predpomnilnika paketov"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1584,49 +1584,3 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Neupravljan dogodek"
-
-#~ msgid "Search"
-#~ msgstr "Iskanje"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Omogoči razhroščevalno stopnjo dnevnika"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Možnosti dnevnika ob naslednjem zagonu"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ne prikazuj skupinskega pogleda ob naslednjem zagonu"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Prikaži posodobitve ob naslednjem zagonu"
-
-#~ msgid "Layout options"
-#~ msgstr "Možnosti videza"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Minutni interval za preverjanje posodobitev:"
-
-#~ msgid "History undo"
-#~ msgstr "Razveljavitev zgodovine"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "neko opravilo je zaklenilo program DNF.\n"
-#~ "\n"
-#~ "program dnfdragora se bo zaključil"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "korensko zaledje DNF ni bilo odobreno.\n"
-#~ "program dnfdragora se bo zaključil"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Ni bilo mogoče osvežiti predpomnilnika DNF (root)"
