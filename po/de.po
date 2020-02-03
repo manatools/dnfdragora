@@ -125,7 +125,7 @@ msgstr ""
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Fehler aufgetreten:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -666,11 +666,11 @@ msgstr "Fortfahren ohne Bestätigungen anzufordern"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Zeitabstand um nach Aktualisierungen zu suchen (Minuten)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Auslaufzeit der Metadaten (Stunden)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
@@ -678,11 +678,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Zeige Aktualisierungen"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Gruppenansicht nicht anzeigen"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -698,7 +698,7 @@ msgstr "Alle Wörter stimmen überein"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Protokolloptionen (beim nächsten Start aktiv)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -706,7 +706,7 @@ msgstr "&Verzeichnis wechseln"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Debugstufe"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1587,49 +1587,3 @@ msgstr ""
 "ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
 "die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
 "kann."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Nicht unterstützter Event"
-
-#~ msgid "Search"
-#~ msgstr "Suchen"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Aktiviere die Debug-Protokollebene"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Protokolloptionen beim nächsten Start"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Gruppenansicht beim nächsten Start nicht anzeigen"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Aktualisierungen beim nächsten Start anzeigen"
-
-#~ msgid "Layout options"
-#~ msgstr "Layoutoptionen"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Zeitabstand in Minuten, um nach Aktualisierungen zu prüfen:"
-
-#~ msgid "History undo"
-#~ msgstr "im Verlauf zurück"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF wird aktuell von einem anderen Prozess gesperrt.\n"
-#~ "\n"
-#~ "dnfdragora wird beendet"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Verwendung des DNF Backend als root wurde nicht autorisiert.\n"
-#~ "dnfdragora wird beendet"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kann den DNF Cache nicht erneuern (root)"
