@@ -120,12 +120,12 @@ msgstr "Произошла ошибка атрибута dnfdaemon:%(NL)s%(error
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Произошла ошибка типов dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Произошла ошибка: %(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -670,23 +670,23 @@ msgstr "Приступить без запроса подтверждения"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Интервал между поисками обновлений (в минутах)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Срок устаревания метаданных (в часах)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Параметры компоновки (будет задействовано при следующем запуске)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Показывать обновления"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Не показывать панель групп"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -702,7 +702,7 @@ msgstr "Совпадение по всем словам"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Параметры журналирования (будет задействовано при следующем запуске)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -710,7 +710,7 @@ msgstr "Изменить &каталог"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Уровень диагностики:"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1475,7 +1475,7 @@ msgstr "Неуправляемый виджет"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Неуправляемое событие %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1499,12 +1499,12 @@ msgstr "Проверять изменения в системе"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Построить транзакцию"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Неизвестное действие %s над %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1513,19 +1513,19 @@ msgstr "Загружается %(count_files)d файлов (%(count_bytes)sБ).
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Кэширование обновлений"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Установлено кэширование"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Доступное кэширование"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Создаём кэш пакетов"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1593,49 +1593,3 @@ msgstr ""
 "Qt 5, GTK+ 3 или ncurses. Она обеспечивает работу оболочки программы "
 "управления пакетами DNF, которой можно воспользоваться в любом типе "
 "системной среды."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Неуправляемое событие"
-
-#~ msgid "Search"
-#~ msgstr "Поиск"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Включить уровень журнала отладки"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Параметры журналирования при следующем выпуске"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Не показывать просмотр групп при следующем старте системы"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Показывать обновления при следующем старте системы"
-
-#~ msgid "Layout options"
-#~ msgstr "Параметры компоновки"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Интервал в минутах для проверки наличия обновлений:"
-
-#~ msgid "History undo"
-#~ msgstr "Журнал аннулирования"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF заблокирован другим процессом.\n"
-#~ "\n"
-#~ "dnfdragora завершится"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root бэкенд не был авторизован.\n"
-#~ "dnfdragora завершится"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Не удалось обновить кэш DNF (root)"
