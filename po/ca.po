@@ -119,12 +119,12 @@ msgstr "s'ha produït un error d'atribut de dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "s'ha produït un error de tipus de dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "S'ha produït un error:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -664,23 +664,23 @@ msgstr "Procedeix sense demanar-ne la confirmació"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Interval per comprovar si hi ha actualitzacions (minuts)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Venciment de les metadades (hores)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Opcions de disposició (actives a l'inici següent)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Mostra les actualitzacions"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "No mostris la vista de grups"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -696,7 +696,7 @@ msgstr "Coincideix amb totes les paraules"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Opcions de registre (actives a l'inici següent)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -704,7 +704,7 @@ msgstr "Canvia el &directori"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Nivell de depuració"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1469,7 +1469,7 @@ msgstr "Estri no gestionat"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Esdeveniment no gestionat %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1493,12 +1493,12 @@ msgstr "Verificació dels canvis al sistema"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Construcció de la transacció"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Acció desconeguda %s a %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1507,19 +1507,19 @@ msgstr "S'estan baixant %(count_files)d fitxers (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Es desen les actualitzacions a la cau"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Cau instal·lada"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Cau disponible"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Creació de la cau de paquets"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1586,49 +1586,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Esdeveniment no gestionat"
-
-#~ msgid "Search"
-#~ msgstr "Cerca"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Habilita el nivell de registre de depuració"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Opcions de registre a la propera arrencada"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "No mostris la vista de grups a l'inici següent"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Mostra les actualitzacions a l'inici següent"
-
-#~ msgid "Layout options"
-#~ msgstr "Opcions del disseny"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval en minuts per comprovar si hi ha actualitzacions:"
-
-#~ msgid "History undo"
-#~ msgstr "Desfés l'historial"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF està bloquejat per un altre procés.\n"
-#~ "\n"
-#~ "dnfdragora sortirà"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "El frontal root de DNF no ha estat autoritzat.\n"
-#~ "dnfdragora sortirà"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "No s'ha pogut actualitzar la memòria cau de DNF (root)"
