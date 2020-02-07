@@ -674,7 +674,7 @@ msgstr "Auslaufzeit der Metadaten (Stunden)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Layout Optionen (beim nächsten Start aktiv) "
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
@@ -1471,7 +1471,7 @@ msgstr "Nicht unterstützes Objekt"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Nicht unterstützter Event %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
