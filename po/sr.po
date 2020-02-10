@@ -117,12 +117,12 @@ msgstr "dnfdaemon атрибут појава грешке:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon тип појава грешке:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Појавила се грешка:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -665,23 +665,23 @@ msgstr "Настави без питања за потврду"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Интервал за проверу ажурирања (у минутима)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Истицање валидности мета података (у сатима)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Опције изгледа (активирање при следећем покретању)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Прикажи ажурирања"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Не приказуј групни преглед "
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -697,7 +697,7 @@ msgstr "Поклапање свих речи"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Опције логовања (активирање при следећем покретању)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -705,7 +705,7 @@ msgstr "Промени &директоријум"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Ниво дебаговања"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1470,7 +1470,7 @@ msgstr "Неуправљани додаци"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Неуправљани догађај %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1494,12 +1494,12 @@ msgstr "Провера измена на систему"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Креирај трансакцију"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Непозната акција %s на %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1508,19 +1508,19 @@ msgstr "Преузимање %(count_files)d фајлова (%(count_bytes)sB)..
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Кеширање надоградње"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Кеширање инсталираног"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Кеширање доступног"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Креирање кеша за пакете"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1583,49 +1583,3 @@ msgstr ""
 "SUSE, тако се може покретати коришћењем Qt5, GTK+ 3, или ncurses "
 "интерфејсима. Омогућава фронтенд за DNF менаџер паекта који се може "
 "користити на било којој врсти системског окружења."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Неуправљани догађаји"
-
-#~ msgid "Search"
-#~ msgstr "Тражи"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Омогући ниво логовања за дебаговање"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Опције логовања при следећем подизању система"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Не приказуј групни преглед при следећем покретању"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Прикажи надоградњр при следећем покретању"
-
-#~ msgid "Layout options"
-#~ msgstr "Опције приказа"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Интервал у минутама за проверу надоградњи:"
-
-#~ msgid "History undo"
-#~ msgstr "Поништи историјат"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF је закључан од стране другог процеса.\n"
-#~ "\n"
-#~ "dnfdragora ће се затворити"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root позадина није ауторизована.\n"
-#~ "dnfdragora ће се затворити"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Није могуће освежавање DNF кеша (root)"
