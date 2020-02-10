@@ -120,7 +120,7 @@ msgstr "dnfdaemon Attribut-Fehler aufgetreten:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon Typfehler aufgetreten:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
@@ -670,7 +670,7 @@ msgstr "Zeitabstand um nach Aktualisierungen zu suchen (Minuten)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr "Auslaufzeit der Metadaten (Stunden)"
+msgstr "Ablaufzeit für Metadaten (Stunden)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
@@ -1495,12 +1495,12 @@ msgstr "Änderungen auf dem System werden verifiziert"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Transaktion erstellen"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Unbekannte Aktion %s von %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1509,19 +1509,19 @@ msgstr "Lade %(count_files)d Dateien herunter (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Cache Aktualisierungen"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Cache installierte Pakete"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Cache verfügbare Pakete"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Erstelle Paketcache"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
