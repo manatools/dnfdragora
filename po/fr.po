@@ -126,12 +126,12 @@ msgstr "dnfdaemon a rencontré une erreur d'atrtibut :%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon a rencontré une erreur de type : %(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Erreur rencontrée : %(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -670,23 +670,23 @@ msgstr "Procéder sans demander de confirmation"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Intervalle de vérification des mises à jour (en minutes)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Délai d'expiration des méta-données (en heures)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Options de mise en page (actives au prochain démarrage)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Montrer les mises à jour"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Masquer la vue des groupes"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -702,7 +702,7 @@ msgstr "Trouver tous les mots"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Options de journalisation (actives au prochain démarrage)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -710,7 +710,7 @@ msgstr "Changer de &dossier"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Niveau de débogage"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1475,7 +1475,7 @@ msgstr "Widget non géré"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Événement non géré %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1499,12 +1499,12 @@ msgstr "Contrôle des changements du système"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Construire la transaction"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Action %s inconnue sur %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1513,19 +1513,19 @@ msgstr "Téléchargement de %(count_files)d fichiers (%(count_bytes)sO)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Mise en mémoire cache des mises à jour"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Contenu de la mémoire cache installé"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Mise en mémoire cache disponible"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Création de mémoire cache des paquetages"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1591,49 +1591,3 @@ msgstr ""
 "d'abstraction d'objet graphique écrite par Suse, qui permet une interface en "
 "utilisant Qt 5, GTK+3 ou ncurses. Cette interface graphique au  gestionnaire "
 "de logiciels DNF peut être utilisée dans tout type d'environnement système."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Évènement non géré"
-
-#~ msgid "Search"
-#~ msgstr "Rechercher"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Activer le niveau du journal de débogage"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Options de journalisation au prochain démarrage"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ne pas montrer la vue des groupes au prochain démarrage"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Montrer les mises à jour au prochain démarrage"
-
-#~ msgid "Layout options"
-#~ msgstr "Options de mise en page"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervalle de vérification des mises à jour (minutes) :"
-
-#~ msgid "History undo"
-#~ msgstr "Défaire l'historique"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF est verrouillé par un autre processus\n"
-#~ "\n"
-#~ "dndfdragora va se fermer"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF n'a pas obtenu les droits d'administrateur.\n"
-#~ "dnfdragora va fermer"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Impossible de réactualiser le cahe DNF (root)"
