@@ -8,10 +8,10 @@
 # Jose Manuel López <inactive+rocholc@transifex.com>, 2017
 # Egoitz Rodriguez <egoitzro@gmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Jose Manuel López <joselp@disroot.org>, 2018
 # William Moreno <williamjmorenor@gmail.com>, 2018
 # José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2019
 # Miguel, 2020
+# Jose Manuel López <joselp@disroot.org>, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-02 08:52+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Miguel, 2020\n"
+"Last-Translator: Jose Manuel López <joselp@disroot.org>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -121,12 +121,12 @@ msgstr "Se ha producido un error de atributo en dnfdaemon::%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Se produjo un error de tipo dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Se produjo un error:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -665,23 +665,23 @@ msgstr "Proceder sin pedir confirmación"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Intervalo para buscar actualizaciones (minutos)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Tiempo de caducidad de metadatos (horas)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Opciones de disposición (activo en el próximo inicio)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Mostrar actualizaciones"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "No mostrar vista de grupos"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -697,7 +697,7 @@ msgstr "Coincidir todas las palabras"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Opciones de registro (activo en el siguiente inicio)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -705,7 +705,7 @@ msgstr "Cambiar &directorio"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Nivel de depuración"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1470,7 +1470,7 @@ msgstr "Widget sin configurar"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Evento no controlado %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1494,12 +1494,12 @@ msgstr "Comprobando cambios en el sistema"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Construir transacción"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Acción desconocida %sen %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1508,19 +1508,19 @@ msgstr "Descargando %(count_files)d ficheros (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Actualizaciones de caché"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Caché instalado"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Caché disponible"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Crear paquetes de caché"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1585,48 +1585,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Evento no gestionado"
-
-#~ msgid "Search"
-#~ msgstr "Buscar"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Activar nivel de depuración log"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Guardar en un fichero log en el siguiente inicio"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "No mostrar vista de grupos en el siguiente inicio"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Mostrar actualizaciones en el siguiente inicio"
-
-#~ msgid "Layout options"
-#~ msgstr "Opciones de diseño"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervalo en minutos para buscar actualizaciones:"
-
-#~ msgid "History undo"
-#~ msgstr "Deshacer historial"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF está bloqueado por otro proceso.\n"
-#~ "dnfdragora saldrá ahora."
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "El backend raiz de DNF no ha sido autorizado.\n"
-#~ "dnfdragora saldrá ahora."
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "No se pudo refrescar el caché DNF (root)"
