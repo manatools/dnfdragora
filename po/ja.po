@@ -112,12 +112,12 @@ msgstr "dnfdaemon の属性エラーが発生しました:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon の種類エラーが発生しました:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "エラーが発生しました:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -655,23 +655,23 @@ msgstr "確認なしに操作を続行する"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "更新を確認する間隔 (分単位)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "メタデータの失効時間 (時間単位)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "レイアウト設定 (次回起動時から有効)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "更新を表示"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "グループのビューを表示しない"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -687,7 +687,7 @@ msgstr "すべての単語にマッチ"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "ログ設定 (次回起動時から有効)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -695,7 +695,7 @@ msgstr "ディレクトリを変更(&D)"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "デバッグ レベル"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1460,7 +1460,7 @@ msgstr "管理されていないウィジェットです"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "管理されていないイベント %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1484,12 +1484,12 @@ msgstr "システム上の変更を検証"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "トランザクションを構築"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "不明なアクション %s 名前 %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1500,19 +1500,19 @@ msgstr ""
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "更新パッケージをキャッシュしています"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "インストール済みパッケージをキャッシュしています"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "利用可能パッケージをキャッシュしています"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "パッケージのキャッシュを作成しています"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1577,49 +1577,3 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "管理されていないイベントです"
-
-#~ msgid "Search"
-#~ msgstr "検索"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "デバッグ ログ レベルを有効にする"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "次回起動時にログ出力を有効にする"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "次回起動時にパッケージのグループ表示を行わない"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "次回起動時に更新を表示"
-
-#~ msgid "Layout options"
-#~ msgstr "レイアウトの設定"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "更新のチェック間隔 (分単位):"
-
-#~ msgid "History undo"
-#~ msgstr "履歴の取り消し"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF は別のプロセスによってロックされています。\n"
-#~ "\n"
-#~ "dnfdragora は終了します。"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root バック エンドは認証されていません。\n"
-#~ "dnfdragora は終了します。"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "DNF のキャッシュを更新できませんでした (root)"
