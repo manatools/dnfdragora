@@ -1506,15 +1506,15 @@ msgstr "Mellomlagre oppdateringer"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Mellomlagring installert"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Mellomlagring finns tilgjengelig"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Opprette pakkemellomlager"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
