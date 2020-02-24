@@ -115,12 +115,12 @@ msgstr "dnfdaemon atributtfeil oppsto:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "det oppsto dnfdaemon type feil :%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Feil oppsto:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -659,23 +659,23 @@ msgstr "Fortsett uten å be om bekreftelse"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Intervall for sjekking etter oppdateringer (minutter)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Metadata utløpstid (timer)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Layout-alternativer (aktiveres ved neste oppstart)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Vis oppdateringer"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Ikke vis gruppevisning"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -691,7 +691,7 @@ msgstr "Match alle ord"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Loggingsalternativer (aktiveres ved neste oppstart)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -699,7 +699,7 @@ msgstr "Endre &plassering"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Feilsøkingsnivå"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1464,7 +1464,7 @@ msgstr "Widget er ikke håndtert"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Uhåndtert hendelse %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1488,12 +1488,12 @@ msgstr "Verifiserer systemendringene"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Bygg transaksjon"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Ukjent aktivitet %s på %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1502,7 +1502,7 @@ msgstr "Laster ned %(count_files)d filer (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Mellomlagre oppdateringer"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
@@ -1577,49 +1577,3 @@ msgstr ""
 "abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
 "+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
 "pakkehåndtereren som kan benyttes i ethvert system miljø."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Hendelse er ikke håndtert"
-
-#~ msgid "Search"
-#~ msgstr "Søk"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Aktiver debug loggingsnivå"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Loggalternativer ved neste oppstart"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ikke vis oppdateringer ved neste start"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Vis oppdatering ved neste start"
-
-#~ msgid "Layout options"
-#~ msgstr "Layout alternativer"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervall i minutter for å sjekke etter oppdateringer:"
-
-#~ msgid "History undo"
-#~ msgstr "Historie angre"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF er låst av en annen prosess\n"
-#~ "\n"
-#~ "Dnfdragora vil avslutte"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root backend var ikke autorisert\n"
-#~ "Dnfdragora vil avslutte"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kunne ikke oppfriske DNF cache (root)"
