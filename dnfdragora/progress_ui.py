@@ -55,11 +55,13 @@ class ProgressBar:
         self.main_dialog = main_dialog
         self.layout = layout
         vbox = self.factory.createVBox(layout)
-        self.info_widget = self.factory.createLabel(vbox, "")
+        hbox = self.factory.createHBox(vbox)
+        self.info_widget = self.factory.createLabel(hbox, "")
         self.info_widget.setStretchable( yui.YD_HORIZ, True )
-        self.progressbar = self.factory.createProgressBar(vbox, "")
-        self.info_sub_widget = self.factory.createLabel(vbox, "")
+        self.info_sub_widget = self.factory.createLabel(hbox, "")
         self.info_sub_widget.setStretchable( yui.YD_HORIZ, True )
+        self.progressbar = self.factory.createProgressBar(vbox, "")
+
 
     def info(self, text) :
         self.info_widget.setValue(text)
