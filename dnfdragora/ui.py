@@ -261,24 +261,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.pbar_layout.setEnabled(True)
 
         self.backend
-        print("Locking")
         self.dialog.pollEvent()
-        return
-
-        self._fillGroupTree()
-        sel = self.tree.selectedItem()
-        group = None
-        if sel :
-            group = self._groupNameFromItem(self.groupList, sel)
-
-        filter = self._filterNameSelected()
-        self.checkAllButton.setEnabled(filter == 'to_update')
-        self._fillPackageList(group, filter)
-        sel_pkg = self._selectedPackage()
-        if sel_pkg :
-            self._setInfoOnWidget(sel_pkg)
-
         self.find_entry.setKeyboardFocus()
+
+
 
     def glib_mainloop(self, loop):
       '''
