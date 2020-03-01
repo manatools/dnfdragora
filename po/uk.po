@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 08:52+0200\n"
-"PO-Revision-Date: 2020-02-02 09:02+0200\n"
+"POT-Creation-Date: 2020-03-01 11:12+0100\n"
+"PO-Revision-Date: 2020-03-01 12:24+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -364,7 +364,7 @@ msgstr "Скасувати дію"
 msgid "Error checking package signatures"
 msgstr "Помилка під час спроби перевірити підписи пакунків"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1700
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Помилка отримання даних"
@@ -372,7 +372,7 @@ msgstr[1] "Помилки отримання даних"
 msgstr[2] "Помилки отримання даних"
 msgstr[3] "Помилка отримання даних"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1705
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Помилка під час дії"
@@ -1518,6 +1518,10 @@ msgstr "Доступне кешування"
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
 msgstr "Створюємо кеш пакунків"
+
+#: dnfdragora/ui.py:1687
+msgid "Building Transaction error"
+msgstr "Помилка під час побудови операції"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
