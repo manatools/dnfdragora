@@ -1812,7 +1812,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'BuildTransaction'):
             self._OnBuildTransaction(info)
           elif (event == 'RunTransaction'):
-            self._OnRunTransaction(info)
+            if not info['error']:
+              self._OnRunTransaction(info)
+            else:
+              logger.error("Search error: %s", str(info['error']))
+              raise UIError(str(info['error']))
           elif (event == 'OnTransactionEvent'):
             self._OnTransactionEvent(info['event'], info['data'])
           elif (event == 'OnRPMProgress'):
