@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 08:52+0200\n"
+"POT-Creation-Date: 2020-03-01 11:12+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -372,7 +372,7 @@ msgstr "Отменить транзакцию"
 msgid "Error checking package signatures"
 msgstr "Ошибка при проверке подписей пакетов"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1700
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Ошибка при загрузке"
@@ -380,7 +380,7 @@ msgstr[1] "Ошибки при загрузке"
 msgstr[2] "Ошибок при загрузке"
 msgstr[3] "Ошибок при загрузке"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1705
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Ошибка в транзакции"
@@ -1526,6 +1526,10 @@ msgstr "Доступное кэширование"
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
 msgstr "Создаём кэш пакетов"
+
+#: dnfdragora/ui.py:1687
+msgid "Building Transaction error"
+msgstr "Ошибка построения транзакции"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
