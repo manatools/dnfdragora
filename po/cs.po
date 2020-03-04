@@ -6,17 +6,17 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# fri, 2019
 # Luděk Janča <joelp@email.cz>, 2020
+# fri, 2020
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 08:52+0200\n"
+"POT-Creation-Date: 2020-03-01 11:12+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
+"Last-Translator: fri, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -115,12 +115,12 @@ msgstr "Vyskytla se chyba vlastnosti dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla se chyba typu dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla se chyba:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -367,7 +367,7 @@ msgstr "Zpět transakci"
 msgid "Error checking package signatures"
 msgstr "Chyba při ověřování podpisů balíčků"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1700
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Chyba při stahování"
@@ -375,7 +375,7 @@ msgstr[1] "Chyby při stahování"
 msgstr[2] "Chyby při stahování"
 msgstr[3] "Chyby při stahování"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1705
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Chyba v transakci"
@@ -663,23 +663,23 @@ msgstr "Pokračovat bez žádání o potvrzení"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Interval pro kontrolu aktualizací (minuty)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Čas vypršení popisných dat  (hodiny)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Volby rozvržení (činné při příštím spuštění)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Zobrazit aktualizace"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Neukazovat pohled na skupiny"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -695,15 +695,15 @@ msgstr "Odpovídá všem slovům"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Volby pro záznamy (činné při příštím spuštění)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
-msgstr ""
+msgstr "Změnit &adresář"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Úroveň ladění"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1468,7 +1468,7 @@ msgstr "Nespravovaný doplněk"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Nespravovaná událost %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1492,12 +1492,12 @@ msgstr "Ověřování změn v systému"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Sestavení transakce"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Neznámá činnost %s na %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1506,19 +1506,23 @@ msgstr "Stahování %(count_files)d souborů (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Aktualizace vyrovnávací paměti"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Nainstalovaná vyrovnávací paměť"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Dostupná vyrovnávací paměť"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Vytváří se vyrovnávací paměť balíčků"
+
+#: dnfdragora/ui.py:1687
+msgid "Building Transaction error"
+msgstr "Chyba v sestavení transakce"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1582,44 +1586,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Nespravovaná událost"
-
-#~ msgid "Search"
-#~ msgstr "Hledat"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Neukazovat pohled na skupiny při příštím spuštění"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Ukázat aktualizace při příštím spuštění"
-
-#~ msgid "Layout options"
-#~ msgstr "Možnosti rozložení"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval v minutách pro zkontrolování aktualizací:"
-
-#~ msgid "History undo"
-#~ msgstr "Zpět historie"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF je uzamknut jiným procesem.\n"
-#~ "\n"
-#~ "dnfdragora bude ukončen"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Podpůrná vrstva root DNF nebyla schválena.\n"
-#~ "\n"
-#~ "dnfdragora bude ukončen"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nebylo možné obnovit vyrovnávací paměť DNF (root)"
