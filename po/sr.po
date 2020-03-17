@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 08:52+0200\n"
+"POT-Creation-Date: 2020-03-01 11:12+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: tomaja <toma.jankovic@gmail.com>, 2020\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -369,14 +369,14 @@ msgstr "Поништи трансакцију"
 msgid "Error checking package signatures"
 msgstr "Грешка при провери потписа пакета"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1700
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Грешка при преузимању"
 msgstr[1] "Грешака при преузимању"
 msgstr[2] "Грешке при преузимању"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1705
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Грешка при тансакцији"
@@ -1521,6 +1521,10 @@ msgstr "Кеширање доступног"
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
 msgstr "Креирање кеша за пакете"
+
+#: dnfdragora/ui.py:1687
+msgid "Building Transaction error"
+msgstr "Креирање грешке о Трансакцији"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
