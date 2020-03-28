@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 08:52+0200\n"
+"POT-Creation-Date: 2020-03-01 11:12+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: retepsk <rvrao@centrum.cz>, 2020\n"
 "Language-Team: Slovak (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -115,12 +115,12 @@ msgstr "Vyskytla sa chyba vlastnosti dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla sa chyba typu dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Vyskytla sa chyba:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -367,7 +367,7 @@ msgstr "Vrátiť transakcie"
 msgid "Error checking package signatures"
 msgstr "Chyba pri overovaní podpisov balíčkov"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1700
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Chyba pri sťahovaní"
@@ -375,7 +375,7 @@ msgstr[1] "Chyby pri sťahovaní"
 msgstr[2] "Chyby pri sťahovaní"
 msgstr[3] "Chyby pri sťahovaní"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1705
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Chyba v transakcii"
@@ -663,23 +663,23 @@ msgstr "Pokračovať bez žiadania o potvdenie"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Interval na kontrolu aktualizácií (minúty)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Expirácia metadát (hodiny)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Možnosti vzhľadu (aktívna pri ďalšom spustení)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Zobraziť aktualizácie"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Nezobrazovať zobrazenie skupín"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -695,7 +695,7 @@ msgstr "Zhoda všetkých slov"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Možnosti denníka Log (aktívne pri ďalšom spustení)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
@@ -703,7 +703,7 @@ msgstr "Zmena &adresára"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Úroveň ladenia"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
@@ -1468,7 +1468,7 @@ msgstr "Nespravovaný doplnok"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Nespravovaná udalosť %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1492,12 +1492,12 @@ msgstr "Overovanie zmien v systéme"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Zostaviť transakciu"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Neznáma akcia %s na %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1506,19 +1506,23 @@ msgstr "Stahovanie %(count_files)d súborov (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Aktualizácia vyrovnávacej pamäte"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Nainštalovaná vyrovnávacia pamäť"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Dostupná vyrovnávacia pamäť"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Vytvára sa vyrovnávacia pamäť balíčkov /cache/"
+
+#: dnfdragora/ui.py:1687
+msgid "Building Transaction error"
+msgstr "Chyba v zostavení transakcie"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1582,49 +1586,3 @@ msgstr ""
 "spoločnosťou SUSE, aby mohla byť spustená pomocou rozhrania Qt 5, GTK + 3 "
 "alebo ncurses. Poskytuje rozhranie pre správcu balíkov DNF, ktoré je možné "
 "použiť v akomkoľvek prostredí systému."
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Nespravovaná udalosť"
-
-#~ msgid "Search"
-#~ msgstr "Hľadať"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Povoliť záznam protokolov ladenia /Log/"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Možnosti záznamu /Log/ pri ďalšom spustení"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Neukazovat pohľad na skupiny pri ďalšom spustení"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Ukázat aktualizácie pri ďalšom spustení"
-
-#~ msgid "Layout options"
-#~ msgstr "Možnosti rozloženia"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval v minutách pre zkontrolovanie aktualizácií:"
-
-#~ msgid "History undo"
-#~ msgstr "História späť"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF je uzamknutý iným procesom.\n"
-#~ "\n"
-#~ "dnfdragora bude ukončená"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Podporná vrstva root DNF nebola schválená.\n"
-#~ "dnfdragora bude ukončená"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nebolo možné obnoviť vyrovnávaciu pamäť DNF (root)"
