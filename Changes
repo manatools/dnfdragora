@@ -1,3 +1,9 @@
+2020-04-04 v. 2.0.0
+---------------------
+- Massively reworked dnfdragora to be async and more reliable
+- Improved logging and added logging to dnfdragora-updater
+- Improved error handling for transactions
+
 2019-04-26 v. 1.1.2
 ---------------------
 - Fix screenshot referenced in dnfdragora metainfo file
