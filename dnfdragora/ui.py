@@ -349,6 +349,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.log_directory = log['directory']
                     if 'level_debug' in log.keys() :
                         self.level_debug = log['level_debug']
+        else:
+          self.config.userPreferences['settings'] = {}
+          self.config.userPreferences['settings']['metadata']= {
+            'update_interval': self.md_update_interval, # 48 Default
+            'last_update': ''
+          }
 
     def _setupUI(self) :
         '''
