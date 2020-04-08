@@ -25,7 +25,7 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [opciones]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
@@ -125,11 +125,11 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr ""
+msgstr "Escritoriu Plasma"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Escritoriu XFCE"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
@@ -137,31 +137,31 @@ msgstr "Aplicaciones"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "Escritoriu LXDE"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "Escritoriu LXQt"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Escritoriu Cinnamon"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr ""
+msgstr "Escritoriu MATE"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Escritoriu Hawaii"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Entornu d'escritoriu Sugar"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "Escritoriu Gnome"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -174,11 +174,11 @@ msgstr "Sirvidores"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr ""
+msgstr "Sistema base"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
-msgstr ""
+msgstr "Conteíu"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:450
 #: dnfdragora/ui.py:464
@@ -338,11 +338,11 @@ msgstr ""
 
 #: dnfdragora/const.py:163
 msgid "Bugfix"
-msgstr ""
+msgstr "Igua"
 
 #: dnfdragora/const.py:164
 msgid "New Package"
-msgstr ""
+msgstr "Paquete nuevu"
 
 #: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
 msgid "Security"
@@ -350,7 +350,7 @@ msgstr "Seguranza"
 
 #: dnfdragora/const.py:166
 msgid "Enhancement"
-msgstr ""
+msgstr "Ameyora"
 
 #: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1175
 msgid "Undo transaction"
@@ -419,7 +419,7 @@ msgstr ""
 #: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:613
 #: dnfdragora/dialogs.py:877 dnfdragora/dialogs.py:1104
 msgid "&Cancel"
-msgstr ""
+msgstr "E&ncaboxar"
 
 #: dnfdragora/dialogs.py:403
 msgid "replacing "
@@ -427,11 +427,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:409
 msgid "Total size "
-msgstr ""
+msgstr "Tamañu total"
 
 #: dnfdragora/dialogs.py:474
 msgid "Developers"
-msgstr ""
+msgstr "Desendolcadores"
 
 #: dnfdragora/dialogs.py:478
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
@@ -455,7 +455,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:519
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:520
 msgid "DeltaRPM percentage"
@@ -535,7 +535,7 @@ msgstr "Nome"
 
 #: dnfdragora/dialogs.py:539
 msgid "Packages"
-msgstr ""
+msgstr "Paquetes"
 
 #: dnfdragora/dialogs.py:540
 msgid "Password"
@@ -543,7 +543,7 @@ msgstr "Contraseña"
 
 #: dnfdragora/dialogs.py:541
 msgid "Priority"
-msgstr ""
+msgstr "Prioridá"
 
 #: dnfdragora/dialogs.py:542
 msgid "Protected packages"
@@ -571,7 +571,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:548 dnfdragora/ui.py:436
 msgid "Size"
-msgstr ""
+msgstr "Tamañu"
 
 #: dnfdragora/dialogs.py:549
 msgid "Skip if unavailable"
@@ -623,7 +623,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:568
 msgid "&Apply"
-msgstr ""
+msgstr "&Aplicar"
 
 #: dnfdragora/dialogs.py:717
 msgid "Never"
@@ -700,11 +700,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1153
 msgid "&Yes"
-msgstr ""
+msgstr "&Sí"
 
 #: dnfdragora/dialogs.py:1154
 msgid "&No"
-msgstr ""
+msgstr "&Non"
 
 #: dnfdragora/dialogs.py:1177
 #, python-format
@@ -732,7 +732,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
-msgstr ""
+msgstr "Accesibilidá"
 
 #: dnfdragora/groupicons.py:25
 msgid "Archiving"
@@ -748,7 +748,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:36
 msgid "Compression"
-msgstr ""
+msgstr "Compresión"
 
 #: dnfdragora/groupicons.py:40 dnfdragora/groupicons.py:129
 #: dnfdragora/groupicons.py:197 dnfdragora/groupicons.py:245
@@ -762,7 +762,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:48
 msgid "Bluetooth"
-msgstr ""
+msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
@@ -770,7 +770,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:56
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 #: dnfdragora/groupicons.py:60
 msgid "Mobile"
@@ -790,7 +790,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
-msgstr ""
+msgstr "Bases de datos"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
@@ -931,7 +931,7 @@ msgstr "Enlightenment"
 
 #: dnfdragora/groupicons.py:233
 msgid "GNOME"
-msgstr "GNOME"
+msgstr "Gnome"
 
 #: dnfdragora/groupicons.py:237
 msgid "Icewm"
@@ -997,7 +997,7 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:301
 msgid "Instant messaging"
-msgstr ""
+msgstr "Mensaxería nel intre"
 
 #: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
@@ -1017,11 +1017,11 @@ msgstr "WWW"
 
 #: dnfdragora/groupicons.py:326
 msgid "Office"
-msgstr ""
+msgstr "Oficina"
 
 #: dnfdragora/groupicons.py:329
 msgid "Dictionary"
-msgstr ""
+msgstr "Diccionariu"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
@@ -1049,7 +1049,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
-msgstr ""
+msgstr "Espublizamientu"
 
 #: dnfdragora/groupicons.py:366
 msgid "Sciences"
@@ -1065,7 +1065,7 @@ msgstr "Bioloxía"
 
 #: dnfdragora/groupicons.py:377
 msgid "Chemistry"
-msgstr ""
+msgstr "Química"
 
 #: dnfdragora/groupicons.py:381
 msgid "Computer science"
@@ -1288,7 +1288,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:205
 msgid "Requirements"
-msgstr ""
+msgstr "Requirimientos"
 
 #: dnfdragora/ui.py:371
 msgid "Software Management - dnfdragora"
@@ -1308,7 +1308,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:436
 msgid "Summary"
-msgstr ""
+msgstr "Sumariu"
 
 #: dnfdragora/ui.py:436
 msgid "Version"
@@ -1385,19 +1385,19 @@ msgstr ""
 
 #: dnfdragora/ui.py:586
 msgid "Repositories"
-msgstr ""
+msgstr "Depósitos"
 
 #: dnfdragora/ui.py:597
 msgid "&Information"
-msgstr ""
+msgstr "&Información"
 
 #: dnfdragora/ui.py:609
 msgid "&Options"
-msgstr ""
+msgstr "&Opciones"
 
 #: dnfdragora/ui.py:621
 msgid "&Help"
-msgstr ""
+msgstr "&Ayuda"
 
 #: dnfdragora/ui.py:622
 msgid "Manual"
