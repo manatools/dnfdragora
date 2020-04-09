@@ -1,3 +1,6 @@
+- Fixed program closure if transaction is cancelled by user
+- Fixed a crash startup without configuration file
+
 2020-04-04 v. 2.0.0
 ---------------------
 - Massively reworked dnfdragora to be async and more reliable
