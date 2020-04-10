@@ -119,7 +119,7 @@ msgstr "Er is een attribuut fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Er is een type fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
@@ -131,6 +131,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"Forceer een nieuw pad voor al de benodigde pictogrammen (in plaats van /usr/"
+"share/icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
@@ -495,7 +497,7 @@ msgstr "Pakketten uitsluiten"
 
 #: dnfdragora/dialogs.py:526
 msgid "Failover method"
-msgstr ""
+msgstr "Failover methode"
 
 #: dnfdragora/dialogs.py:527
 msgid "Fastest mirror"
@@ -519,23 +521,23 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:532
 msgid "Max parallel download"
-msgstr ""
+msgstr "Max parallel downloaden"
 
 #: dnfdragora/dialogs.py:533
 msgid "Media ID"
-msgstr ""
+msgstr "Media ID"
 
 #: dnfdragora/dialogs.py:534
 msgid "Metadata expire"
-msgstr ""
+msgstr "Verlopen metagegevens"
 
 #: dnfdragora/dialogs.py:535
 msgid "Meta link"
-msgstr ""
+msgstr "Metalink"
 
 #: dnfdragora/dialogs.py:536
 msgid "Min rate"
-msgstr ""
+msgstr "Min snelheid"
 
 #: dnfdragora/dialogs.py:537
 msgid "Mirror list"
@@ -579,7 +581,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:547
 msgid "Retries"
-msgstr ""
+msgstr "Nieuwe pogingen"
 
 #: dnfdragora/dialogs.py:548 dnfdragora/ui.py:436
 msgid "Size"
@@ -587,7 +589,7 @@ msgstr "Grootte"
 
 #: dnfdragora/dialogs.py:549
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Overslaan indien niet beschikbaar"
 
 #: dnfdragora/dialogs.py:550
 msgid "SSL CA cert"
@@ -595,11 +597,11 @@ msgstr "SSL CA cert"
 
 #: dnfdragora/dialogs.py:551
 msgid "SSL client cert"
-msgstr ""
+msgstr "SSL client cert"
 
 #: dnfdragora/dialogs.py:552
 msgid "SSL client key"
-msgstr ""
+msgstr "SSL client sleutel"
 
 #: dnfdragora/dialogs.py:553
 msgid "SSL verify"
@@ -664,23 +666,23 @@ msgstr "Ga door zonder een bevestiging te vragen"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Tijd tussen het controleren op updates (minuten)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Verlooptijd metagegevens (uren)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Indelingsopties (actief bij volgende opstart)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Updates weergeven"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Geen groepsweergave tonen"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -688,11 +690,11 @@ msgstr "Zoekopties"
 
 #: dnfdragora/dialogs.py:861
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Toon alleen de nieuwste pakketten"
 
 #: dnfdragora/dialogs.py:862
 msgid "Match all words"
-msgstr ""
+msgstr "Overeenkomen met alle woorden"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
@@ -700,7 +702,7 @@ msgstr "Logboekopties (actief bij volgende opstart)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
-msgstr ""
+msgstr "&Map wijzigen"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
@@ -708,7 +710,7 @@ msgstr "Foutopsporing-niveau"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Kies de map bestemd voor logs"
 
 #: dnfdragora/dialogs.py:1153
 msgid "&Yes"
@@ -1469,7 +1471,7 @@ msgstr "Onbeheerde widget"
 #: dnfdragora/ui.py:1425
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Onbeheerde gebeurtenis %d"
 
 #: dnfdragora/ui.py:1488
 msgid "Start transaction"
@@ -1493,12 +1495,12 @@ msgstr "Wijzigingen aan het systeem verifiëren"
 
 #: dnfdragora/ui.py:1519
 msgid "Build transaction"
-msgstr ""
+msgstr "Transactie opbouwen"
 
 #: dnfdragora/ui.py:1554
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Onbekende actie %s op %s"
 
 #: dnfdragora/ui.py:1579
 #, python-format
@@ -1508,23 +1510,23 @@ msgstr ""
 
 #: dnfdragora/ui.py:1615
 msgid "Caching updates"
-msgstr ""
+msgstr "Caching updates"
 
 #: dnfdragora/ui.py:1618
 msgid "Caching installed"
-msgstr ""
+msgstr "Caching geïnstalleerd"
 
 #: dnfdragora/ui.py:1621
 msgid "Caching available"
-msgstr ""
+msgstr "Caching beschikbaar"
 
 #: dnfdragora/ui.py:1667
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Aanmaken van pakketten cache"
 
 #: dnfdragora/ui.py:1687
 msgid "Building Transaction error"
-msgstr ""
+msgstr "Fout tijdens opbouw Transactie"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
