@@ -6,11 +6,21 @@
 # 'settings will override them if 'show updates at startup' is True
 # or 'do not show groups at startup' is True
 #
-view:
-    filter: 'installed'
-    show: 'all'
-
 settings:
-    'show updates at startup': False
-    'do not show groups at startup': False
-    'interval for checking updates': 180
+  always_yes: false
+  do not show groups at startup: false
+  interval for checking updates: 180
+#  log:
+#    directory: HOMEPATH_TO_LOG_DIR (can be set from user settings dialog)
+#    enabled: true
+#    level_debug: true
+  metadata:
+    last_update:
+    update_interval: 48
+  search:
+    match_all: true
+    newest_only: false
+  show updates at startup: true
+view:
+  filter: to_update
+  show: groups

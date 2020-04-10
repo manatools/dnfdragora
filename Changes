@@ -1,5 +1,8 @@
+2020-XX-YY v. 2.0.1
+---------------------
+- Fixed a crash at startup with missing settings entry into configuration file
 - Fixed program closure if transaction is cancelled by user
-- Fixed a crash startup without configuration file
+- Fixed a crash at startup without configuration file
 
 2020-04-04 v. 2.0.0
 ---------------------

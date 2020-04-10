@@ -350,8 +350,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if 'level_debug' in log.keys() :
                         self.level_debug = log['level_debug']
         else:
+          # NOTE that should not happen since userPreferences should at least empty dictionary
+          self.config.userPreferences = {}
+
+        # metadata settings is needed adding it to update old configuration files
+        if not 'settings' in self.config.userPreferences.keys() :
           self.config.userPreferences['settings'] = {}
-          self.config.userPreferences['settings']['metadata']= {
+        if not 'metadata' in self.config.userPreferences['settings'].keys():
+          self.config.userPreferences['settings']['metadata'] = {
             'update_interval': self.md_update_interval, # 48 Default
             'last_update': ''
           }

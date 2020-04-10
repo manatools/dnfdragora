@@ -64,6 +64,8 @@ class AppConfig() :
                 print ("Finally read user settings from %s"%self._userPrfesPathName)
                 with open(self._userPrfesPathName, 'r') as ymlfile:
                     self._userPrefs = yaml.safe_load(ymlfile)
+                if not self._userPrefs:
+                  self._userPrefs = {}
             except IOError as e:
                 print ("Skipped exception: <%s> " % str(e))
 
