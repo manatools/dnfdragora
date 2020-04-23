@@ -316,6 +316,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         user_settings = {}
         if self.config.userPreferences:
             if 'settings' in self.config.userPreferences.keys() :
+                if self.config.userPreferences['settings'] is None:
+                    self.config.userPreferences['settings'] = {}
                 user_settings = self.config.userPreferences['settings']
                 #### MetaData
                 if 'metadata' in user_settings.keys():
@@ -349,9 +351,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.log_directory = log['directory']
                     if 'level_debug' in log.keys() :
                         self.level_debug = log['level_debug']
-        else:
-          # NOTE that should not happen since userPreferences should at least empty dictionary
-          self.config.userPreferences = {}
 
         # metadata settings is needed adding it to update old configuration files
         if not 'settings' in self.config.userPreferences.keys() :
