@@ -1,0 +1,38 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 35V15L15 10L24 5L42 15V35L24 45L6 35Z" fill="url(#paint0_radial)"/>
+<path d="M6 35V15L15 10L24 5L42 15V35L24 45L6 35Z" fill="black" fill-opacity="0.15"/>
+<path d="M6 34V14L15 9L24 4L42 14V34L24 44L6 34Z" fill="url(#paint1_radial)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6 24V34L24 44L42 34V24H6Z" fill="black" fill-opacity="0.05"/>
+<path d="M39 48L26.5 35.5L21.5 40.5L29 48H39Z" fill="url(#paint2_linear)"/>
+<path d="M26.5 8.5L21.5 32.5L30.5 41.5H42V24L26.5 8.5Z" fill="url(#paint3_linear)"/>
+<mask id="path-8-inside-1" fill="white">
+<rect x="21" y="8" width="6" height="25" rx="1"/>
+</mask>
+<rect x="21" y="8" width="6" height="25" rx="1" fill="url(#paint4_radial)" stroke="white" stroke-width="4" mask="url(#path-8-inside-1)"/>
+<mask id="path-9-inside-2" fill="white">
+<rect width="6" height="6" rx="1" transform="matrix(1 0 0 -1 21 41)"/>
+</mask>
+<rect width="6" height="6" rx="1" transform="matrix(1 0 0 -1 21 41)" fill="#E15352" stroke="white" stroke-width="4" mask="url(#path-9-inside-2)"/>
+<defs>
+<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(24 5) rotate(90) scale(40 36)">
+<stop stop-color="#FFE247"/>
+<stop offset="1" stop-color="#E93D58"/>
+</radialGradient>
+<radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(24 4) rotate(90) scale(40 36)">
+<stop stop-color="#FFE247"/>
+<stop offset="1" stop-color="#E93D58"/>
+</radialGradient>
+<linearGradient id="paint2_linear" x1="22" y1="36" x2="34" y2="48" gradientUnits="userSpaceOnUse">
+<stop stop-color="#390000"/>
+<stop offset="0.489583" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint3_linear" x1="21" y1="8" x2="42" y2="41" gradientUnits="userSpaceOnUse">
+<stop stop-color="#593B00" stop-opacity="0.52"/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+<radialGradient id="paint4_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(24 8) rotate(90) scale(25 6)">
+<stop stop-color="#FFE247"/>
+<stop offset="1" stop-color="#E93D58"/>
+</radialGradient>
+</defs>
+</svg>
