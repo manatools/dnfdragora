@@ -706,7 +706,7 @@ msgstr "&Verzeichnis wechseln"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr "Debugstufe"
+msgstr "Debug-Ebene"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
