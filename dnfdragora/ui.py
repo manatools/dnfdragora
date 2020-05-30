@@ -1681,6 +1681,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._enableAction(False)
           self.pbar_layout.setEnabled(True)
         else:
+          err =  "".join(result) if isinstance(result, list) else result if isinstance(result, list) else repr(result);
+          dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(result))
 
     def _OnRunTransaction(self, info):
