@@ -12,7 +12,7 @@ as soon as possible.
 ### Async working:
 - [ ] Fix transactions to make them async too (in progress, missing undo)
 - [ ] Change progress bar layout (in progress)
-- [ ] Fix window layout to gain room see issue [79](https://github.com/manatools/dnfdragora/issues/79)
+- [ ] Fix window layout to gain room see issues [79](https://github.com/manatools/dnfdragora/issues/79), [107](https://github.com/manatools/dnfdragora/issues/107)
 - [ ] Fix dnfdragora-update notifiy/menu seems not to be shown after running dinfdragora (in progress)
 - [ ] Fix group caching if comp is selected (in progress, it works but sync now)
 - [ ] Let the user know when DB is locked on dnfdragora startup
