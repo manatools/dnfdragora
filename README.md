@@ -97,14 +97,13 @@ Example with ncurses:
         * --locales-dir         - if you want to test localization locally
         * --images-path         - local icons and images (set to $DNFDRAGORA_PROJ_DIR/venv/share/dnfdragora/images/)
 
-## LICENSE AND COPYRIGHT
-
-See [license](LICENSE) file.
-
 ## CONTRIBUTE
 
 Manatools and dnfdragora developers as well as some users or contributors are on IRC. They often discuss development issues there
-and that to have imeediate feedbacks and ideas. The Freenode IRC channel is #manatools, get in touch with us. 
+and that to have imeediate feedbacks and ideas. The Freenode IRC channel is **#manatools**, get in touch with us. 
 
 Check also into our [TODO](TODO.md) file.
 
+## LICENSE AND COPYRIGHT
+
+See [license](LICENSE) file.
