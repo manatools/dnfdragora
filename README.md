@@ -100,3 +100,11 @@ Example with ncurses:
 ## LICENSE AND COPYRIGHT
 
 See [license](LICENSE) file.
+
+## CONTRIBUTE
+
+Manatools and dnfdragora developers as well as some users or contributors are on IRC. They often discuss development issues there
+and that to have imeediate feedbacks and ideas. The Freenode IRC channel is #manatools, get in touch with us. 
+
+Check also into our [TODO](TODO.md) file.
+

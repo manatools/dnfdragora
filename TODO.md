@@ -38,19 +38,3 @@ Async working:
 * Add and/or change some icons if possible
 * Improve error management and user warning on errors (add transaction, etc.)
 
-Async workin done:
-* Improve dnd_client to handle all actions either synched or asynched
-* Adding a button to deselect all (not needed -> menu reset selection)
-* Changing search list field is not applied if a search is already performed
-* Check why to apply a transaction now we need to refresh window by doing someting 
-* Speed up dequeing dnfdaemon event
-* Fix searching crash 
-* Apply again search if find field is not empty, as wroked before
-* Fix dnfdragora-update 'exit' 
-* Fix dnfdragora launch from dnfdragora-update 
-* Fix dnfdragora-update 'update' 
-* Better management of Locking/Unlocking DB 
-* Handle exceptions into dnfdragora-update loop to avoid crashing (done into script by now)
-* Changing search list field to "in file names" crashes (done now search is async)
-* Fix progress bar (in progress) 
-* Fixed RunTransaction failure management
