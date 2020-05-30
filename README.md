@@ -102,6 +102,8 @@ Example with ncurses:
 Manatools and dnfdragora developers as well as some users or contributors are on IRC. They often discuss development issues there
 and that to have imeediate feedbacks and ideas. The Freenode IRC channel is **#manatools**, get in touch with us. 
 
+If you have any issues or ideas add or comment an [issue](https://github.com/manatools/dnfdragora/issues).
+
 Check also into our [TODO](TODO.md) file.
 
 ## LICENSE AND COPYRIGHT
