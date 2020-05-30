@@ -11,7 +11,7 @@ as soon as possible.
 
 ### Async working:
 - [ ] Fix transactions to make them async too (in progress, missing undo)
-- [ ] Change progress bar ilayout (in progress)
+- [ ] Change progress bar layout (in progress)
 - [ ] Fix window layout to gain room
 - [ ] Fix dnfdragora-update notifiy/menu seems not to be shown after running dinfdragora (in progress)
 - [ ] Fix group caching if comp is selected (in progress, it works but sync now)
