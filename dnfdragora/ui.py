@@ -1378,6 +1378,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 elif (widget == self.applyButton) :
                     #### APPLY
+                    # disable actions
+                    self._enableAction(False)
+                    self.pbar_layout.setEnabled(True)
+                    # for some reasons here does not refresh the layout, let's force it with a poll request
+                    self.dialog.pollEvent()
+
                     self._populate_transaction()
                     self.backend.BuildTransaction()
 
@@ -1678,12 +1684,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.infobar.info(_('Applying changes to the system'))
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
-          self._enableAction(False)
-          self.pbar_layout.setEnabled(True)
         else:
           err =  "".join(result) if isinstance(result, list) else result if isinstance(result, list) else repr(result);
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(result))
+          self._enableAction(True)
 
     def _OnRunTransaction(self, info):
       ''' manages RunTransaction event from dnfdaemon '''
