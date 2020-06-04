@@ -74,9 +74,9 @@ class Updater:
         if 'icon-path' in options.keys() :
             icon_path = options['icon-path']
         if icon_path.endswith('/'):
-            icon_path = icon_path + 'dnfdragora.png'
+            icon_path = icon_path + 'dnfdragora.svg' if ( os.path.exists(icon_path + 'dnfdragora.svg') ) else icon_path + 'dnfdragora.png'
         else:
-            icon_path = icon_path + '/dnfdragora.png'
+            icon_path = icon_path + '/dnfdragora.svg' if ( os.path.exists(icon_path + '/dnfdragora.svg') ) else icon_path + '/dnfdragora.png'
 
         theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname() or icon_path
 
