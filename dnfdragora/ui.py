@@ -1836,8 +1836,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if not info['error']:
               self._OnRunTransaction(info)
             else:
-              logger.error("Search error: %s", str(info['error']))
-              raise UIError(str(info['error']))
+              res = info['error']
+              if isinstance(res, Exception) :
+                if 'AccessDeniedError' in str(res):
+                  # user should have pressed cancel on auth. Wrong password alert seems to be managed outside too
+                  # avoid a dialog to recall the user what he did, let's see if we have negative feedbacks
+                  # dialogs.warningMsgBox({'title' : _("AccessDeniedError"), "text": _("Cancel or wrong password given:%(NL)s%(error)s")%{'NL': "\n",'error' : str(res)}})
+
+                  # we've already confirmed build transaction but failed authentication if for any reasons we reset or change the selection
+                  # next transaction is confirmed without asking so we change the status and ask for confirmation again
+                  self._status = DNFDragoraStatus.RUNNING
+                  self._enableAction(True)
+              else:
+                logger.error("RunTransaction error: %s", str(info['error']))
+                raise UIError(str(info['error']))
           elif (event == 'OnTransactionEvent'):
             self._OnTransactionEvent(info['event'], info['data'])
           elif (event == 'OnRPMProgress'):

@@ -1,3 +1,5 @@
+- Trapped AccessDeniedError got when cancelling or giving a wrong password to
+  avoid closing dnfdragora
 - Fixed Build transaction cancelled (https://bugzilla.redhat.com/show_bug.cgi?id=1833623)
 - Added Message box for users if build transaction fails
 - New icons (thanks to Carson Black)
