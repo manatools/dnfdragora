@@ -16,7 +16,7 @@ as soon as possible.
 - [ ] Fix dnfdragora-update notifiy/menu seems not to be shown after running dinfdragora (in progress) issues [112](https://github.com/manatools/dnfdragora/issues/112), [130](https://github.com/manatools/dnfdragora/issues/130), [134](https://github.com/manatools/dnfdragora/issues/134), [150](https://github.com/manatools/dnfdragora/issues/150)
 - [ ] Fix group caching if comp is selected (in progress, it works but sync now)
 - [ ] Let the user know when DB is locked on dnfdragora startup
-- [ ] Add and/or change some icons if possible (in progress thanks to Carson Black) issues [55](https://github.com/manatools/dnfdragora/issues/55), [139](https://github.com/manatools/dnfdragora/issues/139)
+- [ ] Add and/or change some icons if possible (in progress thanks to Carson Black) issues ~~[55](https://github.com/manatools/dnfdragora/issues/55)~~, [139](https://github.com/manatools/dnfdragora/issues/139)
 - [ ] Improve error management and user warning on errors (add transaction, etc.)
 
 
