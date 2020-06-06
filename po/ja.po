@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-01 11:12+0100\n"
+"POT-Creation-Date: 2020-06-06 21:16+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Masanori Kakura <kakurasan@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -90,7 +90,7 @@ msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sバージョン: %(version)s%(NL)sサイト: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1320
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1317
 msgid "Sorry"
 msgstr "申し訳ありません"
 
@@ -184,8 +184,8 @@ msgstr "ベース システム"
 msgid "Content"
 msgstr "雑多なパッケージ"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:450
-#: dnfdragora/ui.py:464
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:447
+#: dnfdragora/ui.py:461
 msgid "All"
 msgstr "すべて"
 
@@ -356,35 +356,35 @@ msgstr "セキュリティ"
 msgid "Enhancement"
 msgstr "改善"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1175
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1172
 msgid "Undo transaction"
 msgstr "トランザクションを取り消す"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1200
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1197
 msgid "Error checking package signatures"
 msgstr "パッケージの署名確認エラー"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1700
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1201 dnfdragora/ui.py:1707
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "ダウンロード エラー"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1705
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1206 dnfdragora/ui.py:1712
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "トランザクション エラー"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
-#: dnfdragora/ui.py:1224
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
+#: dnfdragora/ui.py:1221
 msgid "BuildTransaction failure"
 msgstr "BuildTransaction が失敗しました"
 
-#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1224
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "dnfdaemon クライアントは認証されていません:%(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:598
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:595
 msgid "History"
 msgstr "履歴"
 
@@ -532,7 +532,7 @@ msgstr "最低速度"
 msgid "Mirror list"
 msgstr "ミラーの一覧"
 
-#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:436
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:433
 msgid "Name"
 msgstr "名前"
 
@@ -572,7 +572,7 @@ msgstr "リポジトリの GPG のチェック"
 msgid "Retries"
 msgstr "再試行数"
 
-#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:436
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:433
 msgid "Size"
 msgstr "サイズ"
 
@@ -624,7 +624,7 @@ msgstr "情報"
 msgid "Value"
 msgstr "値"
 
-#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:568
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:565
 msgid "&Apply"
 msgstr "適用(&A)"
 
@@ -641,7 +641,7 @@ msgstr "%s 秒"
 msgid "Now"
 msgstr "現在"
 
-#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:610
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:607
 msgid "User preferences"
 msgstr "ユーザ設定"
 
@@ -1268,17 +1268,17 @@ msgstr "ネットワーク コンピュータ サーバ"
 msgid "Web/FTP"
 msgstr "Web/FTP"
 
-#: dnfdragora/progress_ui.py:131
+#: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr "ダウンロード中です :  %(files)d ファイル,  %(size)d バイト"
 
-#: dnfdragora/progress_ui.py:158
+#: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
 msgstr "ダウンロードを開始しています : %s "
 
-#: dnfdragora/progress_ui.py:179
+#: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "ファイルの進捗 (%(downloaded)d/%(total)d)"
@@ -1299,224 +1299,224 @@ msgstr "変更履歴"
 msgid "Requirements"
 msgstr "要求パッケージ"
 
-#: dnfdragora/ui.py:371
+#: dnfdragora/ui.py:368
 msgid "Software Management - dnfdragora"
 msgstr "ソフトウェアの管理 - dnfdragora"
 
-#: dnfdragora/ui.py:403
+#: dnfdragora/ui.py:400
 msgid "Software Management"
 msgstr "ソフトウェアの管理"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Arch"
 msgstr "Arch"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Release"
 msgstr "リリース"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Summary"
 msgstr "概要"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Version"
 msgstr "バージョン"
 
-#: dnfdragora/ui.py:443
+#: dnfdragora/ui.py:440
 msgid "Status"
 msgstr "状態"
 
-#: dnfdragora/ui.py:451
+#: dnfdragora/ui.py:448
 msgid "Installed"
 msgstr "インストール済み"
 
-#: dnfdragora/ui.py:452
+#: dnfdragora/ui.py:449
 msgid "Not installed"
 msgstr "未インストール"
 
-#: dnfdragora/ui.py:453
+#: dnfdragora/ui.py:450
 msgid "To update"
 msgstr "更新可能"
 
-#: dnfdragora/ui.py:459
+#: dnfdragora/ui.py:456
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "%s と noarch のみを表示"
 
-#: dnfdragora/ui.py:465
+#: dnfdragora/ui.py:462
 msgid "Groups"
 msgstr "グループ"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:526
 msgid "in names"
 msgstr "パッケージ名"
 
-#: dnfdragora/ui.py:530
+#: dnfdragora/ui.py:527
 msgid "in descriptions"
 msgstr "説明文"
 
-#: dnfdragora/ui.py:531
+#: dnfdragora/ui.py:528
 msgid "in summaries"
 msgstr "概要"
 
-#: dnfdragora/ui.py:532
+#: dnfdragora/ui.py:529
 msgid "in file names"
 msgstr "中のファイル名"
 
-#: dnfdragora/ui.py:553
+#: dnfdragora/ui.py:550
 msgid "&Search"
 msgstr "検索(&S)"
 
-#: dnfdragora/ui.py:558
+#: dnfdragora/ui.py:555
 msgid "&Clear search"
 msgstr "検索をクリア(&C)"
 
-#: dnfdragora/ui.py:572
+#: dnfdragora/ui.py:569
 msgid "Sel&ect all"
 msgstr "すべて選択(&E)"
 
-#: dnfdragora/ui.py:578 dnfdragora/ui.py:587
+#: dnfdragora/ui.py:575 dnfdragora/ui.py:584
 msgid "&Quit"
 msgstr "終了(&Q)"
 
-#: dnfdragora/ui.py:583
+#: dnfdragora/ui.py:580
 msgid "&File"
 msgstr "ファイル(&F)"
 
-#: dnfdragora/ui.py:584
+#: dnfdragora/ui.py:581
 msgid "Reset the selection"
 msgstr "選択を全て解除"
 
-#: dnfdragora/ui.py:585
+#: dnfdragora/ui.py:582
 msgid "Refresh Metadata"
 msgstr "メタ データを更新"
 
-#: dnfdragora/ui.py:586
+#: dnfdragora/ui.py:583
 msgid "Repositories"
 msgstr "リポジトリ"
 
-#: dnfdragora/ui.py:597
+#: dnfdragora/ui.py:594
 msgid "&Information"
 msgstr "情報(&I)"
 
-#: dnfdragora/ui.py:609
+#: dnfdragora/ui.py:606
 msgid "&Options"
 msgstr "設定(&O)"
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:618
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
-#: dnfdragora/ui.py:622
+#: dnfdragora/ui.py:619
 msgid "Manual"
 msgstr "マニュアル"
 
-#: dnfdragora/ui.py:623
+#: dnfdragora/ui.py:620
 msgid "&About"
 msgstr "情報(&A)"
 
-#: dnfdragora/ui.py:658
+#: dnfdragora/ui.py:655
 msgid "update"
 msgstr "更新可能"
 
-#: dnfdragora/ui.py:661
+#: dnfdragora/ui.py:658
 msgid "locked"
 msgstr "ロック"
 
-#: dnfdragora/ui.py:664
+#: dnfdragora/ui.py:661
 msgid "installed"
 msgstr "インストール済み"
 
-#: dnfdragora/ui.py:992
+#: dnfdragora/ui.py:989
 msgid "Missing information"
 msgstr "情報がありません"
 
-#: dnfdragora/ui.py:1011
+#: dnfdragora/ui.py:1008
 msgid "Repository"
 msgstr "リポジトリ"
 
-#: dnfdragora/ui.py:1299
+#: dnfdragora/ui.py:1296
 msgid "Refreshing Repository Metadata"
 msgstr "リポジトリのメタ データを更新しています"
 
-#: dnfdragora/ui.py:1320
+#: dnfdragora/ui.py:1317
 msgid "Not implemented yet"
 msgstr "まだ実装されていません"
 
-#: dnfdragora/ui.py:1352
+#: dnfdragora/ui.py:1349
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "パッケージ %s は削除できません"
 
-#: dnfdragora/ui.py:1352
+#: dnfdragora/ui.py:1349
 msgid "Protected package selected"
 msgstr "保護されたパッケージが選択されました"
 
-#: dnfdragora/ui.py:1407
+#: dnfdragora/ui.py:1410
 msgid "Unmanaged widget"
 msgstr "管理されていないウィジェットです"
 
-#: dnfdragora/ui.py:1425
+#: dnfdragora/ui.py:1428
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "管理されていないイベント %d"
 
-#: dnfdragora/ui.py:1488
+#: dnfdragora/ui.py:1491
 msgid "Start transaction"
 msgstr "トランザクションを開始"
 
-#: dnfdragora/ui.py:1490
+#: dnfdragora/ui.py:1493
 msgid "Downloading packages"
 msgstr "パッケージをダウンロードしています"
 
-#: dnfdragora/ui.py:1497
+#: dnfdragora/ui.py:1500
 msgid "Checking package signatures"
 msgstr "パッケージの署名を確認しています"
 
-#: dnfdragora/ui.py:1505 dnfdragora/ui.py:1681
+#: dnfdragora/ui.py:1508 dnfdragora/ui.py:1688
 msgid "Applying changes to the system"
 msgstr "システムに変更を適用しています"
 
-#: dnfdragora/ui.py:1508
+#: dnfdragora/ui.py:1511
 msgid "Verify changes on the system"
 msgstr "システム上の変更を検証"
 
-#: dnfdragora/ui.py:1519
+#: dnfdragora/ui.py:1522
 msgid "Build transaction"
 msgstr "トランザクションを構築"
 
-#: dnfdragora/ui.py:1554
+#: dnfdragora/ui.py:1557
 #, python-format
 msgid "Unknown action %s on %s"
 msgstr "不明なアクション %s 名前 %s"
 
-#: dnfdragora/ui.py:1579
+#: dnfdragora/ui.py:1582
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr ""
 "%(count_files)d 個のファイルをダウンロードしています (%(count_bytes)s バイ"
 "ト)..."
 
-#: dnfdragora/ui.py:1615
+#: dnfdragora/ui.py:1618
 msgid "Caching updates"
 msgstr "更新パッケージをキャッシュしています"
 
-#: dnfdragora/ui.py:1618
+#: dnfdragora/ui.py:1621
 msgid "Caching installed"
 msgstr "インストール済みパッケージをキャッシュしています"
 
-#: dnfdragora/ui.py:1621
+#: dnfdragora/ui.py:1624
 msgid "Caching available"
 msgstr "利用可能パッケージをキャッシュしています"
 
-#: dnfdragora/ui.py:1667
+#: dnfdragora/ui.py:1670
 msgid "Creating packages cache"
 msgstr "パッケージのキャッシュを作成しています"
 
-#: dnfdragora/ui.py:1687
-msgid "Building Transaction error"
-msgstr "トランザクションの構築エラー"
+#: dnfdragora/ui.py:1693
+msgid "Build Transaction error"
+msgstr ""
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1581,3 +1581,6 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
+
+#~ msgid "Building Transaction error"
+#~ msgstr "トランザクションの構築エラー"

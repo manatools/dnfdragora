@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 08:52+0200\n"
+"POT-Creation-Date: 2020-06-06 21:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -87,7 +87,7 @@ msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sversion: %(version)s%(NL)ssted: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1320
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1317
 msgid "Sorry"
 msgstr "Beklager"
 
@@ -181,8 +181,8 @@ msgstr "Grundlæggende system"
 msgid "Content"
 msgstr "Indhold"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:450
-#: dnfdragora/ui.py:464
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:447
+#: dnfdragora/ui.py:461
 msgid "All"
 msgstr "Alt"
 
@@ -353,37 +353,37 @@ msgstr "Sikkerhed"
 msgid "Enhancement"
 msgstr "Forbedring"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1175
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1172
 msgid "Undo transaction"
 msgstr "Fortryd transaktion"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1200
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1197
 msgid "Error checking package signatures"
 msgstr "Fejl ved tjek af pakkesignaturer"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1204 dnfdragora/ui.py:1697
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1201 dnfdragora/ui.py:1707
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Downloader fejl"
 msgstr[1] "Downloader fejl"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1209 dnfdragora/ui.py:1702
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1206 dnfdragora/ui.py:1712
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Fejl i transaktion"
 msgstr[1] "Fejl i transaktion"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
-#: dnfdragora/ui.py:1224
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
+#: dnfdragora/ui.py:1221
 msgid "BuildTransaction failure"
 msgstr "BuildTransaction mislykkedes"
 
-#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1224
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "dnfdaemon-klient ikke autoiseret:%(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:598
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:595
 msgid "History"
 msgstr "Historik"
 
@@ -531,7 +531,7 @@ msgstr ""
 msgid "Mirror list"
 msgstr "Spejlliste"
 
-#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:436
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:433
 msgid "Name"
 msgstr "Navn"
 
@@ -571,7 +571,7 @@ msgstr ""
 msgid "Retries"
 msgstr "Forsøg"
 
-#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:436
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:433
 msgid "Size"
 msgstr "Størrelse"
 
@@ -623,7 +623,7 @@ msgstr "Information"
 msgid "Value"
 msgstr "Værdi"
 
-#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:568
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:565
 msgid "&Apply"
 msgstr "&Anvend"
 
@@ -640,7 +640,7 @@ msgstr "%s sekund(er)"
 msgid "Now"
 msgstr "Nu"
 
-#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:610
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:607
 msgid "User preferences"
 msgstr "Brugerpræferencer"
 
@@ -1267,17 +1267,17 @@ msgstr "Netværksmaskine-server"
 msgid "Web/FTP"
 msgstr "Web/FTP"
 
-#: dnfdragora/progress_ui.py:131
+#: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
 msgstr "Downloader :  %(files)d filer,  %(size)d bytes"
 
-#: dnfdragora/progress_ui.py:158
+#: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
 msgstr "Begynder på download : %s "
 
-#: dnfdragora/progress_ui.py:179
+#: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Behandl filer (%(downloaded)d/%(total)d)"
@@ -1298,219 +1298,223 @@ msgstr "Ændringslog"
 msgid "Requirements"
 msgstr "Krav"
 
-#: dnfdragora/ui.py:371
+#: dnfdragora/ui.py:368
 msgid "Software Management - dnfdragora"
 msgstr "Softwarehåndtering - dnfdragora"
 
-#: dnfdragora/ui.py:403
+#: dnfdragora/ui.py:400
 msgid "Software Management"
 msgstr ""
 "Administration\n"
 "af programmer"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Arch"
 msgstr "Ark."
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Release"
 msgstr "Udgivelse"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Summary"
 msgstr "Oversigt"
 
-#: dnfdragora/ui.py:436
+#: dnfdragora/ui.py:433
 msgid "Version"
 msgstr "Version"
 
-#: dnfdragora/ui.py:443
+#: dnfdragora/ui.py:440
 msgid "Status"
 msgstr "Status"
 
-#: dnfdragora/ui.py:451
+#: dnfdragora/ui.py:448
 msgid "Installed"
 msgstr "Installeret"
 
-#: dnfdragora/ui.py:452
+#: dnfdragora/ui.py:449
 msgid "Not installed"
 msgstr "Ikke installeret"
 
-#: dnfdragora/ui.py:453
+#: dnfdragora/ui.py:450
 msgid "To update"
 msgstr "Til opdatering"
 
-#: dnfdragora/ui.py:459
+#: dnfdragora/ui.py:456
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Vis kun %s og noarch"
 
-#: dnfdragora/ui.py:465
+#: dnfdragora/ui.py:462
 msgid "Groups"
 msgstr "Grupper"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:526
 msgid "in names"
 msgstr "i navne"
 
-#: dnfdragora/ui.py:530
+#: dnfdragora/ui.py:527
 msgid "in descriptions"
 msgstr "i beskrivelser"
 
-#: dnfdragora/ui.py:531
+#: dnfdragora/ui.py:528
 msgid "in summaries"
 msgstr "i sammendrag"
 
-#: dnfdragora/ui.py:532
+#: dnfdragora/ui.py:529
 msgid "in file names"
 msgstr "i filnavne"
 
-#: dnfdragora/ui.py:553
+#: dnfdragora/ui.py:550
 msgid "&Search"
 msgstr "&Søg"
 
-#: dnfdragora/ui.py:558
+#: dnfdragora/ui.py:555
 msgid "&Clear search"
 msgstr "&Ryd søgning"
 
-#: dnfdragora/ui.py:572
+#: dnfdragora/ui.py:569
 msgid "Sel&ect all"
 msgstr ""
 
-#: dnfdragora/ui.py:578 dnfdragora/ui.py:587
+#: dnfdragora/ui.py:575 dnfdragora/ui.py:584
 msgid "&Quit"
 msgstr "&Afslut"
 
-#: dnfdragora/ui.py:583
+#: dnfdragora/ui.py:580
 msgid "&File"
 msgstr "&Fil"
 
-#: dnfdragora/ui.py:584
+#: dnfdragora/ui.py:581
 msgid "Reset the selection"
 msgstr "Nulstil valget"
 
-#: dnfdragora/ui.py:585
+#: dnfdragora/ui.py:582
 msgid "Refresh Metadata"
 msgstr "Genopfrisk metadata"
 
-#: dnfdragora/ui.py:586
+#: dnfdragora/ui.py:583
 msgid "Repositories"
 msgstr "Arkiver"
 
-#: dnfdragora/ui.py:597
+#: dnfdragora/ui.py:594
 msgid "&Information"
 msgstr "&Information"
 
-#: dnfdragora/ui.py:609
+#: dnfdragora/ui.py:606
 msgid "&Options"
 msgstr "&Valgmuligheder"
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:618
 msgid "&Help"
 msgstr "&Hjælp"
 
-#: dnfdragora/ui.py:622
+#: dnfdragora/ui.py:619
 msgid "Manual"
 msgstr "Manuel"
 
-#: dnfdragora/ui.py:623
+#: dnfdragora/ui.py:620
 msgid "&About"
 msgstr "&Om"
 
-#: dnfdragora/ui.py:658
+#: dnfdragora/ui.py:655
 msgid "update"
 msgstr "opdater"
 
-#: dnfdragora/ui.py:661
+#: dnfdragora/ui.py:658
 msgid "locked"
 msgstr "låst"
 
-#: dnfdragora/ui.py:664
+#: dnfdragora/ui.py:661
 msgid "installed"
 msgstr "installeret"
 
-#: dnfdragora/ui.py:992
+#: dnfdragora/ui.py:989
 msgid "Missing information"
 msgstr "Manglende information"
 
-#: dnfdragora/ui.py:1011
+#: dnfdragora/ui.py:1008
 msgid "Repository"
 msgstr "Arkiv"
 
-#: dnfdragora/ui.py:1299
+#: dnfdragora/ui.py:1296
 msgid "Refreshing Repository Metadata"
 msgstr "Genopfrisker arkiv-metadata"
 
-#: dnfdragora/ui.py:1320
+#: dnfdragora/ui.py:1317
 msgid "Not implemented yet"
 msgstr "Endnu ikke implementeret"
 
-#: dnfdragora/ui.py:1352
+#: dnfdragora/ui.py:1349
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "%s-pakken kan ikke fjernes"
 
-#: dnfdragora/ui.py:1352
+#: dnfdragora/ui.py:1349
 msgid "Protected package selected"
 msgstr "Beskyttet pakke valgt"
 
-#: dnfdragora/ui.py:1407
+#: dnfdragora/ui.py:1410
 msgid "Unmanaged widget"
 msgstr "Uhåndteret widget"
 
-#: dnfdragora/ui.py:1425
+#: dnfdragora/ui.py:1428
 #, python-format
 msgid "Unmanaged event %d"
 msgstr ""
 
-#: dnfdragora/ui.py:1488
+#: dnfdragora/ui.py:1491
 msgid "Start transaction"
 msgstr "Start transaktion"
 
-#: dnfdragora/ui.py:1490
+#: dnfdragora/ui.py:1493
 msgid "Downloading packages"
 msgstr "Downloader pakker"
 
-#: dnfdragora/ui.py:1497
+#: dnfdragora/ui.py:1500
 msgid "Checking package signatures"
 msgstr "Tjekker pakkesignaturer"
 
-#: dnfdragora/ui.py:1505 dnfdragora/ui.py:1681
+#: dnfdragora/ui.py:1508 dnfdragora/ui.py:1688
 msgid "Applying changes to the system"
 msgstr "Anvender ændringer på systemet"
 
-#: dnfdragora/ui.py:1508
+#: dnfdragora/ui.py:1511
 msgid "Verify changes on the system"
 msgstr "Bekræft ændringer på systemet"
 
-#: dnfdragora/ui.py:1519
+#: dnfdragora/ui.py:1522
 msgid "Build transaction"
 msgstr ""
 
-#: dnfdragora/ui.py:1554
+#: dnfdragora/ui.py:1557
 #, python-format
 msgid "Unknown action %s on %s"
 msgstr ""
 
-#: dnfdragora/ui.py:1579
+#: dnfdragora/ui.py:1582
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Downloader %(count_files)d filer (%(count_bytes)sB)..."
 
-#: dnfdragora/ui.py:1615
+#: dnfdragora/ui.py:1618
 msgid "Caching updates"
 msgstr ""
 
-#: dnfdragora/ui.py:1618
+#: dnfdragora/ui.py:1621
 msgid "Caching installed"
 msgstr ""
 
-#: dnfdragora/ui.py:1621
+#: dnfdragora/ui.py:1624
 msgid "Caching available"
 msgstr ""
 
-#: dnfdragora/ui.py:1667
+#: dnfdragora/ui.py:1670
 msgid "Creating packages cache"
+msgstr ""
+
+#: dnfdragora/ui.py:1693
+msgid "Build Transaction error"
 msgstr ""
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
@@ -1577,26 +1581,15 @@ msgstr ""
 "GTK+ 3- eller ncurses-brugerflader. Den leverer en frontenhed til DNF-"
 "pakkehåndteringen som kan bruges i alle slags systemmiljøer."
 
-#~ msgid "Ch&eck all"
-#~ msgstr "&Tilvælg alle"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Kunne ikke genopfriske DNF-mellemlageret (root)"
 
-#~ msgid "Unmanaged event"
-#~ msgstr "Uhåndteret begivenhed"
-
-#~ msgid "Search"
-#~ msgstr "Søg"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Vis ikke gruppevisning ved næste opstart"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Vis opdateringer ved næste opstart"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval i minutter mellem søgning efter opdateringer:"
-
-#~ msgid "History undo"
-#~ msgstr "Historik fortryd"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF-root-backend blev ikke autoiseret.\n"
+#~ "dnfdragora vil afslutte"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -1607,12 +1600,23 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora vil afslutte"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF-root-backend blev ikke autoiseret.\n"
-#~ "dnfdragora vil afslutte"
+#~ msgid "History undo"
+#~ msgstr "Historik fortryd"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kunne ikke genopfriske DNF-mellemlageret (root)"
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Interval i minutter mellem søgning efter opdateringer:"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Vis opdateringer ved næste opstart"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Vis ikke gruppevisning ved næste opstart"
+
+#~ msgid "Search"
+#~ msgstr "Søg"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Uhåndteret begivenhed"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "&Tilvælg alle"
