@@ -1680,6 +1680,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if ok and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
           transaction_result_dlg = dialogs.TransactionResult(self)
           ok = transaction_result_dlg.run(result)
+          if not ok:
+            self._enableAction(True)
+            return
+
         if ok:
           self.infobar.info(_('Applying changes to the system'))
           self.backend.RunTransaction()

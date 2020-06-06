@@ -1,3 +1,4 @@
+- Fixed https://bugzilla.redhat.com/show_bug.cgi?id=1833623
 - Added Message box for users if build transaction fails
 - New icons (thanks to Carson Black)
 
