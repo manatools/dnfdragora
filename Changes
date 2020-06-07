@@ -1,3 +1,6 @@
+- Default view at first running is Groups and All, added for Fedora packager the option into
+  system settings (/et/dnfdragora/dnfdragora.yaml) option all_updates to change this behaviour
+  and show All the packages with To_update filter see dnfdragora.yaml.example
 - try to avoid crash on exit from dnfdragora-update (https://bugzilla.redhat.com/show_bug.cgi?id=1839784
   and https://bugzilla.redhat.com/show_bug.cgi?id=1844707)
 

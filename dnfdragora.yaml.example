@@ -1,10 +1,24 @@
 settings:
+# use_comps should be set as True for distros using comps (as Fedora)
     use_comps: False
     always_yes: False
     update_interval: 180
-#    log_filename: PATH/TO/dnfdragora.log
-#    log_level_debug: True
+# all_updates force first running without user setting configured with the view
+# "all packages and to_updates" filter set, fedora users coming from yumex-dnf are used to
+# get this view. Mageia and OpenMandriva Groups and All instead
+    all_updates: False
 
+# search settings are overwritten by user setting on exit
+# next are for first running
+    search:
+# match_all is used to match all words used in search field
+        match_all: false
+# newest_only shows only last version as default again Mageia and OpenMandriva are
+# used to see all the packages, Fedora are not
+        newest_only: false
+
+
+# Path customization 
 #    path:
 #        group_icons: /usr/share/icons
 #        To see icons set the following path 

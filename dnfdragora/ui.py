@@ -210,6 +210,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.always_yes = False
         self.match_all = False
         self.newest_only = False
+        self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
         self.level_debug = False
@@ -311,6 +312,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self.match_all = search['match_all']
             if 'newest_only' in search.keys():
                 self.newest_only = search['newest_only']
+
+            # all_updates force first running without user setting configured with the view
+            # all packages and to_updates filter, fedora users coming from yumex-dnf are used to
+            # get this view. Mageia and OpenMandriva Groups and All instead
+            if 'all_updates' in settings.keys():
+              self.all_updates_filter = settings['all_updates']
 
         # User preferences overriding
         user_settings = {}
@@ -484,7 +491,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
-            show_item = 'all'
+            show_item = 'all' if self.all_updates_filter else 'groups'
             if not self.update_only and 'show' in view.keys():
                 show_item = view['show']
 
@@ -506,7 +513,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for f in ordered_filters:
             item = yui.YItem(self.filters[f]['title'], False)
 
-            filter_item = 'to_update'
+            filter_item = 'to_update' if self.all_updates_filter else 'all'
             if not self.update_only and 'filter' in view.keys():
                 filter_item = view['filter']
 
