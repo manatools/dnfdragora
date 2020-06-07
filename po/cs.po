@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Luděk Janča <joelp@email.cz>, 2020
 # fri, 2020
+# Luděk Janča <joelp@email.cz>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-06 21:16+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: fri, 2020\n"
+"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1522,7 +1522,7 @@ msgstr "Vytváří se vyrovnávací paměť balíčků"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Chyba při vytváření transakce"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1586,6 +1586,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Chyba v sestavení transakce"
