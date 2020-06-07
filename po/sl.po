@@ -1522,7 +1522,7 @@ msgstr "Ustvarjanje predpomnilnika paketov"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Napaka transakcije izgradnje"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1588,6 +1588,3 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Napaka transakcije izgradnje"
