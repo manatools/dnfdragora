@@ -7,7 +7,8 @@ as soon as possible.
 - all the [issues](https://github.com/manatools/dnfdragora/issues) of course
 
 ## Important
--  Provide Help and documentation (daily users here are welcome)
+- [ ] Provide Help and documentation (daily users here are welcome)
+- [ ] User settings search option are not set at exit but at next start up
 
 ### Async working:
 - [ ] Fix transactions to make them async too (in progress, missing undo)
