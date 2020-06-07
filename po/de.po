@@ -6,11 +6,11 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Marc Lattemann, 2017
-# Peter Grun, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2018
 # Walter Marek <wm6369@gmx.net>, 2018
 # psyca, 2020
+# Klaus Christian Harke <k.c.harke@gmx.net>, 2020
 #
 #, fuzzy
 msgid ""
@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-06 21:16+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: psyca, 2020\n"
+"Last-Translator: Klaus Christian Harke <k.c.harke@gmx.net>, 2020\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
 "de/)\n"
 "Language: de\n"
@@ -73,11 +73,11 @@ msgstr "Installiere Pakete"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "Nur den Update Dialog anzeigen"
+msgstr "Nur aktualisierbare Pakete anzeigen"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr "Zeige Anwendungsversion und beende"
+msgstr "Programmversion anzeigen und beenden"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -207,19 +207,19 @@ msgstr "Suchergebnisse"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
-msgstr "Installierte Pakete werden geholt"
+msgstr "Die Liste der installierten Pakete wird erzeugt"
 
 #: dnfdragora/const.py:103
 msgid "Getting available packages"
-msgstr "Verfügbare Pakete werden geholt"
+msgstr "Die Liste der verfügbaren Pakete wird erzeugt."
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
-msgstr "Verfügbare Aktualisierungen werden geholt"
+msgstr "Die Liste der verfügbaren Aktualisierungen wird erzeugt."
 
 #: dnfdragora/const.py:105
 msgid "Getting all packages"
-msgstr "Alle Pakete werden geholt"
+msgstr "Alle Pakete werden aufgelistet."
 
 #: dnfdragora/const.py:118
 msgid "Updated packages"
@@ -529,7 +529,7 @@ msgstr "Medien ID"
 
 #: dnfdragora/dialogs.py:534
 msgid "Metadata expire"
-msgstr "Metadaten Auslauf"
+msgstr "Metadaten Ablauf"
 
 #: dnfdragora/dialogs.py:535
 msgid "Meta link"
@@ -662,7 +662,7 @@ msgstr "Systemoptionen"
 
 #: dnfdragora/dialogs.py:847
 msgid "Proceed without asking for confirmation"
-msgstr "Fortfahren ohne Bestätigungen anzufordern"
+msgstr "Fortfahren, ohne Bestätigungen anzufordern"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
@@ -786,7 +786,7 @@ msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
-msgstr "Wählverbindung"
+msgstr "Einwahlverbindung"
 
 #: dnfdragora/groupicons.py:56
 msgid "Fax"
@@ -1053,7 +1053,7 @@ msgstr "Verwaltung"
 
 #: dnfdragora/groupicons.py:341
 msgid "Organizer"
-msgstr "Organisierung"
+msgstr "Organisationswerkzeuge"
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
@@ -1121,7 +1121,7 @@ msgstr "Mixer"
 
 #: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
-msgstr "Abspieler"
+msgstr "Multimedia-Abspielprogramme"
 
 #: dnfdragora/groupicons.py:434
 msgid "System"
@@ -1509,15 +1509,15 @@ msgstr "Lade %(count_files)d Dateien herunter (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1618
 msgid "Caching updates"
-msgstr "Cache Aktualisierungen"
+msgstr "Aktualisierungen werden zwischengespeichert."
 
 #: dnfdragora/ui.py:1621
 msgid "Caching installed"
-msgstr "Cache installierte Pakete"
+msgstr "Installierte Pakete werden zwischengespeichert."
 
 #: dnfdragora/ui.py:1624
 msgid "Caching available"
-msgstr "Cache verfügbare Pakete"
+msgstr "Verfügbare Pakete werden zwischengespeichert."
 
 #: dnfdragora/ui.py:1670
 msgid "Creating packages cache"
@@ -1550,7 +1550,7 @@ msgstr "Verlassen"
 
 #: dnfdragora/updater.py:205
 msgid "Running dnfdragora failure"
-msgstr "laufende dnfdragora scheitert"
+msgstr "Fehler: dnfdragora läuft bereits."
 
 #: dnfdragora/updater.py:246
 #, python-format
@@ -1569,7 +1569,7 @@ msgstr "dnfdragora"
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
 msgstr ""
-"Ein Frontend für DNF welches die libyui UI Abstraktionsbibliothek verwendet"
+"Ein Frontend für DNF, das die UI-Abstraktionsbibliothek libyui verwendet"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
@@ -1591,6 +1591,3 @@ msgstr ""
 "ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
 "die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
 "kann."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Fehler beim Erstellen der Transaktion"
