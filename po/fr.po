@@ -1529,7 +1529,7 @@ msgstr "Création de mémoire cache des paquetages"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Erreur lors de la construction de la transaction"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1595,6 +1595,3 @@ msgstr ""
 "d'abstraction d'objet graphique écrite par Suse, qui permet une interface en "
 "utilisant Qt 5, GTK+3 ou ncurses. Cette interface graphique au  gestionnaire "
 "de logiciels DNF peut être utilisée dans tout type d'environnement système."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Erreur lors de la construction de la transaction"
