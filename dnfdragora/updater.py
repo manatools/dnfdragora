@@ -173,7 +173,8 @@ class Updater:
             if self.__tray != None:
               self.__tray.stop()
             if self.__backend:
-              self.__backend.Exit()
+              self.__backend.Exit(False)
+              time.sleep(0.5)
               self.__backend = None
 
     def __reschedule_update_in(self, minutes):
