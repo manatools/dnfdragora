@@ -1518,7 +1518,7 @@ msgstr "Opprette pakkemellomlager"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Transaksjonsfeil under bygging"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1581,6 +1581,3 @@ msgstr ""
 "abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
 "+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
 "pakkehåndtereren som kan benyttes i ethvert system miljø."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Bygger Transaksjonsfeil"
