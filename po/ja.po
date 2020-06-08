@@ -1516,7 +1516,7 @@ msgstr "パッケージのキャッシュを作成しています"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "トランザクションの構築エラー"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1581,6 +1581,3 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "トランザクションの構築エラー"
