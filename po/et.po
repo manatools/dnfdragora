@@ -1519,7 +1519,7 @@ msgstr "Paketipuhvri loomine"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Ehitamistehingu tõrge"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1583,6 +1583,3 @@ msgstr ""
 "abstraheerimise teeki libYui, mis tähendab, et see võib töötada Qt 5, GTK+ 3 "
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Tõrge tehingu loomisel"
