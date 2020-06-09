@@ -1521,7 +1521,7 @@ msgstr "Verfügbare Pakete werden zwischengespeichert."
 
 #: dnfdragora/ui.py:1670
 msgid "Creating packages cache"
-msgstr "Erstelle Paketcache"
+msgstr "Erstelle Paketzwischenspeicher"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
