@@ -1522,7 +1522,7 @@ msgstr "Vytvára sa vyrovnávacia pamäť balíčkov /cache/"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Chyba zostavenia transakcie"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1586,6 +1586,3 @@ msgstr ""
 "spoločnosťou SUSE, aby mohla byť spustená pomocou rozhrania Qt 5, GTK + 3 "
 "alebo ncurses. Poskytuje rozhranie pre správcu balíkov DNF, ktoré je možné "
 "použiť v akomkoľvek prostredí systému."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Chyba v zostavení transakcie"
