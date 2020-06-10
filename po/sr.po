@@ -1524,7 +1524,7 @@ msgstr "Креирање кеша за пакете"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Грешка при креирању трансакције"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1587,6 +1587,3 @@ msgstr ""
 "SUSE, тако се може покретати коришћењем Qt5, GTK+ 3, или ncurses "
 "интерфејсима. Омогућава фронтенд за DNF менаџер паекта који се може "
 "користити на било којој врсти системског окружења."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Креирање грешке о Трансакцији"
