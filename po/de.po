@@ -387,7 +387,7 @@ msgstr[1] "Fehler bei den Übermittlungen"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
 #: dnfdragora/ui.py:1221
 msgid "BuildTransaction failure"
-msgstr "Build Transaktion Fehler"
+msgstr "Aufbau der Übermittlung fehlgeschlagen"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
 #, python-format
@@ -1525,7 +1525,7 @@ msgstr "Erstelle Paketzwischenspeicher"
 
 #: dnfdragora/ui.py:1693
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Aufbau der Übermittlung fehlgeschlagen"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
