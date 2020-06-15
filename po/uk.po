@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-15 18:28+0300\n"
-"PO-Revision-Date: 2020-06-06 21:19+0300\n"
+"PO-Revision-Date: 2020-06-15 18:31+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -383,7 +383,7 @@ msgstr[3] "Помилка під час дії"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Помилка під час побудови операції"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
