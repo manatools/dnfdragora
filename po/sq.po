@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 21:16+0300\n"
+"POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Ardit Dani <ardit.dani@gmail.com>, 2019\n"
 "Language-Team: Albanian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -95,7 +95,7 @@ msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sversioni: %(version)s%(NL)sfaqe: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1317
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1324
 msgid "Sorry"
 msgstr "Falje"
 
@@ -189,8 +189,8 @@ msgstr "Sistemi Bazë"
 msgid "Content"
 msgstr "Përmbajtje"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:447
-#: dnfdragora/ui.py:461
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
+#: dnfdragora/ui.py:468
 msgid "All"
 msgstr "Gjitha"
 
@@ -361,37 +361,37 @@ msgstr "Siguria"
 msgid "Enhancement"
 msgstr "Përmirësim"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1172
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1179
 msgid "Undo transaction"
 msgstr "Zhbëj transaksionin"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1197
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1204
 msgid "Error checking package signatures"
 msgstr "Gabim gjatë kontrollit nënshkrimit të paketave"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1201 dnfdragora/ui.py:1707
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1208 dnfdragora/ui.py:1714
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Gabim në shkarkim"
 msgstr[1] "Gabime në shkarkim"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1206 dnfdragora/ui.py:1712
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1213 dnfdragora/ui.py:1719
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Gabim në transaksion"
 msgstr[1] "Gabime në transaksion"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
-#: dnfdragora/ui.py:1221
-msgid "BuildTransaction failure"
-msgstr "Dështim NdërtimTransaksioni"
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
+#: dnfdragora/ui.py:1228
+msgid "Build transaction failure"
+msgstr ""
 
-#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "klienti dnfdaemon i pa autorizuar:%(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:595
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:602
 msgid "History"
 msgstr "Histori"
 
@@ -539,7 +539,7 @@ msgstr "Min normë"
 msgid "Mirror list"
 msgstr "Listë lidhje"
 
-#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:440
 msgid "Name"
 msgstr "Emri"
 
@@ -579,7 +579,7 @@ msgstr "GPG kontroll depo"
 msgid "Retries"
 msgstr "Riprovimet"
 
-#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:440
 msgid "Size"
 msgstr "Madhësia"
 
@@ -631,7 +631,7 @@ msgstr "Informacion"
 msgid "Value"
 msgstr "Vlera"
 
-#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:565
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:572
 msgid "&Apply"
 msgstr "&Apliko"
 
@@ -648,7 +648,7 @@ msgstr "%s sekond(a)"
 msgid "Now"
 msgstr "Tani"
 
-#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:607
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:614
 msgid "User preferences"
 msgstr "Preferencat përdoruesit"
 
@@ -1306,220 +1306,220 @@ msgstr "Changelog"
 msgid "Requirements"
 msgstr "Kërkesat"
 
-#: dnfdragora/ui.py:368
+#: dnfdragora/ui.py:375
 msgid "Software Management - dnfdragora"
 msgstr "Administrim Programi - dnfdragora"
 
-#: dnfdragora/ui.py:400
+#: dnfdragora/ui.py:407
 msgid "Software Management"
 msgstr "Administruesi Programeve"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Arch"
 msgstr "Arch"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Release"
 msgstr "Lëshim"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Summary"
 msgstr "Përmbledhje"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Version"
 msgstr "Versioni"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:447
 msgid "Status"
 msgstr "Statuti"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:455
 msgid "Installed"
 msgstr "Instaluar"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:456
 msgid "Not installed"
 msgstr "Pa instaluar"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:457
 msgid "To update"
 msgstr "Për përditësime"
 
-#: dnfdragora/ui.py:456
+#: dnfdragora/ui.py:463
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Shfaq %s dhe jo arch"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:469
 msgid "Groups"
 msgstr "Grupet"
 
-#: dnfdragora/ui.py:526
+#: dnfdragora/ui.py:533
 msgid "in names"
 msgstr "në emra"
 
-#: dnfdragora/ui.py:527
+#: dnfdragora/ui.py:534
 msgid "in descriptions"
 msgstr "në përshkrime"
 
-#: dnfdragora/ui.py:528
+#: dnfdragora/ui.py:535
 msgid "in summaries"
 msgstr "në përmbledhjet"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:536
 msgid "in file names"
 msgstr "në emra dokumentesh"
 
-#: dnfdragora/ui.py:550
+#: dnfdragora/ui.py:557
 msgid "&Search"
 msgstr "&Kërko"
 
-#: dnfdragora/ui.py:555
+#: dnfdragora/ui.py:562
 msgid "&Clear search"
 msgstr "&Kërkim pastër"
 
-#: dnfdragora/ui.py:569
+#: dnfdragora/ui.py:576
 msgid "Sel&ect all"
 msgstr "P&ërzgjidh t'gjithë"
 
-#: dnfdragora/ui.py:575 dnfdragora/ui.py:584
+#: dnfdragora/ui.py:582 dnfdragora/ui.py:591
 msgid "&Quit"
 msgstr "&Braktis"
 
-#: dnfdragora/ui.py:580
+#: dnfdragora/ui.py:587
 msgid "&File"
 msgstr "&Skedarë"
 
-#: dnfdragora/ui.py:581
+#: dnfdragora/ui.py:588
 msgid "Reset the selection"
 msgstr "Rivendos përzgjedhjen"
 
-#: dnfdragora/ui.py:582
+#: dnfdragora/ui.py:589
 msgid "Refresh Metadata"
 msgstr "Rifresko Metadata"
 
-#: dnfdragora/ui.py:583
+#: dnfdragora/ui.py:590
 msgid "Repositories"
 msgstr "Depot"
 
-#: dnfdragora/ui.py:594
+#: dnfdragora/ui.py:601
 msgid "&Information"
 msgstr "&Informacion"
 
-#: dnfdragora/ui.py:606
+#: dnfdragora/ui.py:613
 msgid "&Options"
 msgstr "&Alternativa"
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:625
 msgid "&Help"
 msgstr "&Ndihmë"
 
-#: dnfdragora/ui.py:619
+#: dnfdragora/ui.py:626
 msgid "Manual"
 msgstr "Manual"
 
-#: dnfdragora/ui.py:620
+#: dnfdragora/ui.py:627
 msgid "&About"
 msgstr "&Rreth"
 
-#: dnfdragora/ui.py:655
+#: dnfdragora/ui.py:662
 msgid "update"
 msgstr "përditëso"
 
-#: dnfdragora/ui.py:658
+#: dnfdragora/ui.py:665
 msgid "locked"
 msgstr "Kyçur"
 
-#: dnfdragora/ui.py:661
+#: dnfdragora/ui.py:668
 msgid "installed"
 msgstr "instaluar"
 
-#: dnfdragora/ui.py:989
+#: dnfdragora/ui.py:996
 msgid "Missing information"
 msgstr "Mungon informacioni"
 
-#: dnfdragora/ui.py:1008
+#: dnfdragora/ui.py:1015
 msgid "Repository"
 msgstr "Depo"
 
-#: dnfdragora/ui.py:1296
+#: dnfdragora/ui.py:1303
 msgid "Refreshing Repository Metadata"
 msgstr "Rifresko Depo Metadata"
 
-#: dnfdragora/ui.py:1317
+#: dnfdragora/ui.py:1324
 msgid "Not implemented yet"
 msgstr "Ende pa zbatuar"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Paketa %s nuk mund të hiqet"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 msgid "Protected package selected"
 msgstr "Paketa e mbrojtur e zgjedhur"
 
-#: dnfdragora/ui.py:1410
+#: dnfdragora/ui.py:1417
 msgid "Unmanaged widget"
 msgstr "Widget i pa-administruar"
 
-#: dnfdragora/ui.py:1428
+#: dnfdragora/ui.py:1435
 #, python-format
 msgid "Unmanaged event %d"
 msgstr ""
 
-#: dnfdragora/ui.py:1491
+#: dnfdragora/ui.py:1498
 msgid "Start transaction"
 msgstr "Fillo transaksionin"
 
-#: dnfdragora/ui.py:1493
+#: dnfdragora/ui.py:1500
 msgid "Downloading packages"
 msgstr "Shkarkimi paketave"
 
-#: dnfdragora/ui.py:1500
+#: dnfdragora/ui.py:1507
 msgid "Checking package signatures"
 msgstr "Kontrollimi nënshkrimeve të paketave"
 
-#: dnfdragora/ui.py:1508 dnfdragora/ui.py:1688
+#: dnfdragora/ui.py:1515 dnfdragora/ui.py:1695
 msgid "Applying changes to the system"
 msgstr "Apliko ndryshimet në sistem"
 
-#: dnfdragora/ui.py:1511
+#: dnfdragora/ui.py:1518
 msgid "Verify changes on the system"
 msgstr "Verifikoni ndryshimet në sistem"
 
-#: dnfdragora/ui.py:1522
+#: dnfdragora/ui.py:1529
 msgid "Build transaction"
 msgstr ""
 
-#: dnfdragora/ui.py:1557
+#: dnfdragora/ui.py:1564
 #, python-format
 msgid "Unknown action %s on %s"
 msgstr ""
 
-#: dnfdragora/ui.py:1582
+#: dnfdragora/ui.py:1589
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Shkarkimi %(count_files)d skedarëve (%(count_bytes)sB)..."
 
-#: dnfdragora/ui.py:1618
+#: dnfdragora/ui.py:1625
 msgid "Caching updates"
 msgstr ""
 
-#: dnfdragora/ui.py:1621
+#: dnfdragora/ui.py:1628
 msgid "Caching installed"
 msgstr ""
 
-#: dnfdragora/ui.py:1624
+#: dnfdragora/ui.py:1631
 msgid "Caching available"
 msgstr ""
 
-#: dnfdragora/ui.py:1670
+#: dnfdragora/ui.py:1677
 msgid "Creating packages cache"
 msgstr ""
 
-#: dnfdragora/ui.py:1693
+#: dnfdragora/ui.py:1700
 msgid "Build Transaction error"
 msgstr ""
 
@@ -1544,16 +1544,16 @@ msgstr "Kontrollo për përditësime"
 msgid "Exit"
 msgstr "Braktise"
 
-#: dnfdragora/updater.py:205
+#: dnfdragora/updater.py:206
 msgid "Running dnfdragora failure"
 msgstr "Dështim lëshimi dnfdragora"
 
-#: dnfdragora/updater.py:246
+#: dnfdragora/updater.py:247
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Përjashtim i kapur: [%s]"
 
-#: dnfdragora/updater.py:298
+#: dnfdragora/updater.py:299
 #, python-format
 msgid "%d updates available."
 msgstr "%d përditësime në dispozicion."
@@ -1586,15 +1586,26 @@ msgstr ""
 "ncurses. Ai siguron një frontend për administrimin e paketave DNF qç mund të "
 "përdoret në çdo lloj mjedisi të sistemit."
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nuk mund të rifreskoj depo DNF (root)"
+#~ msgid "Unmanaged event"
+#~ msgstr "Ngjarje pa-administruar"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root ruajtja nuk ishte i autorizuar.\n"
-#~ "dnfdragora do të dalë"
+#~ msgid "Search"
+#~ msgstr "Kërko"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Mos shfaq pikëpamjen e grupeve në ndezjen tjetër"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Shfaq përditësimet në ndeshjen tjetër"
+
+#~ msgid "Layout options"
+#~ msgstr "Alternativa faqosje"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Intervali në minuta për të kontrolluar përditësimet:"
+
+#~ msgid "History undo"
+#~ msgstr "Zhbëj Historikun"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -1605,23 +1616,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora do të dalë"
 
-#~ msgid "History undo"
-#~ msgstr "Zhbëj Historikun"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF root ruajtja nuk ishte i autorizuar.\n"
+#~ "dnfdragora do të dalë"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervali në minuta për të kontrolluar përditësimet:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nuk mund të rifreskoj depo DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Alternativa faqosje"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Shfaq përditësimet në ndeshjen tjetër"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Mos shfaq pikëpamjen e grupeve në ndezjen tjetër"
-
-#~ msgid "Search"
-#~ msgstr "Kërko"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Ngjarje pa-administruar"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Dështim NdërtimTransaksioni"

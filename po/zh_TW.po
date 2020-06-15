@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 21:16+0300\n"
+"POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: You-Cheng Hsieh <yochenhsieh@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/"
@@ -93,7 +93,7 @@ msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s%(NL)s 版本：%(version)s%(NL)s 位置： %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1317
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1324
 msgid "Sorry"
 msgstr "抱歉"
 
@@ -187,8 +187,8 @@ msgstr "基礎系統"
 msgid "Content"
 msgstr "內容"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:447
-#: dnfdragora/ui.py:461
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
+#: dnfdragora/ui.py:468
 msgid "All"
 msgstr "全部"
 
@@ -359,35 +359,35 @@ msgstr "安全性"
 msgid "Enhancement"
 msgstr "增強"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1172
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1179
 msgid "Undo transaction"
 msgstr "復原處理事項"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1197
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1204
 msgid "Error checking package signatures"
 msgstr "檢查軟體套件簽章時錯誤"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1201 dnfdragora/ui.py:1707
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1208 dnfdragora/ui.py:1714
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "下載時錯誤"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1206 dnfdragora/ui.py:1712
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1213 dnfdragora/ui.py:1719
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "處理事項中的錯誤"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
-#: dnfdragora/ui.py:1221
-msgid "BuildTransaction failure"
-msgstr "BuildTransaction 錯誤"
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
+#: dnfdragora/ui.py:1228
+msgid "Build transaction failure"
+msgstr ""
 
-#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "dnfdaemon 用戶端沒有授權：%(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:595
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:602
 msgid "History"
 msgstr "歷史紀錄"
 
@@ -534,7 +534,7 @@ msgstr "最低速率"
 msgid "Mirror list"
 msgstr "鏡像列表"
 
-#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:440
 msgid "Name"
 msgstr "名稱"
 
@@ -574,7 +574,7 @@ msgstr "軟體庫 GPG 檢查"
 msgid "Retries"
 msgstr "重試"
 
-#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:440
 msgid "Size"
 msgstr "大小"
 
@@ -626,7 +626,7 @@ msgstr "資訊"
 msgid "Value"
 msgstr "值"
 
-#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:565
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:572
 msgid "&Apply"
 msgstr "套用(&A)"
 
@@ -643,7 +643,7 @@ msgstr "%s 秒"
 msgid "Now"
 msgstr "現在"
 
-#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:607
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:614
 msgid "User preferences"
 msgstr "使用者設定"
 
@@ -1300,220 +1300,220 @@ msgstr "更新記錄"
 msgid "Requirements"
 msgstr "需求"
 
-#: dnfdragora/ui.py:368
+#: dnfdragora/ui.py:375
 msgid "Software Management - dnfdragora"
 msgstr "軟體管理工具 - dnfdragora"
 
-#: dnfdragora/ui.py:400
+#: dnfdragora/ui.py:407
 msgid "Software Management"
 msgstr "軟體管理工具"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Arch"
 msgstr "硬體架構"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Release"
 msgstr "釋出"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Summary"
 msgstr "摘要"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Version"
 msgstr "版本"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:447
 msgid "Status"
 msgstr "狀態"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:455
 msgid "Installed"
 msgstr "已安裝"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:456
 msgid "Not installed"
 msgstr "未安裝"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:457
 msgid "To update"
 msgstr "要升級的"
 
-#: dnfdragora/ui.py:456
+#: dnfdragora/ui.py:463
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "只顯示 %s 與未限制架構"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:469
 msgid "Groups"
 msgstr "群組"
 
-#: dnfdragora/ui.py:526
+#: dnfdragora/ui.py:533
 msgid "in names"
 msgstr "依名稱"
 
-#: dnfdragora/ui.py:527
+#: dnfdragora/ui.py:534
 msgid "in descriptions"
 msgstr "依描述"
 
-#: dnfdragora/ui.py:528
+#: dnfdragora/ui.py:535
 msgid "in summaries"
 msgstr "依摘要"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:536
 msgid "in file names"
 msgstr "依檔案名稱"
 
-#: dnfdragora/ui.py:550
+#: dnfdragora/ui.py:557
 msgid "&Search"
 msgstr "搜尋(&S)"
 
-#: dnfdragora/ui.py:555
+#: dnfdragora/ui.py:562
 msgid "&Clear search"
 msgstr "清除搜尋(&C)"
 
-#: dnfdragora/ui.py:569
+#: dnfdragora/ui.py:576
 msgid "Sel&ect all"
 msgstr ""
 
-#: dnfdragora/ui.py:575 dnfdragora/ui.py:584
+#: dnfdragora/ui.py:582 dnfdragora/ui.py:591
 msgid "&Quit"
 msgstr "退出(&Q)"
 
-#: dnfdragora/ui.py:580
+#: dnfdragora/ui.py:587
 msgid "&File"
 msgstr "檔案(&F)"
 
-#: dnfdragora/ui.py:581
+#: dnfdragora/ui.py:588
 msgid "Reset the selection"
 msgstr "重設選擇項目"
 
-#: dnfdragora/ui.py:582
+#: dnfdragora/ui.py:589
 msgid "Refresh Metadata"
 msgstr "重新整理中繼檔案"
 
-#: dnfdragora/ui.py:583
+#: dnfdragora/ui.py:590
 msgid "Repositories"
 msgstr "軟體庫"
 
-#: dnfdragora/ui.py:594
+#: dnfdragora/ui.py:601
 msgid "&Information"
 msgstr "資訊(&I)"
 
-#: dnfdragora/ui.py:606
+#: dnfdragora/ui.py:613
 msgid "&Options"
 msgstr "選項(&O)"
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:625
 msgid "&Help"
 msgstr "說明(&H)"
 
-#: dnfdragora/ui.py:619
+#: dnfdragora/ui.py:626
 msgid "Manual"
 msgstr "說明文件"
 
-#: dnfdragora/ui.py:620
+#: dnfdragora/ui.py:627
 msgid "&About"
 msgstr "關於(&A)"
 
-#: dnfdragora/ui.py:655
+#: dnfdragora/ui.py:662
 msgid "update"
 msgstr "更新"
 
-#: dnfdragora/ui.py:658
+#: dnfdragora/ui.py:665
 msgid "locked"
 msgstr "已鎖定"
 
-#: dnfdragora/ui.py:661
+#: dnfdragora/ui.py:668
 msgid "installed"
 msgstr "已安裝"
 
-#: dnfdragora/ui.py:989
+#: dnfdragora/ui.py:996
 msgid "Missing information"
 msgstr "遺失資訊"
 
-#: dnfdragora/ui.py:1008
+#: dnfdragora/ui.py:1015
 msgid "Repository"
 msgstr "軟體庫"
 
-#: dnfdragora/ui.py:1296
+#: dnfdragora/ui.py:1303
 msgid "Refreshing Repository Metadata"
 msgstr "重新整理軟體庫的中繼資料"
 
-#: dnfdragora/ui.py:1317
+#: dnfdragora/ui.py:1324
 msgid "Not implemented yet"
 msgstr "還沒有執行"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "軟體套件%s 無法移除"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 msgid "Protected package selected"
 msgstr "已選取保護軟體套件"
 
-#: dnfdragora/ui.py:1410
+#: dnfdragora/ui.py:1417
 msgid "Unmanaged widget"
 msgstr "未管理的小工具"
 
-#: dnfdragora/ui.py:1428
+#: dnfdragora/ui.py:1435
 #, python-format
 msgid "Unmanaged event %d"
 msgstr ""
 
-#: dnfdragora/ui.py:1491
+#: dnfdragora/ui.py:1498
 msgid "Start transaction"
 msgstr "開始處理事項"
 
-#: dnfdragora/ui.py:1493
+#: dnfdragora/ui.py:1500
 msgid "Downloading packages"
 msgstr "正在下載軟體套件"
 
-#: dnfdragora/ui.py:1500
+#: dnfdragora/ui.py:1507
 msgid "Checking package signatures"
 msgstr "正在檢查軟體套件簽章"
 
-#: dnfdragora/ui.py:1508 dnfdragora/ui.py:1688
+#: dnfdragora/ui.py:1515 dnfdragora/ui.py:1695
 msgid "Applying changes to the system"
 msgstr "正在套用變更至系統"
 
-#: dnfdragora/ui.py:1511
+#: dnfdragora/ui.py:1518
 msgid "Verify changes on the system"
 msgstr "正在驗證系統變更"
 
-#: dnfdragora/ui.py:1522
+#: dnfdragora/ui.py:1529
 msgid "Build transaction"
 msgstr ""
 
-#: dnfdragora/ui.py:1557
+#: dnfdragora/ui.py:1564
 #, python-format
 msgid "Unknown action %s on %s"
 msgstr ""
 
-#: dnfdragora/ui.py:1582
+#: dnfdragora/ui.py:1589
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "正在下載 %(count_files)d 個檔案 (%(count_bytes)sB)…"
 
-#: dnfdragora/ui.py:1618
+#: dnfdragora/ui.py:1625
 msgid "Caching updates"
 msgstr ""
 
-#: dnfdragora/ui.py:1621
+#: dnfdragora/ui.py:1628
 msgid "Caching installed"
 msgstr ""
 
-#: dnfdragora/ui.py:1624
+#: dnfdragora/ui.py:1631
 msgid "Caching available"
 msgstr ""
 
-#: dnfdragora/ui.py:1670
+#: dnfdragora/ui.py:1677
 msgid "Creating packages cache"
 msgstr ""
 
-#: dnfdragora/ui.py:1693
+#: dnfdragora/ui.py:1700
 msgid "Build Transaction error"
 msgstr ""
 
@@ -1538,16 +1538,16 @@ msgstr "檢查更新"
 msgid "Exit"
 msgstr "離開"
 
-#: dnfdragora/updater.py:205
+#: dnfdragora/updater.py:206
 msgid "Running dnfdragora failure"
 msgstr "執行 dnfdragora 失敗"
 
-#: dnfdragora/updater.py:246
+#: dnfdragora/updater.py:247
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "發生異常：[%s]"
 
-#: dnfdragora/updater.py:298
+#: dnfdragora/updater.py:299
 #, python-format
 msgid "%d updates available."
 msgstr "%d 個可以使用的更新。"
@@ -1578,15 +1578,26 @@ msgstr ""
 "以使用 Qt 5、GTK+ 3 或 ncurses 介面上執行。它提供了 DNF 軟體套件管理器的後"
 "端，使它可以使用在任何類型的桌面環境。"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "無法重新整理 DNF 快取（root）"
+#~ msgid "Ch&eck all"
+#~ msgstr "核取所有(&E)"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root 前端尚未授權。\n"
-#~ "dnfdragora 將會離開"
+#~ msgid "Unmanaged event"
+#~ msgstr "未管理的活動"
+
+#~ msgid "Search"
+#~ msgstr "搜尋"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "下次開啟時永不顯示群組顯示"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "在下次開啟顯示更新"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "檢查更新的間隔（分）："
+
+#~ msgid "History undo"
+#~ msgstr "復原歷史紀錄"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -1597,23 +1608,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora 即將離開"
 
-#~ msgid "History undo"
-#~ msgstr "復原歷史紀錄"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF root 前端尚未授權。\n"
+#~ "dnfdragora 將會離開"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "檢查更新的間隔（分）："
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "無法重新整理 DNF 快取（root）"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "在下次開啟顯示更新"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "下次開啟時永不顯示群組顯示"
-
-#~ msgid "Search"
-#~ msgstr "搜尋"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "未管理的活動"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "核取所有(&E)"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "BuildTransaction 錯誤"

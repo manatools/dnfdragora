@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 21:16+0300\n"
+"POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -98,7 +98,7 @@ msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sверсия: %(version)s%(NL)sсайт: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1317
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1324
 msgid "Sorry"
 msgstr "Извините"
 
@@ -192,8 +192,8 @@ msgstr "Базовая система"
 msgid "Content"
 msgstr "Содержание"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:447
-#: dnfdragora/ui.py:461
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
+#: dnfdragora/ui.py:468
 msgid "All"
 msgstr "Все"
 
@@ -364,15 +364,15 @@ msgstr "Безопасность"
 msgid "Enhancement"
 msgstr "Увеличение"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1172
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1179
 msgid "Undo transaction"
 msgstr "Отменить транзакцию"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1197
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1204
 msgid "Error checking package signatures"
 msgstr "Ошибка при проверке подписей пакетов"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1201 dnfdragora/ui.py:1707
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1208 dnfdragora/ui.py:1714
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Ошибка при загрузке"
@@ -380,7 +380,7 @@ msgstr[1] "Ошибки при загрузке"
 msgstr[2] "Ошибок при загрузке"
 msgstr[3] "Ошибок при загрузке"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1206 dnfdragora/ui.py:1712
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1213 dnfdragora/ui.py:1719
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Ошибка в транзакции"
@@ -388,17 +388,17 @@ msgstr[1] "Ошибки в транзакции"
 msgstr[2] "Ошибок в транзакции"
 msgstr[3] "Ошибок в транзакции"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
-#: dnfdragora/ui.py:1221
-msgid "BuildTransaction failure"
-msgstr "Сбой транзакции сборки"
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
+#: dnfdragora/ui.py:1228
+msgid "Build transaction failure"
+msgstr ""
 
-#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "Клиент dnfdaemon не авторизован: %(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:595
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:602
 msgid "History"
 msgstr "Журнал"
 
@@ -547,7 +547,7 @@ msgstr "Мин. скорость"
 msgid "Mirror list"
 msgstr "Список зеркал"
 
-#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:440
 msgid "Name"
 msgstr "Название"
 
@@ -587,7 +587,7 @@ msgstr "Проверка GPG репозитория"
 msgid "Retries"
 msgstr "Повторные попытки"
 
-#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:440
 msgid "Size"
 msgstr "Размер"
 
@@ -639,7 +639,7 @@ msgstr "Информация"
 msgid "Value"
 msgstr "Значение"
 
-#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:565
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:572
 msgid "&Apply"
 msgstr "&Применить"
 
@@ -656,7 +656,7 @@ msgstr "%s сек."
 msgid "Now"
 msgstr "Сейчас"
 
-#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:607
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:614
 msgid "User preferences"
 msgstr "Пользовательские предпочтения"
 
@@ -1314,220 +1314,220 @@ msgstr "Журнал изменений"
 msgid "Requirements"
 msgstr "Требования"
 
-#: dnfdragora/ui.py:368
+#: dnfdragora/ui.py:375
 msgid "Software Management - dnfdragora"
 msgstr "Управление программами - dnfdragora"
 
-#: dnfdragora/ui.py:400
+#: dnfdragora/ui.py:407
 msgid "Software Management"
 msgstr "Управление программами"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Arch"
 msgstr "Платформа"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Release"
 msgstr "Релиз"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Summary"
 msgstr "Сводка"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Version"
 msgstr "Версия"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:447
 msgid "Status"
 msgstr "Статус"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:455
 msgid "Installed"
 msgstr "Установлен"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:456
 msgid "Not installed"
 msgstr "Не установлен"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:457
 msgid "To update"
 msgstr "Обновить"
 
-#: dnfdragora/ui.py:456
+#: dnfdragora/ui.py:463
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Показывать только %s и noarch"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:469
 msgid "Groups"
 msgstr "Группы"
 
-#: dnfdragora/ui.py:526
+#: dnfdragora/ui.py:533
 msgid "in names"
 msgstr "в именах"
 
-#: dnfdragora/ui.py:527
+#: dnfdragora/ui.py:534
 msgid "in descriptions"
 msgstr "в описаниях"
 
-#: dnfdragora/ui.py:528
+#: dnfdragora/ui.py:535
 msgid "in summaries"
 msgstr "в сводках"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:536
 msgid "in file names"
 msgstr "в именах файлов"
 
-#: dnfdragora/ui.py:550
+#: dnfdragora/ui.py:557
 msgid "&Search"
 msgstr "&Поиск"
 
-#: dnfdragora/ui.py:555
+#: dnfdragora/ui.py:562
 msgid "&Clear search"
 msgstr "&Очистить поиск"
 
-#: dnfdragora/ui.py:569
+#: dnfdragora/ui.py:576
 msgid "Sel&ect all"
 msgstr "&Выбрать все"
 
-#: dnfdragora/ui.py:575 dnfdragora/ui.py:584
+#: dnfdragora/ui.py:582 dnfdragora/ui.py:591
 msgid "&Quit"
 msgstr "&Выход"
 
-#: dnfdragora/ui.py:580
+#: dnfdragora/ui.py:587
 msgid "&File"
 msgstr "&Файл"
 
-#: dnfdragora/ui.py:581
+#: dnfdragora/ui.py:588
 msgid "Reset the selection"
 msgstr "Очистить выбор"
 
-#: dnfdragora/ui.py:582
+#: dnfdragora/ui.py:589
 msgid "Refresh Metadata"
 msgstr "Обновить метаданные"
 
-#: dnfdragora/ui.py:583
+#: dnfdragora/ui.py:590
 msgid "Repositories"
 msgstr "Репозитории"
 
-#: dnfdragora/ui.py:594
+#: dnfdragora/ui.py:601
 msgid "&Information"
 msgstr "&Информация"
 
-#: dnfdragora/ui.py:606
+#: dnfdragora/ui.py:613
 msgid "&Options"
 msgstr "&Параметры"
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:625
 msgid "&Help"
 msgstr "По&мощь"
 
-#: dnfdragora/ui.py:619
+#: dnfdragora/ui.py:626
 msgid "Manual"
 msgstr "Вручную"
 
-#: dnfdragora/ui.py:620
+#: dnfdragora/ui.py:627
 msgid "&About"
 msgstr "О п&рограмме"
 
-#: dnfdragora/ui.py:655
+#: dnfdragora/ui.py:662
 msgid "update"
 msgstr "обновить"
 
-#: dnfdragora/ui.py:658
+#: dnfdragora/ui.py:665
 msgid "locked"
 msgstr "заблокирован"
 
-#: dnfdragora/ui.py:661
+#: dnfdragora/ui.py:668
 msgid "installed"
 msgstr "установлен"
 
-#: dnfdragora/ui.py:989
+#: dnfdragora/ui.py:996
 msgid "Missing information"
 msgstr "Отсутствует информация"
 
-#: dnfdragora/ui.py:1008
+#: dnfdragora/ui.py:1015
 msgid "Repository"
 msgstr "Репозиторий"
 
-#: dnfdragora/ui.py:1296
+#: dnfdragora/ui.py:1303
 msgid "Refreshing Repository Metadata"
 msgstr "Обновление метаданных репозиториев"
 
-#: dnfdragora/ui.py:1317
+#: dnfdragora/ui.py:1324
 msgid "Not implemented yet"
 msgstr "Ещё не реализовано"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Пакет %s не может быть удалён"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 msgid "Protected package selected"
 msgstr "Выбран защищённый пакет"
 
-#: dnfdragora/ui.py:1410
+#: dnfdragora/ui.py:1417
 msgid "Unmanaged widget"
 msgstr "Неуправляемый виджет"
 
-#: dnfdragora/ui.py:1428
+#: dnfdragora/ui.py:1435
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Неуправляемое событие %d"
 
-#: dnfdragora/ui.py:1491
+#: dnfdragora/ui.py:1498
 msgid "Start transaction"
 msgstr "Запуск транзакции"
 
-#: dnfdragora/ui.py:1493
+#: dnfdragora/ui.py:1500
 msgid "Downloading packages"
 msgstr "Загружаются пакеты"
 
-#: dnfdragora/ui.py:1500
+#: dnfdragora/ui.py:1507
 msgid "Checking package signatures"
 msgstr "Проверяются подписи пакетов"
 
-#: dnfdragora/ui.py:1508 dnfdragora/ui.py:1688
+#: dnfdragora/ui.py:1515 dnfdragora/ui.py:1695
 msgid "Applying changes to the system"
 msgstr "Применение изменений к системе"
 
-#: dnfdragora/ui.py:1511
+#: dnfdragora/ui.py:1518
 msgid "Verify changes on the system"
 msgstr "Проверять изменения в системе"
 
-#: dnfdragora/ui.py:1522
+#: dnfdragora/ui.py:1529
 msgid "Build transaction"
 msgstr "Построить транзакцию"
 
-#: dnfdragora/ui.py:1557
+#: dnfdragora/ui.py:1564
 #, python-format
 msgid "Unknown action %s on %s"
 msgstr "Неизвестное действие %s над %s"
 
-#: dnfdragora/ui.py:1582
+#: dnfdragora/ui.py:1589
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Загружается %(count_files)d файлов (%(count_bytes)sБ)..."
 
-#: dnfdragora/ui.py:1618
+#: dnfdragora/ui.py:1625
 msgid "Caching updates"
 msgstr "Кэширование обновлений"
 
-#: dnfdragora/ui.py:1621
+#: dnfdragora/ui.py:1628
 msgid "Caching installed"
 msgstr "Установлено кэширование"
 
-#: dnfdragora/ui.py:1624
+#: dnfdragora/ui.py:1631
 msgid "Caching available"
 msgstr "Доступное кэширование"
 
-#: dnfdragora/ui.py:1670
+#: dnfdragora/ui.py:1677
 msgid "Creating packages cache"
 msgstr "Создаём кэш пакетов"
 
-#: dnfdragora/ui.py:1693
+#: dnfdragora/ui.py:1700
 msgid "Build Transaction error"
 msgstr ""
 
@@ -1552,16 +1552,16 @@ msgstr "Проверить обновления"
 msgid "Exit"
 msgstr "Выход"
 
-#: dnfdragora/updater.py:205
+#: dnfdragora/updater.py:206
 msgid "Running dnfdragora failure"
 msgstr "Не удалось запустить dnfdragora"
 
-#: dnfdragora/updater.py:246
+#: dnfdragora/updater.py:247
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Получено сообщение об исключении: [%s]"
 
-#: dnfdragora/updater.py:298
+#: dnfdragora/updater.py:299
 #, python-format
 msgid "%d updates available."
 msgstr "Доступные обновления (%d)."
@@ -1600,3 +1600,6 @@ msgstr ""
 
 #~ msgid "Building Transaction error"
 #~ msgstr "Ошибка построения транзакции"
+
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Сбой транзакции сборки"

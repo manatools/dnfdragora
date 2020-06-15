@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 21:16+0300\n"
+"POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2020-06-06 21:19+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -90,7 +90,7 @@ msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sверсія: %(version)s%(NL)sсайт: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1317
+#: bin/dnfdragora:101 dnfdragora/basedragora.py:159 dnfdragora/ui.py:1324
 msgid "Sorry"
 msgstr "Вибачте"
 
@@ -184,8 +184,8 @@ msgstr "Базова система"
 msgid "Content"
 msgstr "Вміст"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:447
-#: dnfdragora/ui.py:461
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
+#: dnfdragora/ui.py:468
 msgid "All"
 msgstr "Усі"
 
@@ -356,15 +356,15 @@ msgstr "Безпека"
 msgid "Enhancement"
 msgstr "Поліпшення"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1172
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1179
 msgid "Undo transaction"
 msgstr "Скасувати дію"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1197
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1204
 msgid "Error checking package signatures"
 msgstr "Помилка під час спроби перевірити підписи пакунків"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1201 dnfdragora/ui.py:1707
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1208 dnfdragora/ui.py:1714
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Помилка отримання даних"
@@ -372,7 +372,7 @@ msgstr[1] "Помилки отримання даних"
 msgstr[2] "Помилки отримання даних"
 msgstr[3] "Помилка отримання даних"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1206 dnfdragora/ui.py:1712
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1213 dnfdragora/ui.py:1719
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Помилка під час дії"
@@ -380,17 +380,17 @@ msgstr[1] "Помилки під час дії"
 msgstr[2] "Помилки під час дії"
 msgstr[3] "Помилка під час дії"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1218
-#: dnfdragora/ui.py:1221
-msgid "BuildTransaction failure"
-msgstr "Помилка побудови дії"
+#: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
+#: dnfdragora/ui.py:1228
+msgid "Build transaction failure"
+msgstr ""
 
-#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1221
+#: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "Клієнт dnfdaemon не уповноважено:%(NL)s%(error)s"
 
-#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:595
+#: dnfdragora/dialogs.py:295 dnfdragora/ui.py:602
 msgid "History"
 msgstr "Журнал"
 
@@ -539,7 +539,7 @@ msgstr "Мін. швидкість"
 msgid "Mirror list"
 msgstr "Список дзеркал"
 
-#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:538 dnfdragora/dialogs.py:592 dnfdragora/ui.py:440
 msgid "Name"
 msgstr "Назва"
 
@@ -579,7 +579,7 @@ msgstr "Перевірка GPG сховища"
 msgid "Retries"
 msgstr "Повторні спроби"
 
-#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:433
+#: dnfdragora/dialogs.py:548 dnfdragora/ui.py:440
 msgid "Size"
 msgstr "Розмір"
 
@@ -631,7 +631,7 @@ msgstr "Відомості"
 msgid "Value"
 msgstr "Значення"
 
-#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:565
+#: dnfdragora/dialogs.py:610 dnfdragora/dialogs.py:874 dnfdragora/ui.py:572
 msgid "&Apply"
 msgstr "&Застосувати"
 
@@ -648,7 +648,7 @@ msgstr "%s секунд"
 msgid "Now"
 msgstr "Зараз"
 
-#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:607
+#: dnfdragora/dialogs.py:786 dnfdragora/ui.py:614
 msgid "User preferences"
 msgstr "Налаштування користувача"
 
@@ -1306,220 +1306,220 @@ msgstr "Журнал змін"
 msgid "Requirements"
 msgstr "Вимоги"
 
-#: dnfdragora/ui.py:368
+#: dnfdragora/ui.py:375
 msgid "Software Management - dnfdragora"
 msgstr "Керування програмами – dnfdragora"
 
-#: dnfdragora/ui.py:400
+#: dnfdragora/ui.py:407
 msgid "Software Management"
 msgstr "Керування програмами"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Arch"
 msgstr "Архітектура"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Release"
 msgstr "Випуск"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Summary"
 msgstr "Резюме"
 
-#: dnfdragora/ui.py:433
+#: dnfdragora/ui.py:440
 msgid "Version"
 msgstr "Версія"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:447
 msgid "Status"
 msgstr "Стан"
 
-#: dnfdragora/ui.py:448
+#: dnfdragora/ui.py:455
 msgid "Installed"
 msgstr "Встановлено"
 
-#: dnfdragora/ui.py:449
+#: dnfdragora/ui.py:456
 msgid "Not installed"
 msgstr "Не встановлено"
 
-#: dnfdragora/ui.py:450
+#: dnfdragora/ui.py:457
 msgid "To update"
 msgstr "Оновлення"
 
-#: dnfdragora/ui.py:456
+#: dnfdragora/ui.py:463
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Показувати лише %s і noarch"
 
-#: dnfdragora/ui.py:462
+#: dnfdragora/ui.py:469
 msgid "Groups"
 msgstr "Групи"
 
-#: dnfdragora/ui.py:526
+#: dnfdragora/ui.py:533
 msgid "in names"
 msgstr "у назвах"
 
-#: dnfdragora/ui.py:527
+#: dnfdragora/ui.py:534
 msgid "in descriptions"
 msgstr "в описах"
 
-#: dnfdragora/ui.py:528
+#: dnfdragora/ui.py:535
 msgid "in summaries"
 msgstr "у резюме"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:536
 msgid "in file names"
 msgstr "у назвах файлів"
 
-#: dnfdragora/ui.py:550
+#: dnfdragora/ui.py:557
 msgid "&Search"
 msgstr "&Шукати"
 
-#: dnfdragora/ui.py:555
+#: dnfdragora/ui.py:562
 msgid "&Clear search"
 msgstr "Споро&жнити поле пошуку"
 
-#: dnfdragora/ui.py:569
+#: dnfdragora/ui.py:576
 msgid "Sel&ect all"
 msgstr "Поз&начити усі"
 
-#: dnfdragora/ui.py:575 dnfdragora/ui.py:584
+#: dnfdragora/ui.py:582 dnfdragora/ui.py:591
 msgid "&Quit"
 msgstr "Ви&йти"
 
-#: dnfdragora/ui.py:580
+#: dnfdragora/ui.py:587
 msgid "&File"
 msgstr "&Файл"
 
-#: dnfdragora/ui.py:581
+#: dnfdragora/ui.py:588
 msgid "Reset the selection"
 msgstr "Скинути позначене"
 
-#: dnfdragora/ui.py:582
+#: dnfdragora/ui.py:589
 msgid "Refresh Metadata"
 msgstr "Оновити метадані"
 
-#: dnfdragora/ui.py:583
+#: dnfdragora/ui.py:590
 msgid "Repositories"
 msgstr "Сховища"
 
-#: dnfdragora/ui.py:594
+#: dnfdragora/ui.py:601
 msgid "&Information"
 msgstr "&Інформація"
 
-#: dnfdragora/ui.py:606
+#: dnfdragora/ui.py:613
 msgid "&Options"
 msgstr "П&араметри"
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:625
 msgid "&Help"
 msgstr "&Довідка"
 
-#: dnfdragora/ui.py:619
+#: dnfdragora/ui.py:626
 msgid "Manual"
 msgstr "Підручник"
 
-#: dnfdragora/ui.py:620
+#: dnfdragora/ui.py:627
 msgid "&About"
 msgstr "Пр&о програму"
 
-#: dnfdragora/ui.py:655
+#: dnfdragora/ui.py:662
 msgid "update"
 msgstr "оновлення"
 
-#: dnfdragora/ui.py:658
+#: dnfdragora/ui.py:665
 msgid "locked"
 msgstr "заблоковано"
 
-#: dnfdragora/ui.py:661
+#: dnfdragora/ui.py:668
 msgid "installed"
 msgstr "встановлено"
 
-#: dnfdragora/ui.py:989
+#: dnfdragora/ui.py:996
 msgid "Missing information"
 msgstr "Немає даних"
 
-#: dnfdragora/ui.py:1008
+#: dnfdragora/ui.py:1015
 msgid "Repository"
 msgstr "Сховище"
 
-#: dnfdragora/ui.py:1296
+#: dnfdragora/ui.py:1303
 msgid "Refreshing Repository Metadata"
 msgstr "Оновлюємо метадані сховища"
 
-#: dnfdragora/ui.py:1317
+#: dnfdragora/ui.py:1324
 msgid "Not implemented yet"
 msgstr "Ще не реалізовано"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Не можна вилучати пакунок %s"
 
-#: dnfdragora/ui.py:1349
+#: dnfdragora/ui.py:1356
 msgid "Protected package selected"
 msgstr "Позначено захищений пакунок"
 
-#: dnfdragora/ui.py:1410
+#: dnfdragora/ui.py:1417
 msgid "Unmanaged widget"
 msgstr "Некерований віджет"
 
-#: dnfdragora/ui.py:1428
+#: dnfdragora/ui.py:1435
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Некерована подія %d"
 
-#: dnfdragora/ui.py:1491
+#: dnfdragora/ui.py:1498
 msgid "Start transaction"
 msgstr "Початок операції"
 
-#: dnfdragora/ui.py:1493
+#: dnfdragora/ui.py:1500
 msgid "Downloading packages"
 msgstr "Отримання пакунків"
 
-#: dnfdragora/ui.py:1500
+#: dnfdragora/ui.py:1507
 msgid "Checking package signatures"
 msgstr "Перевіряємо підписи пакунків"
 
-#: dnfdragora/ui.py:1508 dnfdragora/ui.py:1688
+#: dnfdragora/ui.py:1515 dnfdragora/ui.py:1695
 msgid "Applying changes to the system"
 msgstr "Застосовуємо до системи зміни"
 
-#: dnfdragora/ui.py:1511
+#: dnfdragora/ui.py:1518
 msgid "Verify changes on the system"
 msgstr "Перевірити зміни у системі"
 
-#: dnfdragora/ui.py:1522
+#: dnfdragora/ui.py:1529
 msgid "Build transaction"
 msgstr "Будуємо операцію"
 
-#: dnfdragora/ui.py:1557
+#: dnfdragora/ui.py:1564
 #, python-format
 msgid "Unknown action %s on %s"
 msgstr "Невідома дія %s над %s"
 
-#: dnfdragora/ui.py:1582
+#: dnfdragora/ui.py:1589
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Отримуємо %(count_files)d файлів (%(count_bytes)s Б)…"
 
-#: dnfdragora/ui.py:1618
+#: dnfdragora/ui.py:1625
 msgid "Caching updates"
 msgstr "Кешуємо оновлення"
 
-#: dnfdragora/ui.py:1621
+#: dnfdragora/ui.py:1628
 msgid "Caching installed"
 msgstr "Встановлено кешування"
 
-#: dnfdragora/ui.py:1624
+#: dnfdragora/ui.py:1631
 msgid "Caching available"
 msgstr "Доступне кешування"
 
-#: dnfdragora/ui.py:1670
+#: dnfdragora/ui.py:1677
 msgid "Creating packages cache"
 msgstr "Створюємо кеш пакунків"
 
-#: dnfdragora/ui.py:1693
+#: dnfdragora/ui.py:1700
 msgid "Build Transaction error"
 msgstr "Помилка під час побудови операції"
 
@@ -1544,16 +1544,16 @@ msgstr "Перевірити оновлення"
 msgid "Exit"
 msgstr "Вийти"
 
-#: dnfdragora/updater.py:205
+#: dnfdragora/updater.py:206
 msgid "Running dnfdragora failure"
 msgstr "Не вдалося запустити dnfdragora"
 
-#: dnfdragora/updater.py:246
+#: dnfdragora/updater.py:247
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Отримано повідомлення про виключення: [%s]"
 
-#: dnfdragora/updater.py:298
+#: dnfdragora/updater.py:299
 #, python-format
 msgid "%d updates available."
 msgstr "Доступні оновлення (%d)."
@@ -1589,15 +1589,76 @@ msgstr ""
 "ncurses. Вона забезпечує роботу оболонки програми для керування пакунками "
 "DNF, якою можна скористатися у будь-якому типі системного середовища."
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Не вдалося освіжити кеш DNF (root)"
+#~ msgid "Building Transaction error"
+#~ msgstr "Помилка під час побудови операції"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Модуль DNF не уповноважено для роботи від імені root.\n"
-#~ "dnfdragora завершить роботу."
+#~ msgid "Layout"
+#~ msgstr "Компонування"
+
+#~ msgid "History Packages"
+#~ msgstr "Журнал пакунків"
+
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Поточне обмеження на рекурсію: %s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Збільшено обмеження на рекурсію до %s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
+
+#~ msgid "Error in transaction\n"
+#~ msgid_plural "Errors in transaction\n"
+#~ msgstr[0] "Помилка під час виконання дії\n"
+#~ msgstr[1] "Помилки під час виконання дії\n"
+#~ msgstr[2] "Помилки під час виконання дії\n"
+#~ msgstr[3] "Помилка під час виконання дії\n"
+
+#~ msgid "Downloading error\n"
+#~ msgid_plural "Downloading errors\n"
+#~ msgstr[0] "Помилка під час отримання\n"
+#~ msgstr[1] "Помилки під час отримання\n"
+#~ msgstr[2] "Помилки під час отримання\n"
+#~ msgstr[3] "Помилка під час отримання\n"
+
+#~ msgid "Error checking package signatures\n"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "Позна&чити всі"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Некерована подія"
+
+#~ msgid "Search"
+#~ msgstr "Пошук"
+
+#~ msgid "Enable debug log level"
+#~ msgstr "Увімкнути рівень діагностики у журналі"
+
+#~ msgid "Log options on next startup"
+#~ msgstr "Параметри журналювання при наступному запуску"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Не показувати панель груп після наступного запуску"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Показувати оновлення після наступного запуску"
+
+#~ msgid "Layout options"
+#~ msgstr "Параметри компонування"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Інтервал у хвилинах між пошуками оновлень:"
+
+#~ msgid "History undo"
+#~ msgstr "Журнал скасовування"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -1608,73 +1669,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora завершить роботу."
 
-#~ msgid "History undo"
-#~ msgstr "Журнал скасовування"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Модуль DNF не уповноважено для роботи від імені root.\n"
+#~ "dnfdragora завершить роботу."
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Інтервал у хвилинах між пошуками оновлень:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Не вдалося освіжити кеш DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Параметри компонування"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Показувати оновлення після наступного запуску"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Не показувати панель груп після наступного запуску"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Параметри журналювання при наступному запуску"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Увімкнути рівень діагностики у журналі"
-
-#~ msgid "Search"
-#~ msgstr "Пошук"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Некерована подія"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Позна&чити всі"
-
-#~ msgid "Error checking package signatures\n"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
-
-#~ msgid "Downloading error\n"
-#~ msgid_plural "Downloading errors\n"
-#~ msgstr[0] "Помилка під час отримання\n"
-#~ msgstr[1] "Помилки під час отримання\n"
-#~ msgstr[2] "Помилки під час отримання\n"
-#~ msgstr[3] "Помилка під час отримання\n"
-
-#~ msgid "Error in transaction\n"
-#~ msgid_plural "Errors in transaction\n"
-#~ msgstr[0] "Помилка під час виконання дії\n"
-#~ msgstr[1] "Помилки під час виконання дії\n"
-#~ msgstr[2] "Помилки під час виконання дії\n"
-#~ msgstr[3] "Помилка під час виконання дії\n"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
-
-#~ msgid "Raised recursion limit to: %s"
-#~ msgstr "Збільшено обмеження на рекурсію до %s"
-
-#~ msgid "Current recursion limit: %s"
-#~ msgstr "Поточне обмеження на рекурсію: %s"
-
-#~ msgid "History Packages"
-#~ msgstr "Журнал пакунків"
-
-#~ msgid "Layout"
-#~ msgstr "Компонування"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Помилка під час побудови операції"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Помилка побудови дії"
