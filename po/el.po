@@ -9,7 +9,7 @@
 # tsallinia <tsallinia@riseup.net>, 2017
 # Oresti Koxhaj, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Dimitrios Glentadakis <dglent@free.fr>, 2018
+# Dimitrios Glentadakis <dglent@free.fr>, 2019
 #
 #, fuzzy
 msgid ""
@@ -18,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Dimitrios Glentadakis <dglent@free.fr>, 2018\n"
+"Last-Translator: Dimitrios Glentadakis <dglent@free.fr>, 2019\n"
 "Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -1567,6 +1567,3 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "Search"
-#~ msgstr "Αναζήτηση"
