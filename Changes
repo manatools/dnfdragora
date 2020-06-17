@@ -1,3 +1,4 @@
+- Fixed regression on starting --update that didn't honour updates filter
 - Default view at first running is Groups and All, added for Fedora packager the option into
   system settings (/et/dnfdragora/dnfdragora.yaml) option all_updates to change this behaviour
   and show All the packages with To_update filter see dnfdragora.yaml.example

@@ -513,7 +513,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for f in ordered_filters:
             item = yui.YItem(self.filters[f]['title'], False)
 
-            filter_item = 'to_update' if self.all_updates_filter else 'all'
+            filter_item = 'to_update' if self.all_updates_filter or self.update_only else 'all'
             if not self.update_only and 'filter' in view.keys():
                 filter_item = view['filter']
 
