@@ -1,3 +1,5 @@
+2020-06-17 v. 2.0.4
+---------------------
 - Fixed regression on starting --update that didn't honour updates filter
 - Default view at first running is Groups and All, added for Fedora packager the option into
   system settings (/et/dnfdragora/dnfdragora.yaml) option all_updates to change this behaviour
