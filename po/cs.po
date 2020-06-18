@@ -386,7 +386,7 @@ msgstr[3] "Chyby v transakci"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Vytváření transakce selhalo"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -1586,6 +1586,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Selhání při vytváření transakce"
