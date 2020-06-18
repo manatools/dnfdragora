@@ -385,7 +385,7 @@ msgstr[3] "Napake v transakciji"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Napaka transakcije izgradnje"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -1588,6 +1588,3 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Napaka BuildTransaction"
