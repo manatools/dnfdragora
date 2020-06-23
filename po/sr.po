@@ -386,7 +386,7 @@ msgstr[2] "Грешке при транскакцији"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Неуспех при креирању трансакције"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -1587,6 +1587,3 @@ msgstr ""
 "SUSE, тако се може покретати коришћењем Qt5, GTK+ 3, или ncurses "
 "интерфејсима. Омогућава фронтенд за DNF менаџер паекта који се може "
 "користити на било којој врсти системског окружења."
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Неуспех при креирању трансакције"
