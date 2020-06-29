@@ -382,7 +382,7 @@ msgstr[1] "Feil i transaksjonen"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Transaksjonsfeil ved bygging"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -1581,6 +1581,3 @@ msgstr ""
 "abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
 "+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
 "pakkehåndtereren som kan benyttes i ethvert system miljø."
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Byggtransaksjonsfeil"
