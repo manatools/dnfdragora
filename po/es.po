@@ -10,8 +10,8 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # William Moreno <williamjmorenor@gmail.com>, 2018
 # Miguel, 2020
-# Jose Manuel López <joselp@disroot.org>, 2020
 # José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
+# Jose Manuel López <joselp@disroot.org>, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020\n"
+"Last-Translator: Jose Manuel López <joselp@disroot.org>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -388,7 +388,7 @@ msgstr[1] "Errores en transacción"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Error de compilación de transacciones"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -1524,7 +1524,7 @@ msgstr "Crear paquetes de caché"
 
 #: dnfdragora/ui.py:1700
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Error de compilación de transacciones"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -1589,9 +1589,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Error de transacción de construcción"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Error en BuildTransaction (transacción de construcción)"
