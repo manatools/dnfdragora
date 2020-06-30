@@ -7,8 +7,8 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Rubén <rbndavid@gmail.com>, 2019
-# Davidmp <medipas@gmail.com>, 2020
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2020
+# Davidmp <medipas@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-15 18:28+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2020\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ca/)\n"
 "Language: ca\n"
@@ -386,7 +386,7 @@ msgstr[1] "Errors en la transacció"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Fallada de la transacció de construcció"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -1590,6 +1590,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Fallada de BuildTransaction"
