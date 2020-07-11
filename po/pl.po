@@ -1,23 +1,23 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 #
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2019.
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-15 18:28+0300\n"
-"PO-Revision-Date: 2019-03-10 16:53+0100\n"
+"PO-Revision-Date: 2020-07-11 08:46+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Generator: Lokalize 19.03.70\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<"
+"12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) ||"
+" (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Lokalize 20.07.70\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
@@ -110,12 +110,12 @@ msgstr "wystąpił błąd atrybutu dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "wystąpił błąd rodzaju dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Wystąpił błąd:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -271,7 +271,7 @@ msgstr "Uaktualnianie: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Uaktualnionych: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -286,7 +286,7 @@ msgstr "Ponowne wgrywanie: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Wgranych ponownie: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -306,7 +306,7 @@ msgstr "Wycofywanie: %s"
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Przestarzałych: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -316,7 +316,7 @@ msgstr "Obniżanie: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Obniżonych: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -381,7 +381,7 @@ msgstr[3] "Błąd pobierania"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1225
 #: dnfdragora/ui.py:1228
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Niepowodzenie transakcji budowania"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1228
 #, python-format
@@ -660,23 +660,23 @@ msgstr "Postępuj dalej bez pytania o potwierdzenie"
 
 #: dnfdragora/dialogs.py:849
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Okres sprawdzania uaktualnień (w minutach)"
 
 #: dnfdragora/dialogs.py:850
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Czas do wygaśnięcia metadanych (w godzinach)"
 
 #: dnfdragora/dialogs.py:853
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Ustawienia układu (zmiany widoczne po ponownym uruchomieniu)"
 
 #: dnfdragora/dialogs.py:855
 msgid "Show updates"
-msgstr ""
+msgstr "Pokaż uaktualnienia"
 
 #: dnfdragora/dialogs.py:856
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Nie pokazuj widoku grup"
 
 #: dnfdragora/dialogs.py:859
 msgid "Search options"
@@ -692,19 +692,19 @@ msgstr "Wszystkie słowa muszą zostać znalezione"
 
 #: dnfdragora/dialogs.py:865
 msgid "Log options  (active at next startup)"
-msgstr ""
+msgstr "Ustawienia dziennika (zmiany widoczne po ponownym uruchomieniu)"
 
 #: dnfdragora/dialogs.py:870
 msgid "Change &directory"
-msgstr ""
+msgstr "Zmień &katalog"
 
 #: dnfdragora/dialogs.py:871
 msgid "Debug level"
-msgstr ""
+msgstr "Poziom diagnostyczny"
 
 #: dnfdragora/dialogs.py:906
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Wybierz katalog docelowy dziennika"
 
 #: dnfdragora/dialogs.py:1153
 msgid "&Yes"
@@ -742,7 +742,7 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:444
 msgid "Caching groups from packages... "
-msgstr "Tworzenie grup z pakietów w pamięci..."
+msgstr "Tworzenie grup z pakietów..."
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1298,11 +1298,11 @@ msgstr "Wykaz plików"
 
 #: dnfdragora/ui.py:204
 msgid "Changelog"
-msgstr "Dziennik zmian"
+msgstr "Wykaz zmian"
 
 #: dnfdragora/ui.py:205
 msgid "Requirements"
-msgstr "Zależności"
+msgstr "Wykaz zależności"
 
 #: dnfdragora/ui.py:375
 msgid "Software Management - dnfdragora"
@@ -1379,7 +1379,7 @@ msgstr "Wy&czyść"
 
 #: dnfdragora/ui.py:576
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Zaznacz wszystki&e"
 
 #: dnfdragora/ui.py:582 dnfdragora/ui.py:591
 msgid "&Quit"
@@ -1465,7 +1465,7 @@ msgstr "Niezarządzany element interfejsu"
 #: dnfdragora/ui.py:1435
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Niezarządzane zdarzenie %d"
 
 #: dnfdragora/ui.py:1498
 msgid "Start transaction"
@@ -1477,11 +1477,11 @@ msgstr "Pobieranie pakietów"
 
 #: dnfdragora/ui.py:1507
 msgid "Checking package signatures"
-msgstr "Sprawdzenie podpisów pakietów"
+msgstr "Sprawdzanie podpisów pakietów"
 
 #: dnfdragora/ui.py:1515 dnfdragora/ui.py:1695
 msgid "Applying changes to the system"
-msgstr "Stosowanie zmian w systemie"
+msgstr "Wprowadzanie zmian w systemie"
 
 #: dnfdragora/ui.py:1518
 msgid "Verify changes on the system"
@@ -1489,12 +1489,12 @@ msgstr "Sprawdzanie zmian w systemie"
 
 #: dnfdragora/ui.py:1529
 msgid "Build transaction"
-msgstr ""
+msgstr "Transakcja budowania"
 
 #: dnfdragora/ui.py:1564
 #, python-format
 msgid "Unknown action %s on %s"
-msgstr ""
+msgstr "Nieznane działanie %s na %s"
 
 #: dnfdragora/ui.py:1589
 #, python-format
@@ -1503,23 +1503,23 @@ msgstr "Pobieranie %(count_files)d plików (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1625
 msgid "Caching updates"
-msgstr ""
+msgstr "Zbieranie pakietów do uaktualnienia"
 
 #: dnfdragora/ui.py:1628
 msgid "Caching installed"
-msgstr ""
+msgstr "Zbieranie wgranych pakietów"
 
 #: dnfdragora/ui.py:1631
 msgid "Caching available"
-msgstr ""
+msgstr "Zbieranie dostępnych pakietów"
 
 #: dnfdragora/ui.py:1677
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Tworzenie pamięci podręcznej pakietów"
 
 #: dnfdragora/ui.py:1700
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Błąd transakcji budowania"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
