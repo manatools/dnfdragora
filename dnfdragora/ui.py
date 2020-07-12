@@ -1481,6 +1481,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               if self._selPkg != sel_pkg:
                 self._setInfoOnWidget(sel_pkg)
                 self._selPkg = sel_pkg
+            else:
+              self.info.setValue("")
 
             if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
                 self.applyButton.setEnabled()
