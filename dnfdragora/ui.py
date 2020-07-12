@@ -535,7 +535,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'summary'    : {'title' : _("in summaries")   },
             'file'       : {'title' : _("in file names")  }
         }
-        search_types = ['name', 'description', 'summary', 'file' ]
+        search_types = ['name', 'summary', 'description', 'file' ]
 
         self.search_list = self.factory.createComboBox(hbox_top,"")
         itemColl.clear()
@@ -552,6 +552,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.search_list.setNotify(True)
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
+
+        self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
+        self.use_regexp.setNotify(True)
 
         icon_file = self.images_path + "find.png"
         self.find_button = self.factory.createIconButton(hbox_top, icon_file, _("&Search"))
@@ -1053,6 +1056,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
           logger.warning("_setInfoOnWidget without package")
 
+    def _showErrorAndContinue(self, title, error):
+      '''
+      Shows an error dialog box and continue to work, it supposes error is not critical
+      (i.e. a wrong search for instance)
+      '''
+      dialogs.warningMsgBox({'title' : title, "text": error, "richtext":True})
+      self._enableAction(True)
 
     def _showSearchResult(self, packages, createTreeItem=False):
       '''
@@ -1125,22 +1135,53 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return False if an empty string used
         '''
+
+        type_item = self.search_list.selectedItem()
+        #fields = []
+        #for field in self.local_search_types.keys():
+            #if self.local_search_types[field]['item'] == type_item:
+                #fields.append(field)
+                #break
+        fields = [ field for field in self.local_search_types.keys() if self.local_search_types[field]['item'] == type_item ]
+        field = fields[0] if fields else None
+
+        if field == 'name' or field == 'summary':
+          self.use_regexp.setEnabled()
+        else:
+          self.use_regexp.setChecked(False)
+          self.use_regexp.setEnabled(False)
+
         search_string = self.find_entry.value()
         if not search_string :
           return False
 
-        fields = []
-        type_item = self.search_list.selectedItem()
-        for field in self.local_search_types.keys():
-            if self.local_search_types[field]['item'] == type_item:
-                fields.append(field)
-                break
+        if self.use_regexp.isEnabled() and self.use_regexp.isChecked() :
+          # fixing attribute names
+          if field == 'name' :
+            field = 'fullname'
+          filters = {
+            'installed'     : 'installed',
+            'not_installed' : 'available',
+            'to_update'     : 'updates',
+            'all'           : 'all',
+            'skip_other'    : 'all',
+          }
+          filter = filters[self._filterNameSelected()]
+          self.backend.search(filter, field, search_string)
+          #packages = self.backend.search(field, search_string)
+          #x = [txt for txt in texts if re.search("Portugal", txt) ]
+          #installed = self.backend.get_packages('installed')
+          #x = [p for p in installed if re.search(search_string, str(p.name)) ]  # str(p.filelist)) ]
+          # print(packages)
+          #self._showSearchResult(packages, createTreeItem=True)
+          #return
 
-        strings = re.split('[ ,|:;]',search_string)
-        ### TODO manage tags
-        tags =""
-        attrs = ['summary', 'size', 'group', 'action']
-        self.backend.Search(fields, strings, attrs, self.match_all, self.newest_only, tags)
+        else:
+          strings = re.split('[ ,|:;]',search_string)
+          ### TODO manage tags
+          tags =""
+          attrs = ['summary', 'size', 'group', 'action']
+          self.backend.Search(fields, strings, attrs, self.match_all, self.newest_only, tags)
 
         self._enableAction(False)
 
@@ -1371,7 +1412,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.find_entry.setValue("")
                     self._fillGroupTree()
 
-                elif (widget == self.find_button) or (widget == self.search_list) :
+                elif (widget == self.find_button) or (widget == self.search_list) or (widget == self.use_regexp):
                     #### FIND
                     if not self._searchPackages() :
                       rebuild_package_list = True
@@ -1827,13 +1868,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               logger.error("GetPackages error: %s", info['error'])
               raise UIError(str(info['error']))
 
+          elif (event == 'RESearch'):
+            if not info['error']:
+              packages = info['result']
+              self._showSearchResult(packages, createTreeItem=True)
+            else:
+              self._showErrorAndContinue(_("Search error using regular expression"), info['error'])
+              logger.error("Search error: %s", info['error'])
           elif (event == 'Search'):
             if not info['error']:
               packages = self.backend.make_pkg_object_with_attr(info['result'])
               self._showSearchResult(packages, createTreeItem=True)
-
             else:
               logger.error("Search error: %s", info['error'])
+              raise UIError(str(info['error']))
 
           elif (event == 'OnRepoMetaDataProgress'):
             self._OnRepoMetaDataProgress(info['name'], info['frac'])

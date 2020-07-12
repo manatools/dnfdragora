@@ -11,6 +11,9 @@ Author:  Angelo Naselli <anaselli@linux.it>
 # NOTE part of this code is imported from yumex-dnf
 
 import logging
+import re
+import json
+import threading
 
 from os import listdir
 import dnfdaemon.client
@@ -288,7 +291,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         for pkg_flt in filters:
             # is this type of packages is already cached ?
             if self.cache.is_populated(pkg_flt):
-              result.extend(dnfdragora.backend.Backend.get_packages(self, pkg_flt))
+              result += dnfdragora.backend.Backend.get_packages(self, pkg_flt)
             else:
               logger.error("Cache is not populated for %s", pkg_flt) #TODO manage
         logger.debug('get-packages : %s ', len(result))
@@ -347,18 +350,54 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         pkgs = self.GetPackagesByName(name_key, attrs, newest_only, sync=True)
         return self.make_pkg_object_with_attr(pkgs)
 
-    @ExceptionHandler
-    def search(self, search_attrs, keys, match_all, newest_only, tags):
-        """Search given pkg attributes for given keys.
+    @TimeFunction
+    def __search_loop(self, filter, attr, regexp):
+      '''
+      Async thread loop to be used in searching. Requires package caching performed.
+      Emits a "RESearch" dnfdaemon client like event.
+      '''
+      pl = self.get_packages(filter)
+      logger.debug("Searching <%s> from <%s> attribute into %d packages", regexp, attr, len(pl))
+      packages = []
+      exe_error = None
+      if len(pl) > 0:
+        if not hasattr(pl[0], attr):
+          exe_error = _("package has not any %s attributes"%(attr))
+          logger.error("package has not any %s attributes", attr)
+        logger.debug(str(pl[0]))
 
-        :param search_attrs: package attrs to search in
-        :param keys: keys to search for
-        :param match_all: match all keys
+      if exe_error == None:
+        try:
+          s = re.compile(regexp)
+          for p in pl:
+            if hasattr(p, attr) and s.search(str(getattr(p, attr))):
+              packages.append(p)
+            elif not hasattr(p, attr):
+              logger.error("package has not any %s attributes", attr)
+          #packages = [ p for p in pl if s.search(str(p.get_attribute(attr))) ]
+        except Exception as e:
+          logger.error(str(e))
+          exe_error = str(e)
+
+      response = { 'result' : None if exe_error else packages, 'error' : exe_error }
+      self.eventQueue.put({'event': 'RESearch', 'value': response})
+      logger.debug("__search_loop exit. Found %d pacakges", len(packages))
+
+    @TimeFunction
+    @ExceptionHandler
+    def search(self, filter, attr, regexp, sync=False):
+        """Search given pkg attributes for given keys.
+        :param filter: filter packages for all, updates, installed or available
+        :param attr: package attr to search in (name, filelist, etc.)
+        :param regexp: regular expression using python syntax to search for
         """
-        attrs = ['summary', 'size', 'group', 'action']
-        pkgs = self.Search(search_attrs, keys, attrs, match_all,
-                           newest_only, tags, sync=True)
-        return self.make_pkg_object_with_attr(pkgs)
+        if sync:
+          packages = [p for p in self.get_packages(filter) if re.search(regexp, str(p.get_attribute(attr))) ]  # str(p.filelist)) ]
+          return packages
+        else:
+          t = threading.Thread(target=self.__search_loop, args=(filter, attr, regexp))
+          t.start()
+
 
     @ExceptionHandler
     @TimeFunction
