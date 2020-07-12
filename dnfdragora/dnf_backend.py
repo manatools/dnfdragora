@@ -364,17 +364,16 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         if not hasattr(pl[0], attr):
           exe_error = _("package has not any %s attributes"%(attr))
           logger.error("package has not any %s attributes", attr)
-        logger.debug(str(pl[0]))
 
       if exe_error == None:
         try:
           s = re.compile(regexp)
-          for p in pl:
-            if hasattr(p, attr) and s.search(str(getattr(p, attr))):
-              packages.append(p)
-            elif not hasattr(p, attr):
-              logger.error("package has not any %s attributes", attr)
-          #packages = [ p for p in pl if s.search(str(p.get_attribute(attr))) ]
+          #for p in pl:
+            #if hasattr(p, attr) and s.search(str(getattr(p, attr))):
+              #packages.append(p)
+            #elif not hasattr(p, attr):
+              #logger.error("package has not any %s attributes", attr)
+          packages = [ p for p in pl if s.search(str(getattr(p, attr))) ]
         except Exception as e:
           logger.error(str(e))
           exe_error = str(e)

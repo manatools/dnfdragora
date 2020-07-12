@@ -1168,14 +1168,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           }
           filter = filters[self._filterNameSelected()]
           self.backend.search(filter, field, search_string)
-          #packages = self.backend.search(field, search_string)
-          #x = [txt for txt in texts if re.search("Portugal", txt) ]
-          #installed = self.backend.get_packages('installed')
-          #x = [p for p in installed if re.search(search_string, str(p.name)) ]  # str(p.filelist)) ]
-          # print(packages)
-          #self._showSearchResult(packages, createTreeItem=True)
-          #return
-
         else:
           strings = re.split('[ ,|:;]',search_string)
           ### TODO manage tags
