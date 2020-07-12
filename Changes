@@ -1,3 +1,5 @@
+- Added use of python regular expression  if searching into pacakge names or summaries.
+  Search is performed into cached packages.
 2020-06-17 v. 2.0.4
 ---------------------
 - Fixed regression on starting --update that didn't honour updates filter
