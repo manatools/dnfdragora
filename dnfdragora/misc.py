@@ -149,11 +149,13 @@ def TimeFunction(func):
     This decorator catch dnfdragora exceptions and send fatal signal to frontend
     """
     def newFunc(*args, **kwargs):
-        t_start = time.time()
+        t_start = time.monotonic()
         rc = func(*args, **kwargs)
-        t_end = time.time()
+        t_end = time.monotonic()
         name = func.__name__
-        logger.debug("%s took %.2f sec", name, t_end - t_start)
+        t_diff = t_end - t_start
+        if t_diff >= 0.001:
+          logger.debug("%s took %.3f sec", name, t_diff)
         return rc
 
     newFunc.__name__ = func.__name__
