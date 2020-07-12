@@ -190,6 +190,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._files_downloaded = 0
         # ...TODO
 
+        self._transaction_tries = 0
+
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
@@ -1744,9 +1746,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if rc == 1:
         logger.warning('GPG key missing: %s' % repr(result))
         # NOTE should have been managed into OnGPGImport, so we can run transaction again
-        self._populate_transaction()
-        self.backend.BuildTransaction()
-        return
+        self._transaction_tries += 1
+        if self._transaction_tries <= 3:
+          self._populate_transaction()
+          self.backend.BuildTransaction()
+          return
+        else  :
+          dialogs.warningMsgBox({'title' :_("GPG key missing"), 'text' : repr(result), 'richtext' : True})
       elif rc == 4:
         dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
                             'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
@@ -1758,6 +1764,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error('RunTransaction failure')
         logger.error(result)
 
+      self._transaction_tries = 0
       self.backend.Unlock(sync=True)
       self.backend.clear_cache()
       self.packageQueue.clear()
