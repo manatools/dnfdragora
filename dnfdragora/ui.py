@@ -392,19 +392,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         vbox = self.factory.createVBox(self.dialog)
 
-        hbox_headbar = self.factory.createHBox(vbox)
-        head_align_left = self.factory.createLeft(hbox_headbar)
-        head_align_right = self.factory.createRight(hbox_headbar)
-        headbar = self.factory.createHBox(head_align_left)
-        headRight = self.factory.createHBox(head_align_right)
+        hbox_menubar = self.factory.createHBox(vbox)
 
         #Line for logo and title
-        hbox_iconbar  = self.factory.createHBox(vbox)
-        head_align_left  = self.factory.createLeft(hbox_iconbar)
-        hbox_iconbar     = self.factory.createHBox(head_align_left)
-        self.factory.createImage(hbox_iconbar, self.logo)
+        #hbox_iconbar  = self.factory.createHBox(vbox)
+        #head_align_left  = self.factory.createLeft(hbox_iconbar)
+        #hbox_iconbar     = self.factory.createHBox(head_align_left)
+        #self.factory.createImage(hbox_iconbar, self.logo)
 
-        self.factory.createHeading(hbox_iconbar, _("Software Management"))
+        #self.factory.createHeading(hbox_iconbar, _("Software Management"))
 
         hbox_top = self.factory.createHBox(vbox)
         hbox_middle = self.factory.createHBox(vbox)
@@ -419,14 +415,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         right_footbar = self.factory.createHBox(foot_align_right)
         #######
 
-        self.menu_layout = hbox_headbar
+        self.menu_layout = hbox_menubar
         self.top_layout = hbox_top
         self.middle_layout = hbox_middle
         self.bottom_layout = hbox_bottom
         self.footbar_layout = hbox_footbar
 
-        hbox_headbar.setWeight(1,10)
-        hbox_top.setWeight(1,10)
+        #hbox_headbar.setWeight(1,10)
+        hbox_top.setWeight(1,5)
         hbox_middle.setWeight(1,50)
         hbox_bottom.setWeight(1,30)
         hbox_footbar.setWeight(1,10)
@@ -585,55 +581,61 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.quitButton = self.factory.createIconButton(right_footbar,"",_("&Quit"))
         self.quitButton.setWeight(0,3)
 
-        # build File menu
+        ### BEGIN Menus #########################
+        self.menubar = self.mgaFactory.createMenuBar(hbox_menubar)
+
+        # building File menu
+        mItem = yui.YMGAMenuItem("&File")
         self.fileMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&File")),
-            'reset_sel' : yui.YMenuItem(_("Reset the selection")),
-            'reload'    : yui.YMenuItem(_("Refresh Metadata")),
-            'repos'     : yui.YMenuItem(_("Repositories")),
-            'quit'      : yui.YMenuItem(_("&Quit")),
+            'menu_name' : mItem,
+            'reset_sel' : yui.YMGAMenuItem(mItem, _("Reset the selection")),
+            'reload'    : yui.YMGAMenuItem(mItem, _("Refresh Metadata")),
+            'repos'     : yui.YMGAMenuItem(mItem, _("Repositories")),
+            'sep0'      : yui.YMenuSeparator(mItem),
+            'quit'      : yui.YMGAMenuItem(mItem, _("&Quit"), "application-exit"),
         }
+        #Items must be "disowned"
+        for k in self.fileMenu.keys():
+            self.fileMenu[k].this.own(False)
+        self.menubar.addItem(self.fileMenu['menu_name'])
 
-        ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
-        for l in ordered_menu_lines :
-            self.fileMenu['widget'].addItem(self.fileMenu[l])
-        self.fileMenu['widget'].rebuildMenuTree();
-
-        # build Options menu
+        # building Options menu
+        mItem = yui.YMGAMenuItem("&Information")
         self.infoMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
-            'history' : yui.YMenuItem(_("History")),
+            'menu_name' : mItem,
+            'history'   : yui.YMGAMenuItem(mItem, _("&History")),
         }
+        #Items must be "disowned"
+        for k in self.infoMenu.keys():
+            self.infoMenu[k].this.own(False)
+        self.menubar.addItem(self.infoMenu['menu_name'])
 
-        #NOTE following the same behavior to simplfy further menu entry addtion
-        ordered_menu_lines = ['history']
-        for l in ordered_menu_lines :
-            self.infoMenu['widget'].addItem(self.infoMenu[l])
-        self.infoMenu['widget'].rebuildMenuTree();
-
-        # build Options menu
+        # building Options menu
+        mItem = yui.YMGAMenuItem("&Options")
         self.optionsMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
-            'user_prefs' : yui.YMenuItem(_("User preferences")),
+            'menu_name'  : mItem,
+            'user_prefs' : yui.YMGAMenuItem(mItem, _("User preferences")),
         }
-
-        #NOTE following the same behavior to simplfy further menu entry addtion
-        ordered_menu_lines = ['user_prefs']
-        for l in ordered_menu_lines :
-            self.optionsMenu['widget'].addItem(self.optionsMenu[l])
-        self.optionsMenu['widget'].rebuildMenuTree();
+        #Items must be "disowned"
+        for k in self.optionsMenu.keys():
+            self.optionsMenu[k].this.own(False)
+        self.menubar.addItem(self.optionsMenu['menu_name'])
 
         # build help menu
+        mItem = yui.YMGAMenuItem("&Help")
         self.helpMenu = {
-            'widget': self.factory.createMenuButton(headRight, _("&Help")),
-            'help'  : yui.YMenuItem(_("Manual")),
-            'about' : yui.YMenuItem(_("&About")),
+            'menu_name': mItem,
+            'help'     : yui.YMGAMenuItem(mItem, _("Manual")),
+            'sep0'     : yui.YMenuSeparator(mItem),
+            'about'    : yui.YMGAMenuItem(mItem, _("&About"), 'dnfdragora'),
         }
-        ordered_menu_lines = ['help', 'about']
-        for l in ordered_menu_lines :
-            self.helpMenu['widget'].addItem(self.helpMenu[l])
+        #Items must be "disowned"
+        for k in self.helpMenu.keys():
+            self.helpMenu[k].this.own(False)
+        self.menubar.addItem(self.helpMenu['menu_name'])
 
-        self.helpMenu['widget'].rebuildMenuTree()
+        ### END Menus #########################
+
 
     def _enableAction(self, value=True):
       '''

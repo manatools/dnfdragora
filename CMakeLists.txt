@@ -2,7 +2,7 @@ if(POLICY CMP0048)
 	cmake_policy(SET CMP0048 NEW)
 endif(POLICY CMP0048)
 
-project(dnfdragora VERSION 2.0.4 LANGUAGES NONE)
+project(dnfdragora VERSION 2.1.0 LANGUAGES NONE)
 cmake_minimum_required(VERSION 3.4)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")

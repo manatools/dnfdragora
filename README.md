@@ -28,13 +28,13 @@ Example with ncurses:
 * https://github.com/libyui/libyui
 * Consider to check some not yet approved changes here https://github.com/anaselli/libyui
 
-### libyui-mga - our widget extension
+### libyui-mga > 1.1.0 - our widget extension
 * https://github.com/manatools/libyui-mga
 
-### SUSE libyui-bindings - anaselli fork
-* https://github.com/anaselli/libyui-bindings/tree/mageia
-  This fork is necessary to include also libyui-mga extension.
-* For references, master is https://github.com/libyui/libyui-bindings
+### SUSE libyui-bindings
+* https://github.com/libyui/libyui-bindings
+  At the moment add patch from anaselli branch to manage new libyui-mga 1.1.0 at
+  https://github.com/libyui/libyui-bindings/pull/35
 
 ### at least one of the SUSE libyui plugins
 * libyui-gtk     - https://github.com/libyui/libyui-gtk
