@@ -151,13 +151,43 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         home_lnk,
       ),
 
-      'filters': '',
+      'filters':   '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Views and search'),
+        # help
+        _('<h2>Views</h2>') +\
+          _('First combobox allows to show packages by groups. If <i>Groups</i> is selected group panel shows a tree view containing groups. while selecting a group shows related packages into package panel.') + \
+          _('If <i>All</i> is selected, package panel contains all the packages.') + \
+        _('<h2>Filters</h2>') +\
+          _('Filter combobox allows to filter packages shown into package panel by:') + \
+            _('<ul><li><b>Installed</b>: shows installed packages only.</li>') + \
+            _('<li><b>Not installed</b>: shows available packages only.</li>') + \
+            _('<li><b>To updates</b>: shows packages that are available for updates only.</li>') + \
+            _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
+            _('<li><b>All</b>: shows all the packages, e.g. available, updates and installed.</li></ul>') + \
+        _('<h2>Search</h2>') +\
+          _('Search is performed by pressing <i>Search</i> button if text field is filled. Search combobox allows to search given text into package <i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>.') + \
+          _('A special checkbox <i>RegExp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
+          _('<i>Note</i> that if regular expressions are used to search by names full package filename with version is used.') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
 
-      'group_panel': '',
-      'package_panel': '',
-      'info_panel': '',
-      'pbar_panel': '',
-      'button_panel': '',
+      'group_panel': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Group panel'),
+        # help
+        _('This panel shows all the groups to be used to filter packages by group, if view groups is selected. Special group <i>Search</i> is added if a search is performed.') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'package_panel': '-',
+      'info_panel': '-',
+      'pbar_panel': '-',
+      'button_panel': '-',
     }
 
   def _formatLink(self, description, url) :
