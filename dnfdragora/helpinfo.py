@@ -138,8 +138,26 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         home_lnk,
       ),
 
-      'help_menu': '',
+      'help_menu':  '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Help Menu'),
+        # help
+        _('<h2>Manual</h2>') +\
+        _('This menu opens dnfdragora help dialog.') + \
+        _('<h2>About</h2>') +\
+        _('This menu opens dnfdragora about dialog.') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
 
+      'filters': '',
+
+      'group_panel': '',
+      'package_panel': '',
+      'info_panel': '',
+      'pbar_panel': '',
+      'button_panel': '',
     }
 
   def _formatLink(self, description, url) :
