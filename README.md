@@ -36,6 +36,9 @@ Example with ncurses:
   At the moment add patch from anaselli branch to manage new libyui-mga 1.1.0 at
   https://github.com/libyui/libyui-bindings/pull/35
 
+### python-manatools
+* https://github.com/manatools/python-manatools
+
 ### at least one of the SUSE libyui plugins
 * libyui-gtk     - https://github.com/libyui/libyui-gtk
 * libyui-ncurses - https://github.com/libyui/libyui-ncurses

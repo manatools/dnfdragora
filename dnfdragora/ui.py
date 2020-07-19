@@ -25,12 +25,14 @@ import threading
 from gi.repository import GLib
 import dnfdaemon.client
 
+import manatools.ui.helpdialog as helpdialog
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
 import dnfdragora.progress_ui as progress_ui
 import dnfdragora.dialogs as dialogs
 import dnfdragora.misc as misc
+import dnfdragora.helpinfo as helpinfo
 
 import dnfdragora.config
 from dnfdragora import const
@@ -1358,7 +1360,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     elif item == self.infoMenu['history'] :
                         self.backend.GetHistoryByDays(0, 120) #TODO add in config file
                     elif item == self.helpMenu['help']  :
-                        dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
+                        info = helpinfo.DNFDragoraHelpInfo()
+                        hd = helpdialog.HelpDialog(info)
+                        hd.run()
+                        #dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
                         self.AboutDialog.run()
                 else:
