@@ -169,6 +169,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('Search is performed by pressing <i>Search</i> button if text field is filled. Search combobox allows to search given text into package <i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>.') + \
           _('A special checkbox <i>RegExp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
           _('<i>Note</i> that if regular expressions are used to search by names full package filename with version is used.') + \
+          _('<i>Clear</i> button resets search text field.') + \
         '<br>',
         # back home
         home_lnk,
@@ -184,10 +185,50 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         home_lnk,
       ),
 
-      'package_panel': '-',
-      'info_panel': '-',
-      'pbar_panel': '-',
-      'button_panel': '-',
+      'package_panel': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Package panel'),
+        # help
+        _('This panel shows all the filtered packages with they basic information such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, <i>architecture</i>, <i>size</i>, and <i>status</i>.') + \
+        _('A checkbox for any packages is available to add related package to transaction for installing, updating or removing.') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'info_panel': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Information panel'),
+        # help
+        _('This panel shows all the package information such as <i>desciption</i>, <i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and <i>changelog</i>.') + \
+        _('<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</i>') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'pbar_panel': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Progress bar'),
+        # help
+        _('Progress bar shows dnfdragora operations progression such as transactions and caching data.') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'button_panel': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Buttons line'),
+        # help
+        _('<ul><li><b>Apply</b>: when some packages are selected for installing or updating or deselected for uninstalling this button runs the transaction to be performed.</li>') + \
+        _('<li><b>Select all</b>: if package are filtered for updates only this button allows to select all the packages in one shot.</li>') + \
+        _('<li><b>Quit</b>: exits from dnfdragora.</li></ul>') + \
+        '<br>',
+        # back home
+        home_lnk,
+      ),
+
     }
 
   def _formatLink(self, description, url) :
