@@ -90,7 +90,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('This menu exits from dnfdragora.<br>'),
         # back home
         home_lnk,
-        ),
+      ),
 
       'info_menu': '<h1>%s</h1>%s<br>%s'%(
         # title
@@ -98,22 +98,45 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # help
         _('<h2>History</h2>') +\
           _('This menu runs a dialog containing transaction history shown in a tree ordered by date. Selected history can be undone by pressing <b>Undo</b> button.<br>') + \
-          _('<br><i>Note that this function is currently broken because of dnf API change</i> <br>'),
+          _('<br><i>Note that this function is currently broken because of dnf API change</i><br>'),
         # back home
         home_lnk,
-        ),
+      ),
 
       'option_menu': '<h1>%s</h1>%s<br>%s'%(
         # title
         _('Option Menu'),
         # help
         _('<h2>User preferences</h2>') +\
-          _('This menu opens a dialog containing user settings tu customize dnfdragora behavior.<br>') + \
-          _('<ul><li>User preferences dialog</li>') + \
-          _('</ul>'),
+        _('This menu opens a %s containing user settings tu customize dnfdragora behavior.<br>'%(self._formatLink(_("dialog"), 'user_prefs_dlg'))),
         # back home
         home_lnk,
-        ),
+      ),
+      'user_prefs_dlg' : '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('User preferences'),
+        # help
+        _('This dialog allows to customize dnfdragora behavior by changing options. Some changes are available after closing the dialog others need a dnfdragora restart.<br><br>') + \
+        _('<b>NOTE: Apply</b> button must be pressed to make changes permanent and availble, any other way to close the dialog is the same as pressing <i>Cancel</i> button.') + \
+        _('<h2>System options</h2>') + \
+          _('<ul><li><b>Proceed without asking for confirmation</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering <i>yes</i></li>') + \
+          _('<li><b>Interval to check for updates</b>: the given number represents when dnfdragora needs to check for updates, value is expressed in minutes</li>') + \
+          _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
+        _('<h2>Layout options</h2>') + \
+          _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, e.g. showing only package available for updates if any.</li>') + \
+          _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
+          _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
+        _('<h2>Search options</h2>') + \
+          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newst packages on search. <i>Note that is valid if searches are not performed by using regular expressions</i></li>') + \
+          _('<li><b>Match all words</b>: if checked a search without using regular expressions will match all the given words into the text field.</li></ul>') + \
+        _('<h2>Logging options</h2>') + \
+          _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \
+          _('<ul><li><b>Change directory</b>: this option allows to set logging directory, directory must exist and needs write permission.</li>') + \
+          _('<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>') + \
+          '<br>',
+        # back home
+        home_lnk,
+      ),
 
       'help_menu': '',
 

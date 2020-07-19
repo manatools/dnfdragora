@@ -1363,7 +1363,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         info = helpinfo.DNFDragoraHelpInfo()
                         hd = helpdialog.HelpDialog(info)
                         hd.run()
-                        #dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Not implemented yet")})
                     elif item == self.helpMenu['about']  :
                         self.AboutDialog.run()
                 else:
