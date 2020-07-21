@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 20:09+0300\n"
-"PO-Revision-Date: 2020-07-21 20:09+0300\n"
+"PO-Revision-Date: 2020-07-21 20:10+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -1355,6 +1355,9 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora є частиною комплекту manatools Програму засновано на libyui, "
+"отже вона може працювати із використанням Gtk, Qt або ncurses, тобто "
+"одночасно графічного та текстового інтерфейсів.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1531,6 +1534,10 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Показувати оновлення</b>: якщо позначено, dnfdragora буде запущено"
+" із увімкненим фільтром <i>оновлення</i>, тобто буде показано лише пакунки,"
+" для яких доступні оновлення, якщо такі пакунки буде виявлено</"
+"li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1668,6 +1675,8 @@ msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
@@ -1682,6 +1691,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і"
+" встановлені пакунки</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
@@ -1704,6 +1715,10 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"За допомогою спеціального поля для позначки <i>Формальний вираз</i> можна"
+" наказати програмі виконати пошук за формальним виразом мови Python. Цей"
+" пошук виконується у кешованих даних пакунків, зокрема <b>лише у назвах і"
+" резюме</b> пакунків."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
@@ -1716,6 +1731,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
+"Кнопка Спорожнити поле пошуку вилучає усі дані з текстового поля пошуку."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1751,6 +1767,8 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"На цій панелі буде показано усі дані пакунка, зокрема <i>опис</i>, <i>адресу<"
+"/i>, <i>сховище</i>, <i>вимоги</i>, <i>список файлів</i> та <i>журнал змін</i>"
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
@@ -1791,6 +1809,9 @@ msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Позначити усі</b>: якщо пакунки фільтровано так, що у списку показано"
+" лише пакунки з оновленнями, за допомогою натискання цієї кнопки можна"
+" позначити усі пакунки одним клацанням кнопки миші.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
