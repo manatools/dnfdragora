@@ -589,7 +589,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.menubar = self.mgaFactory.createMenuBar(hbox_menubar)
 
         # building File menu
-        mItem = yui.YMGAMenuItem("&File")
+        mItem = yui.YMGAMenuItem(_("&File"))
         self.fileMenu = {
             'menu_name' : mItem,
             'reset_sel' : yui.YMGAMenuItem(mItem, _("Reset the selection")),
@@ -604,7 +604,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.menubar.addItem(self.fileMenu['menu_name'])
 
         # building Options menu
-        mItem = yui.YMGAMenuItem("&Information")
+        mItem = yui.YMGAMenuItem(_("&Information"))
         self.infoMenu = {
             'menu_name' : mItem,
             'history'   : yui.YMGAMenuItem(mItem, _("&History")),
@@ -615,7 +615,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.menubar.addItem(self.infoMenu['menu_name'])
 
         # building Options menu
-        mItem = yui.YMGAMenuItem("&Options")
+        mItem = yui.YMGAMenuItem(_("&Options"))
         self.optionsMenu = {
             'menu_name'  : mItem,
             'user_prefs' : yui.YMGAMenuItem(mItem, _("User preferences")),
@@ -626,7 +626,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.menubar.addItem(self.optionsMenu['menu_name'])
 
         # build help menu
-        mItem = yui.YMGAMenuItem("&Help")
+        mItem = yui.YMGAMenuItem(_("&Help"))
         self.helpMenu = {
             'menu_name': mItem,
             'help'     : yui.YMGAMenuItem(mItem, _("Manual")),
