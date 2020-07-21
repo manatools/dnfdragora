@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 20:09+0300\n"
+"POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Kristoffer Grundström <hamnisdude@gmail.com>, 2019\n"
 "Language-Team: Swedish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2015,8 +2015,23 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kunde inte uppdatera DNF-cache (root)"
+#~ msgid "Software Management"
+#~ msgstr "Programhantering"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Inte implementerad än"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "Vä&lj alla"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Ej hanterad händelse"
+
+#~ msgid "Search"
+#~ msgstr "Sök"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Visa uppdateringar vid nästa uppstart"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2027,20 +2042,5 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora kommer att avslutas"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Visa uppdateringar vid nästa uppstart"
-
-#~ msgid "Search"
-#~ msgstr "Sök"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Ej hanterad händelse"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Vä&lj alla"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Inte implementerad än"
-
-#~ msgid "Software Management"
-#~ msgstr "Programhantering"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Kunde inte uppdatera DNF-cache (root)"

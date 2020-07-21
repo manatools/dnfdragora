@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 20:09+0300\n"
+"POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: F Wolff <friedel@translate.org.za>, 2019\n"
 "Language-Team: Afrikaans (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2008,20 +2008,20 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval in minute om vir bywerkings te kontroleer:"
-
-#~ msgid "Layout options"
-#~ msgstr "Uitlegkeuses"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Wys bywerkings met volgende begin"
-
-#~ msgid "Search"
-#~ msgstr "Soek"
+#~ msgid "Software Management"
+#~ msgstr "Sagtewarebestuur"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Nog nie geïmplementeer nie"
 
-#~ msgid "Software Management"
-#~ msgstr "Sagtewarebestuur"
+#~ msgid "Search"
+#~ msgstr "Soek"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Wys bywerkings met volgende begin"
+
+#~ msgid "Layout options"
+#~ msgstr "Uitlegkeuses"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Interval in minute om vir bywerkings te kontroleer:"

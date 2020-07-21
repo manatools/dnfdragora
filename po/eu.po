@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 20:09+0300\n"
+"POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2026,18 +2026,32 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "BuildTransaction hutsegitea"
+#~ msgid "Software Management"
+#~ msgstr "Software kudeaketa"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Ezin izan da DNF cachea freskatu (root)"
+#~ msgid "Not implemented yet"
+#~ msgstr "Ez da oraindik ezarri"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNFren root-backend-a ez da baimendu.\n"
-#~ "Mandragora orain irtengo da."
+#~ msgid "Layout"
+#~ msgstr "Diseinua"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "B&egiratu guztiak"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Kudeatu gabeko gertaera"
+
+#~ msgid "Search"
+#~ msgstr "Bilatu"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Ez erakutsi talde ikuspegia hurrengo abiaraztean"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Erakutsi eguneraketak hurrengo abiaraztean"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Tartea minututan eguneratzeak egiaztatzeko:"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2048,29 +2062,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora irtengo da"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Tartea minututan eguneratzeak egiaztatzeko:"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNFren root-backend-a ez da baimendu.\n"
+#~ "Mandragora orain irtengo da."
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Erakutsi eguneraketak hurrengo abiaraztean"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Ezin izan da DNF cachea freskatu (root)"
 
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ez erakutsi talde ikuspegia hurrengo abiaraztean"
-
-#~ msgid "Search"
-#~ msgstr "Bilatu"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Kudeatu gabeko gertaera"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "B&egiratu guztiak"
-
-#~ msgid "Layout"
-#~ msgstr "Diseinua"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ez da oraindik ezarri"
-
-#~ msgid "Software Management"
-#~ msgstr "Software kudeaketa"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "BuildTransaction hutsegitea"

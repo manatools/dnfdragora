@@ -27,20 +27,7 @@ POT_FILE="$POT_DIR/$DOMAIN.pot"
 	--output="$POT_FILE" \
 	bin/dnfdragora \
 	bin/dnfdragora-updater \
-	dnfdragora/backend.py \
-	dnfdragora/basedragora.py \
-	dnfdragora/compsicons.py \
-	dnfdragora/config.py \
-	dnfdragora/const.py \
-	dnfdragora/dialogs.py \
-	dnfdragora/dnf_backend.py \
-	dnfdragora/groupicons.py \
-	dnfdragora/misc.py \
-	dnfdragora/progress_ui.py \
-	dnfdragora/ui.py \
-	dnfdragora/dnfd_client.py \
-	dnfdragora/helpinfo.py \
-	dnfdragora/updater.py
+	`find dnfdragora -name '*.py'`
 /usr/bin/xgettext \
 	-j \
 	--output="$POT_FILE" \
@@ -53,7 +40,7 @@ update_po() {
 
         echo "Update $(basename "$PO_FILE"):"
 	/usr/bin/msgmerge \
-		--update --no-fuzzy-matching \
+		--update --no-fuzzy-matching --backup=off \
 		--no-escape --add-location --sort-by-file \
 		--lang="$LL_CC" \
 		"$PO_FILE" "$POT_FILE"

@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 20:09+0300\n"
+"POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Sérgio Marques <smarquespt@gmail.com>, 2019\n"
 "Language-Team: Portuguese (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2033,18 +2033,32 @@ msgstr ""
 "gestor de pacotes DNF que pode ser utilizada em qualquer sistema de "
 "desenvolvimento."
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Falha 'BuildTransaction'"
+#~ msgid "Software Management"
+#~ msgstr "Gestão de programas"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Não foi possível recarregar a cache DNF (root)"
+#~ msgid "Not implemented yet"
+#~ msgstr "Ainda não implementado"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "A infraestrutura de root DNF não foi autorizada.\n"
-#~ "dnfdragora irá encerrar"
+#~ msgid "Unmanaged event"
+#~ msgstr "Evento não gerido"
+
+#~ msgid "Search"
+#~ msgstr "Pesquisa"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Não mostrar vista de grupos no próximo arranque"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Mostrar atualizações no próximo arranque"
+
+#~ msgid "Layout options"
+#~ msgstr "Opções de disposição"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Intervalo, em minutos, para procurar por atualizações:"
+
+#~ msgid "History undo"
+#~ msgstr "Anulação de historico"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2055,29 +2069,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora irá encerrar"
 
-#~ msgid "History undo"
-#~ msgstr "Anulação de historico"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "A infraestrutura de root DNF não foi autorizada.\n"
+#~ "dnfdragora irá encerrar"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervalo, em minutos, para procurar por atualizações:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Não foi possível recarregar a cache DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Opções de disposição"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Mostrar atualizações no próximo arranque"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Não mostrar vista de grupos no próximo arranque"
-
-#~ msgid "Search"
-#~ msgstr "Pesquisa"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Evento não gerido"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ainda não implementado"
-
-#~ msgid "Software Management"
-#~ msgstr "Gestão de programas"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Falha 'BuildTransaction'"

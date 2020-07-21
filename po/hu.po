@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 20:09+0300\n"
+"POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Miklos <szubotaj@gmail.com>, 2018\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2036,18 +2036,32 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "A Tranzakció meghibásodott."
+#~ msgid "Software Management"
+#~ msgstr "Szoftverkezelés"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nem sikerült frissíteni a DNF cache-t (root)"
+#~ msgid "Not implemented yet"
+#~ msgstr "Még nem hajtották végre"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF gyökérháttér nincs hitelesítve.\n"
-#~ "dnfdragora kilép"
+#~ msgid "Ch&eck all"
+#~ msgstr "Összes kijelölése"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Nem kezelt esemény"
+
+#~ msgid "Search"
+#~ msgstr "Keresés"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Ne mutassa a csoportnézetet a következő indításkor"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Frissítések mutatása a következő indításkor"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "A frissítések ellenőrzéséhez szükséges intervallum percben:"
+
+#~ msgid "History undo"
+#~ msgstr "Visszavonási előzmények"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2058,29 +2072,15 @@ msgstr ""
 #~ "\n"
 #~ " dnfdragora kilép"
 
-#~ msgid "History undo"
-#~ msgstr "Visszavonási előzmények"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF gyökérháttér nincs hitelesítve.\n"
+#~ "dnfdragora kilép"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "A frissítések ellenőrzéséhez szükséges intervallum percben:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nem sikerült frissíteni a DNF cache-t (root)"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Frissítések mutatása a következő indításkor"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ne mutassa a csoportnézetet a következő indításkor"
-
-#~ msgid "Search"
-#~ msgstr "Keresés"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Nem kezelt esemény"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Összes kijelölése"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Még nem hajtották végre"
-
-#~ msgid "Software Management"
-#~ msgstr "Szoftverkezelés"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "A Tranzakció meghibásodott."

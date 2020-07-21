@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 20:09+0300\n"
+"POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2020-07-21 20:10+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1355,9 +1355,9 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
-"dnfdragora є частиною комплекту manatools Програму засновано на libyui, "
-"отже вона може працювати із використанням Gtk, Qt або ncurses, тобто "
-"одночасно графічного та текстового інтерфейсів.<br><br>"
+"dnfdragora є частиною комплекту manatools Програму засновано на libyui, отже "
+"вона може працювати із використанням Gtk, Qt або ncurses, тобто одночасно "
+"графічного та текстового інтерфейсів.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1534,10 +1534,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
-"<ul><li><b>Показувати оновлення</b>: якщо позначено, dnfdragora буде запущено"
-" із увімкненим фільтром <i>оновлення</i>, тобто буде показано лише пакунки,"
-" для яких доступні оновлення, якщо такі пакунки буде виявлено</"
-"li>"
+"<ul><li><b>Показувати оновлення</b>: якщо позначено, dnfdragora буде "
+"запущено із увімкненим фільтром <i>оновлення</i>, тобто буде показано лише "
+"пакунки, для яких доступні оновлення, якщо такі пакунки буде виявлено</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1675,8 +1674,7 @@ msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
-"<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</"
-"li>"
+"<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
@@ -1691,8 +1689,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
-"<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і"
-" встановлені пакунки</li></ul>"
+"<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і "
+"встановлені пакунки</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
@@ -1715,10 +1713,10 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
-"За допомогою спеціального поля для позначки <i>Формальний вираз</i> можна"
-" наказати програмі виконати пошук за формальним виразом мови Python. Цей"
-" пошук виконується у кешованих даних пакунків, зокрема <b>лише у назвах і"
-" резюме</b> пакунків."
+"За допомогою спеціального поля для позначки <i>Формальний вираз</i> можна "
+"наказати програмі виконати пошук за формальним виразом мови Python. Цей "
+"пошук виконується у кешованих даних пакунків, зокрема <b>лише у назвах і "
+"резюме</b> пакунків."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
@@ -1767,8 +1765,9 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
-"На цій панелі буде показано усі дані пакунка, зокрема <i>опис</i>, <i>адресу<"
-"/i>, <i>сховище</i>, <i>вимоги</i>, <i>список файлів</i> та <i>журнал змін</i>"
+"На цій панелі буде показано усі дані пакунка, зокрема <i>опис</i>, "
+"<i>адресу</i>, <i>сховище</i>, <i>вимоги</i>, <i>список файлів</i> та "
+"<i>журнал змін</i>"
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
@@ -1809,9 +1808,9 @@ msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
-"<li><b>Позначити усі</b>: якщо пакунки фільтровано так, що у списку показано"
-" лише пакунки з оновленнями, за допомогою натискання цієї кнопки можна"
-" позначити усі пакунки одним клацанням кнопки миші.</li>"
+"<li><b>Позначити усі</b>: якщо пакунки фільтровано так, що у списку показано "
+"лише пакунки з оновленнями, за допомогою натискання цієї кнопки можна "
+"позначити усі пакунки одним клацанням кнопки миші.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
@@ -2139,153 +2138,14 @@ msgstr ""
 "ncurses. Вона забезпечує роботу оболонки програми для керування пакунками "
 "DNF, якою можна скористатися у будь-якому типі системного середовища."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Невідома дія %s над %s"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Помилка побудови дії"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Не вдалося освіжити кеш DNF (root)"
-
 #~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
+#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
+#~ "work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
+#~ "interfaces.<br><br>"
 #~ msgstr ""
-#~ "Модуль DNF не уповноважено для роботи від імені root.\n"
-#~ "dnfdragora завершить роботу."
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF заблоковано іншим процесом.\n"
-#~ "\n"
-#~ "dnfdragora завершить роботу."
-
-#~ msgid "History undo"
-#~ msgstr "Журнал скасовування"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Інтервал у хвилинах між пошуками оновлень:"
-
-#~ msgid "Layout options"
-#~ msgstr "Параметри компонування"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Показувати оновлення після наступного запуску"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Не показувати панель груп після наступного запуску"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Параметри журналювання при наступному запуску"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Увімкнути рівень діагностики у журналі"
-
-#~ msgid "Search"
-#~ msgstr "Пошук"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Некерована подія"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Позна&чити всі"
-
-#~ msgid "Error checking package signatures\n"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
-
-#~ msgid "Downloading error\n"
-#~ msgid_plural "Downloading errors\n"
-#~ msgstr[0] "Помилка під час отримання\n"
-#~ msgstr[1] "Помилки під час отримання\n"
-#~ msgstr[2] "Помилки під час отримання\n"
-#~ msgstr[3] "Помилка під час отримання\n"
-
-#~ msgid "Error in transaction\n"
-#~ msgid_plural "Errors in transaction\n"
-#~ msgstr[0] "Помилка під час виконання дії\n"
-#~ msgstr[1] "Помилки під час виконання дії\n"
-#~ msgstr[2] "Помилки під час виконання дії\n"
-#~ msgstr[3] "Помилка під час виконання дії\n"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
-
-#~ msgid "Raised recursion limit to: %s"
-#~ msgstr "Збільшено обмеження на рекурсію до %s"
-
-#~ msgid "Current recursion limit: %s"
-#~ msgstr "Поточне обмеження на рекурсію: %s"
-
-#~ msgid "History Packages"
-#~ msgstr "Журнал пакунків"
-
-#~ msgid "Layout"
-#~ msgstr "Компонування"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Помилка під час побудови операції"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ще не реалізовано"
-
-#~ msgid "Software Management"
-#~ msgstr "Керування програмами"
-
-#~ msgid ""
-#~ "<li><b>Select all</b>: if package are filtered for updates only this "
-#~ "button allows to select all the packages in one shot.</li>"
-#~ msgstr ""
-#~ "<li><b>Позначити усі</b>: якщо пакунки фільтровано так, що у списку "
-#~ "показано лише пакунки з оновленнями, за допомогою натискання цієї кнопки "
-#~ "можна позначити усі пакунки одним клацанням кнопки миші.</li>"
-
-#~ msgid ""
-#~ "This panel shows all the package information such as <i>description</i>, "
-#~ "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
-#~ "<i>changelog</i>."
-#~ msgstr ""
-#~ "На цій панелі буде показано усі дані пакунка, зокрема <i>опис</i>, "
-#~ "<i>адресу</i>, <i>сховище</i>, <i>вимоги</i>, <i>список файлів</i> та "
-#~ "<i>журнал змін</i>."
-
-#~ msgid "<i>Clear</i> button resets search text field."
-#~ msgstr ""
-#~ "Кнопка <i>Спорожнити поле пошуку</i> вилучає усі дані з текстового поля "
-#~ "пошуку."
-
-#~ msgid ""
-#~ "A special checkbox <i>RegExp</i> is used to look for packages by python "
-#~ "language regular expressions. This search is performed on cached package "
-#~ "information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "За допомогою спеціального поля для позначки <i>Формальний вираз</i> можна "
-#~ "наказати програмі виконати пошук за формальним виразом мови Python. Цей "
-#~ "пошук виконується у кешованих даних пакунків, зокрема <b>лише у назвах і "
-#~ "резюме</b> пакунків."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, e.g. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і "
-#~ "встановлені пакунки.</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>To updates</b>: shows packages that are available for updates only."
-#~ "</li>"
-#~ msgstr ""
-#~ "<li><b>Оновлення</b>: показати лише пакунки, які доступні для оновлення.</"
-#~ "li>"
+#~ "dnfdragora є частиною комплекту manatools. Програму засновано на libyui, "
+#~ "отже вона може працювати із використанням Gtk, Qt або ncurses, тобто "
+#~ "одночасно графічного та текстового інтерфейсів.<br><br>"
 
 #~ msgid ""
 #~ "<ul><li><b>Show updates</b>: if checked dnfdragora starts with "
@@ -2298,10 +2158,149 @@ msgstr ""
 #~ "виявлено.</li>"
 
 #~ msgid ""
-#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
-#~ "work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
-#~ "interfaces.<br><br>"
+#~ "<li><b>To updates</b>: shows packages that are available for updates only."
+#~ "</li>"
 #~ msgstr ""
-#~ "dnfdragora є частиною комплекту manatools. Програму засновано на libyui, "
-#~ "отже вона може працювати із використанням Gtk, Qt або ncurses, тобто "
-#~ "одночасно графічного та текстового інтерфейсів.<br><br>"
+#~ "<li><b>Оновлення</b>: показати лише пакунки, які доступні для оновлення.</"
+#~ "li>"
+
+#~ msgid ""
+#~ "<li><b>All</b>: shows all the packages, e.g. available, updates and "
+#~ "installed.</li></ul>"
+#~ msgstr ""
+#~ "<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і "
+#~ "встановлені пакунки.</li></ul>"
+
+#~ msgid ""
+#~ "A special checkbox <i>RegExp</i> is used to look for packages by python "
+#~ "language regular expressions. This search is performed on cached package "
+#~ "information such as for the <b>only names and summaries</b>."
+#~ msgstr ""
+#~ "За допомогою спеціального поля для позначки <i>Формальний вираз</i> можна "
+#~ "наказати програмі виконати пошук за формальним виразом мови Python. Цей "
+#~ "пошук виконується у кешованих даних пакунків, зокрема <b>лише у назвах і "
+#~ "резюме</b> пакунків."
+
+#~ msgid "<i>Clear</i> button resets search text field."
+#~ msgstr ""
+#~ "Кнопка <i>Спорожнити поле пошуку</i> вилучає усі дані з текстового поля "
+#~ "пошуку."
+
+#~ msgid ""
+#~ "This panel shows all the package information such as <i>description</i>, "
+#~ "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
+#~ "<i>changelog</i>."
+#~ msgstr ""
+#~ "На цій панелі буде показано усі дані пакунка, зокрема <i>опис</i>, "
+#~ "<i>адресу</i>, <i>сховище</i>, <i>вимоги</i>, <i>список файлів</i> та "
+#~ "<i>журнал змін</i>."
+
+#~ msgid ""
+#~ "<li><b>Select all</b>: if package are filtered for updates only this "
+#~ "button allows to select all the packages in one shot.</li>"
+#~ msgstr ""
+#~ "<li><b>Позначити усі</b>: якщо пакунки фільтровано так, що у списку "
+#~ "показано лише пакунки з оновленнями, за допомогою натискання цієї кнопки "
+#~ "можна позначити усі пакунки одним клацанням кнопки миші.</li>"
+
+#~ msgid "Software Management"
+#~ msgstr "Керування програмами"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Ще не реалізовано"
+
+#~ msgid "Building Transaction error"
+#~ msgstr "Помилка під час побудови операції"
+
+#~ msgid "Layout"
+#~ msgstr "Компонування"
+
+#~ msgid "History Packages"
+#~ msgstr "Журнал пакунків"
+
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Поточне обмеження на рекурсію: %s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Збільшено обмеження на рекурсію до %s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
+
+#~ msgid "Error in transaction\n"
+#~ msgid_plural "Errors in transaction\n"
+#~ msgstr[0] "Помилка під час виконання дії\n"
+#~ msgstr[1] "Помилки під час виконання дії\n"
+#~ msgstr[2] "Помилки під час виконання дії\n"
+#~ msgstr[3] "Помилка під час виконання дії\n"
+
+#~ msgid "Downloading error\n"
+#~ msgid_plural "Downloading errors\n"
+#~ msgstr[0] "Помилка під час отримання\n"
+#~ msgstr[1] "Помилки під час отримання\n"
+#~ msgstr[2] "Помилки під час отримання\n"
+#~ msgstr[3] "Помилка під час отримання\n"
+
+#~ msgid "Error checking package signatures\n"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "Позна&чити всі"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Некерована подія"
+
+#~ msgid "Search"
+#~ msgstr "Пошук"
+
+#~ msgid "Enable debug log level"
+#~ msgstr "Увімкнути рівень діагностики у журналі"
+
+#~ msgid "Log options on next startup"
+#~ msgstr "Параметри журналювання при наступному запуску"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Не показувати панель груп після наступного запуску"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Показувати оновлення після наступного запуску"
+
+#~ msgid "Layout options"
+#~ msgstr "Параметри компонування"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Інтервал у хвилинах між пошуками оновлень:"
+
+#~ msgid "History undo"
+#~ msgstr "Журнал скасовування"
+
+#~ msgid ""
+#~ "DNF is locked by another process.\n"
+#~ "\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF заблоковано іншим процесом.\n"
+#~ "\n"
+#~ "dnfdragora завершить роботу."
+
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Модуль DNF не уповноважено для роботи від імені root.\n"
+#~ "dnfdragora завершить роботу."
+
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Не вдалося освіжити кеш DNF (root)"
+
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Помилка побудови дії"
+
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Невідома дія %s над %s"
