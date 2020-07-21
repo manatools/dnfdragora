@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# fri, 2020
 # Luděk Janča <joelp@email.cz>, 2020
+# fri, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
+"Last-Translator: fri, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -746,7 +746,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "balíček nemá žádné %s atributy"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -754,7 +754,7 @@ msgstr "Ukládání skupin z balíčků do vyrovnávací paměti..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Probíhá vykonání příkazu"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1287,51 +1287,51 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Jít na rejstřík"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Řádek hlavní nabídky"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filtry a vyhledávací řádek"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Panel skupiny"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Panel balíčku"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Panel informací"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Řádek s postupem"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Řádek tlačítka"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Nabídka soubor"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Nabídka informace"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Nabídka volby"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Nabídka nápověda"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
@@ -1358,7 +1358,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Obsah nabídkového pruhu"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
@@ -1366,11 +1366,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Nabídka soubor"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Nulovat výběr</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
@@ -1380,7 +1380,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Obnovit popisná data</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1391,7 +1391,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Repozitáře</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1402,7 +1402,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Ukončit</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
@@ -1410,11 +1410,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Nabídka informace"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Historie</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1431,11 +1431,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Nabídka volby"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Uživatelská nastavení</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1446,7 +1446,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "Dialog"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1464,7 +1464,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Systémové volby</h2>"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1487,7 +1487,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti rozložení</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1509,7 +1509,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti hledání</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1526,7 +1526,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti přihlášení</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1547,11 +1547,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Nabídka nápověda"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Příručka</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
@@ -1559,7 +1559,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>O rogramu</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
@@ -1567,11 +1567,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Zobrazení a hledání"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Zobrazení</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -2028,12 +2028,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "Software Management"
-#~ msgstr "Správa softwaru"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Zatím neuděláno"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Neznámá činnost %s na %s"
