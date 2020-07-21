@@ -62,7 +62,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       'home': '<h1>DNFDragora</h1>%s<br>%s'%(
         _("dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora yumex-dnf interaction with dnfdaemon.<br><br>") + \
         _("dnfdragora is basically a package manager user interface that allows to install, update, remove, search packages and more.<br><br>") + \
-        _("dnfdragora is part of manatools and it is based on libyui so that it can work using Gtk, Qt or ncureses, e.g. both graphical and textual user interfaces.<br><br>") +\
+        _("dnfdragora is part of manatools and it is based on libyui so that it can work using Gtk, Qt or ncurses, e.g. both graphical and textual user interfaces.<br><br>") +\
         _("dnfdragora window is comprised of:"),
         index
       ),
@@ -85,7 +85,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>Refresh metadata</h2>') +\
           _('This menu send a request to dnfdaemon to force a refresh of all the meta data. This action is asynchronous and requires to rebuild package information cache.<br>') +\
         _('<h2>Repositories</h2>') +\
-          _('This menu opens a dialog that allows to enable or disable repositories. Any changes is valid for the time dnfdragora is running and it is not permanent.<br>')+\
+          _('This menu opens a dialog that allows to enable or disable repositories. Any changes are valid for the time dnfdragora is running and it is not permanent.<br>')+\
         _('<h2>Quit</h2>') +\
           _('This menu exits from dnfdragora.<br>'),
         # back home
@@ -116,8 +116,8 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # title
         _('User preferences'),
         # help
-        _('This dialog allows to customize dnfdragora behavior by changing options. Some changes are available after closing the dialog others need a dnfdragora restart.<br><br>') + \
-        _('<b>NOTE: Apply</b> button must be pressed to make changes permanent and availble, any other way to close the dialog is the same as pressing <i>Cancel</i> button.') + \
+        _('This dialog allows to customize dnfdragora behavior by changing options. Some changes are available after closing the dialog, others need a dnfdragora restart.<br><br>') + \
+        _('<b>NOTE: Apply</b> button must be pressed to make changes permanent and available, any other way to close the dialog is the same as pressing <i>Cancel</i> button.') + \
         _('<h2>System options</h2>') + \
           _('<ul><li><b>Proceed without asking for confirmation</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering <i>yes</i></li>') + \
           _('<li><b>Interval to check for updates</b>: the given number represents when dnfdragora needs to check for updates, value is expressed in minutes</li>') + \
@@ -127,7 +127,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
           _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
         _('<h2>Search options</h2>') + \
-          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newst packages on search. <i>Note that is valid if searches are not performed by using regular expressions</i></li>') + \
+          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newest packages on search. <i>Note that is valid if searches are not performed by using regular expressions</i></li>') + \
           _('<li><b>Match all words</b>: if checked a search without using regular expressions will match all the given words into the text field.</li></ul>') + \
         _('<h2>Logging options</h2>') + \
           _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \
@@ -156,7 +156,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Views and search'),
         # help
         _('<h2>Views</h2>') +\
-          _('First combobox allows to show packages by groups. If <i>Groups</i> is selected group panel shows a tree view containing groups. while selecting a group shows related packages into package panel.') + \
+          _('First combobox allows to show packages by groups. If <i>Groups</i> is selected group panel shows a tree view containing groups, while selecting a group shows related packages into package panel.') + \
           _('If <i>All</i> is selected, package panel contains all the packages.') + \
         _('<h2>Filters</h2>') +\
           _('Filter combobox allows to filter packages shown into package panel by:') + \
