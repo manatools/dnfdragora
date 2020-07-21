@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 19:27+0300\n"
+"POT-Creation-Date: 2020-07-21 20:09+0300\n"
 "PO-Revision-Date: 2020-07-11 08:46+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1345,7 +1345,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:65
 msgid ""
 "dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
+"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
 
@@ -1489,7 +1489,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
-"i> filter active, e.g. showing only package available for updates if any.</"
+"i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
 
@@ -1599,7 +1599,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
-"<li><b>To updates</b>: shows packages that are available for updates only.</"
+"<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
 
@@ -1611,7 +1611,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
-"<li><b>All</b>: shows all the packages, e.g. available, updates and "
+"<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
 
@@ -1628,7 +1628,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
-"A special checkbox <i>RegExp</i> is used to look for packages by python "
+"A special checkbox <i>Use regexp</i> is used to look for packages by python "
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
@@ -1640,7 +1640,7 @@ msgid ""
 msgstr ""
 
 #: dnfdragora/helpinfo.py:172
-msgid "<i>Clear</i> button resets search text field."
+msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
 
 #: dnfdragora/helpinfo.py:182
@@ -1666,7 +1666,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:203
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
-"<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
+"<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
 
@@ -1699,7 +1699,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
-"<li><b>Select all</b>: if package are filtered for updates only this button "
+"<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
 
@@ -2026,35 +2026,21 @@ msgstr ""
 "przy użyciu interfejsów Qt 5, GTK+ 3, lub ncurses. Zapewnia nakładkę dla "
 "zarządzania pakietami DNF, którą można używać w dowolnym środowisku."
 
-#~ msgid "Software Management"
-#~ msgstr "Zarządzanie oprogramowaniem"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Nieznane działanie %s na %s"
 
-#~ msgid "Not implemented yet"
-#~ msgstr "Jeszcze niezaimplementowane"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Nie udała się transakcja budowania"
 
-#~ msgid "Ch&eck all"
-#~ msgstr "&Zaznacz wszystko"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nie można odświeżyć pamięci podręcznej DNF (root)"
 
-#~ msgid "Unmanaged event"
-#~ msgstr "Niezarządzane zdarzenie"
-
-#~ msgid "Search"
-#~ msgstr "Szukaj"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Nie pokazuj widoku grup przy następnym uruchomieniu"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Pokaż uaktualnienia przy następnym uruchomieniu"
-
-#~ msgid "Layout options"
-#~ msgstr "Ustawienia układu"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Częstość sprawdzania uaktualnień, w minutach:"
-
-#~ msgid "History undo"
-#~ msgstr "Wycofaj historię"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Główny silnik DNF nie został uwierzytelniony.\n"
+#~ "dnfdragora zakończy teraz działanie"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2065,18 +2051,32 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora zakończy teraz działanie"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Główny silnik DNF nie został uwierzytelniony.\n"
-#~ "dnfdragora zakończy teraz działanie"
+#~ msgid "History undo"
+#~ msgstr "Wycofaj historię"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nie można odświeżyć pamięci podręcznej DNF (root)"
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Częstość sprawdzania uaktualnień, w minutach:"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Nie udała się transakcja budowania"
+#~ msgid "Layout options"
+#~ msgstr "Ustawienia układu"
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Nieznane działanie %s na %s"
+#~ msgid "Show updates next startup"
+#~ msgstr "Pokaż uaktualnienia przy następnym uruchomieniu"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Nie pokazuj widoku grup przy następnym uruchomieniu"
+
+#~ msgid "Search"
+#~ msgstr "Szukaj"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Niezarządzane zdarzenie"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "&Zaznacz wszystko"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Jeszcze niezaimplementowane"
+
+#~ msgid "Software Management"
+#~ msgstr "Zarządzanie oprogramowaniem"

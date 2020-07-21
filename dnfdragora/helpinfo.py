@@ -62,7 +62,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       'home': '<h1>DNFDragora</h1>%s<br>%s'%(
         _("dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora yumex-dnf interaction with dnfdaemon.<br><br>") + \
         _("dnfdragora is basically a package manager user interface that allows to install, update, remove, search packages and more.<br><br>") + \
-        _("dnfdragora is part of manatools and it is based on libyui so that it can work using Gtk, Qt or ncurses, e.g. both graphical and textual user interfaces.<br><br>") +\
+        _("dnfdragora is part of manatools and it is based on libyui so that it can work using Gtk, Qt or ncurses, i.e. both graphical and textual user interfaces.<br><br>") +\
         _("dnfdragora window is comprised of:"),
         index
       ),
@@ -123,7 +123,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<li><b>Interval to check for updates</b>: the given number represents when dnfdragora needs to check for updates, value is expressed in minutes</li>') + \
           _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
         _('<h2>Layout options</h2>') + \
-          _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, e.g. showing only package available for updates if any.</li>') + \
+          _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, i.e. showing only package available for updates if any.</li>') + \
           _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
           _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
         _('<h2>Search options</h2>') + \
@@ -162,14 +162,14 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('Filter combobox allows to filter packages shown into package panel by:') + \
             _('<ul><li><b>Installed</b>: shows installed packages only.</li>') + \
             _('<li><b>Not installed</b>: shows available packages only.</li>') + \
-            _('<li><b>To updates</b>: shows packages that are available for updates only.</li>') + \
+            _('<li><b>To update</b>: shows packages that are available for updates only.</li>') + \
             _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
-            _('<li><b>All</b>: shows all the packages, e.g. available, updates and installed.</li></ul>') + \
+            _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li></ul>') + \
         _('<h2>Search</h2>') +\
           _('Search is performed by pressing <i>Search</i> button if text field is filled. Search combobox allows to search given text into package <i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>.') + \
-          _('A special checkbox <i>RegExp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
+          _('A special checkbox <i>Use regexp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
           _('<i>Note</i> that if regular expressions are used to search by names full package filename with version is used.') + \
-          _('<i>Clear</i> button resets search text field.') + \
+          _('The <i>Clear search</i> button resets search text field.') + \
         '<br>',
         # back home
         home_lnk,
@@ -200,7 +200,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # title
         _('Information panel'),
         # help
-        _('This panel shows all the package information such as <i>description</i>, <i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and <i>changelog</i>.') + \
+        _('This panel shows all the package information such as <i>description</i>, <i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and <i>changelog</i>.') + \
         _('<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</i>') + \
         '<br>',
         # back home
@@ -222,7 +222,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Buttons line'),
         # help
         _('<ul><li><b>Apply</b>: when some packages are selected for installing or updating or deselected for uninstalling this button runs the transaction to be performed.</li>') + \
-        _('<li><b>Select all</b>: if package are filtered for updates only this button allows to select all the packages in one shot.</li>') + \
+        _('<li><b>Select all</b>: if packages are filtered for updates only this button allows to select all the packages in one shot.</li>') + \
         _('<li><b>Quit</b>: exits from dnfdragora.</li></ul>') + \
         '<br>',
         # back home

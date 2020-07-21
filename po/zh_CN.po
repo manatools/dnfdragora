@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 19:27+0300\n"
+"POT-Creation-Date: 2020-07-21 20:09+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: zwpwjwtz <zwpwjwtz@126.com>, 2018\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -1340,7 +1340,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:65
 msgid ""
 "dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
+"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
 
@@ -1484,7 +1484,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
-"i> filter active, e.g. showing only package available for updates if any.</"
+"i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
 
@@ -1594,7 +1594,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
-"<li><b>To updates</b>: shows packages that are available for updates only.</"
+"<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
 
@@ -1606,7 +1606,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
-"<li><b>All</b>: shows all the packages, e.g. available, updates and "
+"<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
 
@@ -1623,7 +1623,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
-"A special checkbox <i>RegExp</i> is used to look for packages by python "
+"A special checkbox <i>Use regexp</i> is used to look for packages by python "
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
@@ -1635,7 +1635,7 @@ msgid ""
 msgstr ""
 
 #: dnfdragora/helpinfo.py:172
-msgid "<i>Clear</i> button resets search text field."
+msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
 
 #: dnfdragora/helpinfo.py:182
@@ -1661,7 +1661,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:203
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
-"<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
+"<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
 
@@ -1694,7 +1694,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
-"<li><b>Select all</b>: if package are filtered for updates only this button "
+"<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
 
@@ -2019,35 +2019,18 @@ msgstr ""
 "Qt5、GTK+ 3 或 ncurses 接口。它为 DNF 软件包管理器提供了图形化前端，以便在多"
 "种系统环境中使用 DNF。"
 
-#~ msgid "Software Management"
-#~ msgstr "软件管理"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "构建事务失败"
 
-#~ msgid "Not implemented yet"
-#~ msgstr "尚未实现"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "无法更新 DNF 缓存（根节点）"
 
-#~ msgid "Ch&eck all"
-#~ msgstr "检查所有(&e)"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "事件未被管理"
-
-#~ msgid "Search"
-#~ msgstr "查找"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "下次启动时不显示组视图"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "下次启动时显示更新"
-
-#~ msgid "Layout options"
-#~ msgstr "布局选项"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "检查更新的间隔（单位是分钟）："
-
-#~ msgid "History undo"
-#~ msgstr "撤销历史"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF 根节点未被授权。\n"
+#~ "dnfdragora 将退出"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2058,15 +2041,32 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora 将退出"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF 根节点未被授权。\n"
-#~ "dnfdragora 将退出"
+#~ msgid "History undo"
+#~ msgstr "撤销历史"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "无法更新 DNF 缓存（根节点）"
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "检查更新的间隔（单位是分钟）："
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "构建事务失败"
+#~ msgid "Layout options"
+#~ msgstr "布局选项"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "下次启动时显示更新"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "下次启动时不显示组视图"
+
+#~ msgid "Search"
+#~ msgstr "查找"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "事件未被管理"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "检查所有(&e)"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "尚未实现"
+
+#~ msgid "Software Management"
+#~ msgstr "软件管理"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 19:27+0300\n"
+"POT-Creation-Date: 2020-07-21 20:09+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2020\n"
 "Language-Team: Estonian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1345,7 +1345,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:65
 msgid ""
 "dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
+"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
 
@@ -1489,7 +1489,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
-"i> filter active, e.g. showing only package available for updates if any.</"
+"i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
 
@@ -1599,7 +1599,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
-"<li><b>To updates</b>: shows packages that are available for updates only.</"
+"<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
 
@@ -1611,7 +1611,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
-"<li><b>All</b>: shows all the packages, e.g. available, updates and "
+"<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
 
@@ -1628,7 +1628,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
-"A special checkbox <i>RegExp</i> is used to look for packages by python "
+"A special checkbox <i>Use regexp</i> is used to look for packages by python "
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
@@ -1640,7 +1640,7 @@ msgid ""
 msgstr ""
 
 #: dnfdragora/helpinfo.py:172
-msgid "<i>Clear</i> button resets search text field."
+msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
 
 #: dnfdragora/helpinfo.py:182
@@ -1666,7 +1666,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:203
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
-"<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
+"<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
 
@@ -1699,7 +1699,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
-"<li><b>Select all</b>: if package are filtered for updates only this button "
+"<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
 
@@ -2026,11 +2026,11 @@ msgstr ""
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
 
-#~ msgid "Software Management"
-#~ msgstr "Tarkvarahaldur"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Tundmatu toiming %s  %s-ga"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Ei ole veel võimalik"
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Tundmatu toiming %s  %s-ga"
+#~ msgid "Software Management"
+#~ msgstr "Tarkvarahaldur"

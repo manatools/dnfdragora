@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 19:27+0300\n"
+"POT-Creation-Date: 2020-07-21 20:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Egoitz Rodriguez Obieta <egoitzro@gmail.com>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1351,7 +1351,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:65
 msgid ""
 "dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
+"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
 
@@ -1495,7 +1495,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
-"i> filter active, e.g. showing only package available for updates if any.</"
+"i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
 
@@ -1605,7 +1605,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
-"<li><b>To updates</b>: shows packages that are available for updates only.</"
+"<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
 
@@ -1617,7 +1617,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
-"<li><b>All</b>: shows all the packages, e.g. available, updates and "
+"<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
 
@@ -1634,7 +1634,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
-"A special checkbox <i>RegExp</i> is used to look for packages by python "
+"A special checkbox <i>Use regexp</i> is used to look for packages by python "
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
@@ -1646,7 +1646,7 @@ msgid ""
 msgstr ""
 
 #: dnfdragora/helpinfo.py:172
-msgid "<i>Clear</i> button resets search text field."
+msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
 
 #: dnfdragora/helpinfo.py:182
@@ -1672,7 +1672,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:203
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
-"<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
+"<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
 
@@ -1705,7 +1705,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
-"<li><b>Select all</b>: if package are filtered for updates only this button "
+"<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
 
@@ -2026,32 +2026,18 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "Software Management"
-#~ msgstr "Software kudeaketa"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "BuildTransaction hutsegitea"
 
-#~ msgid "Not implemented yet"
-#~ msgstr "Ez da oraindik ezarri"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Ezin izan da DNF cachea freskatu (root)"
 
-#~ msgid "Layout"
-#~ msgstr "Diseinua"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "B&egiratu guztiak"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Kudeatu gabeko gertaera"
-
-#~ msgid "Search"
-#~ msgstr "Bilatu"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ez erakutsi talde ikuspegia hurrengo abiaraztean"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Erakutsi eguneraketak hurrengo abiaraztean"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Tartea minututan eguneratzeak egiaztatzeko:"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNFren root-backend-a ez da baimendu.\n"
+#~ "Mandragora orain irtengo da."
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2062,15 +2048,29 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora irtengo da"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNFren root-backend-a ez da baimendu.\n"
-#~ "Mandragora orain irtengo da."
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Tartea minututan eguneratzeak egiaztatzeko:"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Ezin izan da DNF cachea freskatu (root)"
+#~ msgid "Show updates next startup"
+#~ msgstr "Erakutsi eguneraketak hurrengo abiaraztean"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "BuildTransaction hutsegitea"
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Ez erakutsi talde ikuspegia hurrengo abiaraztean"
+
+#~ msgid "Search"
+#~ msgstr "Bilatu"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Kudeatu gabeko gertaera"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "B&egiratu guztiak"
+
+#~ msgid "Layout"
+#~ msgstr "Diseinua"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Ez da oraindik ezarri"
+
+#~ msgid "Software Management"
+#~ msgstr "Software kudeaketa"
