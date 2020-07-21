@@ -1604,7 +1604,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.infobar.info_sub(const.RPM_ACTIONS[action] % name)
         except KeyError:
           logger.error('OnRPMProgress: unknown action %s', action)
-          self.infobar.info_sub(_("Unknown action %s on %s")%(action, name))
+          self.infobar.info_sub(_("Unknown action %(action)s on %(name)s")%({'action':action, 'name':name}))
 
       if te_current > 0 and te_current <= te_total:
           frac = float(te_current) / float(te_total)
