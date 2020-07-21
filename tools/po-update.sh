@@ -38,6 +38,7 @@ POT_FILE="$POT_DIR/$DOMAIN.pot"
 	dnfdragora/misc.py \
 	dnfdragora/progress_ui.py \
 	dnfdragora/ui.py \
+	dnfdragora/helpinfo.py \
 	dnfdragora/updater.py
 /usr/bin/xgettext \
 	-j \
