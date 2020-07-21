@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: zwpwjwtz <zwpwjwtz@126.com>, 2018\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -1432,7 +1432,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1660,7 +1660,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2019,18 +2019,35 @@ msgstr ""
 "Qt5、GTK+ 3 或 ncurses 接口。它为 DNF 软件包管理器提供了图形化前端，以便在多"
 "种系统环境中使用 DNF。"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "构建事务失败"
+#~ msgid "Software Management"
+#~ msgstr "软件管理"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "无法更新 DNF 缓存（根节点）"
+#~ msgid "Not implemented yet"
+#~ msgstr "尚未实现"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF 根节点未被授权。\n"
-#~ "dnfdragora 将退出"
+#~ msgid "Ch&eck all"
+#~ msgstr "检查所有(&e)"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "事件未被管理"
+
+#~ msgid "Search"
+#~ msgstr "查找"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "下次启动时不显示组视图"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "下次启动时显示更新"
+
+#~ msgid "Layout options"
+#~ msgstr "布局选项"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "检查更新的间隔（单位是分钟）："
+
+#~ msgid "History undo"
+#~ msgstr "撤销历史"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2041,32 +2058,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora 将退出"
 
-#~ msgid "History undo"
-#~ msgstr "撤销历史"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF 根节点未被授权。\n"
+#~ "dnfdragora 将退出"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "检查更新的间隔（单位是分钟）："
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "无法更新 DNF 缓存（根节点）"
 
-#~ msgid "Layout options"
-#~ msgstr "布局选项"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "下次启动时显示更新"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "下次启动时不显示组视图"
-
-#~ msgid "Search"
-#~ msgstr "查找"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "事件未被管理"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "检查所有(&e)"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "尚未实现"
-
-#~ msgid "Software Management"
-#~ msgstr "软件管理"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "构建事务失败"

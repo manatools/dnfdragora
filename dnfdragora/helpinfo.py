@@ -108,7 +108,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Option Menu'),
         # help
         _('<h2>User preferences</h2>') +\
-        _('This menu opens a %s containing user settings tu customize dnfdragora behavior.<br>'%(self._formatLink(_("dialog"), 'user_prefs_dlg'))),
+        _('This menu opens a %s containing user settings to customize dnfdragora behavior.<br>'%(self._formatLink(_("dialog"), 'user_prefs_dlg'))),
         # back home
         home_lnk,
       ),
@@ -200,7 +200,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # title
         _('Information panel'),
         # help
-        _('This panel shows all the package information such as <i>desciption</i>, <i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and <i>changelog</i>.') + \
+        _('This panel shows all the package information such as <i>description</i>, <i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and <i>changelog</i>.') + \
         _('<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</i>') + \
         '<br>',
         # back home

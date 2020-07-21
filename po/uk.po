@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
-"PO-Revision-Date: 2020-06-15 18:31+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
+"PO-Revision-Date: 2020-07-21 19:25+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -745,7 +745,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "пакунок не має ніяких атрибутів %s"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -753,7 +753,7 @@ msgstr "Кешуємо групи з пакунків… "
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Виконуємо команду"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1286,63 +1286,68 @@ msgstr "Тенета/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Перейти до покажчика"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Рядок меню"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Рядок фільтрування та пошуку"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Панель груп"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Панель пакунків"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Інформаційна панель"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Рядок смужки поступу"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Рядок кнопок"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Меню «Файл»"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Меню «Інформація»"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Меню «Параметри»"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Меню «Довідка»"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora — оболонка DNF на основі компонування rpmdragora у Mageia і "
+"взаємодії із yumex-dnf з dnfdaemon у Fedora.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora — в основному, інтерфейс користувача до засобу керування "
+"пакунками. Цей інтерфейс уможливлює встановлення, оновлення, вилучення, "
+"пошук пакунків та виконання інших завдань.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1350,26 +1355,29 @@ msgid ""
 "work using Gtk, Qt or ncurses, e.g. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora є частиною комплекту manatools. Програму засновано на libyui, "
+"отже вона може працювати із використанням Gtk, Qt або ncurses, тобто "
+"одночасно графічного та текстового інтерфейсів.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "Вікно dnfdragora складається з таких елементів:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Вміст смужки меню"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Смужка меню dnfdragora складається із таких спадних меню:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Меню «Файл»"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Скидання позначеного</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
@@ -1379,7 +1387,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Оновити метадані</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1390,7 +1398,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Сховища</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1401,19 +1409,19 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Вийти</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "За допомогою цього пункту меню можна вийти з dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Меню «Інформація»"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Журнал</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1430,22 +1438,22 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Меню «Параметри»"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Налаштування користувача</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "діалогове вікно"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1463,7 +1471,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Параметри системи</h2>"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1471,6 +1479,9 @@ msgid ""
 "transactions do not need to be confirmed, dnfdragora works as answering "
 "<i>yes</i></li>"
 msgstr ""
+"<ul><li><b>Продовжити без підтвердження</b>: якщо позначено, підтверджувати "
+"виконання дій не потрібно. dnfdragora працюватиме так, наче ви відповіли "
+"<i>так</i>.</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -1486,7 +1497,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Параметри компонування</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1508,7 +1519,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Параметри пошуку</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1525,7 +1536,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Параметри записування журналу</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1546,31 +1557,31 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Меню «Довідка»"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Підручник</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Це пункт меню відкриває діалогове вікно довідки до dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Про програму</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Цей пункт меню відкриває діалогове вікно із даними щодо dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Перегляди і пошук"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Перегляди</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1585,7 +1596,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Фільтри</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
@@ -1619,7 +1630,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Шукати</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1667,7 +1678,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -1680,7 +1691,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Панель поступу"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
@@ -1690,7 +1701,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Рядок кнопок"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1707,7 +1718,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Вийти</b>: вийти з dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1803,7 +1814,7 @@ msgstr "у назвах файлів"
 
 #: dnfdragora/ui.py:556
 msgid "Use regexp"
-msgstr ""
+msgstr "Формальний вираз"
 
 #: dnfdragora/ui.py:560
 msgid "&Search"
@@ -1843,7 +1854,7 @@ msgstr "&Інформація"
 
 #: dnfdragora/ui.py:610
 msgid "&History"
-msgstr ""
+msgstr "&Журнал"
 
 #: dnfdragora/ui.py:618
 msgid "&Options"
@@ -1930,7 +1941,7 @@ msgstr "Будуємо операцію"
 #: dnfdragora/ui.py:1607
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Невідома дія %(action)s над %(name)s"
 
 #: dnfdragora/ui.py:1632
 #, python-format
@@ -1959,11 +1970,11 @@ msgstr "Помилка під час побудови операції"
 
 #: dnfdragora/ui.py:1759
 msgid "GPG key missing"
-msgstr ""
+msgstr "Пропущено ключ GPG"
 
 #: dnfdragora/ui.py:1883
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Помилка пошуку із використанням формального виразу"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -2031,21 +2042,82 @@ msgstr ""
 "ncurses. Вона забезпечує роботу оболонки програми для керування пакунками "
 "DNF, якою можна скористатися у будь-якому типі системного середовища."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Невідома дія %s над %s"
+#~ msgid "Software Management"
+#~ msgstr "Керування програмами"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Помилка побудови дії"
+#~ msgid "Not implemented yet"
+#~ msgstr "Ще не реалізовано"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Не вдалося освіжити кеш DNF (root)"
+#~ msgid "Building Transaction error"
+#~ msgstr "Помилка під час побудови операції"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Модуль DNF не уповноважено для роботи від імені root.\n"
-#~ "dnfdragora завершить роботу."
+#~ msgid "Layout"
+#~ msgstr "Компонування"
+
+#~ msgid "History Packages"
+#~ msgstr "Журнал пакунків"
+
+#~ msgid "Current recursion limit: %s"
+#~ msgstr "Поточне обмеження на рекурсію: %s"
+
+#~ msgid "Raised recursion limit to: %s"
+#~ msgstr "Збільшено обмеження на рекурсію до %s"
+
+#~ msgid "dnfdaemon client error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
+
+#~ msgid "dnfdaemon name error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
+
+#~ msgid "dnfdaemon attribute error occurred:%s%s"
+#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
+
+#~ msgid "Error in transaction\n"
+#~ msgid_plural "Errors in transaction\n"
+#~ msgstr[0] "Помилка під час виконання дії\n"
+#~ msgstr[1] "Помилки під час виконання дії\n"
+#~ msgstr[2] "Помилки під час виконання дії\n"
+#~ msgstr[3] "Помилка під час виконання дії\n"
+
+#~ msgid "Downloading error\n"
+#~ msgid_plural "Downloading errors\n"
+#~ msgstr[0] "Помилка під час отримання\n"
+#~ msgstr[1] "Помилки під час отримання\n"
+#~ msgstr[2] "Помилки під час отримання\n"
+#~ msgstr[3] "Помилка під час отримання\n"
+
+#~ msgid "Error checking package signatures\n"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "Позна&чити всі"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Некерована подія"
+
+#~ msgid "Search"
+#~ msgstr "Пошук"
+
+#~ msgid "Enable debug log level"
+#~ msgstr "Увімкнути рівень діагностики у журналі"
+
+#~ msgid "Log options on next startup"
+#~ msgstr "Параметри журналювання при наступному запуску"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Не показувати панель груп після наступного запуску"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Показувати оновлення після наступного запуску"
+
+#~ msgid "Layout options"
+#~ msgstr "Параметри компонування"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Інтервал у хвилинах між пошуками оновлень:"
+
+#~ msgid "History undo"
+#~ msgstr "Журнал скасовування"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2056,79 +2128,18 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora завершить роботу."
 
-#~ msgid "History undo"
-#~ msgstr "Журнал скасовування"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Модуль DNF не уповноважено для роботи від імені root.\n"
+#~ "dnfdragora завершить роботу."
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Інтервал у хвилинах між пошуками оновлень:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Не вдалося освіжити кеш DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Параметри компонування"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Помилка побудови дії"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Показувати оновлення після наступного запуску"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Не показувати панель груп після наступного запуску"
-
-#~ msgid "Log options on next startup"
-#~ msgstr "Параметри журналювання при наступному запуску"
-
-#~ msgid "Enable debug log level"
-#~ msgstr "Увімкнути рівень діагностики у журналі"
-
-#~ msgid "Search"
-#~ msgstr "Пошук"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Некерована подія"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Позна&чити всі"
-
-#~ msgid "Error checking package signatures\n"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків\n"
-
-#~ msgid "Downloading error\n"
-#~ msgid_plural "Downloading errors\n"
-#~ msgstr[0] "Помилка під час отримання\n"
-#~ msgstr[1] "Помилки під час отримання\n"
-#~ msgstr[2] "Помилки під час отримання\n"
-#~ msgstr[3] "Помилка під час отримання\n"
-
-#~ msgid "Error in transaction\n"
-#~ msgid_plural "Errors in transaction\n"
-#~ msgstr[0] "Помилка під час виконання дії\n"
-#~ msgstr[1] "Помилки під час виконання дії\n"
-#~ msgstr[2] "Помилки під час виконання дії\n"
-#~ msgstr[3] "Помилка під час виконання дії\n"
-
-#~ msgid "dnfdaemon attribute error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка атрибута:%s%s"
-
-#~ msgid "dnfdaemon name error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка назви:%s%s"
-
-#~ msgid "dnfdaemon client error occurred:%s%s"
-#~ msgstr "dnfdaemon, сталася помилка клієнта:%s%s"
-
-#~ msgid "Raised recursion limit to: %s"
-#~ msgstr "Збільшено обмеження на рекурсію до %s"
-
-#~ msgid "Current recursion limit: %s"
-#~ msgstr "Поточне обмеження на рекурсію: %s"
-
-#~ msgid "History Packages"
-#~ msgstr "Журнал пакунків"
-
-#~ msgid "Layout"
-#~ msgstr "Компонування"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Помилка під час побудови операції"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ще не реалізовано"
-
-#~ msgid "Software Management"
-#~ msgstr "Керування програмами"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Невідома дія %s над %s"

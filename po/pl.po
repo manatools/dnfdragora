@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: 2020-07-11 08:46+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1437,7 +1437,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1665,7 +1665,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2026,21 +2026,35 @@ msgstr ""
 "przy użyciu interfejsów Qt 5, GTK+ 3, lub ncurses. Zapewnia nakładkę dla "
 "zarządzania pakietami DNF, którą można używać w dowolnym środowisku."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Nieznane działanie %s na %s"
+#~ msgid "Software Management"
+#~ msgstr "Zarządzanie oprogramowaniem"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Nie udała się transakcja budowania"
+#~ msgid "Not implemented yet"
+#~ msgstr "Jeszcze niezaimplementowane"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nie można odświeżyć pamięci podręcznej DNF (root)"
+#~ msgid "Ch&eck all"
+#~ msgstr "&Zaznacz wszystko"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Główny silnik DNF nie został uwierzytelniony.\n"
-#~ "dnfdragora zakończy teraz działanie"
+#~ msgid "Unmanaged event"
+#~ msgstr "Niezarządzane zdarzenie"
+
+#~ msgid "Search"
+#~ msgstr "Szukaj"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Nie pokazuj widoku grup przy następnym uruchomieniu"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Pokaż uaktualnienia przy następnym uruchomieniu"
+
+#~ msgid "Layout options"
+#~ msgstr "Ustawienia układu"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Częstość sprawdzania uaktualnień, w minutach:"
+
+#~ msgid "History undo"
+#~ msgstr "Wycofaj historię"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2051,32 +2065,18 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora zakończy teraz działanie"
 
-#~ msgid "History undo"
-#~ msgstr "Wycofaj historię"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Główny silnik DNF nie został uwierzytelniony.\n"
+#~ "dnfdragora zakończy teraz działanie"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Częstość sprawdzania uaktualnień, w minutach:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nie można odświeżyć pamięci podręcznej DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Ustawienia układu"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Nie udała się transakcja budowania"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Pokaż uaktualnienia przy następnym uruchomieniu"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Nie pokazuj widoku grup przy następnym uruchomieniu"
-
-#~ msgid "Search"
-#~ msgstr "Szukaj"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Niezarządzane zdarzenie"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Zaznacz wszystko"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Jeszcze niezaimplementowane"
-
-#~ msgid "Software Management"
-#~ msgstr "Zarządzanie oprogramowaniem"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Nieznane działanie %s na %s"

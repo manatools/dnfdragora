@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Ardit Dani <ardit.dani@gmail.com>, 2019\n"
 "Language-Team: Albanian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1439,7 +1439,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1667,7 +1667,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2028,18 +2028,32 @@ msgstr ""
 "ncurses. Ai siguron një frontend për administrimin e paketave DNF qç mund të "
 "përdoret në çdo lloj mjedisi të sistemit."
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Dështim NdërtimTransaksioni"
+#~ msgid "Software Management"
+#~ msgstr "Administruesi Programeve"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nuk mund të rifreskoj depo DNF (root)"
+#~ msgid "Not implemented yet"
+#~ msgstr "Ende pa zbatuar"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root ruajtja nuk ishte i autorizuar.\n"
-#~ "dnfdragora do të dalë"
+#~ msgid "Unmanaged event"
+#~ msgstr "Ngjarje pa-administruar"
+
+#~ msgid "Search"
+#~ msgstr "Kërko"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Mos shfaq pikëpamjen e grupeve në ndezjen tjetër"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Shfaq përditësimet në ndeshjen tjetër"
+
+#~ msgid "Layout options"
+#~ msgstr "Alternativa faqosje"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Intervali në minuta për të kontrolluar përditësimet:"
+
+#~ msgid "History undo"
+#~ msgstr "Zhbëj Historikun"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2050,29 +2064,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora do të dalë"
 
-#~ msgid "History undo"
-#~ msgstr "Zhbëj Historikun"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF root ruajtja nuk ishte i autorizuar.\n"
+#~ "dnfdragora do të dalë"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervali në minuta për të kontrolluar përditësimet:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nuk mund të rifreskoj depo DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Alternativa faqosje"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Shfaq përditësimet në ndeshjen tjetër"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Mos shfaq pikëpamjen e grupeve në ndezjen tjetër"
-
-#~ msgid "Search"
-#~ msgstr "Kërko"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Ngjarje pa-administruar"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ende pa zbatuar"
-
-#~ msgid "Software Management"
-#~ msgstr "Administruesi Programeve"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Dështim NdërtimTransaksioni"

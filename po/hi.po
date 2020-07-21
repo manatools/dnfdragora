@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Shashank Shekhar <shashank.9d@gmail.com>, 2017\n"
 "Language-Team: Hindi (https://www.transifex.com/MageiaLinux/teams/9361/hi/)\n"
@@ -1419,7 +1419,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1647,7 +1647,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2002,8 +2002,8 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "Search"
-#~ msgstr "खोजे"
-
 #~ msgid "Software Management"
 #~ msgstr "सॉफ़्टवेयर प्रबंधक"
+
+#~ msgid "Search"
+#~ msgstr "खोजे"

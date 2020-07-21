@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
@@ -1441,7 +1441,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1669,7 +1669,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2031,11 +2031,11 @@ msgstr ""
 "gerenciador de pacotes DNF que pode ser usado em qualquer tipo de ambiente "
 "de sistema."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Ação desconhecida 1%s on 1%s"
+#~ msgid "Software Management"
+#~ msgstr "Gerenciamento de Software"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Ainda não implementado"
 
-#~ msgid "Software Management"
-#~ msgstr "Gerenciamento de Software"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Ação desconhecida 1%s on 1%s"

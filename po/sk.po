@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: retepsk <rvrao@centrum.cz>, 2020\n"
 "Language-Team: Slovak (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1440,7 +1440,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1668,7 +1668,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2029,11 +2029,11 @@ msgstr ""
 "alebo ncurses. Poskytuje rozhranie pre správcu balíkov DNF, ktoré je možné "
 "použiť v akomkoľvek prostredí systému."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Neznáma akcia %s na %s"
+#~ msgid "Software Management"
+#~ msgstr "Správa softvéru"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Zatial neurobené"
 
-#~ msgid "Software Management"
-#~ msgstr "Správa softvéru"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Neznáma akcia %s na %s"

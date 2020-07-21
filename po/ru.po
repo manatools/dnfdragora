@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 18:52+0300\n"
+"POT-Creation-Date: 2020-07-21 19:27+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1447,7 +1447,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:111
 #, python-format
 msgid ""
-"This menu opens a %s containing user settings tu customize dnfdragora "
+"This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
@@ -1675,7 +1675,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
-"This panel shows all the package information such as <i>desciption</i>, "
+"This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>. <i>requirements</i>, <i>file list</i> and "
 "<i>changelog</i>."
 msgstr ""
@@ -2040,17 +2040,17 @@ msgstr ""
 "управления пакетами DNF, которой можно воспользоваться в любом типе "
 "системной среды."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Неизвестное действие %s над %s"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Сбой транзакции сборки"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Ошибка построения транзакции"
+#~ msgid "Software Management"
+#~ msgstr "Управление программами"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Ещё не реализовано"
 
-#~ msgid "Software Management"
-#~ msgstr "Управление программами"
+#~ msgid "Building Transaction error"
+#~ msgstr "Ошибка построения транзакции"
+
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Сбой транзакции сборки"
+
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Неизвестное действие %s над %s"
