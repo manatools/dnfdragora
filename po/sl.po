@@ -754,7 +754,7 @@ msgstr "Predpomnenje skupin paketov …"
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Ukaz v teku"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1307,7 +1307,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Podatkovni pult"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
@@ -1319,19 +1319,19 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Meni datoteka"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Podatkovni meni"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Meni možnosti"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Meni s pomočjo"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
@@ -1370,7 +1370,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Ponastavi izbiro</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
@@ -1380,7 +1380,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Osveži metapodatke</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1391,7 +1391,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Skladišča paketov</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1410,11 +1410,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Podatkovni meni"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Zgodovina</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1431,11 +1431,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Meni možnosti"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Možnosti uporabnika</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1446,7 +1446,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "pogovorno okno"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1464,7 +1464,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Sistemske možnosti</h2>"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1487,7 +1487,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti videza</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1509,7 +1509,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti iskanja</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1526,7 +1526,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti beleženja</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1547,7 +1547,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Meni s pomočjo"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
@@ -1559,7 +1559,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>O programu</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
@@ -1586,7 +1586,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtri</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
@@ -1620,7 +1620,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Iskanje</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1681,7 +1681,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Vrstica napredka"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
@@ -1844,7 +1844,7 @@ msgstr "&Podatki"
 
 #: dnfdragora/ui.py:610
 msgid "&History"
-msgstr ""
+msgstr "&Zgodovina"
 
 #: dnfdragora/ui.py:618
 msgid "&Options"
@@ -1931,7 +1931,7 @@ msgstr "Transakcija izgradnje"
 #: dnfdragora/ui.py:1607
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Neznana akcija %(action)s na %(name)s"
 
 #: dnfdragora/ui.py:1632
 #, python-format
@@ -1960,7 +1960,7 @@ msgstr "Napaka transakcije izgradnje"
 
 #: dnfdragora/ui.py:1759
 msgid "GPG key missing"
-msgstr ""
+msgstr "Manjka ključ GPG"
 
 #: dnfdragora/ui.py:1883
 msgid "Search error using regular expression"
@@ -2030,12 +2030,3 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
-
-#~ msgid "Software Management"
-#~ msgstr "Upravljanje programja"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ni še podprto"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Neznana akcija %s na %s"
