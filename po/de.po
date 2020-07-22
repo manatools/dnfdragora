@@ -1771,6 +1771,9 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"In diesem Bereich werden alle Paketinformationen angezeigt, wie "
+"<i>Beschreibung</i>, <i>URL</i>, <i>Repository</i>, <i>Anforderungen</i>, "
+"<i>Datei Liste</i>, und <i>Änderungsprotokoll</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
