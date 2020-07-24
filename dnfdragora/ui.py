@@ -180,10 +180,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.itemList = {}
         self.appname = "dnfdragora"
         self._selPkg = None
-        self.md_update_interval = 48 # check any 48 hoursas default
+        self.md_update_interval = 48 # check any 48 hours as default
         self.md_last_refresh_date = None
         self._runtime_option_managed = False
-        # TODO... _package_name, _gpg_confirm impoorted from old event management
+        # TODO... _package_name, _gpg_confirm imported from old event management
         # Try to remove them when fixing progress bar
         self._package_name = None
         self._action_name = None
@@ -1072,7 +1072,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _showSearchResult(self, packages, createTreeItem=False):
       '''
-      Shows search result package list on pacakge view
+      Shows search result package list on package view
       if createTreeItem is True clears the table and rebuilds item list
       '''
       sel_pkg = self._selectedPackage()
@@ -1137,7 +1137,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
     def _searchPackages(self) :
         '''
         retrieves the info from search input field and from the search type list
-        to perform a paclage research and to fill the package list widget
+        to perform a package research and to fill the package list widget
 
         return False if an empty string used
         '''
@@ -1221,7 +1221,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     # imported)
                     while rc == 1:
                         logger.debug('GPG key missing: %s' % repr(result))
-                        # get info about gpgkey to be comfirmed
+                        # get info about gpgkey to be confirmed
                         values = self.backend._gpg_confirm
                         if values:  # There is a gpgkey to be verified
                             (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
@@ -1533,7 +1533,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar.set_progress(frac)
 
     def _OnTransactionEvent(self, event, data):
-      ''' Manage a transacton event'''
+      ''' Manage a transaction event'''
       values = (event, data)
       logger.debug('OnTransactionEvent: %s', repr(values))
 

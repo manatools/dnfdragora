@@ -173,7 +173,7 @@ class BaseDragora:
         sys.exit(1)
 
     def _parse_error(self, value):
-        """Parse values from a DBus releated exception."""
+        """Parse values from a DBus related exception."""
         res = const.DBUS_ERR_RE.match(str(value))
         if res:
             err = res.groups()[0]

@@ -86,7 +86,7 @@ class HistoryView:
                     states[state].append(pkg_list)
                 else:
                     states[state] = [pkg_list]
-            # pkgs with releatives
+            # pkgs with relatives
             for na in sorted(list(names_pair)):
                 pkg_list = names_pair[na]
                 pkg_id, state, is_inst = pkg_list[
@@ -284,7 +284,7 @@ class HistoryView:
 
     def run(self, data):
         '''
-        Populate the TreeView with data and rund the dialog
+        Populate the TreeView with data and run the dialog
         @param data: list of transaction information date
         @return if undo action has been performed
         '''
@@ -465,7 +465,7 @@ class AboutDialog:
         # logo        => the string providing the file path for the application logo (high-res image)
         # icon        => the string providing the file path for the application icon (low-res image)
         # credits     => the application credits, they can be html-formatted
-        # information => other extra informations, they can be html-formatted
+        # information => other extra information, it can be html-formatted
         # dialog_mode => 1: classic style dialog, any other as tabbed style dialog
         self.name    = parent.appname
         self.version = const.VERSION

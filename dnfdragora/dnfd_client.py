@@ -258,7 +258,7 @@ class DnfDaemonBase:
             raise DaemonError(str(err))
 
     def _parse_error(self):
-        '''parse values from a DBus releated exception '''
+        '''parse values from a DBus related exception '''
         (type, value, traceback) = sys.exc_info()
         res = DBUS_ERR_RE.match(str(value))
         if res:
@@ -602,7 +602,7 @@ class DnfDaemonBase:
             name: name prefix to match
             attr: a list of packages attributes to return (optional)
             newest_only: show only the newest match or every
-                                match (optinal).
+                                match (optional).
 
         Returns:
             list of [pkg_id, attr1, attr2, ...]
