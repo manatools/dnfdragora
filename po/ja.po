@@ -5,6 +5,7 @@
 #
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
+# ふうせん Fu-sen. | BALLOON a.k.a. Fu-sen., 2020
 # Masanori Kakura <kakurasan@gmail.com>, 2020
 #
 #, fuzzy
@@ -1279,7 +1280,7 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "インデックスに移動"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
@@ -2023,12 +2024,3 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
-
-#~ msgid "Software Management"
-#~ msgstr "ソフトウェアの管理"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "まだ実装されていません"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "不明なアクション %s 名前 %s"
