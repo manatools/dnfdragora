@@ -6,12 +6,12 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # 9d2429286e4b6db037855ee18ff950ea_21b1117 <e234ccd2dcb0d5482e17780be633a729_130514>, 2017
-# Egoitz Rodriguez <egoitzro@gmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # William Moreno <williamjmorenor@gmail.com>, 2018
+# Egoitz Rodriguez <egoitzro@gmail.com>, 2020
+# Jose Manuel López <joselp@disroot.org>, 2020
 # Miguel, 2020
 # José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
-# Jose Manuel López <joselp@disroot.org>, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 20:13+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Jose Manuel López <joselp@disroot.org>, 2020\n"
+"Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -36,15 +36,15 @@ msgstr "%(prog)s [opciones]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "Comenzando a usar complemento GTK+ de  yui"
+msgstr "Utilizando complemento GTK+ de  yui"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "Comenzando a usar complemento ncurses de yui"
+msgstr "Utilizando complemento ncurses de yui"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "Comenzando a usar complemento Qt de yui"
+msgstr "Utilizando  complemento Qt de yui"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
@@ -388,7 +388,7 @@ msgstr[1] "Errores en transacción"
 #: dnfdragora/dialogs.py:248 dnfdragora/dialogs.py:251 dnfdragora/ui.py:1264
 #: dnfdragora/ui.py:1267
 msgid "Build transaction failure"
-msgstr "Error de compilación de transacciones"
+msgstr "Error de construyendo transacción"
 
 #: dnfdragora/dialogs.py:251 dnfdragora/ui.py:1267
 #, python-format
@@ -748,7 +748,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "el paquete no tiene ningún atributo %s"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -756,7 +756,7 @@ msgstr "Almacenando grupos en caché desde paquetes..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Comando en progreso"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1289,63 +1289,67 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Ir al indice"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Linea de Menu"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filtros y linea de busqueda"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Panel de Grupo"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Panel de Paquete"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Panel de Información"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Barra de progreso"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Linea de Botones"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Menu de Archivo"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Menu de Información"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Menu de opciones"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Menu de Ayuda"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora es una interfaz para DNF, se basa en  el diseño de rpmdragora de "
+"Mageia y la interacción de  yumex-dnf de Fedora con dnfdaemon."
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"básicamente dnfdragora es una interfaz para administrar paquetes que permite "
+"instalar, actualizar, eliminar, buscar paquetes y más.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1353,36 +1357,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora es parte de manatools y se basa en libyui, por lo que puede "
+"utilizar Gtk, Qt o ncurses para la interfaz de usuario.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "la ventana de dnfdragora se compone de:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Contenido de la Barra de Menu"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "La Barra de Menu de dnfdragora contiene menus desplegables:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Menu de Archivo"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Limpiar selección</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Este menu elimina cualquier marca en los paquetes, si algún paquete se ha "
+"seleccionado para instalación o eliminación, regresaran a su estado previo."
+"<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Refrescar metadatos</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1390,10 +1399,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Este menu envía una petición a  dnfdaemon para forzar la renovación de todos "
+"los metadatos. Esta acción es asíncrona y requiere reconstruir la "
+"información del cache de paquetes.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Repositorios</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1401,22 +1413,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Este menu abre un dialogo que permite habilitar o deshabilitar repositorios. "
+"Cualquier cambio solo es valido mientras dnfdragora esta ejecutandose (no "
+"son permanentes).<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Salir</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Este menú sale de dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Menú de información"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Historial</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1424,20 +1439,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Este menú ejecuta un cuadro de diálogo que contiene el historial de "
+"transacciones que se muestra en un árbol ordenado por fecha. El historial "
+"seleccionado se puede deshacer presionando el botón <b>Deshacer</b>.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Tenga en cuenta que esta función está actualmente rota debido al "
+"cambio de API en dnf</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Menú opciones"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Preferencias de usuario</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1445,10 +1465,12 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Este menú abre un %s que contiene la configuración de usuario para "
+"personalizar el comportamiento de dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "diálogo"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1456,6 +1478,9 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Este diálogo permite personalizar el comportamiento de dnfdragora cambiando "
+"las opciones. Algunos cambios están disponibles después de cerrar el "
+"diálogo, y otros necesitan reiniciar dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid ""
@@ -1463,10 +1488,13 @@ msgid ""
 "available, any other way to close the dialog is the same as pressing "
 "<i>Cancel</i> button."
 msgstr ""
+"<b>NOTA:</b> El botón de <b>Aplicar se debe presionar para que los cambios "
+"sean permanentes y estén disponibles. Cualquier otra forma de cerrar el "
+"diálogo es lo mismo que presionar <i>Cancelar</i>."
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Opciones de Sistema</h2>"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1474,22 +1502,30 @@ msgid ""
 "transactions do not need to be confirmed, dnfdragora works as answering "
 "<i>yes</i></li>"
 msgstr ""
+"<ul><li><b>Proceder sin pedir confirmación</b>: Si las transacciones "
+"marcadas no necesitan ser confirmadas, dnfdragora funciona como la respuesta "
+"<i>sí</i></li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Intervalo para buscar actualizaciones</b>: el número dado representa "
+"cuándo dnfdragora necesita verificar actualizaciones. El valor se expresa en "
+"minutos.</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Tiempo de expiración de metadatos</b>: tiempo para forzar la "
+"caducidad de los metadatos. El valor se expresa en horas.</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Opciones de diseño</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1497,6 +1533,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Mostrar actualizaciones</b>: si está marcada, dnfdragora comienza "
+"con el filtro <i>actualizaciones</i> activo, es decir, muestra solo paquetes "
+"con actualizaciones disponibles, si hay alguno.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1504,14 +1543,18 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>No mostrar vista de grupos</b>: el filtrado por grupos podría "
+"requerir CPU si se usan comps. Si esta opción está marcada, dnfdragora "
+"comienza mostrando todos los paquetes.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>NOTA</b>: las opciones anteriores requieren que se reinicie dnfdragora."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Opciones de búsqueda</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1519,61 +1562,74 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Mostrar solo paquetes más recientes</b>: si se marca, dnfdragora "
+"mostrara solamente los paquetes más recientes en la búsqueda. <i>Note que es "
+"valido no utilizar expresiones regulares en las búsquedas</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Coincidir todas las palabras</b>: si se marca, una búsqueda sin "
+"expresiones regulares coincidirá con todas las palabras del campo de texto.</"
+"li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Opciones de Registro</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Habilite esta opción para permitir que dnfdragora escriba sus registros en "
+"un archivo llamado <i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Cambiar directorio</b>: esta opción permite cambiar el directorio "
+"del archivo de registro, el directorio debe existir y tener permisos de "
+"escritura.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Nivel de Depuración</b>: si se marca, se activara un registro más "
+"extenso.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Menú de Ayuda"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Manual</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Este menú abre el dialogo de ayuda de dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Acerca de</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Este menú abre el dialogo de información sobre dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Vistas y búsqueda"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Vistas</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1581,48 +1637,62 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"El primer cuadro combinado permite mostrar por grupo los paquetes. Si "
+"selecciona <i>Grupos</i> el panel de grupos mostrara una vista de árbol "
+"conteniendo los grupos,  al seleccionar un grupo se mostrara los paquetes "
+"relacionados en el panel de paquetes."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"Si se selecciona <i>Todo</i> el panel de paquetes contendrá todos los "
+"paquetes."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtros</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"El cuadro combinado Filtros permite mostrar los paquetes en el panel de "
+"paquetes por:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<ul><li><b>Instalados</b>: muestra solo los paquetes instalados.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>No Instalados</b>: muestra solo los paquetes disponibles.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Para actualizar</b>: muestra solo los paquetes disponibles para "
+"actualizar.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Mostrar solo x86_64 y noarch</b>: si dnfdragora se esta ejecutando en "
+"un sistema x86_64 , los paquetes i686 serán ocultados.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Todo</b>: muestra todos los paquetes, esto es. disponibles, "
+"actualizaciones e instalados.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Buscar</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1630,6 +1700,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"La Búsqueda se realizara al presionar el botón <i>Buscar</i>, si se ha "
+"llenado el campo de texto. el cuadro combinado Búsqueda le permitirá buscar "
+"ese texto entre los<i>nombres</i>, <i>resumenes</i>, <i>descripciones</i> o "
+"<i>archivos</i> de los paquetes."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1637,16 +1711,22 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"La casilla <i>Usar expresiones regulares</i> es utilizada para buscar "
+"paquetes utilizando las expresiones regulares de python. Esta búsqueda puede "
+"realizarse en la información de paquetes almacenada como <b>nombres y "
+"resúmenes solamente</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Note</i> que si busca utilizando expresiones  regulares en la búsqueda "
+"por nombre, se utilizara el nombre completo con  versión de los paquetres."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "El botón <i>Limpiar busqueda</i> limpia el campo de texto."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1654,6 +1734,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Si se selecciona la vista Grupos, este panel muestra todos los grupos "
+"utilizados para filtrar paquetes por grupo. El grupo especial <i>Busqueda</"
+"i> se añade cuando se realiza una búsqueda."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1661,12 +1744,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Este panel muestra todos los paquetes filtrados con su información básica "
+"como <i>nombre</i>, <i>resumen</i>, <i>version</i>, <i>#publicación·</i>, "
+"<i>arquitectura</i>, <i>tamaño</i>, y <i>estado</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"En cualquier paquete esta disponible una casilla que añade ese paquete a una "
+"transacción para instalar, actualizar o eliminar."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1674,26 +1762,33 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Este panel muestra toda la información de un paquete, como <i>descripcion</"
+"i>, <i>URL</i>, <i>repositorio</i>, <i>dependencias</i>, <i>lista de "
+"archivos</i>, y <i>cambios</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Note que la información sobre cambios por el momento no es "
+"proporcionada por dnfdaemon.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Barra de Progreso"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"La barra de Progreso muestra las operaciones en progreso de  dnfdragora, "
+"tales como transacciones y obtención de datos."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Linea de botones"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1701,16 +1796,21 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Aplicar</b>: cuando algun(os) paquetes están seleccionados para "
+"instalarse o actualizarse ó deseleccionados para desinstalarse este botón "
+"ejecuta la transacción correspondiente.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Seleccionar todo</b>: si los paquetes se filtran para actualizar, "
+"este botón permite seleccionar todos los paquetes.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Salir</b>: sale de dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1806,7 +1906,7 @@ msgstr "en nombres de archivo"
 
 #: dnfdragora/ui.py:556
 msgid "Use regexp"
-msgstr ""
+msgstr "Usar expresiones regulares"
 
 #: dnfdragora/ui.py:560
 msgid "&Search"
@@ -1846,7 +1946,7 @@ msgstr "&Información"
 
 #: dnfdragora/ui.py:610
 msgid "&History"
-msgstr ""
+msgstr "&Historial"
 
 #: dnfdragora/ui.py:618
 msgid "&Options"
@@ -1933,7 +2033,7 @@ msgstr "Construir transacción"
 #: dnfdragora/ui.py:1607
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Acción desconocida %(action)s para %(name)s"
 
 #: dnfdragora/ui.py:1632
 #, python-format
@@ -1958,15 +2058,15 @@ msgstr "Crear paquetes de caché"
 
 #: dnfdragora/ui.py:1743
 msgid "Build Transaction error"
-msgstr "Error de compilación de transacciones"
+msgstr "Error construyendo transacción"
 
 #: dnfdragora/ui.py:1759
 msgid "GPG key missing"
-msgstr ""
+msgstr "Falta llave GPG "
 
 #: dnfdragora/ui.py:1883
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Error al buscar usando expresiones regulares"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -2031,12 +2131,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid "Software Management"
-#~ msgstr "Administración de Software"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Aún no implementado."
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Acción desconocida %sen %s"
