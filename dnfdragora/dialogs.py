@@ -1151,7 +1151,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.log_directory.setText((log_directory if log_directory is not None else os.path.expanduser("~")))
     hbox = self.factory.createHBox(self.log_vbox)
     self.factory.createHSpacing(hbox, 2.0)
-    self.level_debug = self.factory.createCheckBox(self.factory.createLeft(hbox) , _("Verbose"), level_debug )
+    self.level_debug = self.factory.createCheckBox(self.factory.createLeft(hbox) , _("Debug level"), level_debug )
 
     self.log_vbox.setEnabled(False)
 
