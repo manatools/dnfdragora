@@ -1496,7 +1496,7 @@ msgid ""
 msgstr ""
 "<b>Hinweis: Die Schaltfläche Anwenden</b> muss gedrückt werden, um "
 "Änderungen dauerhaft und verfügbar zu machen. Jede andere Möglichkeit zum "
-"Schließen des Dialogfelds entspricht dem Drücken der Taste <i>Abbruchl</i>"
+"Schließen des Dialogfelds entspricht dem Drücken der Taste <i>Abbrechen</i>."
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
@@ -1585,7 +1585,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr "<h2>Logging Optionen</h2>"
+msgstr "<h2>Protokollier-Optionen</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1818,7 +1818,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr "<li><b>Abbruch</b>: verlässt dnfdragora.</li></ul>"
+msgstr "<li><b>Beenden</b>: verlässt dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
