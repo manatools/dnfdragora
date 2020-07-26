@@ -18,6 +18,7 @@ import datetime
 import dnfdaemon.client
 from gi.repository import GLib
 
+import manatools.ui.basedialog as basedialog
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
@@ -952,6 +953,279 @@ class UserPrefsDialog:
         self.dialog = None
 
         return changes_applied
+
+
+class OptionDialog(basedialog.BaseDialog):
+  def __init__(self, parent):
+    basedialog.BaseDialog.__init__(self, "dnfdragora options", "dnfdragora", basedialog.DialogType.POPUP, 80, 10)
+    self.parent = parent
+    self.log_vbox = None
+    self.widget_callbacks = []
+
+  def UIlayout(self, layout):
+    '''
+    dnfdragora options layout implementation
+    '''
+
+    hbox_config = self.factory.createHBox(layout)
+    hbox_bottom = self.factory.createHBox(layout)
+    self.config_tree = self.factory.createTree(hbox_config, "")
+    self.config_tree.setWeight(0,30)
+    self.config_tree.setNotify(True)
+    self.eventManager.addWidgetEvent(self.config_tree, self.onChangeConfig, sendWidget=True)
+
+    itemVect = []
+    self.option_items = {
+      "system" : None,
+      "layout" : None,
+      "search" : None,
+      "logging" : None,
+      }
+    self.selected_option = None
+    ### Options items
+    #YTreeItem self, std::string const & label, std::string const & iconName, bool isOpen=False)
+    # TODO add icons
+    item = yui.YTreeItem(_("System"))
+    item.this.own(False)
+    itemVect.append(item)
+    item.setSelected()
+    self.option_items ["system"] = item
+
+    item = yui.YTreeItem(_("Layout"))
+    item.this.own(False)
+    itemVect.append(item)
+    self.option_items ["layout"] = item
+
+    item = yui.YTreeItem(_("Search"))
+    item.this.own(False)
+    itemVect.append(item)
+    self.option_items ["search"] = item
+
+    item = yui.YTreeItem(_("Logging"))
+    item.this.own(False)
+    itemVect.append(item)
+    self.option_items ["logging"] = item
+
+    itemCollection = yui.YItemCollection(itemVect)
+    self.config_tree.addItems(itemCollection)
+
+    self.config_tab = self.factory.createReplacePoint(hbox_config)
+    self.config_tab.setWeight(0,70)
+
+    self.applyButton = self.factory.createIconButton(hbox_bottom,"",_("&Apply"))
+    self.eventManager.addWidgetEvent(self.applyButton, self.onApplyButton)
+    self.applyButton.setWeight(0,3)
+
+    self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Cancel"))
+    self.eventManager.addWidgetEvent(self.quitButton, self.onQuitEvent)
+    self.quitButton.setWeight(0,3)
+    self.dialog.setDefaultButton(self.quitButton)
+
+    self.eventManager.addCancelEvent(self.onCancelEvent)
+    self.onChangeConfig(self.config_tree)
+
+
+  def onChangeConfig(self, obj):
+    '''
+    fill option configuration data starting from config tree selection
+    '''
+    logger.debug('Config tab %s', self.selected_option)
+    if isinstance(obj, yui.YTree):
+      item = self.config_tree.selectedItem()
+      for k in self.option_items.keys():
+        if self.option_items[k] == item:
+          if k != self.selected_option :
+            self.log_vbox = None
+            logger.debug('Config tab changed to %s', k)
+            self._cleanCallbacks()
+            if k == "system":
+              self._openSystemOptions()
+            elif  k == "layout":
+              self._openLayoutOptions()
+            elif k == "search":
+              self._openSearchOptions()
+            elif k == "logging":
+              self._openLoggingOptions()
+
+            self.selected_option = k
+            break
+
+  def _cleanCallbacks(self):
+    '''
+    clean old selectaion call backs
+    '''
+    logger.debug('Removing %d callbacks', len( self.widget_callbacks))
+    for e in self.widget_callbacks:
+      self.eventManager.removeWidgetEvent(e['widget'], e['handler'])
+    self.widget_callbacks = []
+
+
+  def _openLayoutOptions(self):
+    '''
+    show layout configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox)
+
+    # Title
+    self.factory.createHeading( vbox, _("Layout options (active at next startup)") )
+    self.factory.createVSpacing(vbox)
+
+    # TODO data preparation
+    showUpdates = False
+    showAll = False
+
+
+    self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show updates"), showUpdates )
+    self.showAll  =  self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Do not show groups view"), showAll )
+
+    self.factory.createVStretch(vbox)
+    self.config_tab.showChild()
+    self.dialog.recalcLayout()
+
+  def _openSearchOptions(self):
+    '''
+    show search configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox)
+
+    # Title
+    self.factory.createHeading( vbox, _("Search options") )
+    self.factory.createVSpacing(vbox)
+
+    match_all = self.parent.match_all
+    newest_only = self.parent.newest_only
+
+    self.newest_only = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show newest packages only"), newest_only )
+    self.match_all   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Match all words"), match_all )
+
+    self.factory.createVStretch(vbox)
+    self.config_tab.showChild()
+    self.dialog.recalcLayout()
+
+  def _openLoggingOptions(self):
+    '''
+    show logging configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox, 1.5)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox, 1.5)
+
+    # Title
+    self.factory.createHeading( vbox, _("Logging options  (active at next startup)") )
+    self.factory.createVSpacing(vbox)
+
+    #TODO data preparation
+    log_enabled = False
+    log_directory = None
+    level_debug = False
+
+    self.log_enabled  = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Enable logging"), log_enabled )
+    self.log_enabled.setNotify(True)
+    self.eventManager.addWidgetEvent(self.log_enabled, self.onEnableLogging, True)
+    self.widget_callbacks.append( { 'widget': self.log_enabled, 'handler': self.onEnableLogging} )
+
+    self.log_vbox = self.factory.createVBox(vbox)
+    hbox = self.factory.createHBox(self.log_vbox)
+    self.factory.createHSpacing(hbox, 2.0)
+    self.log_directory = self.factory.createLabel(self.factory.createLeft(hbox), "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "", _("Change &directory"))
+    self.eventManager.addWidgetEvent(self.choose_dir, self.onChangeLogDirectory)
+    self.widget_callbacks.append( { 'widget': self.choose_dir, 'handler': self.onChangeLogDirectory} )
+
+    self.log_directory.setText((log_directory if log_directory is not None else os.path.expanduser("~")))
+    hbox = self.factory.createHBox(self.log_vbox)
+    self.factory.createHSpacing(hbox, 2.0)
+    self.level_debug = self.factory.createCheckBox(self.factory.createLeft(hbox) , _("Verbose"), level_debug )
+
+    self.log_vbox.setEnabled(False)
+
+    self.factory.createVStretch(vbox)
+    self.config_tab.showChild()
+    self.dialog.recalcLayout()
+
+  def _openSystemOptions(self):
+    '''
+    show system configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox)
+
+    # Title
+    self.factory.createHeading( vbox, _("System options") )
+    self.factory.createVSpacing(vbox)
+
+    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), self.parent.always_yes )
+    self.factory.createVSpacing(vbox)
+
+    #TODO data preparation
+    updateInterval = 180
+    hbox = self.factory.createHBox(vbox)
+    col1 = self.factory.createVBox(hbox)
+    col2 = self.factory.createVBox(hbox)
+    label = self.factory.createLabel(self.factory.createLeft(col1), _("Interval to check for updates (minutes)"))
+    self.factory.createHSpacing(hbox)
+    self.updateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 30, 1440, updateInterval )
+
+    label = self.factory.createLabel(self.factory.createLeft(col1), _("Metadata expire time (hours)"))
+    self.MDupdateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 0, 720, self.parent.md_update_interval )
+
+    self.factory.createVStretch(vbox)
+
+    self.config_tab.showChild()
+    self.dialog.recalcLayout()
+
+
+  def onEnableLogging(self, obj) :
+    '''
+    enable logging check box event
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.log_vbox.setEnabled(obj.isChecked())
+      logger.debug("log Checkbox")
+
+  def onChangeLogDirectory(self):
+    '''
+    Change directory button has been invoked
+    '''
+    start_dir = self.log_directory.text() if self.log_directory.text() else os.path.expanduser("~")
+    log_directory = yui.YUI.app().askForExistingDirectory(
+          start_dir,
+          _("Choose log destination directory"))
+    if log_directory:
+      self.log_directory.setText(log_directory)
+      self.dialog.recalcLayout()
+
+  def onApplyButton(self) :
+    logger.debug('Apply pressed')
+
+  def onCancelEvent(self) :
+    logger.debug("Got a cancel event")
+
+  def onQuitEvent(self) :
+    logger.debug("Quit button pressed")
+    # BaseDialog needs to force to exit the handle event loop
+    self.ExitLoop()
 
 
 def warningMsgBox (info) :
