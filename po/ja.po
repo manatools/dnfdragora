@@ -471,7 +471,7 @@ msgstr "有効"
 
 #: dnfdragora/dialogs.py:522
 msgid "Enabled metadata"
-msgstr "有効なメタ データ"
+msgstr "有効なメタデータ"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enable groups"
@@ -519,7 +519,7 @@ msgstr "メディア ID"
 
 #: dnfdragora/dialogs.py:534
 msgid "Metadata expire"
-msgstr "メタ データの有効期限"
+msgstr "メタデータの有効期限"
 
 #: dnfdragora/dialogs.py:535
 msgid "Meta link"
@@ -739,7 +739,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "パッケージには %s の属性がありません"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -747,7 +747,7 @@ msgstr "パッケージからグループをキャッシュしています... "
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "コマンドが実行中です"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1284,59 +1284,64 @@ msgstr "インデックスに移動"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "メニューの行"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "フィルタと検索の行"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "グループ パネル"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "パッケージ パネル"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "情報パネル"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "進捗バーの行"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "ボタンの行"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "ファイル メニュー"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "情報メニュー"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "設定メニュー"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "ヘルプ メニュー"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora は DNF のフロントエンドで、Mageia の rpmdragora におけるレイアウト"
+"と Fedora の yumex-dnf における dnfdaemon とのやりとりを基にしています。"
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora は基本的にパッケージマネージャのユーザ インターフェースで、パッ"
+"ケージのインストール, 更新, 削除, 検索などが行えます。<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1344,36 +1349,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora は manatools の一部で、Gtk, Qt, ncurses つまりグラフィカル形式とテ"
+"キスト形式の両方のユーザ インターフェースを用いて動作できるように libyui に基"
+"づいています。<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora のウィンドウには以下のものがあります:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "メニュー バーの内容"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "メニュー バーは dnfdragora のドロップ ダウン メニューを含んでいます:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "ファイル メニュー"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>選択を全て解除</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"このメニューはパッケージのフラグを削除します。追加または削除の選択をしたパッ"
+"ケージがある場合、前の状態に戻ります。<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>メタデータを更新</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1381,10 +1391,12 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"このメニューは dnfdaemon に全てのメタデータの更新を行うように要求を送ります。"
+"このアクションは非同期で、パッケージ情報キャッシュの再構築が必要です。<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>リポジトリ</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1392,22 +1404,24 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"このメニューはリポジトリの有効化または無効化を行えるダイアログを開きます。こ"
+"こでの変更は dnfdragora の動作中に有効で、永続的ではありません。<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>終了</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "このメニューは dnfdragora を終了します。<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "情報メニュー"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>履歴</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1825,7 +1839,7 @@ msgstr "選択を全て解除"
 
 #: dnfdragora/ui.py:596
 msgid "Refresh Metadata"
-msgstr "メタ データを更新"
+msgstr "メタデータを更新"
 
 #: dnfdragora/ui.py:597
 msgid "Repositories"
@@ -1837,7 +1851,7 @@ msgstr "情報(&I)"
 
 #: dnfdragora/ui.py:610
 msgid "&History"
-msgstr ""
+msgstr "履歴(&H)"
 
 #: dnfdragora/ui.py:618
 msgid "&Options"
@@ -1877,7 +1891,7 @@ msgstr "リポジトリ"
 
 #: dnfdragora/ui.py:1342
 msgid "Refreshing Repository Metadata"
-msgstr "リポジトリのメタ データを更新しています"
+msgstr "リポジトリのメタデータを更新しています"
 
 #: dnfdragora/ui.py:1397
 #, python-format
@@ -1924,7 +1938,7 @@ msgstr "トランザクションを構築"
 #: dnfdragora/ui.py:1607
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "%(name)s における不明なアクション %(action)s"
 
 #: dnfdragora/ui.py:1632
 #, python-format
@@ -1955,11 +1969,11 @@ msgstr "トランザクションの構築エラー"
 
 #: dnfdragora/ui.py:1759
 msgid "GPG key missing"
-msgstr ""
+msgstr "GPG 鍵がありません"
 
 #: dnfdragora/ui.py:1883
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "正規表現を用いた検索のエラー"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
