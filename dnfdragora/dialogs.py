@@ -1179,16 +1179,29 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox)
 
     #TODO data preparation
-    updateInterval = 180
+    updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
+        if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
+        else int(self.parent.config.systemSettings['settings']['update_interval']) \
+        if 'settings' in self.parent.config.systemSettings.keys() and 'update_interval' in self.parent.config.systemSettings['settings'].keys() \
+        else 180
+
     hbox = self.factory.createHBox(vbox)
     col1 = self.factory.createVBox(hbox)
     col2 = self.factory.createVBox(hbox)
     label = self.factory.createLabel(self.factory.createLeft(col1), _("Interval to check for updates (minutes)"))
     self.factory.createHSpacing(hbox)
     self.updateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 30, 1440, updateInterval )
+    self.updateInterval.setNotify(True)
+    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
+    self.widget_callbacks.append( { 'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange} )
+
 
     label = self.factory.createLabel(self.factory.createLeft(col1), _("Metadata expire time (hours)"))
     self.MDupdateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 0, 720, self.parent.md_update_interval )
+    self.MDupdateInterval.setNotify(True)
+    self.eventManager.addWidgetEvent(self.MDupdateInterval, self.onMDUpdateIntervalChange, True)
+    self.widget_callbacks.append( { 'widget': self.MDupdateInterval, 'handler': self.onMDUpdateIntervalChange} )
+
 
     self.factory.createVStretch(vbox)
 
@@ -1215,6 +1228,26 @@ class OptionDialog(basedialog.BaseDialog):
     if log_directory:
       self.log_directory.setText(log_directory)
       self.dialog.recalcLayout()
+
+  def onUpdateIntervalChange(self, obj):
+    '''
+    manage an update interval change
+    '''
+    if isinstance(obj, yui.YIntField):
+      self.parent.config.userPreferences['settings']['interval for checking updates'] = obj.value()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
+
+  def onMDUpdateIntervalChange(self, obj):
+    '''
+    manage an MD update interval change
+    '''
+    if isinstance(obj, yui.YIntField):
+      self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
+      self.parent.md_update_interval = obj.value()
+      logger.debug("Invalid object passed %d", obj.value())
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
 
   def onApplyButton(self) :
     logger.debug('Apply pressed')
