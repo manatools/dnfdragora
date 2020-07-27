@@ -1429,20 +1429,24 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"このメニューは日付順のツリーで表示されるトランザクション履歴を含んだダイアロ"
+"グを開きます。選択された履歴は<b>取り消し</b>ボタンを押すことで取り消すことが"
+"できます。<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>この機能は dnf の API の変更により現在正しく動作しません</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "設定メニュー"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>ユーザ設定</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1450,10 +1454,12 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"このメニューは dnfdragora の動作をカスタマイズするためのユーザ設定を含んだ "
+"%s を表示します。<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "ダイアログ"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1461,6 +1467,9 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"このダイアログでは設定を変更することで dnfdragora の動作をカスタマイズできま"
+"す。幾つかの変更点はダイアログを閉じた後に反映され、それ以外は dnfdragora の"
+"再起動が必要です。<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid ""
@@ -1471,7 +1480,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>システムの設定</h2>"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
