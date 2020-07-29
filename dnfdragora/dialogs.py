@@ -1131,9 +1131,23 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox)
 
     #TODO data preparation
-    log_enabled = False
-    log_directory = None
-    level_debug = False
+    log_enabled = self.parent.config.userPreferences['settings']['log']['enabled'] \
+        if 'settings' in self.parent.config.userPreferences.keys() \
+          and 'log' in self.parent.config.userPreferences['settings'].keys() \
+          and 'enabled' in self.parent.config.userPreferences['settings']['log'].keys() \
+        else False
+
+    log_directory = self.parent.config.userPreferences['settings']['log']['directory'] \
+        if 'settings' in self.parent.config.userPreferences.keys() \
+          and 'log' in self.parent.config.userPreferences['settings'].keys() \
+          and 'directory' in self.parent.config.userPreferences['settings']['log'].keys() \
+        else os.path.expanduser("~")
+
+    level_debug = self.parent.config.userPreferences['settings']['log']['level_debug'] \
+        if 'settings' in self.parent.config.userPreferences.keys() \
+          and 'log' in self.parent.config.userPreferences['settings'].keys() \
+          and 'level_debug' in self.parent.config.userPreferences['settings']['log'].keys() \
+        else False
 
     self.log_enabled  = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Enable logging"), log_enabled )
     self.log_enabled.setNotify(True)
@@ -1148,12 +1162,15 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.choose_dir, self.onChangeLogDirectory)
     self.widget_callbacks.append( { 'widget': self.choose_dir, 'handler': self.onChangeLogDirectory} )
 
-    self.log_directory.setText((log_directory if log_directory is not None else os.path.expanduser("~")))
+    self.log_directory.setText(log_directory)
     hbox = self.factory.createHBox(self.log_vbox)
     self.factory.createHSpacing(hbox, 2.0)
     self.level_debug = self.factory.createCheckBox(self.factory.createLeft(hbox) , _("Debug level"), level_debug )
+    self.level_debug.setNotify(True)
+    self.eventManager.addWidgetEvent(self.level_debug, self.onLevelDebugChange, True)
+    self.widget_callbacks.append( { 'widget': self.level_debug, 'handler': self.onLevelDebugChange} )
 
-    self.log_vbox.setEnabled(False)
+    self.log_vbox.setEnabled(log_enabled)
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
@@ -1222,7 +1239,9 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     if isinstance(obj, yui.YCheckBox):
       self.log_vbox.setEnabled(obj.isChecked())
-      logger.debug("log Checkbox")
+      self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
 
   def onChangeLogDirectory(self):
     '''
@@ -1235,6 +1254,17 @@ class OptionDialog(basedialog.BaseDialog):
     if log_directory:
       self.log_directory.setText(log_directory)
       self.dialog.recalcLayout()
+      self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
+
+
+  def onLevelDebugChange(self, obj):
+    '''
+    Debug level Changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
 
   def onUpdateIntervalChange(self, obj):
     '''
