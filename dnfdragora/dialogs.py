@@ -1175,10 +1175,17 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHeading( vbox, _("System options") )
     self.factory.createVSpacing(vbox)
 
-    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), self.parent.always_yes )
+    always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
+        if 'settings' in self.parent.config.userPreferences.keys() and 'always_yes' in self.parent.config.userPreferences['settings'].keys() \
+        else self.parent.always_yes
+
+    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes )
+    self.always_yes.setNotify(True)
+    self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
+    self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
+
     self.factory.createVSpacing(vbox)
 
-    #TODO data preparation
     updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
         if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
         else int(self.parent.config.systemSettings['settings']['update_interval']) \
@@ -1245,6 +1252,17 @@ class OptionDialog(basedialog.BaseDialog):
     if isinstance(obj, yui.YIntField):
       self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
       self.parent.md_update_interval = obj.value()
+      logger.debug("Invalid object passed %d", obj.value())
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
+
+  def onAlwaysYesChange(self, obj):
+    '''
+    Always Yes Changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['always_yes'] = obj.isChecked()
+      self.parent.always_yes = obj.isChecked()
       logger.debug("Invalid object passed %d", obj.value())
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
