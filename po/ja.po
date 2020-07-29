@@ -1477,6 +1477,9 @@ msgid ""
 "available, any other way to close the dialog is the same as pressing "
 "<i>Cancel</i> button."
 msgstr ""
+"<b>メモ: 適用</b>ボタンを押すことは変更を適用して永続化するために必須で、ダイ"
+"アログを他の方法で閉じた場合は<i>キャンセル</i> ボタンを押すのと同じになりま"
+"す。"
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
@@ -1488,22 +1491,28 @@ msgid ""
 "transactions do not need to be confirmed, dnfdragora works as answering "
 "<i>yes</i></li>"
 msgstr ""
+"<ul><li><b>確認なしに操作を続行する</b>: チェックした場合トランザクションの確"
+"認は不要となり、dnfdragora は質問に<i>はい</i>と答えるように動作します</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>更新を確認する間隔</b>: 指定される値は dnfdragora が更新をいつチェック"
+"する必要があるかを表し、値は分単位で表します</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>メタデータの有効期限</b>: メタデータを期限切れとする時間を指定し、値は"
+"時間単位で表します</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>レイアウト設定</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1511,6 +1520,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>更新を表示</b>: チェックした場合 dnfdragora は<i>更新</i>のフィル"
+"タをアクティブにして開始し、言い換えると更新が利用可能なパッケージのみを表示"
+"します。</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1518,14 +1530,18 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>グループのビューを表示しない</b>: comps の使用時にはグループによるフィ"
+"ルタは CPU 資源を必要とする可能性があり、この項目をチェックした場合は "
+"dnfdragora はすべてのパッケージを表示して開始します。</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"上に挙げた項目は dnfdragora の再起動が必要になる点に<b>留意</b>してください。"
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>検索の設定</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1533,61 +1549,72 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>最新のパッケージのみ表示</b>: チェックした場合 dnfdragora は検索の"
+"際に最新のパッケージだけを表示します。<i>正規表現を使用せずに検索を行った場合"
+"にのみ有効です</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>すべての単語にマッチ</b>: チェックした場合、正規表現を使用せずに検索し"
+"たときにテキスト フィールドに入力されたすべての単語にマッチします。</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>ロギング設定</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"これらの項目を有効にすることで dnfdragora は <i>dnfdragora.log</i> と呼ばれる"
+"ファイルにログを出力します。"
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>ディレクトリを変更</b>: この項目ではログのディレクトリを設定でき、"
+"ディレクトリは存在していなければならず、書き込み権限が必要となります。</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>デバッグ レベル</b>: チェック時に詳細なログ出力が有効になります。</"
+"li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "ヘルプ メニュー"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>マニュアル</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "このメニューは dnfdragora のヘルプ ダイアログを開きます。"
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>情報</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "このメニューは dnfdragora の情報ダイアログを開きます。"
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "ビューと検索"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>ビュー</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1595,48 +1622,62 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"最初のコンボボックスではパッケージをグループで表示します。<i>グループ</i>が選"
+"択されている場合、グループ パネルはグループを含んだツリー ビューを表示し、グ"
+"ループ選択時には関連パッケージをパッケージ パネルに表示します。"
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"<i>すべて</i>が選択されている場合、パッケージ パネルはすべてのパッケージを含"
+"みます。"
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>フィルタ</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"フィルタのコンボボックスでは、パッケージ パネルに表示されるパッケージを以下で"
+"フィルタできます:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
+"<ul><li><b>インストール済み</b>: インストール済みのパッケージのみを表示しま"
+"す。</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
 msgstr ""
+"<li><b>未インストール</b>: 未インストールのパッケージのみを表示します。</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
-msgstr ""
+msgstr "<li><b>更新可能</b>: 更新が利用可能なパッケージのみを表示します。</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>x86_64 と noarch のみを表示</b>: dnfdragora が x86_64 アーキテクチャ上"
+"で動いている場合、i686 のパッケージを非表示にします。</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>すべて</b>: すべてのパッケージ、つまり未インストール, 更新あり, インス"
+"トール済みのパッケージを表示します。</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>検索</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1644,6 +1685,9 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"検索はテキスト フィールドが入力されているときに<i>検索</i>ボタンを押すことで"
+"行われます。検索のコンボボックスでは入力されたテキストでパッケージの<i>名前</"
+"i>, <i>概要</i>, <i>説明文</i>, <i>ファイル</i>から検索できます。"
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1651,6 +1695,9 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"特別なチェックボックス<i>正規表現を使用</i>はパッケージを python 言語の正規表"
+"現で検索するために用いられます。この検索は<b>名前と概要のみ</b>のようなキャッ"
+"シュされたパッケージ情報から検索されます。"
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
@@ -1820,7 +1867,7 @@ msgstr "中のファイル名"
 
 #: dnfdragora/ui.py:556
 msgid "Use regexp"
-msgstr ""
+msgstr "正規表現を使用"
 
 #: dnfdragora/ui.py:560
 msgid "&Search"
