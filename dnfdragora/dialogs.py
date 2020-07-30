@@ -1108,7 +1108,14 @@ class OptionDialog(basedialog.BaseDialog):
     newest_only = self.parent.newest_only
 
     self.newest_only = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show newest packages only"), newest_only )
+    self.newest_only.setNotify(True)
+    self.eventManager.addWidgetEvent(self.newest_only, self.onNewestOnly, True)
+    self.widget_callbacks.append( { 'widget': self.newest_only, 'handler': self.onNewestOnly} )
+
     self.match_all   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Match all words"), match_all )
+    self.match_all.setNotify(True)
+    self.eventManager.addWidgetEvent(self.match_all, self.onMatchAll, True)
+    self.widget_callbacks.append( { 'widget': self.match_all, 'handler': self.onMatchAll} )
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
@@ -1130,7 +1137,6 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHeading( vbox, _("Logging options  (active at next startup)") )
     self.factory.createVSpacing(vbox)
 
-    #TODO data preparation
     log_enabled = self.parent.config.userPreferences['settings']['log']['enabled'] \
         if 'settings' in self.parent.config.userPreferences.keys() \
           and 'log' in self.parent.config.userPreferences['settings'].keys() \
@@ -1256,6 +1262,25 @@ class OptionDialog(basedialog.BaseDialog):
       self.dialog.recalcLayout()
       self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
 
+  def onMatchAll(self, obj):
+    '''
+    Newest Only Changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['search']['match_all'] = obj.isChecked()
+      self.parent.match_all = obj.isChecked()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
+
+  def onNewestOnly(self, obj):
+    '''
+    Newest Only Changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
+      self.parent.newest_only = obj.isChecked()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
 
   def onLevelDebugChange(self, obj):
     '''
