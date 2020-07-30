@@ -114,12 +114,12 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       ),
       'user_prefs_dlg' : '<h1>%s</h1>%s<br>%s'%(
         # title
-        _('User preferences'),
+        _('dnfdragora options'),
         # help
         _('This dialog allows to customize dnfdragora behavior by changing options. Some changes are available after closing the dialog, others need a dnfdragora restart.<br><br>') + \
-        _('<b>NOTE: Apply</b> button must be pressed to make changes permanent and available, any other way to close the dialog is the same as pressing <i>Cancel</i> button.') + \
         _('<h2>System options</h2>') + \
-          _('<ul><li><b>Proceed without asking for confirmation</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering <i>yes</i></li>') + \
+          _('<ul><li><b>Run transactions on packages automatically without confirmation needed</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering always <i>yes</i>.') + \
+            _('<br><b>NOTE</b> that this option means that also removing packages is silently accepted</li>') + \
           _('<li><b>Interval to check for updates</b>: the given number represents when dnfdragora needs to check for updates, value is expressed in minutes</li>') + \
           _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
         _('<h2>Layout options</h2>') + \
