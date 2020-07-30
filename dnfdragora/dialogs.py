@@ -1059,6 +1059,61 @@ class OptionDialog(basedialog.BaseDialog):
       self.eventManager.removeWidgetEvent(e['widget'], e['handler'])
     self.widget_callbacks = []
 
+  def _openSystemOptions(self):
+    '''
+    show system configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox)
+
+    # Title
+    self.factory.createHeading( vbox, _("System options") )
+    self.factory.createVSpacing(vbox)
+
+    always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
+        if 'settings' in self.parent.config.userPreferences.keys() and 'always_yes' in self.parent.config.userPreferences['settings'].keys() \
+        else self.parent.always_yes
+
+    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes )
+    self.always_yes.setNotify(True)
+    self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
+    self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
+
+    self.factory.createVSpacing(vbox)
+
+    updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
+        if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
+        else int(self.parent.config.systemSettings['settings']['update_interval']) \
+        if 'settings' in self.parent.config.systemSettings.keys() and 'update_interval' in self.parent.config.systemSettings['settings'].keys() \
+        else 180
+
+    hbox = self.factory.createHBox(vbox)
+    col1 = self.factory.createVBox(hbox)
+    col2 = self.factory.createVBox(hbox)
+    label = self.factory.createLabel(self.factory.createLeft(col1), _("Interval to check for updates (minutes)"))
+    self.factory.createHSpacing(hbox)
+    self.updateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 30, 1440, updateInterval )
+    self.updateInterval.setNotify(True)
+    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
+    self.widget_callbacks.append( { 'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange} )
+
+
+    label = self.factory.createLabel(self.factory.createLeft(col1), _("Metadata expire time (hours)"))
+    self.MDupdateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 0, 720, self.parent.md_update_interval )
+    self.MDupdateInterval.setNotify(True)
+    self.eventManager.addWidgetEvent(self.MDupdateInterval, self.onMDUpdateIntervalChange, True)
+    self.widget_callbacks.append( { 'widget': self.MDupdateInterval, 'handler': self.onMDUpdateIntervalChange} )
+
+
+    self.factory.createVStretch(vbox)
+
+    self.config_tab.showChild()
+    self.dialog.recalcLayout()
 
   def _openLayoutOptions(self):
     '''
@@ -1076,13 +1131,24 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHeading( vbox, _("Layout options (active at next startup)") )
     self.factory.createVSpacing(vbox)
 
-    # TODO data preparation
-    showUpdates = False
-    showAll = False
+    showUpdates = self.parent.config.userPreferences['settings']['show updates at startup'] \
+      if 'settings' in self.parent.config.userPreferences.keys() \
+      else False
+
+    showAll =  self.parent.config.userPreferences['settings']['do not show groups at startup']\
+      if 'settings' in self.parent.config.userPreferences.keys() \
+      else False
 
 
     self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show updates"), showUpdates )
+    self.showUpdates.setNotify(True)
+    self.eventManager.addWidgetEvent(self.showUpdates, self.onShowUpdates, True)
+    self.widget_callbacks.append( { 'widget': self.showUpdates, 'handler': self.onShowUpdates} )
+
     self.showAll  =  self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Do not show groups view"), showAll )
+    self.showAll.setNotify(True)
+    self.eventManager.addWidgetEvent(self.showAll, self.onShowAll, True)
+    self.widget_callbacks.append( { 'widget': self.showAll, 'handler': self.onShowAll} )
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
@@ -1182,63 +1248,6 @@ class OptionDialog(basedialog.BaseDialog):
     self.config_tab.showChild()
     self.dialog.recalcLayout()
 
-  def _openSystemOptions(self):
-    '''
-    show system configuration options
-    '''
-    if self.config_tab.hasChildren():
-      self.config_tab.deleteChildren()
-
-    hbox = self.factory.createHBox(self.config_tab)
-    self.factory.createHSpacing(hbox)
-    vbox = self.factory.createVBox(hbox)
-    self.factory.createHSpacing(hbox)
-
-    # Title
-    self.factory.createHeading( vbox, _("System options") )
-    self.factory.createVSpacing(vbox)
-
-    always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'always_yes' in self.parent.config.userPreferences['settings'].keys() \
-        else self.parent.always_yes
-
-    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes )
-    self.always_yes.setNotify(True)
-    self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
-    self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
-
-    self.factory.createVSpacing(vbox)
-
-    updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
-        else int(self.parent.config.systemSettings['settings']['update_interval']) \
-        if 'settings' in self.parent.config.systemSettings.keys() and 'update_interval' in self.parent.config.systemSettings['settings'].keys() \
-        else 180
-
-    hbox = self.factory.createHBox(vbox)
-    col1 = self.factory.createVBox(hbox)
-    col2 = self.factory.createVBox(hbox)
-    label = self.factory.createLabel(self.factory.createLeft(col1), _("Interval to check for updates (minutes)"))
-    self.factory.createHSpacing(hbox)
-    self.updateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 30, 1440, updateInterval )
-    self.updateInterval.setNotify(True)
-    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
-    self.widget_callbacks.append( { 'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange} )
-
-
-    label = self.factory.createLabel(self.factory.createLeft(col1), _("Metadata expire time (hours)"))
-    self.MDupdateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 0, 720, self.parent.md_update_interval )
-    self.MDupdateInterval.setNotify(True)
-    self.eventManager.addWidgetEvent(self.MDupdateInterval, self.onMDUpdateIntervalChange, True)
-    self.widget_callbacks.append( { 'widget': self.MDupdateInterval, 'handler': self.onMDUpdateIntervalChange} )
-
-
-    self.factory.createVStretch(vbox)
-
-    self.config_tab.showChild()
-    self.dialog.recalcLayout()
-
-
   def onEnableLogging(self, obj) :
     '''
     enable logging check box event
@@ -1261,6 +1270,24 @@ class OptionDialog(basedialog.BaseDialog):
       self.log_directory.setText(log_directory)
       self.dialog.recalcLayout()
       self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
+
+  def onShowAll(self, obj):
+    '''
+    Show All Changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['do not show groups at startup'] = obj.isChecked()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
+
+  def onShowUpdates(self, obj):
+    '''
+    Show Updates Changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['show updates at startup'] = obj.isChecked()
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
 
   def onMatchAll(self, obj):
     '''
