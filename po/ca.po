@@ -747,7 +747,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "el paquet no té cap atribut %s"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -755,7 +755,7 @@ msgstr "S'estan capturant els grups a partir dels paquets... "
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Ordre en curs"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1288,63 +1288,67 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Ves a l'índex"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Línia del menú"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Línia de filtres i de cerca"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Plafó del grup"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Plafó del paquet"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Plafó d'informació"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Línia de la barra de progrés"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Línia del botó"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Menú del fitxer"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Menú d'informació"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Menú d'opcions"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Menú d'ajuda"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora és un frontal de DNF, basat en el disseny de rpmdragora de Mageia "
+"i la interacció de yumex-dnf de Fedora amb dnfdaemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora és bàsicament una interfície d’usuari de gestió de paquets que "
+"permet instal·lar, actualitzar, suprimir, cercar paquets i molt més.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1352,36 +1356,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora forma part de manatools i es basa en libyui perquè pugui "
+"funcionar usant Gtk, Qt o ncurses, tant en interfícies gràfiques com "
+"textuals.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "La finestra dnfdragora està formada per:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Contingut de la barra del menú"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "La barra del menú conté els menús desplegables de dnfdragora:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Menú del fitxer"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Restableix la selecció</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Aquest menú suprimeix les banderes dels paquets. Si s’ha seleccionat algun "
+"paquet per instal·lar o suprimir, tornarà a l’estat anterior.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Refresca les metadades</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1389,10 +1398,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Aquest menú envia una sol·licitud a dnfdaemon per forçar l'actualització de "
+"totes les metadades. Aquesta acció és asíncrona i requereix reconstruir la "
+"memòria cau de la informació del paquet.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Dipòsits</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1400,22 +1412,24 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Aquest menú obre un diàleg que permet activar o desactivar dipòsits. Els "
+"canvis són vàlids durant l'execució de dnfdragora i no són permanents.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Surt</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Aquest menú permet sortir de dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Menú d'informació"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Historial</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1423,20 +1437,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Aquest menú executa un diàleg que conté l’historial de transaccions mostrat "
+"en un arbre ordenat per data. L'historial seleccionat es pot desfer en "
+"prémer el botó <b>Desfés</b>.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Tingueu en compte que aquesta funció està actualment trencada a causa "
+"del canvi de l'APN de dnf.</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Menú d'opcions"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Preferències de l'usuari</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1444,10 +1463,12 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Aquest menú obre un %s que conté la configuració de l'usuari per "
+"personalitzar el comportament de dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "diàleg"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1455,6 +1476,9 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Aquest diàleg permet personalitzar el comportament de dnfdragora canviant-ne "
+"les opcions. Alguns canvis estan disponibles després de tancar el diàleg, "
+"altres necessiten un reinici de dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid ""
@@ -1462,10 +1486,13 @@ msgid ""
 "available, any other way to close the dialog is the same as pressing "
 "<i>Cancel</i> button."
 msgstr ""
+"<b>NOTA: el botó d'Aplica</b> s'ha de prémer per fer que els canvis siguin "
+"permanents i estiguin disponibles. Qualsevol altra manera de tancar el "
+"diàleg equival a prémer el botó de <i>Cancel·la</i>."
 
 #: dnfdragora/helpinfo.py:121
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Opcions del sistema</h2>"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1473,22 +1500,30 @@ msgid ""
 "transactions do not need to be confirmed, dnfdragora works as answering "
 "<i>yes</i></li>"
 msgstr ""
+"<ul><li><b>Continua sense demanar-ne la confirmació</b>: si es marca, les "
+"transaccions no s'han de confirmar i dnfdragora funciona com si la resposta "
+"fos <i>sí</i></li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Interval per comprovar si hi ha actualitzacions</b>: el número "
+"proporcionat representa quan dnfdragora cal que comprovi les "
+"actualitzacions. El valor s'expressa en minuts.</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Hora de venciment de les metadades</b>: hora per forçar el venciment "
+"de les metadades. El valor s'expressa en hores.</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Opcions de disposició</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1496,6 +1531,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Mostra les actualitzacions</b>: si es marca, dnfdragora s'inicia "
+"amb el filtre d'<i>actualitzacions</i> actiu i només mostra els paquets "
+"disponibles per actualitzar, si n'hi ha.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1503,14 +1541,17 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>No mostris la vista de grups</b>: el filtratge per grups podria "
+"requerir CPU si s’usen comps; si aquesta opció està marcada, dnfdragora "
+"s'inicia mostrant tots els paquets.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
-msgstr ""
+msgstr "<b>NOTA:</b> les opcions anteriors requereixen reiniciar dnfdragora."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Opcions de cerca</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1518,61 +1559,74 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Mostra només els paquets més nous</b>: si es marca, dnfdragora "
+"només mostra els paquets més nous a la cerca. <i>Tingueu en compte que això "
+"és vàlid si no es fan cerques mitjançant expressions regulars.</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Coincidència de paraules</b>: si es marca, una cerca sense  "
+"expressions regulars coincidirà amb totes les paraules del camp de text.</"
+"li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Opcions de registre</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Habiliteu aquestes opcions per permetre que dnfdragora faci registres en un "
+"fitxer anomenat <i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Canvia el directori</b>: aquesta opció permet establir el "
+"directori de registre, el directori ha d'existir i necessita permís "
+"d'escriptura.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Nivell de depuració</b>: si es marca, s'habilita el registre detallat."
+"</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Menú d'ajuda"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Manual</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Aquest menú obre el diàleg d'ajuda de dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Quant a</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Aquest menú obre el diàleg d'informació sobre dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Vistes i cerca"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Vistes</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1580,48 +1634,63 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"El primer menú desplegable permet mostrar els paquets per grups. Si hi ha "
+"<i>Grups</i> seleccionat, el plafó de grups mostra una vista en arbre que "
+"conté grups, mentre que la selecció d'un grup mostra els paquets relacionats "
+"al plafó de paquets."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"Si hi ha seleccionat <i>Tot</i>, el plafó de paquets conté tots els paquets."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtres</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"El menú desplegable de filtres permet filtrar els paquets que es mostren al "
+"plafó de paquets per:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
+"<ul><li><b>Instal·lat</b>: només es mostren els paquets instal·lats.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
 msgstr ""
+"<li><b>No instal·lats</b>: només es mostren els paquets disponibles.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Per actualitzar</b>: només es mostren els paquets que tenen "
+"actualitzacions disponibles.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Mostra només x86_64 i noarch</b>: si dnfdragora s'executa en "
+"l'arquitectura x86_64, amaga els paquets d'i686.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Tot</b>: es mostren tots els paquets, és a dir, disponibles, "
+"actualitzats i instal·lats.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Cerca</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1629,6 +1698,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"La cerca es fa prement el botó de <i>Cerca</i> si hi ha text al camp de "
+"text. El menú desplegable de la cerca permet cercar el text proporcionat als "
+"<i>noms</i>, <i>resums</i>, <i>descripcions</i> o <i>fitxers</i> dels "
+"paquets."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1636,16 +1709,22 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"La casella especial <i>Usa una expressió regular</i> s'usa per cercar "
+"paquets mitjançant expressions regulars del llenguatge Python. Aquesta cerca "
+"es fa a la informació de paquets de la memòria cau com ara<b>només noms i "
+"resums</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Nota:</i> si s’usen expressions regulars per cercar per nom s’usa el nom "
+"de fitxer complet del paquet amb la versió."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "El botó de <i>Neteja la cerca</i> restableix el camp de text de cerca."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1653,6 +1732,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Si se selecciona la vista de grups, el plafó mostrarà tots els grups que "
+"s'usaran per filtrar els paquets per grup. La <i>Cerca</i> especial de grup "
+"s'afageix si es fa una cerca."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1660,12 +1742,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Aquest plafó mostra tots els paquets filtrats amb la informació bàsica, com "
+"ara <i>nom</i>, <i>resum</i>, <i>versió</i>, <i>pubicació</i>, "
+"<i>arquitectura</i>, <i>mida</i> i <i>estat</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Hi ha una casella per a qualsevol paquet per afegir paquets relacionats a "
+"les transaccions per instal·lar, actualitzar o suprimir."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1673,26 +1760,33 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Aquest plafó mostra tota la informació del paquet com ara <i>descripció</i>, "
+"<i>URL</i>, <i>dipòsit</i>, <i>requeriments</i>, <i>llista de fitxers</i> i "
+"<i>registre de canvis</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Tingueu en compte que ara el registre de canvis no l'ofereix "
+"dnfdaemon.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Barra de progrés"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"La barra de progrés mostra la progressió de les operacions de dnfdragora com "
+"ara transaccions i obtenció de dades."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Línia de botons"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1700,16 +1794,22 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Aplica</b>: quan se seleccionen alguns paquets per instal·lar, "
+"actualitzar o es desmarquen per desinstal·lar, aquest botó executa la "
+"transacció.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Selecciona-ho tot</b>: si els paquets es filtren només per "
+"actualitzar, aquest botó permet seleccionar tots els paquets d'una sol cop.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Surt</b>: tanca dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1805,7 +1905,7 @@ msgstr "als noms dels fitxers"
 
 #: dnfdragora/ui.py:556
 msgid "Use regexp"
-msgstr ""
+msgstr "Usa una expressió regular"
 
 #: dnfdragora/ui.py:560
 msgid "&Search"
@@ -1845,7 +1945,7 @@ msgstr "&Informació"
 
 #: dnfdragora/ui.py:610
 msgid "&History"
-msgstr ""
+msgstr "&Historial"
 
 #: dnfdragora/ui.py:618
 msgid "&Options"
@@ -1932,7 +2032,7 @@ msgstr "Construcció de la transacció"
 #: dnfdragora/ui.py:1607
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Acció desconeguda %(action)s a %(name)s"
 
 #: dnfdragora/ui.py:1632
 #, python-format
@@ -1961,11 +2061,11 @@ msgstr "Error de la transacció de construcció"
 
 #: dnfdragora/ui.py:1759
 msgid "GPG key missing"
-msgstr ""
+msgstr "Manca la clau GPG"
 
 #: dnfdragora/ui.py:1883
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Error de cerca mitjançant l'expressió regular"
 
 #: dnfdragora/updater.py:100 dnfdragora/updater.py:103
 #, python-format
@@ -2032,12 +2132,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid "Software Management"
-#~ msgstr "Gestió de programari"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "No implementat encara"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Acció desconeguda %s a %s"
