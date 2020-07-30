@@ -1012,13 +1012,16 @@ class OptionDialog(basedialog.BaseDialog):
     self.config_tab = self.factory.createReplacePoint(hbox_config)
     self.config_tab.setWeight(0,70)
 
-    self.applyButton = self.factory.createIconButton(hbox_bottom,"",_("&Apply"))
-    self.eventManager.addWidgetEvent(self.applyButton, self.onApplyButton)
-    self.applyButton.setWeight(0,3)
+    self.RestoreButton = self.factory.createIconButton(hbox_bottom,"",_("Restore &default"))
+    self.eventManager.addWidgetEvent(self.RestoreButton, self.onRestoreButton)
+    self.RestoreButton.setWeight(0,1)
 
-    self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Cancel"))
+    st = self.factory.createHStretch(hbox_bottom)
+    st.setWeight(0,4)
+
+    self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Close"))
     self.eventManager.addWidgetEvent(self.quitButton, self.onQuitEvent)
-    self.quitButton.setWeight(0,3)
+    self.quitButton.setWeight(0,1)
     self.dialog.setDefaultButton(self.quitButton)
 
     self.eventManager.addCancelEvent(self.onCancelEvent)
@@ -1349,8 +1352,8 @@ class OptionDialog(basedialog.BaseDialog):
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
-  def onApplyButton(self) :
-    logger.debug('Apply pressed')
+  def onRestoreButton(self) :
+    logger.debug('Restore pressed')
 
   def onCancelEvent(self) :
     logger.debug("Got a cancel event")
