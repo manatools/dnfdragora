@@ -1351,12 +1351,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.running = False
                         break
                     elif item == self.optionsMenu['user_prefs'] :
-                        up = dialogs.UserPrefsDialog(self)
-                        changes_applied = up.run()
-                        if changes_applied:
-                          # i would like to avoid next because not all is active now but only at next startup,
-                          # let's save prefs to get changes on next user preferences dialog open anyway even if not active
-                          self.saveUserPreference()
+                        up = dialogs.OptionDialog(self)
+                        up.run()
                     elif item == self.infoMenu['history'] :
                         self.backend.GetHistoryByDays(0, 120) #TODO add in config file
                     elif item == self.helpMenu['help']  :

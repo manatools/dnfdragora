@@ -1354,12 +1354,37 @@ class OptionDialog(basedialog.BaseDialog):
 
   def onRestoreButton(self) :
     logger.debug('Restore pressed')
+    k = self.selected_option
+    if k == "system":
+      self.parent.config.userPreferences['settings']['always_yes'] = False
+      self.parent.always_yes = False
+      self.parent.config.userPreferences['settings']['interval for checking updates'] = 180
+      self.parent.config.userPreferences['settings']['metadata']['update_interval'] = 48
+      self.parent.md_update_interval = 48
+      self._openSystemOptions()
+    elif  k == "layout":
+      self.parent.config.userPreferences['settings']['show updates at startup'] = False
+      self.parent.config.userPreferences['settings']['do not show groups at startup'] = False
+      self._openLayoutOptions()
+    elif k == "search":
+      self.parent.config.userPreferences['settings']['search']['match_all'] = True
+      self.parent.match_all = True
+      self.parent.config.userPreferences['settings']['search']['newest_only'] = False
+      self.parent.newest_only = False
+      self._openSearchOptions()
+    elif k == "logging":
+      pass
+      self.parent.config.userPreferences['settings']['log']['enabled'] = False
+      self.parent.config.userPreferences['settings']['log']['directory'] = os.path.expanduser("~")
+      self.parent.config.userPreferences['settings']['log']['level_debug'] = False
+      self._openLoggingOptions()
 
   def onCancelEvent(self) :
     logger.debug("Got a cancel event")
 
   def onQuitEvent(self) :
     logger.debug("Quit button pressed")
+    self.parent.saveUserPreference()
     # BaseDialog needs to force to exit the handle event loop
     self.ExitLoop()
 
