@@ -1,5 +1,6 @@
 2020-XX-YY v. 2.1.0
 ---------------------
+- Added new Otions dialog
 - Added Help dialog
 - Fixed loop in case of GPG key missing if OnGPGImport is not received
 - Removed MenuButtons and added MenuBar and new menus
