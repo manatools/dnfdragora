@@ -6,12 +6,12 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # 9d2429286e4b6db037855ee18ff950ea_21b1117 <e234ccd2dcb0d5482e17780be633a729_130514>, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
 # William Moreno <williamjmorenor@gmail.com>, 2018
+# José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # Egoitz Rodriguez <egoitzro@gmail.com>, 2020
 # Jose Manuel López <joselp@disroot.org>, 2020
 # Miguel, 2020
-# José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-01 22:49+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020\n"
+"Last-Translator: Miguel, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -657,19 +657,19 @@ msgstr "Sistema"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Diseño"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Inicio de sesión"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Restaurar pre&determinado"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -678,6 +678,8 @@ msgstr "Opciones del sistema"
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
+"Ejecutar transacciones de paquetes automáticamente sin necesidad de "
+"confirmación"
 
 #: dnfdragora/dialogs.py:910
 msgid "Interval to check for updates (minutes)"
@@ -713,11 +715,11 @@ msgstr "Coincidir todas las palabras"
 
 #: dnfdragora/dialogs.py:1015
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Opciones de inicio de sesión (activo en el próximo inicio)"
 
 #: dnfdragora/dialogs.py:1036
 msgid "Enable logging"
-msgstr ""
+msgstr "Permitir inicio de sesión"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Change &directory"
@@ -1490,7 +1492,7 @@ msgstr "diálogo"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "opciones de dnfdragora"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1512,12 +1514,17 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Ejecutar transacciones de paquetes automáticamente sin necesidad "
+"de confirmación</b>: si se ha marcado, las transacciones no se confirmará, "
+"pues dnfdragor funcionará como si siempre se respondiera <i>sí</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>NOTA</b>: esta opción también significa que se eliminarán paquetes "
+"silenciosamente </li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -2148,27 +2155,3 @@ msgstr ""
 "por SUSE, así que se puede ejecutar usando Qt 5, GTK+ 3, o ncurses. Provee "
 "de un asistente gráfico para el gestor de paquetes DNF que se puede usar en "
 "cualquier tipo de entorno de sistema."
-
-#~ msgid ""
-#~ "<ul><li><b>Proceed without asking for confirmation</b>: if checked "
-#~ "transactions do not need to be confirmed, dnfdragora works as answering "
-#~ "<i>yes</i></li>"
-#~ msgstr ""
-#~ "<ul><li><b>Proceder sin pedir confirmación</b>: Si las transacciones "
-#~ "marcadas no necesitan ser confirmadas, dnfdragora funciona como la "
-#~ "respuesta <i>sí</i></li>"
-
-#~ msgid ""
-#~ "<b>NOTE: Apply</b> button must be pressed to make changes permanent and "
-#~ "available, any other way to close the dialog is the same as pressing "
-#~ "<i>Cancel</i> button."
-#~ msgstr ""
-#~ "<b>NOTA:</b> El botón de <b>Aplicar se debe presionar para que los "
-#~ "cambios sean permanentes y estén disponibles. Cualquier otra forma de "
-#~ "cerrar el diálogo es lo mismo que presionar <i>Cancelar</i>."
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Opciones de registro (activo en el siguiente inicio)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Proceder sin pedir confirmación"
