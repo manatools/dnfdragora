@@ -94,26 +94,26 @@ class Updater:
           logger.error("Cannot open theme icon using default one %s"%(icon_path))
           self.__icon  = Image.open(icon_path)
 
-        if 'icon-path' in options.keys() :
-            icon_path = options['icon-path']
-        if icon_path.endswith('/'):
-            icon_path = icon_path + 'dnfdragora-update.svg' if ( os.path.exists(icon_path + 'dnfdragora-update.svg') ) else icon_path + 'dnfdragora-update.png'
-        else:
-            icon_path = icon_path + '/dnfdragora-update.svg' if ( os.path.exists(icon_path + '/dnfdragora-update.svg') ) else icon_path + '/dnfdragora-update.png'
+        #if 'icon-path' in options.keys() :
+            #icon_path = options['icon-path']
+        #if icon_path.endswith('/'):
+            #icon_path = icon_path + 'dnfdragora-update.svg' if ( os.path.exists(icon_path + 'dnfdragora-update.svg') ) else icon_path + 'dnfdragora-update.png'
+        #else:
+            #icon_path = icon_path + '/dnfdragora-update.svg' if ( os.path.exists(icon_path + '/dnfdragora-update.svg') ) else icon_path + '/dnfdragora-update.png'
 
-        theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname(name="dnfdragora-update") or icon_path
+        #theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname(name="dnfdragora-update") or icon_path
 
-        self.__icon_update = Image.Image()
-        try:
-          if theme_icon_pathname.endswith('.svg'):
-              with open(theme_icon_pathname, 'rb') as svg:
-                  self.__icon_update = self.__svg_to_Image(svg.read())
-          else:
-              self.__icon_update  = Image.open(theme_icon_pathname)
-        except Exception as e:
-          logger.error(e)
-          logger.error("Cannot open theme icon using default one %s"%(icon_path))
-          self.__icon_update  = Image.open(icon_path)
+        #self.__icon_update = Image.Image()
+        #try:
+          #if theme_icon_pathname.endswith('.svg'):
+              #with open(theme_icon_pathname, 'rb') as svg:
+                  #self.__icon_update = self.__svg_to_Image(svg.read())
+          #else:
+              #self.__icon_update  = Image.open(theme_icon_pathname)
+        #except Exception as e:
+          #logger.error(e)
+          #logger.error("Cannot open theme icon using default one %s"%(icon_path))
+          #self.__icon_update  = Image.open(icon_path)
 
         try:
             self.__backend = dnfd_client.Client()
@@ -251,12 +251,12 @@ class Updater:
             logger.warning("Cannot run dnfdragora")
 
     def __run_dnfdragora(self, *kwargs):
-        self.__tray.visible = False
+        #self.__tray.visible = False
         return self.__run_dialog({})
 
 
     def __run_update(self, *kwargs):
-        self.__tray.visible = False
+        #self.__tray.visible = False
         return self.__run_dialog({'update_only': True})
 
     def __check_updates(self, *kwargs):
@@ -328,7 +328,8 @@ class Updater:
                 logger.info("Found %d updates"%(self.__update_count))
 
                 if (self.__update_count >= 1):
-                  self.__tray.icon = self.__icon_update
+                  #self.__tray.icon = self.__icon_update
+                  self.__tray.icon = self.__icon
                   self.__tray.visible = True
                   logger.debug("Shown tray")
                   self.__notifier.update(
@@ -352,7 +353,7 @@ class Updater:
                     self.__notifier.close()
                 else:
                   self.__tray.icon = self.__icon
-                  self.__tray.visible = False
+                  self.__tray.visible = True
                   self.__notifier.close()
                   logger.debug("Close notifier")
                 self.__getUpdatesRequested = False
@@ -389,7 +390,7 @@ class Updater:
     def __main_loop(self):
         def setup(tray) :
             # False to start without icon
-            tray.visible = False
+            tray.visible = True
 
         self.__updater.start()
         time.sleep(1)
