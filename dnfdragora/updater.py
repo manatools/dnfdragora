@@ -107,11 +107,12 @@ class Updater:
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
         self.__scheduler = sched.scheduler(time.time, time.sleep)
+        self.__getUpdatesRequested = False
 
         self.__menu  = Menu(
             MenuItem(_('Update'), self.__run_update),
             MenuItem(_('Open dnfdragora dialog'), self.__run_dnfdragora),
-            MenuItem(_('Check for updates'), self.__get_updates),
+            MenuItem(_('Check for updates'), self.__check_updates),
             MenuItem(_('Exit'), self.__shutdown)
         )
         self.__name  = 'dnfdragora-updater'
@@ -235,6 +236,16 @@ class Updater:
     def __run_update(self, *kwargs):
         return self.__run_dialog({'update_only': True})
 
+    def __check_updates(self, *kwargs):
+      '''
+      Start get updates by simply locking the DB
+      '''
+      logger.debug("Start checking for updates, by menu command")
+      try:
+        self.__backend.Lock()
+        self.__getUpdatesRequested = True
+      except Exception as e:
+        logger.error(_('Exception caught: [%s]')%(str(e)))
 
     def __get_updates(self, *kwargs):
       '''
@@ -304,12 +315,21 @@ class Updater:
                   self.__tray.icon = self.__icon
                   self.__tray.visible = True
                   logger.debug("Shown tray")
+                elif self.__getUpdatesRequested :
+                  # __update_count == 0 but get updates has been requested by user command
+                  # Let's give a feed back anyway
+                    self.__notifier.update(
+                      'dnfdragora',
+                      _('No updates available'),
+                      'dnfdragora'
+                    )
+                    self.__notifier.show()
                 else:
                   self.__tray.icon = self.__icon
                   self.__tray.visible = True
                   self.__notifier.close()
                   logger.debug("Close notifier")
-
+                self.__getUpdatesRequested = False
               else:
                 # error
                 logger.error("GetPackages error %s", str(info['error']))
@@ -342,7 +362,8 @@ class Updater:
 
     def __main_loop(self):
         def setup(tray) :
-            tray.visible = False
+            # False to start without icon
+            tray.visible = True
 
         self.__updater.start()
         time.sleep(1)
