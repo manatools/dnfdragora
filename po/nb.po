@@ -651,19 +651,19 @@ msgstr "System"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Søk"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Logging"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Gjenopprette &standard"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -671,7 +671,7 @@ msgstr "Systemalternativ"
 
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Kjør transaksjoner på pakker automatisk uten bekreftelse"
 
 #: dnfdragora/dialogs.py:910
 msgid "Interval to check for updates (minutes)"
@@ -707,11 +707,11 @@ msgstr "Match alle ord"
 
 #: dnfdragora/dialogs.py:1015
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Loggealternativer (aktivt ved neste oppstart)"
 
 #: dnfdragora/dialogs.py:1036
 msgid "Enable logging"
-msgstr ""
+msgstr "Aktiver logging"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Change &directory"
@@ -1483,7 +1483,7 @@ msgstr "dialog"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora alternativer"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1505,12 +1505,17 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Kjør transaksjoner på pakker automatisk uten bekreftelse</b>: "
+"hvis avmerkede transaksjoner ikke trenger å bli bekreftet, antar dnfdragora  "
+"tid som svar <i>ja</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>NOTE</b> at dette alternativet betyr at også å fjerne pakker "
+"automatisk aksepteres</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -2134,27 +2139,3 @@ msgstr ""
 "abstraksjonsbibliotek skrevet av SUSE, slik at det kan kjøres under Qt 5, GTK"
 "+ 3, eller ncurses grensesnitt. Det tilbyr en frontend for DNF "
 "pakkehåndtereren som kan benyttes i ethvert system miljø."
-
-#~ msgid ""
-#~ "<ul><li><b>Proceed without asking for confirmation</b>: if checked "
-#~ "transactions do not need to be confirmed, dnfdragora works as answering "
-#~ "<i>yes</i></li>"
-#~ msgstr ""
-#~ "<ul><li><b> Fortsett uten å spørre om bekreftelse</b>: Hvis  de markerte "
-#~ "transaksjonene ikke trenger å bli bekreftet, vil dnfdragora fungere som "
-#~ "om du svarte  <i>ja</i></li>"
-
-#~ msgid ""
-#~ "<b>NOTE: Apply</b> button must be pressed to make changes permanent and "
-#~ "available, any other way to close the dialog is the same as pressing "
-#~ "<i>Cancel</i> button."
-#~ msgstr ""
-#~ "<b>NOTER: Bruk</b> knappen må klikkes for å gjøre endringene permanente "
-#~ "og tilgjengelige. Alle andre måter å stenge dialogen på virker som å "
-#~ "klikke på  <i>Avbryt</i> knappen."
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Loggingsalternativer (aktiveres ved neste oppstart)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Fortsett uten å be om bekreftelse"

@@ -679,7 +679,7 @@ msgstr "Systemoptionen"
 
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Transaktionen für Pakete automatisch, ohne Rückfrage, durchführen"
 
 #: dnfdragora/dialogs.py:910
 msgid "Interval to check for updates (minutes)"
@@ -1518,6 +1518,9 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Transaktionen für Pakete automatisch, ohne Rückfrage, "
+"durchführen</b>: Wenn dies aktiviert ist, werden keine Bestätigung für "
+"Transaktionen angefordert. dnfdragora antwortet immer mit <i>ja</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
