@@ -94,6 +94,27 @@ class Updater:
           logger.error("Cannot open theme icon using default one %s"%(icon_path))
           self.__icon  = Image.open(icon_path)
 
+        if 'icon-path' in options.keys() :
+            icon_path = options['icon-path']
+        if icon_path.endswith('/'):
+            icon_path = icon_path + 'dnfdragora-update.svg' if ( os.path.exists(icon_path + 'dnfdragora-update.svg') ) else icon_path + 'dnfdragora-update.png'
+        else:
+            icon_path = icon_path + '/dnfdragora-update.svg' if ( os.path.exists(icon_path + '/dnfdragora-update.svg') ) else icon_path + '/dnfdragora-update.png'
+
+        theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname(name="dnfdragora-update") or icon_path
+
+        self.__icon_update = Image.Image()
+        try:
+          if theme_icon_pathname.endswith('.svg'):
+              with open(theme_icon_pathname, 'rb') as svg:
+                  self.__icon_update = self.__svg_to_Image(svg.read())
+          else:
+              self.__icon_update  = Image.open(theme_icon_pathname)
+        except Exception as e:
+          logger.error(e)
+          logger.error("Cannot open theme icon using default one %s"%(icon_path))
+          self.__icon_update  = Image.open(icon_path)
+
         try:
             self.__backend = dnfd_client.Client()
         except dnfdaemon.client.DaemonError as error:
@@ -119,7 +140,7 @@ class Updater:
         self.__tray  = Tray(self.__name, self.__icon, self.__name, self.__menu)
 
 
-    def __get_theme_icon_pathname(self):
+    def __get_theme_icon_pathname(self, name='dnfdragora'):
       '''
         return theme icon pathname or None if missing
       '''
@@ -129,7 +150,7 @@ class Updater:
           logger.error("Error: module xdg.IconTheme is missing")
           return None
       else:
-          pathname = xdg.IconTheme.getIconPath("dnfdragora", 256)
+          pathname = xdg.IconTheme.getIconPath(name, 256)
           return pathname
       return None
 
@@ -230,10 +251,12 @@ class Updater:
             logger.warning("Cannot run dnfdragora")
 
     def __run_dnfdragora(self, *kwargs):
+        self.__tray.visible = False
         return self.__run_dialog({})
 
 
     def __run_update(self, *kwargs):
+        self.__tray.visible = False
         return self.__run_dialog({'update_only': True})
 
     def __check_updates(self, *kwargs):
@@ -305,6 +328,9 @@ class Updater:
                 logger.info("Found %d updates"%(self.__update_count))
 
                 if (self.__update_count >= 1):
+                  self.__tray.icon = self.__icon_update
+                  self.__tray.visible = True
+                  logger.debug("Shown tray")
                   self.__notifier.update(
                       'dnfdragora',
                       _('%d updates available.') % self.__update_count,
@@ -312,9 +338,6 @@ class Updater:
                   )
                   self.__notifier.show()
                   logger.debug("Shown notifier")
-                  self.__tray.icon = self.__icon
-                  self.__tray.visible = True
-                  logger.debug("Shown tray")
                 elif self.__getUpdatesRequested :
                   # __update_count == 0 but get updates has been requested by user command
                   # Let's give a feed back anyway
@@ -324,9 +347,12 @@ class Updater:
                       'dnfdragora'
                     )
                     self.__notifier.show()
+                    self.__tray.icon = self.__icon
+                    self.__tray.visible = True
+                    self.__notifier.close()
                 else:
                   self.__tray.icon = self.__icon
-                  self.__tray.visible = True
+                  self.__tray.visible = False
                   self.__notifier.close()
                   logger.debug("Close notifier")
                 self.__getUpdatesRequested = False
@@ -363,7 +389,7 @@ class Updater:
     def __main_loop(self):
         def setup(tray) :
             # False to start without icon
-            tray.visible = True
+            tray.visible = False
 
         self.__updater.start()
         time.sleep(1)
