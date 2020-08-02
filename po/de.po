@@ -659,19 +659,19 @@ msgstr "System"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Suchen"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Protokollierung"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Einstellungen wie&derherstellen"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -715,11 +715,11 @@ msgstr "Alle Wörter stimmen überein"
 
 #: dnfdragora/dialogs.py:1015
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Protokollieroptionen (beim nächsten Start aktiv)"
 
 #: dnfdragora/dialogs.py:1036
 msgid "Enable logging"
-msgstr ""
+msgstr "Aktiviere Protokollierung"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Change &directory"
@@ -1495,7 +1495,7 @@ msgstr "Dialog"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora Optionen"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1524,6 +1524,8 @@ msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>HINWEIS</b>: Diese Auswahl bedeutet, dass auch Pakete ohne Rückfrage "
+"entfernt werden</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -2157,28 +2159,3 @@ msgstr ""
 "ncurses Schnittstellen ausgeführt werden kann. Es bietet ein Frontend für "
 "die DNF Paketverwaltung, welches für jede Systemumgebung verwendet werden "
 "kann."
-
-#~ msgid ""
-#~ "<ul><li><b>Proceed without asking for confirmation</b>: if checked "
-#~ "transactions do not need to be confirmed, dnfdragora works as answering "
-#~ "<i>yes</i></li>"
-#~ msgstr ""
-#~ "<ul><li><b>Fortfahren, ohne Bestätigungen anzufordern</b>: Wenn "
-#~ "ausgewählt, müssen Transaktionen nicht bestätigt werden. dnfdragora "
-#~ "antwortet automatisch mit <i>ja</i></li>"
-
-#~ msgid ""
-#~ "<b>NOTE: Apply</b> button must be pressed to make changes permanent and "
-#~ "available, any other way to close the dialog is the same as pressing "
-#~ "<i>Cancel</i> button."
-#~ msgstr ""
-#~ "<b>Hinweis: Die Schaltfläche Anwenden</b> muss gedrückt werden, um "
-#~ "Änderungen dauerhaft und verfügbar zu machen. Jede andere Möglichkeit zum "
-#~ "Schließen des Dialogfelds entspricht dem Drücken der Taste <i>Abbrechen</"
-#~ "i>."
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Protokolloptionen (beim nächsten Start aktiv)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Fortfahren, ohne Bestätigungen anzufordern"
