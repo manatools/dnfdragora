@@ -648,19 +648,19 @@ msgstr "システム"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "レイアウト"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "ログの出力"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "既定値に戻す(&D)"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -668,7 +668,7 @@ msgstr "システムの設定"
 
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "確認の必要なしに自動的にパッケージのトランザクションを実行する"
 
 #: dnfdragora/dialogs.py:910
 msgid "Interval to check for updates (minutes)"
@@ -704,11 +704,11 @@ msgstr "すべての単語にマッチ"
 
 #: dnfdragora/dialogs.py:1015
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "ログ出力設定 (次回起動時から有効)"
 
 #: dnfdragora/dialogs.py:1036
 msgid "Enable logging"
-msgstr ""
+msgstr "ログ出力を有効にする"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Change &directory"
@@ -1479,7 +1479,7 @@ msgstr "ダイアログ"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora の設定"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1501,12 +1501,17 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>確認の必要なしに自動的にパッケージのトランザクションを実行する</"
+"b>: チェックした場合、トランザクションは確認を必要とせず、dnfdragora は常に"
+"<i>はい</i>と答えるよう動作します。"
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br>この項目はパッケージの削除についても確認なく承諾するということに<b>留意</"
+"b>してください</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -1577,7 +1582,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr "<h2>ロギング設定</h2>"
+msgstr "<h2>ログ出力設定</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -2132,27 +2137,3 @@ msgstr ""
 "のいずれかのインターフェースを用いて動作可能です。これはどのような種類のシス"
 "テム環境においても使用可能な DNF パッケージ マネージャのフロント エンドを提供"
 "します。"
-
-#~ msgid ""
-#~ "<ul><li><b>Proceed without asking for confirmation</b>: if checked "
-#~ "transactions do not need to be confirmed, dnfdragora works as answering "
-#~ "<i>yes</i></li>"
-#~ msgstr ""
-#~ "<ul><li><b>確認なしに操作を続行する</b>: チェックした場合トランザクション"
-#~ "の確認は不要となり、dnfdragora は質問に<i>はい</i>と答えるように動作します"
-#~ "</li>"
-
-#~ msgid ""
-#~ "<b>NOTE: Apply</b> button must be pressed to make changes permanent and "
-#~ "available, any other way to close the dialog is the same as pressing "
-#~ "<i>Cancel</i> button."
-#~ msgstr ""
-#~ "<b>メモ: 適用</b>ボタンを押すことは変更を適用して永続化するために必須で、"
-#~ "ダイアログを他の方法で閉じた場合は<i>キャンセル</i> ボタンを押すのと同じに"
-#~ "なります。"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "ログ設定 (次回起動時から有効)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "確認なしに操作を続行する"
