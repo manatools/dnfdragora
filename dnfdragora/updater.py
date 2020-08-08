@@ -251,12 +251,12 @@ class Updater:
             logger.warning("Cannot run dnfdragora")
 
     def __run_dnfdragora(self, *kwargs):
-        #self.__tray.visible = False
+        self.__tray.visible = False
         return self.__run_dialog({})
 
 
     def __run_update(self, *kwargs):
-        #self.__tray.visible = False
+        self.__tray.visible = False
         return self.__run_dialog({'update_only': True})
 
     def __check_updates(self, *kwargs):
@@ -264,6 +264,7 @@ class Updater:
       Start get updates by simply locking the DB
       '''
       logger.debug("Start checking for updates, by menu command")
+      self.__tray.visible = False
       try:
         self.__backend.Lock()
         self.__getUpdatesRequested = True
@@ -321,6 +322,10 @@ class Updater:
               #let's log metadata since slows down the Lock requests
               self.__OnRepoMetaDataProgress(info['name'], info['frac'])
             elif (event == 'GetPackages'):
+              if not self.__tray.visible :
+                # ugly workaround to show icon if hidden, set empty icon and show it
+                self.__tray.icon = Image.Image()
+                self.__tray.visible = True
               logger.debug("Event received %s", event)
               if not info['error']:
                 po_list = info['result']
