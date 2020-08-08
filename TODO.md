@@ -15,8 +15,8 @@ as soon as possible.
 - [ ] Change progress bar layout (in progress)
 - [X] Fix window layout to gain room see issues [79](https://github.com/manatools/dnfdragora/issues/79), [107](https://github.com/manatools/dnfdragora/issues/107)
 - [X] Fix dnfdragora-update notifiy/menu seems not to be shown after running dinfdragora (in progress) issues [112](https://github.com/manatools/dnfdragora/issues/112), [130](https://github.com/manatools/dnfdragora/issues/130), [134](https://github.com/manatools/dnfdragora/issues/134)
-- [ ] Find a way to hide dnfdragora-update menu when no updates are available (now managed with two kind of icons [150](https://github.com/manatools/dnfdragora/issues/150))
-- [ ] Add a configuration entry for hiding dnfdragora-update menu when no updates are available 
+- [X] Find a way to hide dnfdragora-update menu when no updates are available (now managed with two kind of icons [150](https://github.com/manatools/dnfdragora/issues/150))
+- [X] Add a configuration entry for hiding dnfdragora-update menu when no updates are available 
 - [ ] Fix group caching if comp is selected (in progress, it works but sync now)
 - [ ] Let the user know when DB is locked on dnfdragora startup
 - [ ] Add and/or change some icons if possible (in progress thanks to Carson Black) issues ~~[55](https://github.com/manatools/dnfdragora/issues/55)~~, [139](https://github.com/manatools/dnfdragora/issues/139)
