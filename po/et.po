@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # Marek Laane <qiilaq69@gmail.com>, 2020
 #
 #, fuzzy
@@ -652,19 +652,19 @@ msgstr "Süsteem"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Paigutus"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Otsi"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Logimine"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "&Vaikeväärtuste taastamine"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -672,7 +672,7 @@ msgstr "Süsteemi valikud"
 
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Paketitehingute automaatne käivitamine ilma kinnitust nõudmata"
 
 #: dnfdragora/dialogs.py:910
 msgid "Interval to check for updates (minutes)"
@@ -708,11 +708,11 @@ msgstr "Kõik sõnad peavad sobima"
 
 #: dnfdragora/dialogs.py:1015
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Logimisvalikud (kasutatavad taaskäivitamise järel)"
 
 #: dnfdragora/dialogs.py:1036
 msgid "Enable logging"
-msgstr ""
+msgstr "Logimise lubamine"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Change &directory"
@@ -763,7 +763,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "paketil ei ole ühtegi  %s atribuuti"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -771,7 +771,7 @@ msgstr "Pakettidest gruppide puhverdamine ..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Käsku täidetakse"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1300,63 +1300,68 @@ msgstr "Veeb/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Liigu indeksisse"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Menüürida"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filtri- ja otsinguriba"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Rühmapaneel"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Paketipaneel"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Teabepaneel"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Edenemisriba rida"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Nupurida"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Failimenüü"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Teabemenüü"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Valikumenüü"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Abimenüü"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora on DNF-i kasutajaliides, mis tugineb Msgeia rpmdragora "
+"paigutusele ja Fedora yumex-dnf'i koostööle dnfdaemon'iga <br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora kujutab endast sisuliselt tarkvarahalduri kasutajaliidest, mis "
+"võimaldab tsrkvsrspakette paigaldada, uuendada, eemaldada, otsida ja veel "
+"palju nuud."
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1364,36 +1369,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora kuulub tööriistade komplekti manatools, mille aluseks on libyui, "
+"mistõttu see võib töötada nii Gtk, Qt kui ks ncurses'i peal, see tähendab "
+"nii graafilise kui ka tekstilise kasutajaliidesega."
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora aknas leiab:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Menüüriba sisu"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Menüüriba sisaldab dnfdragora ripikmenüüsid:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Failimenüü"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Lähtesta valik</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"See menüü eemaldab pakettidelt kõik tähised, kui need on valitud "
+"paigaldamiseks või eemaldamiseks, taastades nende endise oleku <br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Värskenda metaandmeid</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1401,10 +1411,12 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"See menüü saadab dnfdaemon'ile nõude jõuga värskendada kõiki metaandmeid. "
+"See toiming on asünkroonne ja nõuab paketipuhvri teabe ümberehitamist <br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Hoidlad</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1412,22 +1424,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"See menüü avab dialoogi, mille abil saab tarkvarahoidlaid lubada või "
+"keelata. Kõik muudatused kehtivad dnfdragora töötamise ajal ega ole püsivad "
+"<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Välju</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "See menüü lõpetab dnfdragora töö <br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Teabemenüü"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Ajalugu</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1435,20 +1450,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"See menüü avab tehingute ajaloo, mis on korraldatud kuupäevade järgi "
+"puustruktuuri. Valitud ajalookirjet saab tühistada klõpsuga nupule <b>Võta "
+"tagasi</b> <br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Pange tähele, et dnf-i API muutmise tõttu see funktsioon praegu ei "
+"toimi</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Valikumenüü"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Kasutaja eelistused</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1456,14 +1476,16 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"See menüü avab %s, mis susaldab dnfdragora käitumist mõjutavaid kasutaja "
+"seadistusi <br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "dialoogi"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora valikud"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1471,10 +1493,13 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"See dialoog  võimaldab kohandada dnfdragora käitumist valikuid muutes. Mõned "
+"muudatused hakkavad kehtima pärast dialoogi sulgemist, mõned alles pärast "
+"dnfdragora taaskäivitamist.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2> Süsteemi valikud </h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1482,28 +1507,37 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Paketitehingute automaatne käivitamine ilma kinnitust nõudmata</"
+"b> :märkimise korral ei ole tarvis tehinguid kinnitada, dnfdragora töötab, "
+"nagi vastataks alati  <i>jah</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>PANGE TÄHELE,</b>et see valik tähendab ühtlasi pakettide vaikimisi, "
+"kinnituseta eemaldamise  lubamist</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Uuenduste kontrollimise intervall</b>: minutite arv, mille järel "
+"dnfdragora peab kontrollima uuenduste olemasolu</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Metaandmete aegumise aeg </b>: aeg tundides. mille järel metaandmed "
+"sunnitakse aeguma</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2> Paigutusvalikud </h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1511,6 +1545,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Uuenduste näitamine</b>: märkimise korral käivitatakse dnfdragora "
+"aktiivse <i>uuenduste</i>filtriga, see tähendab näidatakse ainult pakette, "
+"mida saab uuendada, kui neid peaks leiduma.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1518,14 +1555,19 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b> Rühmavaadet ei näidata </b>: rühmade kaupa filtreerimine nõuab "
+"comps'i kasutamisel omajagu peotsessorivõimsust. M'rkimise korral näidatakse "
+"dnfdragora käivitamisel kõiki pakette.</li> </ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>PANGE TÄHELE</b>, et eeltoodud valikud nõuavad rakendamiseks dnfdragora "
+"taaskäivitamist."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Otsinguvalikud</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1533,61 +1575,73 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Ainult uusimate pakettide näitamine</b>: märkimise korral näitab "
+"dnfdragora otsingus ainult uusimaid  pakette. <i>Pange tähele, et see kehtib "
+"ainult siis, kui otsingus ei kasutata regulaaravaldisi</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Kõik sõnad peavad sobima</b>: märkimise korral peavad ilma "
+"regulaaravaldiseta otsing vastama kõigile tekstiväljale kirjutatud sõnadele."
+"</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Logmisvalikud</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Nende valikute lubamine võimaldab dnfdragoral logida faili nimega "
+"<i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b> Muuda kataloogi </b>: see valik lubab määrata logimiskataloogi. "
+"Kataloog peab olemas olema ja sellesse peab olema õigus kirjutada.. </li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Silumistase</b>: märkimise korral lubatakse jutukas logimine.</li></"
+"ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Abimenüü"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Käsiraamat</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "See menüü avab dnfdragora abidialoogi."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Teave</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "See menüü avsb dnfdragora teabedialoogi."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Vaated ja otsing"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Vaated</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1595,48 +1649,59 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"Esimene liitkast näitab pakette rühmades. Kui valitud on <i>Grupid</i>, "
+"näitab rühmapaneel gruppe puustruktuurina, gruppi valides aga näidatakse "
+"paketipanellil gruppi kuuluvaid tarkvarapakette."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"Kui valitud on <i> Kõik</i>, näidatakse paketipaneelil kõiki tarkvarapakette."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtrid</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"Filtrikast lubab filtreerida paketipaneelil näidatavaid pakette jägrmiselt:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
+"<ul><li><b>Paigaldatud</b>: näidatakse ainult paigaldatud pakette.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>Paigaldamata</b>: näidatakse ainult saadaolevaid pakette.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Uuendatavad</b>: näidatakse ainult pakette, millele on uendusi.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Ainult x86_64 ja noarch</b>: kui dnfdragora töötab  x86_64 "
+"arhitektuuri peal, peidetakse i686 paketid.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Kõik</b>: näidatakse kõiki pakette, see tähendab saadaolevaid, "
+"uuendatavaid kui ka paigaldatuid.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Otsing</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1644,6 +1709,9 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Otsida saab nupule  <i>Otsi</i> klõpsates, kui tekstiväljale on midagi "
+"kirjutatud. Otsingukast võimaldab otsida määratud teksti pakettide "
+"<i>nimedes</i>, <i>kokkuvõtetes</i>, <i>kirjeldustes</i> või <i>failides</i>."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1651,16 +1719,22 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Spetsiaalne märkekast  <i>Regulaaravaldise kasutamine</i> võimaldab pakette "
+"otsida Pythoni regulaarvaldisi ksutades. Selline otsing sooitatakse "
+"pakettide puhverdtud teabe peal, näiteks <b>ainult nimedes ja kokkuvõtetes</"
+"b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Pange tähele</i>, et kui regulaaravaldist tarvitatakse nime otsimiseks, "
+"kasutatakse paketi täielikku failinime koos versiooniga."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "Nupuga <i>Puhasta otsing</i> saab tekstivälja lähtestada."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1668,6 +1742,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Sellel paneelil näeb kõiki rühmi, mille alusel pakette rühmitatakse, kui "
+"valitud on grupivaade. Otsingu korral lisatakse spetsiaalne rühm <i>Otsing</"
+"i>."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1675,12 +1752,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Sellel paneelil näeb kõiki filtreeritud pakette koos nende põhiteabega, nagu "
+"<i>nimi</i>, <i>kokkuvõte</i>, <i>versioon</i>, <i>väljalase</i>, "
+"<i>arhitektuur</i>, <i>suurus</i> ja <i>olek</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Kõigi pakettide juures on märkekast, millega saab määrata paigaldamise, "
+"uuendamise või eemaldamise tehingu,"
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1688,26 +1770,32 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Sellel paneelil näeb kogu paketi teavet, see tähendab <i>kirjeldust</i>, "
+"<i>URL-i</i>, <i>hoidlat</i>, <i>sõltuvusi</i>, <i>faillde loendit</i> ja "
+"<i>muudatuste logi</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Pange tähele, et praegu  dnfdaemon muudatuste logi ei näita.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Edenemistriba"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Edenemirtiba näitab dnfdragora toimingute, näiteks tehingute ja andmete "
+"puhverdamise edenemist."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Nupurida"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1715,16 +1803,21 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Rakenda</b>: kui mõned paketid on valitud paigaldamiseks või "
+"uuendamiseks või nende valik on tühistatud eemaldamiseks, siis sellele "
+"nupule klõpsates saab sooritada vastava tehingu.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Vali kõíkl</b>: kui filtreerimisel näidatakse ainult uuendatavaid "
+"pakette, siis selle nupuga saab need kõik ühekorraga valida..</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Välju </b>: väljumine dnfdragorast.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1820,7 +1913,7 @@ msgstr "failinimedes"
 
 #: dnfdragora/ui.py:556
 msgid "Use regexp"
-msgstr ""
+msgstr "Regulaaravakdise kasutamine"
 
 #: dnfdragora/ui.py:560
 msgid "&Search"
@@ -1860,7 +1953,7 @@ msgstr "&Teave"
 
 #: dnfdragora/ui.py:610
 msgid "&History"
-msgstr ""
+msgstr "A&jalugu"
 
 #: dnfdragora/ui.py:618
 msgid "&Options"
@@ -1951,7 +2044,7 @@ msgstr "Tehingu loomine"
 #: dnfdragora/ui.py:1603
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Tundmatu toiming  %(action)s paketiga %(name)s"
 
 #: dnfdragora/ui.py:1628
 #, python-format
@@ -1980,11 +2073,11 @@ msgstr "Ehitamistehingu tõrge"
 
 #: dnfdragora/ui.py:1755
 msgid "GPG key missing"
-msgstr ""
+msgstr "GPG võti puudub"
 
 #: dnfdragora/ui.py:1879
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Otaimisel regulaaravaldisega tekkis tõrge"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
@@ -2023,7 +2116,7 @@ msgstr "Saadaval on %d uuendust."
 
 #: dnfdragora/updater.py:346
 msgid "No updates available"
-msgstr ""
+msgstr "Uuendusi pole"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2052,18 +2145,3 @@ msgstr ""
 "abstraheerimise teeki libYui, mis tähendab, et see võib töötada Qt 5, GTK+ 3 "
 "või ncurses'i liidesega. See tekitab DNF paketihaldurile liidese, mida on "
 "võimalik tarvitada kõikvõimalikes töökeskkondades."
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Tundmatu toiming %s  %s-ga"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ei ole veel võimalik"
-
-#~ msgid "Software Management"
-#~ msgstr "Tarkvarahaldur"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Logivalikud (rakenduvad järgmisel käivitamisel)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Jätkamine kinnitust küsimata"
