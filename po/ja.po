@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-01 22:49+0300\n"
+"POT-Creation-Date: 2020-08-08 15:12+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Masanori Kakura <kakurasan@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2074,40 +2074,44 @@ msgstr "GPG 鍵がありません"
 msgid "Search error using regular expression"
 msgstr "正規表現を用いた検索のエラー"
 
-#: dnfdragora/updater.py:100 dnfdragora/updater.py:103
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "dnfdaemon サービスの開始時にエラーが発生しました: [%s]"
 
-#: dnfdragora/updater.py:112
+#: dnfdragora/updater.py:134
 msgid "Update"
 msgstr "更新"
 
-#: dnfdragora/updater.py:113
+#: dnfdragora/updater.py:135
 msgid "Open dnfdragora dialog"
 msgstr "dnfdragora のダイアログを開く"
 
-#: dnfdragora/updater.py:114
+#: dnfdragora/updater.py:136
 msgid "Check for updates"
 msgstr "更新を確認"
 
-#: dnfdragora/updater.py:115
+#: dnfdragora/updater.py:137
 msgid "Exit"
 msgstr "終了"
 
-#: dnfdragora/updater.py:206
+#: dnfdragora/updater.py:228
 msgid "Running dnfdragora failure"
 msgstr "dnfdragora の実行に失敗しました"
 
-#: dnfdragora/updater.py:247
+#: dnfdragora/updater.py:271 dnfdragora/updater.py:281
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "例外を捕捉しました: [%s]"
 
-#: dnfdragora/updater.py:299
+#: dnfdragora/updater.py:336
 #, python-format
 msgid "%d updates available."
 msgstr "%d 件の更新が利用可能です。"
+
+#: dnfdragora/updater.py:346
+msgid "No updates available"
+msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-01 22:49+0300\n"
+"POT-Creation-Date: 2020-08-08 15:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1980,40 +1980,44 @@ msgstr ""
 msgid "Search error using regular expression"
 msgstr ""
 
-#: dnfdragora/updater.py:100 dnfdragora/updater.py:103
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Fejl ved start af dnfdaemon-tjeneste: [%s]"
 
-#: dnfdragora/updater.py:112
+#: dnfdragora/updater.py:134
 msgid "Update"
 msgstr "Opdater"
 
-#: dnfdragora/updater.py:113
+#: dnfdragora/updater.py:135
 msgid "Open dnfdragora dialog"
 msgstr "Åbn dnfdragora-dialog"
 
-#: dnfdragora/updater.py:114
+#: dnfdragora/updater.py:136
 msgid "Check for updates"
 msgstr "Søg efter opdateringer"
 
-#: dnfdragora/updater.py:115
+#: dnfdragora/updater.py:137
 msgid "Exit"
 msgstr "Afslut"
 
-#: dnfdragora/updater.py:206
+#: dnfdragora/updater.py:228
 msgid "Running dnfdragora failure"
 msgstr "Fejl ved kørsel af dnfdragora"
 
-#: dnfdragora/updater.py:247
+#: dnfdragora/updater.py:271 dnfdragora/updater.py:281
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Undtagelse fanget: [%s]"
 
-#: dnfdragora/updater.py:299
+#: dnfdragora/updater.py:336
 #, python-format
 msgid "%d updates available."
 msgstr "%d opdateringer tilgængelige."
+
+#: dnfdragora/updater.py:346
+msgid "No updates available"
+msgstr ""
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
