@@ -489,15 +489,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'always_yes' in settings.keys() :
                 self.always_yes = settings['always_yes']
 
+        show_item = 'all' if self.update_only else \
+          view['show'] if 'show' in view.keys() else 'groups'
+
         for v in ordered_views:
             item = yui.YItem(self.views[v]['title'], False)
-            show_item = 'all' if self.all_updates_filter else 'groups'
-            if not self.update_only and 'show' in view.keys():
-                show_item = view['show']
-
             if show_item == v :
                 item.setSelected(True)
-
             # adding item to views to find the item selected
             self.views[v]['item'] = item
             itemColl.push_back(item)
@@ -510,16 +508,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.filter_box = self.factory.createComboBox(hbox_top,"")
         itemColl.clear()
 
+        filter_item = 'to_update' if self.all_updates_filter or self.update_only \
+          else view['filter'] if 'filter' in view.keys() else 'all'
+
         for f in ordered_filters:
             item = yui.YItem(self.filters[f]['title'], False)
-
-            filter_item = 'to_update' if self.all_updates_filter or self.update_only else 'all'
-            if not self.update_only and 'filter' in view.keys():
-                filter_item = view['filter']
-
             if filter_item == f:
                 item.setSelected(True)
-
             # adding item to filters to find the item selected
             self.filters[f]['item'] = item
             itemColl.push_back(item)
