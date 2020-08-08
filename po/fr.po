@@ -5,16 +5,16 @@
 #
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
-# Eric Barbero <dune06@free.fr>, 2017
 # Fabien Degomme <morphalus@gmail.com>, 2017
 # Antoine DUMONDEL, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
-# Kévin R., 2018
 # d80ebd4b9692a268e2da589d73937486, 2018
 # stroibe974 <sebsweb@gmail.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
-# Yves Brungard, 2020
 # Charles Monzat <c.monzat@laposte.net>, 2020
+# Yves Brungard, 2020
+# Eric Barbero <dune06@free.fr>, 2020
+# Kévin R., 2020
 # Aurelien <aoudelet@outlook.com>, 2020
 #
 #, fuzzy
@@ -663,19 +663,19 @@ msgstr "Système"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Canevas"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Journalisation"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Restaurer par défault"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -684,6 +684,8 @@ msgstr "Options du système"
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
+"Exécuter les transactions sur les paquetages automatiquement sans nécessiter "
+"de confirmation de la part de l'utilisateur."
 
 #: dnfdragora/dialogs.py:910
 msgid "Interval to check for updates (minutes)"
@@ -719,11 +721,11 @@ msgstr "Trouver tous les mots"
 
 #: dnfdragora/dialogs.py:1015
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Options de Journalisation (Nécessite un redémarrage)"
 
 #: dnfdragora/dialogs.py:1036
 msgid "Enable logging"
-msgstr ""
+msgstr "Activer la journalisation"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Change &directory"
@@ -1500,7 +1502,7 @@ msgstr "boîte de dialogue"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "Options de dnfdragora"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1522,12 +1524,18 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Exécuter les transactions sur les paquetages automatiquement sans "
+"nécessiter de confirmation de la part de l'utilisateur.</b> : si coché, les "
+"transactions s'exécutent sans nécessiter de confirmation, dnfdragora "
+"fonctionne comme si toutes les questions étaient répondues <i>Oui</i>. "
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>Remarque importante</b> : la suppression de paquetages sera acceptée "
+"afin de satisfaire les dépendances.</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -2111,15 +2119,15 @@ msgstr "Erreur lors du démarrage du service dnfdaemon : [%s]"
 
 #: dnfdragora/updater.py:134
 msgid "Update"
-msgstr "Mettre à jour"
+msgstr "Ouvrir dnfdragora pour mettre à jour les paquetages"
 
 #: dnfdragora/updater.py:135
 msgid "Open dnfdragora dialog"
-msgstr "Ouvrir la fenêtre dnfdragora"
+msgstr "Ouvrir dnfdragora pour installer/supprimer des paquetages"
 
 #: dnfdragora/updater.py:136
 msgid "Check for updates"
-msgstr "Vérifier les mises à jour"
+msgstr "Vérifier la disponibilité des mises à jour"
 
 #: dnfdragora/updater.py:137
 msgid "Exit"
@@ -2172,27 +2180,3 @@ msgstr ""
 "d'abstraction d'objet graphique écrite par Suse, qui permet une interface en "
 "utilisant Qt 5, GTK+3 ou ncurses. Cette interface graphique au  gestionnaire "
 "de logiciels DNF peut être utilisée dans tout type d'environnement système."
-
-#~ msgid ""
-#~ "<ul><li><b>Proceed without asking for confirmation</b>: if checked "
-#~ "transactions do not need to be confirmed, dnfdragora works as answering "
-#~ "<i>yes</i></li>"
-#~ msgstr ""
-#~ "<ul><li><b>Continuer sans demander de confirmation</b> : si sélectionné, "
-#~ "les transactions ne demandent pas de confirmation, dnfdragora "
-#~ "fonctionnera comme si les réponses <i>Oui</i></li>"
-
-#~ msgid ""
-#~ "<b>NOTE: Apply</b> button must be pressed to make changes permanent and "
-#~ "available, any other way to close the dialog is the same as pressing "
-#~ "<i>Cancel</i> button."
-#~ msgstr ""
-#~ "<b>Remarque : Appliquer</b>doit être pressé pour que chaque changement "
-#~ "soit permanent, fermer la fenêtre de dialogue revient à annuler les "
-#~ "changements, comme si le bouton <i>Annuler</i> était pressé."
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Options de journalisation (actives au prochain démarrage)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Procéder sans demander de confirmation"
