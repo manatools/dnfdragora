@@ -896,6 +896,15 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
 
+    hide_update_menu = self.parent.config.userPreferences['settings']['hide_update_menu'] \
+        if 'settings' in self.parent.config.userPreferences.keys() and 'hide_update_menu' in self.parent.config.userPreferences['settings'].keys() \
+        else True
+
+    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu )
+    self.hide_update_menu.setNotify(True)
+    self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
+    self.widget_callbacks.append( { 'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu} )
+
     self.factory.createVSpacing(vbox)
 
     updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
@@ -1146,7 +1155,7 @@ class OptionDialog(basedialog.BaseDialog):
     if isinstance(obj, yui.YIntField):
       self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
       self.parent.md_update_interval = obj.value()
-      logger.debug("Invalid object passed %d", obj.value())
+      logger.debug("update_interval %d", obj.value())
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
@@ -1157,7 +1166,17 @@ class OptionDialog(basedialog.BaseDialog):
     if isinstance(obj, yui.YCheckBox):
       self.parent.config.userPreferences['settings']['always_yes'] = obj.isChecked()
       self.parent.always_yes = obj.isChecked()
-      logger.debug("Invalid object passed %d", obj.value())
+      logger.debug("always_yes %d", obj.value())
+    else:
+      logger.error("Invalid object passed %s", obj.widgetClass())
+
+  def onHideUpdateMenu(self, obj):
+    '''
+    Hide update menu changing
+    '''
+    if isinstance(obj, yui.YCheckBox):
+      self.parent.config.userPreferences['settings']['hide_update_menu'] = obj.isChecked()
+      logger.debug("hide_update_menu %d", obj.value())
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 

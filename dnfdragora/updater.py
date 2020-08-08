@@ -39,11 +39,15 @@ class Updater:
         self.__log_directory = None
         self.__level_debug = False
 
+        self.__hide_menu = True
+
         if self.__config.userPreferences:
             if 'settings' in self.__config.userPreferences.keys() :
                 settings = self.__config.userPreferences['settings']
                 if 'interval for checking updates' in settings.keys() :
                     self.__updateInterval = int(settings['interval for checking updates'])
+                self.__hide_menu = settings['hide_update_menu'] if 'hide_update_menu' in settings.keys() \
+                  else True
 
                 #### Logging
                 if 'log' in settings.keys():
@@ -357,7 +361,7 @@ class Updater:
                     self.__notifier.close()
                 else:
                   self.__tray.icon = self.__icon
-                  self.__tray.visible = True
+                  self.__tray.visible = not self.__hide_menu
                   self.__notifier.close()
                   logger.debug("Close notifier")
                 self.__getUpdatesRequested = False
