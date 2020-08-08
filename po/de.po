@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-08 15:12+0300\n"
+"POT-Creation-Date: 2020-08-08 15:17+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: psyca, 2020\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2135,7 +2135,7 @@ msgstr "%d Aktualisierungen verfügbar."
 
 #: dnfdragora/updater.py:346
 msgid "No updates available"
-msgstr ""
+msgstr "Keine Aktualisierungen verfügbar"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
