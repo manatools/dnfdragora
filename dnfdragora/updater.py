@@ -94,26 +94,26 @@ class Updater:
           logger.error("Cannot open theme icon using default one %s"%(icon_path))
           self.__icon  = Image.open(icon_path)
 
-        #if 'icon-path' in options.keys() :
-            #icon_path = options['icon-path']
-        #if icon_path.endswith('/'):
-            #icon_path = icon_path + 'dnfdragora-update.svg' if ( os.path.exists(icon_path + 'dnfdragora-update.svg') ) else icon_path + 'dnfdragora-update.png'
-        #else:
-            #icon_path = icon_path + '/dnfdragora-update.svg' if ( os.path.exists(icon_path + '/dnfdragora-update.svg') ) else icon_path + '/dnfdragora-update.png'
+        if 'icon-path' in options.keys() :
+            icon_path = options['icon-path']
+        if icon_path.endswith('/'):
+            icon_path = icon_path + 'dnfdragora-update.svg' if ( os.path.exists(icon_path + 'dnfdragora-update.svg') ) else icon_path + 'dnfdragora-update.png'
+        else:
+            icon_path = icon_path + '/dnfdragora-update.svg' if ( os.path.exists(icon_path + '/dnfdragora-update.svg') ) else icon_path + '/dnfdragora-update.png'
 
-        #theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname(name="dnfdragora-update") or icon_path
+        theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname(name="dnfdragora-update") or icon_path
 
-        #self.__icon_update = Image.Image()
-        #try:
-          #if theme_icon_pathname.endswith('.svg'):
-              #with open(theme_icon_pathname, 'rb') as svg:
-                  #self.__icon_update = self.__svg_to_Image(svg.read())
-          #else:
-              #self.__icon_update  = Image.open(theme_icon_pathname)
-        #except Exception as e:
-          #logger.error(e)
-          #logger.error("Cannot open theme icon using default one %s"%(icon_path))
-          #self.__icon_update  = Image.open(icon_path)
+        self.__icon_update = Image.Image()
+        try:
+          if theme_icon_pathname.endswith('.svg'):
+              with open(theme_icon_pathname, 'rb') as svg:
+                  self.__icon_update = self.__svg_to_Image(svg.read())
+          else:
+              self.__icon_update  = Image.open(theme_icon_pathname)
+        except Exception as e:
+          logger.error(e)
+          logger.error("Cannot open theme icon using default one %s"%(icon_path))
+          self.__icon_update  = Image.open(icon_path)
 
         try:
             self.__backend = dnfd_client.Client()
@@ -328,8 +328,7 @@ class Updater:
                 logger.info("Found %d updates"%(self.__update_count))
 
                 if (self.__update_count >= 1):
-                  #self.__tray.icon = self.__icon_update
-                  self.__tray.icon = self.__icon
+                  self.__tray.icon = self.__icon_update
                   self.__tray.visible = True
                   logger.debug("Shown tray")
                   self.__notifier.update(
