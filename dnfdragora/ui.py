@@ -1413,7 +1413,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     for it in self.itemList:
                         pkg = self.itemList[it]['pkg']
                         self.packageQueue.add(pkg, 'i')
-                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
 
                 elif (widget == self.applyButton) :
                     #### APPLY
