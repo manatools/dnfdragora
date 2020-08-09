@@ -2111,7 +2111,7 @@ msgstr "%d 件の更新が利用可能です。"
 
 #: dnfdragora/updater.py:346
 msgid "No updates available"
-msgstr ""
+msgstr "利用可能な更新はありません"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
