@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
@@ -676,6 +676,7 @@ msgstr "Kjør transaksjoner på pakker automatisk uten bekreftelse"
 #: dnfdragora/dialogs.py:903
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
+"Skjul dnfdragora-oppdateringsmenyen hvis det ikke er noen oppdateringer"
 
 #: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
@@ -2119,7 +2120,7 @@ msgstr "%d oppdateringer er tilgjengelige"
 
 #: dnfdragora/updater.py:355
 msgid "No updates available"
-msgstr ""
+msgstr "Ingen oppdateringer er tilgjengelige"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
