@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-08 15:17+0300\n"
+"POT-Creation-Date: 2020-08-09 10:14+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>, 2020\n"
 "Language-Team: Estonian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -358,32 +358,32 @@ msgstr "Turve"
 msgid "Enhancement"
 msgstr "Täiendus"
 
-#: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1218
+#: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
 msgstr "Võta tehing tagasi"
 
-#: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1243
+#: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
 msgstr "Tõrge pakettide allkirjade kontrollimisel"
 
-#: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
+#: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Allalaadimistõrge"
 msgstr[1] "Allalaadmistõrked"
 
-#: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1252 dnfdragora/ui.py:1762
+#: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Tehingutõrge"
 msgstr[1] "Tehingutõrked"
 
-#: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1264
-#: dnfdragora/ui.py:1267
+#: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
+#: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
 msgstr "Ehitamistehingu tõrge"
 
-#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1267
+#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "dnfdaemon'i klient ei ole autenditud:%(NL)s%(error)s"
@@ -416,14 +416,14 @@ msgstr "Tehingu tulemus"
 msgid "Transaction dependency"
 msgstr "Tehingu sõltuvus"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1230
-#: dnfdragora/dialogs.py:1268 dnfdragora/dialogs.py:1304
-#: dnfdragora/dialogs.py:1347
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
+#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
+#: dnfdragora/dialogs.py:1366
 msgid "&Ok"
 msgstr "&Olgu"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1348
+#: dnfdragora/dialogs.py:1367
 msgid "&Cancel"
 msgstr "&Loobu"
 
@@ -629,7 +629,7 @@ msgstr "Teave"
 msgid "Value"
 msgstr "Väärtus"
 
-#: dnfdragora/dialogs.py:611 dnfdragora/ui.py:575
+#: dnfdragora/dialogs.py:611 dnfdragora/ui.py:570
 msgid "&Apply"
 msgstr "&Rakenda"
 
@@ -674,67 +674,71 @@ msgstr "Süsteemi valikud"
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr "Paketitehingute automaatne käivitamine ilma kinnitust nõudmata"
 
-#: dnfdragora/dialogs.py:910
+#: dnfdragora/dialogs.py:903
+msgid "Hide dnfdragora-update menu if there are no updates"
+msgstr ""
+
+#: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
 msgstr "Uuenduste kontrollimise intervall (minutites)"
 
-#: dnfdragora/dialogs.py:918
+#: dnfdragora/dialogs.py:927
 msgid "Metadata expire time (hours)"
 msgstr "Metaandmete aegumise aeg (tundides)"
 
-#: dnfdragora/dialogs.py:943
+#: dnfdragora/dialogs.py:952
 msgid "Layout options (active at next startup)"
 msgstr "Paigutuse valikud (rakenduvad järgmisel käivitamisel)"
 
-#: dnfdragora/dialogs.py:955
+#: dnfdragora/dialogs.py:964
 msgid "Show updates"
 msgstr "Uuenduste näitamine"
 
-#: dnfdragora/dialogs.py:960
+#: dnfdragora/dialogs.py:969
 msgid "Do not show groups view"
 msgstr "Rühmavaadet ei näidata"
 
-#: dnfdragora/dialogs.py:982
+#: dnfdragora/dialogs.py:991
 msgid "Search options"
 msgstr "Otsinguvalikud"
 
-#: dnfdragora/dialogs.py:988
+#: dnfdragora/dialogs.py:997
 msgid "Show newest packages only"
 msgstr "Näidatakse ainult uusimaid pakette"
 
-#: dnfdragora/dialogs.py:993
+#: dnfdragora/dialogs.py:1002
 msgid "Match all words"
 msgstr "Kõik sõnad peavad sobima"
 
-#: dnfdragora/dialogs.py:1015
+#: dnfdragora/dialogs.py:1024
 msgid "Logging options  (active at next startup)"
 msgstr "Logimisvalikud (kasutatavad taaskäivitamise järel)"
 
-#: dnfdragora/dialogs.py:1036
+#: dnfdragora/dialogs.py:1045
 msgid "Enable logging"
 msgstr "Logimise lubamine"
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1054
 msgid "Change &directory"
 msgstr "&Muuda kataloogi"
 
-#: dnfdragora/dialogs.py:1052
+#: dnfdragora/dialogs.py:1061
 msgid "Debug level"
 msgstr "Silumistase"
 
-#: dnfdragora/dialogs.py:1080
+#: dnfdragora/dialogs.py:1089
 msgid "Choose log destination directory"
 msgstr "Logi sihtkatloogi valimine"
 
-#: dnfdragora/dialogs.py:1397
+#: dnfdragora/dialogs.py:1416
 msgid "&Yes"
 msgstr "&Jah"
 
-#: dnfdragora/dialogs.py:1398
+#: dnfdragora/dialogs.py:1417
 msgid "&No"
 msgstr "&Ei"
 
-#: dnfdragora/dialogs.py:1421
+#: dnfdragora/dialogs.py:1440
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -745,7 +749,7 @@ msgstr ""
 "verifitseerimiseks?<br><br>Võti        : 0x%(id)s:<br>Kasutaja ID     : "
 "\"%(user)s\"<br>Asukoht       : %(file)s"
 
-#: dnfdragora/dialogs.py:1428
+#: dnfdragora/dialogs.py:1447
 msgid "GPG key missed"
 msgstr "GPG võti puudub"
 
@@ -1895,226 +1899,226 @@ msgstr "Ainult %s ja noarch näitamine"
 msgid "Groups"
 msgstr "Grupid"
 
-#: dnfdragora/ui.py:533
+#: dnfdragora/ui.py:528
 msgid "in names"
 msgstr "nimedes"
 
-#: dnfdragora/ui.py:534
+#: dnfdragora/ui.py:529
 msgid "in descriptions"
 msgstr "kirjeldustes"
 
-#: dnfdragora/ui.py:535
+#: dnfdragora/ui.py:530
 msgid "in summaries"
 msgstr "kokkuvõtetes"
 
-#: dnfdragora/ui.py:536
+#: dnfdragora/ui.py:531
 msgid "in file names"
 msgstr "failinimedes"
 
-#: dnfdragora/ui.py:556
+#: dnfdragora/ui.py:551
 msgid "Use regexp"
 msgstr "Regulaaravakdise kasutamine"
 
-#: dnfdragora/ui.py:560
+#: dnfdragora/ui.py:555
 msgid "&Search"
 msgstr "&Otsi"
 
-#: dnfdragora/ui.py:565
+#: dnfdragora/ui.py:560
 msgid "&Clear search"
 msgstr "&Puhasta otsing"
 
-#: dnfdragora/ui.py:579
+#: dnfdragora/ui.py:574
 msgid "Sel&ect all"
 msgstr "Va&li kõik"
 
-#: dnfdragora/ui.py:585 dnfdragora/ui.py:599
+#: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
 msgstr "&Välju"
 
-#: dnfdragora/ui.py:592
+#: dnfdragora/ui.py:587
 msgid "&File"
 msgstr "&Fail"
 
-#: dnfdragora/ui.py:595
+#: dnfdragora/ui.py:590
 msgid "Reset the selection"
 msgstr "Lähtesta valik"
 
-#: dnfdragora/ui.py:596
+#: dnfdragora/ui.py:591
 msgid "Refresh Metadata"
 msgstr "Värskenda metaandmeid"
 
-#: dnfdragora/ui.py:597
+#: dnfdragora/ui.py:592
 msgid "Repositories"
 msgstr "Hoidlad"
 
-#: dnfdragora/ui.py:607
+#: dnfdragora/ui.py:602
 msgid "&Information"
 msgstr "&Teave"
 
-#: dnfdragora/ui.py:610
+#: dnfdragora/ui.py:605
 msgid "&History"
 msgstr "A&jalugu"
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:613
 msgid "&Options"
 msgstr "&Valikud"
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:616
 msgid "User preferences"
 msgstr "Kasutaja eelistused"
 
-#: dnfdragora/ui.py:629
+#: dnfdragora/ui.py:624
 msgid "&Help"
 msgstr "&Abi"
 
-#: dnfdragora/ui.py:632
+#: dnfdragora/ui.py:627
 msgid "Manual"
 msgstr "Käsiraamat"
 
-#: dnfdragora/ui.py:634
+#: dnfdragora/ui.py:629
 msgid "&About"
 msgstr "&Teave"
 
-#: dnfdragora/ui.py:671
+#: dnfdragora/ui.py:666
 msgid "update"
 msgstr "uuendatav"
 
-#: dnfdragora/ui.py:674
+#: dnfdragora/ui.py:669
 msgid "locked"
 msgstr "lukustatud"
 
-#: dnfdragora/ui.py:677
+#: dnfdragora/ui.py:672
 msgid "installed"
 msgstr "paigaldatud"
 
-#: dnfdragora/ui.py:1005
+#: dnfdragora/ui.py:1000
 msgid "Missing information"
 msgstr "Teave puudub"
 
-#: dnfdragora/ui.py:1024
+#: dnfdragora/ui.py:1019
 msgid "Repository"
 msgstr "Hoidla"
 
-#: dnfdragora/ui.py:1342
+#: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
 msgstr "Hoidla metaandmete värskendamine"
 
-#: dnfdragora/ui.py:1393
+#: dnfdragora/ui.py:1388
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Paketti %s ei saa eemaldada"
 
-#: dnfdragora/ui.py:1393
+#: dnfdragora/ui.py:1388
 msgid "Protected package selected"
 msgstr "Valitud on kaitstud pakett"
 
-#: dnfdragora/ui.py:1454
+#: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
 msgstr "Haldamata vidin"
 
-#: dnfdragora/ui.py:1472
+#: dnfdragora/ui.py:1467
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Haldamata sündmus %d"
 
-#: dnfdragora/ui.py:1537
+#: dnfdragora/ui.py:1532
 msgid "Start transaction"
 msgstr "Tehingu alustamine"
 
-#: dnfdragora/ui.py:1539
+#: dnfdragora/ui.py:1534
 msgid "Downloading packages"
 msgstr "Pakettide allalaadimine"
 
-#: dnfdragora/ui.py:1546
+#: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
 msgstr "Pakettide allkirjade kontrollimine"
 
-#: dnfdragora/ui.py:1554 dnfdragora/ui.py:1734
+#: dnfdragora/ui.py:1549 dnfdragora/ui.py:1729
 msgid "Applying changes to the system"
 msgstr "Muudatuste rakendamine süsteemis"
 
-#: dnfdragora/ui.py:1557
+#: dnfdragora/ui.py:1552
 msgid "Verify changes on the system"
 msgstr "Muudatuste verifitseerimine süsteemis"
 
-#: dnfdragora/ui.py:1568
+#: dnfdragora/ui.py:1563
 msgid "Build transaction"
 msgstr "Tehingu loomine"
 
-#: dnfdragora/ui.py:1603
+#: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Tundmatu toiming  %(action)s paketiga %(name)s"
 
-#: dnfdragora/ui.py:1628
+#: dnfdragora/ui.py:1623
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Laaditakse alla %(count_files)d faili (%(count_bytes)sB)..."
 
-#: dnfdragora/ui.py:1664
+#: dnfdragora/ui.py:1659
 msgid "Caching updates"
 msgstr "Uuenduste puhverdamine"
 
-#: dnfdragora/ui.py:1667
+#: dnfdragora/ui.py:1662
 msgid "Caching installed"
 msgstr "Puhver paigaldatud"
 
-#: dnfdragora/ui.py:1670
+#: dnfdragora/ui.py:1665
 msgid "Caching available"
 msgstr "Puhver saadaval"
 
-#: dnfdragora/ui.py:1716
+#: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
 msgstr "Paketipuhvri loomine"
 
-#: dnfdragora/ui.py:1739
+#: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
 msgstr "Ehitamistehingu tõrge"
 
-#: dnfdragora/ui.py:1755
+#: dnfdragora/ui.py:1750
 msgid "GPG key missing"
 msgstr "GPG võti puudub"
 
-#: dnfdragora/ui.py:1879
+#: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
 msgstr "Otaimisel regulaaravaldisega tekkis tõrge"
 
-#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
+#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Tõrge dnfdaemon'i teenuse käivitamisel: [%s]"
 
-#: dnfdragora/updater.py:134
+#: dnfdragora/updater.py:138
 msgid "Update"
 msgstr "Uuenda"
 
-#: dnfdragora/updater.py:135
+#: dnfdragora/updater.py:139
 msgid "Open dnfdragora dialog"
 msgstr "Ava dnfdragora dialoog"
 
-#: dnfdragora/updater.py:136
+#: dnfdragora/updater.py:140
 msgid "Check for updates"
 msgstr "Kontrolli uuendusi"
 
-#: dnfdragora/updater.py:137
+#: dnfdragora/updater.py:141
 msgid "Exit"
 msgstr "Välju"
 
-#: dnfdragora/updater.py:228
+#: dnfdragora/updater.py:232
 msgid "Running dnfdragora failure"
 msgstr "dnfdragora käivitamise tõrge"
 
-#: dnfdragora/updater.py:271 dnfdragora/updater.py:281
+#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Tekkis erind: [%s]"
 
-#: dnfdragora/updater.py:336
+#: dnfdragora/updater.py:345
 #, python-format
 msgid "%d updates available."
 msgstr "Saadaval on %d uuendust."
 
-#: dnfdragora/updater.py:346
+#: dnfdragora/updater.py:355
 msgid "No updates available"
 msgstr "Uuendusi pole"
 

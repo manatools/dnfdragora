@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-08 15:17+0300\n"
+"POT-Creation-Date: 2020-08-09 10:14+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: tomaja <toma.jankovic@gmail.com>, 2020\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -361,34 +361,34 @@ msgstr "Сигурност"
 msgid "Enhancement"
 msgstr "Унапређење"
 
-#: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1218
+#: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
 msgstr "Поништи трансакцију"
 
-#: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1243
+#: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
 msgstr "Грешка при провери потписа пакета"
 
-#: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
+#: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Грешка при преузимању"
 msgstr[1] "Грешака при преузимању"
 msgstr[2] "Грешке при преузимању"
 
-#: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1252 dnfdragora/ui.py:1762
+#: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Грешка при тансакцији"
 msgstr[1] "Грешака при тансакцији"
 msgstr[2] "Грешке при транскакцији"
 
-#: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1264
-#: dnfdragora/ui.py:1267
+#: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
+#: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
 msgstr "Неуспех при креирању трансакције"
 
-#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1267
+#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
 msgstr "dnfdaemon клијент није ауторизован:%(NL)s%(error)s"
@@ -421,14 +421,14 @@ msgstr "Резултат трансакције"
 msgid "Transaction dependency"
 msgstr "Зависности трансакције"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1230
-#: dnfdragora/dialogs.py:1268 dnfdragora/dialogs.py:1304
-#: dnfdragora/dialogs.py:1347
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
+#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
+#: dnfdragora/dialogs.py:1366
 msgid "&Ok"
 msgstr "&У реду"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1348
+#: dnfdragora/dialogs.py:1367
 msgid "&Cancel"
 msgstr "&Поништи"
 
@@ -634,7 +634,7 @@ msgstr "Информације"
 msgid "Value"
 msgstr "Вредност"
 
-#: dnfdragora/dialogs.py:611 dnfdragora/ui.py:575
+#: dnfdragora/dialogs.py:611 dnfdragora/ui.py:570
 msgid "&Apply"
 msgstr "&Примени"
 
@@ -679,67 +679,71 @@ msgstr "Системске опције"
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:910
+#: dnfdragora/dialogs.py:903
+msgid "Hide dnfdragora-update menu if there are no updates"
+msgstr ""
+
+#: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
 msgstr "Интервал за проверу ажурирања (у минутима)"
 
-#: dnfdragora/dialogs.py:918
+#: dnfdragora/dialogs.py:927
 msgid "Metadata expire time (hours)"
 msgstr "Истицање валидности мета података (у сатима)"
 
-#: dnfdragora/dialogs.py:943
+#: dnfdragora/dialogs.py:952
 msgid "Layout options (active at next startup)"
 msgstr "Опције изгледа (активирање при следећем покретању)"
 
-#: dnfdragora/dialogs.py:955
+#: dnfdragora/dialogs.py:964
 msgid "Show updates"
 msgstr "Прикажи ажурирања"
 
-#: dnfdragora/dialogs.py:960
+#: dnfdragora/dialogs.py:969
 msgid "Do not show groups view"
 msgstr "Не приказуј групни преглед "
 
-#: dnfdragora/dialogs.py:982
+#: dnfdragora/dialogs.py:991
 msgid "Search options"
 msgstr "Опције претраживања"
 
-#: dnfdragora/dialogs.py:988
+#: dnfdragora/dialogs.py:997
 msgid "Show newest packages only"
 msgstr "Прикажи само најновије пакете"
 
-#: dnfdragora/dialogs.py:993
+#: dnfdragora/dialogs.py:1002
 msgid "Match all words"
 msgstr "Поклапање свих речи"
 
-#: dnfdragora/dialogs.py:1015
+#: dnfdragora/dialogs.py:1024
 msgid "Logging options  (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1036
+#: dnfdragora/dialogs.py:1045
 msgid "Enable logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1054
 msgid "Change &directory"
 msgstr "Промени &директоријум"
 
-#: dnfdragora/dialogs.py:1052
+#: dnfdragora/dialogs.py:1061
 msgid "Debug level"
 msgstr "Ниво дебаговања"
 
-#: dnfdragora/dialogs.py:1080
+#: dnfdragora/dialogs.py:1089
 msgid "Choose log destination directory"
 msgstr "Изабери дестинациони директоријум за логовање"
 
-#: dnfdragora/dialogs.py:1397
+#: dnfdragora/dialogs.py:1416
 msgid "&Yes"
 msgstr "&Да"
 
-#: dnfdragora/dialogs.py:1398
+#: dnfdragora/dialogs.py:1417
 msgid "&No"
 msgstr "&Не"
 
-#: dnfdragora/dialogs.py:1421
+#: dnfdragora/dialogs.py:1440
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -750,7 +754,7 @@ msgstr ""
 "<br><br>Кључ        : 0x%(id)s:<br>Корисников ИД     : \"%(user)s"
 "\"<br>Од       : %(file)s"
 
-#: dnfdragora/dialogs.py:1428
+#: dnfdragora/dialogs.py:1447
 msgid "GPG key missed"
 msgstr "GPG кључ недостаје"
 
@@ -1807,226 +1811,226 @@ msgstr "Прикажи %s и само noarch "
 msgid "Groups"
 msgstr "Групе"
 
-#: dnfdragora/ui.py:533
+#: dnfdragora/ui.py:528
 msgid "in names"
 msgstr "у именима"
 
-#: dnfdragora/ui.py:534
+#: dnfdragora/ui.py:529
 msgid "in descriptions"
 msgstr "у описима"
 
-#: dnfdragora/ui.py:535
+#: dnfdragora/ui.py:530
 msgid "in summaries"
 msgstr "у сажетцима"
 
-#: dnfdragora/ui.py:536
+#: dnfdragora/ui.py:531
 msgid "in file names"
 msgstr "у именима фајлова"
 
-#: dnfdragora/ui.py:556
+#: dnfdragora/ui.py:551
 msgid "Use regexp"
 msgstr ""
 
-#: dnfdragora/ui.py:560
+#: dnfdragora/ui.py:555
 msgid "&Search"
 msgstr "&Тражи"
 
-#: dnfdragora/ui.py:565
+#: dnfdragora/ui.py:560
 msgid "&Clear search"
 msgstr "&Поништи претрагу"
 
-#: dnfdragora/ui.py:579
+#: dnfdragora/ui.py:574
 msgid "Sel&ect all"
 msgstr "Иза&бери све"
 
-#: dnfdragora/ui.py:585 dnfdragora/ui.py:599
+#: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
 msgstr "&Излаз"
 
-#: dnfdragora/ui.py:592
+#: dnfdragora/ui.py:587
 msgid "&File"
 msgstr "&Фајл"
 
-#: dnfdragora/ui.py:595
+#: dnfdragora/ui.py:590
 msgid "Reset the selection"
 msgstr "Поништи избор"
 
-#: dnfdragora/ui.py:596
+#: dnfdragora/ui.py:591
 msgid "Refresh Metadata"
 msgstr "Освежи мета податке"
 
-#: dnfdragora/ui.py:597
+#: dnfdragora/ui.py:592
 msgid "Repositories"
 msgstr "Репозиторијуми"
 
-#: dnfdragora/ui.py:607
+#: dnfdragora/ui.py:602
 msgid "&Information"
 msgstr "&Информације"
 
-#: dnfdragora/ui.py:610
+#: dnfdragora/ui.py:605
 msgid "&History"
 msgstr ""
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:613
 msgid "&Options"
 msgstr "&Опције"
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:616
 msgid "User preferences"
 msgstr "Корисничка подешавања"
 
-#: dnfdragora/ui.py:629
+#: dnfdragora/ui.py:624
 msgid "&Help"
 msgstr "&Помоћ"
 
-#: dnfdragora/ui.py:632
+#: dnfdragora/ui.py:627
 msgid "Manual"
 msgstr "Упуство"
 
-#: dnfdragora/ui.py:634
+#: dnfdragora/ui.py:629
 msgid "&About"
 msgstr "&О..."
 
-#: dnfdragora/ui.py:671
+#: dnfdragora/ui.py:666
 msgid "update"
 msgstr "надоградња"
 
-#: dnfdragora/ui.py:674
+#: dnfdragora/ui.py:669
 msgid "locked"
 msgstr "закључано"
 
-#: dnfdragora/ui.py:677
+#: dnfdragora/ui.py:672
 msgid "installed"
 msgstr "инсталирано"
 
-#: dnfdragora/ui.py:1005
+#: dnfdragora/ui.py:1000
 msgid "Missing information"
 msgstr "Недостају информације"
 
-#: dnfdragora/ui.py:1024
+#: dnfdragora/ui.py:1019
 msgid "Repository"
 msgstr "Репозиторијум"
 
-#: dnfdragora/ui.py:1342
+#: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
 msgstr "Освежавање Репозиторијума за Мета податке"
 
-#: dnfdragora/ui.py:1393
+#: dnfdragora/ui.py:1388
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Пакет %s не може бити уклоњен"
 
-#: dnfdragora/ui.py:1393
+#: dnfdragora/ui.py:1388
 msgid "Protected package selected"
 msgstr "Изабрани заштићени пакети"
 
-#: dnfdragora/ui.py:1454
+#: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
 msgstr "Неуправљани додаци"
 
-#: dnfdragora/ui.py:1472
+#: dnfdragora/ui.py:1467
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Неуправљани догађај %d"
 
-#: dnfdragora/ui.py:1537
+#: dnfdragora/ui.py:1532
 msgid "Start transaction"
 msgstr "Покрени трансакцију"
 
-#: dnfdragora/ui.py:1539
+#: dnfdragora/ui.py:1534
 msgid "Downloading packages"
 msgstr "Преузимање пакета"
 
-#: dnfdragora/ui.py:1546
+#: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
 msgstr "Повера потписа пакета"
 
-#: dnfdragora/ui.py:1554 dnfdragora/ui.py:1734
+#: dnfdragora/ui.py:1549 dnfdragora/ui.py:1729
 msgid "Applying changes to the system"
 msgstr "Примењујем измене на систему"
 
-#: dnfdragora/ui.py:1557
+#: dnfdragora/ui.py:1552
 msgid "Verify changes on the system"
 msgstr "Провера измена на систему"
 
-#: dnfdragora/ui.py:1568
+#: dnfdragora/ui.py:1563
 msgid "Build transaction"
 msgstr "Креирај трансакцију"
 
-#: dnfdragora/ui.py:1603
+#: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr ""
 
-#: dnfdragora/ui.py:1628
+#: dnfdragora/ui.py:1623
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
 msgstr "Преузимање %(count_files)d фајлова (%(count_bytes)sB)..."
 
-#: dnfdragora/ui.py:1664
+#: dnfdragora/ui.py:1659
 msgid "Caching updates"
 msgstr "Кеширање надоградње"
 
-#: dnfdragora/ui.py:1667
+#: dnfdragora/ui.py:1662
 msgid "Caching installed"
 msgstr "Кеширање инсталираног"
 
-#: dnfdragora/ui.py:1670
+#: dnfdragora/ui.py:1665
 msgid "Caching available"
 msgstr "Кеширање доступног"
 
-#: dnfdragora/ui.py:1716
+#: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
 msgstr "Креирање кеша за пакете"
 
-#: dnfdragora/ui.py:1739
+#: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
 msgstr "Грешка при креирању трансакције"
 
-#: dnfdragora/ui.py:1755
+#: dnfdragora/ui.py:1750
 msgid "GPG key missing"
 msgstr ""
 
-#: dnfdragora/ui.py:1879
+#: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
 msgstr ""
 
-#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
+#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Грешка при покретању dnfdaemon сервиса: [%s]"
 
-#: dnfdragora/updater.py:134
+#: dnfdragora/updater.py:138
 msgid "Update"
 msgstr "Надоградња"
 
-#: dnfdragora/updater.py:135
+#: dnfdragora/updater.py:139
 msgid "Open dnfdragora dialog"
 msgstr "Отвори dnfdragora дијалог"
 
-#: dnfdragora/updater.py:136
+#: dnfdragora/updater.py:140
 msgid "Check for updates"
 msgstr "Провери да ли има надоградњи"
 
-#: dnfdragora/updater.py:137
+#: dnfdragora/updater.py:141
 msgid "Exit"
 msgstr "Излаз"
 
-#: dnfdragora/updater.py:228
+#: dnfdragora/updater.py:232
 msgid "Running dnfdragora failure"
 msgstr "Покретање dnfdragora није успело"
 
-#: dnfdragora/updater.py:271 dnfdragora/updater.py:281
+#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Ухваћени изузеци: [%s]"
 
-#: dnfdragora/updater.py:336
+#: dnfdragora/updater.py:345
 #, python-format
 msgid "%d updates available."
 msgstr "%d надоградњи доступно."
 
-#: dnfdragora/updater.py:346
+#: dnfdragora/updater.py:355
 msgid "No updates available"
 msgstr ""
 
@@ -2057,17 +2061,17 @@ msgstr ""
 "интерфејсима. Омогућава фронтенд за DNF менаџер паекта који се може "
 "користити на било којој врсти системског окружења."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Непозната акција %s на %s"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Није још примењено"
-
-#~ msgid "Software Management"
-#~ msgstr "Подешавање Софтвера"
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Настави без питања за потврду"
 
 #~ msgid "Log options  (active at next startup)"
 #~ msgstr "Опције логовања (активирање при следећем покретању)"
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Настави без питања за потврду"
+#~ msgid "Software Management"
+#~ msgstr "Подешавање Софтвера"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Није још примењено"
+
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Непозната акција %s на %s"
