@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: tomaja <toma.jankovic@gmail.com>, 2020\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2061,17 +2061,17 @@ msgstr ""
 "интерфејсима. Омогућава фронтенд за DNF менаџер паекта који се може "
 "користити на било којој врсти системског окружења."
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Настави без питања за потврду"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Опције логовања (активирање при следећем покретању)"
-
-#~ msgid "Software Management"
-#~ msgstr "Подешавање Софтвера"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Непозната акција %s на %s"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Није још примењено"
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Непозната акција %s на %s"
+#~ msgid "Software Management"
+#~ msgstr "Подешавање Софтвера"
+
+#~ msgid "Log options  (active at next startup)"
+#~ msgstr "Опције логовања (активирање при следећем покретању)"
+
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Настави без питања за потврду"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: You-Cheng Hsieh <yochenhsieh@gmail.com>, 2018\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/MageiaLinux/"
@@ -2051,32 +2051,18 @@ msgstr ""
 "以使用 Qt 5、GTK+ 3 或 ncurses 介面上執行。它提供了 DNF 軟體套件管理器的後"
 "端，使它可以使用在任何類型的桌面環境。"
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "不詢問就處理"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "BuildTransaction 錯誤"
 
-#~ msgid "Software Management"
-#~ msgstr "軟體管理工具"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "無法重新整理 DNF 快取（root）"
 
-#~ msgid "Not implemented yet"
-#~ msgstr "還沒有執行"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "核取所有(&E)"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "未管理的活動"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "下次開啟時永不顯示群組顯示"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "在下次開啟顯示更新"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "檢查更新的間隔（分）："
-
-#~ msgid "History undo"
-#~ msgstr "復原歷史紀錄"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF root 前端尚未授權。\n"
+#~ "dnfdragora 將會離開"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2087,15 +2073,29 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora 即將離開"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root 前端尚未授權。\n"
-#~ "dnfdragora 將會離開"
+#~ msgid "History undo"
+#~ msgstr "復原歷史紀錄"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "無法重新整理 DNF 快取（root）"
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "檢查更新的間隔（分）："
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "BuildTransaction 錯誤"
+#~ msgid "Show updates next startup"
+#~ msgstr "在下次開啟顯示更新"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "下次開啟時永不顯示群組顯示"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "未管理的活動"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "核取所有(&E)"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "還沒有執行"
+
+#~ msgid "Software Management"
+#~ msgstr "軟體管理工具"
+
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "不詢問就處理"

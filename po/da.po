@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2052,34 +2052,18 @@ msgstr ""
 "GTK+ 3- eller ncurses-brugerflader. Den leverer en frontenhed til DNF-"
 "pakkehåndteringen som kan bruges i alle slags systemmiljøer."
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Fortsæt uden at spørge om bekræftelse"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "BuildTransaction mislykkedes"
 
-#~ msgid "Software Management"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Kunne ikke genopfriske DNF-mellemlageret (root)"
+
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
 #~ msgstr ""
-#~ "Administration\n"
-#~ "af programmer"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Endnu ikke implementeret"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Tilvælg alle"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Uhåndteret begivenhed"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Vis ikke gruppevisning ved næste opstart"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Vis opdateringer ved næste opstart"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval i minutter mellem søgning efter opdateringer:"
-
-#~ msgid "History undo"
-#~ msgstr "Historik fortryd"
+#~ "DNF-root-backend blev ikke autoiseret.\n"
+#~ "dnfdragora vil afslutte"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2090,15 +2074,31 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora vil afslutte"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
+#~ msgid "History undo"
+#~ msgstr "Historik fortryd"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Interval i minutter mellem søgning efter opdateringer:"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Vis opdateringer ved næste opstart"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Vis ikke gruppevisning ved næste opstart"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Uhåndteret begivenhed"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "&Tilvælg alle"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Endnu ikke implementeret"
+
+#~ msgid "Software Management"
 #~ msgstr ""
-#~ "DNF-root-backend blev ikke autoiseret.\n"
-#~ "dnfdragora vil afslutte"
+#~ "Administration\n"
+#~ "af programmer"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kunne ikke genopfriske DNF-mellemlageret (root)"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "BuildTransaction mislykkedes"
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Fortsæt uden at spørge om bekræftelse"

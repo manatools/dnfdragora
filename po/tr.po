@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Serdar Sağlam <teknomobil@msn.com>, 2019\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -2064,32 +2064,18 @@ msgstr ""
 "arayüzleri kullanılarak çalıştırılabilir. Her türlü sistem çevresinde "
 "kullanılabilen DNF paket yöneticisine bir ön yüz sağlar."
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Onaylama sormadan devam et"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "İşlemDerleme hatası"
 
-#~ msgid "Software Management"
-#~ msgstr "Yazılım Yönetimi"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "DNF önbelleği (kök) yenilenemiyor"
 
-#~ msgid "Not implemented yet"
-#~ msgstr "Henüz bu özellik eklenmedi"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Yönetilmeyen olay"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Bir sonraki başlangıçta grup görünümünü görüntüleme"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Bir sonraki başlangıçta güncellemeleri görüntüle"
-
-#~ msgid "Layout options"
-#~ msgstr "Düzen seçenekleri"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Dakika cinsinden güncellemeleri denetleme sıklığı:"
-
-#~ msgid "History undo"
-#~ msgstr "Geri alma geçmişi"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF kök uçbirimi yetkilendirilmemiş.\n"
+#~ "dnfdragora' dan çıkılacak"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2100,15 +2086,29 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora' dan çıkılacak"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF kök uçbirimi yetkilendirilmemiş.\n"
-#~ "dnfdragora' dan çıkılacak"
+#~ msgid "History undo"
+#~ msgstr "Geri alma geçmişi"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "DNF önbelleği (kök) yenilenemiyor"
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Dakika cinsinden güncellemeleri denetleme sıklığı:"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "İşlemDerleme hatası"
+#~ msgid "Layout options"
+#~ msgstr "Düzen seçenekleri"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Bir sonraki başlangıçta güncellemeleri görüntüle"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Bir sonraki başlangıçta grup görünümünü görüntüleme"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Yönetilmeyen olay"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Henüz bu özellik eklenmedi"
+
+#~ msgid "Software Management"
+#~ msgstr "Yazılım Yönetimi"
+
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Onaylama sormadan devam et"

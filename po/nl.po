@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: dragnadh, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/MageiaLinux/teams/9361/nl/)\n"
@@ -2061,23 +2061,23 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Ga door zonder een bevestiging te vragen"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Logboekopties (actief bij volgende opstart)"
-
-#~ msgid "Software Management"
-#~ msgstr "Softwarebeheer"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Nog niet geïmplementeerd"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Fout tijdens opbouw Transactie"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Onbekende actie %s op %s"
 
 #~ msgid "BuildTransaction failure"
 #~ msgstr "BuildTransaction storing"
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Onbekende actie %s op %s"
+#~ msgid "Building Transaction error"
+#~ msgstr "Fout tijdens opbouw Transactie"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Nog niet geïmplementeerd"
+
+#~ msgid "Software Management"
+#~ msgstr "Softwarebeheer"
+
+#~ msgid "Log options  (active at next startup)"
+#~ msgstr "Logboekopties (actief bij volgende opstart)"
+
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Ga door zonder een bevestiging te vragen"

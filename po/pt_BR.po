@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
@@ -2062,17 +2062,17 @@ msgstr ""
 "gerenciador de pacotes DNF que pode ser usado em qualquer tipo de ambiente "
 "de sistema."
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Proceder sem pedir confirmação"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Opções de log (ativo na próxima inicialização)"
-
-#~ msgid "Software Management"
-#~ msgstr "Gerenciamento de Software"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Ação desconhecida 1%s on 1%s"
 
 #~ msgid "Not implemented yet"
 #~ msgstr "Ainda não implementado"
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Ação desconhecida 1%s on 1%s"
+#~ msgid "Software Management"
+#~ msgstr "Gerenciamento de Software"
+
+#~ msgid "Log options  (active at next startup)"
+#~ msgstr "Opções de log (ativo na próxima inicialização)"
+
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Proceder sem pedir confirmação"
