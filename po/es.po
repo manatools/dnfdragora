@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:14+0300\n"
+"POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Miguel, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -684,6 +684,7 @@ msgstr ""
 #: dnfdragora/dialogs.py:903
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
+"Ocultar el menú de actualización de dnfdragora si no hay actualizaciones"
 
 #: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
@@ -2133,7 +2134,7 @@ msgstr "%d actualizaciones disponibles."
 
 #: dnfdragora/updater.py:355
 msgid "No updates available"
-msgstr ""
+msgstr "Sin actualizaciones pendientes"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
