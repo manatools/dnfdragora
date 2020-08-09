@@ -1,5 +1,6 @@
 2020-XX-YY v. 2.1.0
 ---------------------
+- Fixed a crash when a search is performed and select all is pressed
 - Hide menu dnfdragora-update if no updates present (configurable)
 - Fixed dnfdragora view when all_updates is True into settings (system configuration file)
 - Fixed dnfdragora view when --update-only is passed as option
