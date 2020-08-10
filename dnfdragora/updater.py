@@ -47,7 +47,7 @@ class Updater:
                 if 'interval for checking updates' in settings.keys() :
                     self.__updateInterval = int(settings['interval for checking updates'])
                 self.__hide_menu = settings['hide_update_menu'] if 'hide_update_menu' in settings.keys() \
-                  else True
+                  else False
 
                 #### Logging
                 if 'log' in settings.keys():
@@ -141,7 +141,7 @@ class Updater:
             MenuItem(_('Exit'), self.__shutdown)
         )
         self.__name  = 'dnfdragora-updater'
-        self.__tray  = Tray(self.__name, self.__icon, self.__name, self.__menu)
+        self.__tray  = Tray(self.__name, icon=self.__icon, title=self.__name, menu=self.__menu)
 
 
     def __get_theme_icon_pathname(self, name='dnfdragora'):
@@ -255,12 +255,16 @@ class Updater:
             logger.warning("Cannot run dnfdragora")
 
     def __run_dnfdragora(self, *kwargs):
-        self.__tray.visible = False
+        if self.__tray.visible and self.__hide_menu:
+          self.__tray.visible = False
+        logger.debug("Menu visibility is %s", str(self.__tray.visible))
         return self.__run_dialog({})
 
 
     def __run_update(self, *kwargs):
-        self.__tray.visible = False
+        if self.__tray.visible and self.__hide_menu:
+          self.__tray.visible = False
+        logger.debug("Menu visibility is %s", str(self.__tray.visible))
         return self.__run_dialog({'update_only': True})
 
     def __check_updates(self, *kwargs):
@@ -268,7 +272,8 @@ class Updater:
       Start get updates by simply locking the DB
       '''
       logger.debug("Start checking for updates, by menu command")
-      self.__tray.visible = False
+      if self.__hide_menu:
+        self.__tray.visible = False
       try:
         self.__backend.Lock()
         self.__getUpdatesRequested = True
@@ -326,10 +331,11 @@ class Updater:
               #let's log metadata since slows down the Lock requests
               self.__OnRepoMetaDataProgress(info['name'], info['frac'])
             elif (event == 'GetPackages'):
-              if not self.__tray.visible :
-                # ugly workaround to show icon if hidden, set empty icon and show it
-                self.__tray.icon = Image.Image()
-                self.__tray.visible = True
+              logger.debug("Got GetPackages event menu visibility is %s", str(self.__tray.visible))
+              #if not self.__tray.visible :
+              # ugly workaround to show icon if hidden, set empty icon and show it
+              self.__tray.icon = Image.Image()
+              self.__tray.visible = True
               logger.debug("Event received %s", event)
               if not info['error']:
                 po_list = info['result']
@@ -365,6 +371,7 @@ class Updater:
                   self.__notifier.close()
                   logger.debug("Close notifier")
                 self.__getUpdatesRequested = False
+                logger.debug("Menu visibility is %s", str(self.__tray.visible))
               else:
                 # error
                 logger.error("GetPackages error %s", str(info['error']))

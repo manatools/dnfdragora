@@ -898,7 +898,7 @@ class OptionDialog(basedialog.BaseDialog):
 
     hide_update_menu = self.parent.config.userPreferences['settings']['hide_update_menu'] \
         if 'settings' in self.parent.config.userPreferences.keys() and 'hide_update_menu' in self.parent.config.userPreferences['settings'].keys() \
-        else True
+        else False
 
     self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu )
     self.hide_update_menu.setNotify(True)
