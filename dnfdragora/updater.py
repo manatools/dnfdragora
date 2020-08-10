@@ -223,7 +223,9 @@ class Updater:
       return False
 
     def __run_dialog(self, args, *kwargs):
-        if self.__tray != None and self.__main_gui == None:
+        if self.__tray != None and self.__main_gui == None and self.__tray.visible:
+            if self.__hide_menu:
+              self.__tray.visible = False
             time.sleep(0.5)
             try:
                 self.__main_gui = ui.mainGui(args)
@@ -255,15 +257,11 @@ class Updater:
             logger.warning("Cannot run dnfdragora")
 
     def __run_dnfdragora(self, *kwargs):
-        if self.__tray.visible and self.__hide_menu:
-          self.__tray.visible = False
         logger.debug("Menu visibility is %s", str(self.__tray.visible))
         return self.__run_dialog({})
 
 
     def __run_update(self, *kwargs):
-        if self.__tray.visible and self.__hide_menu:
-          self.__tray.visible = False
         logger.debug("Menu visibility is %s", str(self.__tray.visible))
         return self.__run_dialog({'update_only': True})
 
