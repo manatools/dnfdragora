@@ -656,19 +656,19 @@ msgstr "Sistema"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Disposició"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Cerca"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Registre"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Restaura els valors per &defecte"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -677,10 +677,13 @@ msgstr "Opcions del sistema"
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
+"Executa automàticament transaccions de paquets sense necessitat de "
+"confirmació."
 
 #: dnfdragora/dialogs.py:903
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
+"Amaga el menú d'actualització de dnfdragora si no hi ha actualitzacions."
 
 #: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
@@ -716,11 +719,11 @@ msgstr "Coincideix amb totes les paraules"
 
 #: dnfdragora/dialogs.py:1024
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Opcions de registre (actives a l'arrencada següent)"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Enable logging"
-msgstr ""
+msgstr "Habilita el registre"
 
 #: dnfdragora/dialogs.py:1054
 msgid "Change &directory"
@@ -1492,7 +1495,7 @@ msgstr "diàleg"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "Opcions de dnfdragora"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1514,12 +1517,17 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Executa automàticament les transaccions de paquets sense "
+"necessitat de confirmació</b>: si es marca, no cal confirmar les "
+"transaccions, dnfdragora funciona com si es respongués sempre <i>sí</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>Tingueu en compte</b> que aquesta opció significa que també s’accepta "
+"la supressió de paquets.</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -2125,7 +2133,7 @@ msgstr "%d actualitzacions disponibles."
 
 #: dnfdragora/updater.py:355
 msgid "No updates available"
-msgstr ""
+msgstr "No hi ha particions disponibles."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2157,27 +2165,3 @@ msgstr ""
 "utilitzant les interfícies Qt 5, GTK+ 3 o ncurses. Proporciona una "
 "interfície gràfica per al gestor de paquets DNF que es pot utilitzar en "
 "qualsevol tipus entorn de sistema."
-
-#~ msgid ""
-#~ "<ul><li><b>Proceed without asking for confirmation</b>: if checked "
-#~ "transactions do not need to be confirmed, dnfdragora works as answering "
-#~ "<i>yes</i></li>"
-#~ msgstr ""
-#~ "<ul><li><b>Continua sense demanar-ne la confirmació</b>: si es marca, les "
-#~ "transaccions no s'han de confirmar i dnfdragora funciona com si la "
-#~ "resposta fos <i>sí</i></li>"
-
-#~ msgid ""
-#~ "<b>NOTE: Apply</b> button must be pressed to make changes permanent and "
-#~ "available, any other way to close the dialog is the same as pressing "
-#~ "<i>Cancel</i> button."
-#~ msgstr ""
-#~ "<b>NOTA: el botó d'Aplica</b> s'ha de prémer per fer que els canvis "
-#~ "siguin permanents i estiguin disponibles. Qualsevol altra manera de "
-#~ "tancar el diàleg equival a prémer el botó de <i>Cancel·la</i>."
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Opcions de registre (actives a l'inici següent)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Procedeix sense demanar-ne la confirmació"
