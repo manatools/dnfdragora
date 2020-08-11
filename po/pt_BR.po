@@ -6,12 +6,12 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatic4@gmail.com>, 2017
-# Carlos Filho <caffilhobr@gmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Marcio Andre Padula <padula1000@gmail.com>, 2019
-# Michael Martins <michaelfm21@gmail.com>, 2020
 # Celio Alves <dreamcelio@gmail.com>, 2020
 # Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020
+# 3f37d448649cd548fa5a733e33387c2a_dee4ccf, 2020
+# Carlos Filho <caffilhobr@gmail.com>, 2020
+# Michael Martins <michaelfm21@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020\n"
+"Last-Translator: Michael Martins <michaelfm21@gmail.com>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -656,15 +656,15 @@ msgstr "Sistema"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Procurar"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Logging"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
@@ -2061,18 +2061,3 @@ msgstr ""
 "as interfaces Qt 5, GTK + 3 ou ncurses. Ele fornece uma interface para o "
 "gerenciador de pacotes DNF que pode ser usado em qualquer tipo de ambiente "
 "de sistema."
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Ação desconhecida 1%s on 1%s"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ainda não implementado"
-
-#~ msgid "Software Management"
-#~ msgstr "Gerenciamento de Software"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Opções de log (ativo na próxima inicialização)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Proceder sem pedir confirmação"
