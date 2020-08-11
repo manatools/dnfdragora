@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Luděk Janča <joelp@email.cz>, 2020
 # fri, 2020
+# Luděk Janča <joelp@email.cz>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-09 10:43+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: fri, 2020\n"
+"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -655,15 +655,15 @@ msgstr "Systém"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Rozvržení"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Hledat"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Protokolování"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
@@ -715,11 +715,11 @@ msgstr "Odpovídá všem slovům"
 
 #: dnfdragora/dialogs.py:1024
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Možnosti protokolování (aktivní při příštím startu)"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Enable logging"
-msgstr ""
+msgstr "Povolit protokolování"
 
 #: dnfdragora/dialogs.py:1054
 msgid "Change &directory"
@@ -778,7 +778,7 @@ msgstr "Ukládání skupin z balíčků do vyrovnávací paměti..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr "Probíhá vykonání příkazu"
+msgstr "Provádění příkazu"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1331,7 +1331,7 @@ msgstr "Panel informací"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr "Řádek s postupem"
+msgstr "Řádek s ukazatelem průběhu"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
@@ -1400,7 +1400,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr "<h2>Obnovit popisná data</h2>"
+msgstr "<h2>Aktualizovat metadata</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1556,17 +1556,23 @@ msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Povolte tuto možnost aby dnfdragora zapisovala protokol do souboru "
+"<i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Změnit adresář</b>: tato volba povolí nastavit adresář pro "
+"protokolování. Adresář musí existovat a musí mít práva zápisu.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Úroveň lazení</b>: pokud zatrhnete, povolíte podrobné protokolování.</"
+"li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
@@ -2059,9 +2065,3 @@ msgstr ""
 "doplňky napsanou SUSE. Takže může být provozována pod Qt 5, GTK+ 3, nebo "
 "ncurses rozhraními. Přináší grafické rozhraní pro správce balíčků DNF, který "
 "může být použit v jakémkoliv systémovém prostředí. "
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Volby pro záznamy (činné při příštím spuštění)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Pokračovat bez žádání o potvrzení"
