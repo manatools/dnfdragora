@@ -21,7 +21,7 @@ Example with ncurses:
 ### DNF Daemon
 * https://github.com/manatools/dnfdaemon/
 
-### notify2 >= 0.16
+### pystray >= 0.16
 * https://github.com/moses-palmer/pystray
 
 ### SUSE libyui
