@@ -1,5 +1,6 @@
 2020-XX-YY v. 2.1.0
 ---------------------
+- Fixed a crash when notify2.show is invoked, removed notify2 and use pstray.notify instead
 - Fixed a crash when a search is performed and select all is pressed
 - Hide menu dnfdragora-update if no updates present (configurable default False since it
   does not work in every DEs)
