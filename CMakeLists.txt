@@ -38,9 +38,6 @@ if(CHECK_RUNTIME_DEPENDENCIES)
 	# Find yaml module
 	find_python_module(yaml REQUIRED)
 
-	# Find notify2 module
-	find_python_module(notify2 REQUIRED)
-
 	# Find xdg module
 	find_python_module(xdg REQUIRED)
 
