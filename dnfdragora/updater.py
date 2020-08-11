@@ -17,14 +17,10 @@ from dnfdragora import config, misc, dialogs, ui, dnfd_client
 
 from pystray import Menu, MenuItem
 from pystray import Icon as Tray
-import notify2
 from queue import SimpleQueue, Empty
 
 import logging
 logger = logging.getLogger('dnfdragora.updater')
-
-notify2.init('dnfdragora-updater')
-
 
 class Updater:
 
@@ -128,7 +124,6 @@ class Updater:
             logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
             return
 
-        self.__notifier  = notify2.Notification('dnfdragora', '', 'dnfdragora')
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
         self.__scheduler = sched.scheduler(time.time, time.sleep)
@@ -343,31 +338,18 @@ class Updater:
                 if (self.__update_count >= 1):
                   self.__tray.icon = self.__icon_update
                   self.__tray.visible = True
-                  logger.debug("Shown tray")
-                  self.__notifier.update(
-                      'dnfdragora',
-                      _('%d updates available.') % self.__update_count,
-                      'dnfdragora'
-                  )
-                  self.__notifier.show()
-                  logger.debug("Shown notifier")
+                  self.__tray.notify(title='dnfdragora-update', message=_('%d updates available.') % self.__update_count)
                 elif self.__getUpdatesRequested :
                   # __update_count == 0 but get updates has been requested by user command
                   # Let's give a feed back anyway
-                    self.__notifier.update(
-                      'dnfdragora',
-                      _('No updates available'),
-                      'dnfdragora'
-                    )
-                    self.__notifier.show()
-                    self.__tray.icon = self.__icon
-                    self.__tray.visible = True
-                    self.__notifier.close()
+                  logger.debug("No updates found after user request")
+                  self.__tray.icon = self.__icon
+                  self.__tray.notify(title='dnfdragora-update', message=_('No updates available'))
+                  self.__tray.visible = not self.__hide_menu
                 else:
                   self.__tray.icon = self.__icon
                   self.__tray.visible = not self.__hide_menu
-                  self.__notifier.close()
-                  logger.debug("Close notifier")
+                  logger.debug("No updates found")
                 self.__getUpdatesRequested = False
                 logger.debug("Menu visibility is %s", str(self.__tray.visible))
               else:
