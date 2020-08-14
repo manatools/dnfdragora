@@ -709,6 +709,7 @@ class RepoDialog:
                             # NOTE: skipping 'enabled' since it is fake and it is better shown as checkbox
                             continue
                           key = None
+                          value = ""
                           if ri[k]:
                             key = self.infoKeys[k] if k in self.infoKeys.keys() else k
                             if k == 'size':
