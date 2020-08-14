@@ -657,19 +657,19 @@ msgstr "Систем"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Распоред"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
-msgstr ""
+msgstr "Тражи"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Логовање"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Обнови &default"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
@@ -677,11 +677,11 @@ msgstr "Системске опције"
 
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Покрени трансакције на пакетима аутоматски без потребе за потврђивањем"
 
 #: dnfdragora/dialogs.py:903
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Сакриј dnfdragora-update мени уколико нема надоградњи"
 
 #: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
@@ -717,11 +717,11 @@ msgstr "Поклапање свих речи"
 
 #: dnfdragora/dialogs.py:1024
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Опције логовања (активне при следећем покретању)"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Enable logging"
-msgstr ""
+msgstr "Омогући логовање"
 
 #: dnfdragora/dialogs.py:1054
 msgid "Change &directory"
@@ -772,7 +772,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "пакети уопште немају %s атрибуте"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
@@ -780,7 +780,7 @@ msgstr "Кеширање група из пакета.."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Команда у току"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1309,63 +1309,67 @@ msgstr "Сервер, Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Иди на индекс"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Линија менија"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Филтери и линија претраживања"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Панел групе"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Панел Пакета"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Информациони панел"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Линија напретка "
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Линија тастера"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Фајл мени"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Информациони мени"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Мени за опције"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Мени за Помоћ"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora је графички интерфејс за DNF, базиран на Mageia rpmdragora "
+"распореду и Fedora yumex-dnf интеракцији са dnfdaemon-ом.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora је у основу кориснички интерфејс за менаџер пакета који омогућава "
+"инсталацију, надоградњу, уклањање, претраживање пакета и више.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1373,36 +1377,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora је део manatools-а и базирана је на libyui тако да може да ради "
+"користећи Gtk, Qt или ncurses, односно оба графичка и текстуално корисничко "
+"окружење.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora прозор се састоји од:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Садржај траке са менијем"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Трака са менијем садржи dnfdragora падајуће меније:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Фајл мени"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Избор ресертовања</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Овај мени уклања било које ознаке на пакетима, уколико су изабрани било који "
+"пакети за инсталацију или уклањање они ће бити враћени у претходно стање.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Овежи мета податке</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1410,10 +1419,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Овај мени шаље захтев за dnfdaemon да захтева освежавање свих мета података. "
+"Ова акција је асинхрона и захтева рекреирање кеша са информацијама о "
+"пакетима.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Репозиторијуми</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1421,22 +1433,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Овај мени отвара дијалог који омогућава да укључите или искључите "
+"репозиторијуме. Било које промене су валидне за вренем када је dnfdragora "
+"покренута и нису трајне.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Излаз</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Овај мени излази из dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Иформациони мени"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Историја</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1444,20 +1459,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+" Овај мени покреће дијалог који садржи историју трансакција приказана у "
+"стаблу сортирану по датуму. Изабрана историја се може поништити кликом на "
+"<b>Undo</b> тастер.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Треба знати да ова функција тренутно не ради услед промена у dnf API-"
+"ју</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Мени опција"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Опције корисника</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1465,14 +1485,16 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Овај мени отвара%s који садржи корисничка подешавања ради оптимизације "
+"понашања dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "дијалог"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora опције"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1480,10 +1502,13 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Овај дијалог омогућава подешавање понашање dnfdragora  променом опција. Неке "
+"промене су доступне након затварања дијалога, другима је потребно "
+"рестартовање dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Системске опције</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1491,28 +1516,38 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Покреће трансакције на пакетима аутоматски без потребе за "
+"потврдом</b>: уколико означене трансакције не треба да буду потврђене, "
+"dnfdragora ради по принципу одговарања при упиту увек са <i>да</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>НАПОМЕНА</b> да ова опција значи такође да је уклањање пакета такође "
+"прећутно одобрено</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Интервал за проверу надоградњи</b>: дати број репрезентује када "
+"dnfdragora треба да провери постојање надоградњи, вредност је исказана у "
+"минутама</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Време трајања мета података</b>: време за истицање мета података, "
+"вредност је исказана у сатима</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Опције распореда</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1520,6 +1555,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Приказ надоградњи</b>: уколико је изабрана dnfdragora почиње са "
+"активним филтером <i>надоградње</i> тј. приказује само пакете доступне за "
+"надоградњу ако их има.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1527,14 +1565,18 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>Не приказуј групни приказ</b>: филтрирање по групама може захтевати  "
+"CPU уколико се користи рачунар, уколико се користи ова опција dnfdragora "
+"покреће приказивање свих пакета.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>НАПОМЕНА</b> да горе наведена опција захтева да dnfdragora рестартује."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Опције претраживања</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1542,61 +1584,75 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Приказује само најновије пакете</b>: уколико је изабрано "
+"dnfdragora приказује само најновије пакете при претраживању. <i>Треба знати "
+"да је валидно уколико претраживања нису изведена коришћењем регуларних "
+"израза</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Поклапање свих речи</b>: уколико је изабрано претраживање без "
+"коришћења регуларних израза ће поклапати све дате речи у пољу за унос текста."
+"</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Опције записивања</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Омогућите ове опције да би омогућили да dnfdragora записује у фајл под "
+"именом<i>dnfdragora.log</i>"
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Промени директоријум</b>: ова опција омогућава да подесите "
+"директоријум за записивање, директоријум мора постојати и мора имати дозволу "
+"за уписивање.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Ниво дебаговања</b>: уколико је изабран записивање verbose лога је "
+"омогућено.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Мени за помоћ"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Упуство</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Овај мени отвара dnfdragora дијалог за помоћ"
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>О</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Овај мени отвара dnfdragora дијалог О..."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Прегледи и претраживањи"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Прегледи</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1645,7 +1701,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Тражи</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1706,17 +1762,19 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Трака напретка"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Трака напретка приказује напредак у dnfdragora операцијама попут трансакција "
+"и кеширању података."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Линија тастера"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1829,7 +1887,7 @@ msgstr "у именима фајлова"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Користи regexp"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1869,7 +1927,7 @@ msgstr "&Информације"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&Историја"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
@@ -1960,7 +2018,7 @@ msgstr "Креирај трансакцију"
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Нерпознате акције %(action)s на %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
@@ -1989,11 +2047,11 @@ msgstr "Грешка при креирању трансакције"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "Недостаје GPG кључ"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Грешка при претраживању коришћењем регуларних израза"
 
 #: dnfdragora/updater.py:125 dnfdragora/updater.py:128
 #, python-format
@@ -2032,7 +2090,7 @@ msgstr "%d надоградњи доступно."
 
 #: dnfdragora/updater.py:355
 msgid "No updates available"
-msgstr ""
+msgstr "Нема доступних ажурирање"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2060,18 +2118,3 @@ msgstr ""
 "SUSE, тако се може покретати коришћењем Qt5, GTK+ 3, или ncurses "
 "интерфејсима. Омогућава фронтенд за DNF менаџер паекта који се може "
 "користити на било којој врсти системског окружења."
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Непозната акција %s на %s"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Није још примењено"
-
-#~ msgid "Software Management"
-#~ msgstr "Подешавање Софтвера"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Опције логовања (активирање при следећем покретању)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Настави без питања за потврду"
