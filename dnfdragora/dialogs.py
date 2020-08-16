@@ -955,10 +955,12 @@ class OptionDialog(basedialog.BaseDialog):
 
     showUpdates = self.parent.config.userPreferences['settings']['show updates at startup'] \
       if 'settings' in self.parent.config.userPreferences.keys() \
+        and 'show updates at startup' in self.parent.config.userPreferences['settings'].keys() \
       else False
 
     showAll =  self.parent.config.userPreferences['settings']['do not show groups at startup']\
       if 'settings' in self.parent.config.userPreferences.keys() \
+        and 'do not show groups at startup' in self.parent.config.userPreferences['settings'].keys() \
       else False
 
 
