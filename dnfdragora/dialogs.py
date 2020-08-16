@@ -1045,6 +1045,9 @@ class OptionDialog(basedialog.BaseDialog):
           and 'level_debug' in self.parent.config.userPreferences['settings']['log'].keys() \
         else False
 
+    if not 'log' in self.parent.config.userPreferences['settings'].keys():
+      self.parent.config.userPreferences['settings']['log'] = {}
+
     self.log_enabled  = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Enable logging"), log_enabled )
     self.log_enabled.setNotify(True)
     self.eventManager.addWidgetEvent(self.log_enabled, self.onEnableLogging, True)
