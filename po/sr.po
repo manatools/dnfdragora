@@ -1663,7 +1663,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
-msgstr ""
+msgstr "Уколико је изабрано <i>Све</i>, панел са пакетима садржи све пакете."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
@@ -1734,6 +1734,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
+"Тастер <i>Очисти претрагу</i> омогућава ресетовање поља за претраживање."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1741,6 +1742,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Овај панел приказује све групе које ће се користити за филтрирање по "
+"групама, уколико је групни преглед укључен. Посебно <i>Претражи</i> за групе "
+"је додано уколико се обавља претраживање."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1767,6 +1771,8 @@ msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Треба знати да записник није омогућен од стране dnfdaemon-а у "
+"овом тренутку.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
@@ -1790,16 +1796,21 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Примени</b>: када су неки пакети изабрани за инсталацију или "
+"надоградњу или одабрани за деинсталацију овај тастер вам омогућава да "
+"покренете поступак.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Изабери све</b>: уколико се пакетри филтрирају само за надоградње "
+"овај тастер вам омогућава да изаберете све пакете једним потезом.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Излаз</b>: излази из dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
