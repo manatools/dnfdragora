@@ -1660,6 +1660,9 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"Први комбобокс омогућава приказивање пакета по групама. Уколико је изабрано "
+"<i>Групе</i> панел за групе приказује разгранати преглед који садржи групе, "
+"док се избором групе приказују повезани пакети у панелу за пакете.."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
@@ -1717,6 +1720,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Претражицање се врши кликом на тастер <i>Претражи</i> уколико је поље за "
+"унос текста попуњено. Комбобокс за претраживање омогућава птреживање унетог "
+"текста у  <i>именима</i>, <i>сажецима</i>, <i>описима</i> или <i>фајловима</"
+"i>пакета."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1724,12 +1731,18 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Специјално поље за избор <i>Користи regexp</i>се користи тражење пакета "
+"помоћу регуларних израза програмског језика Пајтон. Ово претраживање се "
+"изводи у кешираним иформацијама пакета као на пример за <b>само имена и "
+"сажетке</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Напомена</i> да уколико се регуларни изрази користе за претраживање по "
+"именима користе се пуна имена пакета са верзијом."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1752,12 +1765,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Овај панел приказује све филтриране пакета са њиховим основним информацијама "
+"попут <i>име</i>, <i>сажетак</i>, <i>верзија</i>, <i>издање</i>, "
+"<i>архитектура</i>, <i>величина</i> и <i>статус</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Поље за избор за било који пакет је доступно ради додавање одговарајућег "
+"пакета у трансакцију за инсталирање, надоградњу и уклањање."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1765,6 +1783,9 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Овај панел приказује информације за све пакете попут  <i>опис</i>, <i>URL</"
+"i>, <i>репозиторијум</i>, <i>зависности</i>, <i>листа фајлова</i>, и "
+"<i>дневник промена</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
