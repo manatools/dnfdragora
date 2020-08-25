@@ -1201,16 +1201,19 @@ class OptionDialog(basedialog.BaseDialog):
       self.parent.config.userPreferences['settings']['do not show groups at startup'] = False
       self._openLayoutOptions()
     elif k == "search":
-      self.parent.config.userPreferences['settings']['search']['match_all'] = True
+      self.parent.config.userPreferences['settings']['search'] = {
+        'match_all': True,
+        'newest_only': False,
+      }
       self.parent.match_all = True
-      self.parent.config.userPreferences['settings']['search']['newest_only'] = False
       self.parent.newest_only = False
       self._openSearchOptions()
     elif k == "logging":
-      pass
-      self.parent.config.userPreferences['settings']['log']['enabled'] = False
-      self.parent.config.userPreferences['settings']['log']['directory'] = os.path.expanduser("~")
-      self.parent.config.userPreferences['settings']['log']['level_debug'] = False
+      self.parent.config.userPreferences['settings']['log'] = {
+        'enabled': False,
+        'directory': os.path.expanduser("~"),
+        'level_debug': False,
+      }
       self._openLoggingOptions()
 
   def onCancelEvent(self) :
