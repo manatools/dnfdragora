@@ -18,14 +18,14 @@
 # Laszlo Espadas, 2018
 # István Norbert Péter <peter.norbert.istvan@gmail.com>, 2018
 # Miklos <szubotaj@gmail.com>, 2018
+# Gergely Gombos <gombosg@disroot.org>, 2020
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-09 10:43+0300\n"
-"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"PO-Revision-Date: 2020-08-25 09:44+0200\n"
 "Last-Translator: Miklos <szubotaj@gmail.com>, 2018\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "hu/)\n"
@@ -38,23 +38,23 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr "%(prog)s [options]"
+msgstr "%(prog)s [opciók]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "Megjelenítés GTK + bővítmény használatával"
+msgstr "indítás GTK+ bővítmény használatával"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "Megjelenítés ncurses bővítmény használatával"
+msgstr "indítás ncurses bővítmény használatával"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "Megjelenítés Qt bővítmény használatával"
+msgstr "indítás Qt bővítmény használatával"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr "Teljes képernyős dialógus ablakok használata"
+msgstr "teljes képernyős ablak használata"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -67,29 +67,28 @@ msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
-"Az alapértelmezett (/usr/share/dnfdragora/images) útvonal helyett másik "
-"útvonal megadása"
+"Az alapértelmezett (/usr/share/dnfdragora/images) útvonal helyett másik útvonal "
+"megadása"
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
-msgstr "A könyvtár tartalmazza a nyelvi fájlokat is (fejlesztő esetén)"
+msgstr "honosítási fájlok mappája (fejlesztő esetén)"
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr "Csomag telepítése"
+msgstr "csomag telepítése"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "Csak a frissítések megjelenítése dialógus ablakban"
+msgstr "csak a frissítési párbeszédablak megjelenítése"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr "Megjeleníti az alkalmazás verzióját és kilép"
+msgstr "verziószám megjelenítése, majd kilépés"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
-"dbus által igénybe vett szolgáltatások a dnfdragora kényszerített kilépéséhez"
+msgstr "dnfdaemon dbus szolgáltatások erőltetett bezárása"
 
 #: bin/dnfdragora:53 bin/dnfdragora:103
 #, python-format
@@ -129,12 +128,12 @@ msgstr "dnfdaemon attribútum hiba történt:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon típus hiba történt:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Hiba történt:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -146,11 +145,11 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr "KDE munkaasztal"
+msgstr "KDE asztali környezet"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr "Xfce Asztal"
+msgstr "Xfce asztali környezet"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
@@ -158,31 +157,31 @@ msgstr "Alkalmazások"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr "LXDE munkaasztal"
+msgstr "LXDE asztali környezet"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr "LXQt Munkaasztal"
+msgstr "LXQt asztali környezet"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr "Cinnamon Asztal"
+msgstr "Cinnamon asztali környezet"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr "MATE Asztal"
+msgstr "MATE asztali környezet"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr "Hawaii munkaasztal"
+msgstr "Hawaii asztali környezet"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr "Sugár asztalikörnyezet"
+msgstr "Sugar asztali környezet"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr "GNOME munkaasztal"
+msgstr "GNOME asztali környezet"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -191,7 +190,7 @@ msgstr "Fejlesztés"
 
 #: dnfdragora/compsicons.py:30 dnfdragora/groupicons.py:493
 msgid "Servers"
-msgstr "Kiszolgálók"
+msgstr "Szerverek"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
@@ -216,15 +215,15 @@ msgstr "Keresési eredmény"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
-msgstr "Telepített csomagok beszerzése"
+msgstr "Telepített csomagok betöltése"
 
 #: dnfdragora/const.py:103
 msgid "Getting available packages"
-msgstr "Az elérhető csomagok beszerzése"
+msgstr "Az elérhető csomagok betöltése"
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
-msgstr "Az elérhető frissítések beszerzése"
+msgstr "Az elérhető frissítések betöltése"
 
 #: dnfdragora/const.py:105
 msgid "Getting all packages"
@@ -232,7 +231,7 @@ msgstr "Az összes csomag beszerzése"
 
 #: dnfdragora/const.py:118
 msgid "Updated packages"
-msgstr "Frissített csomagok"
+msgstr "Az összes csomag betöltése"
 
 #: dnfdragora/const.py:119
 msgid "Downgraded packages"
@@ -290,7 +289,7 @@ msgstr "Frissítés: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Frissítve: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -305,7 +304,7 @@ msgstr "Újratelepítés: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Újratelepítve: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -320,12 +319,12 @@ msgstr "Eltávolítás: %s"
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
-msgstr "Elavulás: %s"
+msgstr "Elavultnak jelölés: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Elavultnak jelölve: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
@@ -335,7 +334,7 @@ msgstr "Leminősítés: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Leminősítve: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -371,7 +370,7 @@ msgstr "Biztonság"
 
 #: dnfdragora/const.py:166
 msgid "Enhancement"
-msgstr "Kiemelés"
+msgstr "Továbbfejlesztés"
 
 #: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
@@ -396,12 +395,12 @@ msgstr[1] "Hiba történt a tranzakció során"
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Tranzakció előkészítési hiba"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr "nincs hitelesítés a dnfdaemon alkalmazással:%(NL)s%(error)s"
+msgstr "dnfdaemon kliens engedélye megtagadva:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:296
 msgid "History"
@@ -413,7 +412,7 @@ msgstr "Előzmények (Dátum/Idő)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr ""
+msgstr "Tranzakcióelőzmények"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
@@ -431,24 +430,22 @@ msgstr "Tranzakció eredmény"
 msgid "Transaction dependency"
 msgstr "Tranzakció függőség"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
-#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
-#: dnfdragora/dialogs.py:1366
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249 dnfdragora/dialogs.py:1287
+#: dnfdragora/dialogs.py:1323 dnfdragora/dialogs.py:1366
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1367
+#: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614 dnfdragora/dialogs.py:1367
 msgid "&Cancel"
 msgstr "&Mégsem"
 
 #: dnfdragora/dialogs.py:404
 msgid "replacing "
-msgstr "csere"
+msgstr "lecserélve "
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
-msgstr "Teljes méret"
+msgstr "Teljes méret "
 
 #: dnfdragora/dialogs.py:475
 msgid "Developers"
@@ -457,32 +454,31 @@ msgstr "Fejlesztők"
 #: dnfdragora/dialogs.py:479
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
-"A dnfdragora egy DNF frontend, amely GTK, ncurses és QT használatával "
-"dolgozik"
+"A dnfdragora egy DNF kezelő, amely GTK, ncurses és QT felületekkel rendelkezik"
 
 #: dnfdragora/dialogs.py:516
 msgid "Bandwidth"
-msgstr ""
+msgstr "Sávszélesség"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
-msgstr ""
+msgstr "Alap gyorsítótár mappa"
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
-msgstr ""
+msgstr "Alap URL"
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
-msgstr ""
+msgstr "Költség"
 
 #: dnfdragora/dialogs.py:520
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:521
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM százalékérték"
 
 #: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
 msgid "Enabled"
@@ -490,63 +486,63 @@ msgstr "Engedélyezve"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Metaadatok engedélyezve"
 
 #: dnfdragora/dialogs.py:524
 msgid "Enable groups"
-msgstr ""
+msgstr "Csoportok engedélyezve"
 
 #: dnfdragora/dialogs.py:525
 msgid "Exclude"
-msgstr ""
+msgstr "Kihagyás"
 
 #: dnfdragora/dialogs.py:526
 msgid "Exclude packages"
-msgstr ""
+msgstr "Csomagok kihagyása"
 
 #: dnfdragora/dialogs.py:527
 msgid "Failover method"
-msgstr ""
+msgstr "Feladatátvételi (failover) mód"
 
 #: dnfdragora/dialogs.py:528
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Leggyorsabb tükörszerver"
 
 #: dnfdragora/dialogs.py:529
 msgid "GPG check"
-msgstr ""
+msgstr "GPG ellenőrzés"
 
 #: dnfdragora/dialogs.py:530
 msgid "GPG key"
-msgstr ""
+msgstr "GPG kulcs"
 
 #: dnfdragora/dialogs.py:531
 msgid "Include packages"
-msgstr ""
+msgstr "Csomagok beszámítása"
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr ""
+msgstr "IP feloldás"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
-msgstr ""
+msgstr "Maximális párhuzamos letöltések"
 
 #: dnfdragora/dialogs.py:534
 msgid "Media ID"
-msgstr ""
+msgstr "Média ID"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
-msgstr ""
+msgstr "Metaadatok lejárata"
 
 #: dnfdragora/dialogs.py:536
 msgid "Meta link"
-msgstr ""
+msgstr "Meta hivatkozás"
 
 #: dnfdragora/dialogs.py:537
 msgid "Min rate"
-msgstr ""
+msgstr "Minimum sebesség"
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
@@ -558,7 +554,7 @@ msgstr "Név"
 
 #: dnfdragora/dialogs.py:540
 msgid "Packages"
-msgstr ""
+msgstr "Tükörszerver lista"
 
 #: dnfdragora/dialogs.py:541
 msgid "Password"
@@ -566,11 +562,11 @@ msgstr "Jelszó"
 
 #: dnfdragora/dialogs.py:542
 msgid "Priority"
-msgstr ""
+msgstr "Prioritás"
 
 #: dnfdragora/dialogs.py:543
 msgid "Protected packages"
-msgstr ""
+msgstr "Védett csomagok"
 
 #: dnfdragora/dialogs.py:544
 msgid "Proxy"
@@ -578,19 +574,19 @@ msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr ""
+msgstr "Proxy jelszó"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr ""
+msgstr "Proxy felhasználónév"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Tároló GPG ellenőrzése"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
-msgstr ""
+msgstr "Újrapróbálkozások száma"
 
 #: dnfdragora/dialogs.py:549 dnfdragora/ui.py:440
 msgid "Size"
@@ -598,31 +594,31 @@ msgstr "Méret"
 
 #: dnfdragora/dialogs.py:550
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Ugorja át, ha nem elérhető"
 
 #: dnfdragora/dialogs.py:551
 msgid "SSL CA cert"
-msgstr ""
+msgstr "SSL CA tanúsítvány"
 
 #: dnfdragora/dialogs.py:552
 msgid "SSL client cert"
-msgstr ""
+msgstr "SSL kliens tanúsítvány"
 
 #: dnfdragora/dialogs.py:553
 msgid "SSL client key"
-msgstr ""
+msgstr "SSL kliens kulcs"
 
 #: dnfdragora/dialogs.py:554
 msgid "SSL verify"
-msgstr ""
+msgstr "SSL ellenőrzése"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
-msgstr ""
+msgstr "Leszabályozás"
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
-msgstr ""
+msgstr "Időtúllépés"
 
 #: dnfdragora/dialogs.py:557
 msgid "Type"
@@ -634,7 +630,7 @@ msgstr "Felhasználónév"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
-msgstr "Csomagtároló kezelés"
+msgstr "Csomagtárolók kezelése"
 
 #: dnfdragora/dialogs.py:602
 msgid "Information"
@@ -655,11 +651,11 @@ msgstr "Soha"
 #: dnfdragora/dialogs.py:720
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s másodperc"
 
 #: dnfdragora/dialogs.py:726
 msgid "Now"
-msgstr ""
+msgstr "Most"
 
 #: dnfdragora/dialogs.py:797 dnfdragora/groupicons.py:434
 msgid "System"
@@ -667,7 +663,7 @@ msgstr "Rendszer"
 
 #: dnfdragora/dialogs.py:803
 msgid "Layout"
-msgstr ""
+msgstr "Elrendezés"
 
 #: dnfdragora/dialogs.py:808
 msgid "Search"
@@ -675,75 +671,75 @@ msgstr "Keresés"
 
 #: dnfdragora/dialogs.py:813
 msgid "Logging"
-msgstr ""
+msgstr "Naplózás"
 
 #: dnfdragora/dialogs.py:824
 msgid "Restore &default"
-msgstr ""
+msgstr "Alapértelmezés"
 
 #: dnfdragora/dialogs.py:887
 msgid "System options"
-msgstr "Rendszer paraméterek"
+msgstr "Rendszer beállítások"
 
 #: dnfdragora/dialogs.py:894
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Csomagtranzakciók futtatása megerősítés nélkül"
 
 #: dnfdragora/dialogs.py:903
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "dnfdragora-frissítés menü elrejtése, ha nincsenek frissítések"
 
 #: dnfdragora/dialogs.py:919
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Frissítések ellenőrzési időköze (perc)"
 
 #: dnfdragora/dialogs.py:927
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Metaadat lejárati idő (óra)"
 
 #: dnfdragora/dialogs.py:952
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Elrendezési beállítások (újraindításkor lép életbe)"
 
 #: dnfdragora/dialogs.py:964
 msgid "Show updates"
-msgstr ""
+msgstr "Frissítések mutatása"
 
 #: dnfdragora/dialogs.py:969
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Ne mutassa a csoportnézetet"
 
 #: dnfdragora/dialogs.py:991
 msgid "Search options"
-msgstr ""
+msgstr "Keresési beállítások"
 
 #: dnfdragora/dialogs.py:997
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Csak a legújabb csomagok mutatása"
 
 #: dnfdragora/dialogs.py:1002
 msgid "Match all words"
-msgstr ""
+msgstr "Minden szó egyezzen"
 
 #: dnfdragora/dialogs.py:1024
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Naplózási beállítások (újraindításkor lép életbe)"
 
 #: dnfdragora/dialogs.py:1045
 msgid "Enable logging"
-msgstr ""
+msgstr "Naplózás bekapcsolása"
 
 #: dnfdragora/dialogs.py:1054
 msgid "Change &directory"
-msgstr ""
+msgstr "Mappa választása"
 
 #: dnfdragora/dialogs.py:1061
 msgid "Debug level"
-msgstr ""
+msgstr "Hibakeresési szint"
 
 #: dnfdragora/dialogs.py:1089
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Válasszon naplózási célkönyvtárat"
 
 #: dnfdragora/dialogs.py:1416
 msgid "&Yes"
@@ -760,10 +756,8 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"Szeretné importálni  a GPG kulcsot?<br>A %(pkg)s csomaghoz szükségesnek "
-"tartja? \n"
-"<br>Kulcs      :0x%(id)s:<br>Felhasználó azonosítás           :\"%(user)s"
-"\"<br>al%(file)s"
+"Szeretné importálni a GPG kulcsot<br>a %(pkg)s csomag hitelesítéséhez? \n"
+"<br>Kulcs      :0x%(id)s:<br>Felhasználó :\"%(user)s\"<br>Feladó      : %(file)s"
 
 #: dnfdragora/dialogs.py:1447
 msgid "GPG key missed"
@@ -776,22 +770,22 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
-"DNFdeamon api verziója: %(actual)d\n"
+"dnfdaemon api verziója: %(actual)d\n"
 " nem egyezik \n"
 "a szükséges api verzióval%(required)d"
 
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "csomag nem rendelkezik %s attribútummal"
 
 #: dnfdragora/dnf_backend.py:482
 msgid "Caching groups from packages... "
-msgstr "Gyorsítótár csoportok csomagokból..."
+msgstr "Csoportok gyorsítótárazása... "
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Parancs folyamatban"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -845,11 +839,11 @@ msgstr "Rádió"
 
 #: dnfdragora/groupicons.py:68
 msgid "Serial"
-msgstr "Sorozat"
+msgstr "Soros"
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
-msgstr "Telefonálás"
+msgstr "Telefónia"
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
@@ -857,7 +851,7 @@ msgstr "Adatbázisok"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr "Alapvető"
+msgstr "BASIC"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -1060,7 +1054,7 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:301
 msgid "Instant messaging"
-msgstr "Azonnali üzenetküldő program"
+msgstr "Azonnali üzenetküldés"
 
 #: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
@@ -1092,11 +1086,11 @@ msgstr "Pénzügy"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
-msgstr "Irányítás"
+msgstr "Menedzsment"
 
 #: dnfdragora/groupicons.py:341
 msgid "Organizer"
-msgstr "Szervezés"
+msgstr "Szervező"
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
@@ -1104,7 +1098,7 @@ msgstr "Táblázatkezelő"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
-msgstr "Készlet"
+msgstr "Programcsomag"
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
@@ -1112,11 +1106,11 @@ msgstr "Szövegszerkesztő"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
-msgstr "Publikálás"
+msgstr "Kiadványszerkesztés"
 
 #: dnfdragora/groupicons.py:366
 msgid "Sciences"
-msgstr "Tudományok"
+msgstr "Tudomány"
 
 #: dnfdragora/groupicons.py:369
 msgid "Astronomy"
@@ -1160,7 +1154,7 @@ msgstr "Midi"
 
 #: dnfdragora/groupicons.py:421
 msgid "Mixers"
-msgstr "Mixerek"
+msgstr "Hangkeverők"
 
 #: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
@@ -1176,7 +1170,7 @@ msgstr "Indítás és inicializálás"
 
 #: dnfdragora/groupicons.py:445
 msgid "Cluster"
-msgstr "Fürt"
+msgstr "Klaszter"
 
 #: dnfdragora/groupicons.py:449 dnfdragora/groupicons.py:538
 msgid "Configuration"
@@ -1208,7 +1202,7 @@ msgstr "Kernel és hardver"
 
 #: dnfdragora/groupicons.py:477
 msgid "Libraries"
-msgstr "Könyvtárak"
+msgstr "Függvénykönyvtárak"
 
 #: dnfdragora/groupicons.py:485
 msgid "Packaging"
@@ -1224,11 +1218,11 @@ msgstr "Terminálok"
 
 #: dnfdragora/groupicons.py:506
 msgid "Text tools"
-msgstr "Szövegkezelő eszközök"
+msgstr "Szöveges eszközök"
 
 #: dnfdragora/groupicons.py:510
 msgid "Toys"
-msgstr "Mütyürkék"
+msgstr "Gyerekjátékok"
 
 #: dnfdragora/groupicons.py:514
 msgid "Video"
@@ -1280,7 +1274,7 @@ msgstr "GNOME munkaállomás"
 
 #: dnfdragora/groupicons.py:582
 msgid "IceWm Desktop"
-msgstr "IceWm  munkaasztal"
+msgstr "IceWm  asztali környezet"
 
 #: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
@@ -1288,11 +1282,11 @@ msgstr "KDE munkaállomás"
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
-msgstr "Más grafikus környezetek"
+msgstr "Egyéb grafikus környezetek"
 
 #: dnfdragora/groupicons.py:611
 msgid "Server"
-msgstr "Kiszolgáló"
+msgstr "Szerver"
 
 #: dnfdragora/groupicons.py:614
 msgid "DNS/NIS"
@@ -1308,11 +1302,11 @@ msgstr "Tűzfal/útválasztó (router)"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr "Levelezés/csoportmunka/hír"
+msgstr "Levelezés/csoportmunka/hírolvasó"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
-msgstr "Kiszolgáló hálózati számítógépekhez"
+msgstr "Hálózati szerver"
 
 #: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
@@ -1380,9 +1374,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-"interfaces.<br><br>"
+"dnfdragora is part of manatools and it is based on libyui so that it can work "
+"using Gtk, Qt or ncurses, i.e. both graphical and textual user interfaces."
+"<br><br>"
 msgstr ""
 
 #: dnfdragora/helpinfo.py:66
@@ -1754,16 +1748,16 @@ msgstr "Letöltés: %(files)d fájlok, %(size)d bájt"
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr "A letöltés indítása:%s"
+msgstr "Letöltés megkezdése: %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr "Futó fájlok (%(downloaded)d/%(total)d)"
+msgstr "Fájlok folyamatban (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:206
 msgid "Update information"
-msgstr "Információ frissítése"
+msgstr "Frissítési információk"
 
 #: dnfdragora/ui.py:207
 msgid "File list"
@@ -1791,7 +1785,7 @@ msgstr "Kiadás"
 
 #: dnfdragora/ui.py:440
 msgid "Summary"
-msgstr "Összegzés"
+msgstr "Rövid leírás"
 
 #: dnfdragora/ui.py:440
 msgid "Version"
@@ -1811,12 +1805,12 @@ msgstr "Nincs telepítve"
 
 #: dnfdragora/ui.py:457
 msgid "To update"
-msgstr "Aktualizálás."
+msgstr "Frissítendő"
 
 #: dnfdragora/ui.py:463
 #, python-format
 msgid "Show %s and noarch only"
-msgstr "Mutassa a %s és jelenítse meg a noarch csomagot."
+msgstr "Csak %s és \"noarch\" csomagok megjelenítése"
 
 #: dnfdragora/ui.py:469
 msgid "Groups"
@@ -1832,7 +1826,7 @@ msgstr "a leírásokban"
 
 #: dnfdragora/ui.py:530
 msgid "in summaries"
-msgstr "az összefoglalókban"
+msgstr "a rövid leírásokban"
 
 #: dnfdragora/ui.py:531
 msgid "in file names"
@@ -1840,7 +1834,7 @@ msgstr "a fájlnevekben"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Reguláris kifejezések használata"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1848,11 +1842,11 @@ msgstr "&Keresés"
 
 #: dnfdragora/ui.py:560
 msgid "&Clear search"
-msgstr "&Törölje a keresést"
+msgstr "Keresés törlése"
 
 #: dnfdragora/ui.py:574
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Összes kijelölése"
 
 #: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
@@ -1864,11 +1858,11 @@ msgstr "&Fájl"
 
 #: dnfdragora/ui.py:590
 msgid "Reset the selection"
-msgstr "Állítsa vissza a kiválasztást"
+msgstr "Kijelölések törlése"
 
 #: dnfdragora/ui.py:591
 msgid "Refresh Metadata"
-msgstr "Frissítse a metaadatokat"
+msgstr "Metaadatok frissítése"
 
 #: dnfdragora/ui.py:592
 msgid "Repositories"
@@ -1880,15 +1874,15 @@ msgstr "Információ"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "Előzmények"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
-msgstr "&Lehetőségek"
+msgstr "Beállítások"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
-msgstr "Felhasználó beállítások"
+msgstr "Felhasználói beállítások"
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
@@ -1896,11 +1890,11 @@ msgstr "&Súgó"
 
 #: dnfdragora/ui.py:627
 msgid "Manual"
-msgstr "Kézi"
+msgstr "Kézikönyv"
 
 #: dnfdragora/ui.py:629
 msgid "&About"
-msgstr "&Magunkról"
+msgstr "Névjegy"
 
 #: dnfdragora/ui.py:666
 msgid "update"
@@ -1924,16 +1918,16 @@ msgstr "Tároló"
 
 #: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
-msgstr "Repó Metaadat frissítése"
+msgstr "Tároló metaadatok frissítése"
 
 #: dnfdragora/ui.py:1388
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr "Csomag %s nem eltávolítható"
+msgstr "A %s csomag nem eltávolítható"
 
 #: dnfdragora/ui.py:1388
 msgid "Protected package selected"
-msgstr "Védett csomag kiválasztva"
+msgstr "Védett csomag lett kiválasztva"
 
 #: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
@@ -1942,11 +1936,11 @@ msgstr "Nem kezelt widget"
 #: dnfdragora/ui.py:1467
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Nem kezelt esemény %d"
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
-msgstr "Tranzakció elkezdése"
+msgstr "Tranzakció indítása"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
@@ -1966,45 +1960,45 @@ msgstr "Változások ellenőrzése a rendszeren"
 
 #: dnfdragora/ui.py:1563
 msgid "Build transaction"
-msgstr ""
+msgstr "Tranzakció felépítése"
 
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Ismeretlen akció %(action)s a %(name)s csomagon"
 
 #: dnfdragora/ui.py:1623
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr "Töltse le a %(count_files)d fájlt (%(count_bytes)sB)..."
+msgstr "%(count_files)d fájl letöltése (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1659
 msgid "Caching updates"
-msgstr ""
+msgstr "Frissítések gyorsítótárazása"
 
 #: dnfdragora/ui.py:1662
 msgid "Caching installed"
-msgstr ""
+msgstr "Telepített csomagok gyorsítótárazása"
 
 #: dnfdragora/ui.py:1665
 msgid "Caching available"
-msgstr ""
+msgstr "Elérhető csomagok gyorsítótárazása"
 
 #: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Csomag-gyorsítótár elkészítése"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Tranzakcióépítési hiba"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "Hiányzó GPG kulcs"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Reguláris kifejezés hiba"
 
 #: dnfdragora/updater.py:125 dnfdragora/updater.py:128
 #, python-format
@@ -2029,12 +2023,12 @@ msgstr "Kilépés"
 
 #: dnfdragora/updater.py:232
 msgid "Running dnfdragora failure"
-msgstr "A dnfdagora hibába futott"
+msgstr "A dnfdragora hibába ütközött"
 
 #: dnfdragora/updater.py:276 dnfdragora/updater.py:286
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr "Kivételbe ragadt: [1%s]"
+msgstr "Elkapott kivétel: [%s]"
 
 #: dnfdragora/updater.py:345
 #, python-format
@@ -2043,7 +2037,7 @@ msgstr "%d frissítés elérhető."
 
 #: dnfdragora/updater.py:355
 msgid "No updates available"
-msgstr ""
+msgstr "Nincs elérhető frissítés"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
