@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:43+0300\n"
+"POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2020-08-25 09:44+0200\n"
 "Last-Translator: Miklos <szubotaj@gmail.com>, 2018\n"
 "Language-Team: Hungarian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -67,8 +67,8 @@ msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
-"Az alapértelmezett (/usr/share/dnfdragora/images) útvonal helyett másik útvonal "
-"megadása"
+"Az alapértelmezett (/usr/share/dnfdragora/images) útvonal helyett másik "
+"útvonal megadása"
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
@@ -212,6 +212,10 @@ msgstr "Üres"
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
 msgstr "Keresési eredmény"
+
+#: dnfdragora/compsicons.py:46
+msgid "Uncategorized"
+msgstr ""
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -418,7 +422,7 @@ msgstr "Tranzakcióelőzmények"
 msgid "&Undo"
 msgstr "Visszavonás"
 
-#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:831
+#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
 msgstr "Bezárás"
 
@@ -430,12 +434,14 @@ msgstr "Tranzakció eredmény"
 msgid "Transaction dependency"
 msgstr "Tranzakció függőség"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249 dnfdragora/dialogs.py:1287
-#: dnfdragora/dialogs.py:1323 dnfdragora/dialogs.py:1366
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
+#: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
+#: dnfdragora/dialogs.py:1375
 msgid "&Ok"
 msgstr "&Ok"
 
-#: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614 dnfdragora/dialogs.py:1367
+#: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
+#: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
 msgstr "&Mégsem"
 
@@ -454,7 +460,8 @@ msgstr "Fejlesztők"
 #: dnfdragora/dialogs.py:479
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
-"A dnfdragora egy DNF kezelő, amely GTK, ncurses és QT felületekkel rendelkezik"
+"A dnfdragora egy DNF kezelő, amely GTK, ncurses és QT felületekkel "
+"rendelkezik"
 
 #: dnfdragora/dialogs.py:516
 msgid "Bandwidth"
@@ -644,112 +651,112 @@ msgstr "Érték"
 msgid "&Apply"
 msgstr "&Alkalmaz"
 
-#: dnfdragora/dialogs.py:718
+#: dnfdragora/dialogs.py:719
 msgid "Never"
 msgstr "Soha"
 
-#: dnfdragora/dialogs.py:720
+#: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
 msgstr "%s másodperc"
 
-#: dnfdragora/dialogs.py:726
+#: dnfdragora/dialogs.py:727
 msgid "Now"
 msgstr "Most"
 
-#: dnfdragora/dialogs.py:797 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "Rendszer"
 
-#: dnfdragora/dialogs.py:803
+#: dnfdragora/dialogs.py:804
 msgid "Layout"
 msgstr "Elrendezés"
 
-#: dnfdragora/dialogs.py:808
+#: dnfdragora/dialogs.py:809
 msgid "Search"
 msgstr "Keresés"
 
-#: dnfdragora/dialogs.py:813
+#: dnfdragora/dialogs.py:814
 msgid "Logging"
 msgstr "Naplózás"
 
-#: dnfdragora/dialogs.py:824
+#: dnfdragora/dialogs.py:825
 msgid "Restore &default"
 msgstr "Alapértelmezés"
 
-#: dnfdragora/dialogs.py:887
+#: dnfdragora/dialogs.py:888
 msgid "System options"
 msgstr "Rendszer beállítások"
 
-#: dnfdragora/dialogs.py:894
+#: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr "Csomagtranzakciók futtatása megerősítés nélkül"
 
-#: dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr "dnfdragora-frissítés menü elrejtése, ha nincsenek frissítések"
 
-#: dnfdragora/dialogs.py:919
+#: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
 msgstr "Frissítések ellenőrzési időköze (perc)"
 
-#: dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
 msgstr "Metaadat lejárati idő (óra)"
 
-#: dnfdragora/dialogs.py:952
+#: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
 msgstr "Elrendezési beállítások (újraindításkor lép életbe)"
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:967
 msgid "Show updates"
 msgstr "Frissítések mutatása"
 
-#: dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
 msgstr "Ne mutassa a csoportnézetet"
 
-#: dnfdragora/dialogs.py:991
+#: dnfdragora/dialogs.py:994
 msgid "Search options"
 msgstr "Keresési beállítások"
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
 msgstr "Csak a legújabb csomagok mutatása"
 
-#: dnfdragora/dialogs.py:1002
+#: dnfdragora/dialogs.py:1005
 msgid "Match all words"
 msgstr "Minden szó egyezzen"
 
-#: dnfdragora/dialogs.py:1024
+#: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
 msgstr "Naplózási beállítások (újraindításkor lép életbe)"
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
 msgstr "Naplózás bekapcsolása"
 
-#: dnfdragora/dialogs.py:1054
+#: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
 msgstr "Mappa választása"
 
-#: dnfdragora/dialogs.py:1061
+#: dnfdragora/dialogs.py:1067
 msgid "Debug level"
 msgstr "Hibakeresési szint"
 
-#: dnfdragora/dialogs.py:1089
+#: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
 msgstr "Válasszon naplózási célkönyvtárat"
 
-#: dnfdragora/dialogs.py:1416
+#: dnfdragora/dialogs.py:1425
 msgid "&Yes"
 msgstr "&Igen"
 
-#: dnfdragora/dialogs.py:1417
+#: dnfdragora/dialogs.py:1426
 msgid "&No"
 msgstr "&Nem"
 
-#: dnfdragora/dialogs.py:1440
+#: dnfdragora/dialogs.py:1449
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -757,9 +764,10 @@ msgid ""
 "%(file)s"
 msgstr ""
 "Szeretné importálni a GPG kulcsot<br>a %(pkg)s csomag hitelesítéséhez? \n"
-"<br>Kulcs      :0x%(id)s:<br>Felhasználó :\"%(user)s\"<br>Feladó      : %(file)s"
+"<br>Kulcs      :0x%(id)s:<br>Felhasználó :\"%(user)s\"<br>Feladó      : "
+"%(file)s"
 
-#: dnfdragora/dialogs.py:1447
+#: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
 msgstr "GPG kulcs hiányzik"
 
@@ -779,7 +787,7 @@ msgstr ""
 msgid "package has not any %s attributes"
 msgstr "csomag nem rendelkezik %s attribútummal"
 
-#: dnfdragora/dnf_backend.py:482
+#: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
 msgstr "Csoportok gyorsítótárazása... "
 
@@ -1374,9 +1382,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can work "
-"using Gtk, Qt or ncurses, i.e. both graphical and textual user interfaces."
-"<br><br>"
+"dnfdragora is part of manatools and it is based on libyui so that it can "
+"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
+"interfaces.<br><br>"
 msgstr ""
 
 #: dnfdragora/helpinfo.py:66
@@ -2000,42 +2008,42 @@ msgstr "Hiányzó GPG kulcs"
 msgid "Search error using regular expression"
 msgstr "Reguláris kifejezés hiba"
 
-#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Hiba történt a dnfdaemon szolgáltatás indításakor: [%s]"
 
-#: dnfdragora/updater.py:138
+#: dnfdragora/updater.py:133
 msgid "Update"
 msgstr "Frissítés"
 
-#: dnfdragora/updater.py:139
+#: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
 msgstr "dnfdragora párbeszédablak megnyitása"
 
-#: dnfdragora/updater.py:140
+#: dnfdragora/updater.py:135
 msgid "Check for updates"
 msgstr "Frissítések keresése"
 
-#: dnfdragora/updater.py:141
+#: dnfdragora/updater.py:136
 msgid "Exit"
 msgstr "Kilépés"
 
-#: dnfdragora/updater.py:232
+#: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
 msgstr "A dnfdragora hibába ütközött"
 
-#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
+#: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Elkapott kivétel: [%s]"
 
-#: dnfdragora/updater.py:345
+#: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
 msgstr "%d frissítés elérhető."
 
-#: dnfdragora/updater.py:355
+#: dnfdragora/updater.py:347
 msgid "No updates available"
 msgstr "Nincs elérhető frissítés"
 
@@ -2061,18 +2069,32 @@ msgid ""
 "can be used in any kind of system environment."
 msgstr ""
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "A Tranzakció meghibásodott."
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Folytassa anélkül, hogy megerősítést kérne"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nem sikerült frissíteni a DNF cache-t (root)"
+#~ msgid "Software Management"
+#~ msgstr "Szoftverkezelés"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF gyökérháttér nincs hitelesítve.\n"
-#~ "dnfdragora kilép"
+#~ msgid "Not implemented yet"
+#~ msgstr "Még nem hajtották végre"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "Összes kijelölése"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Nem kezelt esemény"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Ne mutassa a csoportnézetet a következő indításkor"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Frissítések mutatása a következő indításkor"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "A frissítések ellenőrzéséhez szükséges intervallum percben:"
+
+#~ msgid "History undo"
+#~ msgstr "Visszavonási előzmények"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2083,29 +2105,15 @@ msgstr ""
 #~ "\n"
 #~ " dnfdragora kilép"
 
-#~ msgid "History undo"
-#~ msgstr "Visszavonási előzmények"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF gyökérháttér nincs hitelesítve.\n"
+#~ "dnfdragora kilép"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "A frissítések ellenőrzéséhez szükséges intervallum percben:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nem sikerült frissíteni a DNF cache-t (root)"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Frissítések mutatása a következő indításkor"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Ne mutassa a csoportnézetet a következő indításkor"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Nem kezelt esemény"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Összes kijelölése"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Még nem hajtották végre"
-
-#~ msgid "Software Management"
-#~ msgstr "Szoftverkezelés"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Folytassa anélkül, hogy megerősítést kérne"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "A Tranzakció meghibásodott."

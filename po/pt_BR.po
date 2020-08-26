@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:43+0300\n"
+"POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Michael Martins <michaelfm21@gmail.com>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
@@ -204,6 +204,10 @@ msgstr "Vazio"
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
 msgstr "Resultado da pesquisa"
+
+#: dnfdragora/compsicons.py:46
+msgid "Uncategorized"
+msgstr ""
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -410,7 +414,7 @@ msgstr "Histórico de transações"
 msgid "&Undo"
 msgstr "&Desfazer"
 
-#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:831
+#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
 msgstr "&Fechar"
 
@@ -422,14 +426,14 @@ msgstr "Resultado da transação"
 msgid "Transaction dependency"
 msgstr "Dependência de transações"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
-#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
-#: dnfdragora/dialogs.py:1366
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
+#: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
+#: dnfdragora/dialogs.py:1375
 msgid "&Ok"
 msgstr "&OK"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1367
+#: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
 msgstr "&Cancelar"
 
@@ -637,112 +641,112 @@ msgstr "Valor"
 msgid "&Apply"
 msgstr "&Aplicar"
 
-#: dnfdragora/dialogs.py:718
+#: dnfdragora/dialogs.py:719
 msgid "Never"
 msgstr "Nunca"
 
-#: dnfdragora/dialogs.py:720
+#: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
 msgstr "%s segundo(s)"
 
-#: dnfdragora/dialogs.py:726
+#: dnfdragora/dialogs.py:727
 msgid "Now"
 msgstr "Agora"
 
-#: dnfdragora/dialogs.py:797 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "Sistema"
 
-#: dnfdragora/dialogs.py:803
+#: dnfdragora/dialogs.py:804
 msgid "Layout"
 msgstr "Layout"
 
-#: dnfdragora/dialogs.py:808
+#: dnfdragora/dialogs.py:809
 msgid "Search"
 msgstr "Procurar"
 
-#: dnfdragora/dialogs.py:813
+#: dnfdragora/dialogs.py:814
 msgid "Logging"
 msgstr "Logging"
 
-#: dnfdragora/dialogs.py:824
+#: dnfdragora/dialogs.py:825
 msgid "Restore &default"
 msgstr ""
 
-#: dnfdragora/dialogs.py:887
+#: dnfdragora/dialogs.py:888
 msgid "System options"
 msgstr "Opções do sistema"
 
-#: dnfdragora/dialogs.py:894
+#: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:919
+#: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
 msgstr "Intervalo para verificar se há atualizações (minutos)"
 
-#: dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
 msgstr "Tempo de expiração dos metadados (horas)"
 
-#: dnfdragora/dialogs.py:952
+#: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
 msgstr "Opções de layout (ativas na próxima inicialização)"
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:967
 msgid "Show updates"
 msgstr "Mostrar atualizações"
 
-#: dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
 msgstr "Não mostrar exibição de grupos"
 
-#: dnfdragora/dialogs.py:991
+#: dnfdragora/dialogs.py:994
 msgid "Search options"
 msgstr "Opções de pesquisa"
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
 msgstr "Mostrar apenas os pacotes mais recentes"
 
-#: dnfdragora/dialogs.py:1002
+#: dnfdragora/dialogs.py:1005
 msgid "Match all words"
 msgstr "Corresponder todas as palavras"
 
-#: dnfdragora/dialogs.py:1024
+#: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1054
+#: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
 msgstr "Alterar &diretório"
 
-#: dnfdragora/dialogs.py:1061
+#: dnfdragora/dialogs.py:1067
 msgid "Debug level"
 msgstr "Nível de depuração"
 
-#: dnfdragora/dialogs.py:1089
+#: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
 msgstr "Escolha diretório de destino de log"
 
-#: dnfdragora/dialogs.py:1416
+#: dnfdragora/dialogs.py:1425
 msgid "&Yes"
 msgstr "&Sim"
 
-#: dnfdragora/dialogs.py:1417
+#: dnfdragora/dialogs.py:1426
 msgid "&No"
 msgstr "&Não"
 
-#: dnfdragora/dialogs.py:1440
+#: dnfdragora/dialogs.py:1449
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -753,7 +757,7 @@ msgstr ""
 "%(pkg)s ?<br><br>chave : 0x%(id)s:<br> ID do usuário : \"%(user)s\" <br> De: "
 "%(file)s"
 
-#: dnfdragora/dialogs.py:1447
+#: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
 msgstr "Chave GPG perdida"
 
@@ -773,7 +777,7 @@ msgstr ""
 msgid "package has not any %s attributes"
 msgstr ""
 
-#: dnfdragora/dnf_backend.py:482
+#: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
 msgstr "Colocando grupos de pacotes em cache... "
 
@@ -1994,42 +1998,42 @@ msgstr ""
 msgid "Search error using regular expression"
 msgstr ""
 
-#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Erro ao iniciar o serviço dnfdaemon: [%s]"
 
-#: dnfdragora/updater.py:138
+#: dnfdragora/updater.py:133
 msgid "Update"
 msgstr "Atualizar"
 
-#: dnfdragora/updater.py:139
+#: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
 msgstr "Abrir diálogo dnfdragora"
 
-#: dnfdragora/updater.py:140
+#: dnfdragora/updater.py:135
 msgid "Check for updates"
 msgstr "Verifique atualizações"
 
-#: dnfdragora/updater.py:141
+#: dnfdragora/updater.py:136
 msgid "Exit"
 msgstr "Sair"
 
-#: dnfdragora/updater.py:232
+#: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
 msgstr "Executando falha de dnfdragora"
 
-#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
+#: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Exceção capturada: [%s]"
 
-#: dnfdragora/updater.py:345
+#: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
 msgstr "%datualizações disponíveis."
 
-#: dnfdragora/updater.py:355
+#: dnfdragora/updater.py:347
 msgid "No updates available"
 msgstr ""
 

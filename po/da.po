@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:43+0300\n"
+"POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -193,6 +193,10 @@ msgstr "Tom"
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
 msgstr "Søgeresultater"
+
+#: dnfdragora/compsicons.py:46
+msgid "Uncategorized"
+msgstr ""
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -399,7 +403,7 @@ msgstr "Transaktionshistorik"
 msgid "&Undo"
 msgstr "&Fortryd"
 
-#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:831
+#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
 msgstr "&Luk"
 
@@ -411,14 +415,14 @@ msgstr "Resultat af transaktion"
 msgid "Transaction dependency"
 msgstr "Transaktionsafhængighed"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
-#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
-#: dnfdragora/dialogs.py:1366
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
+#: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
+#: dnfdragora/dialogs.py:1375
 msgid "&Ok"
 msgstr "&Ok"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1367
+#: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
 msgstr "&Annuller"
 
@@ -627,112 +631,112 @@ msgstr "Værdi"
 msgid "&Apply"
 msgstr "&Anvend"
 
-#: dnfdragora/dialogs.py:718
+#: dnfdragora/dialogs.py:719
 msgid "Never"
 msgstr "Aldrig"
 
-#: dnfdragora/dialogs.py:720
+#: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
 msgstr "%s sekund(er)"
 
-#: dnfdragora/dialogs.py:726
+#: dnfdragora/dialogs.py:727
 msgid "Now"
 msgstr "Nu"
 
-#: dnfdragora/dialogs.py:797 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "System"
 
-#: dnfdragora/dialogs.py:803
+#: dnfdragora/dialogs.py:804
 msgid "Layout"
 msgstr ""
 
-#: dnfdragora/dialogs.py:808
+#: dnfdragora/dialogs.py:809
 msgid "Search"
 msgstr "Søg"
 
-#: dnfdragora/dialogs.py:813
+#: dnfdragora/dialogs.py:814
 msgid "Logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:824
+#: dnfdragora/dialogs.py:825
 msgid "Restore &default"
 msgstr ""
 
-#: dnfdragora/dialogs.py:887
+#: dnfdragora/dialogs.py:888
 msgid "System options"
 msgstr "Systemvalgmuligheder"
 
-#: dnfdragora/dialogs.py:894
+#: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:919
+#: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:952
+#: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:967
 msgid "Show updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
 msgstr ""
 
-#: dnfdragora/dialogs.py:991
+#: dnfdragora/dialogs.py:994
 msgid "Search options"
 msgstr ""
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
 msgstr "Vis kun nyeste pakker"
 
-#: dnfdragora/dialogs.py:1002
+#: dnfdragora/dialogs.py:1005
 msgid "Match all words"
 msgstr "Match alle ord"
 
-#: dnfdragora/dialogs.py:1024
+#: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1054
+#: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1061
+#: dnfdragora/dialogs.py:1067
 msgid "Debug level"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1089
+#: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1416
+#: dnfdragora/dialogs.py:1425
 msgid "&Yes"
 msgstr "&Ja"
 
-#: dnfdragora/dialogs.py:1417
+#: dnfdragora/dialogs.py:1426
 msgid "&No"
 msgstr "&Nej"
 
-#: dnfdragora/dialogs.py:1440
+#: dnfdragora/dialogs.py:1449
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -743,7 +747,7 @@ msgstr ""
 "%(pkg)s -pakken?<br><br>Nøgle      : 0x%(id)s:<br>Brugerrid    : \"%(user)s"
 "\"<br>Fra        : %(file)s"
 
-#: dnfdragora/dialogs.py:1447
+#: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
 msgstr "GPG-nøgle mangler"
 
@@ -763,7 +767,7 @@ msgstr ""
 msgid "package has not any %s attributes"
 msgstr ""
 
-#: dnfdragora/dnf_backend.py:482
+#: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
 msgstr "Mellemlagre grupper fra pakker... "
 
@@ -1984,42 +1988,42 @@ msgstr ""
 msgid "Search error using regular expression"
 msgstr ""
 
-#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Fejl ved start af dnfdaemon-tjeneste: [%s]"
 
-#: dnfdragora/updater.py:138
+#: dnfdragora/updater.py:133
 msgid "Update"
 msgstr "Opdater"
 
-#: dnfdragora/updater.py:139
+#: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
 msgstr "Åbn dnfdragora-dialog"
 
-#: dnfdragora/updater.py:140
+#: dnfdragora/updater.py:135
 msgid "Check for updates"
 msgstr "Søg efter opdateringer"
 
-#: dnfdragora/updater.py:141
+#: dnfdragora/updater.py:136
 msgid "Exit"
 msgstr "Afslut"
 
-#: dnfdragora/updater.py:232
+#: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
 msgstr "Fejl ved kørsel af dnfdragora"
 
-#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
+#: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Undtagelse fanget: [%s]"
 
-#: dnfdragora/updater.py:345
+#: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
 msgstr "%d opdateringer tilgængelige."
 
-#: dnfdragora/updater.py:355
+#: dnfdragora/updater.py:347
 msgid "No updates available"
 msgstr ""
 
@@ -2052,18 +2056,34 @@ msgstr ""
 "GTK+ 3- eller ncurses-brugerflader. Den leverer en frontenhed til DNF-"
 "pakkehåndteringen som kan bruges i alle slags systemmiljøer."
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "BuildTransaction mislykkedes"
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Fortsæt uden at spørge om bekræftelse"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kunne ikke genopfriske DNF-mellemlageret (root)"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
+#~ msgid "Software Management"
 #~ msgstr ""
-#~ "DNF-root-backend blev ikke autoiseret.\n"
-#~ "dnfdragora vil afslutte"
+#~ "Administration\n"
+#~ "af programmer"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "Endnu ikke implementeret"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "&Tilvælg alle"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Uhåndteret begivenhed"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Vis ikke gruppevisning ved næste opstart"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Vis opdateringer ved næste opstart"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Interval i minutter mellem søgning efter opdateringer:"
+
+#~ msgid "History undo"
+#~ msgstr "Historik fortryd"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2074,31 +2094,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora vil afslutte"
 
-#~ msgid "History undo"
-#~ msgstr "Historik fortryd"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Interval i minutter mellem søgning efter opdateringer:"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Vis opdateringer ved næste opstart"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Vis ikke gruppevisning ved næste opstart"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Uhåndteret begivenhed"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Tilvælg alle"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Endnu ikke implementeret"
-
-#~ msgid "Software Management"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
 #~ msgstr ""
-#~ "Administration\n"
-#~ "af programmer"
+#~ "DNF-root-backend blev ikke autoiseret.\n"
+#~ "dnfdragora vil afslutte"
 
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Fortsæt uden at spørge om bekræftelse"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Kunne ikke genopfriske DNF-mellemlageret (root)"
+
+#~ msgid "BuildTransaction failure"
+#~ msgstr "BuildTransaction mislykkedes"

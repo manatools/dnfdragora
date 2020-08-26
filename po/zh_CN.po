@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:43+0300\n"
+"POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: zwpwjwtz <zwpwjwtz@126.com>, 2018\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -196,6 +196,10 @@ msgstr "空"
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
 msgstr "搜索结果"
+
+#: dnfdragora/compsicons.py:46
+msgid "Uncategorized"
+msgstr ""
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -400,7 +404,7 @@ msgstr "事务历史"
 msgid "&Undo"
 msgstr "撤销(&U)"
 
-#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:831
+#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
 msgstr "关闭(&C)"
 
@@ -412,14 +416,14 @@ msgstr "事务处理结果"
 msgid "Transaction dependency"
 msgstr "事务依赖"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
-#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
-#: dnfdragora/dialogs.py:1366
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
+#: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
+#: dnfdragora/dialogs.py:1375
 msgid "&Ok"
 msgstr "确定(&O)"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1367
+#: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
 msgstr "取消(&C)"
 
@@ -627,112 +631,112 @@ msgstr "值"
 msgid "&Apply"
 msgstr "应用(&A)"
 
-#: dnfdragora/dialogs.py:718
+#: dnfdragora/dialogs.py:719
 msgid "Never"
 msgstr "从不"
 
-#: dnfdragora/dialogs.py:720
+#: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
 msgstr "%s 秒"
 
-#: dnfdragora/dialogs.py:726
+#: dnfdragora/dialogs.py:727
 msgid "Now"
 msgstr "现在"
 
-#: dnfdragora/dialogs.py:797 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "系统"
 
-#: dnfdragora/dialogs.py:803
+#: dnfdragora/dialogs.py:804
 msgid "Layout"
 msgstr ""
 
-#: dnfdragora/dialogs.py:808
+#: dnfdragora/dialogs.py:809
 msgid "Search"
 msgstr "查找"
 
-#: dnfdragora/dialogs.py:813
+#: dnfdragora/dialogs.py:814
 msgid "Logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:824
+#: dnfdragora/dialogs.py:825
 msgid "Restore &default"
 msgstr ""
 
-#: dnfdragora/dialogs.py:887
+#: dnfdragora/dialogs.py:888
 msgid "System options"
 msgstr "系统选项"
 
-#: dnfdragora/dialogs.py:894
+#: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:919
+#: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:952
+#: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:967
 msgid "Show updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
 msgstr ""
 
-#: dnfdragora/dialogs.py:991
+#: dnfdragora/dialogs.py:994
 msgid "Search options"
 msgstr "搜索选项"
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
 msgstr "只显示最新的软件包"
 
-#: dnfdragora/dialogs.py:1002
+#: dnfdragora/dialogs.py:1005
 msgid "Match all words"
 msgstr "匹配所有关键词"
 
-#: dnfdragora/dialogs.py:1024
+#: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1054
+#: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1061
+#: dnfdragora/dialogs.py:1067
 msgid "Debug level"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1089
+#: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1416
+#: dnfdragora/dialogs.py:1425
 msgid "&Yes"
 msgstr "是(&Y)"
 
-#: dnfdragora/dialogs.py:1417
+#: dnfdragora/dialogs.py:1426
 msgid "&No"
 msgstr "否(&N)"
 
-#: dnfdragora/dialogs.py:1440
+#: dnfdragora/dialogs.py:1449
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -745,7 +749,7 @@ msgstr ""
 "用户ID：     \"%(user)s\"<br>\n"
 "从：              %(file)s"
 
-#: dnfdragora/dialogs.py:1447
+#: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
 msgstr "缺少 GPG 密钥"
 
@@ -764,7 +768,7 @@ msgstr ""
 msgid "package has not any %s attributes"
 msgstr ""
 
-#: dnfdragora/dnf_backend.py:482
+#: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
 msgstr "从软件包中隐藏分组……"
 
@@ -1985,42 +1989,42 @@ msgstr ""
 msgid "Search error using regular expression"
 msgstr ""
 
-#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "启动 dnfdaemon 服务时出错：[%s]"
 
-#: dnfdragora/updater.py:138
+#: dnfdragora/updater.py:133
 msgid "Update"
 msgstr "更新"
 
-#: dnfdragora/updater.py:139
+#: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
 msgstr "打开 dnfdragora 对话框"
 
-#: dnfdragora/updater.py:140
+#: dnfdragora/updater.py:135
 msgid "Check for updates"
 msgstr "检查更新"
 
-#: dnfdragora/updater.py:141
+#: dnfdragora/updater.py:136
 msgid "Exit"
 msgstr "退出"
 
-#: dnfdragora/updater.py:232
+#: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
 msgstr "运行 dnfdragora 失败"
 
-#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
+#: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "程序出现异常：[%s]"
 
-#: dnfdragora/updater.py:345
+#: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
 msgstr "%d个更新可用。"
 
-#: dnfdragora/updater.py:355
+#: dnfdragora/updater.py:347
 msgid "No updates available"
 msgstr ""
 
@@ -2050,18 +2054,35 @@ msgstr ""
 "Qt5、GTK+ 3 或 ncurses 接口。它为 DNF 软件包管理器提供了图形化前端，以便在多"
 "种系统环境中使用 DNF。"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "构建事务失败"
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "处理前不进行提示"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "无法更新 DNF 缓存（根节点）"
+#~ msgid "Software Management"
+#~ msgstr "软件管理"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF 根节点未被授权。\n"
-#~ "dnfdragora 将退出"
+#~ msgid "Not implemented yet"
+#~ msgstr "尚未实现"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "检查所有(&e)"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "事件未被管理"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "下次启动时不显示组视图"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "下次启动时显示更新"
+
+#~ msgid "Layout options"
+#~ msgstr "布局选项"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "检查更新的间隔（单位是分钟）："
+
+#~ msgid "History undo"
+#~ msgstr "撤销历史"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2072,32 +2093,15 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora 将退出"
 
-#~ msgid "History undo"
-#~ msgstr "撤销历史"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "DNF 根节点未被授权。\n"
+#~ "dnfdragora 将退出"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "检查更新的间隔（单位是分钟）："
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "无法更新 DNF 缓存（根节点）"
 
-#~ msgid "Layout options"
-#~ msgstr "布局选项"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "下次启动时显示更新"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "下次启动时不显示组视图"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "事件未被管理"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "检查所有(&e)"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "尚未实现"
-
-#~ msgid "Software Management"
-#~ msgstr "软件管理"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "处理前不进行提示"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "构建事务失败"

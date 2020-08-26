@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 10:43+0300\n"
+"POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2020-07-11 08:46+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -194,6 +194,10 @@ msgstr "Pusty"
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
 msgstr "Wynik wyszukiwania"
+
+#: dnfdragora/compsicons.py:46
+msgid "Uncategorized"
+msgstr ""
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -404,7 +408,7 @@ msgstr "Historia transakcji"
 msgid "&Undo"
 msgstr "&Wycofaj"
 
-#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:831
+#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
 msgstr "&Zamknij"
 
@@ -416,14 +420,14 @@ msgstr "Wynik transakcji"
 msgid "Transaction dependency"
 msgstr "Zależność transakcji"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1249
-#: dnfdragora/dialogs.py:1287 dnfdragora/dialogs.py:1323
-#: dnfdragora/dialogs.py:1366
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
+#: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
+#: dnfdragora/dialogs.py:1375
 msgid "&Ok"
 msgstr "&Ok"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1367
+#: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
 msgstr "Z&aniechaj"
 
@@ -633,112 +637,112 @@ msgstr "Wartość"
 msgid "&Apply"
 msgstr "Z&astosuj"
 
-#: dnfdragora/dialogs.py:718
+#: dnfdragora/dialogs.py:719
 msgid "Never"
 msgstr "Nigdy"
 
-#: dnfdragora/dialogs.py:720
+#: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
 msgstr "%s sekund(a)"
 
-#: dnfdragora/dialogs.py:726
+#: dnfdragora/dialogs.py:727
 msgid "Now"
 msgstr "Teraz"
 
-#: dnfdragora/dialogs.py:797 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "System"
 
-#: dnfdragora/dialogs.py:803
+#: dnfdragora/dialogs.py:804
 msgid "Layout"
 msgstr ""
 
-#: dnfdragora/dialogs.py:808
+#: dnfdragora/dialogs.py:809
 msgid "Search"
 msgstr "Szukaj"
 
-#: dnfdragora/dialogs.py:813
+#: dnfdragora/dialogs.py:814
 msgid "Logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:824
+#: dnfdragora/dialogs.py:825
 msgid "Restore &default"
 msgstr ""
 
-#: dnfdragora/dialogs.py:887
+#: dnfdragora/dialogs.py:888
 msgid "System options"
 msgstr "Ustawienia systemu"
 
-#: dnfdragora/dialogs.py:894
+#: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:919
+#: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
 msgstr "Okres sprawdzania uaktualnień (w minutach)"
 
-#: dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
 msgstr "Czas do wygaśnięcia metadanych (w godzinach)"
 
-#: dnfdragora/dialogs.py:952
+#: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
 msgstr "Ustawienia układu (zmiany widoczne po ponownym uruchomieniu)"
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:967
 msgid "Show updates"
 msgstr "Pokaż uaktualnienia"
 
-#: dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
 msgstr "Nie pokazuj widoku grup"
 
-#: dnfdragora/dialogs.py:991
+#: dnfdragora/dialogs.py:994
 msgid "Search options"
 msgstr "Ustawienia wyszukiwania"
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
 msgstr "Pokaż tylko najnowsze pakiety"
 
-#: dnfdragora/dialogs.py:1002
+#: dnfdragora/dialogs.py:1005
 msgid "Match all words"
 msgstr "Wszystkie słowa muszą zostać znalezione"
 
-#: dnfdragora/dialogs.py:1024
+#: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1045
+#: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1054
+#: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
 msgstr "Zmień &katalog"
 
-#: dnfdragora/dialogs.py:1061
+#: dnfdragora/dialogs.py:1067
 msgid "Debug level"
 msgstr "Poziom diagnostyczny"
 
-#: dnfdragora/dialogs.py:1089
+#: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
 msgstr "Wybierz katalog docelowy dziennika"
 
-#: dnfdragora/dialogs.py:1416
+#: dnfdragora/dialogs.py:1425
 msgid "&Yes"
 msgstr "&Tak"
 
-#: dnfdragora/dialogs.py:1417
+#: dnfdragora/dialogs.py:1426
 msgid "&No"
 msgstr "&Nie"
 
-#: dnfdragora/dialogs.py:1440
+#: dnfdragora/dialogs.py:1449
 #, python-format
 msgid ""
 "Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
@@ -749,7 +753,7 @@ msgstr ""
 "%(pkg)s?<br><br>Klucz        : 0x%(id)s:<br>ID użytkownika     : \"%(user)s"
 "\"<br>Od       : %(file)s"
 
-#: dnfdragora/dialogs.py:1447
+#: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
 msgstr "Brak klucza GPG"
 
@@ -769,7 +773,7 @@ msgstr ""
 msgid "package has not any %s attributes"
 msgstr ""
 
-#: dnfdragora/dnf_backend.py:482
+#: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
 msgstr "Tworzenie grup z pakietów..."
 
@@ -1990,42 +1994,42 @@ msgstr ""
 msgid "Search error using regular expression"
 msgstr ""
 
-#: dnfdragora/updater.py:125 dnfdragora/updater.py:128
+#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Nie udało się uruchomić usługi dnfdaemon: [%s]"
 
-#: dnfdragora/updater.py:138
+#: dnfdragora/updater.py:133
 msgid "Update"
 msgstr "Uaktualnij"
 
-#: dnfdragora/updater.py:139
+#: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
 msgstr "Otwórz okno dialogowe dnfdragora"
 
-#: dnfdragora/updater.py:140
+#: dnfdragora/updater.py:135
 msgid "Check for updates"
 msgstr "Sprawdź uaktualnienia"
 
-#: dnfdragora/updater.py:141
+#: dnfdragora/updater.py:136
 msgid "Exit"
 msgstr "Zakończ"
 
-#: dnfdragora/updater.py:232
+#: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
 msgstr "Nie udało się uruchomić dnfdragora"
 
-#: dnfdragora/updater.py:276 dnfdragora/updater.py:286
+#: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Złapano wyjątek: [%s]"
 
-#: dnfdragora/updater.py:345
+#: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
 msgstr "Liczba dostępnych uaktualnień %d."
 
-#: dnfdragora/updater.py:355
+#: dnfdragora/updater.py:347
 msgid "No updates available"
 msgstr ""
 
@@ -2057,21 +2061,38 @@ msgstr ""
 "przy użyciu interfejsów Qt 5, GTK+ 3, lub ncurses. Zapewnia nakładkę dla "
 "zarządzania pakietami DNF, którą można używać w dowolnym środowisku."
 
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Nieznane działanie %s na %s"
+#~ msgid "Proceed without asking for confirmation"
+#~ msgstr "Postępuj dalej bez pytania o potwierdzenie"
 
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Nie udała się transakcja budowania"
+#~ msgid "Log options  (active at next startup)"
+#~ msgstr "Ustawienia dziennika (zmiany widoczne po ponownym uruchomieniu)"
 
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nie można odświeżyć pamięci podręcznej DNF (root)"
+#~ msgid "Software Management"
+#~ msgstr "Zarządzanie oprogramowaniem"
 
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "Główny silnik DNF nie został uwierzytelniony.\n"
-#~ "dnfdragora zakończy teraz działanie"
+#~ msgid "Not implemented yet"
+#~ msgstr "Jeszcze niezaimplementowane"
+
+#~ msgid "Ch&eck all"
+#~ msgstr "&Zaznacz wszystko"
+
+#~ msgid "Unmanaged event"
+#~ msgstr "Niezarządzane zdarzenie"
+
+#~ msgid "Do not show groups view next startup"
+#~ msgstr "Nie pokazuj widoku grup przy następnym uruchomieniu"
+
+#~ msgid "Show updates next startup"
+#~ msgstr "Pokaż uaktualnienia przy następnym uruchomieniu"
+
+#~ msgid "Layout options"
+#~ msgstr "Ustawienia układu"
+
+#~ msgid "Interval in minutes to check for updates:"
+#~ msgstr "Częstość sprawdzania uaktualnień, w minutach:"
+
+#~ msgid "History undo"
+#~ msgstr "Wycofaj historię"
 
 #~ msgid ""
 #~ "DNF is locked by another process.\n"
@@ -2082,35 +2103,18 @@ msgstr ""
 #~ "\n"
 #~ "dnfdragora zakończy teraz działanie"
 
-#~ msgid "History undo"
-#~ msgstr "Wycofaj historię"
+#~ msgid ""
+#~ "DNF root backend was not authorized.\n"
+#~ "dnfdragora will exit"
+#~ msgstr ""
+#~ "Główny silnik DNF nie został uwierzytelniony.\n"
+#~ "dnfdragora zakończy teraz działanie"
 
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Częstość sprawdzania uaktualnień, w minutach:"
+#~ msgid "Could not refresh the DNF cache (root)"
+#~ msgstr "Nie można odświeżyć pamięci podręcznej DNF (root)"
 
-#~ msgid "Layout options"
-#~ msgstr "Ustawienia układu"
+#~ msgid "BuildTransaction failure"
+#~ msgstr "Nie udała się transakcja budowania"
 
-#~ msgid "Show updates next startup"
-#~ msgstr "Pokaż uaktualnienia przy następnym uruchomieniu"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Nie pokazuj widoku grup przy następnym uruchomieniu"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Niezarządzane zdarzenie"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "&Zaznacz wszystko"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Jeszcze niezaimplementowane"
-
-#~ msgid "Software Management"
-#~ msgstr "Zarządzanie oprogramowaniem"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Ustawienia dziennika (zmiany widoczne po ponownym uruchomieniu)"
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Postępuj dalej bez pytania o potwierdzenie"
+#~ msgid "Unknown action %s on %s"
+#~ msgstr "Nieznane działanie %s na %s"
