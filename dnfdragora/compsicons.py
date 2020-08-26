@@ -41,6 +41,9 @@ class CompsIcons:
             self._group_info['Empty'] = {"title" : _("Empty")}
         if not 'Search' in self._group_info.keys():
             self._group_info['Search'] = {"title" : _("Search result")}
+        # packages without category are added here
+        if not "Uncategorized" in self._group_info.keys():
+            self._group_info['Uncategorized'] = {"title" : _("Uncategorized")}
 
     def _getID_to_map(self, groups, group_info, g_id=None) :
         '''

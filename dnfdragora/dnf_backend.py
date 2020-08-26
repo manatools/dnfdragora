@@ -459,6 +459,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                 self._group_cache = []
                 rpm_groups = self.GetGroups(sync=True)
                 self._getAllGroupIDList(rpm_groups, self._group_cache)
+                self._group_cache.append("Uncategorized")
             else :
                 self._group_cache = self._get_groups_from_packages()
 
@@ -495,8 +496,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                         self._pkg_id_to_groups_cache[pkg_id].append(groupName) 
                 self.frontend.infobar.set_progress(0.0)
                 self.frontend.infobar.info("")
-            if pkg.pkg_id in self._pkg_id_to_groups_cache.keys():
-                groups = self._pkg_id_to_groups_cache[pkg.pkg_id]
+            groups = self._pkg_id_to_groups_cache[pkg.pkg_id] if pkg.pkg_id in self._pkg_id_to_groups_cache.keys() else ['Uncategorized']
         else :
             groups.append(pkg.group)
 

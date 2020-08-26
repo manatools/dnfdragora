@@ -1,14 +1,17 @@
 2020-XX-YY v. 2.1.0
 ---------------------
+- Fixed issue #158 uncategorized packages were not shown as updates with groups view
 - Fixed a crash when notify2.show is invoked, removed notify2 and use pstray.notify instead
 - Fixed a crash when a search is performed and select all is pressed
-- Hide menu dnfdragora-update if no updates present (configurable default False since it
-  does not work in every DEs)
+- Hide menu dnfdragora-update if no updates present (experimental and configurable default 
+  False since it does not work in every DEs) 
+- Fixed dnfdragora logging settings
 - Fixed dnfdragora view when all_updates is True into settings (system configuration file)
 - Fixed dnfdragora view when --update-only is passed as option
-- dnfdragora-update: hide menu when running dnfdragora 
+- dnfdragora-update: hide menu when running dnfdragora (experimental)
 - dnfdragora-update: used a different icon to show that updates are present
 - Added a message to dnfdragora-update if user force a check for updates
+- Added Restore default push button to set chosen options to default values 
 - Added new Otions dialog
 - Added Help dialog
 - Fixed loop in case of GPG key missing if OnGPGImport is not received
