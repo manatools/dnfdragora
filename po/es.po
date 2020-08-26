@@ -7,11 +7,11 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # 9d2429286e4b6db037855ee18ff950ea_21b1117 <e234ccd2dcb0d5482e17780be633a729_130514>, 2017
 # William Moreno <williamjmorenor@gmail.com>, 2018
-# José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
-# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # Egoitz Rodriguez <egoitzro@gmail.com>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # Jose Manuel López <joselp@disroot.org>, 2020
 # Miguel, 2020
+# José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Miguel, 2020\n"
+"Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "es/)\n"
 "Language: es\n"
@@ -208,7 +208,7 @@ msgstr "Resultado de búlsqueda"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sin Categoría"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -669,7 +669,7 @@ msgstr "Buscar"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr "Inicio de sesión"
+msgstr "Escribiendo registros"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
@@ -724,11 +724,11 @@ msgstr "Coincidir todas las palabras"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
-msgstr "Opciones de inicio de sesión (activo en el próximo inicio)"
+msgstr "Opciones de registro (activo en el próximo inicio)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr "Permitir inicio de sesión"
+msgstr "Habilitar Registros"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
