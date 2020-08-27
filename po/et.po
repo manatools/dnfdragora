@@ -201,7 +201,7 @@ msgstr "Otsingutulemus"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Liigitamata"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
