@@ -9,13 +9,13 @@
 # Antoine DUMONDEL, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
 # d80ebd4b9692a268e2da589d73937486, 2018
-# stroibe974 <sebsweb@gmail.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
 # Charles Monzat <c.monzat@laposte.net>, 2020
 # Yves Brungard, 2020
 # Eric Barbero <dune06@free.fr>, 2020
 # Kévin R., 2020
 # Aurelien <aoudelet@outlook.com>, 2020
+# stroibe974 <sebsweb@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Aurelien <aoudelet@outlook.com>, 2020\n"
+"Last-Translator: stroibe974 <sebsweb@gmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -214,7 +214,7 @@ msgstr "Résultat de la recherche"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Non classé"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
