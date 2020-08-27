@@ -206,7 +206,7 @@ msgstr "Resultat de la cerca"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sense categoria"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
