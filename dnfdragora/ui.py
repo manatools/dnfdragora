@@ -20,6 +20,8 @@ import yui
 import webbrowser
 from queue import SimpleQueue, Empty
 from enum import Enum
+from inspect import ismethod
+
 #NOTE we need a glib.MainLoop in TUI and use threading for it
 import threading
 from gi.repository import GLib
@@ -581,61 +583,119 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.quitButton.setWeight(0,3)
 
         ### BEGIN Menus #########################
-        self.menubar = self.mgaFactory.createMenuBar(hbox_menubar)
+        if (hasattr(self.mgaFactory, 'createMenuBar') and ismethod(getattr(self.mgaFactory, 'createMenuBar'))):
+            logger.info("System has createMenuBar, using menubar")
+            self.menubar = self.mgaFactory.createMenuBar(hbox_menubar)
 
-        # building File menu
-        mItem = yui.YMGAMenuItem(_("&File"))
-        self.fileMenu = {
-            'menu_name' : mItem,
-            'reset_sel' : yui.YMGAMenuItem(mItem, _("Reset the selection")),
-            'reload'    : yui.YMGAMenuItem(mItem, _("Refresh Metadata")),
-            'repos'     : yui.YMGAMenuItem(mItem, _("Repositories")),
-            'sep0'      : yui.YMenuSeparator(mItem),
-            'quit'      : yui.YMGAMenuItem(mItem, _("&Quit"), "application-exit"),
-        }
-        #Items must be "disowned"
-        for k in self.fileMenu.keys():
-            self.fileMenu[k].this.own(False)
-        self.menubar.addItem(self.fileMenu['menu_name'])
+            # building File menu
+            mItem = yui.YMGAMenuItem(_("&File"))
+            self.fileMenu = {
+                'menu_name' : mItem,
+                'reset_sel' : yui.YMGAMenuItem(mItem, _("Reset the selection")),
+                'reload'    : yui.YMGAMenuItem(mItem, _("Refresh Metadata")),
+                'repos'     : yui.YMGAMenuItem(mItem, _("Repositories")),
+                'sep0'      : yui.YMenuSeparator(mItem),
+                'quit'      : yui.YMGAMenuItem(mItem, _("&Quit"), "application-exit"),
+            }
+            #Items must be "disowned"
+            for k in self.fileMenu.keys():
+                self.fileMenu[k].this.own(False)
+            self.menubar.addItem(self.fileMenu['menu_name'])
 
-        # building Options menu
-        mItem = yui.YMGAMenuItem(_("&Information"))
-        self.infoMenu = {
-            'menu_name' : mItem,
-            'history'   : yui.YMGAMenuItem(mItem, _("&History")),
-        }
-        #Items must be "disowned"
-        for k in self.infoMenu.keys():
-            self.infoMenu[k].this.own(False)
-        self.menubar.addItem(self.infoMenu['menu_name'])
+            # building Options menu
+            mItem = yui.YMGAMenuItem(_("&Information"))
+            self.infoMenu = {
+                'menu_name' : mItem,
+                'history'   : yui.YMGAMenuItem(mItem, _("&History")),
+            }
+            #Items must be "disowned"
+            for k in self.infoMenu.keys():
+                self.infoMenu[k].this.own(False)
+            self.menubar.addItem(self.infoMenu['menu_name'])
 
-        # building Options menu
-        mItem = yui.YMGAMenuItem(_("&Options"))
-        self.optionsMenu = {
-            'menu_name'  : mItem,
-            'user_prefs' : yui.YMGAMenuItem(mItem, _("User preferences")),
-        }
-        #Items must be "disowned"
-        for k in self.optionsMenu.keys():
-            self.optionsMenu[k].this.own(False)
-        self.menubar.addItem(self.optionsMenu['menu_name'])
+            # building Options menu
+            mItem = yui.YMGAMenuItem(_("&Options"))
+            self.optionsMenu = {
+                'menu_name'  : mItem,
+                'user_prefs' : yui.YMGAMenuItem(mItem, _("User preferences")),
+            }
+            #Items must be "disowned"
+            for k in self.optionsMenu.keys():
+                self.optionsMenu[k].this.own(False)
+            self.menubar.addItem(self.optionsMenu['menu_name'])
 
-        # build help menu
-        mItem = yui.YMGAMenuItem(_("&Help"))
-        self.helpMenu = {
-            'menu_name': mItem,
-            'help'     : yui.YMGAMenuItem(mItem, _("Manual")),
-            'sep0'     : yui.YMenuSeparator(mItem),
-            'about'    : yui.YMGAMenuItem(mItem, _("&About"), 'dnfdragora'),
-        }
-        #Items must be "disowned"
-        for k in self.helpMenu.keys():
-            self.helpMenu[k].this.own(False)
-        self.menubar.addItem(self.helpMenu['menu_name'])
-
+            # build help menu
+            mItem = yui.YMGAMenuItem(_("&Help"))
+            self.helpMenu = {
+                'menu_name': mItem,
+                'help'     : yui.YMGAMenuItem(mItem, _("Manual")),
+                'sep0'     : yui.YMenuSeparator(mItem),
+                'about'    : yui.YMGAMenuItem(mItem, _("&About"), 'dnfdragora'),
+            }
+            #Items must be "disowned"
+            for k in self.helpMenu.keys():
+                self.helpMenu[k].this.own(False)
+            self.menubar.addItem(self.helpMenu['menu_name'])
+        else:
+            logger.info("System has not createMenuBar, using old menu buttons")
+            self._createMenuButtons(self.factory.createHBox(self.factory.createLeft(hbox_menubar)))
         ### END Menus #########################
 
+    def _createMenuButtons(self, headbar):
+        ''' create obsolete menu buttons to allow using dnfdragora if manubar 
+            is not implemented, in the case libyui-mga is old
+        '''
+        # build File menu
+        self.fileMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("&File")),
+            'reset_sel' : yui.YMenuItem(_("Reset the selection")),
+            'reload'    : yui.YMenuItem(_("Refresh Metadata")),
+            'repos'     : yui.YMenuItem(_("Repositories")),
+            'quit'      : yui.YMenuItem(_("&Quit"), "application-exit"),
+        }
 
+        ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
+        for l in ordered_menu_lines :
+            self.fileMenu['widget'].addItem(self.fileMenu[l])
+        self.fileMenu['widget'].rebuildMenuTree();
+
+        # build Options menu
+        self.infoMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
+            'history' : yui.YMenuItem(_("History")),
+        }
+
+        #NOTE following the same behavior to simplfy further menu entry addtion
+        ordered_menu_lines = ['history']
+        for l in ordered_menu_lines :
+            self.infoMenu['widget'].addItem(self.infoMenu[l])
+        self.infoMenu['widget'].rebuildMenuTree();
+
+        # build Options menu
+        self.optionsMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
+            'user_prefs' : yui.YMenuItem(_("User preferences")),
+        }
+
+        #NOTE following the same behavior to simplfy further menu entry addtion
+        ordered_menu_lines = ['user_prefs']
+        for l in ordered_menu_lines :
+            self.optionsMenu['widget'].addItem(self.optionsMenu[l])
+        self.optionsMenu['widget'].rebuildMenuTree();
+
+        # build help menu
+        self.helpMenu = {
+            'widget': self.factory.createMenuButton(headbar, _("&Help")),
+            'help'  : yui.YMenuItem(_("Manual")),
+            'about' : yui.YMenuItem(_("&About"), 'dnfdragora'),
+        }
+        ordered_menu_lines = ['help', 'about']
+        for l in ordered_menu_lines :
+            self.helpMenu['widget'].addItem(self.helpMenu[l])
+
+        self.helpMenu['widget'].rebuildMenuTree()
+
+    
     def _enableAction(self, value=True):
       '''
       disable ui actions but let's allow to quit

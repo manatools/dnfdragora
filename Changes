@@ -1,5 +1,6 @@
 2020-XX-YY v. 2.1.0
 ---------------------
+- Test if createMenuBar is available and create new menubar, fallback old menu buttons
 - Fixed issue #158 uncategorized packages were not shown as updates with groups view
 - Fixed a crash when notify2.show is invoked, removed notify2 and use pstray.notify instead
 - Fixed a crash when a search is performed and select all is pressed
