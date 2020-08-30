@@ -200,7 +200,7 @@ msgstr "検索結果"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "カテゴリなし"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
