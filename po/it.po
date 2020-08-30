@@ -1320,7 +1320,7 @@ msgstr "Menù File"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr "Menù Inforamzioni"
+msgstr "Menù Informazioni"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
