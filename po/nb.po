@@ -202,7 +202,7 @@ msgstr "Søkeresultat"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Ukategorisert"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
