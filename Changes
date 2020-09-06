@@ -1,4 +1,4 @@
-2020-09-20 v. 2.1.0
+2020-09-06 v. 2.1.0
 ---------------------
 - Test if createMenuBar is available and create new menubar, fallback old menu buttons
 - Fixed issue #158 uncategorized packages were not shown as updates with groups view
