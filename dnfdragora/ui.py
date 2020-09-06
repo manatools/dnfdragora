@@ -554,7 +554,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.use_regexp.setNotify(True)
 
         icon_file = self.images_path + "find.png"
-        self.find_button = self.factory.createIconButton(hbox_top, icon_file, _("&Search"))
+        self.find_button = self.factory.createIconButton(hbox_top, 'system-search', _("&Search"))
         self.find_button.setWeight(0,6)
         self.find_button.setDefaultButton(True)
 
