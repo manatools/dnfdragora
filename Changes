@@ -1,3 +1,7 @@
+2020-XX-YY v. 2.1.t
+---------------------
+- Managed line feed into descriptions see https://bugs.mageia.org/show_bug.cgi?id=27274
+
 2020-09-06 v. 2.1.0
 ---------------------
 - Test if createMenuBar is available and create new menubar, fallback old menu buttons

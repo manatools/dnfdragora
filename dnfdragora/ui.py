@@ -1058,7 +1058,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setValue("")
         if pkg :
             missing = _("Missing information")
-            s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, pkg.description)
+            description = pkg.description.replace("\n", "<br>")
+            s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, description)
             s += "<br>"
             if pkg.is_update :
                 s+= '<b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
@@ -1068,9 +1069,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if pkg.updateinfo :
                         s += '<b>%s</b>'%pkg.updateinfo[0]['title']
                         s += "<br>"
-                        s += pkg.updateinfo[0]['description']
+                        s += pkg.updateinfo[0]['description'].replace("\n", "<br>")
                         s += "<br>"
-                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], pkg.updateinfo[0]['updated'])
+                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], pkg.updateinfo[0]['updated'].replace("\n", "<br>"))
                     else :
                         s+= missing
 
