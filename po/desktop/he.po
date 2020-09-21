@@ -1,15 +1,14 @@
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Rémi Verschelde <akien@mageia.org>, 2018
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
+# Omer I.S., 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2019-12-31 20:56+0200\n"
+"POT-Creation-Date: 2020-02-20 22:06+0200\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
+"Last-Translator: Omer I.S., 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/he/)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +24,12 @@ msgstr "dnfdragora"
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr "התקנת והסרת תכנה"
+msgstr "התקנה והסרה של תוכנות"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr "מנשק גרפי להתקנת, הסרת ועדכון חבילות"
+msgstr "גישור גלוי גרפי להתקנה, הסרה ועדכון של חבילות"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
