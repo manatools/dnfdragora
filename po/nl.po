@@ -4,10 +4,10 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Geiger David <david.david@mageialinux-online.org>, 2017
 # Yves Brungard, 2017
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Geiger David <david.david@mageialinux-online.org>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # dragnadh, 2020
 #
 #, fuzzy
@@ -206,7 +206,7 @@ msgstr "Zoekresultaat"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Niet gecategoriseerd"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -662,15 +662,15 @@ msgstr "Systeem"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Indeling"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Logboekregistratie"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
@@ -722,11 +722,11 @@ msgstr "Overeenkomen met alle woorden"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Logboekopties (actief bij volgende opstart)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Logboekregistratie inschakelen"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
@@ -1326,15 +1326,15 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Groepspaneel"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Pakketpaneel"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Informatiepaneel"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
@@ -1346,7 +1346,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Bestandsmenu"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
@@ -1358,7 +1358,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Hulpmenu"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
@@ -1393,7 +1393,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Bestandsmenu"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
@@ -1429,7 +1429,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Stoppen</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
@@ -1441,7 +1441,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Geschiedenis</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1477,7 +1477,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora opties"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1488,7 +1488,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Systeemopties</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1539,7 +1539,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Zoekopties</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1577,11 +1577,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Hulpmenu"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Handleiding</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
@@ -1589,7 +1589,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Over</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
@@ -1616,7 +1616,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filters</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
@@ -1650,7 +1650,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Zoeken</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1711,7 +1711,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Voortgangsbalk"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
@@ -1874,7 +1874,7 @@ msgstr "&Informatie"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&Geschiedenis"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
@@ -1995,7 +1995,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "GPG sleutel ontbreekt"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
@@ -2038,7 +2038,7 @@ msgstr "%d updates beschikbaar."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Geen updates beschikbaar"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2064,24 +2064,7 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Ga door zonder een bevestiging te vragen"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Logboekopties (actief bij volgende opstart)"
-
-#~ msgid "Software Management"
-#~ msgstr "Softwarebeheer"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Nog niet geïmplementeerd"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Fout tijdens opbouw Transactie"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "BuildTransaction storing"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Onbekende actie %s op %s"
+"dnfdragora is geschreven in Python 3 en gebruikt libYui, de widget "
+"abstraction library geschreven door SUSE, zodat het kan worden uitgevoerd "
+"met behulp van Qt 5, GTK+ 3 of ncurses interfaces. Het biedt een frontend "
+"voor de DNF-pakketbeheerder die in elke systeemomgeving kan worden gebruikt."
