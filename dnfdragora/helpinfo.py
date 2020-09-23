@@ -120,6 +120,9 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>System options</h2>') + \
           _('<ul><li><b>Run transactions on packages automatically without confirmation needed</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering always <i>yes</i>.') + \
             _('<br><b>NOTE</b> that this option means that also removing packages is silently accepted</li>') + \
+          _('<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are added to updates and filtered as updates.</li>') + \
+          _('<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked dnfdragora update is hidden if there are no updates.') + \
+            _('<br><b>NOTE</b> that this option is experimental, not all desktops manage it as expected</li>') + \
           _('<li><b>Interval to check for updates</b>: the given number represents when dnfdragora needs to check for updates, value is expressed in minutes</li>') + \
           _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
         _('<h2>Layout options</h2>') + \
