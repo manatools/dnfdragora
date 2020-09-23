@@ -220,6 +220,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.log_enabled = False
         self.log_directory = None
         self.level_debug = False
+        self.upgrades_as_updates = True # NOTE consider package to upgrade as update
         self.config = dnfdragora.config.AppConfig(self.appname)
 
         # settings from configuration file first
@@ -346,6 +347,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     'update_interval': self.md_update_interval, # 48 Default
                     'last_update': ''
                   }
+                if 'upgrades as updates' in user_settings.keys():
+                  self.upgrades_as_updates = user_settings['upgrades as updates']
 
                 #### Search
                 if 'search' in user_settings.keys():
@@ -1886,7 +1889,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 # we requested installed for caching
                 self._populateCache('installed', po_list)
                 self.infobar.set_progress(0.33)
-                self._cachingRequest('updates_all')
+                cache_update = 'updates_all' if self.upgrades_as_updates else 'updates'
+                self._cachingRequest(cache_update)
               elif self._status == DNFDragoraStatus.CACHING_UPDATE:
                 po_list = info['result']
                 # we requested updates for caching

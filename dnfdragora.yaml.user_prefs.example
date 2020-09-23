@@ -12,6 +12,8 @@ settings:
   interval for checking updates: 180
 # hide_update_hide update menu in dnfdragora-update if no updates present
   hide_update_menu : True
+# if set packages to upgrade are considered as updates
+  upgrades as updates: True
 #  log:
 #    directory: HOMEPATH_TO_LOG_DIR (can be set from user settings dialog)
 #    enabled: true
