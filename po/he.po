@@ -1,23 +1,30 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Rémi Verschelde <akien@mageia.org>, 2018
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2020
+# Omer I.S., 2020
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2017\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Omer I.S., 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
+"1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
@@ -56,7 +63,7 @@ msgstr ""
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr ""
+msgstr "התקנת חבילות"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
@@ -87,7 +94,7 @@ msgstr ""
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
 #: bin/dnfdragora:101 dnfdragora/basedragora.py:159
 msgid "Sorry"
-msgstr ""
+msgstr "סליחה"
 
 #: bin/dnfdragora:89
 #, python-format
@@ -122,31 +129,31 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr ""
+msgstr "שולחן העבודה KDE"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "שולחן העבודה Xfce"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr ""
+msgstr "יישומים"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "שולחן העבודה LXDE"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "שולחן העבודה LXQt"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "שולחן העבודה Cinnamon"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr ""
+msgstr "שולחן העבודה MATE"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
@@ -154,11 +161,11 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "סביבת שולחן העבודה Sugar"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "שולחן העבודה GNOME"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -171,11 +178,11 @@ msgstr "שרתים"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr ""
+msgstr "מערכת הבסיס"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
-msgstr ""
+msgstr "תוכן"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
 #: dnfdragora/ui.py:468
@@ -188,7 +195,7 @@ msgstr "ריק"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr ""
+msgstr "תוצאת חיפוש"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
@@ -196,11 +203,11 @@ msgstr ""
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
-msgstr ""
+msgstr "החבילות המותקנות מתקבלות"
 
 #: dnfdragora/const.py:103
 msgid "Getting available packages"
-msgstr ""
+msgstr "החבילות הזמינות מתקבלות"
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
@@ -208,15 +215,15 @@ msgstr ""
 
 #: dnfdragora/const.py:105
 msgid "Getting all packages"
-msgstr ""
+msgstr "קבלת כל החבילות"
 
 #: dnfdragora/const.py:118
 msgid "Updated packages"
-msgstr ""
+msgstr "חבילות מעודכנות"
 
 #: dnfdragora/const.py:119
 msgid "Downgraded packages"
-msgstr ""
+msgstr "החבילות שונמכו"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleting packages"
@@ -224,15 +231,15 @@ msgstr ""
 
 #: dnfdragora/const.py:121
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "חבילות מיושנות"
 
 #: dnfdragora/const.py:122
 msgid "Erased packages"
-msgstr ""
+msgstr "חבילות שנמחקו"
 
 #: dnfdragora/const.py:123 dnfdragora/const.py:124
 msgid "Installed packages"
-msgstr ""
+msgstr "חבילות מותקנות"
 
 #: dnfdragora/const.py:125
 msgid "Installed for dependencies"
@@ -240,32 +247,32 @@ msgstr ""
 
 #: dnfdragora/const.py:126
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "חבילות שהותקנו מחדש"
 
 #: dnfdragora/const.py:131
 msgid "Installing"
-msgstr ""
+msgstr "בהתקנה"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
-msgstr ""
+msgstr "מתבצע עדכון"
 
 #: dnfdragora/const.py:133
 msgid "Removing"
-msgstr ""
+msgstr "בהסרה"
 
 #: dnfdragora/const.py:134
 msgid "Downgrading"
-msgstr ""
+msgstr "מתבצע שנמוך"
 
 #: dnfdragora/const.py:135
 msgid "Replacing"
-msgstr ""
+msgstr "מתבצעת החלפה"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "בעדכון: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
@@ -275,12 +282,12 @@ msgstr ""
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "בהתקנה: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "בהתקנה מחדש: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
@@ -290,12 +297,12 @@ msgstr ""
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "ניקוי: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "בהסרה: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
@@ -310,7 +317,7 @@ msgstr ""
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "בשנמוך: %s"
 
 #: dnfdragora/const.py:149
 #, python-format
@@ -330,7 +337,7 @@ msgstr ""
 #: dnfdragora/const.py:152
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "בהכנות להעברה: %s"
 
 #: dnfdragora/const.py:153
 #, python-format
@@ -343,15 +350,15 @@ msgstr ""
 
 #: dnfdragora/const.py:164
 msgid "New Package"
-msgstr ""
+msgstr "חבילה חדשה"
 
 #: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
 msgid "Security"
-msgstr "הגדרות אבטחה"
+msgstr "אבטחה"
 
 #: dnfdragora/const.py:166
 msgid "Enhancement"
-msgstr ""
+msgstr "הרחבה"
 
 #: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
@@ -359,19 +366,23 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "שגיאה בבדיקת חתימות חבילה"
 
 #: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "שגיאת הורדה"
+msgstr[1] "שגיאות הורדה"
+msgstr[2] "שגיאות הורדה"
+msgstr[3] "שגיאות הורדה"
 
 #: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "שגיאה בהעברה"
+msgstr[1] "שגיאות בהעברה"
+msgstr[2] "שגיאות בהעברה"
+msgstr[3] "שגיאות בהעברה"
 
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
@@ -385,7 +396,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:296
 msgid "History"
-msgstr ""
+msgstr "היסטוריה"
 
 #: dnfdragora/dialogs.py:303
 msgid "History (Date/Time)"
@@ -405,7 +416,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:373
 msgid "Transaction result"
-msgstr ""
+msgstr "תוצאת העברה"
 
 #: dnfdragora/dialogs.py:379
 msgid "Transaction dependency"
@@ -415,12 +426,12 @@ msgstr ""
 #: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
 #: dnfdragora/dialogs.py:1375
 msgid "&Ok"
-msgstr ""
+msgstr "&אישור"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
 #: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
-msgstr ""
+msgstr "&ביטול"
 
 #: dnfdragora/dialogs.py:404
 msgid "replacing "
@@ -428,11 +439,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
-msgstr ""
+msgstr "גודל כולל"
 
 #: dnfdragora/dialogs.py:475
 msgid "Developers"
-msgstr ""
+msgstr "מפתחים"
 
 #: dnfdragora/dialogs.py:479
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
@@ -464,7 +475,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
 msgid "Enabled"
-msgstr ""
+msgstr "מופעל"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enabled metadata"
@@ -528,7 +539,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
-msgstr ""
+msgstr "רשימת אתרי מראה"
 
 #: dnfdragora/dialogs.py:539 dnfdragora/dialogs.py:593 dnfdragora/ui.py:440
 msgid "Name"
@@ -536,15 +547,15 @@ msgstr "שם"
 
 #: dnfdragora/dialogs.py:540
 msgid "Packages"
-msgstr ""
+msgstr "חבילות"
 
 #: dnfdragora/dialogs.py:541
 msgid "Password"
-msgstr ""
+msgstr "ססמה"
 
 #: dnfdragora/dialogs.py:542
 msgid "Priority"
-msgstr ""
+msgstr "עדיפות"
 
 #: dnfdragora/dialogs.py:543
 msgid "Protected packages"
@@ -552,15 +563,15 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:544
 msgid "Proxy"
-msgstr ""
+msgstr "שרת מתווך (Proxy)"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr ""
+msgstr "הסיסמה של המתווך"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr ""
+msgstr "שם המשתמש של המתווך"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
@@ -568,11 +579,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
-msgstr ""
+msgstr "ניסיונות חוזרים"
 
 #: dnfdragora/dialogs.py:549 dnfdragora/ui.py:440
 msgid "Size"
-msgstr ""
+msgstr "גודל"
 
 #: dnfdragora/dialogs.py:550
 msgid "Skip if unavailable"
@@ -604,11 +615,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:557
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 #: dnfdragora/dialogs.py:558
 msgid "Username"
-msgstr ""
+msgstr "שם משתמש"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
@@ -616,19 +627,19 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:602
 msgid "Information"
-msgstr ""
+msgstr "מידע"
 
 #: dnfdragora/dialogs.py:602
 msgid "Value"
-msgstr ""
+msgstr "ערך"
 
 #: dnfdragora/dialogs.py:611 dnfdragora/ui.py:570
 msgid "&Apply"
-msgstr ""
+msgstr "ה&חלה"
 
 #: dnfdragora/dialogs.py:719
 msgid "Never"
-msgstr ""
+msgstr "לעולם לא"
 
 #: dnfdragora/dialogs.py:721
 #, python-format
@@ -645,7 +656,7 @@ msgstr "מערכת"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "פריסה"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
@@ -725,11 +736,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
-msgstr ""
+msgstr "&כן"
 
 #: dnfdragora/dialogs.py:1426
 msgid "&No"
-msgstr ""
+msgstr "&לא"
 
 #: dnfdragora/dialogs.py:1449
 #, python-format
@@ -796,27 +807,27 @@ msgstr "תקשורת"
 
 #: dnfdragora/groupicons.py:48
 msgid "Bluetooth"
-msgstr "שן כחולה"
+msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
-msgstr ""
+msgstr "חיוג"
 
 #: dnfdragora/groupicons.py:56
 msgid "Fax"
-msgstr ""
+msgstr "פקס"
 
 #: dnfdragora/groupicons.py:60
 msgid "Mobile"
-msgstr ""
+msgstr "נייד"
 
 #: dnfdragora/groupicons.py:64
 msgid "Radio"
-msgstr ""
+msgstr "רדיו"
 
 #: dnfdragora/groupicons.py:68
 msgid "Serial"
-msgstr ""
+msgstr "סידורי"
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
@@ -828,7 +839,7 @@ msgstr "מסדי נתונים"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr ""
+msgstr "בסיסי"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -844,15 +855,15 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
-msgstr ""
+msgstr "ניפוי באגים"
 
 #: dnfdragora/groupicons.py:105
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:109
 msgid "GNOME and GTK+"
-msgstr "GNOME ו-GTK+"
+msgstr "GNOME ו־GTK+‎"
 
 #: dnfdragora/groupicons.py:113
 msgid "Java"
@@ -864,11 +875,11 @@ msgstr "KDE ו-QT"
 
 #: dnfdragora/groupicons.py:121
 msgid "Kernel"
-msgstr "גרעין"
+msgstr "ליבה"
 
 #: dnfdragora/groupicons.py:125
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: dnfdragora/groupicons.py:133
 msgid "Perl"
@@ -893,7 +904,7 @@ msgstr "X11"
 #: dnfdragora/groupicons.py:154 dnfdragora/groupicons.py:546
 #: dnfdragora/groupicons.py:602
 msgid "Documentation"
-msgstr "מסמכים"
+msgstr "תיעוד"
 
 #: dnfdragora/groupicons.py:158
 msgid "Editors"
@@ -941,7 +952,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:209
 msgid "Simulation"
-msgstr ""
+msgstr "הדמיה"
 
 #: dnfdragora/groupicons.py:213
 msgid "Sports"
@@ -989,12 +1000,12 @@ msgstr "גרפיקה"
 
 #: dnfdragora/groupicons.py:261
 msgid "3D"
-msgstr ""
+msgstr "תלת ממד"
 
 #: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
 #: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
-msgstr ""
+msgstr "עורכים וממירים"
 
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
@@ -1003,19 +1014,19 @@ msgstr "תוכנות שרות"
 
 #: dnfdragora/groupicons.py:273
 msgid "Photography"
-msgstr ""
+msgstr "צילום"
 
 #: dnfdragora/groupicons.py:277
 msgid "Scanning"
-msgstr ""
+msgstr "סריקה"
 
 #: dnfdragora/groupicons.py:281
 msgid "Viewers"
-msgstr ""
+msgstr "מציגים"
 
 #: dnfdragora/groupicons.py:286
 msgid "Monitoring"
-msgstr "בקרה"
+msgstr "ניטור"
 
 #: dnfdragora/groupicons.py:290 dnfdragora/groupicons.py:481
 msgid "Networking"
@@ -1055,15 +1066,15 @@ msgstr "משרד"
 
 #: dnfdragora/groupicons.py:329
 msgid "Dictionary"
-msgstr ""
+msgstr "מילון"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
-msgstr ""
+msgstr "כספים"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
-msgstr ""
+msgstr "ניהול"
 
 #: dnfdragora/groupicons.py:341
 msgid "Organizer"
@@ -1071,7 +1082,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
-msgstr ""
+msgstr "גיליון נתונים"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
@@ -1079,7 +1090,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
-msgstr ""
+msgstr "מעבד תמלילים"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
@@ -1131,11 +1142,11 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:421
 msgid "Mixers"
-msgstr ""
+msgstr "מערבלים"
 
 #: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
-msgstr ""
+msgstr "נגנים"
 
 #: dnfdragora/groupicons.py:437
 msgid "Base"
@@ -1175,7 +1186,7 @@ msgstr "בנאום"
 
 #: dnfdragora/groupicons.py:473
 msgid "Kernel and hardware"
-msgstr "חומרה וגרעין"
+msgstr "ליבה וחומרה"
 
 #: dnfdragora/groupicons.py:477
 msgid "Libraries"
@@ -1207,7 +1218,7 @@ msgstr "וידאו"
 
 #: dnfdragora/groupicons.py:525
 msgid "Television"
-msgstr ""
+msgstr "טלוויזיה"
 
 #: dnfdragora/groupicons.py:535
 msgid "Workstation"
@@ -1331,11 +1342,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "תפריט אפשרויות"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "תפריט עזרה"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
@@ -1725,7 +1736,7 @@ msgstr ""
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "הורדה מתחילה : %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
@@ -1734,23 +1745,23 @@ msgstr ""
 
 #: dnfdragora/ui.py:206
 msgid "Update information"
-msgstr ""
+msgstr "מידע על העדכון"
 
 #: dnfdragora/ui.py:207
 msgid "File list"
-msgstr ""
+msgstr "רשימת קבצים"
 
 #: dnfdragora/ui.py:208
 msgid "Changelog"
-msgstr ""
+msgstr "יומן שינויים"
 
 #: dnfdragora/ui.py:209
 msgid "Requirements"
-msgstr ""
+msgstr "דרישות"
 
 #: dnfdragora/ui.py:379
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "ניהול תכנה - dnfdragora"
 
 #: dnfdragora/ui.py:440
 msgid "Arch"
@@ -1782,7 +1793,7 @@ msgstr "לא מותקן"
 
 #: dnfdragora/ui.py:457
 msgid "To update"
-msgstr ""
+msgstr "לעדכון"
 
 #: dnfdragora/ui.py:463
 #, python-format
@@ -1815,7 +1826,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
-msgstr ""
+msgstr "&חיפוש"
 
 #: dnfdragora/ui.py:560
 msgid "&Clear search"
@@ -1827,7 +1838,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
-msgstr ""
+msgstr "י&ציאה"
 
 #: dnfdragora/ui.py:587
 msgid "&File"
@@ -1835,15 +1846,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:590
 msgid "Reset the selection"
-msgstr ""
+msgstr "איפוס הבחירה"
 
 #: dnfdragora/ui.py:591
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "רענון נתוני על"
 
 #: dnfdragora/ui.py:592
 msgid "Repositories"
-msgstr ""
+msgstr "מאגרים"
 
 #: dnfdragora/ui.py:602
 msgid "&Information"
@@ -1871,23 +1882,23 @@ msgstr "ידני"
 
 #: dnfdragora/ui.py:629
 msgid "&About"
-msgstr ""
+msgstr "על &אודות"
 
 #: dnfdragora/ui.py:666
 msgid "update"
-msgstr ""
+msgstr "עדכון"
 
 #: dnfdragora/ui.py:669
 msgid "locked"
-msgstr ""
+msgstr "נעולה"
 
 #: dnfdragora/ui.py:672
 msgid "installed"
-msgstr ""
+msgstr "מותקן"
 
 #: dnfdragora/ui.py:1000
 msgid "Missing information"
-msgstr ""
+msgstr "חסר מידע"
 
 #: dnfdragora/ui.py:1019
 msgid "Repository"
@@ -1900,11 +1911,11 @@ msgstr ""
 #: dnfdragora/ui.py:1388
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "לא ניתן להסיר את החבילה %s"
 
 #: dnfdragora/ui.py:1388
 msgid "Protected package selected"
-msgstr ""
+msgstr "מבחרה חבילה מוגנת"
 
 #: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
@@ -1917,15 +1928,15 @@ msgstr ""
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
-msgstr ""
+msgstr "התחלת העברה"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
-msgstr ""
+msgstr "חבילות מתקבלות"
 
 #: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
-msgstr ""
+msgstr "חתימות החבילה נבדקות"
 
 #: dnfdragora/ui.py:1549 dnfdragora/ui.py:1729
 msgid "Applying changes to the system"
@@ -1984,7 +1995,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:133
 msgid "Update"
-msgstr ""
+msgstr "עדכון"
 
 #: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
@@ -1996,7 +2007,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:136
 msgid "Exit"
-msgstr ""
+msgstr "יציאה"
 
 #: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
@@ -2014,11 +2025,11 @@ msgstr ""
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "אין עדכונים זמינים"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
@@ -2037,6 +2048,3 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "Software Management"
-#~ msgstr "ניהול תוכנות"
