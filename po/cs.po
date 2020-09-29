@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# fri, 2020
 # Luděk Janča <joelp@email.cz>, 2020
+# fri, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
+"Last-Translator: fri, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr "Výsledek hledání"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Nezařazeno"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -671,7 +671,7 @@ msgstr "Protokolování"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Obnovit &výchozí"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -719,7 +719,7 @@ msgstr "Odpovídá všem slovům"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
-msgstr "Možnosti protokolování (aktivní při příštím startu)"
+msgstr "Možnosti protokolování (aktivní při příštím spuštění)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
@@ -1386,7 +1386,7 @@ msgstr "Obsah nabídkového pruhu"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Nabídkový pruh obsahuje vysouvací nabídky dnfdragora:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
@@ -1430,7 +1430,7 @@ msgstr "<h2>Ukončit</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Tato nabídka ukončí dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
@@ -1474,7 +1474,7 @@ msgstr "Dialog"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "Volby dnfdragora"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1560,7 +1560,7 @@ msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
-"Povolte tuto možnost aby dnfdragora zapisovala protokol do souboru "
+"Povolte tuto možnost, aby dnfdragora zapisovala protokol do souboru "
 "<i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
@@ -1575,7 +1575,7 @@ msgstr ""
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
-"<li><b>Úroveň lazení</b>: pokud zatrhnete, povolíte podrobné protokolování.</"
+"<li><b>Úroveň ladění</b>: pokud zatrhnete, povolíte podrobné protokolování.</"
 "li></ul>"
 
 #: dnfdragora/helpinfo.py:143
@@ -1588,7 +1588,7 @@ msgstr "<h2>Příručka</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Tato nabídka otevře dialog s nápovědou k dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
@@ -1596,7 +1596,7 @@ msgstr "<h2>O rogramu</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Tato nabídka otevře dialog O dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
@@ -1619,7 +1619,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtry</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
@@ -1631,7 +1631,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>Nenainstalováno</b>: ukáže jen dostupné balíčky.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
@@ -1653,7 +1653,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Hledání</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1714,7 +1714,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Ukazatel postupu"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
@@ -1724,7 +1724,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Řádek s tlačítky"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1741,7 +1741,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Ukončit</b>: opustit dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1837,7 +1837,7 @@ msgstr "v názvech souborů"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Použít regulární výraz"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1877,7 +1877,7 @@ msgstr "&Informace"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&Historie"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
@@ -1968,7 +1968,7 @@ msgstr "Sestavení transakce"
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Neznámá činnost %(action)s na %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
@@ -1997,11 +1997,11 @@ msgstr "Chyba při vytváření transakce"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "Klíč GPG chybí"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Chyba při hledání s pomocí regulárního výrazu"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
@@ -2040,7 +2040,7 @@ msgstr "%d dostupných aktualizací."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Nejsou dostupné žádné aktualizace"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
