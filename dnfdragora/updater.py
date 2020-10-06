@@ -94,6 +94,8 @@ class Updater:
           logger.error("Cannot open theme icon using default one %s"%(icon_path))
           self.__icon  = Image.open(icon_path)
 
+        # resetting icon_path to default value
+        icon_path = '/usr/share/dnfdragora/images/'
         if 'icon-path' in options.keys() :
             icon_path = options['icon-path']
         if icon_path.endswith('/'):
