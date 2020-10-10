@@ -5,7 +5,7 @@
 #
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
-# Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatic4@gmail.com>, 2017
+# Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatica@protonmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Celio Alves <dreamcelio@gmail.com>, 2020
 # Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020
@@ -668,7 +668,7 @@ msgstr "Procurar"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr "Logging"
+msgstr "Registrando"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
