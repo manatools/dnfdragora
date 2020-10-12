@@ -6,8 +6,8 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2020
 # Omer I.S., 2020
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omer I.S., 2020\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -660,7 +660,7 @@ msgstr "פריסה"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "חיפוש"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
@@ -700,7 +700,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
-msgstr ""
+msgstr "לא להציג תצוגת קבוצות"
 
 #: dnfdragora/dialogs.py:994
 msgid "Search options"
