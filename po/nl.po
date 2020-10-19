@@ -5,10 +5,10 @@
 #
 # Translators:
 # Yves Brungard, 2017
-# Dennis Holierhoek <dennis.hh@hotmail.com>, 2017
 # Geiger David <david.david@mageialinux-online.org>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
 # dragnadh, 2020
+# Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: dragnadh, 2020\n"
+"Last-Translator: Dennis Holierhoek <dennis.hh@hotmail.com>, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/MageiaLinux/teams/9361/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -392,7 +392,7 @@ msgstr[1] "Fouten in de transactie"
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Bouwtransactiefout"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
@@ -461,7 +461,7 @@ msgstr "Bandbreedte"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
-msgstr ""
+msgstr "Basiscachedirectory"
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
@@ -469,7 +469,7 @@ msgstr "Basis-URL"
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
-msgstr ""
+msgstr "Kosten"
 
 #: dnfdragora/dialogs.py:520
 msgid "DeltaRPM"
@@ -521,7 +521,7 @@ msgstr "Pakketten insluiten"
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr ""
+msgstr "IP-resolve"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
@@ -581,7 +581,7 @@ msgstr "Proxy-gebruikersnaam"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Repository GPG-check"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
@@ -613,7 +613,7 @@ msgstr "SSL verifiëren"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
-msgstr ""
+msgstr "Throttle"
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
@@ -674,7 +674,7 @@ msgstr "Logboekregistratie"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Herstel &default"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -683,10 +683,11 @@ msgstr "Systeemopties"
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
+"Automatisch transacties op pakketten draaien zonder bevestiging te vereisen"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Verberg \"dnfdragora-update\"-menu als er geen updates zijn"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
@@ -777,7 +778,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "pakket heeft geen enkele %s-attributen"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -785,7 +786,7 @@ msgstr "Caching groepen van pakketten..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Commando wordt verwerkt"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1314,15 +1315,15 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Ga naar index"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Menuregel"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filters en zoekregel"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
@@ -1338,11 +1339,11 @@ msgstr "Informatiepaneel"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Voortgangsbalk"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Knoplijn"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
@@ -1350,11 +1351,11 @@ msgstr "Bestandsmenu"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Informatiemenu"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Optiemenu"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
@@ -1365,12 +1366,17 @@ msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora is een DNF-frontend gebaseerd op Mageia rpmdragora-layout en "
+"Fedora yumex-dnf-interactie met dnfdaemon. <br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora is simpel gezien een pakketbeheergebruikersinterface waarmee "
+"pakketten kunnen worden geïnstalleerd, geüpdatet, verwijderd, gezocht en "
+"meer.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1378,10 +1384,13 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora is onderdeel van manatools en is gebaseerd op libyui zodat het "
+"werkt met Gtk, Qt of ncurses, d.w.z. zowel grafische als tekstuele "
+"gebruikersinterfaces.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora-venster is opgebouwd uit:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
