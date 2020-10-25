@@ -1086,7 +1086,10 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     if isinstance(obj, yui.YCheckBox):
       self.log_vbox.setEnabled(obj.isChecked())
-      self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
+      try:
+        self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
+      except:
+        self.parent.config.userPreferences['settings']['log'] = { 'enabled' : obj.isChecked() }
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
@@ -1101,7 +1104,10 @@ class OptionDialog(basedialog.BaseDialog):
     if log_directory:
       self.log_directory.setText(log_directory)
       self.dialog.recalcLayout()
-      self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
+      try:
+        self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
+      except:
+        self.parent.config.userPreferences['settings']['log'] = { 'directory' : self.log_directory.text() }
 
   def onShowAll(self, obj):
     '''
@@ -1126,7 +1132,10 @@ class OptionDialog(basedialog.BaseDialog):
     Newest Only Changing
     '''
     if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['search']['match_all'] = obj.isChecked()
+      try:
+        self.parent.config.userPreferences['settings']['search']['match_all'] = obj.isChecked()
+      except:
+        self.parent.config.userPreferences['settings']['search'] = { 'match_all' : obj.isChecked() }
       self.parent.match_all = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1136,7 +1145,10 @@ class OptionDialog(basedialog.BaseDialog):
     Newest Only Changing
     '''
     if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
+      try:
+        self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
+      except:
+        self.parent.config.userPreferences['settings']['search'] = { 'newest_only' : obj.isChecked() }
       self.parent.newest_only = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1146,7 +1158,10 @@ class OptionDialog(basedialog.BaseDialog):
     Debug level Changing
     '''
     if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
+      try:
+        self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
+      except:
+        self.parent.config.userPreferences['settings']['log'] = { 'level_debug' : obj.isChecked() }
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
@@ -1164,7 +1179,10 @@ class OptionDialog(basedialog.BaseDialog):
     manage an MD update interval change
     '''
     if isinstance(obj, yui.YIntField):
-      self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
+      try:
+        self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
+      except:
+        self.parent.config.userPreferences['settings']['metadata'] = { 'update_interval' : obj.value() }
       self.parent.md_update_interval = obj.value()
       logger.debug("update_interval %d", obj.value())
     else:
@@ -1209,7 +1227,9 @@ class OptionDialog(basedialog.BaseDialog):
       self.parent.config.userPreferences['settings']['always_yes'] = False
       self.parent.always_yes = False
       self.parent.config.userPreferences['settings']['interval for checking updates'] = 180
-      self.parent.config.userPreferences['settings']['metadata']['update_interval'] = 48
+      self.parent.config.userPreferences['settings']['metadata'] = {
+        'update_interval' :  48
+      }
       self.parent.md_update_interval = 48
       self._openSystemOptions()
     elif  k == "layout":
