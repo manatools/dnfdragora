@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Luděk Janča <joelp@email.cz>, 2020
 # fri, 2020
+# Luděk Janča <joelp@email.cz>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: fri, 2020\n"
+"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -679,11 +679,12 @@ msgstr "Systémové volby"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Spusťte transakce na balíčcích automaticky, bez nutnosti potvrzení"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
+"Skrýt nabídku aktualizace dnfdragora, pokud zde nejsou žádné aktualizace"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
@@ -1362,12 +1363,16 @@ msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora je grafické prostředí postavené na Mageia rpmdragora a Fedora "
+"yumex-dnf spolupracujícím s dnfdaemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora je uživatelské rozhraní správce balíčků, které umožňuje "
+"instalovat, aktualizovat, odebírat a vyhledávat balíčky a další.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1375,10 +1380,13 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora je součástí manatools a je založen na knihovně libyui, takže může "
+"pracovat pomocí Gtk, Qt nebo ncurses, tj. grafických i textových "
+"uživatelských rozhraní.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "Okno dnfdragora je složeno z:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
@@ -1401,6 +1409,9 @@ msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Tato nabídka odstraní všechny příznaky na balíčcích, pokud byly vybrány "
+"nějaké balíčky pro instalaci nebo odebrání, vrátí se do předchozího stavu."
+"<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1412,6 +1423,9 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Tato nabídka odešle požadavek do dnfdaemon k vynucení obnovení všech meta "
+"dat. Tato akce je asynchronní a vyžaduje znovu sestavení mezipaměťi "
+"informací o balíčcích.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1423,6 +1437,9 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Tato nabídka otevírá dialogové okno, které umožňuje povolit nebo zakázat "
+"repozitáře. Veškeré změny jsou platné po dobu, kdy běží dnfdragora, a nejsou "
+"trvalé.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1452,6 +1469,8 @@ msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Pamatujte, že tato funkce je aktuálně nefunkční kvůli změně API dnf</"
+"i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1467,6 +1486,8 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Tato nabídka otevírá %s obsahující uživatelské nastavení k přizpůsobení "
+"chování dnfdragora. <br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
@@ -1499,6 +1520,8 @@ msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>PAMATUJTE</b>, že tato volba také znamená, že odebírání balíčků je "
+"potichu akceptováno</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -1532,7 +1555,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
-msgstr ""
+msgstr "<b>PAMATUJTE</b>, že volba výše vyžaduje restartování dnfdragora."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
@@ -1544,12 +1567,18 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Zobrazit pouze nejnovější balíčky</b>: pokud je zaškrtnuto, "
+"dnfdragora, při hledání, zobrazí pouze nejnovější balíčky. <i>Upozorňujeme, "
+"že toto je  platné, pokud se vyhledávání neprovádí pomocí regulárních "
+"výrazů</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Odpovídá všem slovům</b>: pokud je zaškrtnuto, hledání bez použití "
+"regulárních výrazů, najde shodu všech zadaných slov do textového pole."
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
@@ -1615,7 +1644,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
-msgstr ""
+msgstr "Pokud je vybráno <i>Vše</i>, panel balíčků obsahuje všechny balíčky."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
