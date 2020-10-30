@@ -1545,6 +1545,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Zobrazit aktualizace</b>: pokud je zatrženo, dnfdragora "
+"nastartuje s aktivním filtrem <i>aktualizace</i>. To znamená, že zobrazí "
+"pouze balíčky, které mají k dispozici aktualizace, pokud jsou nějaké.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1740,6 +1743,8 @@ msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Pamatujte, že dnfdragore prozatím neposkytuje poznámky o vydání.</"
+"i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
@@ -1750,6 +1755,8 @@ msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Indikátor průběhu zobrazuje průběh operací dnfdragora, jako jsou transakce a "
+"ukládání dat do mezipaměti."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
@@ -1761,12 +1768,17 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Použít</b>: když jsou některé balíčky vybrány pro instalaci nebo "
+"aktualizaci nebo odznačeny pro odinstalování, toto tlačítko spustí "
+"transakce, které mají být provedeny."
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Vybrat vše</b>: pokud jsou vyfiltrovány pouze aktualizace, toto "
+"tlačítko umožňuje vybrat všechny balíčky najednou.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
