@@ -4,6 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
+# Ḷḷumex03, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # enolp <enolp@softastur.org>, 2020
 #
 #, fuzzy
@@ -611,7 +613,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:558
 msgid "Username"
-msgstr ""
+msgstr "Nome d'usuariu"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
@@ -623,7 +625,7 @@ msgstr "Información"
 
 #: dnfdragora/dialogs.py:602
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: dnfdragora/dialogs.py:611 dnfdragora/ui.py:570
 msgid "&Apply"
@@ -652,7 +654,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "Guetar"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
@@ -1022,7 +1024,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:290 dnfdragora/groupicons.py:481
 msgid "Networking"
-msgstr ""
+msgstr "Redes"
 
 #: dnfdragora/groupicons.py:293
 msgid "File transfer"
@@ -1794,7 +1796,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:469
 msgid "Groups"
-msgstr ""
+msgstr "Grupos"
 
 #: dnfdragora/ui.py:528
 msgid "in names"
@@ -1894,7 +1896,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:1019
 msgid "Repository"
-msgstr ""
+msgstr "Depósitu"
 
 #: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
@@ -1987,7 +1989,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:133
 msgid "Update"
-msgstr ""
+msgstr "Anovar"
 
 #: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
