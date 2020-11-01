@@ -4,7 +4,6 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Ḷḷumex03, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
 # enolp <enolp@softastur.org>, 2020
 #
@@ -185,7 +184,7 @@ msgstr "Conteíu"
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
 #: dnfdragora/ui.py:468
 msgid "All"
-msgstr ""
+msgstr "Too"
 
 #: dnfdragora/compsicons.py:41 dnfdragora/groupicons.py:166
 msgid "Empty"
@@ -469,7 +468,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
 msgid "Enabled"
-msgstr ""
+msgstr "Activación"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enabled metadata"
@@ -533,7 +532,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
-msgstr ""
+msgstr "Llista d'espeyos"
 
 #: dnfdragora/dialogs.py:539 dnfdragora/dialogs.py:593 dnfdragora/ui.py:440
 msgid "Name"
@@ -609,7 +608,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:557
 msgid "Type"
-msgstr ""
+msgstr "Triba"
 
 #: dnfdragora/dialogs.py:558
 msgid "Username"
@@ -654,7 +653,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr "Guetar"
+msgstr "Buscar"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
@@ -825,7 +824,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
-msgstr ""
+msgstr "Telefonía"
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
@@ -902,7 +901,7 @@ msgstr "Documentación"
 
 #: dnfdragora/groupicons.py:158
 msgid "Editors"
-msgstr ""
+msgstr "Editores"
 
 #: dnfdragora/groupicons.py:162
 msgid "Education"
@@ -1012,7 +1011,7 @@ msgstr "Fotografía"
 
 #: dnfdragora/groupicons.py:277
 msgid "Scanning"
-msgstr ""
+msgstr "Escanéu"
 
 #: dnfdragora/groupicons.py:281
 msgid "Viewers"
@@ -1028,7 +1027,7 @@ msgstr "Redes"
 
 #: dnfdragora/groupicons.py:293
 msgid "File transfer"
-msgstr ""
+msgstr "Tresferencia de ficheros"
 
 #: dnfdragora/groupicons.py:297
 msgid "IRC"
@@ -1040,7 +1039,7 @@ msgstr "Mensaxería nel intre"
 
 #: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
-msgstr ""
+msgstr "Corréu"
 
 #: dnfdragora/groupicons.py:309
 msgid "News"
@@ -1076,7 +1075,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Fueyes de cálculu"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
@@ -1084,7 +1083,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
-msgstr ""
+msgstr "Procesador de Word"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
@@ -1188,7 +1187,7 @@ msgstr "Biblioteques"
 
 #: dnfdragora/groupicons.py:485
 msgid "Packaging"
-msgstr ""
+msgstr "Empaquetamientu"
 
 #: dnfdragora/groupicons.py:489
 msgid "Printing"
@@ -1248,7 +1247,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:575
 msgid "Graphical Environment"
-msgstr ""
+msgstr "Entornu gráficu"
 
 #: dnfdragora/groupicons.py:578
 msgid "GNOME Workstation"
@@ -1264,7 +1263,7 @@ msgstr ""
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
-msgstr ""
+msgstr "Otros escritorios gráficos"
 
 #: dnfdragora/groupicons.py:611
 msgid "Server"
@@ -1775,15 +1774,15 @@ msgstr "Versión"
 
 #: dnfdragora/ui.py:447
 msgid "Status"
-msgstr ""
+msgstr "Estáu"
 
 #: dnfdragora/ui.py:455
 msgid "Installed"
-msgstr ""
+msgstr "Instalóse"
 
 #: dnfdragora/ui.py:456
 msgid "Not installed"
-msgstr ""
+msgstr "Nun s'instaló"
 
 #: dnfdragora/ui.py:457
 msgid "To update"
