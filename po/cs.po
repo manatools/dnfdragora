@@ -1660,6 +1660,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
+"<ul><li><b>Nainstalováné</b>: zobrazí pouze nainstalované balíčky.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
@@ -1670,6 +1671,8 @@ msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>K aktualizaci</b>: zobrazí pouze balíčky, které mají dostupnou "
+"aktualizaci-</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
