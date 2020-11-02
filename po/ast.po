@@ -419,7 +419,7 @@ msgstr ""
 #: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
 #: dnfdragora/dialogs.py:1375
 msgid "&Ok"
-msgstr ""
+msgstr "&Aceutar"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
 #: dnfdragora/dialogs.py:1376
@@ -766,7 +766,7 @@ msgstr ""
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Comandu en cursu"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1831,7 +1831,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
-msgstr ""
+msgstr "&Colar"
 
 #: dnfdragora/ui.py:587
 msgid "&File"
@@ -1875,7 +1875,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:629
 msgid "&About"
-msgstr ""
+msgstr "&Tocante a"
 
 #: dnfdragora/ui.py:666
 msgid "update"
