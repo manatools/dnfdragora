@@ -6,8 +6,8 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
-# Omer I.S., 2020
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
+# Omer I.S., 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
+"Last-Translator: Omer I.S., 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -119,7 +119,7 @@ msgstr ""
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "אירעה שגיאה:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -187,7 +187,7 @@ msgstr "תוכן"
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
 #: dnfdragora/ui.py:468
 msgid "All"
-msgstr "הכל"
+msgstr "הכול"
 
 #: dnfdragora/compsicons.py:41 dnfdragora/groupicons.py:166
 msgid "Empty"
@@ -507,7 +507,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:530
 msgid "GPG key"
-msgstr ""
+msgstr "מפתח GPG"
 
 #: dnfdragora/dialogs.py:531
 msgid "Include packages"
@@ -523,7 +523,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:534
 msgid "Media ID"
-msgstr ""
+msgstr "מזהה מאגר"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
@@ -704,7 +704,7 @@ msgstr "לא להציג תצוגת קבוצות"
 
 #: dnfdragora/dialogs.py:994
 msgid "Search options"
-msgstr ""
+msgstr "אפשרויות חיפוש"
 
 #: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
@@ -1565,7 +1565,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "תפריט עזרה"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
@@ -1731,7 +1731,7 @@ msgstr ""
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "בהורדה :  %(files)d קבצים, %(size)d בייטים"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
@@ -1773,7 +1773,7 @@ msgstr "שחרור"
 
 #: dnfdragora/ui.py:440
 msgid "Summary"
-msgstr "סיכום ובדיקת הגדרות"
+msgstr "סיכום"
 
 #: dnfdragora/ui.py:440
 msgid "Version"
