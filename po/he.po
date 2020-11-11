@@ -94,7 +94,7 @@ msgstr ""
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
 #: bin/dnfdragora:101 dnfdragora/basedragora.py:159
 msgid "Sorry"
-msgstr "סליחה"
+msgstr "עמך הסליחה"
 
 #: bin/dnfdragora:89
 #, python-format
@@ -199,7 +199,7 @@ msgstr "תוצאת חיפוש"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "ללא סיווג"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -1010,7 +1010,7 @@ msgstr "עורכים וממירים"
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
 msgid "Utilities"
-msgstr "תוכנות שרות"
+msgstr "עזרים"
 
 #: dnfdragora/groupicons.py:273
 msgid "Photography"
@@ -1118,7 +1118,7 @@ msgstr "מדעי המחשב"
 
 #: dnfdragora/groupicons.py:385
 msgid "Geosciences"
-msgstr "גיאו-מדעים"
+msgstr "גיאו־מדעים"
 
 #: dnfdragora/groupicons.py:389
 msgid "Mathematics"
@@ -1126,11 +1126,11 @@ msgstr "מתמטיקה"
 
 #: dnfdragora/groupicons.py:397
 msgid "Physics"
-msgstr "פיסיקה"
+msgstr "פיזיקה"
 
 #: dnfdragora/groupicons.py:406
 msgid "Shells"
-msgstr "מסופים"
+msgstr "מעטפות"
 
 #: dnfdragora/groupicons.py:410
 msgid "Sound"
@@ -1182,7 +1182,7 @@ msgstr "תמונת X11"
 
 #: dnfdragora/groupicons.py:469
 msgid "Internationalization"
-msgstr "בנאום"
+msgstr "בינאום"
 
 #: dnfdragora/groupicons.py:473
 msgid "Kernel and hardware"
@@ -1290,7 +1290,7 @@ msgstr "חומת אש/נתב"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr "דוא\"ל/עבודה בקבוצה/חדשות"
+msgstr "דוא״ל/תכנה קבוצתית/חדשות"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
@@ -1842,7 +1842,7 @@ msgstr "י&ציאה"
 
 #: dnfdragora/ui.py:587
 msgid "&File"
-msgstr ""
+msgstr "&קובץ"
 
 #: dnfdragora/ui.py:590
 msgid "Reset the selection"
@@ -1874,7 +1874,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
-msgstr ""
+msgstr "ע&זרה"
 
 #: dnfdragora/ui.py:627
 msgid "Manual"
@@ -1982,7 +1982,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "חסר מפתח GPG"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
@@ -2021,7 +2021,7 @@ msgstr ""
 #: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d עדכונים זמינים."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
