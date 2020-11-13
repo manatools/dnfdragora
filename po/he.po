@@ -7,7 +7,7 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omer I.S., 2020
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omer I.S., 2020\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -157,7 +157,7 @@ msgstr "שולחן העבודה MATE"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "שולחן העבודה Hawaii"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
@@ -400,7 +400,7 @@ msgstr "היסטוריה"
 
 #: dnfdragora/dialogs.py:303
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "היסטוריה (תאריך/שעה)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
@@ -408,11 +408,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
-msgstr ""
+msgstr "ביטו&ל פעולה"
 
 #: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
-msgstr ""
+msgstr "ס&גירה"
 
 #: dnfdragora/dialogs.py:373
 msgid "Transaction result"
@@ -451,7 +451,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:516
 msgid "Bandwidth"
-msgstr ""
+msgstr "רוחב פס"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
@@ -799,7 +799,7 @@ msgstr "דחיסה"
 #: dnfdragora/groupicons.py:197 dnfdragora/groupicons.py:245
 #: dnfdragora/groupicons.py:313 dnfdragora/groupicons.py:393
 msgid "Other"
-msgstr "אחר"
+msgstr "שונות"
 
 #: dnfdragora/groupicons.py:45
 msgid "Communications"
@@ -1070,7 +1070,7 @@ msgstr "מילון"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
-msgstr "כספים"
+msgstr "כלכלה"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
@@ -1086,7 +1086,7 @@ msgstr "גיליון נתונים"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
-msgstr ""
+msgstr "מארז"
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
@@ -1230,15 +1230,15 @@ msgstr "כלי מסוף"
 
 #: dnfdragora/groupicons.py:550
 msgid "Game station"
-msgstr "תחנת עבודה למשחקים"
+msgstr "משחקים"
 
 #: dnfdragora/groupicons.py:554
 msgid "Internet station"
-msgstr "תחנת עבודה לאינטרנט"
+msgstr "אינטרנט"
 
 #: dnfdragora/groupicons.py:558
 msgid "Multimedia station"
-msgstr "תחנת עבודה למולטימדיה"
+msgstr "מולטימדיה"
 
 #: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
@@ -1246,11 +1246,11 @@ msgstr "מחשב רשת (לקוח)"
 
 #: dnfdragora/groupicons.py:566
 msgid "Office Workstation"
-msgstr "תחנת עבודה משרדית"
+msgstr "משרד"
 
 #: dnfdragora/groupicons.py:570
 msgid "Scientific Workstation"
-msgstr "תחנת עבודה מדעית"
+msgstr "מדע"
 
 #: dnfdragora/groupicons.py:575
 msgid "Graphical Environment"
@@ -1385,7 +1385,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>איפוס הבחירה</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
@@ -1395,7 +1395,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>רענון המטא־נתונים</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1406,7 +1406,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>מאגרים</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1417,7 +1417,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>יציאה</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
@@ -1429,7 +1429,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>היסטוריה</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1834,7 +1834,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:574
 msgid "Sel&ect all"
-msgstr ""
+msgstr "לב&חור הכול"
 
 #: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
@@ -1858,19 +1858,19 @@ msgstr "מאגרים"
 
 #: dnfdragora/ui.py:602
 msgid "&Information"
-msgstr ""
+msgstr "מיד&ע"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "היס&טוריה"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
-msgstr ""
+msgstr "אפ&שרויות"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
-msgstr ""
+msgstr "העדפות משתמש"
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
@@ -1915,7 +1915,7 @@ msgstr "לא ניתן להסיר את החבילה %s"
 
 #: dnfdragora/ui.py:1388
 msgid "Protected package selected"
-msgstr "מבחרה חבילה מוגנת"
+msgstr "נבחרה חבילה מוגנת"
 
 #: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
@@ -1932,7 +1932,7 @@ msgstr "התחלת העברה"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
-msgstr "חבילות מתקבלות"
+msgstr "בהורדת חבילות"
 
 #: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
