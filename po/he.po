@@ -1070,7 +1070,7 @@ msgstr "מילון"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
-msgstr "כלכלה"
+msgstr "כספים"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
