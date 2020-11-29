@@ -672,7 +672,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
-msgstr ""
+msgstr "אפשרויות מערכת"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
@@ -871,7 +871,7 @@ msgstr "Java"
 
 #: dnfdragora/groupicons.py:117
 msgid "KDE and Qt"
-msgstr "KDE ו-QT"
+msgstr "KDE ו־QT"
 
 #: dnfdragora/groupicons.py:121
 msgid "Kernel"
@@ -1094,7 +1094,7 @@ msgstr "מעבד תמלילים"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
-msgstr "פרסום"
+msgstr "הוצאה לאור"
 
 #: dnfdragora/groupicons.py:366
 msgid "Sciences"
@@ -1134,7 +1134,7 @@ msgstr "מעטפות"
 
 #: dnfdragora/groupicons.py:410
 msgid "Sound"
-msgstr "שמע"
+msgstr "צלילים"
 
 #: dnfdragora/groupicons.py:417
 msgid "Midi"
@@ -1282,7 +1282,7 @@ msgstr "DNS/NIS"
 
 #: dnfdragora/groupicons.py:618
 msgid "Database"
-msgstr "מסדי נתונים"
+msgstr "מסד נתונים"
 
 #: dnfdragora/groupicons.py:622
 msgid "Firewall/Router"
@@ -1290,7 +1290,7 @@ msgstr "חומת אש/נתב"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr "דוא״ל/תכנה קבוצתית/חדשות"
+msgstr "דוא״ל/תוכנה קבוצתית/חדשות"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
