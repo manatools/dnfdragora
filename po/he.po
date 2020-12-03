@@ -1290,7 +1290,7 @@ msgstr "חומת אש/נתב"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr "דוא״ל/תוכנה קבוצתית/חדשות"
+msgstr "דוא״ל/תכנה קבוצתית/חדשות"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
