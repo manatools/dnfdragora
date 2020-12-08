@@ -277,7 +277,7 @@ msgstr "כעת בעדכון: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "עודכנו: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -292,7 +292,7 @@ msgstr "כעת בהתקנה מחדש: %s"
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "הותקנו מחדש: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
@@ -322,7 +322,7 @@ msgstr "בשנמוך: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "שונמכו: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -851,7 +851,7 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:93
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
@@ -948,7 +948,7 @@ msgstr "תצרפים"
 
 #: dnfdragora/groupicons.py:205
 msgid "Shooter"
-msgstr ""
+msgstr "יריות"
 
 #: dnfdragora/groupicons.py:209
 msgid "Simulation"
