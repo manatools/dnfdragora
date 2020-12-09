@@ -539,7 +539,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
-msgstr "רשימת אתרי מראה"
+msgstr "רשימת אתרי המַּראָה"
 
 #: dnfdragora/dialogs.py:539 dnfdragora/dialogs.py:593 dnfdragora/ui.py:440
 msgid "Name"
@@ -567,11 +567,11 @@ msgstr "שרת מתווך (Proxy)"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr "הסיסמה של המתווך"
+msgstr "הסיסמה של המתווך (פרוקסי)"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr "שם המשתמש של המתווך"
+msgstr "שם המשתמש של המתווך (פרוקסי)"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
@@ -1262,7 +1262,7 @@ msgstr "סביבת העבודה GNOME"
 
 #: dnfdragora/groupicons.py:582
 msgid "IceWm Desktop"
-msgstr "שולחן עבודה IceWm"
+msgstr "שולחן העבודה IceWm"
 
 #: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
@@ -2003,7 +2003,7 @@ msgstr ""
 
 #: dnfdragora/updater.py:135
 msgid "Check for updates"
-msgstr ""
+msgstr "לבדוק אם יש עדכונים"
 
 #: dnfdragora/updater.py:136
 msgid "Exit"
