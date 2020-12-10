@@ -7,7 +7,7 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Rémi Verschelde <akien@mageia.org>, 2018
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omeritzics Games <omeritzicschwartz@gmail.com>, 2020
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omeritzics Games <omeritzicschwartz@gmail.com>, 2020\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -1230,15 +1230,15 @@ msgstr "כלי מסוף"
 
 #: dnfdragora/groupicons.py:550
 msgid "Game station"
-msgstr "משחקים"
+msgstr "תחנת משחקים"
 
 #: dnfdragora/groupicons.py:554
 msgid "Internet station"
-msgstr "אינטרנט"
+msgstr "תחנת אינטרנט"
 
 #: dnfdragora/groupicons.py:558
 msgid "Multimedia station"
-msgstr "מולטימדיה"
+msgstr "תחנת מולטימדיה"
 
 #: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
@@ -1246,11 +1246,11 @@ msgstr "מחשב רשת (לקוח)"
 
 #: dnfdragora/groupicons.py:566
 msgid "Office Workstation"
-msgstr "משרד"
+msgstr "תחנת עבודה משרדית"
 
 #: dnfdragora/groupicons.py:570
 msgid "Scientific Workstation"
-msgstr "מדע"
+msgstr "תחנת עבודה מדעית"
 
 #: dnfdragora/groupicons.py:575
 msgid "Graphical Environment"
