@@ -1,14 +1,14 @@
 # Translators:
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omer I.S., 2020
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2020-09-21 14:21+0300\n"
+"POT-Creation-Date: 2020-10-27 21:21+0200\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
-"Last-Translator: Omer I.S., 2020\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/he/)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "התקנה והסרה של תוכנה"
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr "גישור גלוי גרפי להתקנה, הסרה ועדכון של חבילות"
+msgstr "ממשק גרפי להתקנה, הסרה ועדכון של חבילות"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
@@ -39,22 +39,22 @@ msgstr "dnfdragora-updater"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr "סמל במגש המערכת לבדיקת עדכונים"
+msgstr "סמל במגש המערכת כדי לבדוק אם יש עדכונים"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr "לבדוק עדכונים אוטומטית ולהודיע"
+msgstr "לבדוק אם יש עדכונים ולהודיע אוטומטית"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr "מתקין החבילות dnfdragora"
+msgstr "אשף התקנת החבילות dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr "מתקין חבילות RPM"
+msgstr "אשף התקנת חבילות RPM"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
