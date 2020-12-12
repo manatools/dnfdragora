@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# fri, 2020
 # Luděk Janča <joelp@email.cz>, 2020
+# fri, 2020
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Luděk Janča <joelp@email.cz>, 2020\n"
+"Last-Translator: fri, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1363,7 +1363,7 @@ msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
-"dnfdragora je grafické prostředí postavené na Mageia rpmdragora a Fedora "
+"Dnfdragora je grafické prostředí postavené na Mageia rpmdragora a Fedora "
 "yumex-dnf spolupracujícím s dnfdaemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
@@ -1371,7 +1371,7 @@ msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
-"dnfdragora je uživatelské rozhraní správce balíčků, které umožňuje "
+"Dnfdragora je uživatelské rozhraní správce balíčků, které umožňuje "
 "instalovat, aktualizovat, odebírat a vyhledávat balíčky a další.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
@@ -1380,7 +1380,7 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
-"dnfdragora je součástí manatools a je založen na knihovně libyui, takže může "
+"Dnfdragora je součástí manatools a je založen na knihovně libyui, takže může "
 "pracovat pomocí Gtk, Qt nebo ncurses, tj. grafických i textových "
 "uživatelských rozhraní.<br><br>"
 
@@ -1463,6 +1463,9 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Tato nabídka spustí dialog obsahující historii transakcí zobrazenou ve "
+"stromu seřazeném podle data. Vybranou historii lze vrátit zpět stisknutím "
+"tlačítka <b>Zpět</b> .<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
@@ -1503,6 +1506,9 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Tento dialog umožňuje přizpůsobit chování dnfdragora změnou voleb. Některé "
+"změny jsou dostupné po zavření dialogového okna, jiné vyžadují restart "
+"dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
@@ -1514,6 +1520,9 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Spouštět transakce na balíčcích automaticky bez nutnosti "
+"potvrzení</b>: pokud zaškrtnuté transakce není nutné potvrzovat, dnfdragora "
+"funguje tak, jako by odpověď vždy byla <i>ano</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1528,12 +1537,17 @@ msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Interval pro kontrolu aktualizací</b>: dané číslo představuje, kdy "
+"dnfdragora potřebuje zkontrolovat aktualizace, hodnota je vyjádřena v "
+"minutách</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Čas vypršení platnosti popisných dat</b>: čas pro vynucení vypršení "
+"platnosti metadat, hodnota je vyjádřena v hodinách</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
@@ -1555,6 +1569,9 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>Neukazovat zobrazení skupin</b>: filtrování podle skupin může "
+"vyžadovat CPU, pokud používáte comps, pokud je zaškrtnuta tato volba, "
+"dnfdragora začne zobrazovat všechny balíčky.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
@@ -1644,6 +1661,10 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"První rozbalovací seznam umožňuje balíčky zobrazit podle skupin. Pokud je "
+"vybráno <i>Skupiny</i>, panel skupiny zobrazuje stromové zobrazení "
+"obsahující skupiny, zatímco výběr skupiny zobrazuje související balíčky v "
+"panelu balíčků ."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
@@ -1656,6 +1677,8 @@ msgstr "<h2>Filtry</h2>"
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"Rozbalovací seznam s filtry umožňuje filtrovat balíčky zobrazené v panelu "
+"balíků podle:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1679,12 +1702,16 @@ msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Zobrazit pouze x86_64 a noarch</b>: ipokud dnfdragora běží na "
+"architektuře x86_64, skryjí se balíčky i686.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Vše</b>: zobrazuje všechny balíčky, tj. dostupné, aktualizace a "
+"nainstalované.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
@@ -1696,6 +1723,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Hledání se provádí stisknutím tlačítka <i>Hledat</i>,  pokud je vyplněno "
+"textové pole. Hledání v rozbalovacím seznamu umožňuje prohledat zadaný text "
+"v <i>názvech</i> balíčků, <i>souhrnech</i>, <i>popisech</i> nebo "
+"<i>souborech</i>."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1703,16 +1734,22 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Zvláštní zaškrtávací políčko <i>Použít regulární výraz</i>se používá k "
+"hledání balíčků pomocí regulárních výrazů jazyka python. Toto hledání se "
+"provádí v informacích o balíčku uložených ve vyrovnávací paměti, například "
+"pro <b>pouze jména a souhrny</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Všimněte si</i>, že pokud se pro vyhledávání podle názvů používají "
+"regulární výrazy, použije se plný souborový název balíčku s verzí ."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "Tlačítko <i>Vyprázdnit hledání</i> vynuluje vyhledávací textové pole."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1720,6 +1757,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Tento panel zobrazuje všechny skupiny, které mají být použity k filtrování "
+"balíčků podle skupin, pokud je vybráno zobrazení skupin. Zvláštní skupina "
+"<i>Hledání</i> se přidá, pokud je provedeno vyhledávání."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1727,12 +1767,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Tento panel zobrazuje všechny filtrované balíčky s jejich základními "
+"informacemi, jako je <i>název</i>, <i>souhrn</i>, <i>verze</i>, <i>vydání</"
+"i>, <i>architektura</i>, <i>velikost</i> a <i>stav</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Zaškrtávací políčko pro všechny balíčky je dostupné pro přidání "
+"souvisejícího balíčku do transakce pro instalaci, aktualizaci nebo odebrání."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1740,6 +1785,9 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Tento panel zobrazuje všechny informace o balíčku, například <i>popis</i>, "
+"<i>URL</i>, <i>úložiště</i>, <i>požadavky</i>, <i>seznam souborů</i> a "
+"<i>seznam změn</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
