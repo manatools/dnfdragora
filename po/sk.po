@@ -5,8 +5,8 @@
 #
 # Translators:
 # Jajo Pajo, 2017
-# Milan Baša <minkob@mail.t-com.sk>, 2018
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
+# Milan Baša <minkob@mail.t-com.sk>, 2020
 # retepsk <rvrao@centrum.cz>, 2020
 #
 #, fuzzy
@@ -202,7 +202,7 @@ msgstr "Výsledok hľadania"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Nezaradené"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -659,19 +659,19 @@ msgstr "Systém"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Usporiadanie"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "Hľadať"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Záznam"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Obnoviť predvolené"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -679,11 +679,13 @@ msgstr "Systémové voľby"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Spúšťať transakcie na balíkoch automaticky bez potreby potvrdenia"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
+"Skryť ponuku aktualizácie dnfdragora, ak nie sú k dispozícii žiadne "
+"aktualizácie"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
@@ -719,11 +721,11 @@ msgstr "Zhoda všetkých slov"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Možnosti protokolovania (aktívne pri ďalšom štarte)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Povoliť protokolovanie"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
@@ -774,7 +776,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "balíček nemá žiadné %s atribúty"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -782,7 +784,7 @@ msgstr "Ukladanie skupín z balíčkov do vyrovnávacej pamäte..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Prebieha vykonávanie príkazu"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1311,63 +1313,67 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Prejsť na obsah"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Riadok hlavnej ponuky"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filtre a vyhľadávací riadok"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Panel skupiny"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Panel balíkov"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Informačný panel"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Riadok s ukazovateľom priebehu"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Riadok tlačítka"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Ponuka súbor"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Informačné menu"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Ponuka volieb"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Ponuka pomocníka"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora je grafické prostredie postavené na Mageia rpmdragora a Fedora "
+"yumex-dnf spolupracujúcim s dnfdaemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora je užívateľské rozhranie správcu balíkov, ktorý umožňuje "
+"inštalovať, aktualizovať, odstraňovať, prehľadávať balíky a ďalšie.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1375,36 +1381,42 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora je súčasťou manatools a je založená na knihovni libyui, takže "
+"môže pracovať s pomocou Gtk, Qt alebo ncurses, tj. grafických i textových "
+"užívateľských rozhraní.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "okno dnfdragora obsahuje:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Obsah panela ponuky"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Lišta ponuky obsahuje rozbaľovacie ponuky dnfdragora:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Ponuka súbor"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Resetovať výber</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Táto ponuka odstraňuje akékoľvek príznaky /flags/ na balíkoch, ak boli "
+"vybrané nejaké balíky na inštaláciu alebo odstránenie, vrátia sa do "
+"predchádzajúceho stavu.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Obnovit metadáta</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1412,10 +1424,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Táto ponuka odošle požiadavku do dnfdaemon k vynúteniu obnovenia všetkých "
+"meta dát. Táto akcia je asynchronna a vyžaduje znovu zostavenie medzipamäti "
+"informacií o balíčkoch.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Repozitáre</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1423,22 +1438,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Tato ponuka otvára dialógové okno, ktoré umožňuje povoliť alebo zakázať "
+"repozitáre. Všetky zmeny sú platné po dobu, pokiaľ beží dnfdragora, a nie sú "
+"trvalé.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Ukončiť</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Táto ponuka ukončí dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Informačné menu"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>História</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1446,20 +1464,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Táto ponuka spustí dialóg obsahujúci históriu transakcií zobrazenú v strome "
+"zoradenom podľa dátumu. Vybranú históriu možno vrátiť späť stlačením "
+"tlačítka <b>Späť</b> .<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Pamätajte, že táto funkcia je aktuálne nefunkčná kvôli zmene API dnf</"
+"i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Ponuka voľby"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Predvoľby používateľa</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1467,14 +1490,16 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Táto ponuka otvára %s obsahujúce užívateľské nastavenia k prispôsobeniu "
+"chovania dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "Dialóg"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora nastavenia"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1482,10 +1507,13 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Tento dialóg umožňuje prispôsobiť chovanie dnfdragora zmenou volieb. "
+"Niektoré zmeny sú dostupné po zatvorení dialógového okna, iné vyžadujú "
+"reštart dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Systémové voľby</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1493,28 +1521,38 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Spúšťať transakcie na balíčkoch automaticky bez nutnosti "
+"potvrdenia</b>: pokiaľ zaškrtnuté transakcie nie je nutné potvrdzovať, "
+"dnfdragora funguje tak, ako by odpoveď vždy bola <i>áno</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>Pamätajte</b> , že táto voľba tiež znamená, že odoberanie balíčkov je "
+"potichu akceptované</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Interval pre kontrolu aktualizácií</b>: dané číslo predstavuje, kedy "
+"dnfdragora potrebuje skontrolovať aktualizácie, hodnota je vyjadrená v "
+"minútach</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Čas vypršania platnosti metadát</b>: čas, ktorý vynúti vypršanie "
+"platnosti metadát, hodnota je vyjadrená v hodinách</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti rozloženia</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1522,6 +1560,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Zobraziť aktualizácie</b>: pokiaľ je začiarknuté, dnfdragora "
+"naštartuje s aktívnym filtrom <i>aktualizácie</i> To znamená, že zobrazí len "
+"balíčky, ktoré majú k dispozícii aktualizácie, pokiaľ sú nejaké.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1529,14 +1570,17 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>Neukazovať zobrazenie skupín</b>: filtrovanie podľa skupín môže "
+"vyžadovať CPU, pokiaľ používate comps, pokiaľ je zaškrtnutá táto voľba, "
+"dnfdragora začne zobrazovať všetky balíčky.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
-msgstr ""
+msgstr "<b>NOTE</b> vyššie uvedené možnosti vyžadujú reštartovanie dnfdragora."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti vyhľadávania</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1544,61 +1588,74 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Zobraziť len najnovšie balíčky</b>: pokiaľ je zaškrtnuté, "
+"dnfdragora pri hľadaní zobrazí len najnovšie balíčky. <i>Upozorňujeme, že "
+"toto je platné, pokiaľ sa vyhľadávanie neprevádza pomocou regulárnych "
+"výrazov</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Zodpovedá všetkým slovám</b>: pokiaľ je zaškrtnuté hľadanie bez "
+"použitia regulárnych výrazov najde zhodu všetkých zadaných slov do textového "
+"poľa.</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Možnosti prihlásenia</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Povolením týchto možností umožníte dnfdragore prihlásiť sa do súboru s "
+"názvom <i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Zmeniť adresár</b>: táto voľba povolí nastaviť adresár pre "
+"protokolovanie. Adresár musí existovať a musí mať práva zápisu.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Úroveň ladenia</b>: pokiaľ zaškrtnete, povolíte podrobné "
+"protokolovanie.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Ponuka pomocníka"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Manuál</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Toto menu otvorí dialógové okno pomocníka dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>O programe</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Táto ponuka otvára dialógové okno dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Prezeranie a prehľadávanie"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Zobrazenia</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1606,48 +1663,60 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"Prvý rozbaľovací zoznam umožňuje balíčky zobraziť podľa skupín. Pokiaľ je "
+"vybrané <i>Skupiny</i>, panel skupiny zobrazuje stromové zobrazenie "
+"obsahujúce skupiny, zatiaľčo výber skupiny zobrazuje súvisiace balíčky v "
+"paneli balíčkov."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
-msgstr ""
+msgstr "Ak je vybrané <i>Všetko</i>, panel balíčkov obsahuje všetky balíčky."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtre</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"Rozbaľovací zoznam s filtrami umožňuje filtrovať balíčky zobrazené v paneli "
+"balíkov podľa:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<ul><li><b>Nainštalované</b>: zobrazí len nainštalované balíčky.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>Nenainštalované</b>: zobrazuje iba dostupné balíky.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>K aktualizácii</b>: zobrazí len balíčky, ktoré majú dostupnú "
+"aktualizáciu.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Zobraziť len x86_64 a noarch</b>: aj pokiaľ dnfdragora beží na "
+"architektúre x86_64, skryjú sa balíčky i686.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Všetko</b>: zobrazuje všetky balíčky, tj. dostupné, aktualizácie aj "
+"nainstalované.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Vyhľadávanie</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1655,6 +1724,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Hľadanie sa prevádza stlačením tlačítka <i>Hľadať</i> , pokiaľ je vyplnené "
+"textové pole. Hľadanie v rozbalovacom zozname umožňuje prehľadať zadaný text "
+"v <i>názvoch</i>balíčkov, <i>súhrnoch</i>, <i>popisoch</i> alebo "
+"<i>súboroch</i>."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1662,16 +1735,23 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Špeciálne začiarkavacie políčko <i>Použit regexp</i> sa používa na hľadanie "
+"balíkov pomocou regulárnych výrazov v jazyku python. Toto hľadanie sa "
+"vykonáva v informáciách o balíkoch uložených v pamäti, ako napríklad <b>len "
+"pre mená a súhrny</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Všimnite si</i> , že pokiaľ sa pre vyhľadávanie podľa názvov používajú "
+"regulárne výrazy, použije sa plný súborový názov balíčka s verziou ."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
 msgstr ""
+"<i>Tlačidlo Vymazať vyhľadávanie</i> resetuje textové pole vyhľadávania"
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1679,6 +1759,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Tento panel zobrazuje všetky skupiny, ktoré majú byť použité k filtrovaniu "
+"balíčkov podľa skupín, pokiaľ je vybrané zobrazenie skupín. Zvláštna skupina "
+"<i>Hľadanie</i> sa pridá, pokiaľ je prevedené vyhľadávanie."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1686,12 +1769,18 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Tento panel zobrazuje všetky filtrované balíčky s ich základnými "
+"informáciami, ako je <i>názov</i>, <i>súhrn</i>, <i>verzia</i>, <i>vydanie</"
+"i>, <i>architektúra</i>, <i>veľkosť</i>a <i>stav</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Zaškrtávacie políčko pre všetky balíky je k dispozícii na pridanie "
+"súvisiaceho balíka do transakcie pre inštaláciu, aktualizáciu alebo "
+"odstránenie."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1699,26 +1788,32 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Tento panel zobrazuje všetky informácie o balíčkoch, napríklad <i>popis</i>, "
+"<i>URL</i>, <i>úložisko</i>, <i>požiadavky</i>, <i>zoznam súborov</i> a "
+"<i>zoznam zmien</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Pamätajte, že dnfdragora zatiaľ neposkytuje poznámky o vydaní.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Indikátor priebehu"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Indikátor priebehu zobrazuje priebeh operácií dnfdragora, ako sú transakcie "
+"a ukladanie údajov do pamäte cache."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Riadok tlačidiel"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1726,16 +1821,21 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Použiť</b>: keď sú niektoré balíčky vybrané pre inštaláciu alebo "
+"aktualizáciu alebo odznačené pre odinštalovanie. Toto tlačítko spustí "
+"transakcie, ktoré majú byť prevedené.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Vybrať všetko</b>: pokiaľ sú vyfiltrované len aktualizácie, toto "
+"tlačítko umožňuje vybrať všetky balíčky naraz.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Ukončiť</b>: ukončí program dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1831,7 +1931,7 @@ msgstr "v menách súborov"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Použiť regexp"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1871,7 +1971,7 @@ msgstr "&Informácie"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&História"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
@@ -1962,7 +2062,7 @@ msgstr "Zostaviť transakciu"
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Neznáma akcia %(action)s na %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
@@ -1991,11 +2091,11 @@ msgstr "Chyba zostavenia transakcie"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "Chýba kľúč GPG"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Chyba vyhľadávania pomocou regulárneho výrazu"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
@@ -2034,7 +2134,7 @@ msgstr "%d aktualizácie sú k dispozícii"
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Nie sú k dispozícii žiadne aktualizácie"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2063,18 +2163,3 @@ msgstr ""
 "spoločnosťou SUSE, aby mohla byť spustená pomocou rozhrania Qt 5, GTK + 3 "
 "alebo ncurses. Poskytuje rozhranie pre správcu balíkov DNF, ktoré je možné "
 "použiť v akomkoľvek prostredí systému."
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Pokračovať bez žiadania o potvdenie"
-
-#~ msgid "Log options  (active at next startup)"
-#~ msgstr "Možnosti denníka Log (aktívne pri ďalšom spustení)"
-
-#~ msgid "Software Management"
-#~ msgstr "Správa softvéru"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Zatial neurobené"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Neznáma akcia %s na %s"
