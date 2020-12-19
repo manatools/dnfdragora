@@ -499,7 +499,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:528
 msgid "Fastest mirror"
-msgstr ""
+msgstr "אתר המַּראָה המהיר ביותר"
 
 #: dnfdragora/dialogs.py:529
 msgid "GPG check"
@@ -515,7 +515,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr ""
+msgstr "פענוח כתובת IP"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
@@ -551,7 +551,7 @@ msgstr "חבילות"
 
 #: dnfdragora/dialogs.py:541
 msgid "Password"
-msgstr "ססמה"
+msgstr "סיסמה"
 
 #: dnfdragora/dialogs.py:542
 msgid "Priority"
@@ -644,11 +644,11 @@ msgstr "לעולם לא"
 #: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s שניה/ות"
 
 #: dnfdragora/dialogs.py:727
 msgid "Now"
-msgstr ""
+msgstr "כעת"
 
 #: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
@@ -668,7 +668,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "שחזור לברירת המח&דל"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -696,7 +696,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:967
 msgid "Show updates"
-msgstr ""
+msgstr "הצגת העדכונים"
 
 #: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
@@ -781,7 +781,7 @@ msgstr "נגישות"
 
 #: dnfdragora/groupicons.py:25
 msgid "Archiving"
-msgstr "כיווץ"
+msgstr "ניהול ארכיונים"
 
 #: dnfdragora/groupicons.py:28
 msgid "Backup"
@@ -863,7 +863,7 @@ msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:109
 msgid "GNOME and GTK+"
-msgstr "GNOME ו־GTK+‎"
+msgstr "GNOME ו־GTK‏+‎"
 
 #: dnfdragora/groupicons.py:113
 msgid "Java"
@@ -928,11 +928,11 @@ msgstr "משחקים"
 
 #: dnfdragora/groupicons.py:181
 msgid "Adventure"
-msgstr "משחקי הרפתקה"
+msgstr "הרפתקאות"
 
 #: dnfdragora/groupicons.py:185
 msgid "Arcade"
-msgstr "משחקי Arcade"
+msgstr "ארקייד"
 
 #: dnfdragora/groupicons.py:189
 msgid "Boards"
@@ -1318,11 +1318,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "לוח החבילות"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "לוח המידע"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
@@ -1334,11 +1334,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "תפריט קובץ"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "תפריט מידע"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
@@ -1381,7 +1381,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "תפריט קובץ"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
@@ -1395,7 +1395,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr "<h2>רענון המטא־נתונים</h2>"
+msgstr "<h2>רענון נתוני העל</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1425,7 +1425,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "תפריט מידע"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
@@ -1446,11 +1446,11 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "תפריט אפשרויות"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>העדפות משתמש</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1465,7 +1465,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "אפשרויות dnfdragora"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1476,7 +1476,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>אפשרויות מערכת</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1505,7 +1505,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>אפשרויות פריסה</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1527,7 +1527,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>אפשרויות חיפוש</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1577,7 +1577,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>על אודות</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
@@ -1600,7 +1600,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
-msgstr ""
+msgstr "אם <i>כולן</i> נבחרו, לוח החבילות מכיל את כל החבילות."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
@@ -1638,7 +1638,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>חיפוש</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1699,7 +1699,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "שורת התקדמות"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
@@ -1902,7 +1902,7 @@ msgstr "חסר מידע"
 
 #: dnfdragora/ui.py:1019
 msgid "Repository"
-msgstr ""
+msgstr "מאגר"
 
 #: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
