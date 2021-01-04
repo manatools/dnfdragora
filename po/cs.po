@@ -6,8 +6,8 @@
 # Translators:
 # Jiří Vírava <appukonrad@gmail.com>, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Luděk Janča <joelp@email.cz>, 2020
 # fri, 2020
+# Luděk Janča <joelp@email.cz>, 2021
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: fri, 2020\n"
+"Last-Translator: Luděk Janča <joelp@email.cz>, 2021\n"
 "Language-Team: Czech (https://www.transifex.com/MageiaLinux/teams/9361/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1745,7 +1745,7 @@ msgid ""
 "package filename with version is used."
 msgstr ""
 "<i>Všimněte si</i>, že pokud se pro vyhledávání podle názvů používají "
-"regulární výrazy, použije se plný souborový název balíčku s verzí ."
+"regulární výrazy, použije se plný název souboru balíčku s jeho verzí."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1785,8 +1785,8 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
-"Tento panel zobrazuje všechny informace o balíčku, například <i>popis</i>, "
-"<i>URL</i>, <i>úložiště</i>, <i>požadavky</i>, <i>seznam souborů</i> a "
+"Tento panel zobrazuje všechny informace o balíčku, jako je <i>popis</i>, "
+"<i>URL</i>, <i>repozitář</i>, <i>požadavky</i>, <i>seznam souborů</i> a "
 "<i>seznam změn</i>."
 
 #: dnfdragora/helpinfo.py:204
