@@ -1,7 +1,8 @@
-2020-XX-YY v. 2.1.t
+2021-01-06 v. 2.1.1
 ---------------------
+- Updated translations
 - Fix issue #172 `show only new packages` triggers dnfdragora crash
-- Fix issue #168
+- Fix issue #168 for loading icons
 - Managed line feed into descriptions see https://bugs.mageia.org/show_bug.cgi?id=27274
 - Added an user preference to consider upgrades as updates (issue #163)
 
