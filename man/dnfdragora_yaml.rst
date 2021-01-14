@@ -29,13 +29,8 @@
 DNFDragora by default uses the global configuration file at
 ``/etc/dnfdragora/dnfdragora.yaml``.
 
-This can be overridden by specifying a different configuration-file in the
-following ways:
-
-    * Setting the environment variable $dnfdragora to the full path to the
-      configuration-file.
-    * Placing the configuration in ~/dnfdragora.yaml.
-    * Placing the configuration in the current working-directory.
+User preferences are saved into ``~/.config/dnfdragora.yaml``, and can be all set 
+by using the related dialog under Options menu.
 
 The configuration-file will be looked up in the previous order of options.
 

@@ -1,7 +1,7 @@
 :orphan:
 
 ..
-  Copyright (C) 2016-2017 Angelo Naselli and Neal Gompa
+  Copyright (C) 2016-2021 Angelo Naselli and Neal Gompa
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -76,6 +76,9 @@ can be run using Qt 5, GTK+ 3, or ncurses interfaces.
 
 ``--install <RPM-Packages …>``
     Install local rpm packages.
+
+``--update-only``
+    Start a dialog showing only packages to update.
 
 ``--version``
     Show application version and exit.
