@@ -22,6 +22,20 @@ from queue import SimpleQueue, Empty
 import logging
 logger = logging.getLogger('dnfdragora.updater')
 
+
+class DnfdragoraUpdaterTray(Tray):
+    '''
+    pystray.Icon subclass with auto-closing notifications
+    '''
+    notification_expire_timeout = 7  # in seconds
+
+    def notify(self, *args, **kw):
+        super().notify(*args, **kw)
+        logger.debug('Scheduling notification expiration in {} seconds'.format(self.notification_expire_timeout))
+        # XXX: is this thread-safe?
+        threading.Timer(self.notification_expire_timeout, self.remove_notification).start()
+
+
 class Updater:
 
     def __init__(self, options={}):
@@ -138,7 +152,7 @@ class Updater:
             MenuItem(_('Exit'), self.__shutdown)
         )
         self.__name  = 'dnfdragora-updater'
-        self.__tray  = Tray(self.__name, icon=self.__icon, title=self.__name, menu=self.__menu)
+        self.__tray  = DnfdragoraUpdaterTray(self.__name, icon=self.__icon, title=self.__name, menu=self.__menu)
 
 
     def __get_theme_icon_pathname(self, name='dnfdragora'):
