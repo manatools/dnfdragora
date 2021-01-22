@@ -827,7 +827,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.RestoreButton.setWeight(0,1)
 
     st = self.factory.createHStretch(hbox_bottom)
-    st.setWeight(0,4)
+    st.setWeight(0,1)
 
     self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Close"))
     self.eventManager.addWidgetEvent(self.quitButton, self.onQuitEvent)
