@@ -7,7 +7,7 @@
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
+# Omeritzics Games <omeritzicschwartz@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2020\n"
+"Last-Translator: Omeritzics Games <omeritzicschwartz@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -302,7 +302,7 @@ msgstr "ניקוי: %s"
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Removing: %s"
-msgstr "בהסרה: %s"
+msgstr "כעת בהסרה: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
@@ -317,7 +317,7 @@ msgstr ""
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr "בשנמוך: %s"
+msgstr "כעת בשנמוך: %s"
 
 #: dnfdragora/const.py:149
 #, python-format
@@ -567,11 +567,11 @@ msgstr "שרת מתווך (Proxy)"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr "הסיסמה של המתווך (פרוקסי)"
+msgstr "הסיסמה של השרת המתווך"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr "שם המשתמש של המתווך (פרוקסי)"
+msgstr "שם המשתמש של השרת המתווך"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
