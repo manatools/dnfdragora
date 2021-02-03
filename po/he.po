@@ -1118,7 +1118,7 @@ msgstr "מדעי המחשב"
 
 #: dnfdragora/groupicons.py:385
 msgid "Geosciences"
-msgstr "גיאו־מדעים"
+msgstr "מדעי כדור הארץ"
 
 #: dnfdragora/groupicons.py:389
 msgid "Mathematics"
@@ -1699,7 +1699,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr "שורת התקדמות"
+msgstr "סרגל התקדמות"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
