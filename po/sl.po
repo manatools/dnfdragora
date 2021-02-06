@@ -441,7 +441,7 @@ msgstr "zamenjava"
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
-msgstr "Skupna velikost"
+msgstr "Skupna velikost "
 
 #: dnfdragora/dialogs.py:475
 msgid "Developers"
