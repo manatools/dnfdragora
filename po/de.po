@@ -8,10 +8,10 @@
 # Marc Lattemann, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # 72052d191679bd14fdaac68448536549_ea3d090 <ad38b3d85c6d338555004cd2142ae0ac_566646>, 2018
-# Klaus Christian Harke <k.c.harke@gmx.net>, 2020
 # Ettore Atalan <atalanttore@googlemail.com>, 2020
 # Peter Grun, 2020
 # psyca, 2020
+# Klaus Christian Harke <k.c.harke@gmx.net>, 2021
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: psyca, 2020\n"
+"Last-Translator: Klaus Christian Harke <k.c.harke@gmx.net>, 2021\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
 "de/)\n"
 "Language: de\n"
@@ -1433,7 +1433,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr "<h2>Repositorys</h2>"
+msgstr "<h2>Repositories</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1451,7 +1451,7 @@ msgstr "<h2>Beenden</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr "Dieses Menü beenden dnfdragora.<br>"
+msgstr "Dieses Menü beendet dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
@@ -1467,10 +1467,9 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
-" In diesem Menü wird ein Dialogfeld mit dem Transaktionsverlauf ausgeführt, "
-"der in einem nach Datum geordneten Baum angezeigt wird. Der ausgewählte "
-"Verlauf kann durch Drücken der <b>Undo</b> Schaltfläche zurückgesetzt werden."
-"<br>"
+"Dieser Menüpunkt erzeugt ein Dialogfeld, das den Transaktionsverlauf  in "
+"einem nach Datum geordneten Baum darstellt. Der ausgewählte Verlauf kann "
+"durch Drücken der <b>Undo</b> Schaltfläche rückgängig gemacht werden.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
@@ -1494,7 +1493,7 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
-"Dieses Menü öffnet ein %s Enthält Benutzereinstellungen zum Anpassen des "
+"Dieses Menü öffnet ein %s mit Benutzereinstellungen zum Anpassen des "
 "Verhaltens von dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
@@ -1587,7 +1586,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr "<h2>Such Optionen</h2>"
+msgstr "<h2>Suchoptionen</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1596,9 +1595,8 @@ msgid ""
 "performed by using regular expressions</i></li>"
 msgstr ""
 "<ul><li><b>Nur die neuesten Pakete anzeigen</b>: Wenn aktiviert, zeigt "
-"dnfdragora nur die neuesten Pakete bei der Suche an. <i>Beachten Sie, dass "
-"dies nur gültig ist, wenn keine Suche mit regulären Ausdrücken durchgeführt "
-"wird.</i></li>"
+"dnfdragora als Suchergebnis nur die neuesten Pakete an. <i>Dies gilt nicht, "
+"wenn eine Suche mit regulären Ausdrücken durchgeführt wird.</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
@@ -1611,7 +1609,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr "<h2>Protokollier-Optionen</h2>"
+msgstr "<h2>Protokollierungs-Optionen</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1639,7 +1637,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr "Hilfe Menü"
+msgstr "Hilfe-Menü"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
@@ -1822,7 +1820,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr "Tasten Leiste"
+msgstr "Tasten-Leiste"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1972,7 +1970,7 @@ msgstr "Metadaten aktualisieren"
 
 #: dnfdragora/ui.py:592
 msgid "Repositories"
-msgstr "Repositorys"
+msgstr "Repositories"
 
 #: dnfdragora/ui.py:602
 msgid "&Information"
@@ -2046,7 +2044,7 @@ msgstr "Nicht unterstützter Event %d"
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
-msgstr "Vorgang starten"
+msgstr "Übertragung starten"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
@@ -2104,12 +2102,12 @@ msgstr "GPG-Schlüssel fehlt"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr "Suchfehler mit regulären Ausdrücken"
+msgstr "Fehler bei der Suche mit regulären Ausdrücken"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr "Fehler beim Start des dnfdaemon Dienst: [%s]"
+msgstr "Fehler beim Start des Dienstes dnfdaemon: [%s]"
 
 #: dnfdragora/updater.py:133
 msgid "Update"
