@@ -7,10 +7,11 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Fırat Kutlu <firatkutlu@yandex.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2017
-# tarakbumba <tarakbumba@gmail.com>, 2018
-# mahmut özcan <faradundamarti@yandex.com>, 2018
-# mahmut özcan <mahmutozcan65@yahoo.com>, 2018
+# mahmut özcan <mahmutozcan@protonmail.com>, 2018
 # Serdar Sağlam <teknomobil@msn.com>, 2019
+# tarakbumba <tarakbumba@gmail.com>, 2020
+# mahmut özcan <faradundamarti@yandex.com>, 2020
+# Muha Aliss <muhaaliss@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -19,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Serdar Sağlam <teknomobil@msn.com>, 2019\n"
+"Last-Translator: Muha Aliss <muhaaliss@gmail.com>, 2021\n"
 "Language-Team: Turkish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "tr/)\n"
 "Language: tr\n"
@@ -126,7 +127,7 @@ msgstr ""
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Hata oluştu::%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -208,7 +209,7 @@ msgstr "Arama sonucu"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Kategorisiz"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -532,7 +533,7 @@ msgstr "Ortam Kimliği"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
-msgstr "Üstveri geçerliliği"
+msgstr "Üst veri geçerliliği"
 
 #: dnfdragora/dialogs.py:536
 msgid "Meta link"
@@ -661,7 +662,7 @@ msgstr "Sistem"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Düzen"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
@@ -669,11 +670,11 @@ msgstr "Ara"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Günlük Tutma"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "&Varsayılana döndür"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -681,31 +682,31 @@ msgstr "Sistem seçenekleri"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "İşlemleri onay gerekmeden paketlerde otomatik olarak çalıştırın"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Güncelleme yoksa dnfdragora güncelleme menüsünü gizle"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Güncellemeleri kontrol etme aralığı (dakika)"
 
 #: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Üst verilerin geçerlilik süresi (saat)"
 
 #: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Düzen seçenekleri (sonraki açılışta geçerli olur)"
 
 #: dnfdragora/dialogs.py:967
 msgid "Show updates"
-msgstr ""
+msgstr "Güncellemeleri göster"
 
 #: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Grup görünümünü gösterme"
 
 #: dnfdragora/dialogs.py:994
 msgid "Search options"
@@ -721,23 +722,23 @@ msgstr "Tüm kelimeleri eşleştir"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Günlük seçenekleri (sonraki açılışta geçerli olur)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Günlük kaydı tutmayı etkinleştir"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
-msgstr ""
+msgstr "&Dizini değiştir"
 
 #: dnfdragora/dialogs.py:1067
 msgid "Debug level"
-msgstr ""
+msgstr "Hata ayıklama seviyesi"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Günlük kayıtları için hedef dizin seçin"
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
@@ -776,7 +777,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "paketin herhangi bir %s özelliği yok"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -1317,27 +1318,27 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Menü satırı"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filtreler ve arama satırı"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Grup paneli"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Paket paneli"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Bilgi paneli"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "İlerleme çubuğu satırı"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
@@ -1345,31 +1346,36 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Dosya menüsü"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Bilgi paneli"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Seçenekler menüsü"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Yardım menüsü"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora, Mageia rpmdragora düzenine ve dnfdaemon ile Fedora yumex-dnf "
+"etkileşimine dayanan bir DNF ön yüzüdür.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora, temelde paketleri yüklemeye, güncellemeye, kaldırmaya, aramaya "
+"ve daha fazlasına izin veren bir paket yöneticisi kullanıcı arayüzüdür."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1377,36 +1383,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora, manatoollerin bir parçasıdır ve libyui'ye dayanır, böylelikle "
+"Gtk, Qt veya ncurses, yani hem grafik hem de metinsel kullanıcı arayüzlerini "
+"kullanarak çalışabilir.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora penceresi şunlardan oluşur:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Menü çubuğu içeriği"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Menü çubuğu dnfdragora açılır menülerini içerir:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Dosya Menüsü"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Seçimi sıfırla</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Bu menü, kurulum veya kaldırma için herhangi bir paket seçilmişse, paketler "
+"üzerindeki işaretleri kaldırır, seçimler önceki duruma geri döner.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Üst veriyi yenile</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1414,10 +1425,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Bu menü, dnfdaemon'a tüm üst verilerin yenilenmesini zorlamak için bir istek "
+"gönderir. Bu eylem zaman uyumsuzdur ve paket bilgisi ön belleğini yeniden "
+"oluşturmayı gerektirir.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Depolar</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1425,22 +1439,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Bu menü, depoları etkinleştirmeye veya devre dışı bırakmaya izin veren bir "
+"iletişim kutusu açar. Tüm değişiklikler, dnfdragora çalıştığı sürece "
+"geçerlidir ve kalıcı değildir.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Çık</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Bu menü dnfdragora'dan çıkış yapmayı sağlar.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Bilgi Menüsü"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Geçmiş</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1448,20 +1465,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Bu menü, tarihe göre sıralanmış, ağaç biçiminde gösterilen işlem geçmişini "
+"içeren bir iletişim kutusu çalıştırır. Seçili geçmiş <b>Geri Al</b> "
+"düğmesine basılarak geri alınabilir.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Bu işlevin şu anda dnf API değişikliği nedeniyle çalışmadığını "
+"unutmayın.</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Seçenekler Menüsü"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Kullanıcı tercihleri</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1469,14 +1491,16 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Bu menü, dnfdragora davranışını özelleştirmek için kullanıcı ayarlarını "
+"içeren bir %s açar."
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "iletişim kutusu"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora seçenekleri"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1484,10 +1508,14 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Bu iletişim kutusu, seçenekleri değiştirerek dnfdragora davranışını "
+"özelleştirmenize olanak tanır. Bazı değişiklikler iletişim kutusu "
+"kapatıldıktan sonra geçerli olur, diğerleri dnfdragora'nın yeniden "
+"başlatılmasını gerektirir.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Sistem seçenekleri</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1495,28 +1523,38 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>İşlemleri onay gerekmeksizin paketler üzerinde otomatik olarak "
+"çalıştırın</b>: kontrol edilen işlemlerin onaylanması gerekmiyorsa, "
+"dnfdragora her zaman <i>evet</i> yanıtı verir."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>NOT</b> Bu seçeneğin, paketleri kaldırmanın da sessizce kabul "
+"edildiği anlamına geldiğini unutmayın."
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Güncellemeleri kontrol etme aralığı</b>: verilen sayı, dnfdragora'nın "
+"güncellemeleri kontrol etmesi gerektiği zamanı temsil eder, değer dakika "
+"cinsinden ifade edilir</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Üst verilerin sona erme süresi</b>: Üst veri süresinin dolması için "
+"gereken süre; değer saat olarak ifade edilir</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Düzen seçenekleri</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1524,6 +1562,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Güncellemeleri göster</b>: işaretlendiğinde, dnfdragora "
+"<i>güncelleme</i> filtresi etkin olarak başlar, yani yalnızca güncellemesi "
+"olan paketleri gösterir.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1535,10 +1576,12 @@ msgstr ""
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>NOT</b> Yukarıdaki seçeneklerin dnfdragora'nın yeniden başlatılmasını "
+"gerektirdiğine dikkat edin."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Arama seçenekleri</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1546,6 +1589,9 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Yalnızca en yeni paketleri göster</b>: işaretlenirse, dnfdragora "
+"aramada yalnızca en yeni paketleri gösterir. <i>Normal ifadeler kullanılarak "
+"aramaların yapılmaması durumunda geçerli olduğunu unutmayın.</li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
@@ -1555,7 +1601,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Günlük seçenekleri</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1568,39 +1614,44 @@ msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Dizini değiştir</b>: bu seçenek, günlük kayıtları dizininin "
+"ayarlanmasına izin verir, dizin geçerli olmalı ve yazma izinli olmalıdır.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Hata ayıklama seviyesi</b>: işaretlenmişse ayrıntılı günlük kaydı "
+"etkinleştirilir.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Yardım Menüsü"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Klavuz</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Bu menü, dnfdragora yardım penceresini açar."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Hakkında</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Bu menü dnfdragora'nın hakkında penceresini açar."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Görünüm ve arama"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Görünüm</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1615,7 +1666,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtreler</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
@@ -1649,7 +1700,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Ara</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1710,13 +1761,15 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "İlerleme çubuğu"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"İlerleme çubuğu, işlemler ve ön belleğe alma verileri gibi dnfdragora "
+"işlemlerinin ilerlemesini gösterir."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
@@ -1833,7 +1886,7 @@ msgstr "dosya isimlerinde"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Düzenli ifade kullan"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1873,7 +1926,7 @@ msgstr "&Bilgi"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&Geçmiş"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
@@ -1881,7 +1934,7 @@ msgstr "&Seçenekler"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
-msgstr "Kullanıcı ayarları"
+msgstr "Kullanıcı tercihleri"
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
@@ -1889,7 +1942,7 @@ msgstr "&Yardım"
 
 #: dnfdragora/ui.py:627
 msgid "Manual"
-msgstr "Elle"
+msgstr "Klavuz"
 
 #: dnfdragora/ui.py:629
 msgid "&About"
@@ -1935,7 +1988,7 @@ msgstr "Yönetilmeyen programcık"
 #: dnfdragora/ui.py:1467
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Yönetilmeyen olay %d"
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
@@ -1993,7 +2046,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "GPG anahtarı eksik"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
@@ -2036,7 +2089,7 @@ msgstr "%d adet güncelleme var."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Güncelleme yok"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2067,52 +2120,3 @@ msgstr ""
 "soyutlama kütüphanesini kullanır. Böylece QT 5, GTK+3 veya ncurses "
 "arayüzleri kullanılarak çalıştırılabilir. Her türlü sistem çevresinde "
 "kullanılabilen DNF paket yöneticisine bir ön yüz sağlar."
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Onaylama sormadan devam et"
-
-#~ msgid "Software Management"
-#~ msgstr "Yazılım Yönetimi"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Henüz bu özellik eklenmedi"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Yönetilmeyen olay"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Bir sonraki başlangıçta grup görünümünü görüntüleme"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Bir sonraki başlangıçta güncellemeleri görüntüle"
-
-#~ msgid "Layout options"
-#~ msgstr "Düzen seçenekleri"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Dakika cinsinden güncellemeleri denetleme sıklığı:"
-
-#~ msgid "History undo"
-#~ msgstr "Geri alma geçmişi"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF bir başka işlem tarafından kilitlenmiş.\n"
-#~ "\n"
-#~ "dnfdragora' dan çıkılacak"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF kök uçbirimi yetkilendirilmemiş.\n"
-#~ "dnfdragora' dan çıkılacak"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "DNF önbelleği (kök) yenilenemiyor"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "İşlemDerleme hatası"
