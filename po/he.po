@@ -7,7 +7,7 @@
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omeritzics Games <omeritzicschwartz@gmail.com>, 2021
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omeritzics Games <omeritzicschwartz@gmail.com>, 2021\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -404,7 +404,7 @@ msgstr "היסטוריה (תאריך/שעה)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr ""
+msgstr "היסטוריית העברות"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
@@ -463,7 +463,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
-msgstr ""
+msgstr "עלות"
 
 #: dnfdragora/dialogs.py:520
 msgid "DeltaRPM"
