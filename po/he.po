@@ -1761,7 +1761,7 @@ msgstr "דרישות"
 
 #: dnfdragora/ui.py:379
 msgid "Software Management - dnfdragora"
-msgstr "ניהול תכנה - dnfdragora"
+msgstr "ניהול תוכנה - dnfdragora"
 
 #: dnfdragora/ui.py:440
 msgid "Arch"
