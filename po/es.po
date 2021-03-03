@@ -12,6 +12,7 @@
 # Jose Manuel López <joselp@disroot.org>, 2020
 # Miguel, 2020
 # José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2020
+# Alejandro Farías <farias@8loop.cl>, 2021
 #
 #, fuzzy
 msgid ""
@@ -204,7 +205,7 @@ msgstr "Vacío"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr "Resultado de búlsqueda"
+msgstr "Resultado de búsqueda"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
@@ -440,11 +441,11 @@ msgstr "&Cancelar"
 
 #: dnfdragora/dialogs.py:404
 msgid "replacing "
-msgstr "reemplazando"
+msgstr "reemplazando "
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
-msgstr "Tamaño total"
+msgstr "Tamaño total "
 
 #: dnfdragora/dialogs.py:475
 msgid "Developers"
