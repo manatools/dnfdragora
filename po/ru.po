@@ -1838,7 +1838,7 @@ msgstr "в именах файлов"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Использовать regexp"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1878,7 +1878,7 @@ msgstr "&Информация"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "История"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
