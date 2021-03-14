@@ -4,9 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Michael Eklund <willard@null.net>, 2018
-# Kristoffer Grundström <hamnisdude@gmail.com>, 2019
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
+# Michael Eklund <willard@null.net>, 2020
+# Kristoffer Grundström <lovaren@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Kristoffer Grundström <hamnisdude@gmail.com>, 2019\n"
+"Last-Translator: Kristoffer Grundström <lovaren@gmail.com>, 2021\n"
 "Language-Team: Swedish (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sv/)\n"
 "Language: sv\n"
@@ -308,7 +308,7 @@ msgstr "Tar bort: %s"
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Inaktualiserar: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
@@ -323,7 +323,7 @@ msgstr "Nergraderar: %s"
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Nergraderade: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -333,7 +333,7 @@ msgstr "Bekräftar: %s"
 #: dnfdragora/const.py:151
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Kör skriptlet: %s"
 
 #: dnfdragora/const.py:152
 #, python-format
@@ -363,7 +363,7 @@ msgstr "Förbättring"
 
 #: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
-msgstr ""
+msgstr "Ångra överföring"
 
 #: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
@@ -378,8 +378,8 @@ msgstr[1] "Fel vid nerladdningar"
 #: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Felet i överföring"
+msgstr[1] "Felen i överföringen"
 
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
@@ -405,7 +405,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
-msgstr ""
+msgstr "&Ångra"
 
 #: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
@@ -465,7 +465,7 @@ msgstr "Kostnad"
 
 #: dnfdragora/dialogs.py:520
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:521
 msgid "DeltaRPM percentage"
@@ -481,7 +481,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:524
 msgid "Enable groups"
-msgstr ""
+msgstr "Aktivera grupper"
 
 #: dnfdragora/dialogs.py:525
 msgid "Exclude"
@@ -517,11 +517,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
-msgstr ""
+msgstr "Max parallell nerladdning"
 
 #: dnfdragora/dialogs.py:534
 msgid "Media ID"
-msgstr ""
+msgstr "Media-ID"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
@@ -529,7 +529,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:536
 msgid "Meta link"
-msgstr ""
+msgstr "Meta-länk"
 
 #: dnfdragora/dialogs.py:537
 msgid "Min rate"
@@ -565,11 +565,11 @@ msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr ""
+msgstr "Lösenord för proxy"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr ""
+msgstr "Användarnamn för proxy"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
@@ -585,15 +585,15 @@ msgstr "Storlek"
 
 #: dnfdragora/dialogs.py:550
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Hoppa över om o-tillgängligt"
 
 #: dnfdragora/dialogs.py:551
 msgid "SSL CA cert"
-msgstr ""
+msgstr "SSL CA-cert"
 
 #: dnfdragora/dialogs.py:552
 msgid "SSL client cert"
-msgstr ""
+msgstr "SSL-klient cert"
 
 #: dnfdragora/dialogs.py:553
 msgid "SSL client key"
@@ -601,7 +601,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:554
 msgid "SSL verify"
-msgstr ""
+msgstr "SSL-bekräftelse"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
@@ -642,7 +642,7 @@ msgstr "Aldrig"
 #: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s sekund(er)"
 
 #: dnfdragora/dialogs.py:727
 msgid "Now"
@@ -654,7 +654,7 @@ msgstr "System"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
@@ -662,7 +662,7 @@ msgstr "Sök"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Loggning"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
@@ -702,11 +702,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:994
 msgid "Search options"
-msgstr ""
+msgstr "Sök-alternativ"
 
 #: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Visa endast nya paket"
 
 #: dnfdragora/dialogs.py:1005
 msgid "Match all words"
@@ -1903,7 +1903,7 @@ msgstr "Information som saknas"
 
 #: dnfdragora/ui.py:1019
 msgid "Repository"
-msgstr ""
+msgstr "Filförråd"
 
 #: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
@@ -1920,7 +1920,7 @@ msgstr "Skyddat paket är valt"
 
 #: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "O-hanterad widget"
 
 #: dnfdragora/ui.py:1467
 #, python-format
@@ -2049,30 +2049,3 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "Software Management"
-#~ msgstr "Programhantering"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Inte implementerad än"
-
-#~ msgid "Ch&eck all"
-#~ msgstr "Vä&lj alla"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Ej hanterad händelse"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Visa uppdateringar vid nästa uppstart"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF är låst av en annan process.\n"
-#~ "\n"
-#~ "dnfdragora kommer att avslutas"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Kunde inte uppdatera DNF-cache (root)"
