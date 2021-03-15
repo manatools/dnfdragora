@@ -7,12 +7,12 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatica@protonmail.com>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Celio Alves <dreamcelio@gmail.com>, 2020
 # Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020
 # 3f37d448649cd548fa5a733e33387c2a_dee4ccf, 2020
 # 0ff1bb82b239377c0e501bd7ef909ffe_5dd6a88 <b540bc7f8bba02a4e77b4237091f7f15_537816>, 2020
 # Michael Martins <michaelfm21@gmail.com>, 2020
 # lrampazzo <lrampazzo@gmail.com>, 2020
+# Celio Alves <dreamcelio@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: lrampazzo <lrampazzo@gmail.com>, 2020\n"
+"Last-Translator: Celio Alves <dreamcelio@gmail.com>, 2021\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -208,7 +208,7 @@ msgstr "Resultado da pesquisa"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sem categoria"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -673,7 +673,7 @@ msgstr "Registrando"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Restaurar &padrão"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
