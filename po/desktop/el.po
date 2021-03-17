@@ -1,14 +1,15 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2018
 # Dimitrios Glentadakis <dglent@free.fr>, 2018
+# tsallinia <tsallinia@riseup.net>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-10-17 21:01+0300\n"
+"POT-Creation-Date: 2021-01-06 14:51+0200\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
-"Last-Translator: Dimitrios Glentadakis <dglent@free.fr>, 2018\n"
+"Last-Translator: tsallinia <tsallinia@riseup.net>, 2021\n"
 "Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -54,9 +55,9 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "Εγκαταστάτης Πακέτων RPM"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "Εγκατάσταση τοπικών πακέτων στο σύστημα"
