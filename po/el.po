@@ -4,12 +4,12 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Geiger David <david.david@mageialinux-online.org>, 2017
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
-# tsallinia <tsallinia@riseup.net>, 2017
 # Oresti Koxhaj, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Dimitrios Glentadakis <dglent@free.fr>, 2019
+# Geiger David <david.david@mageialinux-online.org>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2020
+# Dimitrios Glentadakis <dglent@free.fr>, 2020
+# tsallinia <tsallinia@riseup.net>, 2021
 #
 #, fuzzy
 msgid ""
@@ -18,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Dimitrios Glentadakis <dglent@free.fr>, 2019\n"
+"Last-Translator: tsallinia <tsallinia@riseup.net>, 2021\n"
 "Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr "KDE"
+msgstr "Περιβάλλον εργασίας KDE"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
@@ -178,7 +178,7 @@ msgstr "Εξυπηρετητές"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr ""
+msgstr "Βασικό Σύστημα"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
@@ -277,7 +277,7 @@ msgstr "Ενημέρωση του: %s "
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Ενημερώθηκαν: %s "
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -317,12 +317,12 @@ msgstr ""
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Υποβάθμιση %s"
 
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Υποβαθμίστηκαν %s"
 
 #: dnfdragora/const.py:150
 #, python-format
@@ -392,7 +392,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:296
 msgid "History"
-msgstr "Ιστορία"
+msgstr "Ιστορικό"
 
 #: dnfdragora/dialogs.py:303
 msgid "History (Date/Time)"
@@ -656,11 +656,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "Αναζήτηση"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Καταγραφές"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
@@ -1862,7 +1862,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
-msgstr ""
+msgstr "Επιλο&γές"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
@@ -2044,6 +2044,3 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "Software Management"
-#~ msgstr "Λογισμικό"
