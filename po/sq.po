@@ -7,7 +7,7 @@
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Ardit Dani <ardit.dani@gmail.com>, 2019
+# Ardit Dani <ardit.dani@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Ardit Dani <ardit.dani@gmail.com>, 2019\n"
+"Last-Translator: Ardit Dani <ardit.dani@gmail.com>, 2021\n"
 "Language-Team: Albanian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sq/)\n"
 "Language: sq\n"
@@ -117,12 +117,12 @@ msgstr "gabim në atribut ndodhi dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon ndodhi gabimi i tipit:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Ndodhi gabim:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -204,7 +204,7 @@ msgstr "Kërkues rezultatesh"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "pakategorizuar"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -388,7 +388,7 @@ msgstr[1] "Gabime në transaksion"
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Ndërtimi i dështimit të transaksionit"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
@@ -658,7 +658,7 @@ msgstr "Sistem"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Paraqitja"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
@@ -666,11 +666,11 @@ msgstr "Kërko"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Futuni"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Rivendos &parazgjedhur"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -679,30 +679,31 @@ msgstr "Alternativa sistemi"
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
+"Bëni transaksione në paketa automatikisht pa pasur nevojë për konfirmim"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Fsheh dnfdragora-update menu nëse nuk ka azhurnime"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Interval për të kontrolluar për azhurnime (minuta)"
 
 #: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Metadata skadon koha (orë)"
 
 #: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Alternativat e paraqitjes (aktive në nisjen tjetër)"
 
 #: dnfdragora/dialogs.py:967
 msgid "Show updates"
-msgstr ""
+msgstr "Shfaq përditësime"
 
 #: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Mos tregoni pamjen e grupeve"
 
 #: dnfdragora/dialogs.py:994
 msgid "Search options"
@@ -718,23 +719,23 @@ msgstr "Përputhni të gjitha fjalët"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
-msgstr ""
+msgstr "Alternativa futëse (aktive në nisjen tjetër)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Mundëso futjen"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
-msgstr ""
+msgstr "Ndrysho &dosje"
 
 #: dnfdragora/dialogs.py:1067
 msgid "Debug level"
-msgstr ""
+msgstr "Niveli korrigjimit"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Zgjidhni dosjen shenimeve të destinacionit"
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
@@ -773,7 +774,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "paketa nuk ka asnjë %s atribute"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -781,7 +782,7 @@ msgstr "Depozitimi grupeve nga paketat..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Komandë në progres"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1310,63 +1311,68 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Shko në indeks"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Vija e menusë"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filtrat dhe linja e kërkimit"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Panel Grupi"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Panel Pakete"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Panel informacioni"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Linja e shiritit të progresit"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Linja e butonit"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Menuja e skedarit"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Menuja e informacionit"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Menuja e alternativave"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Menuja e ndihmës"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora është një DNF frontend, bazuar në Mageia rpmdragora paraqitjen "
+"dhe Fedora yumex-dnf bashkëveprim me dnfdaemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora në thelb është një ndërfaqe përdorimi e menaxherit të paketave që "
+"lejon instalimin, azhurnimin, heqjen, kërkimin e paketave dhe më shumë."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1374,36 +1380,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora është pjesë e manatools dhe bazohet në libyui në mënyrë që të "
+"mund të funksionojë duke përdorur Gtk, Qt ose ncurses, d.m.th. të dy "
+"ndërfaqet grafike dhe tekstuale të përdoruesit.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora dritarja përbëhet nga:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Bar përmbajtja menu"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Menu bar përmban dnfdragora menu poshtë:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Menu Skedarë"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Rivendos zgjedhjen</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Ky meny heq çdo flamur në pako, nëse ndonjë paketë është zgjedhur për "
+"instalim ose heqje, ato do të kthehen në statusin e mëparshëm.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Rifresko metadata</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1411,10 +1422,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Ky menu dërgon një kërkesë te dnfdaemon për të detyruar një rifreskim të të "
+"gjitha të metadata. Ky veprim është asinkron dhe kërkon të rindërtojë "
+"kujtesen e informacionit të paketës.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Depot</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1422,22 +1436,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Ky menu hap një dialog që lejon të aktivizojë ose çaktivizojë depot. Çdo "
+"ndryshim është i vlefshëm për kohën kur dnfdragora po ekzekutohet dhe nuk "
+"është i përhershëm.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Dil</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Ky menu del nga dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Menu Informues"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Histori</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1445,20 +1462,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Ky meny ekzekuton një dialog që përmban historinë e transaksioneve të "
+"treguar në një pemë të renditur sipas datës. Historia e zgjedhur mund të "
+"zhbëhet duke shtypur <b>Çbëj</b> buton.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Vini re se ky funksion aktualisht është prishur për shkak të "
+"ndryshimit të dnf API</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Menu Alternativ"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Preferencat Përdoruesit</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1466,14 +1488,16 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Ky meny hap një %s që përmban cilësimet e përdoruesit për të personalizuar "
+"sjelljen dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "dialog"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora alternativa"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1481,10 +1505,13 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Ky dialog lejon të personalizoni sjelljen e dnfdragora duke ndryshuar "
+"alternativat. Disa ndryshime janë në dispozicion pas mbylljes së dialogut, "
+"tjerët kanë nevojë për një rinisje të dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Alternativa Sistemi</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1492,28 +1519,37 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Bëni transaksione në paketa automatikisht pa pasur nevojë për "
+"konfirmim</b>: nëse transaksionet e kontrolluara nuk kanë nevojë të "
+"konfirmohen, dnfdragora funksionon si gjithmonë duke u përgjigjur <i>po</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>SHËNO</b> se kjo alternativë do të thotë që edhe heqja e paketave "
+"pranohet në heshtje</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Interval kontrolli për azhurnime</b>: numri i dhënë paraqet kur "
+"dnfdragora duhet të kontrollojë për azhurnime, vlera shprehet në minuta</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Metadata skadon koha</b>: koha për të detyruar skadimin e Metadata, "
+"vlera shprehet në orë</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Alternativat e paraqitjes</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1521,6 +1557,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Shfaq azhurnime</b>: nëse kontrollohet dnfdragora fillon me "
+"<i>azhurnime</i> filtra aktive, p.sh. duke treguar vetëm paketën e "
+"disponueshme për azhurnime nëse ka.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1528,14 +1567,18 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>Mos tregoni pamjen e grupeve</b>: filtrimi sipas grupeve mund të "
+"kërkojë CPU nëse përdorni comps, nëse është kontrolluar kjo alternativë "
+"dnfdragora fillon të tregojë të gjitha paketat.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>SHËNO</b> që alternativat e mësipërme kërkojnë që dnfdragora të rindizet."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Alternativa kërkimi</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1543,61 +1586,75 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Shfaq vetëm paketat më të reja</b>: nëse është e kontrolluar "
+"dnfdragora tregon vetëm paketat më të reja në kërkim. <i>Vini re se është e "
+"vlefshme nëse kërkimet nuk kryhen duke përdorur shprehje të rregullta</i></"
+"li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Përputhni të gjitha fjalët</b>: nëse kontrollohet një kërkim pa "
+"përdorur shprehje të rregullta do të përputhet me të gjitha fjalët e dhëna "
+"në fushën e tekstit.</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Alternativa Futëse</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Aktivizoni këto alternativa për të lejuar që dnfdragora të regjistrohet në "
+"skedarin e thirrur <i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Ndrysho dosje</b>: kjo alternativë lejon të vendosni dosje e "
+"regjistrimit, dosja duhet të ekzistojë dhe ka nevojë për leje për të shkruar."
+"</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Nivel korrigjim</b>: nëse regjistrimi i kontrolluar është i "
+"aktivizuar.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Menu ndihmë"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Manual</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Ky menu hapë dialogun ndihmë dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Rreth</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Ky menu hapë dialogun rreth dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Pamjet dhe kërkimi"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Pamjet</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1605,48 +1662,61 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"Kombinimi i parë lejon të shfaqen paketat sipas grupeve. Nëse <i>Grupet</i> "
+"është paneli i zgjedhur i grupit tregon një pamje peme që përmban grupe, "
+"ndërsa zgjedhja e një grupi tregon paketat përkatëse në panelin e paketës."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"Nëse <i>T'gjithë</i> është zgjedhur, paneli i paketës përmban të gjitha "
+"paketat."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filtrat</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"Filter combobox lejon filtrimin e paketave të paraqitura në panelin e "
+"paketave nga:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<ul><li><b>Instaluar</b>: shfaq vetëm paketat e instaluara.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>Jo instaluar</b>: shfaq vetëm paketat e instaluara.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Për azhurnim</b>: tregon paketat që janë në dispozicion vetëm për "
+"azhurnime.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Shfaq veq x86_64 and noarch</b>: nëse dnfdragora është lëshuar në "
+"arkitekturë x86_64, fsheh paketat i686.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>T'gjithë</b>: tregon të gjitha paketat, p.sh të disponueshme, "
+"azhurnime dhe të instaluara.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Kërko</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1654,6 +1724,9 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Kërkimi kryhet duke shtypur butonin <i>Kërko</i> nëse plotësohet fusha e "
+"tekstit. Kërko combobox lejon të kërkohet teksti i dhënë në pako <i>emra</"
+"i>, <i>përmbledhje</i>, <i>përshkrimet</i> ose <i>skedarët</i>."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1661,16 +1734,21 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Një kuti e veçantë Përdor regexp</i> përdoret për të kërkuar paketa nga "
+"shprehjet e rregullta në gjuhën python. Ky kërkim kryhet në informacionin e "
+"paketës së memorizuar si për shembull <b>vetëm emrat dhe përmbledhjet</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Shëno</i> që nëse përdoren shprehje të rregullta për të kërkuar me emra "
+"përdoret emri i skedarit të paketës së plotë me version."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "Butoni <i>Pastro kërkimin</i> rivendos fushën e kërkimit të tekstit."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1678,6 +1756,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Ky panel tregon të gjitha grupet që do të përdoren për të filtruar paketat "
+"sipas grupeve, nëse zgjidhen grupet e shikimit. Grup i veçantë <i>Kërko</i> "
+"shtohet nëse kryhet një kërkim."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1685,12 +1766,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Ky panel tregon të gjitha paketat e filtruara me ato informacione themelore "
+"si p.sh. <i>emri</i>, <i>përmbledhje</i>, <i>versioni</i>, <i>lëshim</i>, "
+"<i>arkitekturë</i>, <i>madhësi</i>, dhe <i>status</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Një kuti kontrolli për çdo pako është në dispozicion për të shtuar paketën e "
+"lidhur me transaksionin për instalimin, azhurnimin ose heqjen."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1698,26 +1784,33 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Ky panel tregon të gjithë informacionin e paketës si p.sh. <i>përshkrimi</"
+"i>, <i>URL</i>, <i>depo</i>, <i>Kërkesat</i>, <i>listë skedarë</i>, dhe "
+"<i>ndryshimeshënime</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Shëno se ndryshimet nuk janë siguruar nga dnfdaemon për momentin."
+"</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Progresi"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Shiriti i progresit tregon ecjen e operacioneve dnfdragora siç janë "
+"transaksionet dhe të dhënat e ruajtjes."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Linja butonave"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1725,16 +1818,21 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Apliko</b>: kur disa paketa zgjidhen për instalim ose azhurnim "
+"ose zgjidhen për çinstalim ky buton ekzekuton transaksionin që do të kryhet."
+"</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Përzgjedh t'gjitha</b>: nëse paketat filtrohen për azhurnime vetëm ky "
+"buton ju lejon të zgjidhni të gjitha paketat në një shkrepje.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Dil</b>: Del nga dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1830,7 +1928,7 @@ msgstr "në emra dokumentesh"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Përdor regexp"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1870,7 +1968,7 @@ msgstr "&Informacion"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&Histori"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
@@ -1932,7 +2030,7 @@ msgstr "Widget i pa-administruar"
 #: dnfdragora/ui.py:1467
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Ngjarje e pakontrolluar %d"
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
@@ -1956,12 +2054,12 @@ msgstr "Verifikoni ndryshimet në sistem"
 
 #: dnfdragora/ui.py:1563
 msgid "Build transaction"
-msgstr ""
+msgstr "Ndërto veprim"
 
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Veprim i panjohur %(action)s në %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
@@ -1970,31 +2068,31 @@ msgstr "Shkarkimi %(count_files)d skedarëve (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1659
 msgid "Caching updates"
-msgstr ""
+msgstr "Ruajtje azhurnime"
 
 #: dnfdragora/ui.py:1662
 msgid "Caching installed"
-msgstr ""
+msgstr "Ruajtje instaluar"
 
 #: dnfdragora/ui.py:1665
 msgid "Caching available"
-msgstr ""
+msgstr "Ruajtje t'disponueshme"
 
 #: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Krijimi ruajtjes të paketave"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Ndërto gabimin e transaksionit"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "GPG mungon çelësi"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Gabim kërkimi duke përdorur shprehjen e rregullt"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
@@ -2033,7 +2131,7 @@ msgstr "%d përditësime në dispozicion."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Asnjë azhurnim i disponueshëm"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2062,52 +2160,3 @@ msgstr ""
 "shkruar nga SUSE, në mënyrë që mund të përdoret Qt 5, GTK+ 3, ose ndërfaqja "
 "ncurses. Ai siguron një frontend për administrimin e paketave DNF qç mund të "
 "përdoret në çdo lloj mjedisi të sistemit."
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Vazhdo pa kërkuar konfirmim"
-
-#~ msgid "Software Management"
-#~ msgstr "Administruesi Programeve"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ende pa zbatuar"
-
-#~ msgid "Unmanaged event"
-#~ msgstr "Ngjarje pa-administruar"
-
-#~ msgid "Do not show groups view next startup"
-#~ msgstr "Mos shfaq pikëpamjen e grupeve në ndezjen tjetër"
-
-#~ msgid "Show updates next startup"
-#~ msgstr "Shfaq përditësimet në ndeshjen tjetër"
-
-#~ msgid "Layout options"
-#~ msgstr "Alternativa faqosje"
-
-#~ msgid "Interval in minutes to check for updates:"
-#~ msgstr "Intervali në minuta për të kontrolluar përditësimet:"
-
-#~ msgid "History undo"
-#~ msgstr "Zhbëj Historikun"
-
-#~ msgid ""
-#~ "DNF is locked by another process.\n"
-#~ "\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF është i bllokuar nga një proces tjetër.\n"
-#~ "\n"
-#~ "dnfdragora do të dalë"
-
-#~ msgid ""
-#~ "DNF root backend was not authorized.\n"
-#~ "dnfdragora will exit"
-#~ msgstr ""
-#~ "DNF root ruajtja nuk ishte i autorizuar.\n"
-#~ "dnfdragora do të dalë"
-
-#~ msgid "Could not refresh the DNF cache (root)"
-#~ msgstr "Nuk mund të rifreskoj depo DNF (root)"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Dështim NdërtimTransaksioni"
