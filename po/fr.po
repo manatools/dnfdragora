@@ -11,11 +11,11 @@
 # d80ebd4b9692a268e2da589d73937486, 2018
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
 # Charles Monzat <c.monzat@laposte.net>, 2020
-# Yves Brungard, 2020
 # Eric Barbero <dune06@free.fr>, 2020
 # Kévin R., 2020
 # Aurelien <aoudelet@outlook.com>, 2020
 # stroibe974 <sebsweb@gmail.com>, 2020
+# Yves Brungard, 2021
 #
 #, fuzzy
 msgid ""
@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: stroibe974 <sebsweb@gmail.com>, 2020\n"
+"Last-Translator: Yves Brungard, 2021\n"
 "Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -450,7 +450,7 @@ msgstr "remplacement"
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
-msgstr "Taille totale"
+msgstr "Taille totale "
 
 #: dnfdragora/dialogs.py:475
 msgid "Developers"
