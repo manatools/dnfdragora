@@ -371,10 +371,10 @@ msgstr "שגיאה בבדיקת חתימות חבילה"
 #: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] "שגיאת הורדה"
-msgstr[1] "שגיאות הורדה"
-msgstr[2] "שגיאות הורדה"
-msgstr[3] "שגיאות הורדה"
+msgstr[0] "שגיאת בהורדה"
+msgstr[1] "שגיאות בהורדה"
+msgstr[2] "שגיאות בהורדה"
+msgstr[3] "שגיאות בהורדה"
 
 #: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
