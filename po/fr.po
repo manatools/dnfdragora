@@ -40,15 +40,15 @@ msgstr "%(prog)s [options]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr "démarrer en utilisant le greffon yui GTK+"
+msgstr "démarrer en utilisant les graphismes GTK+"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "démarrer en utilisant le greffon yui ncurses"
+msgstr "démarrer en utilisant le mode texte ncurses"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr "démarrer en utilisant le greffon yui Qt"
+msgstr "démarrer en utilisant les graphismes Qt"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
@@ -79,7 +79,7 @@ msgstr "installer les paquetages"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "utiliser uniquement le dialogue des mises à jour"
+msgstr "afficher uniquement le dialogue des mises à jour"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
@@ -139,8 +139,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
-"imposer un nouveau chemin pour les icônes nécessaires (à la place de /usr/"
-"share/icons/hicolor/128x128/apps/)"
+"imposer un nouveau chemin pour toutes les icônes nécessaires (à la place de /"
+"usr/share/icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
@@ -258,7 +258,7 @@ msgstr "Paquetages installés"
 
 #: dnfdragora/const.py:125
 msgid "Installed for dependencies"
-msgstr "Installés par dépendances"
+msgstr "Installés par dépendance"
 
 #: dnfdragora/const.py:126
 msgid "Reinstalled packages"
@@ -403,7 +403,7 @@ msgstr "La construction de la transaction a échoué"
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr "client dnfdaemon non autorisé :%(NL)s%(error)s"
+msgstr "le client dnfdaemon n'a pas d'autorisation :%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:296
 msgid "History"
@@ -431,7 +431,7 @@ msgstr "Résultat de la transaction"
 
 #: dnfdragora/dialogs.py:379
 msgid "Transaction dependency"
-msgstr "Dépendance de transaction"
+msgstr "Dépendance de la transaction"
 
 #: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
 #: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
@@ -446,7 +446,7 @@ msgstr "Annuler"
 
 #: dnfdragora/dialogs.py:404
 msgid "replacing "
-msgstr "remplacement"
+msgstr "remplacement de "
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
@@ -470,7 +470,7 @@ msgstr "Dossier cache principal"
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
-msgstr "Adresse internet"
+msgstr "Lien principal"
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
@@ -494,7 +494,7 @@ msgstr "Méta-données activées"
 
 #: dnfdragora/dialogs.py:524
 msgid "Enable groups"
-msgstr "Activer les groupes"
+msgstr "Autorise les groupes"
 
 #: dnfdragora/dialogs.py:525
 msgid "Exclude"
@@ -582,11 +582,11 @@ msgstr "Mot de passe du serveur mandataire"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr "Identifiant du serveur mandataire"
+msgstr "Identifiant pour le serveur mandataire"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr "Dépôt de vérification GPG"
+msgstr "Vérification GPG du dépôt"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
@@ -679,7 +679,7 @@ msgstr "Journalisation"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr "Restaurer par défault"
+msgstr "Restaurer les valeurs par &défaut"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -1337,7 +1337,7 @@ msgstr "Panneau Groupe"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr "Panneau des paquetages"
+msgstr "Panneau Paquetage"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
@@ -1422,7 +1422,7 @@ msgid ""
 msgstr ""
 "Ce menu supprime la sélection des paquetages en cours, tout paquetage "
 "programmé pour l'installation ou la désinstallation retournera à son état "
-"initial.<br>"
+"précédent.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -2080,7 +2080,7 @@ msgstr "Contrôle des changements du système"
 
 #: dnfdragora/ui.py:1563
 msgid "Build transaction"
-msgstr "Construire la transaction"
+msgstr "Construction de la transaction"
 
 #: dnfdragora/ui.py:1598
 #, python-format
@@ -2098,15 +2098,15 @@ msgstr "Mise en mémoire cache des mises à jour"
 
 #: dnfdragora/ui.py:1662
 msgid "Caching installed"
-msgstr "Contenu de la mémoire cache installé"
+msgstr "Mise en mémoire cache des paquetages installés"
 
 #: dnfdragora/ui.py:1665
 msgid "Caching available"
-msgstr "Mise en mémoire cache disponible"
+msgstr "Mise en mémoire cache des paquetages disponibles"
 
 #: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
-msgstr "Création de mémoire cache des paquetages"
+msgstr "Création de la mémoire cache des paquetages"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
@@ -2118,7 +2118,7 @@ msgstr "Clé GPG manquante"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr "Rechercher des erreurs en utilisant des expressions régulières."
+msgstr "Erreur pendant la recherche avec des expressions régulières."
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
@@ -2127,11 +2127,11 @@ msgstr "Erreur lors du démarrage du service dnfdaemon : [%s]"
 
 #: dnfdragora/updater.py:133
 msgid "Update"
-msgstr "Ouvrir dnfdragora pour mettre à jour les paquetages"
+msgstr "Mettre à jour"
 
 #: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
-msgstr "Ouvrir dnfdragora pour installer/supprimer des paquetages"
+msgstr "Ouvrir dnfdragora"
 
 #: dnfdragora/updater.py:135
 msgid "Check for updates"
