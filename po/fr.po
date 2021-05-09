@@ -741,7 +741,7 @@ msgstr "Changer de &dossier"
 
 #: dnfdragora/dialogs.py:1067
 msgid "Debug level"
-msgstr "Niveau de débogage"
+msgstr "Au niveau débogage"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
@@ -1640,7 +1640,7 @@ msgstr ""
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
-"<li><b>Niveau de débogage</b> : si coché, la journalisation sera plus "
+"<li><b>Au niveau débogage</b> : si coché, la journalisation sera plus "
 "verbeuse.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
