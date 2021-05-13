@@ -272,7 +272,7 @@ msgstr "כעת בהחלפה"
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
-msgstr "כעת בעדכון: %s"
+msgstr "עדכון: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
@@ -282,12 +282,12 @@ msgstr "עודכנו: %s"
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Installing: %s"
-msgstr "כעת בהתקנה: %s"
+msgstr "התקנה: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Reinstalling: %s"
-msgstr "כעת בהתקנה מחדש: %s"
+msgstr "התקנה מחדש: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
@@ -302,7 +302,7 @@ msgstr "ניקוי: %s"
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Removing: %s"
-msgstr "כעת בהסרה: %s"
+msgstr "הסרה: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
@@ -337,7 +337,7 @@ msgstr ""
 #: dnfdragora/const.py:152
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr "כעת בהכנות להעברה: %s"
+msgstr "בהכנה להעברה: %s"
 
 #: dnfdragora/const.py:153
 #, python-format
@@ -1731,7 +1731,7 @@ msgstr ""
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr "כעת בהורדה :  %(files)d קבצים, %(size)d בייטים"
+msgstr "הורדה :  %(files)d קבצים, %(size)d בייטים"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
@@ -1936,7 +1936,7 @@ msgstr "כעת בהורדת חבילות"
 
 #: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
-msgstr "כעת בבדיקת חתימות החבילה"
+msgstr "חתימות החבילה נבדקות"
 
 #: dnfdragora/ui.py:1549 dnfdragora/ui.py:1729
 msgid "Applying changes to the system"
