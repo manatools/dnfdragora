@@ -1417,7 +1417,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         self.running = True
         while self.running == True:
-            event = self.dialog.waitForEvent(200)
+            loop_timeout = 20 if  self._status in (DNFDragoraStatus.CACHING_AVAILABLE, \
+                    DNFDragoraStatus.CACHING_UPDATE, \
+                    DNFDragoraStatus.CACHING_INSTALLED) \
+                    else 200
+            event = self.dialog.waitForEvent(loop_timeout)
 
             eventType = event.eventType()
 
