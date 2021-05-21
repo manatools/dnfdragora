@@ -28,6 +28,7 @@ from gi.repository import GLib
 import dnfdaemon.client
 
 import manatools.ui.helpdialog as helpdialog
+import manatools.services
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
@@ -1745,6 +1746,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
     def _check_MD_cache_expired(self):
       ''' Check metadata expired '''
       # check if MD cache management is disabled
+      ms = manatools.services()
+      if ms.GetUnitFileState('dnf-makecache.timer') == 'enabled' :
+          logger.debug("MakeCache enabled")
+          return False
       if self.md_update_interval <= 0:
         return False
       # check this is the first time dnfdragora is run for this user
