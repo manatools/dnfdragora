@@ -18,6 +18,7 @@ import datetime
 import re
 import yui
 import webbrowser
+from html import escape
 from queue import SimpleQueue, Empty
 from enum import Enum
 from inspect import ismethod
@@ -1061,7 +1062,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setValue("")
         if pkg :
             missing = _("Missing information")
-            description = pkg.description.replace("\n", "<br>")
+            description = escape(pkg.description)
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, description)
             s += "<br>"
             if pkg.is_update :
@@ -1072,9 +1073,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if pkg.updateinfo :
                         s += '<b>%s</b>'%pkg.updateinfo[0]['title']
                         s += "<br>"
-                        s += pkg.updateinfo[0]['description'].replace("\n", "<br>")
+                        s += escape(pkg.updateinfo[0]['description'])
                         s += "<br>"
-                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], pkg.updateinfo[0]['updated'].replace("\n", "<br>"))
+                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated']))
                     else :
                         s+= missing
 
