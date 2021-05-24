@@ -397,7 +397,7 @@ class TransactionResult:
                 level2Item.this.own(False)
 
                 # packages that need to be downloaded
-                if sub in ['install', 'update', 'install-deps',
+                if sub in ['install', 'update', 'install-deps', 'install_weak',
                            'update-deps', 'obsoletes']:
                     total_size += size
                 for r in replaces:
