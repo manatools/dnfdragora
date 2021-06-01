@@ -102,8 +102,9 @@ Example with ncurses:
 
 ## CONTRIBUTE
 
-Manatools and dnfdragora developers as well as some users or contributors are on IRC. They often discuss development issues there
-and that to have imeediate feedbacks and ideas. The Freenode IRC channel is **#manatools**, get in touch with us. 
+ManaTools and dnfdragora developers (as well as some users and contributors) are on Matrix. They often discuss development issues there
+to get immediate feedback and develop ideas. The Matrix room is [`#manatools:matrix.org`](https://matrix.to/#manatools:matrix.org).
+The Matrix room is also bridged to the IRC channel `#manatools` on Libera Chat. Get in touch with us!
 
 If you have any issues or ideas add or comment an [issue](https://github.com/manatools/dnfdragora/issues).
 
