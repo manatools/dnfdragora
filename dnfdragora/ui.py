@@ -1096,7 +1096,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setValue("")
         if pkg :
             missing = _("Missing information")
-            description = escape(pkg.description)
+            description = escape(pkg.description).replace("\n", "<br>")
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, description)
             s += "<br>"
             if pkg.is_update :
@@ -1105,11 +1105,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if self.infoshown['updateinfo']["show"]:
                     # [{'references': [], 'filenames': [], 'id': 'xxxx', 'title': 'yyyy',  'description': 'desc', 'updated': 'date', 'type': 2}]
                     if pkg.updateinfo :
-                        s += '<b>%s</b>'%pkg.updateinfo[0]['title']
+                        s += '<b>%s</b>'%escape(pkg.updateinfo[0]['title']).replace("\n", "<br>")
                         s += "<br>"
-                        s += escape(pkg.updateinfo[0]['description'])
+                        s += escape(pkg.updateinfo[0]['description']).replace("\n", "<br>")
                         s += "<br>"
-                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated']))
+                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated'])).replace("\n", "<br>")
                     else :
                         s+= missing
 
