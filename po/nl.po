@@ -9,6 +9,7 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
 # dragnadh, 2020
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
+# Marcel Pol <marcel@timelord.nl>, 2021
 #
 #, fuzzy
 msgid ""
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Dennis Holierhoek <dennis.hh@hotmail.com>, 2020\n"
+"Last-Translator: Marcel Pol <marcel@timelord.nl>, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/MageiaLinux/teams/9361/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -79,13 +80,13 @@ msgstr "Toon applicatie versie en sluit af"
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
-"Forceer dnfdaemon dbus diensten die worden gebruikt door dnfdragora om af te "
+"Forceer dnfdaemon dbus-diensten die worden gebruikt door dnfdragora om af te "
 "sluiten"
 
 #: bin/dnfdragora:53 bin/dnfdragora:103
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr "Client fout opgetreden in dnfdaemon [%s]"
+msgstr "Client-fout opgetreden in dnfdaemon [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
@@ -104,22 +105,22 @@ msgstr "Sorry"
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr "Er is een client fout opgetreden in dnfdaemon:%(NL)s%(error)s"
+msgstr "Er is een client-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr "Er is een naam fout opgetreden in dnfdaemon:%(NL)s%(error)s"
+msgstr "Er is een naam-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr "Er is een attribuut fout opgetreden in dnfdaemon:%(NL)s%(error)s"
+msgstr "Er is een attribuut-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr "Er is een type fout opgetreden in dnfdaemon:%(NL)s%(error)s"
+msgstr "Er is een type-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
@@ -144,7 +145,7 @@ msgstr "Xfce-werkomgeving"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr "Toepassingen"
+msgstr "Programma's"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
@@ -409,7 +410,7 @@ msgstr "Geschiedenis (Datum/Tijd)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr "Transactie geschiedenis"
+msgstr "Transactiegeschiedenis"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
@@ -509,11 +510,11 @@ msgstr "Snelste spiegelserver"
 
 #: dnfdragora/dialogs.py:529
 msgid "GPG check"
-msgstr "GPG controle"
+msgstr "GPG-controle"
 
 #: dnfdragora/dialogs.py:530
 msgid "GPG key"
-msgstr "GPG sleutel"
+msgstr "GPG-sleutel"
 
 #: dnfdragora/dialogs.py:531
 msgid "Include packages"
@@ -529,7 +530,7 @@ msgstr "Max parallel downloaden"
 
 #: dnfdragora/dialogs.py:534
 msgid "Media ID"
-msgstr "Media ID"
+msgstr "Media-ID"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
@@ -581,7 +582,7 @@ msgstr "Proxy-gebruikersnaam"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr "Repository GPG-check"
+msgstr "Softwarebron GPG-controle"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
@@ -739,7 +740,7 @@ msgstr "Foutopsporing-niveau"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
-msgstr "Kies de map bestemd voor logs"
+msgstr "Kies de map bestemd voor logboeken"
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
@@ -756,13 +757,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"Wilt u deze GPG sleutel <br>die nodig is om het %(pkg)s pakket te "
+"Wilt u deze GPG-sleutel <br>die nodig is om het %(pkg)s pakket te "
 "controleren importeren?<br><br>Sleutel : 0x%(id)s:<br>Userid : \"%(user)s"
 "\"<br>Van: %(file)s"
 
 #: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
-msgstr "GPG sleutel gemist"
+msgstr "GPG-sleutel gemist"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -802,7 +803,7 @@ msgstr "Reservekopie"
 
 #: dnfdragora/groupicons.py:32
 msgid "Cd burning"
-msgstr "CD-branden"
+msgstr "Cd-branden"
 
 #: dnfdragora/groupicons.py:36
 msgid "Compression"
@@ -868,7 +869,7 @@ msgstr "C#"
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
-msgstr "Debug"
+msgstr "Foutopsporing"
 
 #: dnfdragora/groupicons.py:105
 msgid "Erlang"
@@ -1147,7 +1148,7 @@ msgstr "Shells"
 
 #: dnfdragora/groupicons.py:410
 msgid "Sound"
-msgstr "Geluid"
+msgstr "Audio"
 
 #: dnfdragora/groupicons.py:417
 msgid "Midi"
@@ -1283,7 +1284,7 @@ msgstr "KDE werkstation"
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
-msgstr "Andere grafische bureaubladen"
+msgstr "Andere grafische werkomgevingen"
 
 #: dnfdragora/groupicons.py:611
 msgid "Server"
@@ -1374,7 +1375,7 @@ msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
-"dnfdragora is simpel gezien een pakketbeheergebruikersinterface waarmee "
+"dnfdragora is simpel gezien een interface voor pakketbeheer waarmee "
 "pakketten kunnen worden geïnstalleerd, geüpdatet, verwijderd, gezocht en "
 "meer.<br><br>"
 
@@ -1394,11 +1395,11 @@ msgstr "dnfdragora-venster is opgebouwd uit:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Menubalk-inhoud"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Menubalk bevat dropdown-menu's van dnfdragora:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
@@ -1406,17 +1407,20 @@ msgstr "Bestandsmenu"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Herstel selectie</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Dit menu-item verwijdert alle markeringen voor pakketten. Als er pakketten "
+"zijn geselecteerd voor installatie of verwijdering dan zullen ze hersteld "
+"worden naar de vorige status.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Ververs metadata</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1424,10 +1428,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Dit menu-item stuurt een opdracht naar dnfdaemon om alle metadata te "
+"verversen. Deze actie is asynchroon en de cache van pakketinformatie zal "
+"opnieuw aangemaakt worden.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Softwarebronnen</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1435,18 +1442,21 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Dit menu-item opent een dialoogvenster waarin softwarebronnen in- of "
+"uitgeschakeld kunnen worden. De wijzigingen gelden voor zolang dnfdragora "
+"draait en zijn niet permanent.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr "<h2>Stoppen</h2>"
+msgstr "<h2>Afsluiten</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Dit menu-item zal dnfdragora afsluiten.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Informatiemenu"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
@@ -1458,20 +1468,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Dit menu-item opent een dialoogvenster met de transactiegeschiedenis in "
+"boomvorm gesorteerd op datum. U kunt transacties selecteren en met de "
+"<b>Ongedaan maken</b>-knop terugdraaien.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Let op: deze functie werkt momenteel niet vanwege een API-wijziging "
+"in dnf</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Optiemenu"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Gebruikersinstellingen</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1479,10 +1494,12 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Dit menu-item opent een %s met gebruikersinstellingen om het gedrag van "
+"dnfdragora aan te passen.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "dialoogvenster"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
@@ -1526,7 +1543,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Layout-opties</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1565,7 +1582,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Logboek-opties</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1594,7 +1611,7 @@ msgstr "<h2>Handleiding</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Dit menu-item opent de hulpdialoog van dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
@@ -1602,15 +1619,15 @@ msgstr "<h2>Over</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Dit menu-item opent de over-dialoog van dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Weergaves en zoekregel"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Weergaves</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1730,7 +1747,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Knoplijn"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1744,10 +1761,13 @@ msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Selecteer allen</b>: wanneer pakketten zijn gefilterd op updates kan "
+"alleen deze knop gebruikt worden om alle pakketten in één keer te selecteren."
+"</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Afsluiten</b>: sluit dnfdragora af.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1843,7 +1863,7 @@ msgstr "in bestandsnamen"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Gebruik regex"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1871,7 +1891,7 @@ msgstr "Reset de selectie"
 
 #: dnfdragora/ui.py:591
 msgid "Refresh Metadata"
-msgstr "Metadata verversen"
+msgstr "Ververs metadata"
 
 #: dnfdragora/ui.py:592
 msgid "Repositories"
@@ -1899,7 +1919,7 @@ msgstr "&Hulp"
 
 #: dnfdragora/ui.py:627
 msgid "Manual"
-msgstr "Handmatig"
+msgstr "Handleiding"
 
 #: dnfdragora/ui.py:629
 msgid "&About"
@@ -1923,7 +1943,7 @@ msgstr "Missende informatie"
 
 #: dnfdragora/ui.py:1019
 msgid "Repository"
-msgstr "Softwarebronnen"
+msgstr "Softwarebron"
 
 #: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
@@ -1974,7 +1994,7 @@ msgstr "Transactie opbouwen"
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Onbekende actie %(action)s op %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
@@ -2000,15 +2020,15 @@ msgstr "Aanmaken van pakketten cache"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Fout tijdens opbouw transactie"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr "GPG sleutel ontbreekt"
+msgstr "GPG-sleutel ontbreekt"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Fout bij zoeken met reguliere expressie"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
