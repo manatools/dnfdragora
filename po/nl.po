@@ -45,12 +45,12 @@ msgstr "Begin met het gebruiken van de yui-Qt-plugin-implementatie"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr "gebruik volledig scherm voor dialogen"
+msgstr "gebruik volledig scherm voor dialoogvensters"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
 msgstr ""
-"Forceer een nieuw pad voor groep pictogrammen (in plaats van /usr/share/"
+"Forceer een nieuw pad voor groepspictogrammen (in plaats van /usr/share/"
 "icons)"
 
 #: bin/dnfdragora:34
@@ -71,11 +71,11 @@ msgstr "Pakketten installeren"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "Toon voor updates alleen de dialoog"
+msgstr "Toon voor updates alleen het dialoogvenster"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr "Toon applicatie versie en sluit af"
+msgstr "Toon programmaversie en sluit af"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
@@ -203,7 +203,7 @@ msgstr "Leeg"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr "Zoekresultaat"
+msgstr "Zoekresultaten"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
@@ -227,7 +227,7 @@ msgstr "Alle pakketten ophalen"
 
 #: dnfdragora/const.py:118
 msgid "Updated packages"
-msgstr "Opgewaardeerde pakketten"
+msgstr "Bijgewerkte pakketten"
 
 #: dnfdragora/const.py:119
 msgid "Downgraded packages"
@@ -263,7 +263,7 @@ msgstr "Installeren"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
-msgstr "Updaten"
+msgstr "Bijwerken"
 
 #: dnfdragora/const.py:133
 msgid "Removing"
@@ -280,7 +280,7 @@ msgstr "Vervangen"
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
-msgstr "Updaten: %s"
+msgstr "Bijwerken: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
@@ -325,7 +325,7 @@ msgstr "Verouderd: %s"
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr "downgraden: %s"
+msgstr "Downgraden: %s"
 
 #: dnfdragora/const.py:149
 #, python-format
@@ -354,7 +354,7 @@ msgstr "Na-transactie script: %s"
 
 #: dnfdragora/const.py:163
 msgid "Bugfix"
-msgstr "Foutverwijdering"
+msgstr "Foutoplossing"
 
 #: dnfdragora/const.py:164
 msgid "New Package"
@@ -393,7 +393,7 @@ msgstr[1] "Fouten in de transactie"
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr "Bouwtransactiefout"
+msgstr "Fout in het voorbereiden van de transactie"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
@@ -454,7 +454,7 @@ msgstr "Ontwikkelaars"
 #: dnfdragora/dialogs.py:479
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
-"dnfdragora is een DNF frontend die werkt met behulp van GTK, ncurses en QT"
+"dnfdragora is een DNF-frontend dat werkt met behulp van GTK, ncurses en QT"
 
 #: dnfdragora/dialogs.py:516
 msgid "Bandwidth"
@@ -462,7 +462,7 @@ msgstr "Bandbreedte"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
-msgstr "Basiscachedirectory"
+msgstr "Basismap voor cache"
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
@@ -546,7 +546,7 @@ msgstr "Min snelheid"
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
-msgstr "Lijst van mirrors"
+msgstr "Lijst van spiegelservers"
 
 #: dnfdragora/dialogs.py:539 dnfdragora/dialogs.py:593 dnfdragora/ui.py:440
 msgid "Name"
@@ -582,7 +582,7 @@ msgstr "Proxy-gebruikersnaam"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr "Softwarebron GPG-controle"
+msgstr "Pakkettendepot GPG-controle"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
@@ -614,7 +614,7 @@ msgstr "SSL verifiëren"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
-msgstr "Throttle"
+msgstr "Afknijpen"
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
@@ -630,7 +630,7 @@ msgstr "Gebruikersnaam"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
-msgstr "Softwarebron-beheer"
+msgstr "Pakkettendepot-beheer"
 
 #: dnfdragora/dialogs.py:602
 msgid "Information"
@@ -772,9 +772,9 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
-"dnfdaemon api versie: %(actual)d\n"
+"dnfdaemon api-versie: %(actual)d\n"
 "komt niet overeen\n"
-"benodigde api versie: %(required)d"
+"benodigde api-versie: %(required)d"
 
 #: dnfdragora/dnf_backend.py:365
 #, python-format
@@ -1019,7 +1019,7 @@ msgstr "3D"
 #: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
 #: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
-msgstr "Editors en Converters"
+msgstr "Editors en converters"
 
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
@@ -1056,7 +1056,7 @@ msgstr "IRC"
 
 #: dnfdragora/groupicons.py:301
 msgid "Instant messaging"
-msgstr "Directe berichten"
+msgstr "Chatprogramma's"
 
 #: dnfdragora/groupicons.py:305 dnfdragora/groupicons.py:626
 msgid "Mail"
@@ -1184,7 +1184,7 @@ msgstr "Lettertypen"
 
 #: dnfdragora/groupicons.py:456
 msgid "True type"
-msgstr "True type"
+msgstr "Truetype"
 
 #: dnfdragora/groupicons.py:460
 msgid "Type1"
@@ -1332,7 +1332,7 @@ msgstr "Groepspaneel"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr "Pakketpaneel"
+msgstr "Pakkettenpaneel"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
@@ -1367,7 +1367,7 @@ msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
-"dnfdragora is een DNF-frontend gebaseerd op Mageia rpmdragora-layout en "
+"dnfdragora is een DNF-frontend gebaseerd op Mageia rpmdragora-indeling en "
 "Fedora yumex-dnf-interactie met dnfdaemon. <br><br>"
 
 #: dnfdragora/helpinfo.py:64
@@ -1376,7 +1376,7 @@ msgid ""
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
 "dnfdragora is simpel gezien een interface voor pakketbeheer waarmee "
-"pakketten kunnen worden geïnstalleerd, geüpdatet, verwijderd, gezocht en "
+"pakketten kunnen worden geïnstalleerd, bijgewerkt, verwijderd, gezocht en "
 "meer.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
@@ -1434,7 +1434,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr "<h2>Softwarebronnen</h2>"
+msgstr "<h2>Pakkettendepots</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1442,7 +1442,7 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
-"Dit menu-item opent een dialoogvenster waarin softwarebronnen in- of "
+"Dit menu-item opent een dialoogvenster waarin pakkettendepots in- of "
 "uitgeschakeld kunnen worden. De wijzigingen gelden voor zolang dnfdragora "
 "draait en zijn niet permanent.<br>"
 
@@ -1503,7 +1503,7 @@ msgstr "dialoogvenster"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr "dnfdragora opties"
+msgstr "dnfdragora-opties"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1511,6 +1511,9 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"In dit dialoogvenster kunt u het gedrag van dnfdragora instellen. Sommige "
+"instellingen zijn gelijk actief na het sluiten van het dialoogvenster, "
+"andere vereisen een herstart van dnfdragora.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
@@ -1522,28 +1525,38 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Verwerk transacties op pakketten automatisch zonder om "
+"bevestiging te vragen</b>: wanneer ingeschakeld hoeven transacties niet "
+"bevestigd te worden, dnfdragora zal op alle vragen <i>ja</i>antwoorden."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>Let op</b> dat deze instelling ook inhoudt dat het verwijderen van "
+"pakketten stil doorgevoerd wordt</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Interval om op updates te controleren</b>: het opgegeven getal "
+"bepaalt hoe vaak dnfdragora op updates controleert, de waarde wordt "
+"uitgedrukt in minuten</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Verlooptijd voor metadata</b>: tijd om metadata te laten verlopen, de "
+"waarde wordt uitgedrukt in uren</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr "<h2>Layout-opties</h2>"
+msgstr "<h2>Indelingsopties</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1551,6 +1564,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Toon updates</b>: wanneer ingeschakeld zal dnfdragora starten met "
+"het <i>updates</i> filter actief, oftewel enkel pakketten voor updates "
+"worden weergegeven indien er updates zijn.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1558,10 +1574,15 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>Toon de groepsweergave niet</b>: filteren op groepen per groep kan "
+"veel van de CPU vragen. Wanneer deze optie is ingeschakeld zal dnfdragora na "
+"het starten alle pakketten tonen.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>Opmerking</b>: de bovenstaande opties zijn pas actief nadat dnfdragora "
+"herstart is."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
@@ -1573,12 +1594,19 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Geef enkel het nieuwste pakket weer</b>: wanneer ingeschakeld zal "
+"dnfdragora enkel de nieuwste pakketten weergeven in de zoekresultaten. "
+"<i>Dit geldt enkel bij gewone zoekopdrachten, niet wanneer er gezocht is m.b."
+"v. reguliere expressies</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Overeenkomen met alle woorden</b>: wanneer ingeschakeld zal zoeken "
+"(zonder reguliere expressies) de resultaten weergeven die overeenkomen met "
+"alle woorden die opgegeven zijn in het invoerveld.</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
@@ -1589,17 +1617,24 @@ msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Met deze opties ingeschakeld zal dnfdragora een logboek wegschrijven naar "
+"het bestand <i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Map wijzigen</b>: met deze optie kan de map voor het logboek "
+"worden ingesteld. De map moet wel bestaan en er moeten schrijfrechten "
+"aanwezig zijn.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Foutopsporingsniveau</b>: wanneer ingeschakeld wordt er meer "
+"uitgebreid logs naar het logboek geschreven.</li></ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
@@ -1635,10 +1670,16 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"In de eerste combobox kunt u pakketten weergeven op groep. Als <i>Groepen</"
+"i> is geselecteerd zal het groepenpaneel een boomweergave tonen van groepen. "
+"Na het selecteren van een groep worden de pakketten in die groep weergegeven "
+"in het pakkettenpaneel."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"Als <i>Alle</i> is geselecteerd worden alle pakketten weergegeven in het "
+"pakkettenpaneel."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
@@ -1647,32 +1688,40 @@ msgstr "<h2>Filters</h2>"
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"In de filter-combobox kunt u pakketten in het pakkettenpaneel filteren op:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
+"<ul><li><b>Geïnstalleerd</b>: Toont enkel geïnstalleerde pakketten.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>Niet-geïnstalleerd</b>: Toont enkel beschikbare pakketten.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Moet bijgewerkt worden</b>: toont enkel pakketten waar updates voor "
+"beschikbaar zijn.</li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Toon alleen x86_64 en noarch</b>: als dnfdragora draait op de x86_64 "
+"architectuur worden i686-pakketten verborgen.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Alle</b>: toont alle pakketten, oftewel beschikbaar, updates en "
+"geïnstalleerd.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
@@ -1684,6 +1733,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Zoekopdracht wordt uitgevoerd wanneer de <i>Zoeken</i>-knop wordt ingedrukt "
+"en het invoerveld is ingevuld. De zoeken-combobox biedt de optie om tekst te "
+"zoeken op <i>pakketnamen</i>, <i>samenvattingen</i>, <i>omschrijvingen</i> "
+"of <i>bestandsnamen</i>."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1691,16 +1744,23 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Een extra aanvinkvakje <i>Gebruik regex</i> kan worden gebruikt om te zoeken "
+"op pakketten m.b.v. reguliere expressies gebaseerd op de python "
+"programmeertaal. Deze zoekopdracht wordt uitgevoerd op de pakketinformatie "
+"in de cache zoals die op <b>pakketnamen en samenvattingen</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Opmerking</i>: Wanneer reguliere expressies worden gebruikt om te zoeken "
+"op pakketnamen, wordt de volledige pakketnaam inclusief versienummer "
+"gebruikt."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "De <i>Wis zoeken</i>-knop wist het invoerveld voor zoekopdrachten."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1708,6 +1768,9 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Dit paneel toont alle groepen om te filteren op groep, wanneer "
+"groepsweergave geselecteerd is. Speciale groep <i>Zoekresultaten</i> wordt "
+"toegevoegd wanneer er een zoekopdracht is uitgevoerd."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1715,12 +1778,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Dit paneel toont alle gefilterde pakketten met de belangrijkste informatie "
+"zoals <i>naam</i>, <i>samenvatting</i>, <i>versie</i>, <i>release</i>, "
+"<i>architectuur</i>, <i>grootte</i> en <i>status</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Een aanvinkvakje voor ieder pakket is aanwezig om om gerelateerde pakketten "
+"toe te voegen aan de transactie voor installeren, bijwerken of verwijderen."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1728,12 +1796,17 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Dit paneel toont alle informatie van een pakket, zoals <i>omschrijving</i>, "
+"<i>URL</i>, <i>pakkettendepot</i>, <i>vereisten</i>, <i>bestandslijst</i> en "
+"<i>wijzigingslogboek</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Opmerking: het wijzigingslogboek is momenteel niet beschikbaar "
+"vanuit dnfdaemon.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
@@ -1744,6 +1817,8 @@ msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Voortgangsbalk die de voortgang toont van handelingen van dnfdragora zoals "
+"transacties en de cache bijwerken van gegevens."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
@@ -1755,6 +1830,9 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Toepassen</b>: wanneer er pakketten zijn geselecteerd voor "
+"installeren of bijwerken of zijn ge-deselecteerd voor verwijderen zal deze "
+"knop de transactie starten en uitvoeren.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
