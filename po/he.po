@@ -7,7 +7,7 @@
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omeritzics Games <omeritzicschwartz@gmail.com>, 2021
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omeritzics Games <omeritzicschwartz@gmail.com>, 2021\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -203,11 +203,11 @@ msgstr "ללא סיווג"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
-msgstr "כעת בקבלת החבילות המותקנות"
+msgstr "החבילות המותקנות מתקבלות"
 
 #: dnfdragora/const.py:103
 msgid "Getting available packages"
-msgstr "כעת בקבלת החבילות הזמינות"
+msgstr "החבילות הזמינות מתקבלות"
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
@@ -251,23 +251,23 @@ msgstr "חבילות שהותקנו מחדש"
 
 #: dnfdragora/const.py:131
 msgid "Installing"
-msgstr "כעת בהתקנה"
+msgstr "בהליכי התקנה"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
-msgstr "כעת בעדכון"
+msgstr "בהליכי עדכון"
 
 #: dnfdragora/const.py:133
 msgid "Removing"
-msgstr "כעת בהסרה"
+msgstr "בהליכי הסרה"
 
 #: dnfdragora/const.py:134
 msgid "Downgrading"
-msgstr "כעת בשנמוך"
+msgstr "בהליכי שנמוך"
 
 #: dnfdragora/const.py:135
 msgid "Replacing"
-msgstr "כעת בהחלפה"
+msgstr "בהליכי החלפה"
 
 #: dnfdragora/const.py:139
 #, python-format
@@ -317,7 +317,7 @@ msgstr ""
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr "כעת בשנמוך: %s"
+msgstr "שנמוך: %s"
 
 #: dnfdragora/const.py:149
 #, python-format
@@ -337,7 +337,7 @@ msgstr ""
 #: dnfdragora/const.py:152
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr "בהכנה להעברה: %s"
+msgstr "ההעברה בהכנות: %s"
 
 #: dnfdragora/const.py:153
 #, python-format
@@ -1932,7 +1932,7 @@ msgstr "התחלת העברה"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
-msgstr "כעת בהורדת חבילות"
+msgstr "החבילות בהליכי הורדה"
 
 #: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
@@ -1958,7 +1958,7 @@ msgstr ""
 #: dnfdragora/ui.py:1623
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr "כעת בהורדת %(count_files)d קבצים (%(count_bytes)s ב׳)..."
+msgstr "מתקבלים %(count_files)d קבצים (%(count_bytes)s ב׳)..."
 
 #: dnfdragora/ui.py:1659
 msgid "Caching updates"
