@@ -1258,7 +1258,7 @@ msgstr "סביבה גרפית"
 
 #: dnfdragora/groupicons.py:578
 msgid "GNOME Workstation"
-msgstr "סביבת העבודה GNOME"
+msgstr "סביבת שולחן העבודה GNOME"
 
 #: dnfdragora/groupicons.py:582
 msgid "IceWm Desktop"
@@ -1266,11 +1266,11 @@ msgstr "שולחן העבודה IceWm"
 
 #: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
-msgstr "סביבת העבודה KDE"
+msgstr "סביבת שולחן העבודה KDE"
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
-msgstr "סביבות עבודה אחרות"
+msgstr "סביבות שולחן עבודה אחרות"
 
 #: dnfdragora/groupicons.py:611
 msgid "Server"
@@ -1302,7 +1302,7 @@ msgstr "Web/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "מעבר לאינדקס"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
