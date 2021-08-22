@@ -604,7 +604,7 @@ msgstr "SSL 驗證"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
-msgstr "風門"
+msgstr "限速"
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
