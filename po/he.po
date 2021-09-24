@@ -6,8 +6,8 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
+# Omeritzics Games <omeritzicschwartz@gmail.com>, 2021
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/"
 "he/)\n"
 "Language: he\n"
@@ -84,7 +84,7 @@ msgstr ""
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "נא לנסות שוב בעזרת מעטפת כניסה (למשל \"su -‎\"‏)"
 
 #: bin/dnfdragora:75
 #, python-format
@@ -211,7 +211,7 @@ msgstr "החבילות הזמינות מתקבלות"
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
-msgstr ""
+msgstr "העדכונים הזמינים מתקבלים"
 
 #: dnfdragora/const.py:105
 msgid "Getting all packages"
@@ -327,7 +327,7 @@ msgstr "שונמכו: %s"
 #: dnfdragora/const.py:150
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "אימות: %s"
 
 #: dnfdragora/const.py:151
 #, python-format
@@ -346,7 +346,7 @@ msgstr ""
 
 #: dnfdragora/const.py:163
 msgid "Bugfix"
-msgstr ""
+msgstr "תיקון תקלות"
 
 #: dnfdragora/const.py:164
 msgid "New Package"
@@ -362,7 +362,7 @@ msgstr "הרחבה"
 
 #: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
-msgstr ""
+msgstr "ביטול ההעברה"
 
 #: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
@@ -459,7 +459,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
-msgstr ""
+msgstr "כתובת בסיס"
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
@@ -515,7 +515,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr "פענוח כתובת IP"
+msgstr "פיענוח כתובת IP"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
@@ -611,7 +611,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
-msgstr ""
+msgstr "אזל הזמן המוקצב"
 
 #: dnfdragora/dialogs.py:557
 msgid "Type"
@@ -623,7 +623,7 @@ msgstr "שם משתמש"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
-msgstr ""
+msgstr "ניהול מאגרים"
 
 #: dnfdragora/dialogs.py:602
 msgid "Information"
@@ -712,7 +712,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1005
 msgid "Match all words"
-msgstr ""
+msgstr "התאמה לכל המילים"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options  (active at next startup)"
@@ -728,7 +728,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1067
 msgid "Debug level"
-msgstr ""
+msgstr "רמת ניפוי תקלות"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
@@ -912,7 +912,7 @@ msgstr "עורכים"
 
 #: dnfdragora/groupicons.py:162
 msgid "Education"
-msgstr "לימוד"
+msgstr "חינוך"
 
 #: dnfdragora/groupicons.py:170
 msgid "Emulators"
@@ -920,7 +920,7 @@ msgstr "אמולטורים"
 
 #: dnfdragora/groupicons.py:174
 msgid "File tools"
-msgstr "כלי ניהול קבצים"
+msgstr "כלֵי ניהול קבצים"
 
 #: dnfdragora/groupicons.py:178
 msgid "Games"
@@ -1178,7 +1178,7 @@ msgstr "Type1"
 
 #: dnfdragora/groupicons.py:464
 msgid "X11 bitmap"
-msgstr "תמונת X11"
+msgstr "X11 bitmap"
 
 #: dnfdragora/groupicons.py:469
 msgid "Internationalization"
@@ -1206,7 +1206,7 @@ msgstr "מסופים"
 
 #: dnfdragora/groupicons.py:506
 msgid "Text tools"
-msgstr "כלי עיבוד טקסט"
+msgstr "כלֵי עיבוד טקסט"
 
 #: dnfdragora/groupicons.py:510
 msgid "Toys"
@@ -1226,7 +1226,7 @@ msgstr "תחנת עבודה"
 
 #: dnfdragora/groupicons.py:542
 msgid "Console Tools"
-msgstr "כלי מסוף"
+msgstr "כלֵי מסוף"
 
 #: dnfdragora/groupicons.py:550
 msgid "Game station"
@@ -1298,7 +1298,7 @@ msgstr "שרת מחשב רשת"
 
 #: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
-msgstr "Web/FTP"
+msgstr "רשת/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
@@ -1450,7 +1450,7 @@ msgstr "תפריט אפשרויות"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr "<h2>העדפות משתמש</h2>"
+msgstr "<h2>העדפות המשתמש</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1604,7 +1604,7 @@ msgstr "אם <i>כולן</i> נבחרו, לוח החבילות מכיל את כ�
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>סינון</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
@@ -1709,7 +1709,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "קו כפתורים"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1726,7 +1726,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Quit</b>: ליציאה מ־dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
@@ -1741,7 +1741,7 @@ msgstr "הורדה מתחילה : %s "
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "תהליכי קבצים (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:206
 msgid "Update information"
@@ -1818,11 +1818,11 @@ msgstr "בתקצירים"
 
 #: dnfdragora/ui.py:531
 msgid "in file names"
-msgstr "בשמות קבצים"
+msgstr "בשמות הקבצים"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "שימוש בביטוי רגולרי"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -1870,7 +1870,7 @@ msgstr "אפ&שרויות"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
-msgstr "העדפות משתמש"
+msgstr "העדפות המשתמש"
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
@@ -2011,12 +2011,12 @@ msgstr "יציאה"
 
 #: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "כשל בהרצת dnfdragora"
 
 #: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "נתפסה חריגה: [%s]"
 
 #: dnfdragora/updater.py:341
 #, python-format
