@@ -1254,7 +1254,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.use_regexp.setChecked(False)
           self.use_regexp.setEnabled(False)
 
-        search_string = self.find_entry.value()
+        search_string = self.find_entry.value().strip()
         if not search_string :
           return False
 
