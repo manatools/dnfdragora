@@ -1,3 +1,7 @@
+2021-XX-YY v. x.y.z
+---------------------
+- Fixed wrong access to manatools.service module (issue #202)
+
 2021-01-06 v. 2.1.1
 ---------------------
 - Updated translations
