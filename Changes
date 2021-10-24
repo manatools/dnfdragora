@@ -1,6 +1,7 @@
-2021-XX-YY v. x.y.z
+2021-10-24 v. 2.1.2
 ---------------------
 - Fixed wrong access to manatools.service module (issue #202)
+- Fixed issue #189 "No line break to fit the width of the window in dnfdragora"
 
 2021-01-06 v. 2.1.1
 ---------------------
