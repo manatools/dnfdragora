@@ -34,7 +34,7 @@ Example with ncurses:
 ### SUSE libyui-bindings (included into libyui)
 * https://github.com/libyui/libyui
 
-### python-manatools
+### python-manatools >= 0.0.4
 * https://github.com/manatools/python-manatools
 
 ### at least one of the SUSE libyui plugins
