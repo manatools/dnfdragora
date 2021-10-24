@@ -28,7 +28,7 @@ Example with ncurses:
 * https://github.com/libyui/libyui
 * Consider to check some not yet approved changes here https://github.com/anaselli/libyui
 
-### libyui-mga > 1.2.1 - our widget extension
+### libyui-mga >= 1.2.1 - our widget extension
 * https://github.com/manatools/libyui-mga
 
 ### SUSE libyui-bindings (included into libyui)
