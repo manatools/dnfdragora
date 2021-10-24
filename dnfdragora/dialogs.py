@@ -768,7 +768,7 @@ class RepoDialog:
 
 class OptionDialog(basedialog.BaseDialog):
   def __init__(self, parent):
-    basedialog.BaseDialog.__init__(self, "dnfdragora options", "dnfdragora", basedialog.DialogType.POPUP, 80, 10)
+    basedialog.BaseDialog.__init__(self, "dnfdragora options", "dnfdragora", basedialog.DialogType.POPUP, 80, 15)
     self.parent = parent
     self.log_vbox = None
     self.widget_callbacks = []
@@ -886,8 +886,9 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHSpacing(hbox)
 
     # Title
-    self.factory.createHeading( vbox, _("System options") )
-    self.factory.createVSpacing(vbox)
+    heading = self.factory.createHeading( vbox, _("System options") )
+    self.factory.createVSpacing(vbox, 0.3)
+    heading.setAutoWrap()
 
     always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
         if 'settings' in self.parent.config.userPreferences.keys() and 'always_yes' in self.parent.config.userPreferences['settings'].keys() \
@@ -956,8 +957,9 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHSpacing(hbox)
 
     # Title
-    self.factory.createHeading( vbox, _("Layout options (active at next startup)") )
-    self.factory.createVSpacing(vbox)
+    heading = self.factory.createHeading( vbox, _("Layout options (active at next startup)") )
+    self.factory.createVSpacing(vbox, 0.3)
+    heading.setAutoWrap()
 
     showUpdates = self.parent.config.userPreferences['settings']['show updates at startup'] \
       if 'settings' in self.parent.config.userPreferences.keys() \
@@ -997,8 +999,9 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHSpacing(hbox)
 
     # Title
-    self.factory.createHeading( vbox, _("Search options") )
-    self.factory.createVSpacing(vbox)
+    heading=self.factory.createHeading( vbox, _("Search options") )
+    self.factory.createVSpacing(vbox, 0.3)
+    heading.setAutoWrap()
 
     match_all = self.parent.match_all
     newest_only = self.parent.newest_only
@@ -1030,8 +1033,9 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHSpacing(hbox, 1.5)
 
     # Title
-    self.factory.createHeading( vbox, _("Logging options  (active at next startup)") )
-    self.factory.createVSpacing(vbox)
+    heading=self.factory.createHeading( vbox, _("Logging options  (active at next startup)") )
+    self.factory.createVSpacing(vbox, 0.3)
+    heading.setAutoWrap()
 
     log_enabled = self.parent.config.userPreferences['settings']['log']['enabled'] \
         if 'settings' in self.parent.config.userPreferences.keys() \
