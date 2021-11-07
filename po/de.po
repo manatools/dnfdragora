@@ -8,10 +8,10 @@
 # Marc Lattemann, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
 # 72052d191679bd14fdaac68448536549_ea3d090 <ad38b3d85c6d338555004cd2142ae0ac_566646>, 2018
-# Ettore Atalan <atalanttore@googlemail.com>, 2020
 # Peter Grun, 2020
-# psyca, 2020
 # Klaus Christian Harke <k.c.harke@gmx.net>, 2021
+# psyca, 2021
+# Ettore Atalan <atalanttore@googlemail.com>, 2021
 #
 #, fuzzy
 msgid ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Klaus Christian Harke <k.c.harke@gmx.net>, 2021\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2021\n"
 "Language-Team: German (https://www.transifex.com/MageiaLinux/teams/9361/"
 "de/)\n"
 "Language: de\n"
@@ -260,7 +260,7 @@ msgstr "Erneut installierte Pakete"
 
 #: dnfdragora/const.py:131
 msgid "Installing"
-msgstr "Installation"
+msgstr "Installiere"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
@@ -316,7 +316,7 @@ msgstr "Entferne: %s"
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
-msgstr "Markieren als veraltet: %s"
+msgstr "Markiere als veraltet: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
@@ -380,8 +380,8 @@ msgstr "Fehler beim Überprüfen der Paketsignaturen "
 #: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] "Fehler beim herunterladen"
-msgstr[1] "Fehler beim herunterladen"
+msgstr[0] "Fehler beim Herunterladen"
+msgstr[1] "Fehler beim Herunterladen"
 
 #: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
@@ -409,7 +409,7 @@ msgstr "Verlauf (Datum/Zeit)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr "Historie der Transaktionen"
+msgstr "Transaktionsverlauf"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
@@ -440,7 +440,7 @@ msgstr "Abbre&chen"
 
 #: dnfdragora/dialogs.py:404
 msgid "replacing "
-msgstr "Ersetzen"
+msgstr "ersetzen"
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
@@ -478,7 +478,7 @@ msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:521
 msgid "DeltaRPM percentage"
-msgstr "Verbleibender RPM Prozentsatz"
+msgstr "DeltaRPM Prozentsatz"
 
 #: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
 msgid "Enabled"
@@ -486,11 +486,11 @@ msgstr "Aktiviert"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enabled metadata"
-msgstr "Aktiviere Metadaten"
+msgstr "Aktivierte Metadaten"
 
 #: dnfdragora/dialogs.py:524
 msgid "Enable groups"
-msgstr "Aktiviere Gruppen"
+msgstr "Gruppen aktivieren"
 
 #: dnfdragora/dialogs.py:525
 msgid "Exclude"
@@ -510,11 +510,11 @@ msgstr "Schnellster Spiegelserver"
 
 #: dnfdragora/dialogs.py:529
 msgid "GPG check"
-msgstr "GPG Überprüfung"
+msgstr "GPG-Überprüfung"
 
 #: dnfdragora/dialogs.py:530
 msgid "GPG key"
-msgstr "GPG Schlüssel"
+msgstr "GPG-Schlüssel"
 
 #: dnfdragora/dialogs.py:531
 msgid "Include packages"
@@ -522,15 +522,15 @@ msgstr "Pakete inkludieren"
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr "IP Auflösung"
+msgstr "IP-Auflösung"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
-msgstr "Max parallele Downloads"
+msgstr "Max. parallele Downloads"
 
 #: dnfdragora/dialogs.py:534
 msgid "Media ID"
-msgstr "Medien ID"
+msgstr "Medienkennung"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
@@ -542,7 +542,7 @@ msgstr "Meta Link"
 
 #: dnfdragora/dialogs.py:537
 msgid "Min rate"
-msgstr "Min Rate"
+msgstr "Min. Rate"
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
@@ -574,15 +574,15 @@ msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr "Proxy Passwort"
+msgstr "Proxy-Passwort"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr "Proxy Benutzername"
+msgstr "Proxy-Benutzername"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr "Repo GPG Prüfung"
+msgstr "Repo GPG-Überprüfung"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
@@ -687,11 +687,11 @@ msgstr "Transaktionen für Pakete automatisch, ohne Rückfrage, durchführen"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr "Verstecke dnfdragora-update Menü, wenn keine Updates verfügbar sind."
+msgstr "Menü dnfdragora-update ausblenden, wenn es keine Aktualisierungen gibt"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
-msgstr "Zeitabstand um nach Aktualisierungen zu suchen (Minuten)"
+msgstr "Intervall für die Prüfung auf Aktualisierungen (Minuten)"
 
 #: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
@@ -703,7 +703,7 @@ msgstr "Layout Optionen (beim nächsten Start aktiv) "
 
 #: dnfdragora/dialogs.py:967
 msgid "Show updates"
-msgstr "Zeige Aktualisierungen"
+msgstr "Aktualisierungen anzeigen"
 
 #: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
@@ -715,7 +715,7 @@ msgstr "Suchoptionen"
 
 #: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
-msgstr "Zeige nur die neusten Pakete"
+msgstr "Nur die neuesten Pakete zeigen"
 
 #: dnfdragora/dialogs.py:1005
 msgid "Match all words"
@@ -727,7 +727,7 @@ msgstr "Protokollieroptionen (beim nächsten Start aktiv)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr "Aktiviere Protokollierung"
+msgstr "Protokollierung aktivieren"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
@@ -762,7 +762,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
-msgstr "GPG Schlüssel fehlt"
+msgstr "GPG-Schlüssel fehlt"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -1351,7 +1351,7 @@ msgstr "Dateimenü"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr "Informations Menü"
+msgstr "Informationsmenü"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
@@ -1433,7 +1433,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr "<h2>Repositories</h2>"
+msgstr "<h2>Repositorys</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1455,7 +1455,7 @@ msgstr "Dieses Menü beendet dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr "Innformations Menü"
+msgstr "Innformationsmenü"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
@@ -1481,7 +1481,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr "Optionen Menü"
+msgstr "Optionsmenü"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
@@ -1502,7 +1502,7 @@ msgstr "Dialog"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr "dnfdragora Optionen"
+msgstr "dnfdragora-Optionen"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1517,7 +1517,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr "<h2>System Optionen</h2>"
+msgstr "<h2>Systemoptionen</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1542,9 +1542,9 @@ msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
-"<li><b>Intervall um Akualisierungen zu überprüfen</b>: Die angegebene Zahl "
-"gibt an, wann dnfdragora nach Updates suchen muss. Der Wert wird in Minuten "
-"angegeben </li>"
+"<li><b>Intervall für die Suche nach Aktualisierungen</b>: die angegebene "
+"Zahl gibt an, wann dnfdragora nach Aktualisierungen suchen muss, der Wert "
+"wird in Minuten angegeben </li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
@@ -1564,9 +1564,10 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
-"<ul><li><b>Zeige Updates</b>: Wenn diese Option aktiviert ist, beginnt "
-"dnfdragora mit aktivem <i>Updates</i> Filter, d. h. es wird nur das Paket "
-"angezeigt, das gegebenenfalls für Aktualisierungen verfügbar ist.</li>"
+"<ul><li><b>Aktualisierungen anzeigen</b>: Wenn diese Option aktiviert ist, "
+"beginnt dnfdragora mit aktivem Filter <i>Aktualisierungen</i>, d. h. es wird "
+"nur das Paket angezeigt, das gegebenenfalls für Aktualisierungen verfügbar "
+"ist.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1609,7 +1610,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr "<h2>Protokollierungs-Optionen</h2>"
+msgstr "<h2>Protokollierungsoptionen</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1694,7 +1695,7 @@ msgstr "<ul><li><b>Installiert</b>: zeigt nur die installierten Pakete</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr "<li><b>Nicht installiert</b>: Zeigt verfügbare Pakete.</li>"
+msgstr "<li><b>Nicht installiert</b>: zeigt verfügbare Pakete.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
@@ -1808,7 +1809,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr "Fortschrittsanzeige"
+msgstr "Fortschrittsbalken"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
@@ -1837,8 +1838,9 @@ msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
-"<li><b>Alles auswählen</b>Wenn Pakete nur nach Updates gefiltert werden, "
-"können Sie mit dieser Schaltfläche alle Pakete auf einmal auswählen.</li>"
+"<li><b>Alles auswählen</b>Wenn Pakete nur nach Aktualisierungen gefiltert "
+"werden, können Sie mit dieser Schaltfläche alle Pakete auf einmal auswählen."
+"</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
@@ -1869,7 +1871,7 @@ msgstr "Dateiliste"
 
 #: dnfdragora/ui.py:208
 msgid "Changelog"
-msgstr "Changelog"
+msgstr "Änderungsprotokoll"
 
 #: dnfdragora/ui.py:209
 msgid "Requirements"
@@ -1909,7 +1911,7 @@ msgstr "Nicht Installiert"
 
 #: dnfdragora/ui.py:457
 msgid "To update"
-msgstr "Aktualisieren"
+msgstr "Zu aktualisieren"
 
 #: dnfdragora/ui.py:463
 #, python-format
@@ -1970,7 +1972,7 @@ msgstr "Metadaten aktualisieren"
 
 #: dnfdragora/ui.py:592
 msgid "Repositories"
-msgstr "Repositories"
+msgstr "Repositorys"
 
 #: dnfdragora/ui.py:602
 msgid "&Information"
@@ -2002,7 +2004,7 @@ msgstr "&Über"
 
 #: dnfdragora/ui.py:666
 msgid "update"
-msgstr "Update"
+msgstr "aktualisieren"
 
 #: dnfdragora/ui.py:669
 msgid "locked"
@@ -2044,7 +2046,7 @@ msgstr "Nicht unterstützter Event %d"
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
-msgstr "Übertragung starten"
+msgstr "Transaktion starten"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
@@ -2078,23 +2080,23 @@ msgstr "Lade %(count_files)d Dateien herunter (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1659
 msgid "Caching updates"
-msgstr "Aktualisierungen werden zwischengespeichert."
+msgstr "Aktualisierungen werden zwischengespeichert"
 
 #: dnfdragora/ui.py:1662
 msgid "Caching installed"
-msgstr "Installierte Pakete werden zwischengespeichert."
+msgstr "Installierte Pakete werden zwischengespeichert"
 
 #: dnfdragora/ui.py:1665
 msgid "Caching available"
-msgstr "Verfügbare Pakete werden zwischengespeichert."
+msgstr "Verfügbare Pakete werden zwischengespeichert"
 
 #: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
-msgstr "Erstelle Paketzwischenspeicher"
+msgstr "Paketzwischenspeicher wird erstellt"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
-msgstr "Aufbau der Übermittlung fehlgeschlagen"
+msgstr "Aufbau der Transaktion fehlgeschlagen"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
@@ -2119,7 +2121,7 @@ msgstr "dnfdragora-Dialog öffnen"
 
 #: dnfdragora/updater.py:135
 msgid "Check for updates"
-msgstr "Nach Updates suchen"
+msgstr "Auf Aktualisierungen prüfen"
 
 #: dnfdragora/updater.py:136
 msgid "Exit"
