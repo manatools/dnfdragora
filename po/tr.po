@@ -721,7 +721,7 @@ msgid "Match all words"
 msgstr "Tüm kelimeleri eşleştir"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Günlük seçenekleri (sonraki açılışta geçerli olur)"
 
 #: dnfdragora/dialogs.py:1051

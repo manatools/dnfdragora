@@ -719,7 +719,7 @@ msgid "Match all words"
 msgstr "Ujemanje vseh besed"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr ""
 
 #: dnfdragora/dialogs.py:1051
@@ -2069,5 +2069,5 @@ msgstr ""
 #~ msgid "Proceed without asking for confirmation"
 #~ msgstr "Nadaljevanje brez vprašanja za potrditev"
 
-#~ msgid "Log options  (active at next startup)"
+#~ msgid "Log options (active at next startup)"
 #~ msgstr "Možnosti dnevnika (aktivno ob naslednjem zagonu)"

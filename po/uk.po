@@ -717,7 +717,7 @@ msgid "Match all words"
 msgstr "Збіг за усіма словами"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Параметри журналу (буде задіяно під час наступного запуску)"
 
 #: dnfdragora/dialogs.py:1051

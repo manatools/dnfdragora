@@ -725,7 +725,7 @@ msgid "Match all words"
 msgstr "Совпадение по всем словам"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr ""
 
 #: dnfdragora/dialogs.py:1051
@@ -2078,7 +2078,7 @@ msgstr ""
 #~ msgid "Proceed without asking for confirmation"
 #~ msgstr "Приступить без запроса подтверждения"
 
-#~ msgid "Log options  (active at next startup)"
+#~ msgid "Log options (active at next startup)"
 #~ msgstr ""
 #~ "Параметры журналирования (будет задействовано при следующем запуске)"
 

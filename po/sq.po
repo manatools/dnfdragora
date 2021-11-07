@@ -718,7 +718,7 @@ msgid "Match all words"
 msgstr "Përputhni të gjitha fjalët"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Alternativa futëse (aktive në nisjen tjetër)"
 
 #: dnfdragora/dialogs.py:1051

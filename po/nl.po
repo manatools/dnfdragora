@@ -723,7 +723,7 @@ msgid "Match all words"
 msgstr "Overeenkomen met alle woorden"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Logboekopties (actief bij volgende opstart)"
 
 #: dnfdragora/dialogs.py:1051

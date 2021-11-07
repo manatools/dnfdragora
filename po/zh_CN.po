@@ -710,7 +710,7 @@ msgid "Match all words"
 msgstr "匹配所有关键词"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "日志选项（下次启动时激活）"
 
 #: dnfdragora/dialogs.py:1051

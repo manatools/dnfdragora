@@ -722,7 +722,7 @@ msgid "Match all words"
 msgstr "Coincideix amb totes les paraules"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Opcions de registre (actives a l'arrencada següent)"
 
 #: dnfdragora/dialogs.py:1051

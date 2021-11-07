@@ -729,7 +729,7 @@ msgid "Match all words"
 msgstr "Minden szó egyezzen"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Naplózási beállítások (újraindításkor lép életbe)"
 
 #: dnfdragora/dialogs.py:1051

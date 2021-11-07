@@ -716,7 +716,7 @@ msgid "Match all words"
 msgstr "Wszystkie słowa muszą zostać znalezione"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr ""
 "Ustawienia zapisywania do dziennika (dostępne po kolejnym uruchomieniu)"
 
@@ -2175,7 +2175,7 @@ msgstr ""
 #~ msgid "Proceed without asking for confirmation"
 #~ msgstr "Postępuj dalej bez pytania o potwierdzenie"
 
-#~ msgid "Log options  (active at next startup)"
+#~ msgid "Log options (active at next startup)"
 #~ msgstr "Ustawienia dziennika (zmiany widoczne po ponownym uruchomieniu)"
 
 #~ msgid "Software Management"

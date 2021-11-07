@@ -720,7 +720,7 @@ msgid "Match all words"
 msgstr "Corrispondenza di tutte le parole"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "Opzioni di Log (attive dopo il riavvio dell'applicazione)"
 
 #: dnfdragora/dialogs.py:1051

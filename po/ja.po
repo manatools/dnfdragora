@@ -711,7 +711,7 @@ msgid "Match all words"
 msgstr "すべての単語にマッチ"
 
 #: dnfdragora/dialogs.py:1027
-msgid "Logging options  (active at next startup)"
+msgid "Logging options (active at next startup)"
 msgstr "ログ出力設定 (次回起動時から有効)"
 
 #: dnfdragora/dialogs.py:1051

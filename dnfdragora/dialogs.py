@@ -1033,7 +1033,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createHSpacing(hbox, 1.5)
 
     # Title
-    heading=self.factory.createHeading( vbox, _("Logging options  (active at next startup)") )
+    heading=self.factory.createHeading( vbox, _("Logging options (active at next startup)") )
     self.factory.createVSpacing(vbox, 0.3)
     heading.setAutoWrap()
 
