@@ -90,7 +90,7 @@ msgstr "Försök igen genom att använda ett inloggningsskal (t.ex \"su -\")"
 #: bin/dnfdragora:75
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)s version: %(version)s %(NL)s sida: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
 #: bin/dnfdragora:101 dnfdragora/basedragora.py:159
@@ -200,7 +200,7 @@ msgstr "Sökresultat"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Icke kategoriserad"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -278,7 +278,7 @@ msgstr "Uppdaterar: %s"
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Uppdaterades: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
@@ -401,7 +401,7 @@ msgstr "Historik (Datum/Tim)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr ""
+msgstr "Överföringshistorik"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
@@ -457,7 +457,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
-msgstr ""
+msgstr "Bas-URL"
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
@@ -469,7 +469,7 @@ msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:521
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM-procent"
 
 #: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
 msgid "Enabled"
@@ -770,7 +770,7 @@ msgstr ""
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Cachar grupper från paket..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
@@ -1303,7 +1303,7 @@ msgstr "Webb/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Gå till index"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
@@ -2017,7 +2017,7 @@ msgstr ""
 #: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Undantag fångades: [%s]"
 
 #: dnfdragora/updater.py:341
 #, python-format
