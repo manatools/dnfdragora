@@ -1,14 +1,14 @@
 # Translators:
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
-# Omeritzics Games <omeritzicschwartz@gmail.com>, 2021
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2021-03-18 12:55+0200\n"
+"POT-Creation-Date: 2021-04-12 08:58+0300\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
-"Last-Translator: Omeritzics Games <omeritzicschwartz@gmail.com>, 2021\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/MageiaLinux/teams/9361/he/)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "dnfdragora-updater"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr "סמל במגש המערכת שבודק אם יש עדכונים"
+msgstr "סמל במגש המערכת שמודיע על עדכונים"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
