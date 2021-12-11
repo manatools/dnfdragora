@@ -1,12 +1,14 @@
 # Translators:
 # lego37yoon <lego37yoon@outlook.com>, 2018
+# Jo minju, 2021
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 14:55+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: lego37yoon <lego37yoon@outlook.com>, 2018\n"
+"POT-Creation-Date: 2021-11-29 23:44+0200\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: Jo minju, 2021\n"
 "Language-Team: Korean (https://www.transifex.com/MageiaLinux/teams/9361/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +19,7 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
@@ -27,34 +29,34 @@ msgstr "소프트웨어 설치/제거"
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr ""
+msgstr "패키지 설치, 제거 및 업데이트를 위한 그래픽 프런트 엔드"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-업데이터"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr ""
+msgstr "업데이트 확인을 위한 트레이-아이콘"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr ""
+msgstr "업데이트 자동 확인 및 알림"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "dnfdragora 패키지 설치 프로그램"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "RPM 패키지 설치 프로그램"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "시스템에 로컬 패키지 설치"
