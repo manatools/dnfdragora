@@ -1496,8 +1496,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                         rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                                     else :
                                         if changedItem.checked(self.checkBoxColumn):
-                                            self.packageQueue.add(pkg, 'i')
-                                        else:
+                                          if not self.packageQueue.checked(pkg):
+                                              self.packageQueue.add(pkg, 'i')
+                                        elif self.packageQueue.checked(pkg):
                                             self.packageQueue.add(pkg, 'r')
                                         self._setStatusToItem(pkg, self.itemList[it]['item'], True)
                                     break
