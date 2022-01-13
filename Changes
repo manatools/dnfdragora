@@ -1,3 +1,8 @@
+2022-XX-YY v. 2.1.3
+--------------------
+- Fixed clicking to the right of checkboxes wrong behaviour (issue #203)
+- Escape description text before showing as package information (issue #191)
+
 2021-10-24 v. 2.1.2
 ---------------------
 - Fixed wrong access to manatools.service module (issue #202)
