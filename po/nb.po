@@ -6,7 +6,7 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2020
+# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2022
 #
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2020\n"
+"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2022\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/"
 "teams/9361/nb/)\n"
 "Language: nb\n"
@@ -716,7 +716,7 @@ msgstr "Match alle ord"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options (active at next startup)"
-msgstr "Loggealternativer (aktivt ved neste oppstart)"
+msgstr "Loggealternativer (aktiveres ved neste oppstart)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
