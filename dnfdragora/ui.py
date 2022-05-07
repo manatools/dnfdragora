@@ -1787,23 +1787,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.backend.cache.populate(pkg_flt, pkgs)
 
     def _check_MD_cache_expired(self):
-      ''' Check metadata expired '''
+      ''' Check metadata expired if enabled or dnf makecache is disabled '''
       # check if MD cache management is disabled
+      if self.md_update_interval <= 0:
+        logger.debug("Metadata expired check disabled")
+        return False
+      # check if dnf MakeCache timer is is enabed
       ms = services.Services().manager
       if ms.GetUnitFileState('dnf-makecache.timer') == 'enabled' :
           logger.debug("MakeCache enabled")
           return False
-      if self.md_update_interval <= 0:
-        return False
       # check this is the first time dnfdragora is run for this user
       if not self.md_last_refresh_date:
+        logger.debug("Never downloaded Metadata before, forcing it now")
         return True
 
+      logger.debug("Last Metadata check was %s", self.md_last_refresh_date)
       time_fmt = '%Y-%m-%d %H:%M'
       now = datetime.datetime.now()
       refresh_period = datetime.timedelta(hours=self.md_update_interval)
       last_refresh = datetime.datetime.strptime(self.md_last_refresh_date, time_fmt)
       period = now - last_refresh
+      logger.debug("now: %s, elapsed: %s, download Metadata: %s", now, period, (period > refresh_period))
       return period > refresh_period
 
     def _set_MD_cache_refreshed(self):
@@ -1912,7 +1917,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if self.backend_locked :
               self._status = DNFDragoraStatus.RUNNING
               self.backend.SetWatchdogState(False, sync=True)
-              # TODO only if expired
+              # Only if expired
               if self._check_MD_cache_expired():
                 self.backend.ExpireCache()
               else:
