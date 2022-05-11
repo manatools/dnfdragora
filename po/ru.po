@@ -5,9 +5,10 @@
 #
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Валентин Сайков <saikov.vb@gmail.com>, 2018
+# Валентин Сайков <saikov.vb@gmail.com>, 2020
 # AlexL <loginov.alex.valer@gmail.com>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2021
+# algri14 <aliger14@mail.ru>, 2022
 #
 #, fuzzy
 msgid ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2020\n"
+"Last-Translator: algri14 <aliger14@mail.ru>, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "ru/)\n"
 "Language: ru\n"
@@ -50,7 +51,7 @@ msgstr "использовать полный экран для диалогов
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr "принудительный новый путь для иконок групп (вместо /usr/share/icons)"
+msgstr "принудительный новый путь для значков групп (вместо /usr/share/icons)"
 
 #: bin/dnfdragora:34
 msgid ""
@@ -79,7 +80,7 @@ msgstr "показать версию программы и выйти"
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
 msgstr ""
-"принудительно завершить работу служб dbus dnfdaemon, которые используются "
+"принудительно завершить работу служб dbus dnfdaemon, которые использует "
 "dnfdragora"
 
 #: bin/dnfdragora:53 bin/dnfdragora:103
@@ -207,7 +208,7 @@ msgstr "Результат поиска"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Без категории"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -243,7 +244,7 @@ msgstr "Устаревшие пакеты"
 
 #: dnfdragora/const.py:122
 msgid "Erased packages"
-msgstr "Стёртые пакеты"
+msgstr "Удалённые пакеты"
 
 #: dnfdragora/const.py:123 dnfdragora/const.py:124
 msgid "Installed packages"
@@ -395,7 +396,7 @@ msgstr[3] "Ошибок в транзакции"
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Сбой транзакции"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
@@ -666,19 +667,19 @@ msgstr "Система"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Компоновка"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Лог-журнал"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Восстановить по-умолчанию"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -687,10 +688,11 @@ msgstr "Системные опции"
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
+"Выполнять транзакции по пакетам автоматически без необходимости подтверждения"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Скрыть dnfdragora-меню обновления, если нет обновлений"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
@@ -726,11 +728,11 @@ msgstr "Совпадение по всем словам"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options (active at next startup)"
-msgstr ""
+msgstr "Параметры ведения лог-журнала (активируются при следующем запуске)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Включить ведение лог-журнала"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
@@ -742,7 +744,7 @@ msgstr "Уровень диагностики:"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
-msgstr "Выбрать каталог назначения для журнала"
+msgstr "Выбрать каталог назначения для лог-журнала"
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
@@ -781,7 +783,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "пакет без %s атрибутов"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -789,7 +791,7 @@ msgstr "Кэширование групп из пакетов..."
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Команда в процессе выполнения"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
@@ -1654,7 +1656,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Поиск</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1715,13 +1717,15 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Прогресс-бар"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Прогресс-бар показывает ход выполнения операций dnfdragora, таких как "
+"транзакции и кэширование данных."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
@@ -1886,7 +1890,7 @@ msgstr "&Параметры"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
-msgstr "Пользовательские предпочтения"
+msgstr "Пользовательские настройки"
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
@@ -1964,7 +1968,7 @@ msgstr "Проверять изменения в системе"
 
 #: dnfdragora/ui.py:1563
 msgid "Build transaction"
-msgstr "Построить транзакцию"
+msgstr "Создание транзакции"
 
 #: dnfdragora/ui.py:1598
 #, python-format
@@ -1994,15 +1998,15 @@ msgstr "Создаём кэш пакетов"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Ошибка создания транзакции"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "Отсутствует ключ GPG"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Ошибка поиска при использовании регулярного выражения"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
@@ -2041,7 +2045,7 @@ msgstr "Доступные обновления (%d)."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Обновлений нет"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2074,25 +2078,3 @@ msgstr ""
 "Qt 5, GTK+ 3 или ncurses. Она обеспечивает работу оболочки программы "
 "управления пакетами DNF, которой можно воспользоваться в любом типе "
 "системной среды."
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Приступить без запроса подтверждения"
-
-#~ msgid "Log options (active at next startup)"
-#~ msgstr ""
-#~ "Параметры журналирования (будет задействовано при следующем запуске)"
-
-#~ msgid "Software Management"
-#~ msgstr "Управление программами"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "Ещё не реализовано"
-
-#~ msgid "Building Transaction error"
-#~ msgstr "Ошибка построения транзакции"
-
-#~ msgid "BuildTransaction failure"
-#~ msgstr "Сбой транзакции сборки"
-
-#~ msgid "Unknown action %s on %s"
-#~ msgstr "Неизвестное действие %s над %s"
