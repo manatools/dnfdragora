@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Filip Komar <filip.komar@guest.arnes.si>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2021
+# Filip Komar <filip.komar@guest.arnes.si>, 2022
 #
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Filip Komar <filip.komar@guest.arnes.si>, 2020\n"
+"Last-Translator: Filip Komar <filip.komar@guest.arnes.si>, 2022\n"
 "Language-Team: Slovenian (https://www.transifex.com/MageiaLinux/teams/9361/"
 "sl/)\n"
 "Language: sl\n"
@@ -201,7 +201,7 @@ msgstr "Rezultat iskanja"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Nekategorizirano"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
@@ -660,19 +660,19 @@ msgstr "Sistem"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Razpored"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
-msgstr ""
+msgstr "Iskanje"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Zapis dnevnika"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Obnovi &privzeto"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -720,11 +720,11 @@ msgstr "Ujemanje vseh besed"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options (active at next startup)"
-msgstr ""
+msgstr "Možnosti dnevnika (aktivno ob naslednjem zagonu)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Omogoči zapis dnevnika"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
@@ -1311,15 +1311,15 @@ msgstr "Splet/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Skok na kazalo"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Vrstica menija"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filitri in črta iskanja"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
@@ -1335,11 +1335,11 @@ msgstr "Podatkovni pult"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Črtica napredka"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Črtica gumba"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
@@ -1390,7 +1390,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Meni datoteka"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
@@ -1426,7 +1426,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Končaj</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
@@ -1831,7 +1831,7 @@ msgstr "v imenih datotek"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Uporabi regexp"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
@@ -2034,7 +2034,7 @@ msgstr "Na volje je %d posodobitev."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Ni posodobitev na voljo."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
@@ -2065,9 +2065,3 @@ msgstr ""
 "upodabljanje uporabniškega vmesnika, ki ga je napisal SUSE. Zato lahko teče "
 "v vmesnikih Qt 5, GTK+ 3 ali ncurses. Ponuja začelje za upravljalnik paketov "
 "DNF, ki ga je možno uporabiti v raznovrstnih sistemskih okoljih."
-
-#~ msgid "Proceed without asking for confirmation"
-#~ msgstr "Nadaljevanje brez vprašanja za potrditev"
-
-#~ msgid "Log options (active at next startup)"
-#~ msgstr "Možnosti dnevnika (aktivno ob naslednjem zagonu)"
