@@ -680,11 +680,11 @@ msgstr "Sistemske možnosti"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Zaženi transakcije na paketih avtomatsko brez potrebnih potrditev"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Skrij meni dnfdragora-update, če ni posodobitev"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
@@ -774,7 +774,7 @@ msgstr ""
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "paket nima nobenega atributa %s"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -1323,11 +1323,11 @@ msgstr "Filitri in črta iskanja"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Pult skupine"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Pult paketa"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
@@ -1378,15 +1378,15 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "Okno dnfdragora vsebuje:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Vsebina menija"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Meni vsebuje spustne menije dnfdragora:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
@@ -1430,7 +1430,7 @@ msgstr "<h2>Končaj</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Ta menu zaključi program dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
@@ -1474,7 +1474,7 @@ msgstr "pogovorno okno"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "Možnosti dnfdragora"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1578,11 +1578,11 @@ msgstr "Meni s pomočjo"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Navodila</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Ta meni vsebuje dialog pomoči za dnfdragora."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
@@ -1590,15 +1590,15 @@ msgstr "<h2>O programu</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Ta meni vsebuje dialog o verziji dnfdragora."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Pogledi in iskanje"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Pogledi</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1718,7 +1718,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Črtica gumbov"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
