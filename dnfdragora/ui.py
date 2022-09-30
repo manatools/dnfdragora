@@ -433,15 +433,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.bottom_layout = hbox_bottom
         self.footbar_layout = hbox_footbar
 
-        #hbox_headbar.setWeight(1,10)
-        hbox_top.setWeight(1,5)
-        hbox_middle.setWeight(1,50)
-        hbox_bottom.setWeight(1,30)
-        hbox_footbar.setWeight(1,10)
 
         # Tree for groups
         self.tree = self.factory.createTree(hbox_middle, "")
-        self.tree.setWeight(0,10)
+        self.tree.setWeight(yui.YD_HORIZ,20)
         self.tree.setNotify(True)
 
         packageList_header = yui.YCBTableHeader()
@@ -456,7 +451,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             packageList_header.addColumn(_("Status"), not checkboxed)
 
         self.packageList = self.mgaFactory.createCBTable(hbox_middle,packageList_header)
-        self.packageList.setWeight(0,50)
+        self.packageList.setWeight(yui.YD_HORIZ,80)
         self.packageList.setImmediateMode(True)
 
         self.filters = {
@@ -556,38 +551,34 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.search_list.setNotify(True)
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
+        self.find_entry.setWeight(yui.YD_HORIZ,1)
 
         self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
         self.use_regexp.setNotify(True)
 
         icon_file = self.images_path + "find.png"
         self.find_button = self.factory.createIconButton(hbox_top, 'system-search', _("&Search"))
-        self.find_button.setWeight(0,6)
         self.find_button.setDefaultButton(True)
 
         icon_file = self.images_path + "clear_22x22.png"
         self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Clear search"))
-        self.reset_search_button.setWeight(0,7)
-        self.find_entry.setWeight(0,10)
 
         self.info = self.factory.createRichText(hbox_bottom,"")
-        self.info.setWeight(yui.YD_HORIZ,40)
-        self.info.setWeight(yui.YD_VERT, 40)
 
         self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
-        self.applyButton.setWeight(0,3)
+        self.applyButton.setWeight(yui.YD_HORIZ,1)
         self.applyButton.setEnabled(False)
 
         self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Sel&ect all"))
-        self.checkAllButton.setWeight(0,3)
+        self.checkAllButton.setWeight(yui.YD_HORIZ,1)
         self.checkAllButton.setEnabled(False)
+        spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
-        spacing.setWeight(0,3)
         self.quitButton = self.factory.createIconButton(right_footbar,"",_("&Quit"))
-        self.quitButton.setWeight(0,3)
+        self.quitButton.setWeight(yui.YD_HORIZ,1)
 
         ### BEGIN Menus #########################
         if (hasattr(self.factory, 'createMenuBar') and ismethod(getattr(self.factory, 'createMenuBar'))):
