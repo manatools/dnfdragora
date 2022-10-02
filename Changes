@@ -1,5 +1,7 @@
 2022-XX-YY v. 2.1.3
 --------------------
+- Changed widget weight to avoid wrong behavior and resizing limitations (see
+  issue #206, issue #207 and https://github.com/libyui/libyui-gtk/issues/83)
 - Added logging info if metadata have to be downloaded (expiration time)
   Note that MetaData update_interval <= 0 means disabling check as well as
   if dnf-makecache.timer is enabled
