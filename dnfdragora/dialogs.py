@@ -524,7 +524,6 @@ class RepoDialog:
           'enablegroups'           : _('Enable groups'),
           'exclude'                : _('Exclude'),
           'excludepkgs'            : _('Exclude packages'),
-          'failovermethod'         : _('Failover method'),
           'fastestmirror'          : _('Fastest mirror'),
           'gpgcheck'               : _('GPG check'),
           'gpgkey'                 : _('GPG key'),

@@ -1,3 +1,7 @@
+YYYY-XX-zz v. 2.1.4
+-------------------
+- Removed "failovermethod" from repo information, not available any more
+
 2022-10-02 v. 2.1.3
 --------------------
 - Changed widget weight to avoid wrong behavior and resizing limitations (see
