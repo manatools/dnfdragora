@@ -1,6 +1,6 @@
 2023-01-15 v. 2.1.4
 -------------------
-- fixed #177 "size sorting is broken". Thanks to Nicolas Thierry-Mieg 
+- Fixed #177 "size sorting is broken". Thanks to Nicolas Thierry-Mieg 
 - Removed "failovermethod" from repo information, not available any more
 
 2022-10-02 v. 2.1.3
