@@ -757,6 +757,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         create a YCBTableItem with given data and return it
         Note that it also disowns either cells or item itself
         '''
+        # produce string-sortable version of pkg_sizeM: the sizes are in KB, assume largest
+        # package size <100G ie left-pad with O's to 8 digits (not counting decimals)
+        digitsNeeded = 8
+        sizePadded = pkg_sizeM
+        # strip trailing K
+        if sizePadded.endswith('K'):
+            sizePadded = sizePadded.removesuffix('K')
+        else:
+            logger.warning('while building sizePadded, no trailing K in %s , why? proceeding anyways', pkg_sizeM)
+        (sizeInt, decMark, decimals) = sizePadded.partition('.')
+        sizeIntPadded = sizeInt.rjust(digitsNeeded, '0')
+        sizePadded = sizeIntPadded + decMark + decimals
         cells =  list([
                       yui.YCBTableCell( checked ),
                       yui.YCBTableCell( pkg_name ),
@@ -764,7 +776,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                       yui.YCBTableCell( pkg_version ),
                       yui.YCBTableCell( pkg_release ),
                       yui.YCBTableCell( pkg_arch ),
-                      yui.YCBTableCell( pkg_sizeM )
+                      yui.YCBTableCell( pkg_sizeM , "", sizePadded)
                       ])
         for cell in cells:
             cell.this.own(False)
