@@ -7,14 +7,14 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Rodrigo de Almeida Sottomaior Macedo <rmsolucoeseminformatica@protonmail.com>, 2017
 # Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2020
+# 3f37d448649cd548fa5a733e33387c2a_dee4ccf, 2020
 # 0ff1bb82b239377c0e501bd7ef909ffe_5dd6a88 <b540bc7f8bba02a4e77b4237091f7f15_537816>, 2020
-# Michael Martins <michaelfm21@gmail.com>, 2020
 # lrampazzo <lrampazzo@gmail.com>, 2020
 # Celio Alves <dreamcelio@gmail.com>, 2021
 # Yuri Chornoivan <yurchor@ukr.net>, 2021
 # Manuela Silva <mmsrs@sky.com>, 2022
-# 3f37d448649cd548fa5a733e33387c2a_dee4ccf, 2022
 # Gilberto F. da Silva, 2022
+# Michael Martins <michaelfm21@gmail.com>, 2023
 #
 #, fuzzy
 msgid ""
@@ -23,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Gilberto F. da Silva, 2022\n"
+"Last-Translator: Michael Martins <michaelfm21@gmail.com>, 2023\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/MageiaLinux/"
 "teams/9361/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -124,7 +124,7 @@ msgstr "ocorreu um erro de atributo com o dnfdaemon:%(NL)s%(error)s"
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr "dnfdaemon ocorreu um erro do tipo  1%(NL)s 2%(error)s"
+msgstr "Ocorreu um erro de tipo dnfdaemon:%(NL)s %(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
@@ -2069,7 +2069,7 @@ msgstr "Construindo transação"
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr "Ação %(action)s em %(name)s desconhecida"
+msgstr "Ação desconhecia %(action)s em %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
@@ -2102,7 +2102,7 @@ msgstr "Chave GPG faltando"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr "Erro em busca usando expressão regular"
+msgstr "Erro de pesquisa usando expressão regular"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
