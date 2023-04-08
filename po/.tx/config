@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[mageia.dnfdragora]
+[o:MageiaLinux:p:mageia:r:dnfdragora]
 file_filter = <lang>.po
 source_file = dnfdragora.pot
 source_lang = en
