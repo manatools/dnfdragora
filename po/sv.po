@@ -5,8 +5,8 @@
 #
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2020
-# Michael Eklund <willard@null.net>, 2022
 # Kristoffer Grundström <lovaren@gmail.com>, 2022
+# Michael Eklund <willard@null.net>, 2023
 #
 #, fuzzy
 msgid ""
@@ -15,8 +15,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Kristoffer Grundström <lovaren@gmail.com>, 2022\n"
-"Language-Team: Swedish (https://www.transifex.com/MageiaLinux/teams/9361/"
+"Last-Translator: Michael Eklund <willard@null.net>, 2023\n"
+"Language-Team: Swedish (https://app.transifex.com/MageiaLinux/teams/9361/"
 "sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -31,15 +31,15 @@ msgstr "%(prog)s [alternativ]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "börja använda yui GTK+ plugin-implementering"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr "börja använd ncurses plugin-implementeringen"
+msgstr "börja använda ncurses plugin-implementering"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "börja använda yui Qt plugin-implementering"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
@@ -81,7 +81,7 @@ msgstr ""
 #: bin/dnfdragora:53 bin/dnfdragora:103
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "dnfdaemon klienten misslyckades [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
@@ -100,22 +100,22 @@ msgstr "Tyvärr"
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon klientfel inträffade:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon namnfel inträffade:%(NL)s%(error)s"
 
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon attributfel inträffade:%(NL)s%(error)s"
 
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon skrivfel inträffade:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
@@ -127,6 +127,8 @@ msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"Tvinga en ny sökväg för alla nödvändiga ikoner (istället för /usr/share/"
+"icons/hicolor/128x128/apps/)"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
@@ -343,7 +345,7 @@ msgstr "Förbereder överföring: %s"
 #: dnfdragora/const.py:153
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Efterskript: %s"
 
 #: dnfdragora/const.py:163
 msgid "Bugfix"
@@ -384,12 +386,12 @@ msgstr[1] "Felen i överföringen"
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Bygg-transaktionsfel"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon obehörig klient:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:296
 msgid "History"
@@ -417,7 +419,7 @@ msgstr "Överföringsresultat"
 
 #: dnfdragora/dialogs.py:379
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Transaktionsberoende"
 
 #: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
 #: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
@@ -453,7 +455,7 @@ msgstr "Bandbredd"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
-msgstr ""
+msgstr "Grundkatalog för cache."
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
@@ -493,7 +495,7 @@ msgstr "Exkludera dessa paket"
 
 #: dnfdragora/dialogs.py:527
 msgid "Failover method"
-msgstr ""
+msgstr "Misslyckad metod"
 
 #: dnfdragora/dialogs.py:528
 msgid "Fastest mirror"
@@ -513,7 +515,7 @@ msgstr "Inkludera paket"
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr ""
+msgstr "IP-upplösning"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
@@ -533,7 +535,7 @@ msgstr "Meta-länk"
 
 #: dnfdragora/dialogs.py:537
 msgid "Min rate"
-msgstr ""
+msgstr "Minimum hastighet"
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
@@ -573,11 +575,11 @@ msgstr "Användarnamn för proxy"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr ""
+msgstr "GPS-kontrollrapport"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
-msgstr ""
+msgstr "Försök"
 
 #: dnfdragora/dialogs.py:549 dnfdragora/ui.py:440
 msgid "Size"
@@ -605,7 +607,7 @@ msgstr "SSL-bekräftelse"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
-msgstr ""
+msgstr "Strypning"
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
@@ -666,7 +668,7 @@ msgstr "Loggning"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Återställ &standard"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
@@ -674,11 +676,11 @@ msgstr "Systemalternativ"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Kör transaktioner på paket automatiskt, utan bekräftelser"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Göm dnfdragora-update om det inte finns några uppdateringar"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
@@ -686,11 +688,11 @@ msgstr "Intervall för att söka efter uppdateringar (minuter)"
 
 #: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Metadata, förfallotid (timmar)"
 
 #: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Utseendealternativ (gäller vid nästa start)"
 
 #: dnfdragora/dialogs.py:967
 msgid "Show updates"
@@ -714,7 +716,7 @@ msgstr "Matcha alla ord"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options (active at next startup)"
-msgstr ""
+msgstr "Loggalternativ (gäller vid nästa start)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
@@ -730,7 +732,7 @@ msgstr "Avlusningsnivå"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Välj katalog för loggar"
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
@@ -762,11 +764,14 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdemonens api-version : %(actual)d\n"
+"matchar inte\n"
+"behöver api-version : %(required)d"
 
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "paketet har inte några %sattributer"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
@@ -1311,15 +1316,15 @@ msgstr "Meny-rad"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Filter och sökrad"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Gruppanel"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Paketpanel"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
@@ -1327,7 +1332,7 @@ msgstr "Informationspanel"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Framstegsindikator"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
@@ -1335,7 +1340,7 @@ msgstr "Knapp-rad"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Arkiv"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
@@ -1343,7 +1348,7 @@ msgstr "Informationsmeny"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Inställningar"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
@@ -1354,12 +1359,16 @@ msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora är ett DNF frontend, baserat på Mageia rpmdragora och Fedora "
+"yumex-dnf samspel med dnfdaemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora är i princip en pakethanterare där du kan installera, uppdatera, "
+"ta bort och söka efter paket, och mer.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1367,22 +1376,25 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora är en del av manatools, och är baserat på libyui så att det kan "
+"fungera med Gtk, QT eller ncurces. Dvs. både med grafiskt och textbaserat "
+"gränssnitt."
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragora består av:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Menyinnehåll"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Menyfältet innehåller rullgardinsmenyn för dnfdragora :"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Arkivmeny"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
@@ -1447,7 +1459,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Menyalternativ"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
@@ -1466,7 +1478,7 @@ msgstr "dialog"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora-alternativ"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1545,7 +1557,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Loggalternativ</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1586,7 +1598,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Visningar och sök"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
@@ -1605,7 +1617,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Filter</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
