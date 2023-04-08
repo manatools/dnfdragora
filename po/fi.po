@@ -1,17 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the dnfdragora package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Filip Komar <filip.komar@guest.arnes.si>, 2017
+# Rémi Verschelde <akien@mageia.org>, 2017
+# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Tukea <nokoa@live.fi>, 2020
+# Kimmo Kujansuu <mrkujansuu@gmail.com>, 2023
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dnfdragora 0.xx\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Tukea <nokoa@live.fi>, 2017\n"
-"Language-Team: Finnish (https://www.transifex.com/MageiaLinux/teams/9361/"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>, 2023\n"
+"Language-Team: Finnish (https://app.transifex.com/MageiaLinux/teams/9361/"
 "fi/)\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -22,143 +29,147 @@ msgstr ""
 #: bin/dnfdragora:24 bin/dnfdragora-updater:22
 #, python-format
 msgid "%(prog)s [options]"
-msgstr ""
+msgstr "%(prog)s [valinnat]"
 
 #: bin/dnfdragora:27
 msgid "start using yui GTK+ plugin implementation"
-msgstr ""
+msgstr "aloita yui GTK+ laajennuksen käyttöönotto"
 
 #: bin/dnfdragora:28
 msgid "start using yui ncurses plugin implementation"
-msgstr ""
+msgstr "aloita yui ncurses laajennuksen käyttöönotto"
 
 #: bin/dnfdragora:29
 msgid "start using yui Qt plugin implementation"
-msgstr ""
+msgstr "aloita yui Qt laajennuksen käyttöönotto"
 
 #: bin/dnfdragora:30
 msgid "use full screen for dialogs"
-msgstr ""
+msgstr "käytä koko näyttöä valintaikkunoissa"
 
 #: bin/dnfdragora:33
 msgid "force a new path for group icons (instead of /usr/share/icons)"
-msgstr ""
+msgstr "pakota uusi polku ryhmän kuvakkeille (/usr/share/icons sijaan)"
 
 #: bin/dnfdragora:34
 msgid ""
 "force a new path for all the needed images (instead of /usr/share/dnfdragora/"
 "images)"
 msgstr ""
+"pakota uusi polku kaikille tarvittaville kuville (/usr/share/dnfdragora/"
+"images sijaan)"
 
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
-msgstr ""
+msgstr "hakemisto, joka sisältää lokalisoinnin merkkijonot (vain kehittäjille)"
 
 #: bin/dnfdragora:37
 msgid "install packages"
-msgstr ""
+msgstr "asenna paketit"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr ""
+msgstr "näytä vain päivitykset ikkuna"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
-msgstr ""
+msgstr "näytä sovelluksen versio ja poistu"
 
 #: bin/dnfdragora:40
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
+msgstr "pakota dnfdragoran käyttämät dnfdaemon dbus -palvelut poistumaan"
 
 #: bin/dnfdragora:53 bin/dnfdragora:103
 #, python-format
 msgid "dnfdaemon client failure [%s]"
-msgstr ""
+msgstr "dnfdaemon ohjelmavirhe [%s]"
 
 #: bin/dnfdragora:55
 msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr ""
+msgstr "Yritä uudelleen käyttäen päätettä (esim. \"su -\")"
 
 #: bin/dnfdragora:75
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr ""
+msgstr "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
 #: bin/dnfdragora:101 dnfdragora/basedragora.py:159
 msgid "Sorry"
-msgstr ""
+msgstr "Pahoittelut"
 
 #: bin/dnfdragora:89
 #, python-format
 msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon ohjelmavirhe tapahtui:%(NL)s%(error)s"
 
 #: bin/dnfdragora:92
 #, python-format
 msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon nimivirhe tapahtui:%(NL)s%(error)s"
 
 #: bin/dnfdragora:95
 #, python-format
 msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon määritevirhe tapahtui:%(NL)s%(error)s"
 
 #: bin/dnfdragora:98
 #, python-format
 msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon tyyppivirhe tapahtui:%(NL)s%(error)s"
 
 #: bin/dnfdragora:101
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
-msgstr ""
+msgstr "Havaittu virhe:%(NL)s%(error)s"
 
 #: bin/dnfdragora-updater:24
 msgid ""
 "force a new path for all the needed icons (instead of /usr/share/icons/"
 "hicolor/128x128/apps/)"
 msgstr ""
+"pakota uusi polku kaikille tarvittaville kuvakkeille (/usr/share/icons/"
+"hicolor/128x128/apps/ sijaan)"
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr ""
+msgstr "KDE-työpöytä"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr ""
+msgstr "Xfce-työpöytä"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
-msgstr ""
+msgstr "Sovellukset"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr ""
+msgstr "LXDE-työpöytä"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr ""
+msgstr "LXQt-työpöytä"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr ""
+msgstr "Cinnamon-työpöytä"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr ""
+msgstr "MATE-työpöytä"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr ""
+msgstr "Hawaii-työpöytä"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr ""
+msgstr "Sugar-työpöytä"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr ""
+msgstr "GNOME-työpöytä"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -171,11 +182,11 @@ msgstr "Palvelimet"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr ""
+msgstr "Perusjärjestelmä"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
-msgstr ""
+msgstr "Sisältö"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
 #: dnfdragora/ui.py:468
@@ -188,162 +199,162 @@ msgstr "Tyhjä"
 
 #: dnfdragora/compsicons.py:43 dnfdragora/groupicons.py:607
 msgid "Search result"
-msgstr ""
+msgstr "Hakutulos"
 
 #: dnfdragora/compsicons.py:46
 msgid "Uncategorized"
-msgstr ""
+msgstr "Luokittelematon"
 
 #: dnfdragora/const.py:102
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Asennetut paketit"
 
 #: dnfdragora/const.py:103
 msgid "Getting available packages"
-msgstr ""
+msgstr "Saatavilla paketit"
 
 #: dnfdragora/const.py:104
 msgid "Getting available updates"
-msgstr ""
+msgstr "Saatavilla päivityksiä"
 
 #: dnfdragora/const.py:105
 msgid "Getting all packages"
-msgstr ""
+msgstr "Kaikki paketit"
 
 #: dnfdragora/const.py:118
 msgid "Updated packages"
-msgstr ""
+msgstr "Päivitetyt paketit"
 
 #: dnfdragora/const.py:119
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Alennettuja paketteja"
 
 #: dnfdragora/const.py:120
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Vanhentuvat paketit"
 
 #: dnfdragora/const.py:121
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Vanhentuneet paketit"
 
 #: dnfdragora/const.py:122
 msgid "Erased packages"
-msgstr ""
+msgstr "Poistetut paketit"
 
 #: dnfdragora/const.py:123 dnfdragora/const.py:124
 msgid "Installed packages"
-msgstr ""
+msgstr "Asennetut paketit"
 
 #: dnfdragora/const.py:125
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Asennetut riippuvuudet"
 
 #: dnfdragora/const.py:126
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Asennettu uudelleen"
 
 #: dnfdragora/const.py:131
 msgid "Installing"
-msgstr ""
+msgstr "Asennetaan"
 
 #: dnfdragora/const.py:132
 msgid "Updating"
-msgstr ""
+msgstr "Päivitetään"
 
 #: dnfdragora/const.py:133
 msgid "Removing"
-msgstr ""
+msgstr "Poistetaan"
 
 #: dnfdragora/const.py:134
 msgid "Downgrading"
-msgstr ""
+msgstr "Alennetaan"
 
 #: dnfdragora/const.py:135
 msgid "Replacing"
-msgstr ""
+msgstr "Korvataan"
 
 #: dnfdragora/const.py:139
 #, python-format
 msgid "Updating: %s"
-msgstr ""
+msgstr "Päivitetään: %s"
 
 #: dnfdragora/const.py:140
 #, python-format
 msgid "Updated: %s"
-msgstr ""
+msgstr "Päivitetty: %s"
 
 #: dnfdragora/const.py:141
 #, python-format
 msgid "Installing: %s"
-msgstr ""
+msgstr "Asennetaan: %s"
 
 #: dnfdragora/const.py:142
 #, python-format
 msgid "Reinstalling: %s"
-msgstr ""
+msgstr "Uudelleen: %s"
 
 #: dnfdragora/const.py:143
 #, python-format
 msgid "Reinstalled: %s"
-msgstr ""
+msgstr "Asennettu uudelleen: %s"
 
 #: dnfdragora/const.py:144
 #, python-format
 msgid "Cleanup: %s"
-msgstr ""
+msgstr "Siivotaan: %s"
 
 #: dnfdragora/const.py:145
 #, python-format
 msgid "Removing: %s"
-msgstr ""
+msgstr "Poistetaan: %s"
 
 #: dnfdragora/const.py:146
 #, python-format
 msgid "Obsoleting: %s"
-msgstr ""
+msgstr "Vanhentunut: %s"
 
 #: dnfdragora/const.py:147
 #, python-format
 msgid "Obsoleted: %s"
-msgstr ""
+msgstr "Vanhentuneet: %s"
 
 #: dnfdragora/const.py:148
 #, python-format
 msgid "Downgrading: %s"
-msgstr ""
+msgstr "Alennetaan: %s"
 
 #: dnfdragora/const.py:149
 #, python-format
 msgid "Downgraded: %s"
-msgstr ""
+msgstr "Alennettuja: %s"
 
 #: dnfdragora/const.py:150
 #, python-format
 msgid "Verifying: %s"
-msgstr ""
+msgstr "Vahvistetaan: %s"
 
 #: dnfdragora/const.py:151
 #, python-format
 msgid "Running scriptlet: %s"
-msgstr ""
+msgstr "Ajossa komentosarja: %s"
 
 #: dnfdragora/const.py:152
 #, python-format
 msgid "Preparing transaction: %s"
-msgstr ""
+msgstr "Valmistellaan tapahtuma: %s"
 
 #: dnfdragora/const.py:153
 #, python-format
 msgid "Post-transaction script: %s"
-msgstr ""
+msgstr "Tapahtuman jälkeen komentosarja: %s"
 
 #: dnfdragora/const.py:163
 msgid "Bugfix"
-msgstr ""
+msgstr "Bugikorjaus"
 
 #: dnfdragora/const.py:164
 msgid "New Package"
-msgstr ""
+msgstr "Uusi paketti"
 
 #: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
 msgid "Security"
@@ -351,184 +362,184 @@ msgstr "Turvallisuus"
 
 #: dnfdragora/const.py:166
 msgid "Enhancement"
-msgstr ""
+msgstr "Lisätoiminto"
 
 #: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
-msgstr ""
+msgstr "Kumoa tapahtuma"
 
 #: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
-msgstr ""
+msgstr "Virhe paketin allekirjoituksessa"
 
 #: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
 msgid "Downloading error"
 msgid_plural "Downloading errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Latausvirhe"
+msgstr[1] "Latausvirheet"
 
 #: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Virhe tapahtumassa"
+msgstr[1] "Virheitä tapahtumassa"
 
 #: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
 #: dnfdragora/ui.py:1262
 msgid "Build transaction failure"
-msgstr ""
+msgstr "Koontitapahtuman epäonnistuminen"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
 #, python-format
 msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr ""
+msgstr "dnfdaemon asiakas ei ole valtuutettu:%(NL)s%(error)s"
 
 #: dnfdragora/dialogs.py:296
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: dnfdragora/dialogs.py:303
 msgid "History (Date/Time)"
-msgstr ""
+msgstr "Historia (päivä ja aika)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr ""
+msgstr "Tapahtumahistoria"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
-msgstr ""
+msgstr "&Kumoa"
 
 #: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
-msgstr ""
+msgstr "&Sulje"
 
 #: dnfdragora/dialogs.py:373
 msgid "Transaction result"
-msgstr ""
+msgstr "Tapahtuman tulos"
 
 #: dnfdragora/dialogs.py:379
 msgid "Transaction dependency"
-msgstr ""
+msgstr "Tapahtuman riippuvuudet"
 
 #: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
 #: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
 #: dnfdragora/dialogs.py:1375
 msgid "&Ok"
-msgstr ""
+msgstr "&OK"
 
 #: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
 #: dnfdragora/dialogs.py:1376
 msgid "&Cancel"
-msgstr ""
+msgstr "&Peruuta"
 
 #: dnfdragora/dialogs.py:404
 msgid "replacing "
-msgstr ""
+msgstr "korvataan "
 
 #: dnfdragora/dialogs.py:410
 msgid "Total size "
-msgstr ""
+msgstr "Koko yhteensä "
 
 #: dnfdragora/dialogs.py:475
 msgid "Developers"
-msgstr ""
+msgstr "Kehittäjät"
 
 #: dnfdragora/dialogs.py:479
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr ""
+msgstr "dnfdragora on DNF-käyttöliittymä GTK, ncurses ja QT tuella"
 
 #: dnfdragora/dialogs.py:516
 msgid "Bandwidth"
-msgstr ""
+msgstr "Kaistanleveys"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
-msgstr ""
+msgstr "Välimuistin hakemisto"
 
 #: dnfdragora/dialogs.py:518
 msgid "Base URL"
-msgstr ""
+msgstr "Välimuistin URL"
 
 #: dnfdragora/dialogs.py:519
 msgid "Cost"
-msgstr ""
+msgstr "Cost"
 
 #: dnfdragora/dialogs.py:520
 msgid "DeltaRPM"
-msgstr ""
+msgstr "DeltaRPM"
 
 #: dnfdragora/dialogs.py:521
 msgid "DeltaRPM percentage"
-msgstr ""
+msgstr "DeltaRPM prosenttia"
 
 #: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
 msgid "Enabled"
-msgstr ""
+msgstr "Käytössä"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enabled metadata"
-msgstr ""
+msgstr "Metatiedot käytössä"
 
 #: dnfdragora/dialogs.py:524
 msgid "Enable groups"
-msgstr ""
+msgstr "Ryhmät käytössä"
 
 #: dnfdragora/dialogs.py:525
 msgid "Exclude"
-msgstr ""
+msgstr "Jätä pois"
 
 #: dnfdragora/dialogs.py:526
 msgid "Exclude packages"
-msgstr ""
+msgstr "Jätä pois paketteja"
 
 #: dnfdragora/dialogs.py:527
 msgid "Failover method"
-msgstr ""
+msgstr "Vikasieto menetelmä"
 
 #: dnfdragora/dialogs.py:528
 msgid "Fastest mirror"
-msgstr ""
+msgstr "Nopein peilipaikka"
 
 #: dnfdragora/dialogs.py:529
 msgid "GPG check"
-msgstr ""
+msgstr "GPG tarkistus"
 
 #: dnfdragora/dialogs.py:530
 msgid "GPG key"
-msgstr ""
+msgstr "GPG avain"
 
 #: dnfdragora/dialogs.py:531
 msgid "Include packages"
-msgstr ""
+msgstr "Mukana paketit"
 
 #: dnfdragora/dialogs.py:532
 msgid "IP resolve"
-msgstr ""
+msgstr "IP-selvitys"
 
 #: dnfdragora/dialogs.py:533
 msgid "Max parallel download"
-msgstr ""
+msgstr "Lataus rinnakkain maksimi"
 
 #: dnfdragora/dialogs.py:534
 msgid "Media ID"
-msgstr ""
+msgstr "Media ID"
 
 #: dnfdragora/dialogs.py:535
 msgid "Metadata expire"
-msgstr ""
+msgstr "Metatiedot vanhenee"
 
 #: dnfdragora/dialogs.py:536
 msgid "Meta link"
-msgstr ""
+msgstr "Meta linkki"
 
 #: dnfdragora/dialogs.py:537
 msgid "Min rate"
-msgstr ""
+msgstr "Minimi"
 
 #: dnfdragora/dialogs.py:538
 msgid "Mirror list"
-msgstr ""
+msgstr "Peilipaikat lista"
 
 #: dnfdragora/dialogs.py:539 dnfdragora/dialogs.py:593 dnfdragora/ui.py:440
 msgid "Name"
@@ -536,116 +547,116 @@ msgstr "Nimi"
 
 #: dnfdragora/dialogs.py:540
 msgid "Packages"
-msgstr ""
+msgstr "Paketit"
 
 #: dnfdragora/dialogs.py:541
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 #: dnfdragora/dialogs.py:542
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteetti"
 
 #: dnfdragora/dialogs.py:543
 msgid "Protected packages"
-msgstr ""
+msgstr "Suojatut paketit"
 
 #: dnfdragora/dialogs.py:544
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: dnfdragora/dialogs.py:545
 msgid "Proxy password"
-msgstr ""
+msgstr "Proxy salasana"
 
 #: dnfdragora/dialogs.py:546
 msgid "Proxy username"
-msgstr ""
+msgstr "Proxy käyttäjä"
 
 #: dnfdragora/dialogs.py:547
 msgid "Repo GPG check"
-msgstr ""
+msgstr "Repo GPG tarkistus"
 
 #: dnfdragora/dialogs.py:548
 msgid "Retries"
-msgstr ""
+msgstr "Yrityskerrat"
 
 #: dnfdragora/dialogs.py:549 dnfdragora/ui.py:440
 msgid "Size"
-msgstr ""
+msgstr "Koko"
 
 #: dnfdragora/dialogs.py:550
 msgid "Skip if unavailable"
-msgstr ""
+msgstr "Ohita, jos ei saatavilla"
 
 #: dnfdragora/dialogs.py:551
 msgid "SSL CA cert"
-msgstr ""
+msgstr "SSL CA sertifikaatti"
 
 #: dnfdragora/dialogs.py:552
 msgid "SSL client cert"
-msgstr ""
+msgstr "SSL asiakas sertifikaatti"
 
 #: dnfdragora/dialogs.py:553
 msgid "SSL client key"
-msgstr ""
+msgstr "SSL asiakkaan avain"
 
 #: dnfdragora/dialogs.py:554
 msgid "SSL verify"
-msgstr ""
+msgstr "SSL vahvistus"
 
 #: dnfdragora/dialogs.py:555
 msgid "Throttle"
-msgstr ""
+msgstr "Rajoitus"
 
 #: dnfdragora/dialogs.py:556
 msgid "Timeout"
-msgstr ""
+msgstr "Aikaväli"
 
 #: dnfdragora/dialogs.py:557
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 #: dnfdragora/dialogs.py:558
 msgid "Username"
-msgstr ""
+msgstr "Käyttäjänimi"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
-msgstr ""
+msgstr "Pakettivaraston hallinta"
 
 #: dnfdragora/dialogs.py:602
 msgid "Information"
-msgstr ""
+msgstr "Tietoja"
 
 #: dnfdragora/dialogs.py:602
 msgid "Value"
-msgstr ""
+msgstr "Arvo"
 
 #: dnfdragora/dialogs.py:611 dnfdragora/ui.py:570
 msgid "&Apply"
-msgstr ""
+msgstr "&Käytä"
 
 #: dnfdragora/dialogs.py:719
 msgid "Never"
-msgstr ""
+msgstr "Ei koskaan"
 
 #: dnfdragora/dialogs.py:721
 #, python-format
 msgid "%s second(s)"
-msgstr ""
+msgstr "%s sekuntia"
 
 #: dnfdragora/dialogs.py:727
 msgid "Now"
-msgstr ""
+msgstr "Nyt"
 
 #: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
 msgid "System"
-msgstr "Järjestelmäasetukset"
+msgstr "Järjestelmä"
 
 #: dnfdragora/dialogs.py:804
 msgid "Layout"
-msgstr ""
+msgstr "Asettelu"
 
 #: dnfdragora/dialogs.py:809
 msgid "Search"
@@ -653,83 +664,83 @@ msgstr "Etsi"
 
 #: dnfdragora/dialogs.py:814
 msgid "Logging"
-msgstr ""
+msgstr "Loki"
 
 #: dnfdragora/dialogs.py:825
 msgid "Restore &default"
-msgstr ""
+msgstr "Palauta &oletukset"
 
 #: dnfdragora/dialogs.py:888
 msgid "System options"
-msgstr ""
+msgstr "Järjestelmän asetukset"
 
 #: dnfdragora/dialogs.py:895
 msgid "Run transactions on packages automatically without confirmation needed"
-msgstr ""
+msgstr "Suorita tapahtumat paketeille automaattisesti ilman vahvistusta"
 
 #: dnfdragora/dialogs.py:904
 msgid "Hide dnfdragora-update menu if there are no updates"
-msgstr ""
+msgstr "Piilota dnfdragoran päivitysvalikko, jos ei ole päivityksiä"
 
 #: dnfdragora/dialogs.py:920
 msgid "Interval to check for updates (minutes)"
-msgstr ""
+msgstr "Päivitysten tarkistusväli (minuuttia)"
 
 #: dnfdragora/dialogs.py:928
 msgid "Metadata expire time (hours)"
-msgstr ""
+msgstr "Metatiedot vanhenee (tuntia)"
 
 #: dnfdragora/dialogs.py:953
 msgid "Layout options (active at next startup)"
-msgstr ""
+msgstr "Valitse asettelu (käynnistä uudelleen)"
 
 #: dnfdragora/dialogs.py:967
 msgid "Show updates"
-msgstr ""
+msgstr "Näytä päivitykset"
 
 #: dnfdragora/dialogs.py:972
 msgid "Do not show groups view"
-msgstr ""
+msgstr "Älä näytä ryhmiä"
 
 #: dnfdragora/dialogs.py:994
 msgid "Search options"
-msgstr ""
+msgstr "Hakuasetukset"
 
 #: dnfdragora/dialogs.py:1000
 msgid "Show newest packages only"
-msgstr ""
+msgstr "Näytä vain uusimmat paketit"
 
 #: dnfdragora/dialogs.py:1005
 msgid "Match all words"
-msgstr ""
+msgstr "Täsmää kaikkiin sanoihin"
 
 #: dnfdragora/dialogs.py:1027
 msgid "Logging options (active at next startup)"
-msgstr ""
+msgstr "Lokin asetukset (käynnistä uudelleen)"
 
 #: dnfdragora/dialogs.py:1051
 msgid "Enable logging"
-msgstr ""
+msgstr "Ota loki käyttöön"
 
 #: dnfdragora/dialogs.py:1060
 msgid "Change &directory"
-msgstr ""
+msgstr "Vaihda &hakemisto"
 
 #: dnfdragora/dialogs.py:1067
 msgid "Debug level"
-msgstr ""
+msgstr "Korjaustaso"
 
 #: dnfdragora/dialogs.py:1095
 msgid "Choose log destination directory"
-msgstr ""
+msgstr "Valitse lokille hakemisto"
 
 #: dnfdragora/dialogs.py:1425
 msgid "&Yes"
-msgstr ""
+msgstr "&Kyllä"
 
 #: dnfdragora/dialogs.py:1426
 msgid "&No"
-msgstr ""
+msgstr "&Ei"
 
 #: dnfdragora/dialogs.py:1449
 #, python-format
@@ -738,10 +749,13 @@ msgid ""
 "<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
 "%(file)s"
 msgstr ""
+"Haluatko tuoda tämän GPG avaimen, <br>jota tarvitaan vahvistamaan %(pkg)s "
+"paketit?<br><br>Avain        : 0x%(id)s:<br>käyttäjä id     : \"%(user)s"
+"\"<br>lähde       : %(file)s"
 
 #: dnfdragora/dialogs.py:1456
 msgid "GPG key missed"
-msgstr ""
+msgstr "GPG avain hukassa"
 
 #: dnfdragora/dnf_backend.py:167
 #, python-format
@@ -750,23 +764,26 @@ msgid ""
 "doesn't match\n"
 "needed api version : %(required)d"
 msgstr ""
+"dnfdaemon api versio : %(actual)d\n"
+"ei täsmää\n"
+"tarvittava api versio : %(required)d"
 
 #: dnfdragora/dnf_backend.py:365
 #, python-format
 msgid "package has not any %s attributes"
-msgstr ""
+msgstr "paketilla ei ole %s-määritteitä"
 
 #: dnfdragora/dnf_backend.py:483
 msgid "Caching groups from packages... "
-msgstr ""
+msgstr "Ryhmien välimuistiin paketeista... "
 
 #: dnfdragora/dnfd_client.py:379
 msgid "Command in progress"
-msgstr ""
+msgstr "Komento käynnissä"
 
 #: dnfdragora/groupicons.py:21
 msgid "Accessibility"
-msgstr "Helppokäyttötoiminnot"
+msgstr "Helppokäyttöisyys"
 
 #: dnfdragora/groupicons.py:25
 msgid "Archiving"
@@ -800,27 +817,27 @@ msgstr "Bluetooth"
 
 #: dnfdragora/groupicons.py:52
 msgid "Dial-Up"
-msgstr ""
+msgstr "Modeemi"
 
 #: dnfdragora/groupicons.py:56
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 #: dnfdragora/groupicons.py:60
 msgid "Mobile"
-msgstr ""
+msgstr "Mobiili"
 
 #: dnfdragora/groupicons.py:64
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: dnfdragora/groupicons.py:68
 msgid "Serial"
-msgstr ""
+msgstr "Sarjaliikenne"
 
 #: dnfdragora/groupicons.py:72
 msgid "Telephony"
-msgstr ""
+msgstr "Puhelin"
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
@@ -828,7 +845,7 @@ msgstr "Tietokannat"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
-msgstr ""
+msgstr "Basic"
 
 #: dnfdragora/groupicons.py:87
 msgid "C"
@@ -840,15 +857,15 @@ msgstr "C++"
 
 #: dnfdragora/groupicons.py:93
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: dnfdragora/groupicons.py:101
 msgid "Debug"
-msgstr ""
+msgstr "Virheenkorjaus"
 
 #: dnfdragora/groupicons.py:105
 msgid "Erlang"
-msgstr ""
+msgstr "Erlang"
 
 #: dnfdragora/groupicons.py:109
 msgid "GNOME and GTK+"
@@ -864,11 +881,11 @@ msgstr "KDE ja Qt"
 
 #: dnfdragora/groupicons.py:121
 msgid "Kernel"
-msgstr "Ydin"
+msgstr "Kernel"
 
 #: dnfdragora/groupicons.py:125
 msgid "OCaml"
-msgstr ""
+msgstr "OCaml"
 
 #: dnfdragora/groupicons.py:133
 msgid "Perl"
@@ -937,11 +954,11 @@ msgstr "Pulmat"
 
 #: dnfdragora/groupicons.py:205
 msgid "Shooter"
-msgstr ""
+msgstr "Ammunta"
 
 #: dnfdragora/groupicons.py:209
 msgid "Simulation"
-msgstr ""
+msgstr "Simulointi"
 
 #: dnfdragora/groupicons.py:213
 msgid "Sports"
@@ -989,12 +1006,12 @@ msgstr "Grafiikka"
 
 #: dnfdragora/groupicons.py:261
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 #: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
 #: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
-msgstr ""
+msgstr "Editorit ja muuntajat"
 
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
@@ -1003,15 +1020,15 @@ msgstr "Työkalut"
 
 #: dnfdragora/groupicons.py:273
 msgid "Photography"
-msgstr ""
+msgstr "Valokuvaus"
 
 #: dnfdragora/groupicons.py:277
 msgid "Scanning"
-msgstr ""
+msgstr "Skannaus"
 
 #: dnfdragora/groupicons.py:281
 msgid "Viewers"
-msgstr ""
+msgstr "Katseluohjelmat"
 
 #: dnfdragora/groupicons.py:286
 msgid "Monitoring"
@@ -1055,31 +1072,31 @@ msgstr "Toimisto"
 
 #: dnfdragora/groupicons.py:329
 msgid "Dictionary"
-msgstr ""
+msgstr "Sanakirja"
 
 #: dnfdragora/groupicons.py:333
 msgid "Finance"
-msgstr ""
+msgstr "Talous"
 
 #: dnfdragora/groupicons.py:337
 msgid "Management"
-msgstr ""
+msgstr "Hallinta"
 
 #: dnfdragora/groupicons.py:341
 msgid "Organizer"
-msgstr ""
+msgstr "Järjestäjä"
 
 #: dnfdragora/groupicons.py:349
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Laskentataulukko"
 
 #: dnfdragora/groupicons.py:353
 msgid "Suite"
-msgstr ""
+msgstr "Ohjelmistopaketti"
 
 #: dnfdragora/groupicons.py:357
 msgid "Word processor"
-msgstr ""
+msgstr "Tekstinkäsittely"
 
 #: dnfdragora/groupicons.py:362
 msgid "Publishing"
@@ -1103,7 +1120,7 @@ msgstr "Kemia"
 
 #: dnfdragora/groupicons.py:381
 msgid "Computer science"
-msgstr "Tietokoneet"
+msgstr "Tietotekniikka"
 
 #: dnfdragora/groupicons.py:385
 msgid "Geosciences"
@@ -1127,15 +1144,15 @@ msgstr "Ääni"
 
 #: dnfdragora/groupicons.py:417
 msgid "Midi"
-msgstr ""
+msgstr "Midi"
 
 #: dnfdragora/groupicons.py:421
 msgid "Mixers"
-msgstr ""
+msgstr "Mikserit"
 
 #: dnfdragora/groupicons.py:425 dnfdragora/groupicons.py:521
 msgid "Players"
-msgstr ""
+msgstr "Mediasoittimet"
 
 #: dnfdragora/groupicons.py:437
 msgid "Base"
@@ -1207,7 +1224,7 @@ msgstr "Video"
 
 #: dnfdragora/groupicons.py:525
 msgid "Television"
-msgstr ""
+msgstr "Televisio"
 
 #: dnfdragora/groupicons.py:535
 msgid "Workstation"
@@ -1287,67 +1304,71 @@ msgstr "Verkkotietokone (palvelin)"
 
 #: dnfdragora/groupicons.py:638
 msgid "Web/FTP"
-msgstr "WWW / FTP"
+msgstr "WWW/FTP"
 
 #: dnfdragora/helpinfo.py:26
 msgid "Go to index"
-msgstr ""
+msgstr "Siirry alkuun"
 
 #: dnfdragora/helpinfo.py:29
 msgid "Menu line"
-msgstr ""
+msgstr "Valikko rivi"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr ""
+msgstr "Suodattimet ja hakurivi"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
 msgid "Group panel"
-msgstr ""
+msgstr "Ryhmä-paneeli"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
 msgid "Package panel"
-msgstr ""
+msgstr "Paketti-paneeli"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
 msgid "Information panel"
-msgstr ""
+msgstr "Tiedot-paneeli"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
-msgstr ""
+msgstr "Edistymispalkki"
 
 #: dnfdragora/helpinfo.py:35
 msgid "Button line"
-msgstr ""
+msgstr "Painikkeet"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr ""
+msgstr "Tiedosto-valikko"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr ""
+msgstr "Tietoja-valikko"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr ""
+msgstr "Asetukset-valikko"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr ""
+msgstr "Ohje-valikko"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
+"dnfdragora perustuu Mageia rpmdragora DNF-käyttöliittymään ja Fedoran yumex-"
+"dnf  toimintaan dnfdaemon palvelun kanssa.<br><br>"
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
 "dnfdragora is basically a package manager user interface that allows to "
 "install, update, remove, search packages and more.<br><br>"
 msgstr ""
+"dnfdragora on pohjimmiltaan paketinhallinnan käyttöliittymä, jonka avulla "
+"voidaan asentaa, päivittää, poistaa, etsiä paketteja ja paljon muuta.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1355,36 +1376,41 @@ msgid ""
 "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
 "interfaces.<br><br>"
 msgstr ""
+"dnfdragora on manatools komponentti ja libyui:n perustuen se voi käyttää "
+"Gtk, Qt, ncurses mallisia graafisia sekä tekstillisiä käyttöliittymiä."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
-msgstr ""
+msgstr "dnfdragoran ikkuna koostuu:"
 
 #: dnfdragora/helpinfo.py:71
 msgid "Menu bar content"
-msgstr ""
+msgstr "Valikkopalkin sisältö"
 
 #: dnfdragora/helpinfo.py:73
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr ""
+msgstr "Valikkopalkki sisältää dnfdragoran pudotusvalikot:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr ""
+msgstr "Tiedosto-valikko"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
-msgstr ""
+msgstr "<h2>Nollaa valinta</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
 "This menu removes any flags on packages, if any packages have been selected "
 "for installation or removal they will be back to previous status.<br>"
 msgstr ""
+"Tämä valikko poistaa kaikki valinnat paketeista. Jos paketteja on valittu "
+"asennettavaksi tai poistettavaksi ne palautuu edelliseen tilaan.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
-msgstr ""
+msgstr "<h2>Virkistä metatiedot</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
@@ -1392,10 +1418,13 @@ msgid ""
 "data. This action is asynchronous and requires to rebuild package "
 "information cache.<br>"
 msgstr ""
+"Tämä valikko lähettää dnfdaemonille käskyn pakottaa päivittämään kaikki "
+"metatiedot. Toiminto on asynkroninen ja vaatii pakettitietojen välimuistin "
+"rakentamisen uudelleen.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
-msgstr ""
+msgstr "<h2>Repositories - Pakettivarastot</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
@@ -1403,22 +1432,25 @@ msgid ""
 "changes are valid for the time dnfdragora is running and it is not permanent."
 "<br>"
 msgstr ""
+"Valikko avaa valintaikkunan, jonka avulla pakettivarastot voidaan poistaa "
+"tai ottaa käyttöön. Kaikki muutokset ovat voimassa dnfdragoran käyttöajan, "
+"eivätkä ole pysyviä.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
-msgstr ""
+msgstr "<h2>Poistu</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu exits from dnfdragora.<br>"
-msgstr ""
+msgstr "Valikosta poistut dnfdragorasta.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr ""
+msgstr "Tiedot-valikko"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
-msgstr ""
+msgstr "<h2>Historia</h2>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
@@ -1426,20 +1458,25 @@ msgid ""
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
 "button.<br>"
 msgstr ""
+"Valikko avaa valintaikkunan, joka sisältää tapahtumahistorian ja näkyy "
+"puussa päivämäärän mukaan järjestettynä. Valitun historian voi peruuttaa "
+"painamalla <b>Kumoa</b> -painiketta.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
+"<br><i>Huomaa, että toiminto on rikki tällä hetkellä dnf API:n muutoksen "
+"vuoksi</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr ""
+msgstr "Asetukset valikko"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
-msgstr ""
+msgstr "<h2>Käyttäjän asetukset</h2>"
 
 #: dnfdragora/helpinfo.py:111
 #, python-format
@@ -1447,14 +1484,15 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
+"Valikko avaa %s, jossa on käyttäjän asetukset dnfdragoran mukauttamiseen.<br>"
 
 #: dnfdragora/helpinfo.py:111
 msgid "dialog"
-msgstr ""
+msgstr "valintaikkuna"
 
 #: dnfdragora/helpinfo.py:117
 msgid "dnfdragora options"
-msgstr ""
+msgstr "dnfdragora asetukset"
 
 #: dnfdragora/helpinfo.py:119
 msgid ""
@@ -1462,10 +1500,13 @@ msgid ""
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
+"Valintaikkunan avulla voit mukauttaa dnfdragoran asetuksia. Jotkut muutokset "
+"ovat käytettävissä ikkunan sulkemisen jälkeen, toiset vaativat dnfdragoran "
+"käynnistämisen.<br><br>"
 
 #: dnfdragora/helpinfo.py:120
 msgid "<h2>System options</h2>"
-msgstr ""
+msgstr "<h2>Järjestelmän asetukset</h2>"
 
 #: dnfdragora/helpinfo.py:121
 msgid ""
@@ -1473,28 +1514,37 @@ msgid ""
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
+"<ul><li><b>Suorita pakettien tapahtumat automaattisesti ilman vahvistusta</"
+"b>: Jos valittuja tapahtumia ei tarvitse vahvistaa, dnfdragora vastaa aina "
+"<i>kyllä</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
+"<br><b>HUOMAA</b> tämä valinta tarkoittaa myös, että pakettien poistaminen "
+"on hiljaisesti hyväksytty</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Päivitysten tarkistamisen aikaväli</b>: annettu numero edustaa aikaa "
+"milloin dnfdragoran on tarkistettava päivitykset. Arvo on minuutteina</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
+"<li><b>Metatietojen vanhentuminen</b>: aika pakottaa metatietojen "
+"vanhenemisen. Arvo on tunteina</li></ul>"
 
 #: dnfdragora/helpinfo.py:125
 msgid "<h2>Layout options</h2>"
-msgstr ""
+msgstr "<h2>Asettelun asetukset</h2>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1502,6 +1552,9 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
+"<ul><li><b>Näytä päivitykset</b>: jos valittuna dnfdragora alkaa "
+"<i>päivittämään</i>, eli näyttää vain paketin, joka on saatavilla "
+"päivityksille, jos sellainen on.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1509,14 +1562,18 @@ msgid ""
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
+"<li><b>Älä näytä ryhmiä</b>: suodatus ryhmittäin voi vaatia CPU-tehoa "
+"compsia käytettäessä, jos valittuna dnfdragora voi alkaa näyttämään kaikkia "
+"paketteja.</li></ul>"
 
 #: dnfdragora/helpinfo.py:128
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
+"<b>HUOMAA</b> ,että yllä olevat vainnat vaativat dnfdragoran käynnistämisen."
 
 #: dnfdragora/helpinfo.py:129
 msgid "<h2>Search options</h2>"
-msgstr ""
+msgstr "<h2>Haku asetukset</h2>"
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1524,61 +1581,72 @@ msgid ""
 "newest packages on search. <i>Note that is valid if searches are not "
 "performed by using regular expressions</i></li>"
 msgstr ""
+"<ul><li><b>Näytä vain uusimmat paketit</b>: jos valittuna, dnfdragora "
+"näyttää haussa vain uusimmat paketit. <i>Huomaa, jos hakuja ei tehdä "
+"säännöllisillä lauseilla, tämä on voimassa</i></li>"
 
 #: dnfdragora/helpinfo.py:131
 msgid ""
 "<li><b>Match all words</b>: if checked a search without using regular "
 "expressions will match all the given words into the text field.</li></ul>"
 msgstr ""
+"<li><b>Täsmää kaikkiin sanoihin</b>: jos valittuna, haku ilman säännöllisiä "
+"lauseita vastaa kaikkiin annettuihin sanoihin tekstikentässä.</li></ul>"
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Logging options</h2>"
-msgstr ""
+msgstr "<h2>Lokin asetukset</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
+"Ota asetus käyttöön niin sallit dnfdragoran kirjata lokia tiedostoon "
+"<i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Vaihda hakemisto</b>: Tämä valinta sallii lokin asettamisen. "
+"Hakemisto on oltava olemassa ja se tarvitsee kirjoitusoikeuden.</li>"
 
 #: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Virheen taso</b>: jos valittuna lokin kirjaaminen on käytössä.</li></"
+"ul>"
 
 #: dnfdragora/helpinfo.py:143
 msgid "Help Menu"
-msgstr ""
+msgstr "Ohje-valikko"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Manual</h2>"
-msgstr ""
+msgstr "<h2>Ohjekirja</h2>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "This menu opens dnfdragora help dialog."
-msgstr ""
+msgstr "Tämä valikko avaa dnfdragoran ohjeikkunan."
 
 #: dnfdragora/helpinfo.py:147
 msgid "<h2>About</h2>"
-msgstr ""
+msgstr "<h2>Tietoja</h2>"
 
 #: dnfdragora/helpinfo.py:148
 msgid "This menu opens dnfdragora about dialog."
-msgstr ""
+msgstr "Tämä valikko avaa dnfdragoran tiedot valintaikkunan."
 
 #: dnfdragora/helpinfo.py:156
 msgid "Views and search"
-msgstr ""
+msgstr "Näkymät ja haku"
 
 #: dnfdragora/helpinfo.py:158
 msgid "<h2>Views</h2>"
-msgstr ""
+msgstr "<h2>Näkymät</h2>"
 
 #: dnfdragora/helpinfo.py:159
 msgid ""
@@ -1586,48 +1654,60 @@ msgid ""
 "selected group panel shows a tree view containing groups, while selecting a "
 "group shows related packages into package panel."
 msgstr ""
+"Ensimmäinen laatikko näyttää paketit ryhmittäin. Jos <i>Ryhmät</i> on "
+"valittuna näytetään ryhmiä sisältävä puunäkymä. Kun valitset ryhmän, siihen "
+"liittyvät paketit näkyvät pakettipaneelissa."
 
 #: dnfdragora/helpinfo.py:160
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
+"Jos <i>Kaikki</i> on valittuna, pakettipaneeli sisältää kaikki paketit."
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Filters</h2>"
-msgstr ""
+msgstr "<h2>Suodattimet</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
+"Suodatinlaatikko sallii pakettipaneelissa näkyvien pakettien suodattamisen "
+"seuraavasti:"
 
 #: dnfdragora/helpinfo.py:163
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<ul><li><b>Asennetut</b>: näyttää vain asennetut paketit.</li>"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
-msgstr ""
+msgstr "<li><b>Asentamaton</b>: näyttää vain saatavilla olevat paketit.</li>"
 
 #: dnfdragora/helpinfo.py:165
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
+"<li><b>Päivitys</b>: näyttää vain saatvailla olevat paketit päivitykseen.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:166
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
+"<li><b>Näytä vain x86_64 ja noarch</b>: jos dnfdragora toimii x86_64-"
+"alustalla, piilotetaan i686-paketit.</li>"
 
 #: dnfdragora/helpinfo.py:167
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
 msgstr ""
+"<li><b>Kaikki</b>: näyttää kaikki paketit, eli saatavilla olevat, "
+"päivitykset ja asennetut.</li></ul>"
 
 #: dnfdragora/helpinfo.py:168
 msgid "<h2>Search</h2>"
-msgstr ""
+msgstr "<h2>Haku</h2>"
 
 #: dnfdragora/helpinfo.py:169
 msgid ""
@@ -1635,6 +1715,10 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
+"Haku tehdään painamalla <i>Haku</i> painiketta, jos tekstikenttää on "
+"täytetty. Hakuyhdistelmä mahdollistaa tietyn tekstin hakemisen paketin "
+"<i>nimen</i>, <i>yhteenvedon</i>, <i>kuvauksen</i> tai <i>tiedoston</"
+"i>perusteella</i>."
 
 #: dnfdragora/helpinfo.py:170
 msgid ""
@@ -1642,16 +1726,21 @@ msgid ""
 "language regular expressions. This search is performed on cached package "
 "information such as for the <b>only names and summaries</b>."
 msgstr ""
+"Valintaruutua <i>Käytä regexp</i> käytetään pakettien etsimiseen python-"
+"ohjelmointikielen lausekkeilla. Haku suoritetaan välimuistissa oleville "
+"pakettitiedoille, kuten <b>vain nimet ja yhteenveto</b>."
 
 #: dnfdragora/helpinfo.py:171
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
+"<i>Huomaa</i> jos säännöllisiä lauseita käytetään nimien perusteella "
+"etsimiseen, käytetään koko paketin tiedostonimeä version kanssa."
 
 #: dnfdragora/helpinfo.py:172
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr ""
+msgstr "<i>Tyhjennä haku</i> painike tyhjentää hakukentän."
 
 #: dnfdragora/helpinfo.py:182
 msgid ""
@@ -1659,6 +1748,8 @@ msgid ""
 "view groups is selected. Special group <i>Search</i> is added if a search is "
 "performed."
 msgstr ""
+"Paneeli näyttää kaikki ryhmät, joita käytetään pakettien suodattamiseen "
+"ryhmien mukaan. Tietyn ryhmän <i>Haku</i> lisätään, jos haku suoritetaan."
 
 #: dnfdragora/helpinfo.py:192
 msgid ""
@@ -1666,12 +1757,17 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Paneeli näyttää kaikki suodatetut paketit perustietoineen, kuten <i>nimi</"
+"i>, <i>yhteenveto</i>, <i>versio</i>, <i>julkaisu</i>, <i>arkkitehtuuri</i>, "
+"<i>koko</i>, ja <i>tila</i>."
 
 #: dnfdragora/helpinfo.py:193
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
+"Kaikkien pakettien valinta on saatavilla, jos haluat lisätä vastaavan "
+"paketin tapahtumaan asennusta, päivitystä tai poistamista varten."
 
 #: dnfdragora/helpinfo.py:203
 msgid ""
@@ -1679,26 +1775,32 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
+"Paneeli näyttää kaikki paketin tiedot, kuten <i>kuvaus</i>, <i>url</i>, "
+"<i>pakettivarasto</i>, <i>vaatimukset</i>, <i>tiedostolista</i>, ja "
+"<i>muutosloki</i>."
 
 #: dnfdragora/helpinfo.py:204
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
+"<br><br><i>Huomaa, että dnfdaemon ei tarjoa muutoslokia tällä hetkellä.</i>"
 
 #: dnfdragora/helpinfo.py:212
 msgid "Progress bar"
-msgstr ""
+msgstr "Edistymispalkki"
 
 #: dnfdragora/helpinfo.py:214
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
+"Edistymispalkki näyttää dnfdragoran toimintojen etenemisen, kuten tapahtumat "
+"ja välimuistitiedot."
 
 #: dnfdragora/helpinfo.py:222
 msgid "Buttons line"
-msgstr ""
+msgstr "Painikkeet rivi"
 
 #: dnfdragora/helpinfo.py:224
 msgid ""
@@ -1706,51 +1808,56 @@ msgid ""
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
+"<ul><li><b>Käytä</b>: kun paketit valitaan asennettavaksi tai "
+"päivitettäviksi tai ne poistetaan asennuksen poistamiseksi, tämä painike "
+"toteuttaa suoritettavan tapahtuman.</li>"
 
 #: dnfdragora/helpinfo.py:225
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
+"<li><b>Valitse kaikki</b>: jos paketit suodatetaan vain päivitettäväksi, "
+"tällä painikkeella voit valita kaikki paketit yhdellä kertaa.</li>"
 
 #: dnfdragora/helpinfo.py:226
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
-msgstr ""
+msgstr "<li><b>Poistu</b>: poistuu dnfdragorasta.</li></ul>"
 
 #: dnfdragora/progress_ui.py:133
 #, python-format
 msgid "Downloading :  %(files)d files,  %(size)d bytes"
-msgstr ""
+msgstr "Ladataan :  %(files)d tiedostoa,  %(size)d tavua"
 
 #: dnfdragora/progress_ui.py:160
 #, python-format
 msgid "Starting to download : %s "
-msgstr ""
+msgstr "Lataus alkaa : %s "
 
 #: dnfdragora/progress_ui.py:181
 #, python-format
 msgid "Progress files (%(downloaded)d/%(total)d)"
-msgstr ""
+msgstr "Tiedostojen edistyminen (%(downloaded)d/%(total)d)"
 
 #: dnfdragora/ui.py:206
 msgid "Update information"
-msgstr ""
+msgstr "Päivitystiedot"
 
 #: dnfdragora/ui.py:207
 msgid "File list"
-msgstr ""
+msgstr "Tiedostolista"
 
 #: dnfdragora/ui.py:208
 msgid "Changelog"
-msgstr ""
+msgstr "Muutosloki"
 
 #: dnfdragora/ui.py:209
 msgid "Requirements"
-msgstr ""
+msgstr "Vaatimukset"
 
 #: dnfdragora/ui.py:379
 msgid "Software Management - dnfdragora"
-msgstr ""
+msgstr "Ohjelmien hallinta - dnfdragora"
 
 #: dnfdragora/ui.py:440
 msgid "Arch"
@@ -1778,16 +1885,16 @@ msgstr "Asennettu"
 
 #: dnfdragora/ui.py:456
 msgid "Not installed"
-msgstr "Ei asennettu"
+msgstr "Asentamaton"
 
 #: dnfdragora/ui.py:457
 msgid "To update"
-msgstr ""
+msgstr "Päivitys"
 
 #: dnfdragora/ui.py:463
 #, python-format
 msgid "Show %s and noarch only"
-msgstr ""
+msgstr "Näytä %s ja vain noarch"
 
 #: dnfdragora/ui.py:469
 msgid "Groups"
@@ -1795,240 +1902,242 @@ msgstr "Ryhmät"
 
 #: dnfdragora/ui.py:528
 msgid "in names"
-msgstr "nimistä"
+msgstr "on nimessä"
 
 #: dnfdragora/ui.py:529
 msgid "in descriptions"
-msgstr "kuvauksista"
+msgstr "on kuvauksessa"
 
 #: dnfdragora/ui.py:530
 msgid "in summaries"
-msgstr "yhteenvedoista"
+msgstr "on yhteenvedossa"
 
 #: dnfdragora/ui.py:531
 msgid "in file names"
-msgstr "tiedostoista"
+msgstr "on tiedostonimessä"
 
 #: dnfdragora/ui.py:551
 msgid "Use regexp"
-msgstr ""
+msgstr "Käytä regexp"
 
 #: dnfdragora/ui.py:555
 msgid "&Search"
-msgstr ""
+msgstr "&Hae"
 
 #: dnfdragora/ui.py:560
 msgid "&Clear search"
-msgstr ""
+msgstr "&Tyhjennä haku"
 
 #: dnfdragora/ui.py:574
 msgid "Sel&ect all"
-msgstr ""
+msgstr "Valits&e kaikki"
 
 #: dnfdragora/ui.py:580 dnfdragora/ui.py:594
 msgid "&Quit"
-msgstr ""
+msgstr "&Lopeta"
 
 #: dnfdragora/ui.py:587
 msgid "&File"
-msgstr ""
+msgstr "&Tiedosto"
 
 #: dnfdragora/ui.py:590
 msgid "Reset the selection"
-msgstr ""
+msgstr "Nollaa valinta"
 
 #: dnfdragora/ui.py:591
 msgid "Refresh Metadata"
-msgstr ""
+msgstr "Virkistä metatiedot"
 
 #: dnfdragora/ui.py:592
 msgid "Repositories"
-msgstr ""
+msgstr "Pakettivarastot"
 
 #: dnfdragora/ui.py:602
 msgid "&Information"
-msgstr ""
+msgstr "&Tietoja"
 
 #: dnfdragora/ui.py:605
 msgid "&History"
-msgstr ""
+msgstr "&Historia"
 
 #: dnfdragora/ui.py:613
 msgid "&Options"
-msgstr ""
+msgstr "&Asetukset"
 
 #: dnfdragora/ui.py:616
 msgid "User preferences"
-msgstr ""
+msgstr "Käyttäjän asetukset"
 
 #: dnfdragora/ui.py:624
 msgid "&Help"
-msgstr ""
+msgstr "&Ohje"
 
 #: dnfdragora/ui.py:627
 msgid "Manual"
-msgstr "Manuaalinen"
+msgstr "Ohjekirja"
 
 #: dnfdragora/ui.py:629
 msgid "&About"
-msgstr ""
+msgstr "&Tietoja"
 
 #: dnfdragora/ui.py:666
 msgid "update"
-msgstr ""
+msgstr "päivitys"
 
 #: dnfdragora/ui.py:669
 msgid "locked"
-msgstr ""
+msgstr "lukittu"
 
 #: dnfdragora/ui.py:672
 msgid "installed"
-msgstr ""
+msgstr "asennettu"
 
 #: dnfdragora/ui.py:1000
 msgid "Missing information"
-msgstr ""
+msgstr "Puuttuvat tiedot"
 
 #: dnfdragora/ui.py:1019
 msgid "Repository"
-msgstr ""
+msgstr "Pakettivarasto"
 
 #: dnfdragora/ui.py:1337
 msgid "Refreshing Repository Metadata"
-msgstr ""
+msgstr "Päivitetään pakettivaraston metatietoja"
 
 #: dnfdragora/ui.py:1388
 #, python-format
 msgid "Package %s cannot be removed"
-msgstr ""
+msgstr "Pakettia %s ei voi poistaa"
 
 #: dnfdragora/ui.py:1388
 msgid "Protected package selected"
-msgstr ""
+msgstr "Suojattu paketti valittu"
 
 #: dnfdragora/ui.py:1449
 msgid "Unmanaged widget"
-msgstr ""
+msgstr "Hallinnoimaton sovelma"
 
 #: dnfdragora/ui.py:1467
 #, python-format
 msgid "Unmanaged event %d"
-msgstr ""
+msgstr "Hallinnoimaton tapahtuma %d"
 
 #: dnfdragora/ui.py:1532
 msgid "Start transaction"
-msgstr ""
+msgstr "Aloita toiminta"
 
 #: dnfdragora/ui.py:1534
 msgid "Downloading packages"
-msgstr ""
+msgstr "Pakettien lataaminen"
 
 #: dnfdragora/ui.py:1541
 msgid "Checking package signatures"
-msgstr ""
+msgstr "Paketin allekirjoitusten tarkistus"
 
 #: dnfdragora/ui.py:1549 dnfdragora/ui.py:1729
 msgid "Applying changes to the system"
-msgstr ""
+msgstr "Muutosten soveltaminen järjestelmään"
 
 #: dnfdragora/ui.py:1552
 msgid "Verify changes on the system"
-msgstr ""
+msgstr "Järjestelmässä tehtyjen muutosten tarkistus"
 
 #: dnfdragora/ui.py:1563
 msgid "Build transaction"
-msgstr ""
+msgstr "Koontitapahtuma"
 
 #: dnfdragora/ui.py:1598
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
-msgstr ""
+msgstr "Tuntematon toiminta %(action)s on %(name)s"
 
 #: dnfdragora/ui.py:1623
 #, python-format
 msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
+msgstr "Ladataan %(count_files)d tiedostoa (%(count_bytes)sB)..."
 
 #: dnfdragora/ui.py:1659
 msgid "Caching updates"
-msgstr ""
+msgstr "Päivitykset välimuistiin"
 
 #: dnfdragora/ui.py:1662
 msgid "Caching installed"
-msgstr ""
+msgstr "Välimuisti asennettu"
 
 #: dnfdragora/ui.py:1665
 msgid "Caching available"
-msgstr ""
+msgstr "Välimuisti saatavilla"
 
 #: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
-msgstr ""
+msgstr "Luodaan pakettien välimuistia"
 
 #: dnfdragora/ui.py:1734
 msgid "Build Transaction error"
-msgstr ""
+msgstr "Koontitapahtuman virhe"
 
 #: dnfdragora/ui.py:1750
 msgid "GPG key missing"
-msgstr ""
+msgstr "GPG avain hukassa"
 
 #: dnfdragora/ui.py:1874
 msgid "Search error using regular expression"
-msgstr ""
+msgstr "Hakuvirhe käyttäen säännöllistä lauseketta"
 
 #: dnfdragora/updater.py:121 dnfdragora/updater.py:124
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
-msgstr ""
+msgstr "Virhe avatessa dnfdaemon-palvelua: [%s]"
 
 #: dnfdragora/updater.py:133
 msgid "Update"
-msgstr ""
+msgstr "Päivitä"
 
 #: dnfdragora/updater.py:134
 msgid "Open dnfdragora dialog"
-msgstr ""
+msgstr "Avaa dnfdragora valintaikkuna"
 
 #: dnfdragora/updater.py:135
 msgid "Check for updates"
-msgstr ""
+msgstr "Tarkista päivitykset"
 
 #: dnfdragora/updater.py:136
 msgid "Exit"
-msgstr ""
+msgstr "Poistu"
 
 #: dnfdragora/updater.py:229
 msgid "Running dnfdragora failure"
-msgstr ""
+msgstr "Dnfdragoran suoritus epäonnistui"
 
 #: dnfdragora/updater.py:274 dnfdragora/updater.py:284
 #, python-format
 msgid "Exception caught: [%s]"
-msgstr ""
+msgstr "Poikkeus saatu: [%s]"
 
 #: dnfdragora/updater.py:341
 #, python-format
 msgid "%d updates available."
-msgstr ""
+msgstr "%d päivitystä saatavilla."
 
 #: dnfdragora/updater.py:347
 msgid "No updates available"
-msgstr ""
+msgstr "Ei päivityksiä saatavilla"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:7
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
-msgstr ""
+msgstr "Käyttöliittymä DNF:lle, joka käyttää libyui UI abstraktion kirjastoa"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
 "dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally "
 "rpmdrake)."
 msgstr ""
+"dnfdragora on DNF-käyttöliittymä, joka on saanut vaikutteita Mageian "
+"rpmdragorasta (alun perin rpmdrake)."
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:14
 msgid ""
@@ -2037,6 +2146,7 @@ msgid ""
 "ncurses interfaces. It provides a frontend for the DNF package manager that "
 "can be used in any kind of system environment."
 msgstr ""
-
-#~ msgid "Software Management"
-#~ msgstr "Ohjelmistojen hallinta"
+"dnfdragora on kirjoitettu Python 3:lla ja käyttää libYuita, SUSE:n "
+"kirjoittama kirjasto, jotta sitä voidaan käyttää liittymillä Qt 5, GTK+ 3 "
+"tai ncurses. Tarjoaa käyttöliittymän DNF-paketinhallintaan, jota voidaan "
+"käyttää missä tahansa järjestelmässä."
