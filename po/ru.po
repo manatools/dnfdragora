@@ -8,9 +8,9 @@
 # Валентин Сайков <saikov.vb@gmail.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2021
 # algri14 <aliger14@mail.ru>, 2022
-# Victor, 2022
 # David M, 2023
 # AlexL <loginov.alex.valer@gmail.com>, 2023
+# Victor, 2023
 #
 #, fuzzy
 msgid ""
@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: AlexL <loginov.alex.valer@gmail.com>, 2023\n"
+"Last-Translator: Victor, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/MageiaLinux/teams/9361/"
 "ru/)\n"
 "Language: ru\n"
@@ -1499,7 +1499,7 @@ msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
-"Это меню открывает %s параметры, с помощью которых можно настроить поведение "
+"Это меню открывает %s настройки, с помощью которых можно настроить поведение "
 "dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:111
