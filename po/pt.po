@@ -10,7 +10,6 @@
 # Sérgio Marques <smarquespt@gmail.com>, 2020
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2020
 # Rui <xymarior@yandex.com>, 2020
-# Manuela Silva <mmsrs@sky.com>, 2020
 # Celio Alves <dreamcelio@gmail.com>, 2022
 # Rodrigo Piñero <rodrigo.pinero@yahoo.com.br>, 2022
 # Michael Martins <michaelfm21@gmail.com>, 2022
@@ -18,6 +17,7 @@
 # lrampazzo <lrampazzo@gmail.com>, 2022
 # Gilberto F. da Silva, 2022
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2022
+# Manuela Silva <mmsrs@sky.com>, 2023
 #
 #, fuzzy
 msgid ""
@@ -26,8 +26,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-26 20:25+0300\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2022\n"
-"Language-Team: Portuguese (https://www.transifex.com/MageiaLinux/teams/9361/"
+"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2023\n"
+"Language-Team: Portuguese (https://app.transifex.com/MageiaLinux/teams/9361/"
 "pt/)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr ""
 #: bin/dnfdragora:35 bin/dnfdragora-updater:25
 msgid "directory containing localization strings (developer only)"
 msgstr ""
-"diretório que contém as cadeias de tradução (apenas para programadores)"
+"diretoria que contém as entradas de tradução (apenas para programadores)"
 
 #: bin/dnfdragora:37
 msgid "install packages"
