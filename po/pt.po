@@ -80,7 +80,7 @@ msgstr "instalar pacotes"
 
 #: bin/dnfdragora:38
 msgid "show updates only dialog"
-msgstr "mostrar apenas o diálogo de atualizações"
+msgstr "mostrar apenas a janela de atualizações"
 
 #: bin/dnfdragora:39
 msgid "show application version and exit"
@@ -102,7 +102,7 @@ msgstr "Tentar novamente através da consola de acesso (com \"su -\")"
 #: bin/dnfdragora:75
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
-msgstr "%(prog)s %(NL)sversão: %(version)s%(NL)ssite: %(site)s"
+msgstr "%(prog)s %(NL)sversão: %(version)s%(NL)s''site'': %(site)s"
 
 #: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
 #: bin/dnfdragora:101 dnfdragora/basedragora.py:159
@@ -144,11 +144,11 @@ msgstr ""
 
 #: dnfdragora/compsicons.py:19
 msgid "KDE Desktop"
-msgstr "Ambiente de trabalho KDE"
+msgstr "Ambiente de Trabalho KDE"
 
 #: dnfdragora/compsicons.py:20
 msgid "Xfce Desktop"
-msgstr "Ambiente de trabalho Xfce"
+msgstr "Ambiente de Trabalho Xfce"
 
 #: dnfdragora/compsicons.py:21
 msgid "Applications"
@@ -156,31 +156,31 @@ msgstr "Aplicações"
 
 #: dnfdragora/compsicons.py:22
 msgid "LXDE Desktop"
-msgstr "Ambiente de trabalho LXDE"
+msgstr "Ambiente de Trabalho LXDE"
 
 #: dnfdragora/compsicons.py:23
 msgid "LXQt Desktop"
-msgstr "Ambiente de trabalho LXQt"
+msgstr "Ambiente de Trabalho LXQt"
 
 #: dnfdragora/compsicons.py:24
 msgid "Cinnamon Desktop"
-msgstr "Ambiente de trabalho Cinnamon"
+msgstr "Ambiente de Trabalho Cinnamon"
 
 #: dnfdragora/compsicons.py:25
 msgid "MATE Desktop"
-msgstr "Ambiente de trabalho MATE"
+msgstr "Ambiente de Trabalho MATE"
 
 #: dnfdragora/compsicons.py:26
 msgid "Hawaii Desktop"
-msgstr "Ambiente de trabalho Hawaii"
+msgstr "Ambiente de Trabalho Hawaii"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr "Ambiente de trabalho Sugar"
+msgstr "Ambiente de Trabalho Sugar"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
-msgstr "Ambiente de trabalho GNOME"
+msgstr "Ambiente de Trabalho GNOME"
 
 #: dnfdragora/compsicons.py:29 dnfdragora/groupicons.py:81
 #: dnfdragora/groupicons.py:595 dnfdragora/groupicons.py:598
@@ -193,7 +193,7 @@ msgstr "Servidores"
 
 #: dnfdragora/compsicons.py:31
 msgid "Base System"
-msgstr "Sistema base"
+msgstr "Sistema Base"
 
 #: dnfdragora/compsicons.py:32
 msgid "Content"
@@ -365,7 +365,7 @@ msgstr "Correções"
 
 #: dnfdragora/const.py:164
 msgid "New Package"
-msgstr "Novo pacote"
+msgstr "Novo Pacote"
 
 #: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
 msgid "Security"
@@ -377,7 +377,7 @@ msgstr "Melhorias"
 
 #: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
 msgid "Undo transaction"
-msgstr "A desfazer transação"
+msgstr "Anular transação"
 
 #: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
 msgid "Error checking package signatures"
@@ -417,11 +417,11 @@ msgstr "Histórico (data/hora)"
 
 #: dnfdragora/dialogs.py:305
 msgid "Transaction History"
-msgstr "Histórico de transações"
+msgstr "Histórico de Transações"
 
 #: dnfdragora/dialogs.py:309
 msgid "&Undo"
-msgstr "&Desfazer"
+msgstr "&Anular"
 
 #: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
 msgid "&Close"
@@ -466,7 +466,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:516
 msgid "Bandwidth"
-msgstr "Banda larga"
+msgstr "Largura de Banda"
 
 #: dnfdragora/dialogs.py:517
 msgid "Base cache dir"
@@ -494,7 +494,7 @@ msgstr "Ativado"
 
 #: dnfdragora/dialogs.py:523
 msgid "Enabled metadata"
-msgstr "Meta-dados ativados"
+msgstr "Metadados ativados"
 
 #: dnfdragora/dialogs.py:524
 msgid "Enable groups"
@@ -606,7 +606,7 @@ msgstr "Ignorar se indisponível"
 
 #: dnfdragora/dialogs.py:551
 msgid "SSL CA cert"
-msgstr "Certificado SSL da autoridade de certificação (CA)"
+msgstr "Certificado SSL da CA"
 
 #: dnfdragora/dialogs.py:552
 msgid "SSL client cert"
@@ -638,7 +638,7 @@ msgstr "Nome de utilizador"
 
 #: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
 msgid "Repository Management"
-msgstr "Gestão de repositórios"
+msgstr "Gestão de Repositórios"
 
 #: dnfdragora/dialogs.py:602
 msgid "Information"
@@ -1882,7 +1882,7 @@ msgstr "Requisitos"
 
 #: dnfdragora/ui.py:379
 msgid "Software Management - dnfdragora"
-msgstr "Gestão de programas - dnfdragora"
+msgstr "Gestão de Programas - dnfdragora"
 
 #: dnfdragora/ui.py:440
 msgid "Arch"
