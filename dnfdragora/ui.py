@@ -1099,7 +1099,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.info.setValue("")
         if pkg :
             missing = _("Missing information")
-            description = escape(pkg.description).replace("\n", "<br>")
+            description = escape(pkg.description).replace("\n", "<br>") if pkg.description else ''
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, description)
             s += "<br>"
             if pkg.is_update :
