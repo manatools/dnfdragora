@@ -197,7 +197,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # ...TODO
 
         self._transaction_tries = 0
-
+        self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
@@ -1669,6 +1669,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif event == 'end-run':
         self.infobar.set_progress(1.0)
         self.infobar.reset_all()
+        dlg = self.mgaFactory.createDialogBox(yui.YMGAMessageBox.B_ONE)
+        dlg.setTitle(_("Info"))
+        dlg.setText(_("Changes applied") + "\n" + self.started_transaction + "\n")
+        dlg.setButtonLabel(_("OK"), yui.YMGAMessageBox.B_ONE)
+        dlg.setMinSize(60, 10)
+        dlg.show()
       elif event == 'start-build':
         self.infobar.set_progress(0.0)
         self.infobar.info(_('Build transaction'))
@@ -1844,6 +1850,30 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if not ok:
             self._enableAction(True)
             return
+
+        self.started_transaction = ''
+        try:
+            installed_packages = []
+            removed_packages = []
+            for action_list in result:
+                if action_list and action_list[0] == 'install':
+                    if len(action_list) > 1:
+                        for program in action_list[1]:
+                            program_info = program[0].split(',')
+                            installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
+                if action_list and action_list[0] == 'remove':
+                    if len(action_list) > 1:
+                        for program in action_list[1]:
+                            program_info = program[0].split(',')
+                            removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
+            if installed_packages:
+                installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
+                self.started_transaction += _('Packages installed:') + f' {installed_packages}'
+            if removed_packages:
+                removed_packages = '\n' + "\n".join(removed_packages)
+                self.started_transaction += _('Packages removed:') + f' {removed_packages}'
+        except Exception as e:
+            self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
 
         if ok:
           self.infobar.info(_('Applying changes to the system'))
