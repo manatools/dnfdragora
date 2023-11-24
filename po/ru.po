@@ -1867,6 +1867,10 @@ msgstr "Начинается загрузка : %s "
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Прогресс файлов (%(downloaded)d/%(total)d)"
 
+#: dnfdragora/ui.py:200
+msgid "No transaction found"
+msgstr "Транзакция не найдена"
+
 #: dnfdragora/ui.py:206
 msgid "Update information"
 msgstr "Информация об обновлении"
@@ -2096,6 +2100,18 @@ msgstr "Кэширование установленных пакетов"
 msgid "Caching available"
 msgstr "Кэширование доступных к установке пакетов"
 
+#: dnfdragora/ui.py:1673
+msgid "Info"
+msgstr "Информация"
+
+#: dnfdragora/ui.py:1674
+msgid "Changes applied"
+msgstr "Изменения применены"
+
+#: dnfdragora/ui.py:1675
+msgid "OK"
+msgstr "Ок"
+
 #: dnfdragora/ui.py:1711
 msgid "Creating packages cache"
 msgstr "Создание кэша пакетов"
@@ -2108,7 +2124,27 @@ msgstr "Ошибка создания транзакции"
 msgid "GPG key missing"
 msgstr "Отсутствует GPG ключ"
 
+#: dnfdragora/ui.py:1871
+msgid "Packages installed:"
+msgstr "Установленные пакеты:"
+
 #: dnfdragora/ui.py:1874
+msgid "Packages removed:"
+msgstr "Удалённые пакеты:"
+
+#: dnfdragora/ui.py:1876
+msgid "Error occured:"
+msgstr "Возникла ошибка:"
+
+#: dnfdragora/ui.py:1879
+msgid "Applying changes to the system"
+msgstr "Изменения вносятся в систему"
+
+#: dnfdragora/ui.py:1884
+msgid "Build Transaction error"
+msgstr "Ошибка выполнения транзакции"
+
+#: dnfdragora/ui.py:2025
 msgid "Search error using regular expression"
 msgstr "Ошибка поиска по регулярному выражению"
 
