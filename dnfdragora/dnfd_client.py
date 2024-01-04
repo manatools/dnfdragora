@@ -98,14 +98,15 @@ Usage: (Make your own subclass based on
 
 """
 
-import json
+import dbus
+import json # TODO remove
 import sys
 import re
 import weakref
 import logging
 import threading
 from queue import SimpleQueue, Empty
-
+import dnfdragora.misc
 
 CLIENT_API_VERSION = 2
 
@@ -191,8 +192,43 @@ class WeakMethod:
 
 
 # Get the system bus
-system = DBus(Gio.bus_get_sync(Gio.BusType.SYSTEM, None))
-session = DBus(Gio.bus_get_sync(Gio.BusType.SESSION, None))
+DNFDAEMON_BUS_NAME = 'org.rpm.dnf.v0'
+DNFDAEMON_OBJECT_PATH = '/' + DNFDAEMON_BUS_NAME.replace('.', '/')
+
+IFACE_SESSION_MANAGER = '{}.SessionManager'.format(DNFDAEMON_BUS_NAME)
+IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
+IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
+IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
+IFACE_GOAL = '{}.Goal'.format(DNFDAEMON_BUS_NAME)
+
+def unpack_dbus(data):
+    ''' convert dbus data types to python native data types '''
+    if (isinstance(data, dbus.String) or
+        isinstance(data, dbus.ObjectPath) or
+        isinstance(data, dbus.Signature)):
+        data = str(data)
+    elif isinstance(data, dbus.Boolean):
+        data = bool(data)
+    elif (isinstance(data, dbus.Int64) or
+          isinstance(data, dbus.UInt64) or
+          isinstance(data, dbus.Int32) or
+          isinstance(data, dbus.UInt32) or
+          isinstance(data, dbus.Int16) or
+          isinstance(data, dbus.UInt16) or
+          isinstance(data, dbus.Byte)):
+        data = int(data)
+    elif isinstance(data, dbus.Double):
+        data = float(data)
+    elif isinstance(data, dbus.Array):
+        data = [unpack_dbus(value) for value in data]
+    elif isinstance(data, dbus.Struct):
+        data = [unpack_dbus(value) for value in data]
+    elif isinstance(data, dbus.Dictionary):
+        new_data = dict()
+        for key in data.keys():
+            new_data[unpack_dbus(key)] = unpack_dbus(data[key])
+        data = new_data
+    return data
 
 #
 # Main Client Class
@@ -201,34 +237,70 @@ session = DBus(Gio.bus_get_sync(Gio.BusType.SESSION, None))
 
 class DnfDaemonBase:
 
-    def __init__(self, bus, org, interface):
-        self.bus = bus
-        self.dbus_org = org
-        self.dbus_interface = interface
+    def __init__(self):
+        from dbus.mainloop.glib import DBusGMainLoop
+        #dbus_loop = DBusGMainLoop()
+        #self.bus = dbus.SessionBus(mainloop=dbus_loop)
+        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        self.bus = dbus.SystemBus()
+        self.dbus_org = DNFDAEMON_BUS_NAME
+        self.iface_session = None
+        self.session_path = None
+        self.iface_repo = None
+        self.iface_rpm = None
+        self.iface_goal = None
+
         self._sent = False
         self._data = {'cmd': None}
         self.eventQueue = SimpleQueue()
-        self.daemon = self._get_daemon(bus, org, interface)
+        self._get_daemon()
         self.__async_thread = None
 
-        logger.debug("%s daemon loaded - version :  %s" %
-                     (interface, self.daemon.GetVersion()))
+        self.proxyMethod = {
+          "GetPackages"  : "list",
+          "GetAttribute" : "list",
+          "Search"       : "list",
+          }
 
-    def _get_daemon(self, bus, org, interface):
+        logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
+
+    def _get_daemon(self):
         ''' Get the daemon dbus proxy object'''
         try:
-            proxy = bus.get(org, "/", interface)
-            # Get daemon version, to check if it is alive
-            self.running_api_version = proxy.GetVersion()
-            if not self.running_api_version == CLIENT_API_VERSION:
-                raise APIVersionError('Client API : %d <> Server API : %s' %
-                                      (CLIENT_API_VERSION,
-                                      self.running_api_version))
-            # Connect the Dbus signal handler
-            proxy.connect('g-signal', WeakMethod(self, '_on_g_signal'))
-            return proxy
+            self.iface_session = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, DNFDAEMON_OBJECT_PATH),
+                dbus_interface=IFACE_SESSION_MANAGER)
+            self.session_path = self.iface_session.open_session({})
+
+            self.iface_repo = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_REPO)
+            self.iface_rpm = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_RPM)
+            #self.proxy = self.iface_rpm
+            #self.proxy.connect_to_signal('g-signal', WeakMethod(self, '_on_g_signal'))
+
+            self.iface_goal = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_GOAL)
+
+        ### TODO check dnf5daemon errors and manage correctly
         except Exception as err:
             self._handle_dbus_error(err)
+
+    def __del__(self):
+        ''' destructor - closing session'''
+        self.iface_session.close_session(self.session_path)
+        logger.debug(f"Close Dnf5Daemon session: {self.session_path}")
+
+    def __exit__(self, exc_type, exc_value, exc_traceback) -> None:
+        '''exit'''
+        self.iface_session.close_session(self.session_path)
+        logger.debug(f"Close Dnf5Daemon session: {self.session_path}")
+        if exc_type:
+            logger.critical("", exc_info=(exc_type, exc_value, exc_traceback))
+
 
     def _on_g_signal(self, proxy, sender, signal, params):
         '''DBUS signal Handler '''
@@ -265,7 +337,8 @@ class DnfDaemonBase:
             return res.groups()
         return "", ""
 
-    def _return_handler(self, obj, result, user_data):
+    #def _return_handler(self, obj, result, user_data):
+    def _return_handler(self, result, user_data):
         '''Async DBus call, return handler '''
         logger.debug("return_handler %s", user_data['cmd'])
         if isinstance(result, Exception):
@@ -296,12 +369,12 @@ class DnfDaemonBase:
           }
         if user_data['result']:
           if user_data['cmd'] == "GetPackages" \
+            or user_data['cmd'] == 'Search'\
             or user_data['cmd'] == "GetRepo" \
             or user_data['cmd'] == "GetConfig" \
             or user_data['cmd'] == "GetPackagesByName"\
             or user_data['cmd'] == 'GetGroups' \
             or user_data['cmd'] == 'GetGroupPackages' \
-            or user_data['cmd'] == 'Search'\
             or user_data['cmd'] == 'GetTransaction'\
             or user_data['cmd'] == 'AddTransaction'\
             or user_data['cmd'] == 'GroupInstall'\
@@ -317,7 +390,7 @@ class DnfDaemonBase:
             or user_data['cmd'] == 'HistorySearch' \
             or user_data['cmd'] == 'GetHistoryPackages' \
             or user_data['cmd'] == 'HistoryUndo' :
-             result['result'] = json.loads(user_data['result'])
+             result['result'] = user_data['result']
           elif user_data['cmd'] == "GetRepositories":
              result['result'] = [str(r) for r in user_data['result']]
           elif user_data['cmd'] == 'GetAttribute':
@@ -326,7 +399,8 @@ class DnfDaemonBase:
             elif user_data['result'] == ':not_found':  # package not found
               result['error'] = "Package not found"
             else:
-              result['result'] = json.loads(user_data['result'])
+              attr = user_data["args"]["package_attrs"][0]
+              result['result'] = user_data['result'][0][attr] if result['result'] else None
 
           else:
             pass
@@ -339,11 +413,19 @@ class DnfDaemonBase:
       '''
       logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), str(data['args']) if data['args'] else "")
       try:
-        func = getattr(self.daemon, data['cmd'])
+        proxy = self.Proxy(data['cmd'])
+
+        func = getattr(proxy, self.proxyMethod[data['cmd']])
+
+        result = func(*args)
+
+        self._return_handler(unpack_dbus(result), data)
 
         # TODO check if timeout = infinite is still needed
-        func(*args, result_handler=self._return_handler,
-              user_data=data, timeout=GObject.G_MAXINT)
+        ####func(*args, result_handler=self._return_handler,
+        ####      user_data=data, timeout=GObject.G_MAXINT)
+        ####loop = gobject.MainLoop()
+        ####loop.run()
         #data['main_loop'].run()
       except Exception as err:
         logger.error("__async_thread_loop Exception %s"%(err))
@@ -387,7 +469,9 @@ class DnfDaemonBase:
         '''Make a sync call to a DBus method in the yumdaemon service
         cmd:
         '''
-        func = getattr(self.daemon, cmd)
+        proxy = self.Proxy(cmd)
+
+        func = getattr(proxy, self.proxyMethod[cmd])
         return func(*args)
 
     def waitForLastAsyncRequestTermination(self):
@@ -455,32 +539,21 @@ class DnfDaemonBase:
 
 
 #
+# API to proxy
+#
+    def Proxy(self, cmd) :
+        ''' return the proxy interface that manages the given command '''
+        if cmd == 'GetPackages' or cmd == 'GetAttribute' or \
+           cmd == 'Search':
+          return self.iface_rpm
+
+        return None
+
+
+#
 # API Methods
 #
 
-    def Lock(self, sync=False):
-        '''Get the yum lock, this give exclusive access to the daemon and yum
-        this must always be called before doing other actions
-        '''
-        try:
-          if not sync:
-            self._run_dbus_async('Lock')
-          else:
-            result = self._run_dbus_sync('Lock')
-            return result
-        except Exception as err:
-          self._handle_dbus_error(err)
-
-    def Unlock(self, sync=False):
-        '''Release the yum lock '''
-        try:
-          if not sync:
-            self._run_dbus_async('Unlock')
-          else:
-            result = self._run_dbus_sync('Unlock')
-            return result
-        except Exception as err:
-            self._handle_dbus_error(err)
 
     def SetWatchdogState(self, state, sync=False):
         '''Set the Watchdog state
@@ -497,24 +570,152 @@ class DnfDaemonBase:
         except Exception as err:
             self._handle_dbus_error(err)
 
-    def GetPackages(self, pkg_filter, fields=[], sync=False):
-        '''Get a list of pkg list for a given package filter
+    def GetPackages(self, options, sync=False):
+        '''
+          Get a list of pkg list for a given option
 
-        each pkg list contains [pkg_id, field,....] where field is a
-        atrribute of the package object
-        Ex. summary, size etc.
+          Args:
+            options: an array of key/value pairs
+              Following options and filters are supported:
+                package_attrs: list of strings
+                    list of package attributes that are returned
+                with_nevra: bool (default true)
+                    match patterns against available packages NEVRAs
+                with_provides: bool (default true)
+                    match patterns against available packages provides
+                with_filenames: bool (default true)
+                    match patterns against names of the files in available packages
+                with_binaries: bool (default true)
+                    match patterns against names of the binaries in /usr/(s)bin in available packages
+                with_src: bool (default true)
+                    include source rpms into the results
+                icase: bool (default true)
+                    ignore case while matching patterns
+                patterns: list of strings
+                    any package matching to any of patterns is returned
+                scope: string (default “all”)
+                    limit packages to one of “all”, “installed”, “available”, “upgrades”, “upradable”
+                arch: list of strings
+                    limit the resulting set only to packages of given architectures
+                repo: list of strings
+                    limit the resulting set only to packages from given repositories
+                latest-limit: int
+                    limit the resulting set to only <limit> of latest packages for every name and architecture
+                whatprovides: list of strings
+                    limit the resulting set only to packages that provide any of given capabilities
+                whatdepends: list of strings
+                    limit the resulting set only to packages that require, enhance, recommend, suggest or supplement any of given capabilities
+                whatrequires: list of strings
+                    limit the resulting set only to packages that require any of given capabilities
+                whatrecommends: list of strings
+                    limit the resulting set only to packages that recommend any of given capabilities
+                whatenhances: list of strings
+                    limit the resulting set only to packages that enhance any of given capabilities
+                whatsuggests: list of strings
+                    limit the resulting set only to packages that suggest any of given capabilities
+                whatsupplements: list of strings
+                    limit the resulting set only to packages that supplement any of given capabilities
+                whatobsoletes: list of strings
+                    limit the resulting set only to packages that obsolete any of given capabilities
+                whatconflicts: list of strings
+                    limit the resulting set only to packages that conflict with any of given capabilities
 
-        Args:
-            pkg_filter: package filter ('installed','available',
-                               'updates','obsoletes','recent','extras')
-            fields: yum package objects attributes to get.
         '''
         if not sync:
           self._run_dbus_async(
-              'GetPackages', '(sas)', pkg_filter, fields)
+              'GetPackages', options)
         else:
           result = self._run_dbus_sync(
-              'GetPackages', '(sas)', pkg_filter, fields)
+              'GetPackages', options)
+          return unpack_dbus(result)
+
+    def GetAttribute(self, full_nevra, attr, sync=False):
+        '''Get package attribute (description, filelist, changelog etc)
+
+        Args:
+            full_nevra: package full nevra information
+            attr: name of attribute to get
+              following attribute are allowed:
+                "name",
+                "epoch",
+                "version",
+                "release",
+                "arch",
+                "repo_id",
+                "from_repo_id",
+                "is_installed",
+                "install_size",
+                "download_size",
+                "sourcerpm",
+                "summary",
+                "url",
+                "license",
+                "description",
+                "files",
+                "changelogs",
+                "provides",
+                "requires",
+                "requires_pre",
+                "conflicts",
+                "obsoletes",
+                "recommends",
+                "suggests",
+                "enhances",
+                "supplements",
+                "evr",
+                "nevra",
+                "full_nevra",
+                "reason",
+                "vendor",
+                "group",
+        '''
+        options = {
+          "package_attrs": [ attr ],
+          "scope": "all",
+          "patterns": [full_nevra]
+        }
+
+        if not sync:
+          self._run_dbus_async('GetAttribute', options)
+        else:
+          result = self._run_dbus_sync('GetAttribute', options)
+          return unpack_dbus(result)[0][attr] if result else None
+
+    def Search(self, options, sync=False):
+        '''Search for packages where keys is matched in fields
+
+        Args:
+            options: dnf5daeon options for list method
+
+        Returns:
+            list of pkg_id's
+        '''
+
+        if not sync:
+          self._run_dbus_async('Search', options)
+        else:
+          result = self._run_dbus_sync('Search', options)
+          pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
+          return pkg_ids
+
+    def GetPackagesByName(self, name, attr=[], newest_only=True, sync=False):
+        '''Get a list of pkg ids for starts with name
+
+        Args:
+            name: name prefix to match
+            attr: a list of packages attributes to return (optional)
+            newest_only: show only the newest match or every
+                                match (optional).
+
+        Returns:
+            list of [pkg_id, attr1, attr2, ...]
+        '''
+        if not sync:
+          self._run_dbus_async('GetPackagesByName', '(sasb)',
+                          name, attr, newest_only)
+        else:
+          result = self._run_dbus_sync('GetPackagesByName', '(sasb)',
+                          name, attr, newest_only)
           return json.loads(result)
 
 
@@ -581,41 +782,6 @@ class DnfDaemonBase:
           result = self._run_dbus_sync('GetConfig', '(s)', setting)
           return json.loads(result)
 
-
-    def GetAttribute(self, pkg_id, attr, sync=False):
-        '''Get yum package attribute (description, filelist, changelog etc)
-
-        Args:
-            pkg_id: pkg_id to get attribute from
-            attr: name of attribute to get
-        '''
-        if not sync:
-          self._run_dbus_async('GetAttribute', '(ss)', pkg_id, attr)
-        else:
-          result = self._run_dbus_sync('GetAttribute', '(ss)', pkg_id, attr)
-          return json.loads(result)
-
-    def GetPackagesByName(self, name, attr=[], newest_only=True, sync=False):
-        '''Get a list of pkg ids for starts with name
-
-        Args:
-            name: name prefix to match
-            attr: a list of packages attributes to return (optional)
-            newest_only: show only the newest match or every
-                                match (optional).
-
-        Returns:
-            list of [pkg_id, attr1, attr2, ...]
-        '''
-        if not sync:
-          self._run_dbus_async('GetPackagesByName', '(sasb)',
-                          name, attr, newest_only)
-        else:
-          result = self._run_dbus_sync('GetPackagesByName', '(sasb)',
-                          name, attr, newest_only)
-          return json.loads(result)
-
-
     def GetGroups(self, sync=False):
         '''Get list of Groups. '''
         if not sync:
@@ -644,30 +810,6 @@ class DnfDaemonBase:
           return json.loads(result)
 
 
-    def Search(self, fields, keys, attrs, match_all, newest_only, tags, sync=False):
-        '''Search for packages where keys is matched in fields
-
-        Args:
-            fields: yum po attributes to search in
-            keys: keys to search for
-            attrs: list of extra package attributes to get
-            match_all: match all keys or only one
-            newest_only: return only the newest version of packages
-            tags: search pkgtags
-
-        Returns:
-            list of pkg_id's
-        '''
-
-        if not sync:
-          self._run_dbus_async('Search', '(asasasbbb)',
-                          fields, keys, attrs, match_all, newest_only, tags)
-        else:
-          result = self._run_dbus_sync('Search', '(asasasbbb)',
-                          fields, keys, attrs, match_all, newest_only, tags)
-          return json.loads(result)
-
-
     def Exit(self, sync=True):
       '''End the daemon'''
       if not sync:
@@ -690,27 +832,12 @@ class DnfDaemonBase:
         return (n, e, v, r, a, repo_id, ts_state)
 
 
-class ClientReadOnly(DnfDaemonBase):
-    '''A class to communicate with the yumdaemon DBus services in a easy way
-    '''
-
-    def __init__(self):
-        DnfDaemonBase.__init__(self, session, ORG_READONLY, INTERFACE_READONLY)
-
-    def handle_dbus_signals(self, proxy, sender, signal, args):
-        ''' DBUS signal Handler '''
-        if signal == "RepoMetaDataProgress":
-            self.on_RepoMetaDataProgress(*args)
-        else:
-            logger.error("Unhandled Signal : " + signal, " Param: ", args)
-
-
 class Client(DnfDaemonBase):
     '''A class to communicate with the dnfdaemon DBus services in a easy way
     '''
 
     def __init__(self):
-        DnfDaemonBase.__init__(self, system, ORG, INTERFACE)
+        DnfDaemonBase.__init__(self)
 
     def handle_dbus_signals(self, proxy, sender, signal, args):
         ''' DBUS signal Handler '''

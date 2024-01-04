@@ -1152,7 +1152,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             s += "<br>"
             if self.infoshown[t]["show"]:
                 if pkg.changelog:
-                    s+= "<br>".join(pkg.changelog)
+                    for c in pkg.changelog:
+                      s1 = ("<br>%s - %s<br>%s"%(datetime.datetime.fromtimestamp(c[0]), c[1], c[2])).replace("\n", "<br>")
+                      s+= s1
                 else:
                     s+= missing
             self.info.setValue(s)
@@ -1560,16 +1562,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     print(_("Unmanaged widget"))
             elif (eventType == yui.YEvent.TimeoutEvent) :
               rebuild_package_list = self._manageDnfDaemonEvent()
-              if not self.backend_locked :
-                logger.debug("Status: %s", self._status)
-                if self._status != DNFDragoraStatus.LOCKING:
-                  self._beforeLockAgain -= 1
-                  if self._beforeLockAgain == 1:
-                    logger.debug("Try locking again")
-                    self._status = DNFDragoraStatus.LOCKING
-                    self._beforeLockAgain = 20
-                    self.backend.Lock()
-                    rebuild_package_list = False
               if rebuild_package_list:
                 logger.debug("Rebuilding %s", rebuild_package_list)
                 self._fillGroupTree()
@@ -1769,8 +1761,50 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''
       request for packages to be cached
       @params pkg_flt (available, installed, updates)
+      “all”, “installed”, “available”, “upgrades”, “upgradable”
       '''
       logger.debug('Start caching %s', pkg_flt)
+      filter = pkg_flt
+      if pkg_flt == "updates":
+        filter = "upgrades"
+      elif pkg_flt == "updates_all":
+        filter = "upgradable"
+
+      options = {"package_attrs": [
+        "name",
+        "epoch",
+        "version",
+        "release",
+        "arch",
+        "repo_id",
+        #"from_repo_id",
+        "is_installed",
+        "install_size",
+        "download_size",
+        #"sourcerpm",
+        "summary",
+        "url",
+        #"license",
+        "description",
+        #"files",
+        #"changelogs",
+        #"provides",
+        #"requires",
+        #"requires_pre",
+        #"conflicts",
+        #"obsoletes",
+        #"recommends",
+        #"suggests",
+        #"enhances",
+        #"supplements",
+        #"evr",
+        #"nevra",
+        "full_nevra",
+        #"reason",
+        #"vendor",
+        "group",
+        ],
+        "scope": filter }
       fields = ['summary', 'size', 'group']  # fields to get
       if pkg_flt == 'updates' or pkg_flt == 'updates_all':
         self.infobar.info_sub(_("Caching updates"))
@@ -1784,7 +1818,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       else:
         logger.error("Wrong package filter %s", pkg_flt)
         return
-      self.backend.GetPackages(pkg_flt, fields)
+      self.backend.GetPackages(options)
 
 
     def _populateCache(self, pkg_flt, po_list) :
@@ -1910,11 +1944,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error(result)
 
       self._transaction_tries = 0
-      self.backend.Unlock(sync=True)
+
+      ### TODO verify if packages are updated or reconnect
+      #self.backend.Unlock(sync=True)
       self.backend.clear_cache()
       self.packageQueue.clear()
-      self._status = DNFDragoraStatus.STARTUP
-      self.backend.Lock()
+      #self._status = DNFDragoraStatus.STARTUP
+      #self.backend.Lock()
 
     def _manageDnfDaemonEvent(self):
       '''
@@ -1932,6 +1968,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           item = self.backend.eventQueue.get_nowait()
           event = item['event']
           info = item['value']
+
           if self._status != DNFDragoraStatus.RUN_TRANSACTION:
             logger.debug("Event received %s - status %s", event, self._status)
 
@@ -2003,7 +2040,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   self._runtime_option_managed = True
                   return
 
-                self._enableAction(self.backend_locked)
+                self._enableAction(True)
                 filter = self._filterNameSelected()
                 self.checkAllButton.setEnabled(filter == 'to_update')
 
@@ -2100,7 +2137,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
       except Empty as e:
-        pass
+          if self._status == DNFDragoraStatus.STARTUP:
+            self._status = DNFDragoraStatus.RUNNING
+            self._start_caching_packages()
+
 
       return rebuild_package_list
 

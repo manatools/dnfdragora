@@ -12,7 +12,6 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 import logging
 import re
-import json
 import threading
 
 from os import listdir
@@ -32,25 +31,37 @@ class DnfPackage(dnfdragora.backend.Package):
 
     def __init__(self, po_tuple, action, backend):
         dnfdragora.backend.Package.__init__(self, backend)
-        (pkg_id, summary, size, group) = po_tuple
-        self.pkg_id = pkg_id
+
         self.action = action
-        (n, e, v, r, a, repo_id) = dnfdragora.misc.to_pkg_tuple(self.pkg_id)
-        self.name = n
-        self.epoch = e
-        self.ver = v
-        self.rel = r
-        self.arch = a
-        self.repository = repo_id
+
+        self.name = po_tuple["name"]
+        self.epoch = po_tuple["epoch"]
+        self.ver = po_tuple["version"]
+        self.rel = po_tuple["release"]
+        self.arch = po_tuple["arch"]
+        self.full_nevra = po_tuple["full_nevra"]
+
+        self.repository = po_tuple["repo_id"]
+        self.summary = po_tuple["summary"]
+        self._description = po_tuple["description"]
+        self.url = po_tuple["url"]
+        self.grp = po_tuple["group"]
+
+        self.install_size = po_tuple["install_size"]
+        self.download_size = po_tuple["download_size"]
+        #TODO manage both sizes
+        self.size = self.install_size
+        self.sizeM = dnfdragora.misc.format_size(self.size)
+
+        self._is_installed = po_tuple["is_installed"]
+
+        self.pkg_id = dnfdragora.misc.to_pkg_id(self.name, self.epoch, self.version, self.release, self.arch, self.repository)
+
         self.visible = True
         self.selected = False
         self.downgrade_po = None
-        self.summary = summary
-        self.grp = group
-        self.size = size
-        self.sizeM = dnfdragora.misc.format_size(size)
         # cache
-        self._description = None
+
 
     def __str__(self):
         """String representation of the package object."""
@@ -63,7 +74,7 @@ class DnfPackage(dnfdragora.backend.Package):
     @ExceptionHandler
     def get_attribute(self, attr):
         """Get a given attribute for a package."""
-        return self.backend.GetAttribute(self.pkg_id, attr, sync=True)
+        return self.backend.GetAttribute(self.full_nevra, attr, sync=True)
 
     @property
     def version(self):
@@ -98,7 +109,7 @@ class DnfPackage(dnfdragora.backend.Package):
 
     @property
     def URL(self):
-        return self.get_attribute('url')
+        return self.url
 
     def set_select(self, state):
         """Package is selected in package view."""
@@ -110,19 +121,15 @@ class DnfPackage(dnfdragora.backend.Package):
 
     @property
     def description(self):
-        return self.get_attribute('description')
+        return self._description
 
     @property
     def changelog(self):
-        return self.get_attribute('changelog')
+        return self.get_attribute('changelogs')
 
     @property
     def filelist(self):
-        return self.get_attribute('filelist')
-
-    @property
-    def pkgtags(self):
-        return self.get_attribute('pkgtags')
+        return self.get_attribute('files')
 
     @property
     @ExceptionHandler
@@ -132,7 +139,9 @@ class DnfPackage(dnfdragora.backend.Package):
     @property
     @ExceptionHandler
     def updateinfo(self):
-        return self.get_attribute('updateinfo')
+        return "-"
+        # TODO manage advisory org.rpm.dnf.v0.Advisory
+        #return self.get_attribute('updateinfo')
 
     @property
     @ExceptionHandler
@@ -159,17 +168,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self._protected = None
         self._pkg_id_to_groups_cache = None
 
-        if self.running_api_version == const.NEEDED_DAEMON_API:
-            logger.debug('dnfdaemon api version (%d)',
-                         self.running_api_version)
-        else:
-            raise dnfdaemon.client.APIVersionError(
-                                   _('dnfdaemon api version : %(actual)d'
-                                     "\ndoesn't match"
-                                     '\nneeded api version : %(required)d') %
-                                   {'actual': self.running_api_version,
-                                    'required': const.NEEDED_DAEMON_API})
-
 
     def setup(self):
         """Setup the dnf backend daemon."""
@@ -185,23 +183,12 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     @ExceptionHandler
     def quit(self):
         """Quit the dnf backend daemon."""
-        try:
-          logger.info("Quit")
-          unlock_v = self._run_dbus_sync('Unlock')
-          exit_v = self._run_dbus_sync('Exit')
-          logger.info("Unlock (%s) Exit (%s)", unlock_v, exit_v)
-          #  self.Unlock()
-          #  self.Exit()
-        except:
-            pass
+        logger.info("Quit")
 
     @ExceptionHandler
     def reload(self):
         """Reload the dnf backend daemon."""
-        self.Unlock(sync=True)  # Release the lock
-        # time.sleep(5)
-        self.Lock(sync=True)  # Load & Lock the daemon
-        self.SetWatchdogState(False, sync=True)
+        logger.info("reload")
         #NOTE caching groups is slow let's do only once by now
         self.clear_cache()
 
@@ -340,15 +327,14 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
 
     @TimeFunction
     @ExceptionHandler
-    def get_packages_by_name(self, name_key, newest_only):
+    def get_packages_by_name(self, name_key):
         """Get packages by a given name wildcard.
 
         :param name_key: package wildcard
-        :param newest_only: get lastest version only
         """
-        attrs = ['summary', 'size', 'group', 'action']
-        pkgs = self.GetPackagesByName(name_key, attrs, newest_only, sync=True)
-        return self.make_pkg_object_with_attr(pkgs)
+        pkgs=self.search("installed", "name", name_key, True)
+
+        return pkgs
 
     @TimeFunction
     def __search_loop(self, filter, attr, regexp):
@@ -407,23 +393,34 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self._protected = []
         protected_conf_path='/etc/dnf/protected.d'
         conf_files = listdir(protected_conf_path)
+        pkg_lst = []
         for f in conf_files :
             file_path = protected_conf_path + '/' + f
+
             with open(file_path, 'r') as content_file:
                 for line in content_file:
                     if line.strip() :
-                        match_all = False
-                        newest_only = False
-                        tags =""
-                        pkgs = self.get_packages_by_name(line.strip(), newest_only)
+                        pkg_lst.append(line.strip())
 
-                        for pkg in pkgs:
-                            pkg_id = pkg.pkg_id
-                            if (not pkg_id in self._protected) :
-                                self._protected.append(pkg_id)
-                        # TODO it would be better to get recursive require
-                        #for pkg_id in self._protected:
-                            #recursive_id = self.GetAttribute(pkg_id,'requires')
+        options = {
+          "package_attrs": [
+                "name",
+                "epoch",
+                "version",
+                "release",
+                "arch",
+                "repo_id", ],
+          "scope": "installed",
+          "patterns": pkg_lst
+        }
+        pkgs = self.Search(options, True)
+
+        for pkg_id in pkgs:
+            if (not pkg_id in self._protected) :
+                self._protected.append(pkg_id)
+        # TODO it would be better to get recursive require
+        #for pkg_id in self._protected:
+            #recursive_id = self.GetAttribute(pkg_id,'requires')
 
 
     def protected(self, pkg) :

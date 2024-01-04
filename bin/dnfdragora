@@ -101,8 +101,8 @@ if __name__ == "__main__":
             dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except GLib.Error as err:
             logger.error(_('dnfdaemon client failure [%s]'), err)
-        except:
-            logger.error("Unexpected error: %s ", sys.exc_info()[0])
+#        except:
+#            logger.error("Unexpected error: %s ", sys.exc_info()[0])
         finally:
             if (main_gui is not None) :
                 if main_gui.running :
