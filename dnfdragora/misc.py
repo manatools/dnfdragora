@@ -56,7 +56,7 @@ def dbus_dnfsystem(cmd):
 
 
 def to_pkg_id(n, e, v, r, a, repo_id):
-    ''' return the package id from given attribute '''
+    ''' return the package id from given attributes '''
     return "%s,%s,%s,%s,%s,%s" % (n, e, v, r, a, repo_id)
 
 
