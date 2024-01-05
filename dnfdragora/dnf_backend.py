@@ -29,39 +29,57 @@ logger = logging.getLogger('dnfdragora.dnf_backend')
 class DnfPackage(dnfdragora.backend.Package):
     """Abstract package object for a package in the package system."""
 
-    def __init__(self, po_tuple, action, backend):
+    def __init__(self, backend, dbus_pkg=None, action=None, pkg_id=None):
         dnfdragora.backend.Package.__init__(self, backend)
 
-        self.action = action
+        if (not dbus_pkg and not action and not pkg_id) or (dbus_pkg and pkg_id):
+            raise Exception("DnfPackage init")
 
-        self.name = po_tuple["name"]
-        self.epoch = po_tuple["epoch"]
-        self.ver = po_tuple["version"]
-        self.rel = po_tuple["release"]
-        self.arch = po_tuple["arch"]
-        self.full_nevra = po_tuple["full_nevra"]
+        if dbus_pkg:
+            self.action = action
 
-        self.repository = po_tuple["repo_id"]
-        self.summary = po_tuple["summary"]
-        self._description = po_tuple["description"]
-        self.url = po_tuple["url"]
-        self.grp = po_tuple["group"]
+            self.name = dbus_pkg["name"]
+            self.epoch = dbus_pkg["epoch"]
+            self.ver = dbus_pkg["version"]
+            self.rel = dbus_pkg["release"]
+            self.arch = dbus_pkg["arch"]
+            self.repository = dbus_pkg["repo_id"]
+            self.pkg_id = dnfdragora.misc.to_pkg_id(self.name, self.epoch, self.version, self.release, self.arch, self.repository)
 
-        self.install_size = po_tuple["install_size"]
-        self.download_size = po_tuple["download_size"]
-        #TODO manage both sizes
-        self.size = self.install_size
-        self.sizeM = dnfdragora.misc.format_size(self.size)
+            self.full_nevra = dbus_pkg["full_nevra"] if dbus_pkg["full_nevra"] else dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
 
-        self._is_installed = po_tuple["is_installed"]
+            self.summary = dbus_pkg["summary"] if dbus_pkg["summary"] else ""
+            #self._description = dbus_pkg['description'] if ('description' in dbus_pkg.keys()) else None
+            self.url = dbus_pkg["url"] if dbus_pkg["url"] else None
+            self.grp = dbus_pkg["group"] if dbus_pkg["group"] else ""
 
-        self.pkg_id = dnfdragora.misc.to_pkg_id(self.name, self.epoch, self.version, self.release, self.arch, self.repository)
+            self.install_size = dbus_pkg["install_size"]  if dbus_pkg["install_size"] else 0
+            self.download_size = dbus_pkg["download_size"] if dbus_pkg["download_size"] else 0
+            #TODO manage both sizes
+            self.size = self.install_size
+            self.sizeM = dnfdragora.misc.format_size(self.size)
+
+            self._is_installed = dbus_pkg["is_installed"]
+        elif pkg_id:
+            self.pkg_id = pkg_id
+            (self.name, self.epoch, self.ver, self.rel, self.arch, self.repository) = dnfdragora.misc.to_pkg_tuple(pkg_id)
+            self.full_nevra = dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
+
+            #TODO fix next attributes if possible
+            self._is_installed = False
+            self.action = None
+            self.summary = ""
+            self.url = None
+            self.grp = ""
+            self.install_size =  0
+            self.download_size = 0
+            self.size = self.install_size
+            self.sizeM = dnfdragora.misc.format_size(self.size)
 
         self.visible = True
         self.selected = False
         self.downgrade_po = None
         # cache
-
 
     def __str__(self):
         """String representation of the package object."""
@@ -109,6 +127,8 @@ class DnfPackage(dnfdragora.backend.Package):
 
     @property
     def URL(self):
+        if not self.url:
+            self.url = self.get_attribute('url')
         return self.url
 
     def set_select(self, state):
@@ -121,7 +141,7 @@ class DnfPackage(dnfdragora.backend.Package):
 
     @property
     def description(self):
-        return self._description
+        return self.get_attribute('description')
 
     @property
     def changelog(self):
@@ -134,7 +154,8 @@ class DnfPackage(dnfdragora.backend.Package):
     @property
     @ExceptionHandler
     def downgrades(self):
-        return self.backend.get_downgrades(self.pkg_id)
+        return None
+    #TODO self.backend.get_downgrades(self.pkg_id)
 
     @property
     @ExceptionHandler
@@ -221,7 +242,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         append = po_list.append
         action = const.FILTER_ACTIONS[flt]
         for pkg_values in pkgs:
-            append(DnfPackage(pkg_values, action, self))
+            append(DnfPackage(self, dbus_pkg=pkg_values, action=action))
         return self.cache.find_packages(po_list)
 
     @TimeFunction
@@ -235,10 +256,9 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         """
         po_list = []
         append = po_list.append
-        for elem in pkgs:
-            (pkg_id, summary, size, group, action) = elem
-            po_tuple = (pkg_id, summary, size, group)
-            append(DnfPackage(po_tuple, const.BACKEND_ACTIONS[action], self))
+        for pkg_id in pkgs:
+            #TODO action / is_installed
+            append(DnfPackage(self, pkg_id=pkg_id))
         return self.cache.find_packages(po_list)
 
     def _build_package_list(self, pkg_ids):
@@ -256,13 +276,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         append = po_list.append
         sync=True
         for pkg_id in pkg_ids:
-            summary = self.GetAttribute(pkg_id, 'summary', sync)
-            size = self.GetAttribute(pkg_id, 'size', sync)
-            group = self.GetAttribute(pkg_id, 'group', sync)
-
-            pkg_values = (pkg_id, summary, size, group)
-            action = const.BACKEND_ACTIONS[self.GetAttribute(pkg_id, 'action', sync)]
-            append(DnfPackage(pkg_values, action, self))
+              append(DnfPackage(self, pkg_id=pkg_id))
         return self.cache.find_packages(po_list)
 
     @ExceptionHandler
@@ -300,12 +314,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                 append(pkg.group)
 
         return result
-
-    @ExceptionHandler
-    def get_downgrades(self, pkg_id):
-        """Get downgrades for a given pkg_id"""
-        pkgs = self.GetAttribute(pkg_id, 'downgrades', sync=True)
-        return self._build_package_list(pkgs)
 
     @ExceptionHandler
     def get_repo_ids(self, flt):
@@ -403,13 +411,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                         pkg_lst.append(line.strip())
 
         options = {
-          "package_attrs": [
-                "name",
-                "epoch",
-                "version",
-                "release",
-                "arch",
-                "repo_id", ],
           "scope": "installed",
           "patterns": pkg_lst
         }

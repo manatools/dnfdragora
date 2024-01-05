@@ -1264,25 +1264,36 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if not search_string :
           return False
 
-        if self.use_regexp.isEnabled() and self.use_regexp.isChecked() :
-          # fixing attribute names
-          if field == 'name' :
-            field = 'fullname'
-          filters = {
+        filters = {
             'installed'     : 'installed',
             'not_installed' : 'available',
             'to_update'     : 'updates',
             'all'           : 'all',
             'skip_other'    : 'all',
-          }
-          filter = filters[self._filterNameSelected()]
+        }
+        filter = filters[self._filterNameSelected()]
+        if self.use_regexp.isEnabled() and self.use_regexp.isChecked() :
+          # fixing attribute names
+          if field == 'name' :
+            field = 'fullname'
+
           self.backend.search(filter, field, search_string)
         else:
           strings = re.split('[ ,|:;]',search_string)
-          ### TODO manage tags
-          tags =""
-          attrs = ['summary', 'size', 'group', 'action']
-          self.backend.Search(fields, strings, attrs, self.match_all, self.newest_only, tags)
+
+          options = {
+            "scope": filter,
+            "with_binaries": field == 'file',
+            "with_filenames": field == 'file',
+            "with_nevra" : field == 'name',
+            #"with_provides" : False,
+            #"with_src" : False,
+            "patterns": strings
+          }
+
+          #['name', 'summary', 'description', 'file' ]
+          ### TODO how to manage mach_all, newest_only, summary and description????
+          self.backend.Search(options)
 
         self._enableAction(False)
 

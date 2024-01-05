@@ -369,7 +369,6 @@ class DnfDaemonBase:
           }
         if user_data['result']:
           if user_data['cmd'] == "GetPackages" \
-            or user_data['cmd'] == 'Search'\
             or user_data['cmd'] == "GetRepo" \
             or user_data['cmd'] == "GetConfig" \
             or user_data['cmd'] == "GetPackagesByName"\
@@ -391,6 +390,8 @@ class DnfDaemonBase:
             or user_data['cmd'] == 'GetHistoryPackages' \
             or user_data['cmd'] == 'HistoryUndo' :
              result['result'] = user_data['result']
+          elif user_data['cmd'] == 'Search':
+              result['result']  = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in user_data['result']]
           elif user_data['cmd'] == "GetRepositories":
              result['result'] = [str(r) for r in user_data['result']]
           elif user_data['cmd'] == 'GetAttribute':
@@ -630,7 +631,7 @@ class DnfDaemonBase:
           return unpack_dbus(result)
 
     def GetAttribute(self, full_nevra, attr, sync=False):
-        '''Get package attribute (description, filelist, changelog etc)
+        '''Get package attribute (description, files, changelogs etc)
 
         Args:
             full_nevra: package full nevra information
@@ -685,18 +686,31 @@ class DnfDaemonBase:
         '''Search for packages where keys is matched in fields
 
         Args:
-            options: dnf5daeon options for list method
+            options: dnf5daeon options for list method except
+                     for package attributes (package_attrs) that is overwritten
 
         Returns:
             list of pkg_id's
         '''
 
+        options['package_attrs'] = [
+            "name",
+            "epoch",
+            "version",
+            "release",
+            "arch",
+            "repo_id",
+        ]
         if not sync:
           self._run_dbus_async('Search', options)
         else:
           result = self._run_dbus_sync('Search', options)
           pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
           return pkg_ids
+
+#    def Search(self, fields, keys, attrs, match_all, newest_only, tags):
+#        pass
+
 
     def GetPackagesByName(self, name, attr=[], newest_only=True, sync=False):
         '''Get a list of pkg ids for starts with name
