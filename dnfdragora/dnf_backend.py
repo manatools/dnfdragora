@@ -316,22 +316,11 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         return result
 
     @ExceptionHandler
-    def get_repo_ids(self, flt):
-        """Get repository ids"""
-        repos = self.GetRepositories(flt, sync=True)
-        return repos
-
-    @ExceptionHandler
-    def get_repositories(self, flt='*'):
+    def get_repositories(self, flt=['*']):
         """Get a list of repo attributes to populate repo view."""
-        repo_list = []
-        repos = self.GetRepositories(flt, sync=True)
-        for repo_id in repos:
-            if repo_id.endswith('-source') or repo_id.endswith('-debuginfo'):
-                continue
-            repo = self.GetRepo(repo_id, sync=True)
-            repo_list.append([repo['enabled'], repo_id, repo['name'], False])
-        return sorted(repo_list, key=lambda elem: elem[1])
+        repos = self.GetRepositories(patterns=flt, sync=True)
+        repo_list = [ repo for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+        return sorted(repo_list, key=lambda elem: (elem['id'], elem['name']))
 
     @TimeFunction
     @ExceptionHandler

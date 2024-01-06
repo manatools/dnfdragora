@@ -512,6 +512,7 @@ class RepoDialog:
         self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
+        #TODO fix keys from attribute list
         self.infoKeys = {
           'bandwidth'              : _('Bandwidth'),
           'basecachedir'           : _('Base cache dir'),
@@ -590,8 +591,10 @@ class RepoDialog:
 
         checkboxed = True
         repoList_header = yui.YCBTableHeader()
-        repoList_header.addColumn(_('Name'), not checkboxed)
         repoList_header.addColumn(_('Enabled'), checkboxed)
+        repoList_header.addColumn(_('Name'), not checkboxed)
+        repoList_header.addColumn(_('Description'), not checkboxed)
+
 
         self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header)
         self.repoList.setImmediateMode(True)
@@ -615,18 +618,17 @@ class RepoDialog:
 
         self.itemList = {}
         # TODO fix the workaround when GetRepo(id) works again
-        repos = self.backend.get_repo_ids("*")
-        enabled_repos = self.backend.get_repo_ids("enabled")
+        repos = self.backend.get_repositories()
 
         for r in repos:
             item = yui.YCBTableItem()
-            item.addCell(r)
-            enabled = r in enabled_repos
-            item.addCell(enabled)
+            item.addCell(r['enabled'])
+            item.addCell(r['id'])
+            item.addCell(r['name'])
 
             # TODO name from repo info
-            self.itemList[r] = {
-                'item' : item, 'name': r, 'enabled' : enabled
+            self.itemList[r['id']] = {
+                'item' : item, 'name': r['id'], 'description': r['name'], 'enabled' : r['enabled']
             }
             item.this.own(False)
 
@@ -702,11 +704,45 @@ class RepoDialog:
                     v=[]
                     yui.YUI.app().busyCursor()
                     try:
-                        ri = self.backend.GetRepo(repo_id, sync=True)
+                        repo_attrs= [
+                                     "id",
+                                     "name",
+                                     "type",
+                                     "enabled",
+                                     "priority",
+                                     "cost",
+                                     "baseurl",
+                                     "metalink",
+                                     "mirrorlist",
+                                     "metadata_expire",
+                                     "cache_updated",
+                                     "excludepkgs",
+                                     "includepkgs",
+                                     "skip_if_unavailable",
+                                     #
+                                     "gpgkey",
+                                     "gpgcheck",
+                                     "repo_gpgcheck",
+                                     #
+                                     "proxy",
+                                     "proxy_username",
+                                     #"proxy_password", #crash
+                                     #
+                                     "repofile",
+                                     "revision",
+                                     "content_tags",
+                                     "distro_tags",
+                                     "updated",
+                                     "size",
+                                     "pkgs",
+                                     "available_pkgs",
+                                     "mirrors",
+                        ]
+                        ri = self.backend.GetRepositories(pattern=[repo_id], repo_attrs=repo_attrs, sync=True)
                         logger.debug(ri)
                         for k in sorted(ri.keys()):
-                          if k == "enabled":
-                            # NOTE: skipping 'enabled' since it is fake and it is better shown as checkbox
+                          if k == "enabled" or k=="name" or k=="id":
+                            # skipping data that are already shown into the listbox
                             continue
                           key = None
                           value = ""

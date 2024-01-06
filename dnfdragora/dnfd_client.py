@@ -257,9 +257,10 @@ class DnfDaemonBase:
         self.__async_thread = None
 
         self.proxyMethod = {
-          "GetPackages"  : "list",
-          "GetAttribute" : "list",
-          "Search"       : "list",
+          "GetPackages"     : "list",
+          "GetAttribute"    : "list",
+          "Search"          : "list",
+          "GetRepositories" : "list",
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -369,9 +370,8 @@ class DnfDaemonBase:
           }
         if user_data['result']:
           if user_data['cmd'] == "GetPackages" \
-            or user_data['cmd'] == "GetRepo" \
+            or user_data['cmd'] == "GetRepositories" \
             or user_data['cmd'] == "GetConfig" \
-            or user_data['cmd'] == "GetPackagesByName"\
             or user_data['cmd'] == 'GetGroups' \
             or user_data['cmd'] == 'GetGroupPackages' \
             or user_data['cmd'] == 'GetTransaction'\
@@ -392,8 +392,6 @@ class DnfDaemonBase:
              result['result'] = user_data['result']
           elif user_data['cmd'] == 'Search':
               result['result']  = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in user_data['result']]
-          elif user_data['cmd'] == "GetRepositories":
-             result['result'] = [str(r) for r in user_data['result']]
           elif user_data['cmd'] == 'GetAttribute':
             if user_data['result'] == ':none':  # illegal attribute
               result['error'] = "Illegal attribute"
@@ -547,6 +545,8 @@ class DnfDaemonBase:
         if cmd == 'GetPackages' or cmd == 'GetAttribute' or \
            cmd == 'Search':
           return self.iface_rpm
+        elif cmd == 'GetRepositories':
+            return self.iface_repo
 
         return None
 
@@ -620,7 +620,6 @@ class DnfDaemonBase:
                     limit the resulting set only to packages that obsolete any of given capabilities
                 whatconflicts: list of strings
                     limit the resulting set only to packages that conflict with any of given capabilities
-
         '''
         if not sync:
           self._run_dbus_async(
@@ -708,29 +707,67 @@ class DnfDaemonBase:
           pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
           return pkg_ids
 
-#    def Search(self, fields, keys, attrs, match_all, newest_only, tags):
+# TODO old Search remind some parameters not present in dnf5daemon
+#      def Search(self, fields, keys, attrs, match_all, newest_only, tags):
 #        pass
 
-
-    def GetPackagesByName(self, name, attr=[], newest_only=True, sync=False):
-        '''Get a list of pkg ids for starts with name
+    def GetRepositories(self, patterns=[""], repo_attrs=["id", "name", "enabled"], enable_disable="all", sync=False):
+        '''Get a list of repository where id matches with any of the given patterns
 
         Args:
-            name: name prefix to match
-            attr: a list of packages attributes to return (optional)
-            newest_only: show only the newest match or every
-                                match (optional).
+            patterns: list of strings
+                any repository with id matching to any of patterns is returned
+            repo_attrs: list of strings
+                list of repository attributes that are returned
+                    Possible values are:
+                        "id"
+                        "name"
+                        "type"
+                        "enabled"
+                        "priority"
+                        "cost"
+                        "baseurl"
+                        "metalink"
+                        "mirrorlist"
+                        "metadata_expire"
+                        "cache_updated"
+                        "excludepkgs"
+                        "includepkgs"
+                        "skip_if_unavailable"
+                        "gpgkey"
+                        "gpgcheck"
+                        "repo_gpgcheck"
+                        "proxy"
+                        "proxy_username"
+                        "proxy_password"
+                        "repofile"
+                        "revision"
+                        "content_tags"
+                        "distro_tags"
+                        "updated"
+                        "size"
+                        "pkgs"
+                        "available_pkgs"
+                        "mirrors"
+
+            enable_disable: string (default “enabled”)
+                When set to “enabled” or “disabled”, only enabled / disabled repositories are listed. Any other value means all repositories are returned.
 
         Returns:
-            list of [pkg_id, attr1, attr2, ...]
+            list of repositories with the requested attributes
         '''
+        options = {
+            "repo_attrs": repo_attrs,
+            "enable_disable": enable_disable,
+            "patterns" : patterns
+        }
+
         if not sync:
-          self._run_dbus_async('GetPackagesByName', '(sasb)',
-                          name, attr, newest_only)
+          self._run_dbus_async('GetRepositories', options)
         else:
-          result = self._run_dbus_sync('GetPackagesByName', '(sasb)',
-                          name, attr, newest_only)
-          return json.loads(result)
+          result = self._run_dbus_sync('GetRepositories', options)
+          return unpack_dbus(result)
+
 
 
     def ExpireCache(self, sync=False):
@@ -741,21 +778,6 @@ class DnfDaemonBase:
           result = self._run_dbus_sync('ExpireCache', '()')
           return result
 
-
-    def GetRepositories(self, repo_filter, sync=False):
-        '''Get a list of repository ids where name matches a filter
-
-        Args:
-            repo_filter: filter to match
-
-        Returns:
-            list of repo id's
-        '''
-        if not sync:
-          self._run_dbus_async('GetRepositories', '(s)', repo_filter)
-        else:
-          result = self._run_dbus_sync('GetRepositories', '(s)', repo_filter)
-          return [str(r) for r in result]
 
     def GetRepo(self, repo_id, sync=False):
         '''Get a dictionary of information about a given repo id.
