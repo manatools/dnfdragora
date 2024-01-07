@@ -512,50 +512,39 @@ class RepoDialog:
         self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
-        #TODO fix keys from attribute list
         self.infoKeys = {
-          'bandwidth'              : _('Bandwidth'),
-          'basecachedir'           : _('Base cache dir'),
-          'baseurl'                : _('Base URL'),
-          'cost'                   : _('Cost'),
-          'deltarpm'               : _('DeltaRPM'),
-          'deltarpm_percentage'    : _('DeltaRPM percentage'),
-          'enabled'                : _('Enabled'),
-          'enabled_metadata'       : _('Enabled metadata'),
-          'enablegroups'           : _('Enable groups'),
-          'exclude'                : _('Exclude'),
-          'excludepkgs'            : _('Exclude packages'),
-          'fastestmirror'          : _('Fastest mirror'),
-          'gpgcheck'               : _('GPG check'),
-          'gpgkey'                 : _('GPG key'),
-          'includepkgs'            : _('Include packages'),
-          'ip_resolve'             : _('IP resolve'),
-          'max_parallel_downloads' : _('Max parallel download'),
-          'mediaid'                : _('Media ID'),
-          'metadata_expire'        : _('Metadata expire'),
-          'metalink'               : _('Meta link'),
-          'minrate'                : _('Min rate'),
-          'mirrorlist'             : _('Mirror list'),
-          'name'                   : _('Name'),
-          'packages'               : _('Packages'),
-          'password'               : _('Password'),
-          'priority'               : _('Priority'),
-          'protected_packages'     : _('Protected packages'),
-          'proxy'                  : _('Proxy'),
-          'proxy_password'         : _('Proxy password'),
-          'proxy_username'         : _('Proxy username'),
-          'repo_gpgcheck'          : _('Repo GPG check'),
-          'retries'                : _('Retries'),
-          'size'                   : _('Size'),
-          'skip_if_unavailable'    : _('Skip if unavailable'),
-          'sslcacert'              : _('SSL CA cert'),
-          'sslclientcert'          : _('SSL client cert'),
-          'sslclientkey'           : _('SSL client key'),
-          'sslverify'              : _('SSL verify'),
-          'throttle'               : _('Throttle'),
-          'timeout'                : _('Timeout'),
-          'type'                   : _('Type'),
-          'username'               : _('Username'),
+          'id'                  : _('Identifier'),
+          'name'                : _('Name'),
+          'type'                : _('Type'),
+          'enabled'             : _('Enabled'),
+          'priority'            : _('Priority'),
+          'cost'                : _('Cost'),
+          'baseurl'             : _('Base URL'),
+          'metalink'            : _('Meta link'),
+          'mirrorlist'          : _('Mirror list'),
+          'metadata_expire'     : _('Metadata expire'),
+          'cache_updated'       : _('Cache Updated'),
+          'excludepkgs'         : _('Exclude packages'),
+          'includepkgs'         : _('Include packages'),
+          'skip_if_unavailable' : _('Skip if unavailable'),
+          #
+          'gpgkey'              : _('GPG key'),
+          'gpgcheck'            : _('GPG check'),
+          'repo_gpgcheck'       : _('Repo GPG check'),
+          #
+          'proxy'               : _('Proxy'),
+          'proxy_username'      : _('Proxy username'),
+          'proxy_password'      : _('Proxy password'),
+          #
+          'repofile'            : _('Repo file'),
+          'revision'            : _('Revision'),
+          'content_tags'        : _('Content tags'),
+          'distro_tags'         : _('Distro tags '),
+          'updated'             : _('Updated'),
+          'size'                : _('Size'),
+          'pkgs'                : _('Packages'),
+          'available_pkgs'      : _('Available packages'),
+          'mirrors'             : _('Mirrors'),
         }
 
     def _setupUI(self):
@@ -568,7 +557,7 @@ class RepoDialog:
 
         self.dialog = self.factory.createPopupDialog()
 
-        minSize = self.factory.createMinSize( self.dialog, 80, 26 )
+        minSize = self.factory.createMinSize( self.dialog, 100, 26 )
 
         vbox = self.factory.createVBox(minSize)
 
@@ -591,9 +580,9 @@ class RepoDialog:
 
         checkboxed = True
         repoList_header = yui.YCBTableHeader()
-        repoList_header.addColumn(_('Enabled'), checkboxed)
+        repoList_header.addColumn("", checkboxed)
         repoList_header.addColumn(_('Name'), not checkboxed)
-        repoList_header.addColumn(_('Description'), not checkboxed)
+        repoList_header.addColumn(_('Id'), not checkboxed)
 
 
         self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header)
@@ -617,18 +606,16 @@ class RepoDialog:
         self.dialog.setDefaultButton(self.quitButton)
 
         self.itemList = {}
-        # TODO fix the workaround when GetRepo(id) works again
         repos = self.backend.get_repositories()
 
         for r in repos:
             item = yui.YCBTableItem()
             item.addCell(r['enabled'])
-            item.addCell(r['id'])
             item.addCell(r['name'])
+            item.addCell(r['id'])
 
-            # TODO name from repo info
             self.itemList[r['id']] = {
-                'item' : item, 'name': r['id'], 'description': r['name'], 'enabled' : r['enabled']
+                'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
             }
             item.this.own(False)
 
@@ -704,40 +691,8 @@ class RepoDialog:
                     v=[]
                     yui.YUI.app().busyCursor()
                     try:
-                        repo_attrs= [
-                                     "id",
-                                     "name",
-                                     "type",
-                                     "enabled",
-                                     "priority",
-                                     "cost",
-                                     "baseurl",
-                                     "metalink",
-                                     "mirrorlist",
-                                     "metadata_expire",
-                                     "cache_updated",
-                                     "excludepkgs",
-                                     "includepkgs",
-                                     "skip_if_unavailable",
-                                     #
-                                     "gpgkey",
-                                     "gpgcheck",
-                                     "repo_gpgcheck",
-                                     #
-                                     "proxy",
-                                     "proxy_username",
-                                     #"proxy_password", #crash
-                                     #
-                                     "repofile",
-                                     "revision",
-                                     "content_tags",
-                                     "distro_tags",
-                                     "updated",
-                                     "size",
-                                     "pkgs",
-                                     "available_pkgs",
-                                     "mirrors",
-                        ]
+                        repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr is not "proxy_password" ] # TODO add it backs when it works
+
                         ri = self.backend.GetRepositories(pattern=[repo_id], repo_attrs=repo_attrs, sync=True)
                         logger.debug(ri)
                         for k in sorted(ri.keys()):
