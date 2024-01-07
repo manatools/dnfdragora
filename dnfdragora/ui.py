@@ -1456,11 +1456,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.packageQueue.clear()
                         rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                     elif item == self.fileMenu['reload'] :
-                        self.infobar.reset_all()
-                        self.infobar.info(_('Refreshing Repository Metadata'))
-                        self.reset_cache()
-                        self._enableAction(False)
-                        self.pbar_layout.setEnabled(True)
+                        self.backend.ExpireCache()
                     elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
                         rd.run()
@@ -2012,10 +2008,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.info("Event %s received (%s)", event, info['result'])
             self.backend_locked = False
           elif (event == 'ExpireCache'):
-            # ExpireCache has been invoked let's refresh the date
-            self._set_MD_cache_refreshed()
-            # After metadata refresh let's build package cache
-            self._start_caching_packages()
+            if not info['result']:
+              logger.Warning("Event %s received (%s)", event, info['result'])
+            # ExpireCache has been invoked let's refresh data
+            self.backend.reloadDaemon()
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.STARTUP
+            self._enableAction(False)
           elif (event == 'GetPackages'):
             if not info['error']:
               if self._status == DNFDragoraStatus.CACHING_INSTALLED:

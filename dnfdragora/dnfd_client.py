@@ -264,6 +264,7 @@ class DnfDaemonBase:
           'GetRepositories'  : 'list',
           'SetEnabledRepos'  : 'enable',
           'SetDisabledRepos' : 'disable',
+          'ExpireCache'      : 'read_all_repos',
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -586,6 +587,8 @@ class DnfDaemonBase:
             return self.iface_repo
         elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
             return  self.iface_repoconf
+        elif cmd == 'ExpireCache':
+            return self.iface_base
 
         return None
 
@@ -816,6 +819,21 @@ class DnfDaemonBase:
           result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
           return unpack_dbus(result)
 
+    def ExpireCache(self, sync=False):
+        '''
+            Explicitely ask for loading repositories metadata.Expire the dnf metadata,
+            so they will be refresed
+
+            retval:
+                `true` if repositories were successfuly loaded, `false` otherwise.
+        '''
+        if not sync:
+          self._run_dbus_async('ExpireCache')
+        else:
+          result = self._run_dbus_sync('ExpireCache')
+          return unpack_dbus(result)
+
+
 #----------- TODO move to new methods --------------------------------------------------
 
     def SetWatchdogState(self, state, sync=False):
@@ -832,16 +850,6 @@ class DnfDaemonBase:
           #self.daemon.SetWatchdogState("(b)", state)
         except Exception as err:
             self._handle_dbus_error(err)
-
-    def ExpireCache(self, sync=False):
-        '''Expire the dnf metadata, so they will be refresed'''
-        if not sync:
-          self._run_dbus_async('ExpireCache', '()')
-        else:
-          result = self._run_dbus_sync('ExpireCache', '()')
-          return result
-
-
 
 
     def GetConfig(self, setting, sync=False):
