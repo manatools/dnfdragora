@@ -606,6 +606,11 @@ class RepoDialog:
         self.dialog.setDefaultButton(self.quitButton)
 
         self.itemList = {}
+        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
+        self.enabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
+        self.disabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+
         repos = self.backend.get_repositories()
 
         for r in repos:
@@ -645,7 +650,7 @@ class RepoDialog:
         return
       v=[]
       try:
-          repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr is not "proxy_password" ] # TODO add it backs when it works
+          repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr != "proxy_password" ] # TODO add it backs when it works
 
           ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
           logger.debug(ri)
@@ -731,11 +736,18 @@ class RepoDialog:
                     #### QUIT
                     break
                 elif (widget == self.applyButton) :
-                    enabled_repos = [k for k in self.itemList.keys() if self.itemList[k]['enabled']]
-                    disabled_repos = [k for k in self.itemList.keys() if not self.itemList[k]['enabled']]
+
+                    enabled_repos = [k for k in self.itemList.keys() if self.itemList[k]['enabled'] and k in self.disabledRepos]
+                    disabled_repos = [k for k in self.itemList.keys() if not self.itemList[k]['enabled'] and k in self.enabledRepos]
 
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
-                    self.backend.SetEnabledRepos(enabled_repos)
+                    # NOTE we can manage one async call at the time atm, TODO fix in the future,
+                    # these call are quick though, but main window must know that repos are changed,
+                    # so let's at least one be async
+                    if enabled_repos:
+                      self.backend.SetEnabledRepos(enabled_repos)
+                    if disabled_repos:
+                      self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
                     return True
                 elif (widget == self.repoList) :
                     wEvent = yui.toYWidgetEvent(event)
@@ -746,8 +758,9 @@ class RepoDialog:
                             for it in self.itemList:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     self.itemList[it]['enabled'] = cell.checked()
-                    repo_id = self._selectedRepository()
+                                    break
 
+                    repo_id = self._selectedRepository()
                     yui.YUI.app().busyCursor()
                     self._addAttributeInfo(repo_id)
                     yui.YUI.app().normalCursor()

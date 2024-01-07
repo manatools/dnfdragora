@@ -320,7 +320,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         """Get a list of repo attributes to populate repo view."""
         repos = self.GetRepositories(patterns=flt, sync=True)
         repo_list = [ repo for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
-        return sorted(repo_list, key=lambda elem: (elem['id'], elem['name']))
+        return sorted(repo_list, key=lambda elem: (elem['name'], elem['id']))
 
     @TimeFunction
     @ExceptionHandler

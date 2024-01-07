@@ -257,10 +257,12 @@ class DnfDaemonBase:
         self.__async_thread = None
 
         self.proxyMethod = {
-          "GetPackages"     : "list",
-          "GetAttribute"    : "list",
-          "Search"          : "list",
-          "GetRepositories" : "list",
+          'GetPackages'      : 'list',
+          'GetAttribute'     : 'list',
+          'Search'           : 'list',
+          'GetRepositories'  : 'list',
+          'SetEnabledRepos'  : 'enable',
+          'SetDisabledRepos' : 'disable',
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -367,32 +369,12 @@ class DnfDaemonBase:
         '''
         logger.debug("get_result %s", user_data['cmd'])
         result = {
-          'result': user_data['result'],
+          'result': user_data['result'], # default output of the command
           'error': user_data['error'],
           }
         if user_data['result']:
-          if user_data['cmd'] == "GetPackages" \
-            or user_data['cmd'] == "GetRepositories" \
-            or user_data['cmd'] == "GetConfig" \
-            or user_data['cmd'] == 'GetGroups' \
-            or user_data['cmd'] == 'GetGroupPackages' \
-            or user_data['cmd'] == 'GetTransaction'\
-            or user_data['cmd'] == 'AddTransaction'\
-            or user_data['cmd'] == 'GroupInstall'\
-            or user_data['cmd'] == 'GroupRemove'\
-            or user_data['cmd'] == 'Install' \
-            or user_data['cmd'] == 'Remove' \
-            or user_data['cmd'] == 'Update' \
-            or user_data['cmd'] == 'Reinstall' \
-            or user_data['cmd'] == 'Downgrade' \
-            or user_data['cmd'] == 'BuildTransaction' \
-            or user_data['cmd'] == 'RunTransaction' \
-            or user_data['cmd'] == 'GetHistoryByDays' \
-            or user_data['cmd'] == 'HistorySearch' \
-            or user_data['cmd'] == 'GetHistoryPackages' \
-            or user_data['cmd'] == 'HistoryUndo' :
-             result['result'] = user_data['result']
-          elif user_data['cmd'] == 'Search':
+          ### NOTE managing exceptions on expected results
+          if user_data['cmd'] == 'Search':
               result['result']  = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in user_data['result']]
           elif user_data['cmd'] == 'GetAttribute':
             if user_data['result'] == ':none':  # illegal attribute
@@ -401,7 +383,7 @@ class DnfDaemonBase:
               result['error'] = "Package not found"
             else:
               attr = user_data["args"]["package_attrs"][0]
-              result['result'] = user_data['result'][0][attr] if result['result'] else None
+              result['result'] = user_data['result'][0][attr] if result['result'][0] else None
 
           else:
             pass
@@ -470,6 +452,7 @@ class DnfDaemonBase:
         '''Make a sync call to a DBus method in the yumdaemon service
         cmd:
         '''
+        logger.debug("_run_dbus_sync %s", cmd)
         proxy = self.Proxy(cmd)
 
         func = getattr(proxy, self.proxyMethod[cmd])
@@ -549,6 +532,8 @@ class DnfDaemonBase:
           return self.iface_rpm
         elif cmd == 'GetRepositories':
             return self.iface_repo
+        elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
+            return  self.iface_repoconf
 
         return None
 
@@ -556,22 +541,6 @@ class DnfDaemonBase:
 #
 # API Methods
 #
-
-
-    def SetWatchdogState(self, state, sync=False):
-        '''Set the Watchdog state
-
-        Args:
-            state: True = Watchdog active, False = Watchdog disabled
-        '''
-        try:
-          if not sync:
-            self._run_dbus_async('SetWatchdogState', "(b)", state)
-          else:
-            self._run_dbus_sync('SetWatchdogState', "(b)", state)
-          #self.daemon.SetWatchdogState("(b)", state)
-        except Exception as err:
-            self._handle_dbus_error(err)
 
     def GetPackages(self, options, sync=False):
         '''
@@ -713,7 +682,7 @@ class DnfDaemonBase:
 #      def Search(self, fields, keys, attrs, match_all, newest_only, tags):
 #        pass
 
-    def GetRepositories(self, patterns=[""], repo_attrs=["id", "name", "enabled"], enable_disable="all", sync=False):
+    def GetRepositories(self, patterns=["*"], repo_attrs=["id", "name", "enabled"], enable_disable="all", sync=False):
         '''Get a list of repository where id matches with any of the given patterns
 
         Args:
@@ -771,8 +740,47 @@ class DnfDaemonBase:
           return unpack_dbus(result)
 
 
+    def SetEnabledRepos(self, repo_ids, sync=False):
+        '''Enabled a list of repositories
 
-#----------- TODO new methods --------------------------------------------------
+        Args:
+            repo_ids: list of repo ids to enable
+        '''
+        if not sync:
+          self._run_dbus_async('SetEnabledRepos', repo_ids)
+        else:
+          result = self._run_dbus_sync('SetEnabledRepos', repo_ids)
+          return unpack_dbus(result)
+
+    def SetDisabledRepos(self, repo_ids, sync=False):
+        '''Disabled a list of repositories
+
+        Args:
+            repo_ids: list of repo ids to disable
+        '''
+        if not sync:
+          self._run_dbus_async('SetDisabledRepos', repo_ids)
+        else:
+          result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
+          return unpack_dbus(result)
+
+#----------- TODO move to new methods --------------------------------------------------
+
+    def SetWatchdogState(self, state, sync=False):
+        '''Set the Watchdog state
+
+        Args:
+            state: True = Watchdog active, False = Watchdog disabled
+        '''
+        try:
+          if not sync:
+            self._run_dbus_async('SetWatchdogState', "(b)", state)
+          else:
+            self._run_dbus_sync('SetWatchdogState', "(b)", state)
+          #self.daemon.SetWatchdogState("(b)", state)
+        except Exception as err:
+            self._handle_dbus_error(err)
+
     def ExpireCache(self, sync=False):
         '''Expire the dnf metadata, so they will be refresed'''
         if not sync:
@@ -782,32 +790,7 @@ class DnfDaemonBase:
           return result
 
 
-    def GetRepo(self, repo_id, sync=False):
-        '''Get a dictionary of information about a given repo id.
 
-        Args:
-            repo_id: repo id to get information from
-
-        Returns:
-            dictionary with repo info
-        '''
-        if not sync:
-          self._run_dbus_async('GetRepo', '(s)', repo_id)
-        else:
-          result = self._run_dbus_sync('GetRepo', '(s)', repo_id)
-          return json.loads(result)
-
-
-    def SetEnabledRepos(self, repo_ids, sync=False):
-        '''Enabled a list of repositories, disabled all other repos
-
-        Args:
-            repo_ids: list of repo ids to enable
-        '''
-        if not sync:
-          self._run_dbus_async('SetEnabledRepos', '(as)', repo_ids)
-        else:
-          self._run_dbus_sync('SetEnabledRepos', '(as)', repo_ids)
 
     def GetConfig(self, setting, sync=False):
         '''Read a config setting from yum.conf
