@@ -196,6 +196,7 @@ DNFDAEMON_BUS_NAME = 'org.rpm.dnf.v0'
 DNFDAEMON_OBJECT_PATH = '/' + DNFDAEMON_BUS_NAME.replace('.', '/')
 
 IFACE_SESSION_MANAGER = '{}.SessionManager'.format(DNFDAEMON_BUS_NAME)
+IFACE_BASE = '{}.Base'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
@@ -275,6 +276,9 @@ class DnfDaemonBase:
                 dbus_interface=IFACE_SESSION_MANAGER)
             self.session_path = self.iface_session.open_session({})
 
+            self.iface_base = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_BASE)
             self.iface_repo = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_REPO)
@@ -289,6 +293,11 @@ class DnfDaemonBase:
             self.iface_goal = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_GOAL)
+
+            # Managing signals
+            self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart)
+            self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress)
+            self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd)
 
         ### TODO check dnf5daemon errors and manage correctly
         except Exception as err:
@@ -470,9 +479,67 @@ class DnfDaemonBase:
       self.__async_thread.join()
 
 #
-# Dbus Signal Handlers (Overload in child class)
+# Dbus Signal Handlers
 #
 
+    def on_DownloadStart(self, session_object_path, download_id, description, total_to_download):
+        '''
+            Starting a new download batch
+            Args:
+                session_object_path: object path of the dnf5daemon session
+                download_id: unique id of downloaded object (repo or package)
+                description: the description of the downloaded object
+                total_to_download: total bytes to download
+
+        '''
+
+        self.eventQueue.put({'event': 'OnDownloadStart',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'download_id': unpack_dbus(download_id),
+                                 'description': unpack_dbus(description),
+                                 'total_to_download': unpack_dbus(total_to_download)
+                                 }
+                            })
+
+    def on_DownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
+        '''
+            Progress in downloading.
+            Args:
+                session_object_path: object path of the dnf5daemon session
+                download_id: unique id of downloaded object (repo or package)
+                total_to_download: total bytes to download
+                downloaded: bytes already downloaded
+        '''
+
+        self.eventQueue.put({'event': 'OnDownloadProgress',
+                             'value': {
+                                 'session_object_path':unpack_dbus(session_object_path),
+                                 'download_id':unpack_dbus(download_id),
+                                 'total_to_download':unpack_dbus(total_to_download),
+                                 'downloaded':unpack_dbus(downloaded),
+                                 }
+                            })
+
+    def on_DownloadEnd(self, session_object_path, download_id, status, error):
+        '''
+            Downloading has ended.
+            Args:
+                session_object_path: object path of the dnf5daemon session
+                download_id: unique id of downloaded object (repo or package)
+                status: libdnf5::repo::DownloadCallbacks::TransferStatus (0 - successful, 1 - already exists, 2 - error)
+                error: error message in case of failed download
+        '''
+        self.eventQueue.put({'event': 'OnDownloadEnd',
+                             'value': {
+                                 'session_object_path':unpack_dbus(session_object_path),
+                                 'download_id':unpack_dbus(download_id),
+                                 'status':unpack_dbus(status),
+                                 'error':unpack_dbus(error),
+                                 }
+                             })
+
+    #TODO fix next signals
     def on_TransactionEvent(self, event, data):
         self.eventQueue.put({'event': 'OnTransactionEvent',
                              'value':
@@ -497,26 +564,6 @@ class DnfDaemonBase:
                                 'hexkeyid':hexkeyid,
                                 'keyurl':keyurl,
                                 'timestamp':timestamp,}})
-
-    def on_DownloadStart(self, num_files, num_bytes):
-        ''' Starting a new parallel download batch '''
-        self.eventQueue.put({'event': 'OnDownloadStart',
-                             'value':
-                               {'num_files':num_files,
-                                'num_bytes':num_bytes,  }})
-
-    def on_DownloadProgress(self, name, frac, total_frac, total_files):
-        ''' Progress for a single instance in the batch '''
-        self.eventQueue.put({'event': 'OnDownloadProgress',
-                             'value':
-                               {'name':name,
-                                'frac':frac,
-                                'total_frac':total_frac,
-                                'total_files':total_files,  }})
-
-    def on_DownloadEnd(self, name, status, msg):
-        ''' Download of af single instace ended '''
-        self.eventQueue.put({'event': 'OnDownloadEnd', 'value': {'name':name, 'status':status, 'msg':msg,  }})
 
     def on_RepoMetaDataProgress(self, name, frac):
         ''' Repository Metadata Download progress '''

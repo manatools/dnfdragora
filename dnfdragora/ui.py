@@ -2111,11 +2111,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
                               info['keyurl'], info['timestamp'])
           elif (event == 'OnDownloadStart'):
-            self._OnDownloadStart(info['num_files'], info['num_bytes'])
+            logger.debug(info) #['session_object_path'], info['download_id'], info['total_to_download'], info['downloaded'])
+            #TODO self._OnDownloadStart(info['num_files'], info['num_bytes'])
           elif (event == 'OnDownloadProgress'):
-            self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
+            logger.debug(info) #['session_object_path'], info['download_id'], info['description'], info['total_to_download'])
+            #TODO self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
           elif (event == 'OnDownloadEnd'):
-            self._OnDownloadEnd(info['name'], info['status'], info['msg'])
+            logger.debug(info) #['session_object_path'], info['download_id'], info['status'], info['error'])
+            #TODO self._OnDownloadEnd(info['name'], info['status'], info['msg'])
           elif (event == 'OnErrorMessage'):
             self._OnErrorMessage(info['msg'])
           elif (event == 'GetHistoryByDays'):
