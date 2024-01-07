@@ -633,6 +633,68 @@ class RepoDialog:
         self.repoList.deleteAllItems()
         self.repoList.addItems(itemCollection)
         self.repoList.doneMultipleChanges()
+        repo_id = self._selectedRepository()
+        self._addAttributeInfo(repo_id)
+
+
+    def _addAttributeInfo(self, repo_id):
+      '''
+        fill attribute information of the given repo_id
+      '''
+      if not repo_id:
+        return
+      v=[]
+      try:
+          repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr is not "proxy_password" ] # TODO add it backs when it works
+
+          ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
+          logger.debug(ri)
+          if len(ri) > 1:
+            logger.warn("Got %d elements expected 1", len(ri))
+          ri = ri[0] # first element
+          for k in sorted(ri.keys()):
+            if k == "enabled" or k=="name" or k=="id":
+              # skipping data that are already shown into the listbox
+              continue
+            key = None
+            value = ""
+            if ri[k]:
+              key = self.infoKeys[k] if k in self.infoKeys.keys() else k
+              if k == 'size':
+                value = misc.format_number(ri[k])
+              elif k == 'metadata_expire':
+                if ri[k] <= -1:
+                  value = _('Never')
+                else:
+                  value = _("%s second(s)"%(ri[k]))
+              else:
+                value = "%s"%(ri[k])
+            else:
+              if k == 'metadata_expire':
+                key = self.infoKeys[k]
+                value = _('Now')
+            if key:
+              item = yui.YTableItem(key, value)
+              item.this.own(False)
+              v.append(item)
+
+      except NameError as e:
+          logger.error("dnfdaemon NameError: %s ", e)
+      except AttributeError as e:
+          logger.error("dnfdaemon AttributeError: %s ", e)
+      except GLib.Error as err:
+          logger.error("dnfdaemon client failure [%s]", err)
+      except:
+          logger.error("Unexpected error: %s ", sys.exc_info()[0])
+
+      #NOTE workaround to get YItemCollection working in python
+      itemCollection = yui.YItemCollection(v)
+
+      self.info.startMultipleChanges()
+      # cleanup old changed items since we are removing all of them
+      self.info.deleteAllItems()
+      self.info.addItems(itemCollection)
+      self.info.doneMultipleChanges()
 
     def _selectedRepository(self) :
         '''
@@ -669,10 +731,9 @@ class RepoDialog:
                     #### QUIT
                     break
                 elif (widget == self.applyButton) :
-                    enabled_repos = []
-                    for k in self.itemList.keys():
-                        if self.itemList[k]['enabled'] :
-                           enabled_repos.append(k)
+                    enabled_repos = [k for k in self.itemList.keys() if self.itemList[k]['enabled']]
+                    disabled_repos = [k for k in self.itemList.keys() if not self.itemList[k]['enabled']]
+
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
                     self.backend.SetEnabledRepos(enabled_repos)
                     return True
@@ -686,58 +747,9 @@ class RepoDialog:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     self.itemList[it]['enabled'] = cell.checked()
                     repo_id = self._selectedRepository()
-                    s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
-                    # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
-                    v=[]
+
                     yui.YUI.app().busyCursor()
-                    try:
-                        repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr is not "proxy_password" ] # TODO add it backs when it works
-
-                        ri = self.backend.GetRepositories(pattern=[repo_id], repo_attrs=repo_attrs, sync=True)
-                        logger.debug(ri)
-                        for k in sorted(ri.keys()):
-                          if k == "enabled" or k=="name" or k=="id":
-                            # skipping data that are already shown into the listbox
-                            continue
-                          key = None
-                          value = ""
-                          if ri[k]:
-                            key = self.infoKeys[k] if k in self.infoKeys.keys() else k
-                            if k == 'size':
-                              value = misc.format_number(ri[k])
-                            elif k == 'metadata_expire':
-                              if ri[k] <= -1:
-                                value = _('Never')
-                              else:
-                                value = _("%s second(s)"%(ri[k]))
-                            else:
-                              value = "%s"%(ri[k])
-                          else:
-                            if k == 'metadata_expire':
-                              key = self.infoKeys[k]
-                              value = _('Now')
-                          if key:
-                            item = yui.YTableItem(key, value)
-                            item.this.own(False)
-                            v.append(item)
-
-                    except NameError as e:
-                        logger.error("dnfdaemon NameError: %s ", e)
-                    except AttributeError as e:
-                        logger.error("dnfdaemon AttributeError: %s ", e)
-                    except GLib.Error as err:
-                        logger.error("dnfdaemon client failure [%s]", err)
-                    except:
-                        logger.error("Unexpected error: %s ", sys.exc_info()[0])
-
-                    #NOTE workaround to get YItemCollection working in python
-                    itemCollection = yui.YItemCollection(v)
-
-                    self.info.startMultipleChanges()
-                    # cleanup old changed items since we are removing all of them
-                    self.info.deleteAllItems()
-                    self.info.addItems(itemCollection)
-                    self.info.doneMultipleChanges()
+                    self._addAttributeInfo(repo_id)
                     yui.YUI.app().normalCursor()
 
         return False

@@ -276,11 +276,13 @@ class DnfDaemonBase:
             self.iface_repo = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_REPO)
+            self.iface_repoconf = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_REPOCONF)
+
             self.iface_rpm = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_RPM)
-            #self.proxy = self.iface_rpm
-            #self.proxy.connect_to_signal('g-signal', WeakMethod(self, '_on_g_signal'))
 
             self.iface_goal = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
@@ -770,6 +772,7 @@ class DnfDaemonBase:
 
 
 
+#----------- TODO new methods --------------------------------------------------
     def ExpireCache(self, sync=False):
         '''Expire the dnf metadata, so they will be refresed'''
         if not sync:
