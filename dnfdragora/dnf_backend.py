@@ -189,18 +189,6 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self._protected = None
         self._pkg_id_to_groups_cache = None
 
-
-    def setup(self):
-        """Setup the dnf backend daemon."""
-        try:
-            self.Lock(sync=True)
-            self.SetWatchdogState(False, sync=True)
-            return True, ''
-        except dnfdaemon.client.AccessDeniedError:
-            return False, 'not-authorized'
-        except dnfdaemon.client.LockedError:
-            return False, 'locked-by-other'
-
     @ExceptionHandler
     def quit(self):
         """Quit the dnf backend daemon."""

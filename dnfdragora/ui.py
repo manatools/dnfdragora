@@ -2140,12 +2140,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._undo_transaction()
           elif (event == 'SetEnabledRepos') or (event == 'SetDisabledRepos'):
             logger.debug("%s - %s", event, info['result'])
-            # TODO refresh for new repo enabled/disabled
-            #self.backend.Unlock(sync=True)
             # Enabled repositories are changes we need to force caching again
+            self.backend.reloadDaemon()
             self.backend.clear_cache(also_groups=True)
-            #self.backend.Lock()
-
+            self._status = DNFDragoraStatus.STARTUP
+            self._enableAction(False)
           else:
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 

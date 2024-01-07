@@ -306,6 +306,11 @@ class DnfDaemonBase:
         if exc_type:
             logger.critical("", exc_info=(exc_type, exc_value, exc_traceback))
 
+    def reloadDaemon(self):
+        ''' close dbus connection and restart it '''
+        self.iface_session.close_session(self.session_path)
+        logger.debug(f"Close Dnf5Daemon session: {self.session_path}")
+        self._get_daemon()
 
     def _on_g_signal(self, proxy, sender, signal, params):
         '''DBUS signal Handler '''
