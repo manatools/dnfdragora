@@ -1112,9 +1112,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         s += "<br>"
                         s += escape(pkg.updateinfo[0]['description']).replace("\n", "<br>")
                         s += "<br>"
-                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated'])).replace("\n", "<br>")
+                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated']).replace("\n", "<br>"))
                     else :
                         s+= missing
+                    s += "<br>"
 
             if pkg.repository:
                 s += "<br>"
@@ -1135,6 +1136,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     s+= "<br>".join(pkg.requirements)
                 else:
                     s+= missing
+                s += "<br>"
 
             t = 'files'
             s += "<br>"
@@ -1145,6 +1147,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     s+= "<br>".join(pkg.filelist)
                 else:
                     s+= missing
+                s += "<br>"
 
             t = 'changelog'
             s += "<br>"
@@ -1157,6 +1160,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                       s+= s1
                 else:
                     s+= missing
+                s += "<br>"
             self.info.setValue(s)
         else:
           logger.warning("_setInfoOnWidget without package")
