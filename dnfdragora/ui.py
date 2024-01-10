@@ -1779,7 +1779,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if pkg_flt == "updates":
         filter = "upgrades"
       elif pkg_flt == "updates_all":
-        filter = "upgradable"
+        filter = "upgrades"
 
       options = {"package_attrs": [
         "name",
