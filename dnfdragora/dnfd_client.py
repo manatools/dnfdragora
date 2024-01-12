@@ -201,6 +201,8 @@ IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
 IFACE_GOAL = '{}.Goal'.format(DNFDAEMON_BUS_NAME)
+IFACE_ADVISORY = '{}.Advisory'.format(DNFDAEMON_BUS_NAME)
+
 
 def unpack_dbus(data):
     ''' convert dbus data types to python native data types '''
@@ -294,6 +296,11 @@ class DnfDaemonBase:
             self.iface_goal = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_GOAL)
+
+            self.iface_advisory = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_ADVISORY)
+
 
             # Managing signals
             self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart)

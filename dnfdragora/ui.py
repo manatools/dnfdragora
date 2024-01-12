@@ -1731,37 +1731,43 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             resp = dialogs.ask_for_gpg_import(values)
             self.backend.ConfirmGPGImport(hexkeyid, resp, sync=True)
 
-    def _OnDownloadStart(self, num_files, num_bytes):
+    def _OnDownloadStart(self, session_object_path, download_id, description, total_to_download):
       '''Starting a new parallel download batch.'''
-      values =  (num_files, num_bytes)
-      logger.debug('OnDownloadStart %s', repr(values))
+      values =  (download_id, description, total_to_download)
+      logger.debug('OnDownloadStart(%s) %s', session_object_path, repr(values))
 
-      self._files_to_download = num_files
+      if session_object_path != self.backend.session_path :
+        logger.warning("OnDownloadStart: Different session path received")
+        return
+      self._files_to_download = total_to_download
       self._files_downloaded = 1
       self.infobar.set_progress(0.0)
       self.infobar.info_sub(
-          _('Downloading %(count_files)d files (%(count_bytes)sB)...') %
-          {'count_files':num_files, 'count_bytes': dnfdragora.misc.format_number(num_bytes)})
+          _('Downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
+          {'count_files':total_to_download, 'id': download_id, 'description':description })
 
-    def _OnDownloadProgress(self, name, frac, total_frac, total_files):
+    def _OnDownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
       '''Progress for a single element in the batch.'''
-      values =  (name, frac, total_frac, total_files)
-      if total_frac == 1.0:
-        logger.debug('OnDownloadProgress %s', repr(values))
+      values =  (download_id, total_to_download, downloaded)
+      if session_object_path != self.backend.session_path :
+        logger.warning("OnDownloadStart(%s): Different session path received. %s", session_object_path, repr(values))
+        return
+      total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
-      num = '( %d/%d - %s)' % (self._files_downloaded, self._files_to_download, name)
+      num = '( %d/%d - %s)' % (downloaded, total_to_download, download_id)
       self.infobar.set_progress(total_frac, label=num)
 
-    def _OnDownloadEnd(self, name, status, msg):
+    def _OnDownloadEnd(self, session_object_path, download_id, status, error):
       '''Download of af single element ended.'''
-      values =  (name, status, msg)
+      values =  (download_id, status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
-      if status == -1 or status == 2:  # download OK or already exists
-        logger.debug('Downloaded : %s', name)
+      # (0 - successful, 1 - already exists, 2 - error)
+      if status == 0 or status == 1:  # download OK or already exists
+        logger.debug('Downloaded : %s', download_id)
         self._files_downloaded += 1
       else:
-        logger.error('Download Error : %s - %s', name, msg)
+        logger.error('Download Error : %s - %s', download_id, error)
       #self.infobar.set_progress(1.0)
       #self.infobar.reset_all()
 
@@ -2114,14 +2120,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
                               info['keyurl'], info['timestamp'])
           elif (event == 'OnDownloadStart'):
-            logger.debug(info) #['session_object_path'], info['download_id'], info['total_to_download'], info['downloaded'])
-            #TODO self._OnDownloadStart(info['num_files'], info['num_bytes'])
+            logger.debug(info)
+            self._OnDownloadStart(info['session_object_path'], info['download_id'], info['description'], info['total_to_download'])
           elif (event == 'OnDownloadProgress'):
-            logger.debug(info) #['session_object_path'], info['download_id'], info['description'], info['total_to_download'])
-            #TODO self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
+            logger.debug(info)
+            self._OnDownloadProgress(info['session_object_path'], info['download_id'], info['total_to_download'], info['downloaded'])
           elif (event == 'OnDownloadEnd'):
-            logger.debug(info) #['session_object_path'], info['download_id'], info['status'], info['error'])
-            #TODO self._OnDownloadEnd(info['name'], info['status'], info['msg'])
+            logger.debug(info)
+            self._OnDownloadEnd(info['session_object_path'], info['download_id'], info['status'], info['error'])
           elif (event == 'OnErrorMessage'):
             self._OnErrorMessage(info['msg'])
           elif (event == 'GetHistoryByDays'):
