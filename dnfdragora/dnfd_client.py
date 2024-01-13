@@ -260,13 +260,17 @@ class DnfDaemonBase:
         self.__async_thread = None
 
         self.proxyMethod = {
+          'ExpireCache'      : 'read_all_repos',
+
           'GetPackages'      : 'list',
           'GetAttribute'     : 'list',
           'Search'           : 'list',
-          'GetRepositories'  : 'list',
+
           'SetEnabledRepos'  : 'enable',
           'SetDisabledRepos' : 'disable',
-          'ExpireCache'      : 'read_all_repos',
+
+          'GetRepositories'  : 'list',
+          'ConfirmGPGImport' : 'confirm_key',
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -307,6 +311,7 @@ class DnfDaemonBase:
             self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress)
             self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd)
             self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)
+            self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
 
 
         ### TODO check dnf5daemon errors and manage correctly
@@ -569,6 +574,27 @@ class DnfDaemonBase:
                                  }
                             })
 
+    def on_GPGImport(self, session_object_path, key_id, user_ids, key_fingerprint, key_url, timestamp):
+        '''
+            Signal repo_key_import_request - Request for repository key import confirmation.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @key_id: PGP key id
+                @user_ids: User id
+                @key_fingerprint: Fingerprint of the PGP key
+                @key_url: URL of the PGP key
+                @timestamp: timestamp when the key was created
+        '''
+        self.eventQueue.put({'event': 'OnGPGImport',
+                             'value': {
+                                 'session_object_path':session_object_path,
+                                 'key_id':key_id,
+                                 'user_ids':user_ids,
+                                 'key_fingerprint':key_fingerprint,
+                                 'key_url':key_url,
+                                 'timestamp':timestamp,
+                                 }
+                             })
 
     #TODO fix next signals
     def on_TransactionEvent(self, event, data):
@@ -587,14 +613,6 @@ class DnfDaemonBase:
                                 'ts_current':ts_current,
                                 'ts_total':ts_total,}})
 
-    def on_GPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
-        self.eventQueue.put({'event': 'OnGPGImport',
-                             'value':
-                               {'pkg_id':pkg_id,
-                                'userid':userid,
-                                'hexkeyid':hexkeyid,
-                                'keyurl':keyurl,
-                                'timestamp':timestamp,}})
 
     def on_RepoMetaDataProgress(self, name, frac):
         ''' Repository Metadata Download progress '''
@@ -609,7 +627,7 @@ class DnfDaemonBase:
         if cmd == 'GetPackages' or cmd == 'GetAttribute' or \
            cmd == 'Search':
           return self.iface_rpm
-        elif cmd == 'GetRepositories':
+        elif cmd == 'GetRepositories' or cmd == 'ConfirmGPGImport':
             return self.iface_repo
         elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
             return  self.iface_repoconf
@@ -860,6 +878,19 @@ class DnfDaemonBase:
           return unpack_dbus(result)
 
 
+    def ConfirmGPGImport(self, key_id, confirmed, sync=False):
+        '''
+            confirm_key - Confirm to import the given PGP key
+            Args:
+                @key_id: id of the key in question
+                @confirmed: whether the key import is confirmed by user
+        '''
+        if not sync:
+          self._run_dbus_async('ConfirmGPGImport', key_id, confirmed)
+        else:
+          self._run_dbus_sync('ConfirmGPGImport', key_id, confirmed)
+
+
 #----------- TODO move to new methods --------------------------------------------------
 
     def SetWatchdogState(self, state, sync=False):
@@ -943,6 +974,7 @@ class DnfDaemonBase:
 class Client(DnfDaemonBase):
     '''A class to communicate with the dnfdaemon DBus services in a easy way
     '''
+#TODO make one class Client alone
 
     def __init__(self):
         DnfDaemonBase.__init__(self)
@@ -972,6 +1004,8 @@ class Client(DnfDaemonBase):
 # API Methods
 #
 
+
+## TODO fix next API
     def SetConfig(self, setting, value, sync=False):
         '''Set a dnf config setting
 
@@ -1194,16 +1228,3 @@ class Client(DnfDaemonBase):
           result = self._run_dbus_sync('HistoryUndo', '(i)', tid)
           return json.loads(result)
 
-
-
-    def ConfirmGPGImport(self, hexkeyid, confirmed, sync=False):
-        '''Confirm import of at GPG Key by yum
-
-        Args:
-            hexkeyid: hex keyid for GPG key
-            confirmed: confirm import of key (True/False)
-        '''
-        if not sync:
-          self._run_dbus_async('ConfirmGPGImport', '(si)', hexkeyid, confirmed)
-        else:
-          self._run_dbus_sync('ConfirmGPGImport', '(si)', hexkeyid, confirmed)

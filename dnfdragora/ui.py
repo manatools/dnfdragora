@@ -1721,15 +1721,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           frac = float(te_current) / float(te_total)
           self.infobar.set_progress(frac, label=num)
 
-    def _OnGPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
-        values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
+    def _OnGPGImport(self, session_object_path, key_id, user_ids, key_fingerprint, key_url, timestamp):
+        values = (key_id, user_ids, key_fingerprint, key_url, timestamp)
         self._gpg_confirm = values
-        logger.debug('OnGPGImport %s', repr(values))
+        logger.debug('OnGPGImport(%s) - %s', session_object_path, repr(values))
         # get info about gpgkey to be comfirmed
         if values:  # There is a gpgkey to be verified
             logger.debug('GPGKey : %s' % repr(values))
             resp = dialogs.ask_for_gpg_import(values)
-            self.backend.ConfirmGPGImport(hexkeyid, resp, sync=True)
+            self.backend.ConfirmGPGImport(key_id, resp, sync=True)
 
     def _OnDownloadStart(self, session_object_path, download_id, description, total_to_download):
       '''Starting a new parallel download batch.'''
@@ -2120,8 +2120,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._OnRPMProgress(info['package'], info['action'], info['te_current'],
                                 info['te_total'], info['ts_current'], info['ts_total'])
           elif (event == 'OnGPGImport'):
-            self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
-                              info['keyurl'], info['timestamp'])
+            self._OnGPGImport(info['session_object_path'], info['key_id'],
+                              info['user_ids'], info['key_fingerprint'],
+                              info['key_url'], info['timestamp'])
           elif (event == 'OnDownloadStart'):
             logger.debug(info)
             self._OnDownloadStart(info['session_object_path'], info['download_id'], info['description'], info['total_to_download'])
