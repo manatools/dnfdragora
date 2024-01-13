@@ -306,6 +306,8 @@ class DnfDaemonBase:
             self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart)
             self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress)
             self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd)
+            self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)
+
 
         ### TODO check dnf5daemon errors and manage correctly
         except Exception as err:
@@ -492,7 +494,7 @@ class DnfDaemonBase:
 
     def on_DownloadStart(self, session_object_path, download_id, description, total_to_download):
         '''
-            Starting a new download batch
+            Signal download_add_new - Starting a new download batch
             Args:
                 session_object_path: object path of the dnf5daemon session
                 download_id: unique id of downloaded object (repo or package)
@@ -512,7 +514,7 @@ class DnfDaemonBase:
 
     def on_DownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
         '''
-            Progress in downloading.
+            Signal download_progress - Progress in downloading.
             Args:
                 session_object_path: object path of the dnf5daemon session
                 download_id: unique id of downloaded object (repo or package)
@@ -531,7 +533,7 @@ class DnfDaemonBase:
 
     def on_DownloadEnd(self, session_object_path, download_id, status, error):
         '''
-            Downloading has ended.
+            Signal download_end - Downloading has ended.
             Args:
                 session_object_path: object path of the dnf5daemon session
                 download_id: unique id of downloaded object (repo or package)
@@ -546,6 +548,27 @@ class DnfDaemonBase:
                                  'error':unpack_dbus(error),
                                  }
                              })
+
+    def on_ErrorMessage(self, session_object_path, download_id, message, url, metadata):
+        '''
+            Signal mirror_failure - Mirror failure during the download.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @download_id: unique id of downloaded object (repo or package)
+                @message: an error message
+                @url: URL being downloaded
+                @metadata: For repository metadata download contains metadata type
+        '''
+        self.eventQueue.put({'event': 'OnErrorMessage',
+                             'value': {
+                                 'session_object_path':unpack_dbus(session_object_path),
+                                 'download_id':unpack_dbus(download_id),
+                                 'error':unpack_dbus(message),
+                                 'url':unpack_dbus(url),
+                                 'metadata':unpack_dbus(metadata),
+                                 }
+                            })
+
 
     #TODO fix next signals
     def on_TransactionEvent(self, event, data):
@@ -576,10 +599,6 @@ class DnfDaemonBase:
     def on_RepoMetaDataProgress(self, name, frac):
         ''' Repository Metadata Download progress '''
         self.eventQueue.put({'event': 'OnRepoMetaDataProgress', 'value': {'name':name, 'frac':frac, }})
-
-    def on_ErrorMessage(self, msg):
-        ''' Error message from daemon service '''
-        self.eventQueue.put({'event': 'OnErrorMessage', 'value': {'msg':msg,  }})
 
 
 #

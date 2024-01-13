@@ -1769,10 +1769,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       else:
         logger.error('Download Error : %s - %s', download_id, error)
       #self.infobar.set_progress(1.0)
-      #self.infobar.reset_all()
+      self.infobar.reset_all()
 
-    def _OnErrorMessage(self,  msg):
-      logger.error('OnErrorMessage %s', str(msg))
+    def _OnErrorMessage(self, session_object_path, download_id, error, url, metadata):
+      logger.error('OnErrorMessage(%s) - name: %s, err: %s url: %s, metadata: %s ', session_object_path, download_id, error, url, metadata)
+      label= '( %s - %s)' % (download_id, error)
+      self.infobar.set_progress(0.0, label=label)
+      # TODO I don't like to add a label that is not deleted, but it is an error we show it right now...
 
     def _cachingRequest(self, pkg_flt):
       '''
@@ -2129,7 +2132,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug(info)
             self._OnDownloadEnd(info['session_object_path'], info['download_id'], info['status'], info['error'])
           elif (event == 'OnErrorMessage'):
-            self._OnErrorMessage(info['msg'])
+            logger.warn(info)
+            self._OnErrorMessage(info['session_object_path'], info['download_id'], info['error'], info['url'], info['metadata'])
           elif (event == 'GetHistoryByDays'):
             if not info['error']:
               transaction_list = info['result']
