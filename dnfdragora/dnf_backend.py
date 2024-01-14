@@ -160,9 +160,16 @@ class DnfPackage(dnfdragora.backend.Package):
     @property
     @ExceptionHandler
     def updateinfo(self):
-        return "-"
-        # TODO manage advisory org.rpm.dnf.v0.Advisory
-        #return self.get_attribute('updateinfo')
+        '''
+            return advisory info for this package
+        '''
+        options = {
+            'advisory_attrs' : [
+            "advisoryid", "name", "title", "type", "severity", "status", "vendor", "description", "buildtime", "message", "rights", "collections", "references"
+            ],
+            "contains_pkgs": [self.name]
+            }
+        return self.backend.Advisories(options, sync=True)
 
     @property
     @ExceptionHandler

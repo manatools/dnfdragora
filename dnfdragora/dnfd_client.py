@@ -271,6 +271,8 @@ class DnfDaemonBase:
 
           'GetRepositories'  : 'list',
           'ConfirmGPGImport' : 'confirm_key',
+
+          'Advisories'       : 'list',
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -631,6 +633,8 @@ class DnfDaemonBase:
             return self.iface_repo
         elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
             return  self.iface_repoconf
+        elif cmd == 'Advisories':
+            return self.iface_advisory
         elif cmd == 'ExpireCache':
             return self.iface_base
 
@@ -838,7 +842,6 @@ class DnfDaemonBase:
           result = self._run_dbus_sync('GetRepositories', options)
           return unpack_dbus(result)
 
-
     def SetEnabledRepos(self, repo_ids, sync=False):
         '''Enabled a list of repositories
 
@@ -877,7 +880,6 @@ class DnfDaemonBase:
           result = self._run_dbus_sync('ExpireCache')
           return unpack_dbus(result)
 
-
     def ConfirmGPGImport(self, key_id, confirmed, sync=False):
         '''
             confirm_key - Confirm to import the given PGP key
@@ -890,6 +892,49 @@ class DnfDaemonBase:
         else:
           self._run_dbus_sync('ConfirmGPGImport', key_id, confirmed)
 
+    def Advisories(self, options, sync=False):
+        '''
+        Get list of security advisories that match to given filters.
+
+        Args:
+            @options: an array of key/value pairs
+        return:
+            @advisories: array of returned advisories with requested attributes
+
+        Following options and filters are supported:
+            - advisory_attrs: list of strings
+                List of advisory attributes that are returned in `advisories` array.
+                Supported attributes are "advisoryid", "name", "title", "type", "severity", "status",
+                "vendor", "description", "buildtime", "message", "rights", "collections", and "references".
+            - availability: string
+                One of "available" (default if filter is not present), "all", "installed", or "updates".
+            - name: list of strings
+                Consider only advisories with one of given names.
+            - type: list of strings
+                Consider only advisories of given types. Possible types are "security", "bugfix", "enhancement", and "newpackage".
+            - contains_pkgs: list of strings
+                Consider only advisories containing one of given packages.
+            - severity: list of strings
+                Consider only advisories of given severity. Possible values are "critical", "important", "moderate", "low", and "none".
+            - reference_bz: list of strings
+                Consider only advisories referencing given Bugzilla ticket ID. Exepcted values are numeric IDs, e.g. 123456.
+            - reference_cve: list of strings
+                Consider only advisoried referencing given CVE ID. Expected values are strings IDs in CVE format, e.g. CVE-2201-0123.
+            - with_bz: boolean
+                Consider only advisories referencing a Bugzilla ticket.
+            - with_cve: boolean
+                Consider only advisories referencing a CVE ticket.
+
+        Unknown options are ignored.
+
+        '''
+        if not sync:
+          self._run_dbus_async(
+              'Advisories', options)
+        else:
+          result = self._run_dbus_sync(
+              'Advisories', options)
+          return unpack_dbus(result)
 
 #----------- TODO move to new methods --------------------------------------------------
 

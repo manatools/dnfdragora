@@ -1103,16 +1103,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, description)
             s += "<br>"
             if pkg.is_update :
-                s+= '<b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
+                s+= '<br><b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
                 s += "<br>"
                 if self.infoshown['updateinfo']["show"]:
-                    # [{'references': [], 'filenames': [], 'id': 'xxxx', 'title': 'yyyy',  'description': 'desc', 'updated': 'date', 'type': 2}]
-                    if pkg.updateinfo :
-                        s += '<b>%s</b>'%escape(pkg.updateinfo[0]['title']).replace("\n", "<br>")
+                    advisory = pkg.updateinfo
+                    # chosen attributes: ['advisoryid', 'name', 'title', 'description', 'type', 'severity'. 'message']
+                    if advisory and len(advisory) > 0:
+                        s+= '<b>%s</b>: %s'%(advisory[0]['advisoryid'], escape(advisory[0]['title']).replace("\n", "<br>"))
                         s += "<br>"
-                        s += escape(pkg.updateinfo[0]['description']).replace("\n", "<br>")
+                        s += '<b>%s</b>'%escape(advisory[0]['title']).replace("\n", "<br>")
                         s += "<br>"
-                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated']).replace("\n", "<br>"))
+                        s += escape(advisory[0]['description']).replace("\n", "<br>")
+                        s += "<br>"
+                        s += '%s: <b>%s</b> - %s: <b>%s</b>'%(_("Type"), advisory[0]['type'], _("Severity"), advisory[0]['severity'])
+                        if len(advisory[0]['message'])>0:
+                            s+= "<br>%s"%(escape(advisory[0]['message']).replace("\n", "<br>"))
                     else :
                         s+= missing
                     s += "<br>"
