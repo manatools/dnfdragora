@@ -1310,18 +1310,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _populate_transaction(self) :
         '''
-        Clear and populate a transaction
+          Populate a transaction
         '''
-        sync = True
-        self.backend.ClearTransaction(sync)
         for action in const.QUEUE_PACKAGE_TYPES:
             pkg_ids = self.packageQueue.get(action)
-            for pkg_id in pkg_ids:
-                logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkg_id))
-                rc, trans = self.backend.AddTransaction(
-                    pkg_id, const.QUEUE_PACKAGE_TYPES[action], sync)
-                if not rc:
-                    logger.error('AddTransaction result : %s: %s' % (rc, pkg_id))
+            if len(pkg_ids) >0:
+              pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
+              logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkgs))
+              if action == 'i':
+                self.backend.Install(pkgs, sync=True)
+              elif action == 'u':
+                self.backend.Update(pkgs, sync=True)
+              elif action == 'r':
+                self.backend.Remove(pkgs, sync=True)
+              else:
+                logger.error('Action %s not managed' % (action))
 
     def _undo_transaction(self):
         '''
@@ -1518,7 +1521,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                     else :
                                         if changedItem.checked(self.checkBoxColumn):
                                           if not self.packageQueue.checked(pkg):
-                                              self.packageQueue.add(pkg, 'i')
+                                              self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
                                         elif self.packageQueue.checked(pkg):
                                             self.packageQueue.add(pkg, 'r')
                                         self._setStatusToItem(pkg, self.itemList[it]['item'], True)
@@ -1541,7 +1544,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.checkAllButton) :
                     for it in self.itemList:
                         pkg = self.itemList[it]['pkg']
-                        self.packageQueue.add(pkg, 'i')
+                        self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
                     rebuild_package_list = self._rebuildPackageListWithSearchGroup()
 
                 elif (widget == self.applyButton) :
@@ -1903,36 +1906,39 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         ok, result = info['result']
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
-        if ok and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
+        if ok==0 and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
           transaction_result_dlg = dialogs.TransactionResult(self)
           ok = transaction_result_dlg.run(result)
           if not ok:
             self._enableAction(True)
             return
 
-        self.started_transaction = ''
-        try:
-            installed_packages = []
-            removed_packages = []
-            for action_list in result:
-                if action_list and action_list[0] == 'install':
-                    if len(action_list) > 1:
-                        for program in action_list[1]:
-                            program_info = program[0].split(',')
-                            installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-                if action_list and action_list[0] == 'remove':
-                    if len(action_list) > 1:
-                        for program in action_list[1]:
-                            program_info = program[0].split(',')
-                            removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-            if installed_packages:
-                installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
-                self.started_transaction += _('Packages installed:') + f' {installed_packages}'
-            if removed_packages:
-                removed_packages = '\n' + "\n".join(removed_packages)
-                self.started_transaction += _('Packages removed:') + f' {removed_packages}'
-        except Exception as e:
-            self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
+        #TODO
+        TODO=True
+        if not TODO:
+          self.started_transaction = ''
+          try:
+              installed_packages = []
+              removed_packages = []
+              for action_list in result:
+                  if action_list and action_list[0] == 'install':
+                      if len(action_list) > 1:
+                          for program in action_list[1]:
+                              program_info = program[0].split(',')
+                              installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
+                  if action_list and action_list[0] == 'remove':
+                      if len(action_list) > 1:
+                          for program in action_list[1]:
+                              program_info = program[0].split(',')
+                              removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
+              if installed_packages:
+                  installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
+                  self.started_transaction += _('Packages installed:') + f' {installed_packages}'
+              if removed_packages:
+                  removed_packages = '\n' + "\n".join(removed_packages)
+                  self.started_transaction += _('Packages removed:') + f' {removed_packages}'
+          except Exception as e:
+              self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
 
         if ok:
           self.infobar.info(_('Applying changes to the system'))

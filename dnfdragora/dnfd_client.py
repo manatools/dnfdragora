@@ -265,6 +265,13 @@ class DnfDaemonBase:
           'GetPackages'      : 'list',
           'GetAttribute'     : 'list',
           'Search'           : 'list',
+          'Install'          : 'install',
+          'Remove'           : 'remove',
+          'Update'           : 'upgrade',
+          'Downgrade'        : 'downgrade',
+          'Reinstall'        : 'reinstall',
+          'Install'          : 'install',
+          'DistroSync'       : 'distro_sync',
 
           'SetEnabledRepos'  : 'enable',
           'SetDisabledRepos' : 'disable',
@@ -273,6 +280,10 @@ class DnfDaemonBase:
           'ConfirmGPGImport' : 'confirm_key',
 
           'Advisories'       : 'list',
+
+          #Goal
+          'BuildTransaction' : 'resolve',
+          'RunTransaction'   : 'do_transaction',
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -407,6 +418,9 @@ class DnfDaemonBase:
           ### NOTE managing exceptions on expected results
           if user_data['cmd'] == 'Search':
               result['result']  = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in user_data['result']]
+          elif user_data['cmd'] == 'BuildTransaction':
+              resolved, res = user_data['result']
+              result['result'] = (unpack_dbus(res), unpack_dbus(resolved))
           elif user_data['cmd'] == 'GetAttribute':
             if user_data['result'] == ':none':  # illegal attribute
               result['error'] = "Illegal attribute"
@@ -627,7 +641,8 @@ class DnfDaemonBase:
     def Proxy(self, cmd) :
         ''' return the proxy interface that manages the given command '''
         if cmd == 'GetPackages' or cmd == 'GetAttribute' or \
-           cmd == 'Search':
+           cmd == 'Search' or cmd == 'Install' or cmd == 'Remove' or cmd == 'Update' or \
+           cmd == 'Reinstall' or cmd == 'Downgrade' or cmd == 'DistroSync':
           return self.iface_rpm
         elif cmd == 'GetRepositories' or cmd == 'ConfirmGPGImport':
             return self.iface_repo
@@ -637,6 +652,8 @@ class DnfDaemonBase:
             return self.iface_advisory
         elif cmd == 'ExpireCache':
             return self.iface_base
+        elif cmd == 'BuildTransaction' or cmd == 'RunTransaction':
+            return  self.iface_goal
 
         return None
 
@@ -936,7 +953,145 @@ class DnfDaemonBase:
               'Advisories', options)
           return unpack_dbus(result)
 
-#----------- TODO move to new methods --------------------------------------------------
+    def Install(self, specs, options={}, sync=False):
+        '''
+            Mark packages specified by @specs for installation.
+            Args:
+                @specs: an array of package specifications to be installed on the system
+                @options: an array of key/value pairs to modify install behavior
+
+            Following @options are supported:
+                - repo_ids: list of strings
+                    Identifiers of the repos from which the packages could be installed.
+                - skip_broken: boolean, default false
+                    Whether solver can skip packages with broken dependencies to resolve transaction
+                - skip_unavailable: boolean, default false
+                    Whether nonexisting packages can be skipped.
+            Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('Install', specs, options)
+        else:
+          self._run_dbus_sync('Install', specs, options)
+
+    def Remove(self, specs, options={}, sync=False):
+        '''
+            Mark packages specified by @specs for removal.
+            Args:
+                @specs: an array of package specifications to be removed on the system
+                @options: an array of key/value pairs to modify remove behavior
+                Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('Remove', specs, options)
+        else:
+          self._run_dbus_sync('Remove', specs, options)
+
+    def Update(self, specs, options={}, sync=False):
+        '''
+            Mark packages specified by @specs for upgrade.
+            Args:
+                @specs: an array of package specifications to be upgraded on the system
+                @options: an array of key/value pairs to modify upgrade behavior
+
+            Following @options are supported:
+                - repo_ids: list of strings
+                    Identifiers of the repos from which the packages could be upgraded.
+            Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('Update', specs, options)
+        else:
+          self._run_dbus_sync('Update', specs, options)
+
+    def Reinstall(self, specs, options={}, sync=False):
+        '''
+            Mark packages specified by @specs for reinstall.
+            aRGS:
+                @specs: an array of package specifications to be reinstalled on the system
+                @options: an array of key/value pairs to modify reinstall behavior
+
+            Following @options are supported:
+            Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('Reinstall', specs, option)
+        else:
+          self._run_dbus_sync('Reinstall', specs, option)
+
+    def Downgrade(self, specs, options={}, sync=False):
+        '''
+            Mark packages specified by @specs for downgrade.
+            Args:
+                @specs: an array of package specifications to be downgraded on the system
+                @options: an array of key/value pairs to modify downgrade behavior
+
+            Following @options are supported:
+            Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('Downgrade', specs, option)
+        else:
+          self._run_dbus_sync('Downgrade', specs, option)
+
+    def DistroSync(self, specs, options={}, sync=False):
+        '''
+            Synchronize the installed packages with their latest available version from any enabled repository.
+            It upgrades, downgrades or keeps packages as needed.
+            Args:
+                @specs: array of package specifications to synchronize to the latest available versions
+                @options: an array of key/value pairs to modify distro_sync behavior
+
+            Following @options are supported:
+            Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('DistroSync', specs, option)
+        else:
+          self._run_dbus_sync('DistroSync', specs, option)
+
+    def BuildTransaction(self, options={}, sync=False):
+        '''
+            Resolve the transaction.
+            Args:
+                @options: an array of key/value pairs to modify dependency resolving
+            Return:
+                @result: problems detected during transaction resolving.
+                    Possible values are:
+                    0 - no problem,
+                    1 - no problem, but some info / warnings are present
+                    2 - resolving failed.
+
+            Following @options are supported:
+                - allow_erasing: boolean, default false
+                  Whether removal of installed package is allowed to resolve the transaction.
+
+            Unknown options are ignored.
+        '''
+        if not sync:
+          self._run_dbus_async('BuildTransaction', options)
+        else:
+          resolved, result = self._run_dbus_sync('BuildTransaction', options)
+          return (unpack_dbus(result), unpack_dbus(resolved))
+
+    def RunTransaction(self, options={}, sync=False):
+        '''
+            Perform the resolved transaction.
+            Args:
+                @options: an array of key/value pairs to modify transaction running
+
+            Following @options are supported:
+                - comment: string
+                Adds a comment to a transaction.
+            Unknown options are ignored
+        '''
+        if not sync:
+          self._run_dbus_async('RunTransaction', options)
+        else:
+          self._run_dbus_sync('RunTransaction', options)
+
+
+#----------- TODO move to new methods or remove --------------------------------------------------
 
     def SetWatchdogState(self, state, sync=False):
         '''Set the Watchdog state
@@ -1065,12 +1220,6 @@ class Client(DnfDaemonBase):
           return self._run_dbus_sync(
               'SetConfig', '(ss)', setting, json.dumps(value))
 
-    def ClearTransaction(self, sync=False):
-        '''Clear the current transaction. '''
-        if not sync:
-          self._run_dbus_async('ClearTransaction')
-        else:
-          return self._run_dbus_sync('ClearTransaction')
 
     def GetTransaction(self, sync=False):
         '''Get the current transaction
@@ -1126,91 +1275,7 @@ class Client(DnfDaemonBase):
           return json.loads(result)
 
 
-    def Install(self, pattern, sync=False):
-        '''Do a install <pattern string>,
-        same as dnf install <pattern string>
 
-        Args:
-            pattern: package pattern to install
-        '''
-        if not sync:
-          self._run_dbus_async('Install', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('Install', '(s)', pattern)
-          return json.loads(result)
-
-    def Remove(self, pattern, sync=False):
-        '''Do a install <pattern string>,
-        same as dnf remove <pattern string>
-
-        Args:
-            pattern: package pattern to remove
-        '''
-        if not sync:
-          self._run_dbus_async('Remove', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('Remove', '(s)', pattern)
-          return json.loads(result)
-
-    def Update(self, pattern, sync=False):
-        '''Do a update <pattern string>,
-        same as dnf update <pattern string>
-
-        Args:
-            pattern: package pattern to update
-
-        '''
-        if not sync:
-          self._run_dbus_async('Update', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('Update', '(s)', pattern)
-          return json.loads(result)
-
-    def Reinstall(self, pattern, sync=False):
-        '''Do a reinstall <pattern string>,
-        same as dnf reinstall <pattern string>
-
-        Args:
-            pattern: package pattern to reinstall
-
-        '''
-        if not sync:
-          self._run_dbus_async('Reinstall', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('Reinstall', '(s)', pattern)
-          return json.loads(result)
-
-    def Downgrade(self, pattern, sync=False):
-        '''Do a install <pattern string>, same as yum remove <pattern string>
-
-        Args:
-            pattern: package pattern to downgrade
-        '''
-        if not sync:
-          self._run_dbus_async('Downgrade', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('Downgrade', '(s)', pattern)
-          return json.loads(result)
-
-    def BuildTransaction(self, sync=False):
-        '''Get a list of pkg ids for the current availabe updates '''
-        if not sync:
-          self._run_dbus_async('BuildTransaction')
-        else:
-          result = self._run_dbus_sync('BuildTransaction')
-          return json.loads(result)
-
-    def RunTransaction(self, sync=False):
-        ''' Get a list of pkg ids for the current availabe updates
-
-        Args:
-            max_err: maximun number of download error before we bail out
-        '''
-        if not sync:
-          self._run_dbus_async('RunTransaction')
-        else:
-          result = self._run_dbus_sync('RunTransaction')
-          return json.loads(result)
 
     def GetHistoryByDays(self, start_days, end_days, sync=False):
         '''Get History transaction in a interval of days from today
