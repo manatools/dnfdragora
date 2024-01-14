@@ -1913,8 +1913,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if not ok:
             self._enableAction(True)
             return
-        else:
-          logger.error("Build transaction error") #TODO read errors from dnf daemon
+        elif ok !=0:
+          logger.error("Build transaction error %d", ok) #TODO read errors from dnf daemon
 
         #TODO
         TODO=True
