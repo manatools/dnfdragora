@@ -1906,12 +1906,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         ok, result = info['result']
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
+        #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
         if ok==0 and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
           transaction_result_dlg = dialogs.TransactionResult(self)
           ok = transaction_result_dlg.run(result)
           if not ok:
             self._enableAction(True)
             return
+        else:
+          logger.error("Build transaction error") #TODO read errors from dnf daemon
 
         #TODO
         TODO=True
