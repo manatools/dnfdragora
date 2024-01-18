@@ -367,6 +367,8 @@ class TransactionResult:
         @param pkglist: list containing view data
         '''
 
+
+
         ## push application title
         appTitle = yui.YUI.app().applicationTitle()
         ## set new title to get it in dialog
@@ -384,26 +386,31 @@ class TransactionResult:
         okButton = self.factory.createPushButton(hbox, _("&Ok"))
         cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
 
+
+
+
         itemVect = []
         total_size = 0
-        for sub, lvl1 in pkglist:
-            label = const.TRANSACTION_RESULT_TYPES[sub]
-            level1Item = yui.YTreeItem(label, True)
-            level1Item.this.own(False)
+        for action in pkglist.keys():
+          #        for sub, lvl1 in
+          label = const.TRANSACTION_RESULT_TYPES[action]
+          level1Item = yui.YTreeItem(label, True)
+          level1Item.this.own(False)
+          for name in pkglist[action].keys():
+            pkgid, size, replaces = (None, None, None)
+            if len(pkglist[action][name]) > 2:
+              pkgid, size, replaces = pkglist[action][name]
+            else:
+              pkgid, size = pkglist[action][name]
 
-            for pkgid, size, replaces in lvl1:
-                label = misc.pkg_id_to_full_name(pkgid) + " (" +  misc.format_number(size) + ")"
-                level2Item = yui.YTreeItem(level1Item, label, True)
-                level2Item.this.own(False)
-
-                # packages that need to be downloaded
-                if sub in ['install', 'update', 'install-deps',
-                           'update-deps', 'obsoletes']:
-                    total_size += size
-                for r in replaces:
-                    label =  _("replacing ") + misc.pkg_id_to_full_name(r) + " (" +  misc.format_number(size) + ")"
-                    item = yui.YTreeItem(level2Item, label, False)
-                    item.this.own(False)
+            label = pkgid + " (" +  misc.format_number(size) + ")"
+            level2Item = yui.YTreeItem(level1Item, label, True)
+            level2Item.this.own(False)
+            total_size += size
+            if replaces:
+              label =  _("replacing ") + replaces
+              item = yui.YTreeItem(level2Item, label, False)
+              item.this.own(False)
 
             itemVect.append(level1Item)
 

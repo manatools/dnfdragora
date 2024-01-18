@@ -1903,13 +1903,51 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       ''' manages BuildTransaction event from dnfdaemon '''
       self.infobar.reset_all()
       if not info['error']:
-        ok, result = info['result']
+        result, resolve = info['result']
+        ok = result == 0
+        if ok:
+          self.started_transaction = {
+            'Install': {},
+            'Remove':{},
+            'Upgrade': {},
+          }
+          for typ, action, who, unk, pkg in resolve:
+            '''
+              [
+                ['Package',
+                'Install',
+                'User',
+                {},
+                {'arch': 'x86_64', 'download_size': 2415775, 'epoch': '0', 'evr': '0.9.8083-18.mga9', 'from_repo_id': '', 'id': 5516, 'install_size': 6494742, 'name': 'btanks', 'reason': 'None', 'release': '18.mga9', 'repo_id': 'mageia-x86_64', 'version': '0.9.8083'}
+                ],
+                ['Package', 'Install', 'Dependency', {}, {'arch': 'noarch', 'download_size': 26482294, 'epoch': '0', 'evr': '0.9.8083-18.mga9', 'from_repo_id': '', 'id': 5517, 'install_size': 30026310, 'name': 'btanks-data', 'reason': 'None', 'release': '18.mga9', 'repo_id': 'mageia-x86_64', 'version': '0.9.8083'}],
+                ['Package', 'Install', 'Dependency', {}, {'arch': 'x86_64', 'download_size': 36137, 'epoch': '0', 'evr': '1.2.12-16.mga9', 'from_repo_id': '', 'id': 11240, 'install_size': 65688, 'name': 'lib64SDL_image1.2_0', 'reason': 'None', 'release': '16.mga9', 'repo_id': 'mageia-x86_64', 'version': '1.2.12'}],
+                ['Package', 'Upgrade', 'External User', {'replaces': [4176]}, {'arch': 'x86_64', 'download_size': 72815326, 'epoch': '0', 'evr': '115.6.0-1.mga9', 'from_repo_id': '', 'id': 37188, 'install_size': 255879886, 'name': 'thunderbird', 'reason': 'External User', 'release': '1.mga9', 'repo_id': 'updates-x86_64', 'version': '115.6.0'}],
+                ['Package', 'Upgrade', 'External User', {'replaces': [2061]}, {'arch': 'x86_64', 'download_size': 1274450, 'epoch': '2', 'evr': '2:3.96.1-1.mga9', 'from_repo_id': '', 'id': 36235, 'install_size': 3366838, 'name': 'lib64nss3', 'reason': 'External User', 'release': '1.mga9', 'repo_id': 'updates-x86_64', 'version': '3.96.1'}],
+                ['Package', 'Upgrade', 'External User', {'replaces': [4178]}, {'arch': 'noarch', 'download_size': 582809, 'epoch': '0', 'evr': '115.6.0-1.mga9', 'from_repo_id': '', 'id': 37398, 'install_size': 644849, 'name': 'thunderbird-it', 'reason': 'External User', 'release': '1.mga9', 'repo_id': 'updates-x86_64', 'version': '115.6.0'}],
+                ['Package', 'Remove', 'User', {}, {'arch': 'x86_64', 'download_size': 0, 'epoch': '0', 'evr': '7.2-1.mga9', 'from_repo_id': '<unknown>', 'id': 3376, 'install_size': 3112536, 'name': 'nano', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '7.2'}],
+
+                ['Package', 'Replaced', 'External User', {}, {'arch': 'x86_64', 'download_size': 0, 'epoch': '2', 'evr': '2:3.95.0-1.mga9', 'from_repo_id': '<unknown>', 'id': 2061, 'install_size': 3366878, 'name': 'lib64nss3', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '3.95.0'}],
+                ['Package', 'Replaced', 'External User', {}, {'arch': 'x86_64', 'download_size': 0, 'epoch': '0', 'evr': '115.5.1-1.mga9', 'from_repo_id': '<unknown>', 'id': 4176, 'install_size': 258383164, 'name': 'thunderbird', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '115.5.1'}],
+                ['Package', 'Replaced', 'External User', {}, {'arch': 'noarch', 'download_size': 0, 'epoch': '0', 'evr': '115.5.1-1.mga9', 'from_repo_id': '<unknown>', 'id': 4178, 'install_size': 645040, 'name': 'thunderbird-it', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '115.5.1'}]
+              ]
+            '''
+            if action != 'Replaced':
+              self.started_transaction[action][pkg['name']] = [
+                misc.pkg_id_to_full_nevra(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"])),
+                pkg['install_size'],
+              ]
+            elif pkg['name'] in self.started_transaction['Upgrade'].keys():
+              self.started_transaction['Upgrade'][pkg['name']].append(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"]))
+        else:
+          #TODO manage error and get it by using 'get_transaction_problems_string' and or 'get_transaction_problems'
+          pass
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
         #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
-        if ok==0 and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
+        if ok and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
           transaction_result_dlg = dialogs.TransactionResult(self)
-          ok = transaction_result_dlg.run(result)
+          ok = transaction_result_dlg.run(self.started_transaction)
           if not ok:
             self._enableAction(True)
             return
@@ -1923,7 +1961,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           try:
               installed_packages = []
               removed_packages = []
-              for action_list in result:
+              for action_list in resolve:
                   if action_list and action_list[0] == 'install':
                       if len(action_list) > 1:
                           for program in action_list[1]:
@@ -1948,9 +1986,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
-          err =  "".join(result) if isinstance(result, list) else result if isinstance(result, list) else repr(result);
+          err =  "".join(resolve) if isinstance(resolve, list) else resolve if isinstance(resolve, list) else repr(resolve);
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
-          logger.warning("Transaction Cancelled: %s", repr(result))
+          logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)
 
     def _OnRunTransaction(self, info):
