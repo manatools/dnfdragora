@@ -1156,19 +1156,6 @@ class DnfDaemonBase:
       else:
         self._run_dbus_sync('Exit')
 
-#
-# Helper methods
-#
-
-    def to_pkg_tuple(self, id):
-        ''' split the pkg_id into a tuple'''
-        (n, e, v, r, a, repo_id) = str(id).split(',')
-        return (n, e, v, r, a, repo_id)
-
-    def to_txmbr_tuple(self, id):
-        ''' split the txmbr_id into a tuple'''
-        (n, e, v, r, a, repo_id, ts_state) = str(id).split(',')
-        return (n, e, v, r, a, repo_id, ts_state)
 
 
 class Client(DnfDaemonBase):
