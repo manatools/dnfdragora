@@ -1649,7 +1649,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       ''' Manage a transaction event'''
       values = (event, data)
       logger.debug('OnTransactionEvent: %s', repr(values))
+      if event == 'OnTransactionActionStart':
+        pass
 
+      return
+      #TODO manage new events
       if event == 'start-run':
         self.infobar.info(_('Start transaction'))
       elif event == 'download':
@@ -1758,7 +1762,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''Progress for a single element in the batch.'''
       values =  (download_id, total_to_download, downloaded)
       if session_object_path != self.backend.session_path :
-        logger.warning("OnDownloadStart(%s): Different session path received. %s", session_object_path, repr(values))
+        logger.warning("OnDownloadProgress(%s): Different session path received. %s", session_object_path, repr(values))
         return
       total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
@@ -1938,7 +1942,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 pkg['install_size'],
               ]
             elif pkg['name'] in self.started_transaction['Upgrade'].keys():
-              self.started_transaction['Upgrade'][pkg['name']].append(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"]))
+              self.started_transaction['Upgrade'][pkg['name']].append(
+                misc.pkg_id_to_full_nevra(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"])))
         else:
           #TODO manage error and get it by using 'get_transaction_problems_string' and or 'get_transaction_problems'
           pass
@@ -2166,8 +2171,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               else:
                 logger.error("RunTransaction error: %s", str(info['error']))
                 raise UIError(str(info['error']))
-          elif (event == 'OnTransactionEvent'):
-            self._OnTransactionEvent(info['event'], info['data'])
+          elif (event == 'OnTransactionActionStart')    or \
+               (event == 'OnTransactionActionProgress') or \
+               (event == 'OnTransactionActionStop')     or \
+               (event == 'OnTransactionScriptStart')    or \
+               (event == 'OnTransactionScriptStop')     or \
+               (event == 'OnTransactionScriptError')    or \
+               (event == 'OnTransactionVerifyStart')    or \
+               (event == 'OnTransactionVerifyProgress') or \
+               (event == 'OnTransactionVerifyStop')     or \
+               (event == 'OnTransactionUnpackError'):
+            self._OnTransactionEvent(event, info['data'])
           elif (event == 'OnRPMProgress'):
             self._OnRPMProgress(info['package'], info['action'], info['te_current'],
                                 info['te_total'], info['ts_current'], info['ts_total'])
@@ -2179,7 +2193,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug(info)
             self._OnDownloadStart(info['session_object_path'], info['download_id'], info['description'], info['total_to_download'])
           elif (event == 'OnDownloadProgress'):
-            logger.debug(info)
             self._OnDownloadProgress(info['session_object_path'], info['download_id'], info['total_to_download'], info['downloaded'])
           elif (event == 'OnDownloadEnd'):
             logger.debug(info)

@@ -326,6 +326,19 @@ class DnfDaemonBase:
             self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)
             self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
 
+            self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart)
+            self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress)
+            self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop)
+
+            self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart)
+            self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop)
+            self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError)
+
+            self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart)
+            self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress)
+            self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop)
+
+            self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError)
 
         ### TODO check dnf5daemon errors and manage correctly
         except Exception as err:
@@ -439,44 +452,39 @@ class DnfDaemonBase:
       '''
       thread function for glib main loop
       '''
-      logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), str(data['args']) if data['args'] else "")
+      logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), repr(args) if args else "")
       try:
         proxy = self.Proxy(data['cmd'])
-
-        func = getattr(proxy, self.proxyMethod[data['cmd']])
-
-        result = func(*args)
-
-        self._return_handler(unpack_dbus(result), data)
-
-        # TODO check if timeout = infinite is still needed
-        ####func(*args, result_handler=self._return_handler,
-        ####      user_data=data, timeout=GObject.G_MAXINT)
-        ####loop = gobject.MainLoop()
-        ####loop.run()
-        #data['main_loop'].run()
+        method = self.proxyMethod[data['cmd']]
+        func = getattr(proxy, method)
+        logger.debug("__async_thread_loop proxy method %s", method)
+        if data['return_value']:
+            result = func(*args)
+            self._return_handler(unpack_dbus(result), data)
+        else:
+            func(*args)
       except Exception as err:
-        logger.error("__async_thread_loop Exception %s"%(err))
+        logger.error("__async_thread_loop %s Exception %s", str(data['cmd']), err)
         data['error'] = err
 
       # We enqueue one request at the time by now, monitoring _sent
       self._sent = False
 
-    def _run_dbus_async(self, cmd, *args):
+    def _run_dbus_async(self, cmd, return_value, *args):
         '''Make an async call to a DBus method in the yumdaemon service
 
         cmd: method to run
         '''
         # We enqueue one request at the time by now, monitoring _sent
         if not self._sent:
-          logger.debug("run_dbus_async %s", cmd)
+          logger.debug("run_dbus_async %s (return=%d) args: (%s)", cmd, return_value, repr(args) if args else "")
           if self.__async_thread and self.__async_thread.is_alive():
             logger.warning("run_dbus_async main loop running %s - probably last request is not terminated yet", self.__async_thread.is_alive())
           # We enqueue one request at the time by now, monitoring _sent
           self._sent = True
 
           # let's pass also args, it could be useful for debug at certain point...
-          self._data = {'cmd': cmd, 'args': args, }
+          self._data = {'cmd': cmd, 'return_value': return_value, 'args': args, }
 
           data = self._data
 
@@ -497,7 +505,7 @@ class DnfDaemonBase:
         '''Make a sync call to a DBus method in the yumdaemon service
         cmd:
         '''
-        logger.debug("_run_dbus_sync %s", cmd)
+        logger.debug("_run_dbus_sync %s - args: (%s)", cmd, repr(args) if args else "")
         proxy = self.Proxy(cmd)
 
         func = getattr(proxy, self.proxyMethod[cmd])
@@ -612,13 +620,157 @@ class DnfDaemonBase:
                                  }
                              })
 
-    #TODO fix next signals
-    def on_TransactionEvent(self, event, data):
-        self.eventQueue.put({'event': 'OnTransactionEvent',
-                             'value':
-                               {'event':event,
-                                'data':data,  }})
+    def on_TransactionActionStart(self, *args) : #nevra, action, total):
+        '''
+        Processing of the item has started.
+        Args:
+            @nevra: full NEVRA of the package
+            @action: one of the dnfdaemon::RpmTransactionItem::Actions enum
+            @total: total to process
+        '''
+        logger.debug("on_TransactionActionStart (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionActionStart',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         'action':action,
+        #                         'total':total,
+        #                         }
+        #                     })
 
+    def on_TransactionActionProgress(self, *args) : #nevra, amount, total):
+        '''
+        Progress in processing of the package.
+        Args:
+            @nevra: full NEVRA of the package
+            @amount: amount already processed
+            @total: total to process
+        '''
+        logger.debug("on_TransactionActionProgress (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionActionProgress',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         'amount':amount,
+        #                         'total':total,
+        #                         }
+        #                     })
+
+    def on_TransactionActionStop(self, *args) : # (nevra, total):
+        '''
+        Processing of the item has finished.
+        Args:
+            @nevra: full NEVRA of the package
+            @total: total processed
+        '''
+        logger.debug("on_TransactionActionStop (%s)", repr(args))
+
+        #self.eventQueue.put({'event': 'OnTransactionActionStop',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         'total':total,
+        #                         }
+        #                     })
+
+    #def on_TransactionScriptStart(self, nevra, *args):
+    def on_TransactionScriptStart(self, *args):
+        '''
+        The scriptlet has started.
+        Args:
+            @nevra: full NEVRA of the package script belongs to
+        '''
+        logger.debug("on_TransactionScriptStart (%s)", repr(args))
+
+        #self.eventQueue.put({'event': 'OnTransactionScriptStart',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         }
+        #                     })
+
+    def on_TransactionScriptStop(self, *args): #nevra, return_code,
+        '''
+        The scriptlet has successfully finished.
+        Args:
+            @nevra: full NEVRA of the package script belongs to
+            @return_code: return value of the script
+        '''
+        logger.debug("on_TransactionScriptStop (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionScriptStop',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         'return_code':return_code,
+        #                         }
+        #                     })
+
+    def on_TransactionScriptError(self, *args) : # nevra, return_code, ):
+        '''
+        The scriptlet has finished with an error.
+        Args:
+            @nevra: full NEVRA of the package script belongs to
+            @return_code: return value of the script
+        '''
+        logger.debug("on_TransactionScriptError (%s)", repr(args))
+
+        #self.eventQueue.put({'event': 'OnTransactionScriptError',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         'return_code':return_code,
+        #                         }
+        #                     })
+
+    def on_TransactionVerifyStart(self, *args) : # total):
+        '''
+        Package files verification has started.
+        Args:
+            @total: total to process
+        '''
+        logger.debug("on_TransactionVerifyStart (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionVerifyStart',
+        #                     'value': {
+        #                         'total':total,
+        #                         }
+        #                     })
+
+    def on_TransactionVerifyProgress(self, *args) : # amount, total):
+        '''
+        Progress in processing of the package.
+        Args:
+            @amount: amount already processed
+            @total: total to process
+        '''
+        logger.debug("on_TransactionVerifyProgress (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionVerifyProgress',
+        #                     'value': {
+        #                         'amount':amount,
+        #                         'total':total,
+        #                         }
+        #                     })
+
+    def on_TransactionVerifyStop(self, *args): # total,
+        '''
+        Package files verification has finished
+        Args:
+            @total: total to process
+        '''
+        logger.debug("on_TransactionVerifyStop (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionVerifyStop',
+        #                     'value': {
+        #                         'total':total,
+        #                         }
+        #                     })
+
+    def on_TransactionUnpackError(self, *args) : # nevra):
+        '''
+        Error while unpacking the package.
+        Args:
+           @nevra: full NEVRA of the package
+        '''
+        logger.debug("on_TransactionUnpackError (%s)", repr(args))
+        #self.eventQueue.put({'event': 'OnTransactionUnpackError',
+        #                     'value': {
+        #                         'nevra':nevra,
+        #                         }
+        #                     })
+
+    ##########TODO fix next signals
     def on_RPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
         self.eventQueue.put({'event': 'OnRPMProgress',
                              'value':
@@ -714,7 +866,7 @@ class DnfDaemonBase:
         '''
         if not sync:
           self._run_dbus_async(
-              'GetPackages', options)
+              'GetPackages', True, options)
         else:
           result = self._run_dbus_sync(
               'GetPackages', options)
@@ -767,7 +919,7 @@ class DnfDaemonBase:
         }
 
         if not sync:
-          self._run_dbus_async('GetAttribute', options)
+          self._run_dbus_async('GetAttribute', True, options)
         else:
           result = self._run_dbus_sync('GetAttribute', options)
           return unpack_dbus(result)[0][attr] if result else None
@@ -792,7 +944,7 @@ class DnfDaemonBase:
             "repo_id",
         ]
         if not sync:
-          self._run_dbus_async('Search', options)
+          self._run_dbus_async('Search', True, options)
         else:
           result = self._run_dbus_sync('Search', options)
           pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
@@ -854,7 +1006,7 @@ class DnfDaemonBase:
         }
 
         if not sync:
-          self._run_dbus_async('GetRepositories', options)
+          self._run_dbus_async('GetRepositories', True, options)
         else:
           result = self._run_dbus_sync('GetRepositories', options)
           return unpack_dbus(result)
@@ -866,7 +1018,7 @@ class DnfDaemonBase:
             repo_ids: list of repo ids to enable
         '''
         if not sync:
-          self._run_dbus_async('SetEnabledRepos', repo_ids)
+          self._run_dbus_async('SetEnabledRepos', True, repo_ids)
         else:
           result = self._run_dbus_sync('SetEnabledRepos', repo_ids)
           return unpack_dbus(result)
@@ -878,7 +1030,7 @@ class DnfDaemonBase:
             repo_ids: list of repo ids to disable
         '''
         if not sync:
-          self._run_dbus_async('SetDisabledRepos', repo_ids)
+          self._run_dbus_async('SetDisabledRepos', True, repo_ids)
         else:
           result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
           return unpack_dbus(result)
@@ -892,7 +1044,7 @@ class DnfDaemonBase:
                 `true` if repositories were successfuly loaded, `false` otherwise.
         '''
         if not sync:
-          self._run_dbus_async('ExpireCache')
+          self._run_dbus_async('ExpireCache', True)
         else:
           result = self._run_dbus_sync('ExpireCache')
           return unpack_dbus(result)
@@ -905,7 +1057,7 @@ class DnfDaemonBase:
                 @confirmed: whether the key import is confirmed by user
         '''
         if not sync:
-          self._run_dbus_async('ConfirmGPGImport', key_id, confirmed)
+          self._run_dbus_async('ConfirmGPGImport', False, key_id, confirmed)
         else:
           self._run_dbus_sync('ConfirmGPGImport', key_id, confirmed)
 
@@ -947,7 +1099,7 @@ class DnfDaemonBase:
         '''
         if not sync:
           self._run_dbus_async(
-              'Advisories', options)
+              'Advisories', True, options)
         else:
           result = self._run_dbus_sync(
               'Advisories', options)
@@ -970,7 +1122,7 @@ class DnfDaemonBase:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Install', specs, options)
+          self._run_dbus_async('Install', False, specs, options)
         else:
           self._run_dbus_sync('Install', specs, options)
 
@@ -983,7 +1135,7 @@ class DnfDaemonBase:
                 Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Remove', specs, options)
+          self._run_dbus_async('Remove', False, specs, options)
         else:
           self._run_dbus_sync('Remove', specs, options)
 
@@ -1000,7 +1152,7 @@ class DnfDaemonBase:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Update', specs, options)
+          self._run_dbus_async('Update', False, specs, options)
         else:
           self._run_dbus_sync('Update', specs, options)
 
@@ -1015,7 +1167,7 @@ class DnfDaemonBase:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Reinstall', specs, option)
+          self._run_dbus_async('Reinstall', False, specs, option)
         else:
           self._run_dbus_sync('Reinstall', specs, option)
 
@@ -1030,7 +1182,7 @@ class DnfDaemonBase:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Downgrade', specs, option)
+          self._run_dbus_async('Downgrade', False, specs, option)
         else:
           self._run_dbus_sync('Downgrade', specs, option)
 
@@ -1046,7 +1198,7 @@ class DnfDaemonBase:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('DistroSync', specs, option)
+          self._run_dbus_async('DistroSync', False, specs, option)
         else:
           self._run_dbus_sync('DistroSync', specs, option)
 
@@ -1069,7 +1221,7 @@ class DnfDaemonBase:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('BuildTransaction', options)
+          self._run_dbus_async('BuildTransaction', True, options)
         else:
           resolved, result = self._run_dbus_sync('BuildTransaction', options)
           return (unpack_dbus(result), unpack_dbus(resolved))
@@ -1086,7 +1238,7 @@ class DnfDaemonBase:
             Unknown options are ignored
         '''
         if not sync:
-          self._run_dbus_async('RunTransaction', options)
+          self._run_dbus_async('RunTransaction', False, options)
         else:
           self._run_dbus_sync('RunTransaction', options)
 
