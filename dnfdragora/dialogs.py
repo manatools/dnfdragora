@@ -386,13 +386,11 @@ class TransactionResult:
         okButton = self.factory.createPushButton(hbox, _("&Ok"))
         cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
 
-
-
-
         itemVect = []
         total_size = 0
         for action in pkglist.keys():
-          #        for sub, lvl1 in
+          if not pkglist[action]:
+            continue
           label = const.TRANSACTION_RESULT_TYPES[action]
           level1Item = yui.YTreeItem(label, True)
           level1Item.this.own(False)
@@ -412,7 +410,7 @@ class TransactionResult:
               item = yui.YTreeItem(level2Item, label, False)
               item.this.own(False)
 
-            itemVect.append(level1Item)
+          itemVect.append(level1Item)
 
         sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
         dlg.pollEvent()
