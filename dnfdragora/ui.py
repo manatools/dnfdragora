@@ -1276,7 +1276,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         filters = {
             'installed'     : 'installed',
             'not_installed' : 'available',
-            'to_update'     : 'updates',
+            'to_update'     : 'upgrades',
             'all'           : 'all',
             'skip_other'    : 'all',
         }
