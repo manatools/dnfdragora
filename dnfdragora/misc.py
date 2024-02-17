@@ -59,7 +59,6 @@ def to_pkg_id(n, e, v, r, a, repo_id):
     ''' return the package id from given attributes '''
     return "%s,%s,%s,%s,%s,%s" % (n, e, v, r, a, repo_id)
 
-
 def to_pkg_tuple(pkg_id):
     """Find the real package nevra & repoid from an package pkg_id"""
     (n, e, v, r, a, repo_id) = str(pkg_id).split(',')

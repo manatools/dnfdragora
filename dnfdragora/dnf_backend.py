@@ -13,6 +13,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import logging
 import re
 import threading
+import hawkey
 
 from os import listdir
 import dnfdaemon.client
@@ -38,37 +39,53 @@ class DnfPackage(dnfdragora.backend.Package):
         if dbus_pkg:
             self.action = action
 
-            self.name = dbus_pkg["name"]
-            self.epoch = dbus_pkg["epoch"]
-            self.ver = dbus_pkg["version"]
-            self.rel = dbus_pkg["release"]
-            self.arch = dbus_pkg["arch"]
-            self.repository = dbus_pkg["repo_id"]
+            if "nevra" in dbus_pkg.keys():
+                ''' zypper-aptitude-0:1.14.59-1.fc38.noarch '''
+                p = hawkey.split_nevra(dbus_pkg["nevra"])
+                self.name = p.name
+                self.epoch = p.epoch
+                self.ver = p.version
+                self.rel = p.release
+                self.arch = p.arch
+
+            if "name" in dbus_pkg.keys():
+                self.name = dbus_pkg["name"]
+            if "epoch" in dbus_pkg.keys():
+                self.epoch = dbus_pkg["epoch"]
+            if "version" in dbus_pkg.keys():
+                self.ver = dbus_pkg["version"]
+            if "release" in dbus_pkg.keys():
+                self.rel = dbus_pkg["release"]
+            if "arch" in dbus_pkg.keys():
+                self.arch = dbus_pkg["arch"]
+
+            self.repository = dbus_pkg["repo_id"] if "repo_id" in dbus_pkg.keys() else None
+
             self.pkg_id = dnfdragora.misc.to_pkg_id(self.name, self.epoch, self.version, self.release, self.arch, self.repository)
 
-            self.full_nevra = dbus_pkg["full_nevra"] if dbus_pkg["full_nevra"] else dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
+            self.full_nevra = dbus_pkg["full_nevra"] if "full_nevra" in dbus_pkg.keys() else dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
 
-            self.summary = dbus_pkg["summary"] if dbus_pkg["summary"] else ""
+            self._summary = dbus_pkg["summary"] if "summary" in dbus_pkg.keys() else None
             #self._description = dbus_pkg['description'] if ('description' in dbus_pkg.keys()) else None
-            self.url = dbus_pkg["url"] if dbus_pkg["url"] else None
-            self.grp = dbus_pkg["group"] if dbus_pkg["group"] else ""
+            self.url = dbus_pkg["url"] if "url" in dbus_pkg.keys() else None
+            self.grp = dbus_pkg["group"] if "group" in dbus_pkg.keys() else None
 
-            self.install_size = dbus_pkg["install_size"]  if dbus_pkg["install_size"] else 0
-            self.download_size = dbus_pkg["download_size"] if dbus_pkg["download_size"] else 0
+            self.install_size = dbus_pkg["install_size"]  if "install_size" in dbus_pkg.keys() else 0
+            self.download_size = dbus_pkg["download_size"] if "download_size" in dbus_pkg.keys() else 0
             #TODO manage both sizes
             self.size = self.install_size
             self.sizeM = dnfdragora.misc.format_size(self.size)
 
-            self._is_installed = dbus_pkg["is_installed"]
+            #self._is_installed = dbus_pkg["is_installed"]
         elif pkg_id:
             self.pkg_id = pkg_id
             (self.name, self.epoch, self.ver, self.rel, self.arch, self.repository) = dnfdragora.misc.to_pkg_tuple(pkg_id)
             self.full_nevra = dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
 
             #TODO fix next attributes if possible
-            self._is_installed = False
+            #self._is_installed = False
             self.action = None
-            self.summary = ""
+            self._summary = ""
             self.url = None
             self.grp = ""
             self.install_size =  0
@@ -114,6 +131,8 @@ class DnfPackage(dnfdragora.backend.Package):
     @property
     def group(self):
         """Package group."""
+        if not self.grp:
+            self.grp = self.get_attribute('group')
         return self.grp
 
     @property
@@ -130,6 +149,16 @@ class DnfPackage(dnfdragora.backend.Package):
         if not self.url:
             self.url = self.get_attribute('url')
         return self.url
+
+    @property
+    def summary(self):
+        if not self._summary:
+            self._summary = self.get_attribute('summary')
+        return self._summary
+
+    @summary.setter
+    def summary(self, value):
+        self._summary = value
 
     def set_select(self, state):
         """Package is selected in package view."""

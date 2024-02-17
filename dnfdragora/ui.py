@@ -1803,21 +1803,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         filter = "upgrades"
 
       options = {"package_attrs": [
-        "name",
-        "epoch",
-        "version",
-        "release",
-        "arch",
+        #"name",
+        #"epoch",
+        #"version",
+        #"release",
+        #"arch",
         "repo_id",
         #"from_repo_id",
-        "is_installed",
+        #"is_installed",
         "install_size",
         "download_size",
         #"sourcerpm",
         "summary",
-        "url",
+        #"url",
         #"license",
-        "description",
+        #"description",
         #"files",
         #"changelogs",
         #"provides",
@@ -1830,23 +1830,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #"enhances",
         #"supplements",
         #"evr",
-        #"nevra",
-        "full_nevra",
+        "nevra",
+        #"full_nevra",
         #"reason",
         #"vendor",
         "group",
         ],
         "scope": filter }
-      fields = ['summary', 'size', 'group']  # fields to get
       if pkg_flt == 'updates' or pkg_flt == 'updates_all':
         self.infobar.info_sub(_("Caching updates"))
         self._status = DNFDragoraStatus.CACHING_UPDATE
       elif pkg_flt == 'installed':
         self.infobar.info_sub(_("Caching installed"))
         self._status = DNFDragoraStatus.CACHING_INSTALLED
+        self.backend.reloadDaemon()
       elif pkg_flt == 'available':
         self.infobar.info_sub(_("Caching available"))
         self._status = DNFDragoraStatus.CACHING_AVAILABLE
+        self.backend.reloadDaemon()
       else:
         logger.error("Wrong package filter %s", pkg_flt)
         return
@@ -2105,7 +2106,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 rpm_groups = None
                 if self.use_comps :
                   # let's show the dialog with a poll event
-                  rpm_groups = self.backend.GetGroups(sync=True)
+                  #TODO fix or remove group mangement for comps. Not managed by dnf5daemons
+                  rpm_groups = [] #self.backend.GetGroups(sync=True)
                 self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
 
                 # we requested available for caching

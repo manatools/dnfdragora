@@ -488,7 +488,7 @@ class DnfDaemonBase:
 
           data = self._data
 
-          self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args))
+          self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args), daemon=True)
           self.__async_thread.start()
         else:
           logger.warning("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent, self.__async_thread.is_alive())
