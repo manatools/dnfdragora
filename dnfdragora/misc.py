@@ -55,8 +55,12 @@ def dbus_dnfsystem(cmd):
         shell=True)
 
 
+def to_pkg_id(n, e, v, r, a, repo_id):
+    ''' return the package id from given attributes '''
+    return "%s,%s,%s,%s,%s,%s" % (n, e, v, r, a, repo_id)
+
 def to_pkg_tuple(pkg_id):
-    """Find the real package nevre & repoid from an package pkg_id"""
+    """Find the real package nevra & repoid from an package pkg_id"""
     (n, e, v, r, a, repo_id) = str(pkg_id).split(',')
     return (n, e, v, r, a, repo_id)
 
@@ -68,6 +72,9 @@ def list_to_string(pkg_list, first_delimitier, delimiter):
         string = string + pkg_name + delimiter
     return string
 
+def pkg_id_to_full_nevra(pkg_id):
+    (n, e, v, r, a, repo_id) = to_pkg_tuple(pkg_id)
+    return "%s-%s:%s-%s.%s" % (n, e, v, r, a)
 
 def pkg_id_to_full_name(pkg_id):
     (n, e, v, r, a, repo_id) = to_pkg_tuple(pkg_id)

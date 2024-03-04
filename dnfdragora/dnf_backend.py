@@ -12,8 +12,8 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 import logging
 import re
-import json
 import threading
+import hawkey
 
 from os import listdir
 import dnfdaemon.client
@@ -30,27 +30,73 @@ logger = logging.getLogger('dnfdragora.dnf_backend')
 class DnfPackage(dnfdragora.backend.Package):
     """Abstract package object for a package in the package system."""
 
-    def __init__(self, po_tuple, action, backend):
+    def __init__(self, backend, dbus_pkg=None, action=None, pkg_id=None):
         dnfdragora.backend.Package.__init__(self, backend)
-        (pkg_id, summary, size, group) = po_tuple
-        self.pkg_id = pkg_id
-        self.action = action
-        (n, e, v, r, a, repo_id) = dnfdragora.misc.to_pkg_tuple(self.pkg_id)
-        self.name = n
-        self.epoch = e
-        self.ver = v
-        self.rel = r
-        self.arch = a
-        self.repository = repo_id
+
+        if (not dbus_pkg and not action and not pkg_id) or (dbus_pkg and pkg_id):
+            raise Exception("DnfPackage init")
+
+        if dbus_pkg:
+            self.action = action
+
+            if "nevra" in dbus_pkg.keys():
+                ''' zypper-aptitude-0:1.14.59-1.fc38.noarch '''
+                p = hawkey.split_nevra(dbus_pkg["nevra"])
+                self.name = p.name
+                self.epoch = p.epoch
+                self.ver = p.version
+                self.rel = p.release
+                self.arch = p.arch
+
+            if "name" in dbus_pkg.keys():
+                self.name = dbus_pkg["name"]
+            if "epoch" in dbus_pkg.keys():
+                self.epoch = dbus_pkg["epoch"]
+            if "version" in dbus_pkg.keys():
+                self.ver = dbus_pkg["version"]
+            if "release" in dbus_pkg.keys():
+                self.rel = dbus_pkg["release"]
+            if "arch" in dbus_pkg.keys():
+                self.arch = dbus_pkg["arch"]
+
+            self.repository = dbus_pkg["repo_id"] if "repo_id" in dbus_pkg.keys() else None
+
+            self.pkg_id = dnfdragora.misc.to_pkg_id(self.name, self.epoch, self.version, self.release, self.arch, self.repository)
+
+            self.full_nevra = dbus_pkg["full_nevra"] if "full_nevra" in dbus_pkg.keys() else dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
+
+            self._summary = dbus_pkg["summary"] if "summary" in dbus_pkg.keys() else None
+            #self._description = dbus_pkg['description'] if ('description' in dbus_pkg.keys()) else None
+            self.url = dbus_pkg["url"] if "url" in dbus_pkg.keys() else None
+            self.grp = dbus_pkg["group"] if "group" in dbus_pkg.keys() else None
+
+            self.install_size = dbus_pkg["install_size"]  if "install_size" in dbus_pkg.keys() else 0
+            self.download_size = dbus_pkg["download_size"] if "download_size" in dbus_pkg.keys() else 0
+            #TODO manage both sizes
+            self.size = self.install_size
+            self.sizeM = dnfdragora.misc.format_size(self.size)
+
+            #self._is_installed = dbus_pkg["is_installed"]
+        elif pkg_id:
+            self.pkg_id = pkg_id
+            (self.name, self.epoch, self.ver, self.rel, self.arch, self.repository) = dnfdragora.misc.to_pkg_tuple(pkg_id)
+            self.full_nevra = dnfdragora.misc.pkg_id_to_full_name(self.pkg_id)
+
+            #TODO fix next attributes if possible
+            #self._is_installed = False
+            self.action = None
+            self._summary = ""
+            self.url = None
+            self.grp = ""
+            self.install_size =  0
+            self.download_size = 0
+            self.size = self.install_size
+            self.sizeM = dnfdragora.misc.format_size(self.size)
+
         self.visible = True
         self.selected = False
         self.downgrade_po = None
-        self.summary = summary
-        self.grp = group
-        self.size = size
-        self.sizeM = dnfdragora.misc.format_size(size)
         # cache
-        self._description = None
 
     def __str__(self):
         """String representation of the package object."""
@@ -63,7 +109,7 @@ class DnfPackage(dnfdragora.backend.Package):
     @ExceptionHandler
     def get_attribute(self, attr):
         """Get a given attribute for a package."""
-        return self.backend.GetAttribute(self.pkg_id, attr, sync=True)
+        return self.backend.GetAttribute(self.full_nevra, attr, sync=True)
 
     @property
     def version(self):
@@ -85,6 +131,8 @@ class DnfPackage(dnfdragora.backend.Package):
     @property
     def group(self):
         """Package group."""
+        if not self.grp:
+            self.grp = self.get_attribute('group')
         return self.grp
 
     @property
@@ -98,7 +146,19 @@ class DnfPackage(dnfdragora.backend.Package):
 
     @property
     def URL(self):
-        return self.get_attribute('url')
+        if not self.url:
+            self.url = self.get_attribute('url')
+        return self.url
+
+    @property
+    def summary(self):
+        if not self._summary:
+            self._summary = self.get_attribute('summary')
+        return self._summary
+
+    @summary.setter
+    def summary(self, value):
+        self._summary = value
 
     def set_select(self, state):
         """Package is selected in package view."""
@@ -114,25 +174,31 @@ class DnfPackage(dnfdragora.backend.Package):
 
     @property
     def changelog(self):
-        return self.get_attribute('changelog')
+        return self.get_attribute('changelogs')
 
     @property
     def filelist(self):
-        return self.get_attribute('filelist')
-
-    @property
-    def pkgtags(self):
-        return self.get_attribute('pkgtags')
+        return self.get_attribute('files')
 
     @property
     @ExceptionHandler
     def downgrades(self):
-        return self.backend.get_downgrades(self.pkg_id)
+        return None
+    #TODO self.backend.get_downgrades(self.pkg_id)
 
     @property
     @ExceptionHandler
     def updateinfo(self):
-        return self.get_attribute('updateinfo')
+        '''
+            return advisory info for this package
+        '''
+        options = {
+            'advisory_attrs' : [
+            "advisoryid", "name", "title", "type", "severity", "status", "vendor", "description", "buildtime", "message", "rights", "collections", "references"
+            ],
+            "contains_pkgs": [self.name]
+            }
+        return self.backend.Advisories(options, sync=True)
 
     @property
     @ExceptionHandler
@@ -159,49 +225,15 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self._protected = None
         self._pkg_id_to_groups_cache = None
 
-        if self.running_api_version == const.NEEDED_DAEMON_API:
-            logger.debug('dnfdaemon api version (%d)',
-                         self.running_api_version)
-        else:
-            raise dnfdaemon.client.APIVersionError(
-                                   _('dnfdaemon api version : %(actual)d'
-                                     "\ndoesn't match"
-                                     '\nneeded api version : %(required)d') %
-                                   {'actual': self.running_api_version,
-                                    'required': const.NEEDED_DAEMON_API})
-
-
-    def setup(self):
-        """Setup the dnf backend daemon."""
-        try:
-            self.Lock(sync=True)
-            self.SetWatchdogState(False, sync=True)
-            return True, ''
-        except dnfdaemon.client.AccessDeniedError:
-            return False, 'not-authorized'
-        except dnfdaemon.client.LockedError:
-            return False, 'locked-by-other'
-
     @ExceptionHandler
     def quit(self):
         """Quit the dnf backend daemon."""
-        try:
-          logger.info("Quit")
-          unlock_v = self._run_dbus_sync('Unlock')
-          exit_v = self._run_dbus_sync('Exit')
-          logger.info("Unlock (%s) Exit (%s)", unlock_v, exit_v)
-          #  self.Unlock()
-          #  self.Exit()
-        except:
-            pass
+        logger.info("Quit")
 
     @ExceptionHandler
     def reload(self):
         """Reload the dnf backend daemon."""
-        self.Unlock(sync=True)  # Release the lock
-        # time.sleep(5)
-        self.Lock(sync=True)  # Load & Lock the daemon
-        self.SetWatchdogState(False, sync=True)
+        logger.info("reload")
         #NOTE caching groups is slow let's do only once by now
         self.clear_cache()
 
@@ -234,7 +266,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         append = po_list.append
         action = const.FILTER_ACTIONS[flt]
         for pkg_values in pkgs:
-            append(DnfPackage(pkg_values, action, self))
+            append(DnfPackage(self, dbus_pkg=pkg_values, action=action))
         return self.cache.find_packages(po_list)
 
     @TimeFunction
@@ -248,10 +280,9 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         """
         po_list = []
         append = po_list.append
-        for elem in pkgs:
-            (pkg_id, summary, size, group, action) = elem
-            po_tuple = (pkg_id, summary, size, group)
-            append(DnfPackage(po_tuple, const.BACKEND_ACTIONS[action], self))
+        for pkg_id in pkgs:
+            #TODO action / is_installed
+            append(DnfPackage(self, pkg_id=pkg_id))
         return self.cache.find_packages(po_list)
 
     def _build_package_list(self, pkg_ids):
@@ -269,13 +300,7 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         append = po_list.append
         sync=True
         for pkg_id in pkg_ids:
-            summary = self.GetAttribute(pkg_id, 'summary', sync)
-            size = self.GetAttribute(pkg_id, 'size', sync)
-            group = self.GetAttribute(pkg_id, 'group', sync)
-
-            pkg_values = (pkg_id, summary, size, group)
-            action = const.BACKEND_ACTIONS[self.GetAttribute(pkg_id, 'action', sync)]
-            append(DnfPackage(pkg_values, action, self))
+              append(DnfPackage(self, pkg_id=pkg_id))
         return self.cache.find_packages(po_list)
 
     @ExceptionHandler
@@ -315,40 +340,22 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         return result
 
     @ExceptionHandler
-    def get_downgrades(self, pkg_id):
-        """Get downgrades for a given pkg_id"""
-        pkgs = self.GetAttribute(pkg_id, 'downgrades', sync=True)
-        return self._build_package_list(pkgs)
-
-    @ExceptionHandler
-    def get_repo_ids(self, flt):
-        """Get repository ids"""
-        repos = self.GetRepositories(flt, sync=True)
-        return repos
-
-    @ExceptionHandler
-    def get_repositories(self, flt='*'):
+    def get_repositories(self, flt=['*']):
         """Get a list of repo attributes to populate repo view."""
-        repo_list = []
-        repos = self.GetRepositories(flt, sync=True)
-        for repo_id in repos:
-            if repo_id.endswith('-source') or repo_id.endswith('-debuginfo'):
-                continue
-            repo = self.GetRepo(repo_id, sync=True)
-            repo_list.append([repo['enabled'], repo_id, repo['name'], False])
-        return sorted(repo_list, key=lambda elem: elem[1])
+        repos = self.GetRepositories(patterns=flt, sync=True)
+        repo_list = [ repo for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+        return sorted(repo_list, key=lambda elem: (elem['name'], elem['id']))
 
     @TimeFunction
     @ExceptionHandler
-    def get_packages_by_name(self, name_key, newest_only):
+    def get_packages_by_name(self, name_key):
         """Get packages by a given name wildcard.
 
         :param name_key: package wildcard
-        :param newest_only: get lastest version only
         """
-        attrs = ['summary', 'size', 'group', 'action']
-        pkgs = self.GetPackagesByName(name_key, attrs, newest_only, sync=True)
-        return self.make_pkg_object_with_attr(pkgs)
+        pkgs=self.search("installed", "name", name_key, True)
+
+        return pkgs
 
     @TimeFunction
     def __search_loop(self, filter, attr, regexp):
@@ -407,23 +414,27 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         self._protected = []
         protected_conf_path='/etc/dnf/protected.d'
         conf_files = listdir(protected_conf_path)
+        pkg_lst = []
         for f in conf_files :
             file_path = protected_conf_path + '/' + f
+
             with open(file_path, 'r') as content_file:
                 for line in content_file:
                     if line.strip() :
-                        match_all = False
-                        newest_only = False
-                        tags =""
-                        pkgs = self.get_packages_by_name(line.strip(), newest_only)
+                        pkg_lst.append(line.strip())
 
-                        for pkg in pkgs:
-                            pkg_id = pkg.pkg_id
-                            if (not pkg_id in self._protected) :
-                                self._protected.append(pkg_id)
-                        # TODO it would be better to get recursive require
-                        #for pkg_id in self._protected:
-                            #recursive_id = self.GetAttribute(pkg_id,'requires')
+        options = {
+          "scope": "installed",
+          "patterns": pkg_lst
+        }
+        pkgs = self.Search(options, True)
+
+        for pkg_id in pkgs:
+            if (not pkg_id in self._protected) :
+                self._protected.append(pkg_id)
+        # TODO it would be better to get recursive require
+        #for pkg_id in self._protected:
+            #recursive_id = self.GetAttribute(pkg_id,'requires')
 
 
     def protected(self, pkg) :

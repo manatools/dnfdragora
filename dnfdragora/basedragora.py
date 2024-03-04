@@ -80,39 +80,7 @@ class BaseDragora:
         """
         if self._root_backend is None:
           self._root_backend = dnfdragora.dnf_backend.DnfRootBackend(self, self._use_comps)
-          if self._root_locked is False:
-            logger.debug('Lock the DNF root daemon')
-            self._root_backend.Lock()
-        else:
-          if self._root_locked is False:
-            logger.warning('Get root backend. Locked (%s)', self._root_locked)
 
-
-        #TODO REMOVE    locked, msg = self._root_backend.setup()
-        #TODO REMOVE    if locked:
-        #TODO REMOVE        self._root_locked = True
-        #TODO REMOVE        #if self._check_cache_expired('system'):
-        #TODO REMOVE        #    self.reset_cache()
-        #TODO REMOVE        self.backend.ExpireCache()
-        #TODO REMOVE        logger.info("Locked the DNF root daemon")
-        #TODO REMOVE    else:
-        #TODO REMOVE        logger.critical("can't get root backend lock")
-        #TODO REMOVE        if msg == 'not-authorized':  # user canceled the polkit dialog
-        #TODO REMOVE            errmsg = _(
-        #TODO REMOVE                'DNF root backend was not authorized.\n'
-        #TODO REMOVE                'dnfdragora will exit')
-        #TODO REMOVE        # DNF is locked by another process
-        #TODO REMOVE        elif msg == 'locked-by-other':
-        #TODO REMOVE            errmsg = _(
-        #TODO REMOVE                'DNF is locked by another process.\n\n'
-        #TODO REMOVE                'dnfdragora will exit')
-        #TODO REMOVE        logger.critical(errmsg)
-        #TODO REMOVE        dialogs.warningMsgBox({'title' : _("Sorry"), "text": errmsg})
-        #TODO REMOVE        yui.YDialog.deleteTopmostDialog()
-        #TODO REMOVE        # next line seems to be a workaround to prevent the qt-app from crashing
-        #TODO REMOVE        # see https://github.com/libyui/libyui-qt/issues/41
-        #TODO REMOVE        yui.YUILoader.deleteUI()
-        #TODO REMOVE        sys.exit(1)
         return self._root_backend
 
     def release_root_backend(self, quit_dnfdaemon=False):

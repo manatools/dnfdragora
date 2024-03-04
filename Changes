@@ -1,3 +1,8 @@
+2023-11-25 v. 2.1.5
+-------------------
+- Fixed Segfault error when there is no package description. Thanks to Petr Leliaev
+- Added Info window after transaction. Thanks to Petr Leliaev
+
 2023-01-15 v. 2.1.4
 -------------------
 - Fixed #177 "size sorting is broken". Thanks to Nicolas Thierry-Mieg 

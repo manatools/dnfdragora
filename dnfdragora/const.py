@@ -76,8 +76,16 @@ FILTER_ACTIONS = {'updates': 'u', 'available': 'i', 'installed': 'r',
                   'obsoletes': 'o', 'downgrade': 'do', 'reinstall': 'ri',
                   'localinstall': 'li', 'updates_all': 'u'}
 
-BACKEND_ACTIONS = {'update': 'u', 'install': 'i', 'remove': 'r',
-                   'obsolete': 'o', 'downgrade': 'do'}
+BACKEND_ACTIONS = {
+    'update': 'u',
+    'Upgrade': 'u',
+    'install': 'i',
+    'Install': 'i',
+    'remove': 'r',
+    'Remove': 'r',
+    'obsolete': 'o',
+    'downgrade': 'do'
+}
 
 
 QUEUE_PACKAGE_TYPES = {
@@ -128,11 +136,11 @@ HISTORY_STATE_LABLES = {
 
 
 TRANSACTION_RESULT_TYPES = {
-    'install': _('Installing'),
-    'update': _('Updating'),
-    'remove': _('Removing'),
-    'downgrade': _('Downgrading'),
-    'reinstall': _('Replacing')
+    'Install': _('Installing'),
+    'Upgrade': _('Updating'),
+    'Remove': _('Removing'),
+    'Downgrade': _('Downgrading'),
+    'Reinstall': _('Replacing')
 }
 
 RPM_ACTIONS = {

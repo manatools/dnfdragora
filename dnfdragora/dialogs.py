@@ -367,6 +367,8 @@ class TransactionResult:
         @param pkglist: list containing view data
         '''
 
+
+
         ## push application title
         appTitle = yui.YUI.app().applicationTitle()
         ## set new title to get it in dialog
@@ -386,26 +388,29 @@ class TransactionResult:
 
         itemVect = []
         total_size = 0
-        for sub, lvl1 in pkglist:
-            label = const.TRANSACTION_RESULT_TYPES[sub]
-            level1Item = yui.YTreeItem(label, True)
-            level1Item.this.own(False)
+        for action in pkglist.keys():
+          if not pkglist[action]:
+            continue
+          label = const.TRANSACTION_RESULT_TYPES[action]
+          level1Item = yui.YTreeItem(label, True)
+          level1Item.this.own(False)
+          for name in pkglist[action].keys():
+            pkgid, size, replaces = (None, None, None)
+            if len(pkglist[action][name]) > 2:
+              pkgid, size, replaces = pkglist[action][name]
+            else:
+              pkgid, size = pkglist[action][name]
 
-            for pkgid, size, replaces in lvl1:
-                label = misc.pkg_id_to_full_name(pkgid) + " (" +  misc.format_number(size) + ")"
-                level2Item = yui.YTreeItem(level1Item, label, True)
-                level2Item.this.own(False)
+            label = pkgid + " (" +  misc.format_number(size) + ")"
+            level2Item = yui.YTreeItem(level1Item, label, True)
+            level2Item.this.own(False)
+            total_size += size
+            if replaces:
+              label =  _("replacing ") + replaces
+              item = yui.YTreeItem(level2Item, label, False)
+              item.this.own(False)
 
-                # packages that need to be downloaded
-                if sub in ['install', 'update', 'install-deps',
-                           'update-deps', 'obsoletes']:
-                    total_size += size
-                for r in replaces:
-                    label =  _("replacing ") + misc.pkg_id_to_full_name(r) + " (" +  misc.format_number(size) + ")"
-                    item = yui.YTreeItem(level2Item, label, False)
-                    item.this.own(False)
-
-            itemVect.append(level1Item)
+          itemVect.append(level1Item)
 
         sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
         dlg.pollEvent()
@@ -513,48 +518,38 @@ class RepoDialog:
         self.backend = self.parent.backend
         self.itemList = {}
         self.infoKeys = {
-          'bandwidth'              : _('Bandwidth'),
-          'basecachedir'           : _('Base cache dir'),
-          'baseurl'                : _('Base URL'),
-          'cost'                   : _('Cost'),
-          'deltarpm'               : _('DeltaRPM'),
-          'deltarpm_percentage'    : _('DeltaRPM percentage'),
-          'enabled'                : _('Enabled'),
-          'enabled_metadata'       : _('Enabled metadata'),
-          'enablegroups'           : _('Enable groups'),
-          'exclude'                : _('Exclude'),
-          'excludepkgs'            : _('Exclude packages'),
-          'fastestmirror'          : _('Fastest mirror'),
-          'gpgcheck'               : _('GPG check'),
-          'gpgkey'                 : _('GPG key'),
-          'includepkgs'            : _('Include packages'),
-          'ip_resolve'             : _('IP resolve'),
-          'max_parallel_downloads' : _('Max parallel download'),
-          'mediaid'                : _('Media ID'),
-          'metadata_expire'        : _('Metadata expire'),
-          'metalink'               : _('Meta link'),
-          'minrate'                : _('Min rate'),
-          'mirrorlist'             : _('Mirror list'),
-          'name'                   : _('Name'),
-          'packages'               : _('Packages'),
-          'password'               : _('Password'),
-          'priority'               : _('Priority'),
-          'protected_packages'     : _('Protected packages'),
-          'proxy'                  : _('Proxy'),
-          'proxy_password'         : _('Proxy password'),
-          'proxy_username'         : _('Proxy username'),
-          'repo_gpgcheck'          : _('Repo GPG check'),
-          'retries'                : _('Retries'),
-          'size'                   : _('Size'),
-          'skip_if_unavailable'    : _('Skip if unavailable'),
-          'sslcacert'              : _('SSL CA cert'),
-          'sslclientcert'          : _('SSL client cert'),
-          'sslclientkey'           : _('SSL client key'),
-          'sslverify'              : _('SSL verify'),
-          'throttle'               : _('Throttle'),
-          'timeout'                : _('Timeout'),
-          'type'                   : _('Type'),
-          'username'               : _('Username'),
+          'id'                  : _('Identifier'),
+          'name'                : _('Name'),
+          'type'                : _('Type'),
+          'enabled'             : _('Enabled'),
+          'priority'            : _('Priority'),
+          'cost'                : _('Cost'),
+          'baseurl'             : _('Base URL'),
+          'metalink'            : _('Meta link'),
+          'mirrorlist'          : _('Mirror list'),
+          'metadata_expire'     : _('Metadata expire'),
+          'cache_updated'       : _('Cache Updated'),
+          'excludepkgs'         : _('Exclude packages'),
+          'includepkgs'         : _('Include packages'),
+          'skip_if_unavailable' : _('Skip if unavailable'),
+          #
+          'gpgkey'              : _('GPG key'),
+          'gpgcheck'            : _('GPG check'),
+          'repo_gpgcheck'       : _('Repo GPG check'),
+          #
+          'proxy'               : _('Proxy'),
+          'proxy_username'      : _('Proxy username'),
+          'proxy_password'      : _('Proxy password'),
+          #
+          'repofile'            : _('Repo file'),
+          'revision'            : _('Revision'),
+          'content_tags'        : _('Content tags'),
+          'distro_tags'         : _('Distro tags '),
+          'updated'             : _('Updated'),
+          'size'                : _('Size'),
+          'pkgs'                : _('Packages'),
+          'available_pkgs'      : _('Available packages'),
+          'mirrors'             : _('Mirrors'),
         }
 
     def _setupUI(self):
@@ -567,7 +562,7 @@ class RepoDialog:
 
         self.dialog = self.factory.createPopupDialog()
 
-        minSize = self.factory.createMinSize( self.dialog, 80, 26 )
+        minSize = self.factory.createMinSize( self.dialog, 100, 26 )
 
         vbox = self.factory.createVBox(minSize)
 
@@ -590,8 +585,10 @@ class RepoDialog:
 
         checkboxed = True
         repoList_header = yui.YCBTableHeader()
+        repoList_header.addColumn("", checkboxed)
         repoList_header.addColumn(_('Name'), not checkboxed)
-        repoList_header.addColumn(_('Enabled'), checkboxed)
+        repoList_header.addColumn(_('Id'), not checkboxed)
+
 
         self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header)
         self.repoList.setImmediateMode(True)
@@ -614,19 +611,21 @@ class RepoDialog:
         self.dialog.setDefaultButton(self.quitButton)
 
         self.itemList = {}
-        # TODO fix the workaround when GetRepo(id) works again
-        repos = self.backend.get_repo_ids("*")
-        enabled_repos = self.backend.get_repo_ids("enabled")
+        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
+        self.enabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
+        self.disabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+
+        repos = self.backend.get_repositories()
 
         for r in repos:
             item = yui.YCBTableItem()
-            item.addCell(r)
-            enabled = r in enabled_repos
-            item.addCell(enabled)
+            item.addCell(r['enabled'])
+            item.addCell(r['name'])
+            item.addCell(r['id'])
 
-            # TODO name from repo info
-            self.itemList[r] = {
-                'item' : item, 'name': r, 'enabled' : enabled
+            self.itemList[r['id']] = {
+                'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
             }
             item.this.own(False)
 
@@ -644,6 +643,68 @@ class RepoDialog:
         self.repoList.deleteAllItems()
         self.repoList.addItems(itemCollection)
         self.repoList.doneMultipleChanges()
+        repo_id = self._selectedRepository()
+        self._addAttributeInfo(repo_id)
+
+
+    def _addAttributeInfo(self, repo_id):
+      '''
+        fill attribute information of the given repo_id
+      '''
+      if not repo_id:
+        return
+      v=[]
+      try:
+          repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr != "proxy_password" ] # TODO add it backs when it works
+
+          ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
+          logger.debug(ri)
+          if len(ri) > 1:
+            logger.warn("Got %d elements expected 1", len(ri))
+          ri = ri[0] # first element
+          for k in sorted(ri.keys()):
+            if k == "enabled" or k=="name" or k=="id":
+              # skipping data that are already shown into the listbox
+              continue
+            key = None
+            value = ""
+            if ri[k]:
+              key = self.infoKeys[k] if k in self.infoKeys.keys() else k
+              if k == 'size':
+                value = misc.format_number(ri[k])
+              elif k == 'metadata_expire':
+                if ri[k] <= -1:
+                  value = _('Never')
+                else:
+                  value = _("%s second(s)"%(ri[k]))
+              else:
+                value = "%s"%(ri[k])
+            else:
+              if k == 'metadata_expire':
+                key = self.infoKeys[k]
+                value = _('Now')
+            if key:
+              item = yui.YTableItem(key, value)
+              item.this.own(False)
+              v.append(item)
+
+      except NameError as e:
+          logger.error("dnfdaemon NameError: %s ", e)
+      except AttributeError as e:
+          logger.error("dnfdaemon AttributeError: %s ", e)
+      except GLib.Error as err:
+          logger.error("dnfdaemon client failure [%s]", err)
+      except:
+          logger.error("Unexpected error: %s ", sys.exc_info()[0])
+
+      #NOTE workaround to get YItemCollection working in python
+      itemCollection = yui.YItemCollection(v)
+
+      self.info.startMultipleChanges()
+      # cleanup old changed items since we are removing all of them
+      self.info.deleteAllItems()
+      self.info.addItems(itemCollection)
+      self.info.doneMultipleChanges()
 
     def _selectedRepository(self) :
         '''
@@ -680,12 +741,18 @@ class RepoDialog:
                     #### QUIT
                     break
                 elif (widget == self.applyButton) :
-                    enabled_repos = []
-                    for k in self.itemList.keys():
-                        if self.itemList[k]['enabled'] :
-                           enabled_repos.append(k)
+
+                    enabled_repos = [k for k in self.itemList.keys() if self.itemList[k]['enabled'] and k in self.disabledRepos]
+                    disabled_repos = [k for k in self.itemList.keys() if not self.itemList[k]['enabled'] and k in self.enabledRepos]
+
                     logger.info("Enabling repos %s "%" ".join(enabled_repos))
-                    self.backend.SetEnabledRepos(enabled_repos)
+                    # NOTE we can manage one async call at the time atm, TODO fix in the future,
+                    # these call are quick though, but main window must know that repos are changed,
+                    # so let's at least one be async
+                    if enabled_repos:
+                      self.backend.SetEnabledRepos(enabled_repos)
+                    if disabled_repos:
+                      self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
                     return True
                 elif (widget == self.repoList) :
                     wEvent = yui.toYWidgetEvent(event)
@@ -696,57 +763,11 @@ class RepoDialog:
                             for it in self.itemList:
                                 if (self.itemList[it]['item'] == changedItem) :
                                     self.itemList[it]['enabled'] = cell.checked()
+                                    break
+
                     repo_id = self._selectedRepository()
-                    s = "TODO show repo %s information<br> See https://github.com/timlau/dnf-daemon/issues/11"%(repo_id if repo_id else "---")
-                    # TODO decide what and how to show when the crash https://github.com/timlau/dnf-daemon/issues/11 is fixed
-                    v=[]
                     yui.YUI.app().busyCursor()
-                    try:
-                        ri = self.backend.GetRepo(repo_id, sync=True)
-                        logger.debug(ri)
-                        for k in sorted(ri.keys()):
-                          if k == "enabled":
-                            # NOTE: skipping 'enabled' since it is fake and it is better shown as checkbox
-                            continue
-                          key = None
-                          value = ""
-                          if ri[k]:
-                            key = self.infoKeys[k] if k in self.infoKeys.keys() else k
-                            if k == 'size':
-                              value = misc.format_number(ri[k])
-                            elif k == 'metadata_expire':
-                              if ri[k] <= -1:
-                                value = _('Never')
-                              else:
-                                value = _("%s second(s)"%(ri[k]))
-                            else:
-                              value = "%s"%(ri[k])
-                          else:
-                            if k == 'metadata_expire':
-                              key = self.infoKeys[k]
-                              value = _('Now')
-                          if key:
-                            item = yui.YTableItem(key, value)
-                            item.this.own(False)
-                            v.append(item)
-
-                    except NameError as e:
-                        logger.error("dnfdaemon NameError: %s ", e)
-                    except AttributeError as e:
-                        logger.error("dnfdaemon AttributeError: %s ", e)
-                    except GLib.Error as err:
-                        logger.error("dnfdaemon client failure [%s]", err)
-                    except:
-                        logger.error("Unexpected error: %s ", sys.exc_info()[0])
-
-                    #NOTE workaround to get YItemCollection working in python
-                    itemCollection = yui.YItemCollection(v)
-
-                    self.info.startMultipleChanges()
-                    # cleanup old changed items since we are removing all of them
-                    self.info.deleteAllItems()
-                    self.info.addItems(itemCollection)
-                    self.info.doneMultipleChanges()
+                    self._addAttributeInfo(repo_id)
                     yui.YUI.app().normalCursor()
 
         return False
@@ -1484,14 +1505,18 @@ def ask_for_gpg_import (values):
         False: No button has been pressed
         True:  Yes button has been pressed
     '''
-    (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
-    pkg_name = pkg_id.split(',')[0]
-    msg = (_('Do you want to import this GPG key <br>needed to verify the %(pkg)s package?<br>'
+    (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
+    msg = (_('Do you want to import this GPG key?<br>'
              '<br>Key        : 0x%(id)s:<br>'
              'Userid     : "%(user)s"<br>'
+             'Fingerprint: "%(fingerprint)s"<br>'
+             'Timestamp  : "%(timestamp)s"<br>'
              'From       : %(file)s') %
-           {'pkg': pkg_name, 'id': hexkeyid, 'user': userid,
-            'file': keyurl.replace("file://", "")})
+           {'id': key_id,
+            'user': user_ids,
+            'fingerprint':key_fingerprint,
+            'timestamp':timestamp,
+            'file': key_url.replace("file://", "")})
 
     return askYesOrNo({'title' : _("GPG key missed"),
                        'text': msg,

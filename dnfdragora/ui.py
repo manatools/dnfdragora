@@ -1103,18 +1103,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             s = "<h2> %s - %s </h2>%s" %(pkg.name, pkg.summary, description)
             s += "<br>"
             if pkg.is_update :
-                s+= '<b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
+                s+= '<br><b>%s</b>'%self._formatLink(self.infoshown['updateinfo']['title'], 'updateinfo')
                 s += "<br>"
                 if self.infoshown['updateinfo']["show"]:
-                    # [{'references': [], 'filenames': [], 'id': 'xxxx', 'title': 'yyyy',  'description': 'desc', 'updated': 'date', 'type': 2}]
-                    if pkg.updateinfo :
-                        s += '<b>%s</b>'%escape(pkg.updateinfo[0]['title']).replace("\n", "<br>")
+                    advisory = pkg.updateinfo
+                    # chosen attributes: ['advisoryid', 'name', 'title', 'description', 'type', 'severity'. 'message']
+                    if advisory and len(advisory) > 0:
+                        s+= '<b>%s</b>: %s'%(advisory[0]['advisoryid'], escape(advisory[0]['title']).replace("\n", "<br>"))
                         s += "<br>"
-                        s += escape(pkg.updateinfo[0]['description']).replace("\n", "<br>")
+                        s += '<b>%s</b>'%escape(advisory[0]['title']).replace("\n", "<br>")
                         s += "<br>"
-                        s += '<b>%s</b> %s'%(pkg.updateinfo[0]['id'], escape(pkg.updateinfo[0]['updated'])).replace("\n", "<br>")
+                        s += escape(advisory[0]['description']).replace("\n", "<br>")
+                        s += "<br>"
+                        s += '%s: <b>%s</b> - %s: <b>%s</b>'%(_("Type"), advisory[0]['type'], _("Severity"), advisory[0]['severity'])
+                        if len(advisory[0]['message'])>0:
+                            s+= "<br>%s"%(escape(advisory[0]['message']).replace("\n", "<br>"))
                     else :
                         s+= missing
+                    s += "<br>"
 
             if pkg.repository:
                 s += "<br>"
@@ -1135,6 +1141,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     s+= "<br>".join(pkg.requirements)
                 else:
                     s+= missing
+                s += "<br>"
 
             t = 'files'
             s += "<br>"
@@ -1145,6 +1152,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     s+= "<br>".join(pkg.filelist)
                 else:
                     s+= missing
+                s += "<br>"
 
             t = 'changelog'
             s += "<br>"
@@ -1152,9 +1160,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             s += "<br>"
             if self.infoshown[t]["show"]:
                 if pkg.changelog:
-                    s+= "<br>".join(pkg.changelog)
+                    for c in pkg.changelog:
+                      s1 = ("<br>%s - %s<br>%s"%(datetime.datetime.fromtimestamp(c[0]), c[1], c[2])).replace("\n", "<br>")
+                      s+= s1
                 else:
                     s+= missing
+                s += "<br>"
             self.info.setValue(s)
         else:
           logger.warning("_setInfoOnWidget without package")
@@ -1262,25 +1273,36 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if not search_string :
           return False
 
+        filters = {
+            'installed'     : 'installed',
+            'not_installed' : 'available',
+            'to_update'     : 'upgrades',
+            'all'           : 'all',
+            'skip_other'    : 'all',
+        }
+        filter = filters[self._filterNameSelected()]
         if self.use_regexp.isEnabled() and self.use_regexp.isChecked() :
           # fixing attribute names
           if field == 'name' :
             field = 'fullname'
-          filters = {
-            'installed'     : 'installed',
-            'not_installed' : 'available',
-            'to_update'     : 'updates',
-            'all'           : 'all',
-            'skip_other'    : 'all',
-          }
-          filter = filters[self._filterNameSelected()]
+
           self.backend.search(filter, field, search_string)
         else:
           strings = re.split('[ ,|:;]',search_string)
-          ### TODO manage tags
-          tags =""
-          attrs = ['summary', 'size', 'group', 'action']
-          self.backend.Search(fields, strings, attrs, self.match_all, self.newest_only, tags)
+
+          options = {
+            "scope": filter,
+            "with_binaries": field == 'file',
+            "with_filenames": field == 'file',
+            "with_nevra" : field == 'name',
+            #"with_provides" : False,
+            #"with_src" : False,
+            "patterns": strings
+          }
+
+          #['name', 'summary', 'description', 'file' ]
+          ### TODO how to manage mach_all, newest_only, summary and description????
+          self.backend.Search(options)
 
         self._enableAction(False)
 
@@ -1288,18 +1310,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _populate_transaction(self) :
         '''
-        Clear and populate a transaction
+          Populate a transaction
         '''
-        sync = True
-        self.backend.ClearTransaction(sync)
         for action in const.QUEUE_PACKAGE_TYPES:
             pkg_ids = self.packageQueue.get(action)
-            for pkg_id in pkg_ids:
-                logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkg_id))
-                rc, trans = self.backend.AddTransaction(
-                    pkg_id, const.QUEUE_PACKAGE_TYPES[action], sync)
-                if not rc:
-                    logger.error('AddTransaction result : %s: %s' % (rc, pkg_id))
+            if len(pkg_ids) >0:
+              pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
+              logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkgs))
+              if action == 'i':
+                self.backend.Install(pkgs, sync=True)
+              elif action == 'u':
+                self.backend.Update(pkgs, sync=True)
+              elif action == 'r':
+                self.backend.Remove(pkgs, sync=True)
+              else:
+                logger.error('Action %s not managed' % (action))
 
     def _undo_transaction(self):
         '''
@@ -1443,11 +1468,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         self.packageQueue.clear()
                         rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                     elif item == self.fileMenu['reload'] :
-                        self.infobar.reset_all()
-                        self.infobar.info(_('Refreshing Repository Metadata'))
-                        self.reset_cache()
-                        self._enableAction(False)
-                        self.pbar_layout.setEnabled(True)
+                        self.backend.ExpireCache()
                     elif item == self.fileMenu['repos']:
                         rd = dialogs.RepoDialog(self)
                         rd.run()
@@ -1500,7 +1521,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                     else :
                                         if changedItem.checked(self.checkBoxColumn):
                                           if not self.packageQueue.checked(pkg):
-                                              self.packageQueue.add(pkg, 'i')
+                                              self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
                                         elif self.packageQueue.checked(pkg):
                                             self.packageQueue.add(pkg, 'r')
                                         self._setStatusToItem(pkg, self.itemList[it]['item'], True)
@@ -1523,7 +1544,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 elif (widget == self.checkAllButton) :
                     for it in self.itemList:
                         pkg = self.itemList[it]['pkg']
-                        self.packageQueue.add(pkg, 'i')
+                        self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
                     rebuild_package_list = self._rebuildPackageListWithSearchGroup()
 
                 elif (widget == self.applyButton) :
@@ -1560,16 +1581,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     print(_("Unmanaged widget"))
             elif (eventType == yui.YEvent.TimeoutEvent) :
               rebuild_package_list = self._manageDnfDaemonEvent()
-              if not self.backend_locked :
-                logger.debug("Status: %s", self._status)
-                if self._status != DNFDragoraStatus.LOCKING:
-                  self._beforeLockAgain -= 1
-                  if self._beforeLockAgain == 1:
-                    logger.debug("Try locking again")
-                    self._status = DNFDragoraStatus.LOCKING
-                    self._beforeLockAgain = 20
-                    self.backend.Lock()
-                    rebuild_package_list = False
               if rebuild_package_list:
                 logger.debug("Rebuilding %s", rebuild_package_list)
                 self._fillGroupTree()
@@ -1638,7 +1649,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       ''' Manage a transaction event'''
       values = (event, data)
       logger.debug('OnTransactionEvent: %s', repr(values))
+      if event == 'OnTransactionActionStart':
+        pass
 
+      return
+      #TODO manage new events
       if event == 'start-run':
         self.infobar.info(_('Start transaction'))
       elif event == 'download':
@@ -1718,73 +1733,125 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           frac = float(te_current) / float(te_total)
           self.infobar.set_progress(frac, label=num)
 
-    def _OnGPGImport(self, pkg_id, userid, hexkeyid, keyurl, timestamp):
-        values = (pkg_id, userid, hexkeyid, keyurl, timestamp)
+    def _OnGPGImport(self, session_object_path, key_id, user_ids, key_fingerprint, key_url, timestamp):
+        values = (key_id, user_ids, key_fingerprint, key_url, timestamp)
         self._gpg_confirm = values
-        logger.debug('OnGPGImport %s', repr(values))
+        logger.debug('OnGPGImport(%s) - %s', session_object_path, repr(values))
         # get info about gpgkey to be comfirmed
         if values:  # There is a gpgkey to be verified
             logger.debug('GPGKey : %s' % repr(values))
             resp = dialogs.ask_for_gpg_import(values)
-            self.backend.ConfirmGPGImport(hexkeyid, resp, sync=True)
+            self.backend.ConfirmGPGImport(key_id, resp, sync=True)
 
-    def _OnDownloadStart(self, num_files, num_bytes):
+    def _OnDownloadStart(self, session_object_path, download_id, description, total_to_download):
       '''Starting a new parallel download batch.'''
-      values =  (num_files, num_bytes)
-      logger.debug('OnDownloadStart %s', repr(values))
+      values =  (download_id, description, total_to_download)
+      logger.debug('OnDownloadStart(%s) %s', session_object_path, repr(values))
 
-      self._files_to_download = num_files
+      if session_object_path != self.backend.session_path :
+        logger.warning("OnDownloadStart: Different session path received")
+        return
+      self._files_to_download = total_to_download
       self._files_downloaded = 1
       self.infobar.set_progress(0.0)
       self.infobar.info_sub(
-          _('Downloading %(count_files)d files (%(count_bytes)sB)...') %
-          {'count_files':num_files, 'count_bytes': dnfdragora.misc.format_number(num_bytes)})
+          _('Downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
+          {'count_files':total_to_download, 'id': download_id, 'description':description })
 
-    def _OnDownloadProgress(self, name, frac, total_frac, total_files):
+    def _OnDownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
       '''Progress for a single element in the batch.'''
-      values =  (name, frac, total_frac, total_files)
-      if total_frac == 1.0:
-        logger.debug('OnDownloadProgress %s', repr(values))
+      values =  (download_id, total_to_download, downloaded)
+      if session_object_path != self.backend.session_path :
+        logger.warning("OnDownloadProgress(%s): Different session path received. %s", session_object_path, repr(values))
+        return
+      total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
-      num = '( %d/%d - %s)' % (self._files_downloaded, self._files_to_download, name)
+      num = '( %d/%d - %s)' % (downloaded, total_to_download, download_id)
       self.infobar.set_progress(total_frac, label=num)
 
-    def _OnDownloadEnd(self, name, status, msg):
+    def _OnDownloadEnd(self, session_object_path, download_id, status, error):
       '''Download of af single element ended.'''
-      values =  (name, status, msg)
+      values =  (download_id, status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
-      if status == -1 or status == 2:  # download OK or already exists
-        logger.debug('Downloaded : %s', name)
+      # (0 - successful, 1 - already exists, 2 - error)
+      if status == 0 or status == 1:  # download OK or already exists
+        logger.debug('Downloaded : %s', download_id)
         self._files_downloaded += 1
       else:
-        logger.error('Download Error : %s - %s', name, msg)
+        logger.error('Download Error : %s - %s', download_id, error)
       #self.infobar.set_progress(1.0)
-      #self.infobar.reset_all()
+      self.infobar.reset_all()
 
-    def _OnErrorMessage(self,  msg):
-      logger.error('OnErrorMessage %s', str(msg))
+    def _OnErrorMessage(self, session_object_path, download_id, error, url, metadata):
+      logger.error('OnErrorMessage(%s) - name: %s, err: %s url: %s, metadata: %s ', session_object_path, download_id, error, url, metadata)
+      label= '( %s - %s)' % (download_id, error)
+      self.infobar.set_progress(0.0, label=label)
+      # TODO I don't like to add a label that is not deleted, but it is an error we show it right now...
 
     def _cachingRequest(self, pkg_flt):
       '''
       request for packages to be cached
       @params pkg_flt (available, installed, updates)
+      “all”, “installed”, “available”, “upgrades”, “upgradable”
       '''
       logger.debug('Start caching %s', pkg_flt)
-      fields = ['summary', 'size', 'group']  # fields to get
+      filter = pkg_flt
+      if pkg_flt == "updates":
+        filter = "upgrades"
+      elif pkg_flt == "updates_all":
+        filter = "upgrades"
+
+      options = {"package_attrs": [
+        #"name",
+        #"epoch",
+        #"version",
+        #"release",
+        #"arch",
+        "repo_id",
+        #"from_repo_id",
+        #"is_installed",
+        "install_size",
+        "download_size",
+        #"sourcerpm",
+        "summary",
+        #"url",
+        #"license",
+        #"description",
+        #"files",
+        #"changelogs",
+        #"provides",
+        #"requires",
+        #"requires_pre",
+        #"conflicts",
+        #"obsoletes",
+        #"recommends",
+        #"suggests",
+        #"enhances",
+        #"supplements",
+        #"evr",
+        "nevra",
+        #"full_nevra",
+        #"reason",
+        #"vendor",
+        "group",
+        ],
+        "scope": filter }
       if pkg_flt == 'updates' or pkg_flt == 'updates_all':
         self.infobar.info_sub(_("Caching updates"))
         self._status = DNFDragoraStatus.CACHING_UPDATE
       elif pkg_flt == 'installed':
         self.infobar.info_sub(_("Caching installed"))
         self._status = DNFDragoraStatus.CACHING_INSTALLED
+        self.backend.reloadDaemon()
       elif pkg_flt == 'available':
         self.infobar.info_sub(_("Caching available"))
         self._status = DNFDragoraStatus.CACHING_AVAILABLE
+        self.backend.reloadDaemon()
       else:
         logger.error("Wrong package filter %s", pkg_flt)
         return
-      self.backend.GetPackages(pkg_flt, fields)
+      self.backend.GetPackages(options)
 
 
     def _populateCache(self, pkg_flt, po_list) :
@@ -1841,48 +1908,93 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       ''' manages BuildTransaction event from dnfdaemon '''
       self.infobar.reset_all()
       if not info['error']:
-        ok, result = info['result']
+        result, resolve = info['result']
+        ok = result == 0
+        if ok:
+          self.started_transaction = {
+            'Install': {},
+            'Remove':{},
+            'Upgrade': {},
+          }
+          for typ, action, who, unk, pkg in resolve:
+            '''
+              [
+                ['Package',
+                'Install',
+                'User',
+                {},
+                {'arch': 'x86_64', 'download_size': 2415775, 'epoch': '0', 'evr': '0.9.8083-18.mga9', 'from_repo_id': '', 'id': 5516, 'install_size': 6494742, 'name': 'btanks', 'reason': 'None', 'release': '18.mga9', 'repo_id': 'mageia-x86_64', 'version': '0.9.8083'}
+                ],
+                ['Package', 'Install', 'Dependency', {}, {'arch': 'noarch', 'download_size': 26482294, 'epoch': '0', 'evr': '0.9.8083-18.mga9', 'from_repo_id': '', 'id': 5517, 'install_size': 30026310, 'name': 'btanks-data', 'reason': 'None', 'release': '18.mga9', 'repo_id': 'mageia-x86_64', 'version': '0.9.8083'}],
+                ['Package', 'Install', 'Dependency', {}, {'arch': 'x86_64', 'download_size': 36137, 'epoch': '0', 'evr': '1.2.12-16.mga9', 'from_repo_id': '', 'id': 11240, 'install_size': 65688, 'name': 'lib64SDL_image1.2_0', 'reason': 'None', 'release': '16.mga9', 'repo_id': 'mageia-x86_64', 'version': '1.2.12'}],
+                ['Package', 'Upgrade', 'External User', {'replaces': [4176]}, {'arch': 'x86_64', 'download_size': 72815326, 'epoch': '0', 'evr': '115.6.0-1.mga9', 'from_repo_id': '', 'id': 37188, 'install_size': 255879886, 'name': 'thunderbird', 'reason': 'External User', 'release': '1.mga9', 'repo_id': 'updates-x86_64', 'version': '115.6.0'}],
+                ['Package', 'Upgrade', 'External User', {'replaces': [2061]}, {'arch': 'x86_64', 'download_size': 1274450, 'epoch': '2', 'evr': '2:3.96.1-1.mga9', 'from_repo_id': '', 'id': 36235, 'install_size': 3366838, 'name': 'lib64nss3', 'reason': 'External User', 'release': '1.mga9', 'repo_id': 'updates-x86_64', 'version': '3.96.1'}],
+                ['Package', 'Upgrade', 'External User', {'replaces': [4178]}, {'arch': 'noarch', 'download_size': 582809, 'epoch': '0', 'evr': '115.6.0-1.mga9', 'from_repo_id': '', 'id': 37398, 'install_size': 644849, 'name': 'thunderbird-it', 'reason': 'External User', 'release': '1.mga9', 'repo_id': 'updates-x86_64', 'version': '115.6.0'}],
+                ['Package', 'Remove', 'User', {}, {'arch': 'x86_64', 'download_size': 0, 'epoch': '0', 'evr': '7.2-1.mga9', 'from_repo_id': '<unknown>', 'id': 3376, 'install_size': 3112536, 'name': 'nano', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '7.2'}],
+
+                ['Package', 'Replaced', 'External User', {}, {'arch': 'x86_64', 'download_size': 0, 'epoch': '2', 'evr': '2:3.95.0-1.mga9', 'from_repo_id': '<unknown>', 'id': 2061, 'install_size': 3366878, 'name': 'lib64nss3', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '3.95.0'}],
+                ['Package', 'Replaced', 'External User', {}, {'arch': 'x86_64', 'download_size': 0, 'epoch': '0', 'evr': '115.5.1-1.mga9', 'from_repo_id': '<unknown>', 'id': 4176, 'install_size': 258383164, 'name': 'thunderbird', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '115.5.1'}],
+                ['Package', 'Replaced', 'External User', {}, {'arch': 'noarch', 'download_size': 0, 'epoch': '0', 'evr': '115.5.1-1.mga9', 'from_repo_id': '<unknown>', 'id': 4178, 'install_size': 645040, 'name': 'thunderbird-it', 'reason': 'External User', 'release': '1.mga9', 'repo_id': '@System', 'version': '115.5.1'}]
+              ]
+            '''
+            if action != 'Replaced':
+              self.started_transaction[action][pkg['name']] = [
+                misc.pkg_id_to_full_nevra(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"])),
+                pkg['install_size'],
+              ]
+            elif pkg['name'] in self.started_transaction['Upgrade'].keys():
+              self.started_transaction['Upgrade'][pkg['name']].append(
+                misc.pkg_id_to_full_nevra(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"])))
+        else:
+          #TODO manage error and get it by using 'get_transaction_problems_string' and or 'get_transaction_problems'
+          pass
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
+        #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
         if ok and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
           transaction_result_dlg = dialogs.TransactionResult(self)
-          ok = transaction_result_dlg.run(result)
+          ok = transaction_result_dlg.run(self.started_transaction)
           if not ok:
             self._enableAction(True)
             return
+        elif ok !=0:
+          logger.error("Build transaction error %d", ok) #TODO read errors from dnf daemon
 
-        self.started_transaction = ''
-        try:
-            installed_packages = []
-            removed_packages = []
-            for action_list in result:
-                if action_list and action_list[0] == 'install':
-                    if len(action_list) > 1:
-                        for program in action_list[1]:
-                            program_info = program[0].split(',')
-                            installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-                if action_list and action_list[0] == 'remove':
-                    if len(action_list) > 1:
-                        for program in action_list[1]:
-                            program_info = program[0].split(',')
-                            removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-            if installed_packages:
-                installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
-                self.started_transaction += _('Packages installed:') + f' {installed_packages}'
-            if removed_packages:
-                removed_packages = '\n' + "\n".join(removed_packages)
-                self.started_transaction += _('Packages removed:') + f' {removed_packages}'
-        except Exception as e:
-            self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
+        #TODO
+        TODO=True
+        if not TODO:
+          self.started_transaction = ''
+          try:
+              installed_packages = []
+              removed_packages = []
+              for action_list in resolve:
+                  if action_list and action_list[0] == 'install':
+                      if len(action_list) > 1:
+                          for program in action_list[1]:
+                              program_info = program[0].split(',')
+                              installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
+                  if action_list and action_list[0] == 'remove':
+                      if len(action_list) > 1:
+                          for program in action_list[1]:
+                              program_info = program[0].split(',')
+                              removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
+              if installed_packages:
+                  installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
+                  self.started_transaction += _('Packages installed:') + f' {installed_packages}'
+              if removed_packages:
+                  removed_packages = '\n' + "\n".join(removed_packages)
+                  self.started_transaction += _('Packages removed:') + f' {removed_packages}'
+          except Exception as e:
+              self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
 
         if ok:
           self.infobar.info(_('Applying changes to the system'))
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
-          err =  "".join(result) if isinstance(result, list) else result if isinstance(result, list) else repr(result);
+          err =  "".join(resolve) if isinstance(resolve, list) else resolve if isinstance(resolve, list) else repr(resolve);
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
-          logger.warning("Transaction Cancelled: %s", repr(result))
+          logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)
 
     def _OnRunTransaction(self, info):
@@ -1910,11 +2022,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error(result)
 
       self._transaction_tries = 0
-      self.backend.Unlock(sync=True)
+
+      ### TODO verify if packages are updated or reconnect
+      #self.backend.Unlock(sync=True)
       self.backend.clear_cache()
       self.packageQueue.clear()
-      self._status = DNFDragoraStatus.STARTUP
-      self.backend.Lock()
+      #self._status = DNFDragoraStatus.STARTUP
+      #self.backend.Lock()
 
     def _manageDnfDaemonEvent(self):
       '''
@@ -1932,6 +2046,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           item = self.backend.eventQueue.get_nowait()
           event = item['event']
           info = item['value']
+
           if self._status != DNFDragoraStatus.RUN_TRANSACTION:
             logger.debug("Event received %s - status %s", event, self._status)
 
@@ -1964,10 +2079,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.info("Event %s received (%s)", event, info['result'])
             self.backend_locked = False
           elif (event == 'ExpireCache'):
-            # ExpireCache has been invoked let's refresh the date
-            self._set_MD_cache_refreshed()
-            # After metadata refresh let's build package cache
-            self._start_caching_packages()
+            if not info['result']:
+              logger.Warning("Event %s received (%s)", event, info['result'])
+            # ExpireCache has been invoked let's refresh data
+            self.backend.reloadDaemon()
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.STARTUP
+            self._enableAction(False)
           elif (event == 'GetPackages'):
             if not info['error']:
               if self._status == DNFDragoraStatus.CACHING_INSTALLED:
@@ -1988,7 +2106,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 rpm_groups = None
                 if self.use_comps :
                   # let's show the dialog with a poll event
-                  rpm_groups = self.backend.GetGroups(sync=True)
+                  #TODO fix or remove group mangement for comps. Not managed by dnf5daemons
+                  rpm_groups = [] #self.backend.GetGroups(sync=True)
                 self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
 
                 # we requested available for caching
@@ -2003,7 +2122,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   self._runtime_option_managed = True
                   return
 
-                self._enableAction(self.backend_locked)
+                self._enableAction(True)
                 filter = self._filterNameSelected()
                 self.checkAllButton.setEnabled(filter == 'to_update')
 
@@ -2054,22 +2173,35 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               else:
                 logger.error("RunTransaction error: %s", str(info['error']))
                 raise UIError(str(info['error']))
-          elif (event == 'OnTransactionEvent'):
-            self._OnTransactionEvent(info['event'], info['data'])
+          elif (event == 'OnTransactionActionStart')    or \
+               (event == 'OnTransactionActionProgress') or \
+               (event == 'OnTransactionActionStop')     or \
+               (event == 'OnTransactionScriptStart')    or \
+               (event == 'OnTransactionScriptStop')     or \
+               (event == 'OnTransactionScriptError')    or \
+               (event == 'OnTransactionVerifyStart')    or \
+               (event == 'OnTransactionVerifyProgress') or \
+               (event == 'OnTransactionVerifyStop')     or \
+               (event == 'OnTransactionUnpackError'):
+            self._OnTransactionEvent(event, info['data'])
           elif (event == 'OnRPMProgress'):
             self._OnRPMProgress(info['package'], info['action'], info['te_current'],
                                 info['te_total'], info['ts_current'], info['ts_total'])
           elif (event == 'OnGPGImport'):
-            self._OnGPGImport(info['pkg_id'], info['userid'], info['hexkeyid'],
-                              info['keyurl'], info['timestamp'])
+            self._OnGPGImport(info['session_object_path'], info['key_id'],
+                              info['user_ids'], info['key_fingerprint'],
+                              info['key_url'], info['timestamp'])
           elif (event == 'OnDownloadStart'):
-            self._OnDownloadStart(info['num_files'], info['num_bytes'])
+            logger.debug(info)
+            self._OnDownloadStart(info['session_object_path'], info['download_id'], info['description'], info['total_to_download'])
           elif (event == 'OnDownloadProgress'):
-            self._OnDownloadProgress(info['name'], info['frac'], info['total_frac'], info['total_files'])
+            self._OnDownloadProgress(info['session_object_path'], info['download_id'], info['total_to_download'], info['downloaded'])
           elif (event == 'OnDownloadEnd'):
-            self._OnDownloadEnd(info['name'], info['status'], info['msg'])
+            logger.debug(info)
+            self._OnDownloadEnd(info['session_object_path'], info['download_id'], info['status'], info['error'])
           elif (event == 'OnErrorMessage'):
-            self._OnErrorMessage(info['msg'])
+            logger.warn(info)
+            self._OnErrorMessage(info['session_object_path'], info['download_id'], info['error'], info['url'], info['metadata'])
           elif (event == 'GetHistoryByDays'):
             if not info['error']:
               transaction_list = info['result']
@@ -2090,17 +2222,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               # TODO           rebuild_package_list = True
           elif (event == 'HistoryUndo'):
             self._undo_transaction()
-          elif (event == 'SetEnabledRepos'):
-            self.backend.Unlock(sync=True)
+          elif (event == 'SetEnabledRepos') or (event == 'SetDisabledRepos'):
+            logger.debug("%s - %s", event, info['result'])
             # Enabled repositories are changes we need to force caching again
+            self.backend.reloadDaemon()
             self.backend.clear_cache(also_groups=True)
-            self.backend.Lock()
-
+            self._status = DNFDragoraStatus.STARTUP
+            self._enableAction(False)
           else:
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
       except Empty as e:
-        pass
+          if self._status == DNFDragoraStatus.STARTUP:
+            self._status = DNFDragoraStatus.RUNNING
+            self._start_caching_packages()
+
 
       return rebuild_package_list
 
