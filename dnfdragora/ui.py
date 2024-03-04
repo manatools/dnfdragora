@@ -2116,7 +2116,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._status = DNFDragoraStatus.RUNNING
 
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
-                  pkgs = " ".join(self.options['install'])
+                  pkgs = " ".join(i.replace(" ", "\ ") for i in self.options['install'])
                   self.backend.Install(pkgs, sync=True)
                   self.backend.BuildTransaction()
                   self._runtime_option_managed = True
