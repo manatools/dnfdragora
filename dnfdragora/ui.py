@@ -1993,6 +1993,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
           err =  "".join(resolve) if isinstance(resolve, list) else resolve if isinstance(resolve, list) else repr(resolve);
+          if not err:
+            err = _('The list of packages cannot be installed:') + '\n' + '\n'.join(self.options['install'])
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)
