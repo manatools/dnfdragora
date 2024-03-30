@@ -26,7 +26,6 @@ from inspect import ismethod
 #NOTE we need a glib.MainLoop in TUI and use threading for it
 import threading
 from gi.repository import GLib
-import dnfdaemon.client
 
 import manatools.ui.helpdialog as helpdialog
 import manatools.services as services
@@ -1414,9 +1413,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 logger.error(result)
                 s = "%s"%result
                 dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": s, "richtext":True})
-        except dnfdaemon.client.AccessDeniedError as e:
-            logger.error("dnfdaemon client AccessDeniedError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+        #except dnfdaemon.client.AccessDeniedError as e:
+        #    logger.error("dnfdaemon client AccessDeniedError: %s ", e)
+        #    dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except:
             exc, msg = misc.parse_dbus_error()
             if 'AccessDeniedError' in exc:
@@ -1972,8 +1971,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.started_transaction['Upgrade'][pkg['name']].append(
                 misc.pkg_id_to_full_nevra(misc.to_pkg_id(pkg['name'], pkg["epoch"], pkg["version"], pkg["release"], pkg["arch"], pkg["repo_id"])))
         else:
-          #TODO manage error and get it by using 'get_transaction_problems_string' and or 'get_transaction_problems'
-          pass
+          errors = self.backend.TransactionProblems(sync=True)
+          err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
+          dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          logger.warning("Transaction Cancelled: %s", repr(errors))
+          self._enableAction(True)
+          return
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
         #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
@@ -2018,7 +2021,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
-          err =  "".join(resolve) if isinstance(resolve, list) else resolve if isinstance(resolve, list) else repr(resolve);
+          err =  "".join(resolve) if isinstance(resolve, list) else resolve if type(resolve) is str else repr(resolve);
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)

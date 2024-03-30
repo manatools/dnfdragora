@@ -265,31 +265,32 @@ class DnfDaemonBase:
         self.__async_thread = None
 
         self.proxyMethod = {
-          'ExpireCache'      : 'read_all_repos',
+          'ExpireCache'         : 'read_all_repos',
 
-          #'GetPackages'      : 'list_fd', #TODO when available
-          'GetPackages'      : 'list',
-          'GetAttribute'     : 'list',
-          'Search'           : 'list',
-          'Install'          : 'install',
-          'Remove'           : 'remove',
-          'Update'           : 'upgrade',
-          'Downgrade'        : 'downgrade',
-          'Reinstall'        : 'reinstall',
-          'Install'          : 'install',
-          'DistroSync'       : 'distro_sync',
+          #'GetPackages'         : 'list_fd', #TODO change when available
+          'GetPackages'         : 'list',
+          'GetAttribute'        : 'list',
+          'Search'              : 'list',
+          'Install'             : 'install',
+          'Remove'              : 'remove',
+          'Update'              : 'upgrade',
+          'Downgrade'           : 'downgrade',
+          'Reinstall'           : 'reinstall',
+          'Install'             : 'install',
+          'DistroSync'          : 'distro_sync',
 
-          'SetEnabledRepos'  : 'enable',
-          'SetDisabledRepos' : 'disable',
+          'SetEnabledRepos'     : 'enable',
+          'SetDisabledRepos'    : 'disable',
 
-          'GetRepositories'  : 'list',
-          'ConfirmGPGImport' : 'confirm_key',
+          'GetRepositories'     : 'list',
+          'ConfirmGPGImport'    : 'confirm_key',
 
-          'Advisories'       : 'list',
+          'Advisories'          : 'list',
 
           #Goal
-          'BuildTransaction' : 'resolve',
-          'RunTransaction'   : 'do_transaction',
+          'BuildTransaction'    : 'resolve',
+          'RunTransaction'      : 'do_transaction',
+          'TransactionProblems' : 'get_transaction_problems_string',
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -1006,7 +1007,7 @@ class DnfDaemonBase:
             return self.iface_advisory
         elif cmd == 'ExpireCache':
             return self.iface_base
-        elif cmd == 'BuildTransaction' or cmd == 'RunTransaction':
+        elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
 
         return None
@@ -1443,6 +1444,18 @@ class DnfDaemonBase:
           self._run_dbus_async('RunTransaction', False, options)
         else:
           self._run_dbus_sync('RunTransaction', options)
+
+
+    def TransactionProblems(self, sync=False):
+        '''
+            Return all problems found during the transaction resolution as human readable messages
+            @problems: array of strings containing all problems found during the transaction resolution.
+        '''
+        if not sync:
+          #TODO
+          logger.warning("Not implemented yet")
+        else:
+            return self._run_dbus_sync('TransactionProblems', options)
 
     @dnfdragora.misc.TimeFunction
     def GetGroups(self, sync=False):
