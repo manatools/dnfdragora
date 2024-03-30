@@ -99,13 +99,18 @@ Usage: (Make your own subclass based on
 """
 
 import dbus
-import json # TODO remove
+import json # needed for list_fd
 import sys
 import re
 import weakref
 import logging
 import threading
+import os
+import select
+import libdnf5
+import locale
 from queue import SimpleQueue, Empty
+
 import dnfdragora.misc
 
 CLIENT_API_VERSION = 2
@@ -262,6 +267,7 @@ class DnfDaemonBase:
         self.proxyMethod = {
           'ExpireCache'      : 'read_all_repos',
 
+          #'GetPackages'      : 'list_fd', #TODO when available
           'GetPackages'      : 'list',
           'GetAttribute'     : 'list',
           'Search'           : 'list',
@@ -319,12 +325,15 @@ class DnfDaemonBase:
                 dbus_interface=IFACE_ADVISORY)
 
 
-            # Managing signals
+            # Managing dnf5daemon signals
             self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart)
             self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress)
             self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd)
             self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)
             self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
+
+            self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin)
+            self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
 
             self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart)
             self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress)
@@ -457,10 +466,55 @@ class DnfDaemonBase:
         proxy = self.Proxy(data['cmd'])
         method = self.proxyMethod[data['cmd']]
         func = getattr(proxy, method)
-        logger.debug("__async_thread_loop proxy method %s", method)
+        logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
         if data['return_value']:
-            result = func(*args)
-            self._return_handler(unpack_dbus(result), data)
+            # TODO find a better way to distinguish if cmd needs a pipe
+            if method == 'list_fd':
+            #if data['cmd'] == 'GetPackages':
+                # create a pipe and pass the write end to the server
+                pipe_r, pipe_w = os.pipe()
+                pipe_id = func(*args, pipe_w)
+                # close the write end
+                os.close(pipe_w)
+
+                # read the data
+                timeout = 10000
+                buffer_size = 65536
+                poller = select.poll()
+                poller.register(pipe_r, select.POLLIN)
+                read_finished = False
+                parser = json.JSONDecoder()
+                to_parse = ""
+                pkglist = []
+                while (not read_finished):
+                    polled_event = poller.poll(timeout)
+                    if not polled_event:
+                        print("Timeout reached.")
+                        break
+                    for descriptor, event in polled_event:
+                        buffer = os.read(descriptor, buffer_size).decode()
+                        if (len(buffer) > 0):
+                            to_parse += buffer
+                            while to_parse:
+                                try:
+                                    obj, end = parser.raw_decode(to_parse)
+                                    pkglist.append(obj)
+                                    to_parse = to_parse[end:].strip()
+                                except json.decoder.JSONDecodeError:
+                                    # TODO - handle unfinished strings correctly
+                                    # current example implementation just tries to parse once again when
+                                    # more data arrive.
+                                    break
+                        else:
+                            read_finished = True
+
+                os.close(pipe_r)
+
+                #no needs to unpack results
+                self._return_handler(pkglist, data)
+            else:
+                result = func(*args)
+                self._return_handler(unpack_dbus(result), data)
         else:
             func(*args)
       except Exception as err:
@@ -509,7 +563,55 @@ class DnfDaemonBase:
         proxy = self.Proxy(cmd)
 
         func = getattr(proxy, self.proxyMethod[cmd])
-        return func(*args)
+
+        return_value = None
+
+        # TODO find a better way to distinguish if cmd needs a pipe
+        #if cmd == 'GetPackages':
+        if func == 'list_fd':
+            # create a pipe and pass the write end to the server
+            pipe_r, pipe_w = os.pipe()
+            pipe_id = func(*args, pipe_w)
+            # close the write end
+            os.close(pipe_w)
+
+            # read the data
+            timeout = 10000
+            buffer_size = 65536
+            poller = select.poll()
+            poller.register(pipe_r, select.POLLIN)
+            read_finished = False
+            parser = json.JSONDecoder()
+            to_parse = ""
+            pkglist = []
+            while (not read_finished):
+                polled_event = poller.poll(timeout)
+                if not polled_event:
+                    print("Timeout reached.")
+                    break
+                for descriptor, event in polled_event:
+                    buffer = os.read(descriptor, buffer_size).decode()
+                    if (len(buffer) > 0):
+                        to_parse += buffer
+                        while to_parse:
+                            try:
+                                obj, end = parser.raw_decode(to_parse)
+                                pkglist.append(obj)
+                                to_parse = to_parse[end:].strip()
+                            except json.decoder.JSONDecodeError:
+                                # TODO - handle unfinished strings correctly
+                                # current example implementation just tries to parse once again when
+                                # more data arrive.
+                                break
+                    else:
+                        read_finished = True
+
+            os.close(pipe_r)
+            return_value = pkglist
+        else:
+            return_value = func(*args)
+
+        return return_value
 
     def waitForLastAsyncRequestTermination(self):
       '''
@@ -619,6 +721,13 @@ class DnfDaemonBase:
                                  'timestamp':timestamp,
                                  }
                              })
+
+    def on_TransactionBeforeBegin(self, *args) :
+        logger.debug("on_TransactionBeforeBegin (%s)", repr(args))
+
+    def on_TransactionAfterComplete(self, *args) :
+        logger.debug("on_TransactionAfterComplete (%s)", repr(args))
+
 
     def on_TransactionActionStart(self, *args) : #nevra, action, total):
         '''
@@ -785,6 +894,99 @@ class DnfDaemonBase:
     def on_RepoMetaDataProgress(self, name, frac):
         ''' Repository Metadata Download progress '''
         self.eventQueue.put({'event': 'OnRepoMetaDataProgress', 'value': {'name':name, 'frac':frac, }})
+
+#
+# Calls to libdnf5
+#
+    def __getComps(self):
+        '''
+            Perform Get groups call it works only for Comps.
+
+            Returns a list of groups
+        '''
+        base = libdnf5.base.Base()
+        base.load_config()
+        config = base.get_config()
+
+        types_config = config.get_optional_metadata_types_option()
+        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+
+        base.setup()
+
+        repo_sack = base.get_repo_sack()
+        repo_sack.create_repos_from_system_configuration()
+        repo_sack.update_and_load_enabled_repos(True)
+
+        query = libdnf5.comps.GroupQuery(base)
+
+        # workaround to get_translated_name()
+        loc = locale.getlocale()[0].split('_')[0] #let's take the first part of locales
+
+        groups = [ [grp.get_groupid(), grp.get_translated_name(loc)] for grp in query ]
+        return groups
+
+    def __getPackageNamesFromGroup(self, groupID):
+        '''
+            Gets package names from a given group name it works only for Comps.
+
+            Args:
+                groupID group name
+
+            Returns a list of package names or an empyty list.
+        '''
+        base = libdnf5.base.Base()
+        base.load_config()
+        config = base.get_config()
+
+        types_config = config.get_optional_metadata_types_option()
+        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+
+        base.setup()
+
+        repo_sack = base.get_repo_sack()
+        repo_sack.create_repos_from_system_configuration()
+        repo_sack.update_and_load_enabled_repos(True)
+
+        query = libdnf5.comps.GroupQuery(base)
+        query.filter_groupid(groupID)
+
+        comps = [ grp for grp in query ]
+        if len(comps):
+            packages=[]
+            gr = comps[0]
+            packages = gr.get_packages()
+
+            return [package.get_name() for package in packages]
+        return []
+
+
+    def __getGroupFromPackage(self, packageNames):
+        '''
+            Gets package names from a given group name it works only for Comps.
+
+            Args:
+                groupID group name
+
+            Returns a list of package names or an empyty list.
+        '''
+        base = libdnf5.base.Base()
+        base.load_config()
+        config = base.get_config()
+
+        types_config = config.get_optional_metadata_types_option()
+        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+
+        base.setup()
+
+        repo_sack = base.get_repo_sack()
+        repo_sack.create_repos_from_system_configuration()
+        repo_sack.update_and_load_enabled_repos(True)
+
+        query = libdnf5.comps.GroupQuery(base)
+        query.filter_package_name(packageNames)
+
+        comps = [ grp.get_groupid() for grp in query ]
+        return comps
 
 
 #
@@ -1242,6 +1444,74 @@ class DnfDaemonBase:
         else:
           self._run_dbus_sync('RunTransaction', options)
 
+    @dnfdragora.misc.TimeFunction
+    def GetGroups(self, sync=False):
+        '''
+            Perform Get groups call it works only for Comps.
+
+            Returns a list of groups
+        '''
+        if not sync:
+          #TODO
+          logger.warning("Not implemented yet")
+        else:
+            return self.__getComps()
+
+    @dnfdragora.misc.TimeFunction
+    def GetGroupPackageNames(self, grp_id, sync=False):
+        '''
+            Perform Get group package names. It works only for Comps.
+
+            Returns a list of package names
+        '''
+        if not sync:
+          #TODO
+          logger.warning("Not implemented yet")
+        else:
+            return self.__getPackageNamesFromGroup(grp_id)
+
+    @dnfdragora.misc.TimeFunction
+    def GetGroupsFromPackage(self, package_names, sync=False):
+        '''
+            Gets groups from a package names. It works only for Comps.
+
+            Returns a list of groups
+        '''
+        pkgs = [package_names] if (type(package_names) is str) else package_names
+        if not sync:
+          #TODO
+          logger.warning("Not implemented yet")
+        else:
+            return self.__getGroupFromPackage(pkgs)
+
+
+    @dnfdragora.misc.TimeFunction
+    def GetGroupPackages(self, grp_id, grp_flt, sync=False):
+        '''Get packages in a group
+
+        Args:
+            grp_id: the group id to get packages for
+            grp_flt: the filter ('all' = all packages ,
+                     'default' = packages to be installed, before
+                     the group is installed)
+            fields: extra package attributes to include in result
+        '''
+
+        pkgnames = self.__getPackageNamesFromGroup(grp_id)
+        options = {
+            "package_attrs": [
+                "name",
+                "epoch",
+                "version",
+                "release",
+                "arch",
+                "repo_id",
+            ],
+            "scope": grp_flt,
+            "patterns": pkgnames,
+        }
+        return self.GetPackages(options, sync=sync)
+
 
 #----------- TODO move to new methods or remove --------------------------------------------------
 
@@ -1272,34 +1542,6 @@ class DnfDaemonBase:
         else:
           result = self._run_dbus_sync('GetConfig', '(s)', setting)
           return json.loads(result)
-
-    def GetGroups(self, sync=False):
-        '''Get list of Groups. '''
-        if not sync:
-          self._run_dbus_async('GetGroups')
-        else:
-          result = self._run_dbus_sync('GetGroups')
-          return json.loads(result)
-
-
-    def GetGroupPackages(self, grp_id, grp_flt, fields, sync=False):
-        '''Get packages in a group
-
-        Args:
-            grp_id: the group id to get packages for
-            grp_flt: the filter ('all' = all packages ,
-                     'default' = packages to be installed, before
-                     the group is installed)
-            fields: extra package attributes to include in result
-        '''
-        if not sync:
-          self._run_dbus_async('GetGroupPackages', '(ssas)',
-                          grp_id, grp_flt, fields)
-        else:
-          result = self._run_dbus_sync('GetGroupPackages', '(ssas)',
-                          grp_id, grp_flt, fields)
-          return json.loads(result)
-
 
     def Exit(self, sync=True):
       '''End the daemon'''

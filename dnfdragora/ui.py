@@ -802,12 +802,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
+        group_packages = []
+        if self.use_comps and groupName and (groupName != 'All'):
+          #get pacakges from group
+          group_packages = self.backend.GetGroupPackageNames(groupName, sync=True)
+
         if filter == 'all' or filter == 'to_update' or filter == 'skip_other':
             updates = self.backend.get_packages('updates')
             for pkg in updates :
                 ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
                 insert_items = groupName and (groupName == 'All')
                 if not insert_items and groupName :
+                  if self.use_comps:
+                    insert_items = pkg.name in group_packages
+                  else:
                     groups_pkg = self.backend.get_groups_from_package(pkg)
                     insert_items = groupName in groups_pkg
 
@@ -838,6 +846,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
                 insert_items = groupName and (groupName == 'All')
                 if not insert_items and groupName :
+                  if self.use_comps:
+                    insert_items = pkg.name in group_packages
+                  else:
                     groups_pkg = self.backend.get_groups_from_package(pkg)
                     insert_items = groupName in groups_pkg
 
@@ -868,6 +879,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
                 insert_items = groupName and (groupName == 'All')
                 if not insert_items and groupName :
+                  if self.use_comps:
+                    insert_items = pkg.name in group_packages
+                  else:
                     groups_pkg = self.backend.get_groups_from_package(pkg)
                     insert_items = groupName in groups_pkg
 
@@ -989,19 +1003,31 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if (filter == 'to_update'):
                 logger.debug("get groups for update packages only")
                 pkgs = self.backend.get_packages('updates')
-                for pkg in pkgs:
+                if self.use_comps:
+                  pkg_names = [ pkg.name for pkg in pkgs ]
+                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
+                else:
+                  for pkg in pkgs:
                     groups = self.backend.get_groups_from_package(pkg)
                     rpm_groups = list(set().union(rpm_groups, groups))
             elif (filter == 'installed'):
                 logger.debug("get groups for installed packages only")
                 pkgs = self.backend.get_packages('installed')
-                for pkg in pkgs:
+                if self.use_comps:
+                  pkg_names = [ pkg.name for pkg in pkgs ]
+                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
+                else:
+                  for pkg in pkgs:
                     groups = self.backend.get_groups_from_package(pkg)
                     rpm_groups = list(set().union(rpm_groups, groups))
             elif (filter == 'not_installed'):
                 logger.debug("get groups for available packages only")
                 pkgs = self.backend.get_packages('available')
-                for pkg in pkgs:
+                if self.use_comps:
+                  pkg_names = [ pkg.name for pkg in pkgs ]
+                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
+                else:
+                  for pkg in pkgs:
                     groups = self.backend.get_groups_from_package(pkg)
                     rpm_groups = list(set().union(rpm_groups, groups))
             else:
@@ -2106,8 +2132,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 rpm_groups = None
                 if self.use_comps :
                   # let's show the dialog with a poll event
-                  #TODO fix or remove group mangement for comps. Not managed by dnf5daemons
-                  rpm_groups = [] #self.backend.GetGroups(sync=True)
+                  rpm_groups = self.backend.GetGroups(sync=True)
                 self.gIcons = compsicons.CompsIcons(rpm_groups, self.group_icon_path) if self.use_comps else  groupicons.GroupIcons(self.group_icon_path)
 
                 # we requested available for caching
@@ -2115,6 +2140,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._populateCache('available', po_list)
                 self._status = DNFDragoraStatus.RUNNING
 
+                #TODO check --install option how it works using dnf5daemon and fix eventually
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
                   pkgs = " ".join(i.replace(" ", "\ ") for i in self.options['install'])
                   self.backend.Install(pkgs, sync=True)
