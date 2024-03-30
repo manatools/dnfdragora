@@ -16,7 +16,6 @@ import threading
 import libdnf5
 
 from os import listdir
-import dnfdaemon.client
 
 import dnfdragora.backend
 import dnfdragora.dnfd_client
@@ -50,7 +49,7 @@ class DnfPackage(dnfdragora.backend.Package):
                 # Nevra.parse return a vector of nevras, first one is the one we need
                 pkg = libdnf5.rpm.Nevra.parse(dbus_pkg["nevra"])[0]
                 self.name  = pkg.get_name()
-                self.epoch = pkg.get_epoch()
+                self.epoch = pkg.get_epoch() if pkg.get_epoch() else 0
                 self.ver   = pkg.get_version()
                 self.rel   = pkg.get_release()
                 self.arch  = pkg.get_arch()
