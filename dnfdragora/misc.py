@@ -21,8 +21,7 @@ import re
 import subprocess
 import sys
 import re
-
-import dnfdaemon.client
+import dbus
 
 
 logger = logging.getLogger('dnfdragora.misc')
@@ -142,7 +141,7 @@ def ExceptionHandler(func):
         try:
             rc = func(*args, **kwargs)
             return rc
-        except dnfdaemon.client.DaemonError as e:
+        except Exception as e:
             base = args[0]  # get current class
             base.exception_handler(e)
     newFunc.__name__ = func.__name__
