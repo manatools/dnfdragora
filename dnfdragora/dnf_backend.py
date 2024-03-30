@@ -36,6 +36,12 @@ class DnfPackage(dnfdragora.backend.Package):
         if (not dbus_pkg and not action and not pkg_id) or (dbus_pkg and pkg_id):
             raise Exception("DnfPackage init")
 
+        self._description = ""
+        self._changelogs  = ""
+        self._files       = ""
+        self._updateinfo  = None
+        self._requires    = None
+
         if dbus_pkg:
             self.action = action
 
@@ -152,6 +158,7 @@ class DnfPackage(dnfdragora.backend.Package):
         return self.url
 
     @property
+    @ExceptionHandler
     def summary(self):
         if not self._summary:
             self._summary = self.get_attribute('summary')
@@ -170,22 +177,28 @@ class DnfPackage(dnfdragora.backend.Package):
         self.visible = state
 
     @property
+    @ExceptionHandler
     def description(self):
-        return self.get_attribute('description')
-
-    @property
-    def changelog(self):
-        return self.get_attribute('changelogs')
-
-    @property
-    def filelist(self):
-        return self.get_attribute('files')
+        if not self._description:
+            self._description = self.get_attribute('description')
+        return self._description
 
     @property
     @ExceptionHandler
-    def downgrades(self):
-        return None
-    #TODO self.backend.get_downgrades(self.pkg_id)
+    def changelog(self):
+        ''' get changelogs information '''
+        if not self._changelogs:
+            self._changelogs = self.get_attribute('changelogs')
+        return self._changelogs
+
+    @property
+    @ExceptionHandler
+    def filelist(self):
+        ''' returns package file list '''
+        if not self._files:
+            self._files = self.get_attribute('files')
+        return self._files
+
 
     @property
     @ExceptionHandler
@@ -193,18 +206,22 @@ class DnfPackage(dnfdragora.backend.Package):
         '''
             return advisory info for this package
         '''
-        options = {
-            'advisory_attrs' : [
-            "advisoryid", "name", "title", "type", "severity", "status", "vendor", "description", "buildtime", "message", "rights", "collections", "references"
-            ],
-            "contains_pkgs": [self.name]
+        if not self._updateinfo:
+            options = {
+                'advisory_attrs' : [
+                "advisoryid", "name", "title", "type", "severity", "status", "vendor", "description", "buildtime", "message", "rights", "collections", "references"
+                ],
+                "contains_pkgs": [self.name]
             }
-        return self.backend.Advisories(options, sync=True)
+            self._updateinfo = self.backend.Advisories(options, sync=True)
+        return self._updateinfo
 
     @property
     @ExceptionHandler
     def requirements(self):
-        return self.get_attribute('requires')
+        if not self._requires:
+            self._requires = self.get_attribute('requires')
+        return self._requires
 
     @property
     def is_update(self):
