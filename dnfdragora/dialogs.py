@@ -15,7 +15,6 @@ import yui
 import sys
 import os
 import datetime
-import dnfdaemon.client
 from gi.repository import GLib
 
 import manatools.ui.basedialog as basedialog
@@ -247,9 +246,6 @@ class HistoryView:
                 logger.error(result)
                 s = "%s"%result
                 warningMsgBox({'title' : _("Build transaction failure"), "text": s, "richtext":True})
-        except dnfdaemon.client.AccessDeniedError as e:
-            logger.error("dnfdaemon client AccessDeniedError: %s ", e)
-            warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except:
             exc, msg = misc.parse_dbus_error()
             if 'AccessDeniedError' in exc:
