@@ -13,7 +13,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import logging
 import re
 import threading
-import hawkey
+import libdnf5
 
 from os import listdir
 import dnfdaemon.client
@@ -40,13 +40,14 @@ class DnfPackage(dnfdragora.backend.Package):
             self.action = action
 
             if "nevra" in dbus_pkg.keys():
-                ''' zypper-aptitude-0:1.14.59-1.fc38.noarch '''
-                p = hawkey.split_nevra(dbus_pkg["nevra"])
-                self.name = p.name
-                self.epoch = p.epoch
-                self.ver = p.version
-                self.rel = p.release
-                self.arch = p.arch
+                # example: zypper-aptitude-0:1.14.59-1.fc38.noarch
+                # Nevra.parse return a vector of nevras, first one is the one we need
+                pkg = libdnf5.rpm.Nevra.parse(dbus_pkg["nevra"])[0]
+                self.name  = pkg.get_name()
+                self.epoch = pkg.get_epoch()
+                self.ver   = pkg.get_version()
+                self.rel   = pkg.get_release()
+                self.arch  = pkg.get_arch()
 
             if "name" in dbus_pkg.keys():
                 self.name = dbus_pkg["name"]
