@@ -1676,6 +1676,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       logger.debug('OnTransactionEvent: %s', repr(values))
       if event == 'OnTransactionActionStart':
         pass
+      elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
+        self.infobar.set_progress(1.0)
+        self.infobar.reset_all()
 
       return
       #TODO manage new events
@@ -2211,8 +2214,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                (event == 'OnTransactionVerifyStart')    or \
                (event == 'OnTransactionVerifyProgress') or \
                (event == 'OnTransactionVerifyStop')     or \
+               (event == 'OnTransactionAfterComplete')  or \
+               (event == 'OnTransactionTimeoutEvent')   or \
                (event == 'OnTransactionUnpackError'):
-            self._OnTransactionEvent(event, info['data'])
+            self._OnTransactionEvent(event, info)
           elif (event == 'OnRPMProgress'):
             self._OnRPMProgress(info['package'], info['action'], info['te_current'],
                                 info['te_total'], info['ts_current'], info['ts_total'])

@@ -11,6 +11,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 # NOTE part of this code is imported from yumex-dnf
 
 import time
+import threading
 import configparser
 import gettext
 import locale
@@ -25,6 +26,62 @@ import dbus
 
 
 logger = logging.getLogger('dnfdragora.misc')
+
+class AutoRepeatTimer(threading.Timer):
+    def run(self):
+        while not self.finished.wait(self.interval):
+            self.function(*self.args, **self.kwargs)
+
+class TimerEvent:
+    '''
+        class that calls the given callback when timer expired.
+
+        Timer is by default auto resetted, to call it once set AutoReset property to False.
+
+        Example of usage:
+        def hello():
+            print("hello world!")
+
+        t = TimerEvent(2, hello)
+        t.start()  # every 2 seconds, "hello world!" will be printed
+        time.sleep(10)
+        t.cancel()
+    '''
+
+    def __init__(self, timeout, callback):
+        self.__timeout = timeout if timeout and timeout > 0 else 10
+        self.__autoreset = True
+        self.__func = callback
+        self.__tim = None
+
+    @property
+    def AutoReset(self):
+        return self.__autoreset
+
+    @AutoReset.setter
+    def AutoReset(self, value):
+        self.__autoreset = value
+
+    def start(self, timeout=None):
+        if timeout:
+           self.__timeout = timeout
+        if self.__tim:
+            self.__tim.cancel()
+            self.__tim.join()
+            self.__tim = None
+        if self.__autoreset:
+            self.__tim = AutoRepeatTimer(self.__timeout, self.__func)
+        else:
+            self.__tim = threading.Timer(self.__timeout, self.__func)
+        self.__tim.start()
+
+    def reset(self):
+        self.start()
+
+    def cancel(self):
+        if self.__tim:
+            self.__tim.cancel()
+            self.__tim = None
 
 
 class QueueEmptyError(Exception):

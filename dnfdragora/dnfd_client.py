@@ -175,7 +175,8 @@ class Client:
         self._get_daemon()
         self.__async_thread = None
 
-        self._TransactionTimer = None
+        self.__TransactionTimer = dnfdragora.misc.TimerEvent(5, self.on_TransactionTimeoutEvent) # 5 secs should be enough
+        self.__TransactionTimer.AutoRpeat = False
 
         self.proxyMethod = {
           'ExpireCache'         : 'read_all_repos',
@@ -671,11 +672,43 @@ class Client:
                                  }
                              })
 
+    def on_TransactionTimeoutEvent(self):
+        '''
+            Sent right after the rpm transaction run finished.
+
+            Args:
+                @session_object_path: object path of the dnf5daemon session1
+                @success: true if the rpm transaction was completed successfully
+        '''
+        logger.warning("on_TransactionTimeoutEvent, timer expired")
+        # Transaction is probably finished, but timeout expired before
+        # gettine TransactionAfterComplete signal, so stopping the timer
+        self.__TransactionTimer.cancel()
+        self.eventQueue.put({'event': 'OnTransactionTimeoutEvent',
+                             'value': None #useless
+                             })
+
     def on_TransactionBeforeBegin(self, *args) :
         logger.debug("on_TransactionBeforeBegin (%s)", repr(args))
+        # Start the transaction timer
+        self.__TransactionTimer.start()
 
-    def on_TransactionAfterComplete(self, *args) :
-        logger.debug("on_TransactionAfterComplete (%s)", repr(args))
+    def on_TransactionAfterComplete(self,  session_object_path, success) :
+        '''
+            Sent right after the rpm transaction run finished.
+
+            Args:
+                @session_object_path: object path of the dnf5daemon session1
+                @success: true if the rpm transaction was completed successfully
+        '''
+        logger.debug("on_TransactionAfterComplete (%s)", "success" if success else "failed")
+        # Transaction is finished stop the timer
+        self.__TransactionTimer.cancel()
+        self.eventQueue.put({'event': 'OnTransactionAfterComplete',
+                             'value': {
+                                 'success': success,
+                                 }
+                             })
 
 
     def on_TransactionActionStart(self, *args) : #nevra, action, total):
@@ -687,6 +720,8 @@ class Client:
             @total: total to process
         '''
         logger.debug("on_TransactionActionStart (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionActionStart',
         #                     'value': {
         #                         'nevra':nevra,
@@ -704,6 +739,8 @@ class Client:
             @total: total to process
         '''
         logger.debug("on_TransactionActionProgress (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionActionProgress',
         #                     'value': {
         #                         'nevra':nevra,
@@ -720,6 +757,8 @@ class Client:
             @total: total processed
         '''
         logger.debug("on_TransactionActionStop (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
 
         #self.eventQueue.put({'event': 'OnTransactionActionStop',
         #                     'value': {
@@ -736,6 +775,8 @@ class Client:
             @nevra: full NEVRA of the package script belongs to
         '''
         logger.debug("on_TransactionScriptStart (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
 
         #self.eventQueue.put({'event': 'OnTransactionScriptStart',
         #                     'value': {
@@ -751,6 +792,8 @@ class Client:
             @return_code: return value of the script
         '''
         logger.debug("on_TransactionScriptStop (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionScriptStop',
         #                     'value': {
         #                         'nevra':nevra,
@@ -766,6 +809,8 @@ class Client:
             @return_code: return value of the script
         '''
         logger.debug("on_TransactionScriptError (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
 
         #self.eventQueue.put({'event': 'OnTransactionScriptError',
         #                     'value': {
@@ -781,6 +826,8 @@ class Client:
             @total: total to process
         '''
         logger.debug("on_TransactionVerifyStart (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionVerifyStart',
         #                     'value': {
         #                         'total':total,
@@ -795,6 +842,8 @@ class Client:
             @total: total to process
         '''
         logger.debug("on_TransactionVerifyProgress (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionVerifyProgress',
         #                     'value': {
         #                         'amount':amount,
@@ -809,6 +858,8 @@ class Client:
             @total: total to process
         '''
         logger.debug("on_TransactionVerifyStop (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionVerifyStop',
         #                     'value': {
         #                         'total':total,
