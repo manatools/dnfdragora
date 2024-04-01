@@ -181,8 +181,8 @@ class Client:
         self.proxyMethod = {
           'ExpireCache'         : 'read_all_repos',
 
-          'GetPackages'         : 'list_fd', #TODO change when available
-          #'GetPackages'         : 'list',
+          #'GetPackages'         : 'list_fd', #TODO change when available
+          'GetPackages'         : 'list',
           'GetAttribute'        : 'list',
           'Search'              : 'list',
           'Install'             : 'install',
