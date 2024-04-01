@@ -1,102 +1,15 @@
-# coding: utf-8
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02110-1301, USA.
+'''
+dnfdragora is a graphical package management tool based on libyui python bindings
 
-# (C) 2013 - 2014 - Tim Lauridsen <timlau@fedoraproject.org>
+License: GPLv3
 
-"""
-This is a Python 2.x & 3.x client API for the dnf-daemon Dbus Service
+Author:  Angelo Naselli <anaselli@linux.it>
 
-This module gives a simple pythonic interface to doing  package action
-using the dnf-daemon Dbus service.
+@package dnfdragora
 
-It use async call to the dnf-daemon, so signal can be catched and a Gtk gui do
-not get unresonsive
+This module implements the interface to dnf5daemon dbus APIs
 
-There is 2 classes :class:`DnfDaemonClient` & :class:`DnfDaemonReadOnlyClient`
-
-:class:`DnfDaemonClient` uses a system DBus service running as root and
-can make chages to the system.
-
-:class:`DnfDaemonReadOnlyClient` uses a session DBus service running as
-current user and can only do readonly actions.
-
-Usage: (Make your own subclass based on :class:`dnfdaemon.DnfDaemonClient`
-and overload the signal handlers)::
-
-
-    from dnfdaemon import DnfDaemonClient
-
-    class MyClient(DnfDaemonClient):
-
-        def __init(self):
-            DnfDaemonClient.__init__(self)
-            # Do your stuff here
-
-        def on_TransactionEvent(self,event, data):
-            # Do your stuff here
-            pass
-
-        def on_RPMProgress(self, package, action, te_current, te_total,
-                           ts_current, ts_total):
-            # Do your stuff here
-            pass
-
-        def on_GPGImport(self, pkg_id, userid, hexkeyid, keyurl,  timestamp ):
-           # do stuff here
-           pass
-
-        def on_DownloadStart(self, num_files, num_bytes):
-            ''' Starting a new parallel download batch '''
-           # do stuff here
-           pass
-
-        def on_DownloadProgress(self, name, frac, total_frac, total_files):
-            ''' Progress for a single instance in the batch '''
-           # do stuff here
-           pass
-
-        def on_DownloadEnd(self, name, status, msg):
-            ''' Download of af single instace ended '''
-           # do stuff here
-           pass
-
-        def on_RepoMetaDataProgress(self, name, frac):
-            ''' Repository Metadata Download progress '''
-           # do stuff here
-           pass
-
-
-Usage: (Make your own subclass based on
-:class:`dnfdaemon.DnfDaemonReadOnlyClient` and overload the signal handlers)::
-
-
-    from dnfdaemon import DnfDaemonReadOnlyClient
-
-    class MyClient(DnfDaemonReadOnlyClient):
-
-        def __init(self):
-            DnfDaemonClient.__init__(self)
-            # Do your stuff here
-
-        def on_RepoMetaDataProgress(self, name, frac):
-            ''' Repository Metadata Download progress '''
-           # do stuff here
-           pass
-
-"""
+'''
 
 import dbus
 import json # needed for list_fd
@@ -112,8 +25,6 @@ import locale
 from queue import SimpleQueue, Empty
 
 import dnfdragora.misc
-
-CLIENT_API_VERSION = 2
 
 logger = logging.getLogger("dnfdaemon.client")
 
@@ -243,7 +154,7 @@ def unpack_dbus(data):
 #
 
 
-class DnfDaemonBase:
+class Client:
 
     def __init__(self):
         from dbus.mainloop.glib import DBusGMainLoop
@@ -267,8 +178,8 @@ class DnfDaemonBase:
         self.proxyMethod = {
           'ExpireCache'         : 'read_all_repos',
 
-          #'GetPackages'         : 'list_fd', #TODO change when available
-          'GetPackages'         : 'list',
+          'GetPackages'         : 'list_fd', #TODO change when available
+          #'GetPackages'         : 'list',
           'GetAttribute'        : 'list',
           'Search'              : 'list',
           'Install'             : 'install',
@@ -1563,42 +1474,6 @@ class DnfDaemonBase:
       else:
         self._run_dbus_sync('Exit')
 
-
-
-class Client(DnfDaemonBase):
-    '''A class to communicate with the dnfdaemon DBus services in a easy way
-    '''
-#TODO make one class Client alone
-
-    def __init__(self):
-        DnfDaemonBase.__init__(self)
-
-    def handle_dbus_signals(self, proxy, sender, signal, args):
-        ''' DBUS signal Handler '''
-        if signal == "TransactionEvent":
-            self.on_TransactionEvent(*args)
-        elif signal == "RPMProgress":
-            self.on_RPMProgress(*args)
-        elif signal == "GPGImport":
-            self.on_GPGImport(*args)
-        elif signal == "DownloadStart":
-            self.on_DownloadStart(*args)
-        elif signal == "DownloadEnd":
-            self.on_DownloadEnd(*args)
-        elif signal == "DownloadProgress":
-            self.on_DownloadProgress(*args)
-        elif signal == "RepoMetaDataProgress":
-            self.on_RepoMetaDataProgress(*args)
-        elif signal == "ErrorMessage":
-            self.on_ErrorMessage(*args)
-        else:
-            logger.error("Unhandled Signal : " + signal, " Param: ", args)
-
-#
-# API Methods
-#
-
-
 ## TODO fix next API
     def SetConfig(self, setting, value, sync=False):
         '''Set a dnf config setting
@@ -1731,4 +1606,8 @@ class Client(DnfDaemonBase):
         else:
           result = self._run_dbus_sync('HistoryUndo', '(i)', tid)
           return json.loads(result)
+
+
+
+
 
