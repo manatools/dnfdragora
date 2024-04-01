@@ -175,6 +175,8 @@ class Client:
         self._get_daemon()
         self.__async_thread = None
 
+        self._TransactionTimer = None
+
         self.proxyMethod = {
           'ExpireCache'         : 'read_all_repos',
 
@@ -244,8 +246,47 @@ class Client:
             self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)
             self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
 
+            '''
+                transaction event sequence example (see https://github.com/rpm-software-management/dnf5/issues/1189)
+                This is for example how signals for dnf5 upgrade acpi currently look like:
+
+                # 1. verification of incomming packages (thus only 1 item)
+                verify start, total 1
+                verify stop, total 1
+
+                # 2. preparation of transaction with two items (uninstall the old version, install the new one)
+                transaction start, total 2
+                transaction stop, total 2
+
+                # 3. now the items are processed
+                install start "acpi-0:1.7-21.fc39.x86_64" total 54172
+                install stop "acpi-0:1.7-21.fc39.x86_64" amount 54172 total 54172
+                uninstall start "acpi-0:1.7-11.fc30.x86_64" total 10
+                uninstall stop "acpi-0:1.7-11.fc30.x86_64" amount 10 total 10
+
+                # 4. and finally scriptlets
+                start trigger-install scriptlet "glibc-common-0:2.38-16.fc39.x86_64"
+                stop trigger-install scriptlet "glibc-common-0:2.38-16.fc39.x86_64" return code 0
+                start trigger-install scriptlet "man-db-0:2.11.2-5.fc39.x86_64"
+                stop trigger-install scriptlet "man-db-0:2.11.2-5.fc39.x86_64" return code 0
+                start trigger-post-uninstall scriptlet "man-db-0:2.11.2-5.fc39.x86_64"
+                stop trigger-post-uninstall scriptlet "man-db-0:2.11.2-5.fc39.x86_64" return code 0
+
+                From dnf5 5.2.0.0 steps added:
+
+                # 0. transaction has begun
+                overall_transaction start, total 2 ("transaction_before_begin")
+
+                # 5. transaction has finished
+                overall_transaction stop ("transaction_after_complete")
+            '''
+            self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError)
+
             self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin)
-            self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
+
+            self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart)
+            self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress)
+            self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop)
 
             self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart)
             self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress)
@@ -255,11 +296,7 @@ class Client:
             self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop)
             self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError)
 
-            self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart)
-            self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress)
-            self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop)
-
-            self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError)
+            self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
 
         ### TODO check dnf5daemon errors and manage correctly
         except Exception as err:
