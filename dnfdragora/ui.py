@@ -1679,6 +1679,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
         self.infobar.set_progress(1.0)
         self.infobar.reset_all()
+        # TODO change UI and manage this better afer a transaction report
+        self.backend.reloadDaemon()
+        self.backend.clear_cache(also_groups=True)
+        self._status = DNFDragoraStatus.STARTUP
+        self._enableAction(False)
 
       return
       #TODO manage new events
