@@ -1689,6 +1689,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # TODO change UI and manage this better afer a transaction report
         self.backend.reloadDaemon()
         self.backend.clear_cache(also_groups=True)
+        self.packageQueue.clear()
         self._status = DNFDragoraStatus.STARTUP
         self._enableAction(False)
 
