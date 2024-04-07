@@ -1930,6 +1930,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''
       logger.debug('Start caching %s', pkg_flt)
       filter = pkg_flt
+      #TODO manage upgrades/upgradable correctly
       if pkg_flt == "updates":
         filter = "upgrades"
       elif pkg_flt == "updates_all":
