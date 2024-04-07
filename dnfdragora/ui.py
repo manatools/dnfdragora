@@ -194,6 +194,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._files_to_download = 0
         self._files_downloaded = 0
         # ...TODO
+        self._download_events = {
+          'in_progress' : 0,
+          'downloads' : {}
+        } # obsoletes _files_to_download and _files_downloaded
 
         self._transaction_tries = 0
         self.started_transaction = _('No transaction found')
@@ -1679,6 +1683,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
         self.infobar.set_progress(1.0)
         self.infobar.reset_all()
+        # Clean up download and transaction data
+        self.__resetDownloads()
+
         # TODO change UI and manage this better afer a transaction report
         self.backend.reloadDaemon()
         self.backend.clear_cache(also_groups=True)
@@ -1776,45 +1783,137 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             resp = dialogs.ask_for_gpg_import(values)
             self.backend.ConfirmGPGImport(key_id, resp, sync=True)
 
+    def __addDownload(self, download_id, description, total_to_download):
+      '''
+          add new download events
+      '''
+      downloads = self._download_events['downloads']
+      if download_id in downloads.keys():
+        logger.warning("ID %s is already present", download_id)
+        if description != downloads[download_id]['description']:
+          logger.warning("Probably overriding an old value %s with %s",
+                         downloads[download_id]['description'], description)
+      downloads[download_id] = {
+        'description'       : description,
+        'downloaded'        : 0,
+        'total_to_download' : total_to_download,
+      }
+
+
+    def __resetDownloads(self):
+      '''
+        reset download evennts either repos or packages
+      '''
+      if (self._download_events['in_progress'] != 0):
+        logger.warning("Resetting download events with %d events still in progress", self._download_events['in_progress'])
+        for download in self._download_events['downloads'].values():
+          if download['downloaded'] != download['total_to_download']:
+            logger.warning("Download of %s not completed", download['description'])
+      self._download_events = {
+        'in_progress' : 0,
+        'downloads'    : {},
+      }
+
+    def __getDownloadInfo(self, download_id):
+      '''
+          get information for a given download
+          Args:
+            download_id: id of a downloaded object
+          Returns a dictionary with the following keys:
+            'description'       : the description of the downloaded object
+            'downloaded'        : bytes already downloaded
+            'total_to_download' : total bytes to download
+      '''
+      downloads = self._download_events['downloads']
+      if download_id not in downloads.keys():
+        logger.error("Download id %s is not present", download_id)
+        # prevents to return None
+        self._download_events['downloads'][download_id] = {
+          'description'       : _("Unknown"),
+          'downloaded'        : 0,
+          'total_to_download' : 0,
+        }
+
+      return downloads[download_id]
+
+
     def _OnDownloadStart(self, session_object_path, download_id, description, total_to_download):
-      '''Starting a new parallel download batch.'''
+      '''
+         Starting a new parallel download batch managing signal download_add_new
+            Args:
+                session_object_path: object path of the dnf5daemon session
+                download_id: unique id of downloaded object (repo or package)
+                description: the description of the downloaded object
+                total_to_download: total bytes to download
+      '''
       values =  (download_id, description, total_to_download)
       logger.debug('OnDownloadStart(%s) %s', session_object_path, repr(values))
 
       if session_object_path != self.backend.session_path :
         logger.warning("OnDownloadStart: Different session path received")
         return
-      self._files_to_download = total_to_download
-      self._files_downloaded = 1
+      if self._download_events['in_progress'] == 0:
+        self.infobar.info(_('Downloading'))
+
+      self._download_events['in_progress'] += 1
+      self.__addDownload(download_id, description, total_to_download)
+
       self.infobar.set_progress(0.0)
       self.infobar.info_sub(
           _('Downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
-          {'count_files':total_to_download, 'id': download_id, 'description':description })
+          {'count_files': len(self._download_events['downloads'].keys()), 'id': download_id, 'description':description })
 
     def _OnDownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
-      '''Progress for a single element in the batch.'''
+      '''
+          Progress for a single element in the batch. Manage signal download_progress.
+            Args:
+                session_object_path: object path of the dnf5daemon session
+                download_id: unique id of downloaded object (repo or package)
+                total_to_download: total bytes to download
+                downloaded: bytes already downloaded
+        '''
       values =  (download_id, total_to_download, downloaded)
       if session_object_path != self.backend.session_path :
         logger.warning("OnDownloadProgress(%s): Different session path received. %s", session_object_path, repr(values))
         return
+
+      download = self.__getDownloadInfo(download_id)
+      if download['total_to_download'] != total_to_download:
+        logger.warning("Dimension does not match for object [%s]:[%s]", download_id, download['description'])
+        if total_to_download > 0:
+          download['total_to_download'] = total_to_download
+      download['downloaded'] = downloaded
+
       total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
-      num = '( %d/%d - %s)' % (downloaded, total_to_download, download_id)
+      num = '( %d/%d - %s)' % (downloaded, total_to_download, download['description'])
       self.infobar.set_progress(total_frac, label=num)
 
     def _OnDownloadEnd(self, session_object_path, download_id, status, error):
-      '''Download of af single element ended.'''
-      values =  (download_id, status, error)
+      '''
+          Download of af single element ended. Manage signal download_end.
+            Args:
+                session_object_path: object path of the dnf5daemon session
+                download_id: unique id of downloaded object (repo or package)
+                status: (0 - successful, 1 - already exists, 2 - error)
+                error: error message in case of failed download
+      '''
+      download = self.__getDownloadInfo(download_id)
+      values =  (download_id, download['description'], status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
+
+      if (self._download_events['in_progress'] > 0) :
+        self._download_events['in_progress'] -= 1
 
       # (0 - successful, 1 - already exists, 2 - error)
       if status == 0 or status == 1:  # download OK or already exists
-        logger.debug('Downloaded : %s', download_id)
-        self._files_downloaded += 1
+        logger.debug('Downloaded : %s - %s', download_id, download['description'])
       else:
-        logger.error('Download Error : %s - %s', download_id, error)
-      #self.infobar.set_progress(1.0)
-      self.infobar.reset_all()
+        logger.error('Download Error : [%s]:[%s] - %s', download_id, download['description'], error)
+
+      if (self._download_events['in_progress'] == 0) :
+        self.infobar.reset_all()
+        self.__resetDownloads()
 
     def _OnErrorMessage(self, session_object_path, download_id, error, url, metadata):
       logger.error('OnErrorMessage(%s) - name: %s, err: %s url: %s, metadata: %s ', session_object_path, download_id, error, url, metadata)
@@ -1938,11 +2037,25 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._cachingRequest('installed')
 
     def _OnBuildTransaction(self, info):
-      ''' manages BuildTransaction event from dnfdaemon '''
+      '''
+          manages BuildTransaction event from dnfdaemon "resolve" transaction action.
+          Provides:
+            @resolve: array of resolve information
+            @result: problems detected during transaction resolving. Possible values are
+              0 - no problem,
+              1 - no problem, but some info / warnings are present
+              2 - resolving failed.
+      '''
+
       self.infobar.reset_all()
       if not info['error']:
         result, resolve = info['result']
-        ok = result == 0
+        if result == 1: #Transaction WARNING
+          errors = self.backend.TransactionProblems(sync=True)
+          err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
+          logger.warning("Transaction with warnings: %s", repr(errors))
+
+        ok = result == 0 or result == 1
         if ok:
           self.started_transaction = {
             'Install': {},
