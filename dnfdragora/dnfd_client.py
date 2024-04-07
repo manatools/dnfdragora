@@ -1410,6 +1410,7 @@ class Client:
             Args:
                 @options: an array of key/value pairs to modify dependency resolving
             Return:
+                @transaction_items: array
                 @result: problems detected during transaction resolving.
                     Possible values are:
                     0 - no problem,
@@ -1454,7 +1455,7 @@ class Client:
           #TODO
           logger.warning("Not implemented yet")
         else:
-            return self._run_dbus_sync('TransactionProblems', options)
+            return self._run_dbus_sync('TransactionProblems')
 
     @dnfdragora.misc.TimeFunction
     def GetGroups(self, sync=False):
