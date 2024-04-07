@@ -412,11 +412,11 @@ class Client:
       thread function for glib main loop
       '''
       logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), repr(args) if args else "")
+      proxy = self.Proxy(data['cmd'])
+      method = self.proxyMethod[data['cmd']]
+      logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
       try:
-        proxy = self.Proxy(data['cmd'])
-        method = self.proxyMethod[data['cmd']]
         func = getattr(proxy, method)
-        logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
         if data['return_value']:
             # TODO find a better way to distinguish if cmd needs a pipe
             if method == 'list_fd':
@@ -468,7 +468,7 @@ class Client:
         else:
             func(*args)
       except Exception as err:
-        logger.error("__async_thread_loop %s Exception %s", str(data['cmd']), err)
+        logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
         data['error'] = err
 
       # We enqueue one request at the time by now, monitoring _sent
