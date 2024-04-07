@@ -191,8 +191,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._package_name = None
         self._action_name = None
         self._gpg_confirm = None
-        self._files_to_download = 0
-        self._files_downloaded = 0
         # ...TODO
         self._download_events = {
           'in_progress' : 0,
@@ -2148,39 +2146,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)
-
-    def _OnRunTransaction(self, info):
-      ''' manages RunTransaction event from dnfdaemon '''
-      rc, result = info['result']
-      if rc == 1:
-        logger.warning('GPG key missing: %s' % repr(result))
-        # NOTE should have been managed into OnGPGImport, so we can run transaction again
-        self._transaction_tries += 1
-        if self._transaction_tries <= 3:
-          self._populate_transaction()
-          self.backend.BuildTransaction()
-          return
-        else  :
-          dialogs.warningMsgBox({'title' :_("GPG key missing"), 'text' : repr(result), 'richtext' : True})
-      elif rc == 4:
-        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
-                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-        logger.error('Download error')
-        logger.error(result)
-      elif rc != 0:  # other transaction errors
-        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
-                            'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-        logger.error('RunTransaction failure')
-        logger.error(result)
-
-      self._transaction_tries = 0
-
-      ### TODO verify if packages are updated or reconnect
-      #self.backend.Unlock(sync=True)
-      self.backend.clear_cache()
-      self.packageQueue.clear()
-      #self._status = DNFDragoraStatus.STARTUP
-      #self.backend.Lock()
 
     def _manageDnfDaemonEvent(self):
       '''
