@@ -1910,6 +1910,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       else:
         logger.error('Download Error : [%s]:[%s] - %s', download_id, download['description'], error)
 
+      self.infobar.info_sub("")
       if (self._download_events['in_progress'] == 0) :
         self.infobar.reset_all()
         self.__resetDownloads()
