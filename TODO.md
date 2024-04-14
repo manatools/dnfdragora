@@ -14,19 +14,18 @@ as soon as possible.
 - [ ] Change progress bar layout (in progress)
 - [ ] Add a configuration entry to avoid dnfdragora-update autostarts [87](https://github.com/manatools/dnfdragora/issues/87)
 - [ ] Fix group caching if comp is selected (in progress, it works but sync now)
-- [ ] Let the user know when DB is locked on dnfdragora startup
 - [ ] Add and/or change some icons if possible (in progress thanks to Carson Black) issues ~~[55](https://github.com/manatools/dnfdragora/issues/55)~~, [139](https://github.com/manatools/dnfdragora/issues/139)
 - [ ] Improve error management and user warning on errors (add transaction, etc.)
 
-## Critical
+## Nice to have 
+- [ ] Add a new filter "show only packages with GUI" (query.filter_file(["/usr/share/applications/*.desktop"], GLOB)) 
+
+## Fixing
 - all the [issues](https://github.com/manatools/dnfdragora/issues) of course
 
-
-## Nice to have 
+# Medium term targets
 -   Modifying repository configuration to override settings per repository.
 -   Add a way to search, enable, and disable COPR repositories
-
-# Medium term targets
 -   Handle solution errors. In the event that there's a dependency problem detected, we should
     offer the user a way to resolve it from within the UI so that it can be resolved.
 -   Offer weak dependency options, handling both forward and reverse dependencies.
