@@ -1885,7 +1885,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
-      num = '( %d/%d - %s)' % (downloaded, total_to_download, download['description'])
+      num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
       self.infobar.set_progress(total_frac, label=num)
 
     def _OnDownloadEnd(self, session_object_path, download_id, status, error):
