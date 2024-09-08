@@ -133,9 +133,6 @@ class Updater:
 
         try:
             self.__backend = dnfd_client.Client()
-        except dnfdaemon.client.DaemonError as error:
-            logger.error(_('Error starting dnfdaemon service: [%s]')%(str(error)))
-            return
         except Exception as e:
             logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
             return

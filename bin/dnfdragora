@@ -77,9 +77,6 @@ if __name__ == "__main__":
 
             main_gui.handleevent()
 
-        except dnfdaemon.client.DaemonError as e:
-            logger.error("dnfdaemon client error: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon client error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except NameError as e:
             logger.error("dnfdaemon NameError: %s ", e)
             dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
