@@ -186,17 +186,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.md_update_interval = 48 # check any 48 hours as default
         self.md_last_refresh_date = None
         self._runtime_option_managed = False
+        self._download_events = {
+          'in_progress' : 0,
+          'downloads' : {}
+        } # obsoletes _files_to_download and _files_downloaded
+
         # TODO... _package_name, _gpg_confirm imported from old event management
         # Try to remove them when fixing progress bar
         self._package_name = None
         self._action_name = None
         self._gpg_confirm = None
         # ...TODO
-        self._download_events = {
-          'in_progress' : 0,
-          'downloads' : {}
-        } # obsoletes _files_to_download and _files_downloaded
-
         self._transaction_tries = 0
         self.started_transaction = _('No transaction found')
         # {
@@ -1782,6 +1782,49 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             resp = dialogs.ask_for_gpg_import(values)
             self.backend.ConfirmGPGImport(key_id, resp, sync=True)
 
+    def _OnTransactionVerifyStart(self, session_object_path, total):
+      '''
+        Transaction verification start.
+        Args:
+            @session_object_path: object path of the dnf5daemon session
+            @total: total to process
+      '''
+      values = (session_object_path, total)
+      logger.debug('OnTransactionVerifyStart: %s', repr(values))
+      if session_object_path != self.backend.session_path :
+        logger.warning("OnTransactionVerifyStart: Different session path received")
+        return
+      self.infobar.set_progress(0.0)
+      self.infobar.info_sub(_('Transaction verification'))
+
+    def _OnTransactionVerifyProgress(self, session_object_path, processed, total):
+      '''
+        Transaction verification in progress.
+        Args:
+            @session_object_path: object path of the dnf5daemon session
+            @processed: amount already processed
+            @total: total to process
+      '''
+      if session_object_path != self.backend.session_path :
+          logger.warning("_OnTransactionVerifyProgress: Different session path received")
+          return
+      total_frac = processed / total if total > 0 else 0
+      self.infobar.set_progress(total_frac)
+
+    def _OnTransactionVerifyStop(self, session_object_path, total):
+      '''
+        Transaction verification has finished
+        Args:
+            @session_object_path: object path of the dnf5daemon session
+            @total: total to process
+      '''
+      values = (session_object_path, total)
+      logger.debug('OnTransactionVerifyStop: %s', repr(values))
+      if session_object_path != self.backend.session_path :
+        logger.warning("OnTransactionVerifyStop: Different session path received")
+        return
+      self.infobar.reset_all()
+
     def __addDownload(self, download_id, description, total_to_download):
       '''
           add new download events
@@ -2273,15 +2316,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._OnRepoMetaDataProgress(info['name'], info['frac'])
           elif (event == 'BuildTransaction'):
             self._OnBuildTransaction(info)
+          elif (event == 'OnTransactionVerifyStart'):
+            self._OnTransactionVerifyStart(info['session_object_path'], info['total'])
+          elif (event == 'OnTransactionVerifyProgress'):
+            self._OnTransactionVerifyProgress(info['session_object_path'], info['processed'], info['total'])
+          elif (event == 'OnTransactionVerifyStop'):
+            self._OnTransactionVerifyStop(info['session_object_path'], info['total'])
           elif (event == 'OnTransactionActionStart')    or \
                (event == 'OnTransactionActionProgress') or \
                (event == 'OnTransactionActionStop')     or \
                (event == 'OnTransactionScriptStart')    or \
                (event == 'OnTransactionScriptStop')     or \
                (event == 'OnTransactionScriptError')    or \
-               (event == 'OnTransactionVerifyStart')    or \
-               (event == 'OnTransactionVerifyProgress') or \
-               (event == 'OnTransactionVerifyStop')     or \
                (event == 'OnTransactionAfterComplete')  or \
                (event == 'OnTransactionTimeoutEvent')   or \
                (event == 'OnTransactionUnpackError'):

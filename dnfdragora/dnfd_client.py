@@ -819,52 +819,55 @@ class Client:
         #                         }
         #                     })
 
-    def on_TransactionVerifyStart(self, *args) : # total):
+    def on_TransactionVerifyStart(self, session_object_path, total) :
         '''
         Package files verification has started.
         Args:
+            @session_object_path: object path of the dnf5daemon session
             @total: total to process
         '''
-        logger.debug("on_TransactionVerifyStart (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionVerifyStart',
-        #                     'value': {
-        #                         'total':total,
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionVerifyStart',
+                             'value': {
+                                 'session_object_path':unpack_dbus(session_object_path),
+                                 'total':unpack_dbus(total),
+                                 }
+                            })
 
-    def on_TransactionVerifyProgress(self, *args) : # amount, total):
+    def on_TransactionVerifyProgress(self, session_object_path, processed, total):
         '''
         Progress in processing of the package.
         Args:
-            @amount: amount already processed
+            @session_object_path: object path of the dnf5daemon session
+            @processed: amount already processed
             @total: total to process
         '''
-        logger.debug("on_TransactionVerifyProgress (%s)", repr(args))
-        # Refresh the transaction timeout
+       # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionVerifyProgress',
-        #                     'value': {
-        #                         'amount':amount,
-        #                         'total':total,
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionVerifyProgress',
+              'value': {
+                  'session_object_path':unpack_dbus(session_object_path),
+                  'processed':unpack_dbus(processed),
+                  'total':unpack_dbus(total),
+                  }
+              })
 
-    def on_TransactionVerifyStop(self, *args): # total,
+    def on_TransactionVerifyStop(self, session_object_path, total) :
         '''
         Package files verification has finished
         Args:
+            @session_object_path: object path of the dnf5daemon session
             @total: total to process
         '''
-        logger.debug("on_TransactionVerifyStop (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionVerifyStop',
-        #                     'value': {
-        #                         'total':total,
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionVerifyStop',
+                      'value': {
+                          'session_object_path':unpack_dbus(session_object_path),
+                          'total':unpack_dbus(total),
+                          }
+                      })
 
     def on_TransactionUnpackError(self, *args) : # nevra):
         '''
