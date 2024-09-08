@@ -1,0 +1,39 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        build-type: ['normal']
+        container:
+          - 'registry.fedoraproject.org/fedora:latest'
+          - 'registry.fedoraproject.org/fedora:rawhide'
+          - 'docker.io/library/mageia:cauldron'
+      fail-fast: false
+
+    container:
+      image: ${{ matrix.container }}
+
+    steps:
+      - run: dnf --assumeyes install
+              /usr/bin/cmake
+              /usr/bin/python3
+              python3-yui
+              python3-manatools
+              python3-setuptools
+              python3-libdnf5
+              python3-yaml
+              python3-pyxdg
+              python3-cairosvg
+              python3-pillow
+              python3-pystray
+              git-core
+      - uses: actions/checkout@v4
+      - name: Configure CMake
+        run: cmake -S . -B github-build
+      - name: Build
+        run: cmake --build github-build
