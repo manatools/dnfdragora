@@ -600,15 +600,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             for k in self.fileMenu.keys():
                 self.fileMenu[k].this.own(False)
 
-            # building Information menu
-            mItem = self.menubar.addMenu(_("&Information"))
-            self.infoMenu = {
-                'menu_name' : mItem,
-                'history'   : yui.YMenuItem(mItem, _("&History")),
-            }
-            #Items must be "disowned"
-            for k in self.infoMenu.keys():
-                self.infoMenu[k].this.own(False)
+            # # building Information menu
+            # mItem = self.menubar.addMenu(_("&Information"))
+            # self.infoMenu = {
+            #     'menu_name' : mItem,
+            #     'history'   : yui.YMenuItem(mItem, _("&History")),
+            # }
+            # #Items must be "disowned"
+            # for k in self.infoMenu.keys():
+            #     self.infoMenu[k].this.own(False)
 
             # building Options menu
             mItem = self.menubar.addMenu(_("&Options"))
