@@ -22,6 +22,7 @@ from html import escape
 from queue import SimpleQueue, Empty
 from enum import Enum
 from inspect import ismethod
+import libdnf5
 
 #NOTE we need a glib.MainLoop in TUI and use threading for it
 import threading
@@ -1795,7 +1796,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.warning("OnTransactionVerifyStart: Different session path received")
         return
       self.infobar.set_progress(0.0)
-      self.infobar.info_sub(_('Transaction verification'))
+      self.infobar.info(_('Transaction verification'))
 
     def _OnTransactionVerifyProgress(self, session_object_path, processed, total):
       '''
@@ -1824,6 +1825,57 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.warning("OnTransactionVerifyStop: Different session path received")
         return
       self.infobar.reset_all()
+
+    def _OnTransactionActionStart(self, session_object_path, nevra, action, total):
+        '''
+            Processing (installation or removal) of the package has started.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
+                @action: one of the dnfdaemon::RpmTransactionItem::Actions enum
+                @total: total to process
+        '''
+        #TODO how to get string from action and maybe localized?
+        act_str = libdnf5.base.transaction.transaction_item_action_to_string(action)
+        values = (session_object_path, nevra, action, act_str, total)
+        logger.debug('OnTransactionActionStart: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionActionStart: Different session path received")
+            return
+        self.infobar.set_progress(0.0)
+        self.infobar.info( _('Transaction for package <%(nevra)s> started') %{'nevra': nevra })
+
+    def _OnTransactionActionProgress(self, session_object_path, nevra, processed, total):
+        '''
+            Progress in processing of the package.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
+                @processed: amount already processed
+                @total: total to process
+        '''
+        values = (session_object_path, nevra, processed, total)
+        logger.debug('OnTransactionActionProgress: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionActionProgress: Different session path received")
+            return
+        #TODO bar with processed??? if not always 0 self.infobar.set_progress(0.0)
+        self.infobar.info( _('Transaction for package <%(nevra)s> in progress') %{'nevra': nevra, })
+
+    def _OnTransactionActionStop(self, session_object_path, nevra, total):
+        '''
+            Processing of the item has finished.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
+                @total: total processed
+        '''
+        values = (session_object_path, nevra, total)
+        logger.debug('OnTransactionActionStop: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionActionStop: Different session path received")
+            return
+        self.infobar.reset_all()
 
     def __addDownload(self, download_id, description, total_to_download):
       '''
@@ -2322,10 +2374,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._OnTransactionVerifyProgress(info['session_object_path'], info['processed'], info['total'])
           elif (event == 'OnTransactionVerifyStop'):
             self._OnTransactionVerifyStop(info['session_object_path'], info['total'])
-          elif (event == 'OnTransactionActionStart')    or \
-               (event == 'OnTransactionActionProgress') or \
-               (event == 'OnTransactionActionStop')     or \
-               (event == 'OnTransactionScriptStart')    or \
+          elif (event == 'OnTransactionActionStart'):
+              self._OnTransactionActionStart(info['session_object_path'], info['nevra'], info['action'], info['total'])
+          elif (event == 'OnTransactionActionProgress'):
+              self._OnTransactionActionProgress(info['session_object_path'], info['nevra'], info['processed'], info['total'])
+          elif (event == 'OnTransactionActionStop'):
+              self._OnTransactionActionStop(info['session_object_path'], info['nevra'], info['total'])
+          elif (event == 'OnTransactionScriptStart')    or \
                (event == 'OnTransactionScriptStop')     or \
                (event == 'OnTransactionScriptError')    or \
                (event == 'OnTransactionAfterComplete')  or \

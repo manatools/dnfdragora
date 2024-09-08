@@ -711,61 +711,63 @@ class Client:
                              })
 
 
-    def on_TransactionActionStart(self, *args) : #nevra, action, total):
+    def on_TransactionActionStart(self, session_object_path, nevra, action, total):
         '''
-        Processing of the item has started.
-        Args:
-            @nevra: full NEVRA of the package
-            @action: one of the dnfdaemon::RpmTransactionItem::Actions enum
-            @total: total to process
+            Processing (installation or removal) of the package has started.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
+                @action: one of the dnfdaemon::RpmTransactionItem::Actions enum
+                @total: total to process
         '''
-        logger.debug("on_TransactionActionStart (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionActionStart',
-        #                     'value': {
-        #                         'nevra':nevra,
-        #                         'action':action,
-        #                         'total':total,
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionActionStart',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'action': unpack_dbus(action),
+                                 'total': unpack_dbus(total),
+                                 }
+                             })
 
-    def on_TransactionActionProgress(self, *args) : #nevra, amount, total):
+    def on_TransactionActionProgress(self, session_object_path, nevra, processed, total):
         '''
         Progress in processing of the package.
         Args:
+            @session_object_path: object path of the dnf5daemon session
             @nevra: full NEVRA of the package
-            @amount: amount already processed
+            @processed: amount already processed
             @total: total to process
         '''
-        logger.debug("on_TransactionActionProgress (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionActionProgress',
-        #                     'value': {
-        #                         'nevra':nevra,
-        #                         'amount':amount,
-        #                         'total':total,
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionActionProgress',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'processed': unpack_dbus(processed),
+                                 'total': unpack_dbus(total),
+                                 }
+                             })
 
-    def on_TransactionActionStop(self, *args) : # (nevra, total):
+    def on_TransactionActionStop(self, session_object_path, nevra, total):
         '''
         Processing of the item has finished.
         Args:
+            @session_object_path: object path of the dnf5daemon session
             @nevra: full NEVRA of the package
             @total: total processed
         '''
-        logger.debug("on_TransactionActionStop (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-
-        #self.eventQueue.put({'event': 'OnTransactionActionStop',
-        #                     'value': {
-        #                         'nevra':nevra,
-        #                         'total':total,
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionActionStop',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'total': unpack_dbus(total),
+                                 }
+                             })
 
     #def on_TransactionScriptStart(self, nevra, *args):
     def on_TransactionScriptStart(self, *args):
