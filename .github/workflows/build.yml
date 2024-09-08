@@ -8,7 +8,6 @@ jobs:
 
     strategy:
       matrix:
-        build-type: ['normal']
         container:
           - 'registry.fedoraproject.org/fedora:latest'
           - 'registry.fedoraproject.org/fedora:rawhide'
