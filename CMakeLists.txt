@@ -32,8 +32,11 @@ if(CHECK_RUNTIME_DEPENDENCIES)
 	# Find yui module
 	find_python_module(yui REQUIRED)
 
-	# Find yui module
+	# Find manatools module
 	find_python_module(manatools REQUIRED)
+
+	# Find libdnf5 module
+	find_python_module(libdnf5 REQUIRED)
 
 	# Find yaml module
 	find_python_module(yaml REQUIRED)
