@@ -1946,42 +1946,44 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if session_object_path != self.backend.session_path :
         logger.warning("OnDownloadStart: Different session path received")
         return
-      if self._download_events['in_progress'] == 0:
-        self.infobar.info(_('Downloading'))
+      #if self._download_events['in_progress'] == 0:
+      # self.infobar.info(_('Downloading'))
 
       self._download_events['in_progress'] += 1
       self.__addDownload(download_id, description, total_to_download)
 
       self.infobar.set_progress(0.0)
-      self.infobar.info_sub(
-          _('Downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
+      self.infobar.info(_('Start downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
           {'count_files': len(self._download_events['downloads'].keys()), 'id': download_id, 'description':description })
 
     def _OnDownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
-      '''
-          Progress for a single element in the batch. Manage signal download_progress.
+        '''
+            Progress for a single element in the batch. Manage signal download_progress.
             Args:
                 session_object_path: object path of the dnf5daemon session
                 download_id: unique id of downloaded object (repo or package)
                 total_to_download: total bytes to download
                 downloaded: bytes already downloaded
         '''
-      values =  (download_id, total_to_download, downloaded)
-      if session_object_path != self.backend.session_path :
-        logger.warning("OnDownloadProgress(%s): Different session path received. %s", session_object_path, repr(values))
-        return
+        values =  (download_id, total_to_download, downloaded)
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnDownloadProgress(%s): Different session path received. %s", session_object_path, repr(values))
+            return
 
-      download = self.__getDownloadInfo(download_id)
-      if download['total_to_download'] != total_to_download:
-        logger.warning("Dimension does not match for object [%s]:[%s]", download_id, download['description'])
+        download = self.__getDownloadInfo(download_id)
+        if download['total_to_download'] != total_to_download:
+            logger.warning("Dimension does not match for object [%s]:[%s]", download_id, download['description'])
         if total_to_download > 0:
-          download['total_to_download'] = total_to_download
-      download['downloaded'] = downloaded
+            download['total_to_download'] = total_to_download
+        download['downloaded'] = downloaded
 
-      total_frac = downloaded / total_to_download if total_to_download > 0 else 0
+        total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
-      num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
-      self.infobar.set_progress(total_frac, label=num)
+        #num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
+        self.infobar.set_progress(total_frac)
+        self.infobar.info(_('Downloading file %(id)s - %(description)s in progress')%
+                          { 'id': download_id, 'description':download['description'] })
+
 
     def _OnDownloadEnd(self, session_object_path, download_id, status, error):
       '''
