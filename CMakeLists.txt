@@ -29,9 +29,6 @@ option(CHECK_RUNTIME_DEPENDENCIES "Verify the presence of runtime-only dependenc
 if(CHECK_RUNTIME_DEPENDENCIES)
 	include(FindPythonModule)
 
-	# Find the dnfdaemon module
-	find_python_module(dnfdaemon REQUIRED)
-
 	# Find yui module
 	find_python_module(yui REQUIRED)
 

@@ -47,13 +47,6 @@ if __name__ == "__main__":
     from gi.repository import GLib
     import logging
     logger = logging.getLogger('dnfdragora')
-    try:
-        import dnfdaemon.client
-    except GLib.Error as err:
-        logger.error(_('dnfdaemon client failure [%s]'), err)
-        if "g-io-error-quark" in str(err):
-           logger.error(_('Try again using a login shell (i.e. "su -")'))
-        exit(-1)
 
     import dnfdragora.ui as ui
     import dnfdragora.dialogs as dialogs
