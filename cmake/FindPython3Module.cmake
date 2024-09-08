@@ -1,7 +1,7 @@
 # Find if a Python module is installed
 # Found at http://www.cmake.org/pipermail/cmake/2011-January/041666.html
-# To use do: find_python_module(PyQt5 REQUIRED)
-function(find_python_module module)
+# To use do: find_python3_module(PyQt6 REQUIRED)
+function(find_python3_module module)
 	string(TOUPPER ${module} module_upper)
 	if(NOT PY_${module_upper})
 		if(ARGC GREATER 1 AND ARGV1 STREQUAL "REQUIRED")
@@ -9,7 +9,7 @@ function(find_python_module module)
 		endif()
 		# A module's location is usually a directory, but for binary modules
 		# it's a .so file.
-		execute_process(COMMAND "${PYTHON_EXECUTABLE}" "-c" 
+		execute_process(COMMAND "${Python3_EXECUTABLE}" "-c" 
 			"import re, ${module}; print(re.compile('/__init__.py.*').sub('',${module}.__file__))"
 			RESULT_VARIABLE _${module}_status 
 			OUTPUT_VARIABLE _${module}_location
