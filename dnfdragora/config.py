@@ -35,7 +35,7 @@ class AppConfig() :
         self._fileName   = appName + ".yaml"
         self.systemDir  = "/etc/" + appName
         pathdir = os.path.expanduser("~") + "/.config/"
-        self._userPrfesPathName  = os.path.join(pathdir, self._fileName)
+        self._userPrefsPathName  = os.path.join(pathdir, self._fileName)
 
     def _load(self) :
         '''
@@ -61,8 +61,8 @@ class AppConfig() :
                     pass
 
             try:
-                print ("Finally read user settings from %s"%self._userPrfesPathName)
-                with open(self._userPrfesPathName, 'r') as ymlfile:
+                print ("Finally read user settings from %s"%self._userPrefsPathName)
+                with open(self._userPrefsPathName, 'r') as ymlfile:
                     self._userPrefs = yaml.safe_load(ymlfile)
                 if not self._userPrefs:
                   self._userPrefs = {}
@@ -90,6 +90,6 @@ class AppConfig() :
         '''
         write user preferences into the related configuration file
         '''
-        with open(self._userPrfesPathName, 'w') as outfile:
+        with open(self._userPrefsPathName, 'w') as outfile:
             yaml.dump(self._userPrefs, outfile, default_flow_style=False)
 
