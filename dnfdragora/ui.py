@@ -29,7 +29,6 @@ import threading
 from gi.repository import GLib
 
 import manatools.ui.helpdialog as helpdialog
-import manatools.services as services
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
@@ -2098,11 +2097,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if self.md_update_interval <= 0:
         logger.debug("Metadata expired check disabled")
         return False
-      # check if dnf MakeCache timer is is enabed
-      ms = services.Services().manager
-      if ms.GetUnitFileState('dnf-makecache.timer') == 'enabled' :
-          logger.debug("MakeCache enabled")
-          return False
       # check this is the first time dnfdragora is run for this user
       if not self.md_last_refresh_date:
         logger.debug("Never downloaded Metadata before, forcing it now")
