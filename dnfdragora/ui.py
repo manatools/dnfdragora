@@ -1876,6 +1876,57 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             return
         self.infobar.reset_all()
 
+    def _OnTransactionTransactionStart(self, session_object_path, total):
+        '''
+            Preparation of transaction packages has started.
+            Manages the transaction_transaction_start signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @total: total to process
+        '''
+        values = (session_object_path, total)
+        logger.debug('OnTransactionTransactionStart: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionTransactionStart: Different session path received")
+            return
+        self.infobar.set_progress(0.0)
+        self.infobar.info( _('Preparation of transaction'))
+
+    def _OnTransactionTransactionProgress(self, session_object_path, processed, total):
+        '''
+            Progress in preparation of transaction packages.
+            Manages the transaction_transaction_progress signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @processed: amount already processed
+                @total: total to process
+        '''
+        values = (session_object_path, processed, total)
+        logger.debug('OnTransactionTransactionProgress: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionTransactionProgress: Different session path received")
+            return
+        total_frac = processed / total if total > 0 else 0
+        self.infobar.set_progress(total_frac)
+        self.infobar.info( _('Preparation of transaction'))
+
+
+    def _OnTransactionTransactionStop(self, session_object_path, total):
+        '''
+            Preparation of transaction packages has finished.
+            Manages thetransaction_transaction_stop signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @total: total to process
+        '''
+        values = (session_object_path, total)
+        logger.debug('OnTransactionTransactionStop: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionTransactionStop: Different session path received")
+            return
+        self.infobar.reset_all()
+
+
     def __addDownload(self, download_id, description, total_to_download):
       '''
           add new download events
@@ -2376,6 +2427,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self._OnTransactionActionProgress(info['session_object_path'], info['nevra'], info['processed'], info['total'])
           elif (event == 'OnTransactionActionStop'):
               self._OnTransactionActionStop(info['session_object_path'], info['nevra'], info['total'])
+          elif (event == 'OnTransactionTransactionStart'):
+              self._OnTransactionTransactionStart(info['session_object_path'], info['total'])
+          elif (event == 'OnTransactionTransactionProgress'):
+              self._OnTransactionTransactionProgress(info['session_object_path'], info['processed'], info['total'])
+          elif (event == 'OnTransactionTransactionStop'):
+              self._OnTransactionTransactionStop(info['session_object_path'], info['total'])
           elif (event == 'OnTransactionScriptStart')    or \
                (event == 'OnTransactionScriptStop')     or \
                (event == 'OnTransactionScriptError')    or \

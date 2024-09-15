@@ -773,7 +773,7 @@ class Client:
                                  }
                              })
 
-    def on_TransactionTransactionStart(self, *args):
+    def on_TransactionTransactionStart(self, session_object_path, total):
         '''
             Preparation of transaction packages has started.
             Manages the transaction_transaction_start signal.
@@ -781,17 +781,16 @@ class Client:
                 @session_object_path: object path of the dnf5daemon session
                 @total: total to process
         '''
-        logger.debug("on_TransactionTransactionStart (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionTransactionStart',
-        #                     'value': {
-        #                         'session_object_path': unpack_dbus(session_object_path),
-        #                          'total': unpack_dbus(total),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionTransactionStart',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                  'total': unpack_dbus(total),
+                                 }
+                             })
 
-    def on_TransactionTransactionProgress(self, *args):
+    def on_TransactionTransactionProgress(self, session_object_path, processed, total):
         '''
             Progress in preparation of transaction packages.
             Manages the transaction_transaction_progress signal.
@@ -800,18 +799,17 @@ class Client:
                 @processed: amount already processed
                 @total: total to process
         '''
-        logger.debug("on_TransactionTransactionProgress (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionTransactionProgress',
-        #                     'value': {
-        #                         'session_object_path': unpack_dbus(session_object_path),
-        #                         'processed': unpack_dbus(processed),
-        #                         'total': unpack_dbus(total),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionTransactionProgress',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'processed': unpack_dbus(processed),
+                                 'total': unpack_dbus(total),
+                                 }
+                             })
 
-    def on_TransactionTransactionStop(self, *args):
+    def on_TransactionTransactionStop(self, session_object_path, total):
         '''
             Preparation of transaction packages has finished.
             Manages thetransaction_transaction_stop signal.
@@ -819,15 +817,14 @@ class Client:
                 @session_object_path: object path of the dnf5daemon session
                 @total: total to process
         '''
-        logger.debug("on_TransactionTransactionStop (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionTransactionStop',
-        #                     'value': {
-        #                         'session_object_path': unpack_dbus(session_object_path),
-        #                          'total': unpack_dbus(total),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionTransactionStop',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                  'total': unpack_dbus(total),
+                                 }
+                             })
 
     #def on_TransactionScriptStart(self, nevra, *args):
     def on_TransactionScriptStart(self, *args):
