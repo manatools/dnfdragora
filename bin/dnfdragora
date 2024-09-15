@@ -80,15 +80,18 @@ if __name__ == "__main__":
         except KeyError as e:
             logger.error("KeyError: %s ", e)
             dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+        except ValueError as e:
+            logger.error("ValueError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except NameError as e:
-            logger.error("dnfdaemon NameError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon name error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+            logger.error("NameError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except AttributeError as e:
-            logger.error("dnfdaemon AttributeError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon attribute error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+            logger.error("AttributeError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except TypeError  as e:
-            logger.error("dnfdaemon TypeError: %s ", e)
-            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("dnfdaemon type error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
+            logger.error("TypeError: %s ", e)
+            dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
         except ui.UIError as e:
             logger.error("UI Error: %s ", e)
             dialogs.warningMsgBox({'title' : _("Sorry"), "text": _("Error occurred:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
