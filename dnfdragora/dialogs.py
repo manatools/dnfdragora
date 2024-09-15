@@ -393,7 +393,8 @@ class TransactionResult:
           for name in pkglist[action].keys():
             pkgid, size, replaces = (None, None, None)
             if len(pkglist[action][name]) > 2:
-              pkgid, size, replaces = pkglist[action][name]
+              pkgid, size  = pkglist[action][name][:2]
+              replaces = pkglist[action][name][2:]
             else:
               pkgid, size = pkglist[action][name]
 
@@ -402,9 +403,10 @@ class TransactionResult:
             level2Item.this.own(False)
             total_size += size
             if replaces:
-              label =  _("replacing ") + replaces
-              item = yui.YTreeItem(level2Item, label, False)
-              item.this.own(False)
+                for rep in replaces:
+                    label =  _("replacing ") + rep
+                    item = yui.YTreeItem(level2Item, label, False)
+                    item.this.own(False)
 
           itemVect.append(level1Item)
 
