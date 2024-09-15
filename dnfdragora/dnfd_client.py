@@ -293,6 +293,10 @@ class Client:
             self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress)
             self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop)
 
+            self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart)
+            self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress)
+            self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop)
+
             self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart)
             self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop)
             self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError)
@@ -733,12 +737,12 @@ class Client:
 
     def on_TransactionActionProgress(self, session_object_path, nevra, processed, total):
         '''
-        Progress in processing of the package.
-        Args:
-            @session_object_path: object path of the dnf5daemon session
-            @nevra: full NEVRA of the package
-            @processed: amount already processed
-            @total: total to process
+            Progress in processing of the package.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
+                @processed: amount already processed
+                @total: total to process
         '''
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
@@ -753,11 +757,11 @@ class Client:
 
     def on_TransactionActionStop(self, session_object_path, nevra, total):
         '''
-        Processing of the item has finished.
-        Args:
-            @session_object_path: object path of the dnf5daemon session
-            @nevra: full NEVRA of the package
-            @total: total processed
+            Processing of the item has finished.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
+                @total: total processed
         '''
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
@@ -769,55 +773,146 @@ class Client:
                                  }
                              })
 
+    def on_TransactionTransactionStart(self, *args):
+        '''
+            Preparation of transaction packages has started.
+            Manages the transaction_transaction_start signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @total: total to process
+        '''
+        logger.debug("on_TransactionTransactionStart (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
+        #self.eventQueue.put({'event': 'OnTransactionTransactionStart',
+        #                     'value': {
+        #                         'session_object_path': unpack_dbus(session_object_path),
+        #                          'total': unpack_dbus(total),
+        #                         }
+        #                     })
+
+    def on_TransactionTransactionProgress(self, *args):
+        '''
+            Progress in preparation of transaction packages.
+            Manages the transaction_transaction_progress signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @processed: amount already processed
+                @total: total to process
+        '''
+        logger.debug("on_TransactionTransactionProgress (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
+        #self.eventQueue.put({'event': 'OnTransactionTransactionProgress',
+        #                     'value': {
+        #                         'session_object_path': unpack_dbus(session_object_path),
+        #                         'processed': unpack_dbus(processed),
+        #                         'total': unpack_dbus(total),
+        #                         }
+        #                     })
+
+    def on_TransactionTransactionStop(self, *args):
+        '''
+            Preparation of transaction packages has finished.
+            Manages thetransaction_transaction_stop signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @total: total to process
+        '''
+        logger.debug("on_TransactionTransactionStop (%s)", repr(args))
+        # Refresh the transaction timeout
+        self.__TransactionTimer.start()
+        #self.eventQueue.put({'event': 'OnTransactionTransactionStop',
+        #                     'value': {
+        #                         'session_object_path': unpack_dbus(session_object_path),
+        #                          'total': unpack_dbus(total),
+        #                         }
+        #                     })
+
     #def on_TransactionScriptStart(self, nevra, *args):
     def on_TransactionScriptStart(self, *args):
         '''
         The scriptlet has started.
+        Manages the transaction_script_start signal.
         Args:
+            @session_object_path: object path of the dnf5daemon session
             @nevra: full NEVRA of the package script belongs to
+            @scriptlet_type: scriptlet type that started (pre, post,...)
+        '''
+        '''
+        TODO scriptlet type to show in the progress bar
+            class LIBDNF_API TransactionCallbacks {
+            public:
+                enum class ScriptType {
+                    UNKNOWN,
+                    PRE_INSTALL,            // "%pre"
+                    POST_INSTALL,           // "%post"
+                    PRE_UNINSTALL,          // "%preun"
+                    POST_UNINSTALL,         // "%postun"
+                    PRE_TRANSACTION,        // "%pretrans"
+                    POST_TRANSACTION,       // "%posttrans"
+                    TRIGGER_PRE_INSTALL,    // "%triggerprein"
+                    TRIGGER_INSTALL,        // "%triggerin"
+                    TRIGGER_UNINSTALL,      // "%triggerun"
+                    TRIGGER_POST_UNINSTALL  // "%triggerpostun"
+                };
+
+                /// @param type  scriptlet type
+                /// @return  string representation of the scriptlet type
+                static const char * script_type_to_string(ScriptType type) noexcept;
         '''
         logger.debug("on_TransactionScriptStart (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-
         #self.eventQueue.put({'event': 'OnTransactionScriptStart',
         #                     'value': {
-        #                         'nevra':nevra,
+        #                         'session_object_path': unpack_dbus(session_object_path),
+        #                         'nevra': unpack_dbus(nevra),
+        #                         'scriptlet_type': unpack_dbus(scriptlet_type),
         #                         }
         #                     })
 
     def on_TransactionScriptStop(self, *args): #nevra, return_code,
         '''
-        The scriptlet has successfully finished.
-        Args:
-            @nevra: full NEVRA of the package script belongs to
-            @return_code: return value of the script
+            The scriptlet has successfully finished.
+            Manages the transaction_script_stop signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package script belongs to
+                @scriptlet_type: scriptlet type that started (pre, post,...)
+                @return_code: return value of the script
         '''
         logger.debug("on_TransactionScriptStop (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionScriptStop',
         #                     'value': {
-        #                         'nevra':nevra,
-        #                         'return_code':return_code,
+        #                         'session_object_path': unpack_dbus(session_object_path),
+        #                         'nevra': unpack_dbus(nevra),
+        #                         'scriptlet_type': unpack_dbus(scriptlet_type),
+        #                         'return_code': unpack_dbus(return_code),
         #                         }
         #                     })
 
     def on_TransactionScriptError(self, *args) : # nevra, return_code, ):
         '''
-        The scriptlet has finished with an error.
-        Args:
-            @nevra: full NEVRA of the package script belongs to
-            @return_code: return value of the script
+            The scriptlet has finished with an error.
+            Manages the transaction_script_error signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package script belongs to
+                @scriptlet_type: scriptlet type that started (pre, post,...)
+                @return_code: return value of the script
         '''
-        logger.debug("on_TransactionScriptError (%s)", repr(args))
+        logger.error("on_TransactionScriptError (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-
         #self.eventQueue.put({'event': 'OnTransactionScriptError',
         #                     'value': {
-        #                         'nevra':nevra,
-        #                         'return_code':return_code,
+        #                         'session_object_path': unpack_dbus(session_object_path),
+        #                         'nevra': unpack_dbus(nevra),
+        #                         'scriptlet_type': unpack_dbus(scriptlet_type),
+        #                         'return_code': unpack_dbus(return_code),
         #                         }
         #                     })
 
@@ -873,14 +968,17 @@ class Client:
 
     def on_TransactionUnpackError(self, *args) : # nevra):
         '''
-        Error while unpacking the package.
-        Args:
-           @nevra: full NEVRA of the package
+            Error while unpacking the package.
+            Manages the transaction_unpack_error signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package
         '''
-        logger.debug("on_TransactionUnpackError (%s)", repr(args))
+        logger.error("on_TransactionUnpackError (%s)", repr(args))
         #self.eventQueue.put({'event': 'OnTransactionUnpackError',
         #                     'value': {
-        #                         'nevra':nevra,
+        #                         'session_object_path':unpack_dbus(session_object_path),
+        #                         'nevra': unpack_dbus(nevra),
         #                         }
         #                     })
 
