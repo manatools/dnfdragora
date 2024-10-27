@@ -1926,6 +1926,82 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             return
         self.infobar.reset_all()
 
+    def _OnTransactionScriptStart(self, session_object_path, nevra, scriptlet_type):
+        '''
+            The scriptlet has started.
+            Manages the transaction_script_start signal.
+            Args:
+            @session_object_path: object path of the dnf5daemon session
+            @nevra: full NEVRA of the package script belongs to
+            @scriptlet_type: scriptlet type that started (pre, post,...)
+        '''
+        '''
+        TODO scriptlet type to show in the progress bar
+            class LIBDNF_API TransactionCallbacks {
+            public:
+                enum class ScriptType {
+                    UNKNOWN,
+                    PRE_INSTALL,            // "%pre"
+                    POST_INSTALL,           // "%post"
+                    PRE_UNINSTALL,          // "%preun"
+                    POST_UNINSTALL,         // "%postun"
+                    PRE_TRANSACTION,        // "%pretrans"
+                    POST_TRANSACTION,       // "%posttrans"
+                    TRIGGER_PRE_INSTALL,    // "%triggerprein"
+                    TRIGGER_INSTALL,        // "%triggerin"
+                    TRIGGER_UNINSTALL,      // "%triggerun"
+                    TRIGGER_POST_UNINSTALL  // "%triggerpostun"
+                };
+
+                /// @param type  scriptlet type
+                /// @return  string representation of the scriptlet type
+                static const char * script_type_to_string(ScriptType type) noexcept;
+        '''
+        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type),
+        values = (session_object_path,nevra, scriptlet_type, scriptletType)
+        logger.debug('OnTransactionScriptStart: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionScriptStart: Different session path received")
+            return
+
+        self.infobar.set_progress(0.0)
+        self.infobar.info( _('Scriptlet <%(nevra)s> started') %{'nevra': nevra, })
+
+    def _OnTransactionScriptStop(self, session_object_path, nevra, scriptlet_type, return_code):
+        '''
+            The scriptlet has successfully finished.
+            Manages the transaction_script_stop signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package script belongs to
+                @scriptlet_type: scriptlet type that started (pre, post,...)
+                @return_code: return value of the script
+        '''
+        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type),
+        values = (session_object_path,nevra, scriptlet_type, scriptletType, return_code)
+        logger.debug('OnTransactionScriptStop: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionScriptStop: Different session path received")
+            return
+        self.infobar.reset_all()
+
+    def _OnTransactionScriptError(self, session_object_path, nevra, scriptlet_type, return_code):
+        '''
+            The scriptlet has finished with an error.
+            Manages the transaction_script_error signal.
+            Args:
+                @session_object_path: object path of the dnf5daemon session
+                @nevra: full NEVRA of the package script belongs to
+                @scriptlet_type: scriptlet type that started (pre, post,...)
+                @return_code: return value of the script
+        '''
+        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type),
+        values = (session_object_path,nevra, scriptlet_type, scriptletType, return_code)
+        logger.error('_OnTransactionScriptError: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("_OnTransactionScriptError: Different session path received")
+            return
+        self.infobar.reset_all()
 
     def __addDownload(self, download_id, description, total_to_download):
       '''
@@ -2433,10 +2509,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self._OnTransactionTransactionProgress(info['session_object_path'], info['processed'], info['total'])
           elif (event == 'OnTransactionTransactionStop'):
               self._OnTransactionTransactionStop(info['session_object_path'], info['total'])
-          elif (event == 'OnTransactionScriptStart')    or \
-               (event == 'OnTransactionScriptStop')     or \
-               (event == 'OnTransactionScriptError')    or \
-               (event == 'OnTransactionAfterComplete')  or \
+          elif (event == 'OnTransactionScriptStart'):
+              self._OnTransactionScriptStart(info['session_object_path'], info['nevra'], info['scriptlet_type'])
+          elif (event == 'OnTransactionScriptStop'):
+              self._OnTransactionScriptStop(info['session_object_path'], info['nevra'], info['scriptlet_type'], info['return_code'])
+          elif (event == 'OnTransactionScriptError'):
+              self._OnTransactionScriptError(info['session_object_path'], info['nevra'], info['scriptlet_type'], info['return_code'])
+          elif  (event == 'OnTransactionAfterComplete')  or \
                (event == 'OnTransactionTimeoutEvent')   or \
                (event == 'OnTransactionUnpackError'):
             self._OnTransactionEvent(event, info)

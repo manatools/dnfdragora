@@ -175,7 +175,8 @@ class Client:
         self._get_daemon()
         self.__async_thread = None
 
-        self.__TransactionTimer = dnfdragora.misc.TimerEvent(5, self.on_TransactionTimeoutEvent) # 5 secs should be enough
+        # 60 secs without receiving anything during a transaction
+        self.__TransactionTimer = dnfdragora.misc.TimerEvent(60, self.on_TransactionTimeoutEvent)
         self.__TransactionTimer.AutoRpeat = False
 
         self.proxyMethod = {
@@ -827,7 +828,7 @@ class Client:
                              })
 
     #def on_TransactionScriptStart(self, nevra, *args):
-    def on_TransactionScriptStart(self, *args):
+    def on_TransactionScriptStart(self, session_object_path, nevra, scriptlet_type):
         '''
         The scriptlet has started.
         Manages the transaction_script_start signal.
@@ -836,40 +837,17 @@ class Client:
             @nevra: full NEVRA of the package script belongs to
             @scriptlet_type: scriptlet type that started (pre, post,...)
         '''
-        '''
-        TODO scriptlet type to show in the progress bar
-            class LIBDNF_API TransactionCallbacks {
-            public:
-                enum class ScriptType {
-                    UNKNOWN,
-                    PRE_INSTALL,            // "%pre"
-                    POST_INSTALL,           // "%post"
-                    PRE_UNINSTALL,          // "%preun"
-                    POST_UNINSTALL,         // "%postun"
-                    PRE_TRANSACTION,        // "%pretrans"
-                    POST_TRANSACTION,       // "%posttrans"
-                    TRIGGER_PRE_INSTALL,    // "%triggerprein"
-                    TRIGGER_INSTALL,        // "%triggerin"
-                    TRIGGER_UNINSTALL,      // "%triggerun"
-                    TRIGGER_POST_UNINSTALL  // "%triggerpostun"
-                };
-
-                /// @param type  scriptlet type
-                /// @return  string representation of the scriptlet type
-                static const char * script_type_to_string(ScriptType type) noexcept;
-        '''
-        logger.debug("on_TransactionScriptStart (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionScriptStart',
-        #                     'value': {
-        #                         'session_object_path': unpack_dbus(session_object_path),
-        #                         'nevra': unpack_dbus(nevra),
-        #                         'scriptlet_type': unpack_dbus(scriptlet_type),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionScriptStart',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'scriptlet_type': unpack_dbus(scriptlet_type),
+                                 }
+                             })
 
-    def on_TransactionScriptStop(self, *args): #nevra, return_code,
+    def on_TransactionScriptStop(self, session_object_path, nevra, scriptlet_type, return_code):
         '''
             The scriptlet has successfully finished.
             Manages the transaction_script_stop signal.
@@ -879,19 +857,18 @@ class Client:
                 @scriptlet_type: scriptlet type that started (pre, post,...)
                 @return_code: return value of the script
         '''
-        logger.debug("on_TransactionScriptStop (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionScriptStop',
-        #                     'value': {
-        #                         'session_object_path': unpack_dbus(session_object_path),
-        #                         'nevra': unpack_dbus(nevra),
-        #                         'scriptlet_type': unpack_dbus(scriptlet_type),
-        #                         'return_code': unpack_dbus(return_code),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionScriptStop',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'scriptlet_type': unpack_dbus(scriptlet_type),
+                                 'return_code': unpack_dbus(return_code),
+                                 }
+                             })
 
-    def on_TransactionScriptError(self, *args) : # nevra, return_code, ):
+    def on_TransactionScriptError(self, session_object_path, nevra, scriptlet_type, return_code) : # nevra, return_code, ):
         '''
             The scriptlet has finished with an error.
             Manages the transaction_script_error signal.
@@ -901,17 +878,16 @@ class Client:
                 @scriptlet_type: scriptlet type that started (pre, post,...)
                 @return_code: return value of the script
         '''
-        logger.error("on_TransactionScriptError (%s)", repr(args))
         # Refresh the transaction timeout
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionScriptError',
-        #                     'value': {
-        #                         'session_object_path': unpack_dbus(session_object_path),
-        #                         'nevra': unpack_dbus(nevra),
-        #                         'scriptlet_type': unpack_dbus(scriptlet_type),
-        #                         'return_code': unpack_dbus(return_code),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionScriptError',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'scriptlet_type': unpack_dbus(scriptlet_type),
+                                 'return_code': unpack_dbus(return_code),
+                                 }
+                             })
 
     def on_TransactionVerifyStart(self, session_object_path, total) :
         '''
@@ -972,6 +948,7 @@ class Client:
                 @nevra: full NEVRA of the package
         '''
         logger.error("on_TransactionUnpackError (%s)", repr(args))
+        self.__TransactionTimer.start()
         #self.eventQueue.put({'event': 'OnTransactionUnpackError',
         #                     'value': {
         #                         'session_object_path':unpack_dbus(session_object_path),
