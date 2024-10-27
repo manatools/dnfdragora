@@ -658,16 +658,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.fileMenu['widget'].rebuildMenuTree();
 
         # build Options menu
-        self.infoMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
-            'history' : yui.YMenuItem(_("History")),
-        }
+        #self.infoMenu = {
+        #    'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
+        #    'history' : yui.YMenuItem(_("History")),
+        #}
 
         #NOTE following the same behavior to simplfy further menu entry addtion
-        ordered_menu_lines = ['history']
-        for l in ordered_menu_lines :
-            self.infoMenu['widget'].addItem(self.infoMenu[l])
-        self.infoMenu['widget'].rebuildMenuTree();
+        #ordered_menu_lines = ['history']
+        #for l in ordered_menu_lines :
+        #    self.infoMenu['widget'].addItem(self.infoMenu[l])
+        #self.infoMenu['widget'].rebuildMenuTree();
 
         # build Options menu
         self.optionsMenu = {
@@ -1506,8 +1506,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     elif item == self.optionsMenu['user_prefs'] :
                         up = dialogs.OptionDialog(self)
                         up.run()
-                    elif item == self.infoMenu['history'] :
-                        self.backend.GetHistoryByDays(0, 120) #TODO add in config file
+                    #elif item == self.infoMenu['history'] :
+                    #    self.backend.GetHistoryByDays(0, 120) #TODO add in config file
                     elif item == self.helpMenu['help']  :
                         info = helpinfo.DNFDragoraHelpInfo()
                         hd = helpdialog.HelpDialog(info)
