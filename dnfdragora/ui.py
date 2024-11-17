@@ -2316,7 +2316,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
           dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(errors))
-          self._enableAction(True)
+
+          # TODO Transaction has errors we should clean it up reload all by now
+          self.backend.reloadDaemon()
+          self.backend.clear_cache(also_groups=True)
+          self.packageQueue.clear()
+          self._status = DNFDragoraStatus.STARTUP
+          self._enableAction(False)
           return
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
