@@ -2272,9 +2272,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if result == 1: #Transaction WARNING
           errors = self.backend.TransactionProblems(sync=True)
           err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
+          dialogs.warningMsgBox({'title'  : _('Transaction with warnings',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction with warnings: %s", repr(errors))
 
-        ok = result == 0 or result == 1
+        ok = result == 0 # Avoid to die "or result == 1" TODO manage Warning
         if ok:
           self.started_transaction = {
             'Install': {},
