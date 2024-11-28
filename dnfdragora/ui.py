@@ -764,7 +764,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         sizePadded = pkg_sizeM
         # strip trailing K
         if sizePadded.endswith('K'):
-            sizePadded = sizePadded.removesuffix('K')
+            sizePadded = sizePadded[:-1]
         else:
             logger.warning('while building sizePadded, no trailing K in %s , why? proceeding anyways', pkg_sizeM)
         (sizeInt, decMark, decimals) = sizePadded.partition('.')
