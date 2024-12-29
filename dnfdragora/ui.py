@@ -2397,7 +2397,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if is_dict:
             if 'error' in info.keys() and 'result' in info.keys():
               if info['error']:
+                #got an Exception into trhead loop
                 logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
+                title = _("Error in status %(status)s on %(event)s")%({'status':self._status, 'event':(event if event else "---")})
+                dialogs.warningMsgBox({'title' : title, "text": str(info['error']), "richtext":True})
+                # Force return on STARTUP on error
+                self.backend.reloadDaemon()
+                self.backend.clear_cache(also_groups=True)
+                self.packageQueue.clear()
+                self._status = DNFDragoraStatus.STARTUP
+                self._enableAction(False)
+                # force return on error
+                return False
               elif info['result']:
                 is_list = isinstance(info['result'], list)
                 logger.debug("Event received %s, %s - status %s", event, len(info['result']) if is_list else info, self._status)

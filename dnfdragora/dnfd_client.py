@@ -474,7 +474,8 @@ class Client:
             func(*args)
       except Exception as err:
         logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
-        data['error'] = err
+        self._return_handler(err, data)
+        #data['error'] = err
 
       # We enqueue one request at the time by now, monitoring _sent
       self._sent = False
