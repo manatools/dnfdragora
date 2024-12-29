@@ -1,21 +1,21 @@
 This file is meant to get a list of things that should be hopefully implemented or fixed
 as soon as possible. 
 
+Any helps would be appreciated, since most of us have a daily job and we do our best to be reactive, but as you can imagine that is not easy and always possible.
+
 # Near term targets
 
 ## Important
-- [ ] Porting to dnf5daemon (split in more tasks)
+- [X] Porting to dnf5daemon (split in more tasks)
 - [ ] Porting dnfdragora-update to dnf5daemon
 - [ ] Update Help and documentation
-- [ ] Update and fix user settings
+- [\] Update and fix user settings (in progress)
 
 ### Async working (old tasks to be evaluated):
-- [ ] Fix transactions to make them async too (in progress, missing undo)
-- [ ] Change progress bar layout (in progress)
+- [\] Change progress bar layout (in progress)
 - [ ] Add a configuration entry to avoid dnfdragora-update autostarts [87](https://github.com/manatools/dnfdragora/issues/87)
-- [ ] Fix group caching if comp is selected (in progress, it works but sync now)
 - [ ] Add and/or change some icons if possible (in progress thanks to Carson Black) issues ~~[55](https://github.com/manatools/dnfdragora/issues/55)~~, [139](https://github.com/manatools/dnfdragora/issues/139)
-- [ ] Improve error management and user warning on errors (add transaction, etc.)
+- [ ] Improve error management and user warning on errors (ERROR:dbus.proxies:Introspect error on :1.51:/org/rpm/dnf/v0: dbus.exceptions.DBusException: org.freedesktop.DBus.Error.NoReply: Remote peer disconnected when daemon is updated for instance)
 
 ## Nice to have 
 - [ ] Add a new filter "show only packages with GUI" (query.filter_file(["/usr/share/applications/*.desktop"], GLOB)) 
