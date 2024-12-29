@@ -1957,7 +1957,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 /// @return  string representation of the scriptlet type
                 static const char * script_type_to_string(ScriptType type) noexcept;
         '''
-        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type),
+        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type)
         values = (session_object_path,nevra, scriptlet_type, scriptletType)
         logger.debug('OnTransactionScriptStart: %s', repr(values))
         if session_object_path != self.backend.session_path :
@@ -1977,7 +1977,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 @scriptlet_type: scriptlet type that started (pre, post,...)
                 @return_code: return value of the script
         '''
-        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type),
+        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type)
         values = (session_object_path,nevra, scriptlet_type, scriptletType, return_code)
         logger.debug('OnTransactionScriptStop: %s', repr(values))
         if session_object_path != self.backend.session_path :
@@ -1995,7 +1995,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 @scriptlet_type: scriptlet type that started (pre, post,...)
                 @return_code: return value of the script
         '''
-        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type),
+        scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type)
         values = (session_object_path,nevra, scriptlet_type, scriptletType, return_code)
         logger.error('_OnTransactionScriptError: %s', repr(values))
         if session_object_path != self.backend.session_path :
