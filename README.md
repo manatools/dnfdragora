@@ -14,12 +14,9 @@ Example with ncurses:
 
 ## REQUIREMENTS
 
-### DNF
-* https://github.com/rpm-software-management/dnf
-* Version higher than 1.1.9 required.
-
-### DNF Daemon
-* https://github.com/manatools/dnfdaemon/
+### DNF5 Daemon
+* https://github.com/rpm-software-management/dnf5
+* Version higher than 5.2.7 required.
 
 ### pystray >= 0.17.3
 * https://github.com/moses-palmer/pystray
