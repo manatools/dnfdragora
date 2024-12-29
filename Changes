@@ -1,3 +1,7 @@
+2024-12-29 v. 2.99.0
+--------------------
+- Port to dnf5daemon
+
 2023-11-25 v. 2.1.5
 -------------------
 - Fixed Segfault error when there is no package description. Thanks to Petr Leliaev
