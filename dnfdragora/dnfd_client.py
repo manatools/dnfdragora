@@ -286,6 +286,8 @@ class Client:
 
             self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin)
 
+            self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress)
+
             self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart)
             self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress)
             self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop)
@@ -698,6 +700,26 @@ class Client:
         logger.debug("on_TransactionBeforeBegin (%s)", repr(args))
         # Start the transaction timer
         self.__TransactionTimer.start()
+
+    def on_TransactionElemProgress(self, session_object_path, nevra, processed, total):
+        """
+        Overall progress in transaction item processing. Called right before an item is processed.
+        Args:
+            @session_object_path: object path of the dnf5daemon session
+            @nevra: full NEVRA of the package
+            @processed: amount already processed (starting from 0, just before it is processed)
+            @total: total to process
+        """
+        # Start the transaction timer
+        self.__TransactionTimer.start()
+        self.eventQueue.put({'event': 'OnTransactionElemProgress',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 'processed': unpack_dbus(processed),
+                                 'total': unpack_dbus(total),
+                                 }
+                             })
 
     def on_TransactionAfterComplete(self,  session_object_path, success) :
         '''

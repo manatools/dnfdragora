@@ -1876,6 +1876,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             return
         self.infobar.reset_all()
 
+    def _OnTransactionElemProgress(self, session_object_path, nevra, processed, total):
+        """
+        Overall progress in transaction item processing. Called right before an item is processed.
+        Args:
+            @session_object_path: object path of the dnf5daemon session
+            @nevra: full NEVRA of the package
+            @processed: amount already processed (starting from 0, just before it is processed)
+            @total: total to process
+        """
+        values = (session_object_path, nevra, total)
+        logger.debug('OnTransactionElemProgress: %s', repr(values))
+        if session_object_path != self.backend.session_path :
+            logger.warning("OnTransactionElemProgress: Different session path received")
+            return
+        total_frac = (processed+1) / total if total > 0 else 0
+        self.infobar.set_progress(total_frac)
+        self.infobar.info( _('Transaction in progress: <%(nevra)s> starts') %{'nevra': nevra, })
+
     def _OnTransactionTransactionStart(self, session_object_path, total):
         '''
             Preparation of transaction packages has started.
@@ -2521,6 +2539,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self._OnTransactionActionProgress(info['session_object_path'], info['nevra'], info['processed'], info['total'])
           elif (event == 'OnTransactionActionStop'):
               self._OnTransactionActionStop(info['session_object_path'], info['nevra'], info['total'])
+          elif (event == 'OnTransactionElemProgress'):
+              self._OnTransactionElemProgress(info['session_object_path'], info['nevra'], info['processed'], info['total'])
           elif (event == 'OnTransactionTransactionStart'):
               self._OnTransactionTransactionStart(info['session_object_path'], info['total'])
           elif (event == 'OnTransactionTransactionProgress'):
