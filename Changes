@@ -1,5 +1,6 @@
 202X-XX-XX v. 2.99.1
 --------------------
+- Moved backend Update to DistroSync since it performs better checks
 - Added signal transactionelemprocess
 
 2024-12-29 v. 2.99.0

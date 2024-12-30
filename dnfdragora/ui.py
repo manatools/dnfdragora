@@ -1347,7 +1347,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               if action == 'i':
                 self.backend.Install(pkgs, sync=True)
               elif action == 'u':
-                self.backend.Update(pkgs, sync=True)
+                self.backend.DistroSync(pkgs, sync=True)
               elif action == 'r':
                 self.backend.Remove(pkgs, sync=True)
               else:
