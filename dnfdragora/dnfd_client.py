@@ -1469,9 +1469,9 @@ class Client:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Reinstall', False, specs, option)
+          self._run_dbus_async('Reinstall', False, specs, options)
         else:
-          self._run_dbus_sync('Reinstall', specs, option)
+          self._run_dbus_sync('Reinstall', specs, options)
 
     def Downgrade(self, specs, options={}, sync=False):
         '''
@@ -1484,9 +1484,9 @@ class Client:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('Downgrade', False, specs, option)
+          self._run_dbus_async('Downgrade', False, specs, options)
         else:
-          self._run_dbus_sync('Downgrade', specs, option)
+          self._run_dbus_sync('Downgrade', specs, options)
 
     def DistroSync(self, specs, options={}, sync=False):
         '''
@@ -1500,9 +1500,9 @@ class Client:
             Unknown options are ignored.
         '''
         if not sync:
-          self._run_dbus_async('DistroSync', False, specs, option)
+          self._run_dbus_async('DistroSync', False, specs, options)
         else:
-          self._run_dbus_sync('DistroSync', specs, option)
+          self._run_dbus_sync('DistroSync', specs, options)
 
     def BuildTransaction(self, options={}, sync=False):
         '''
