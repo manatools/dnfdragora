@@ -346,6 +346,102 @@ class HistoryView:
         return performedUndo
 
 
+class PackageActionDialog:
+    '''
+      PackageActionDialog is a dialog that allows to select the action 
+      to be performed on packages. Default behaviorn is Normal e.g.
+      Installing, Updating or removing selected packages.
+    '''
+
+    def __init__(self, parent, actionValue):
+        self.parent = parent
+        self.factory = self.parent.factory
+        self.actionValue = self.savedActionValue = actionValue
+        
+    def run(self):
+        '''
+          Propose a radio button list related to the possible actions
+        '''
+
+        ## push application title
+        appTitle = yui.YUI.app().applicationTitle()
+        ## set new title to get it in dialog
+        yui.YUI.app().setApplicationTitle(_("Action on selected packages") )
+        minWidth  = 60;
+        minHeight = 10;
+        dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
+        layout  = self.factory.createVBox(minSize)
+
+        #labeledFrameBox - Actions
+        frame = self.factory.createFrame(layout, "Actions")
+        frame.setWeight( yui.YD_HORIZ, 1 )
+        frame = self.factory.createHVCenter( frame )
+        frame = self.factory.createHVSquash( frame )
+        frame = self.factory.createVBox( frame )
+
+        rbg       = self.factory.createRadioButtonGroup(frame)
+        frame   = self.factory.createVBox(rbg)
+        Normal  = self.factory.createRadioButton(self.factory.createLeft(frame), _("Normal (Install/Upgrade/Remove)"), self.actionValue == const.Actions.NORMAL)
+        Normal.setNotify(True)
+        rbg.addRadioButton(Normal)
+        
+        Reinstall = self.factory.createRadioButton(self.factory.createLeft(frame), _("Reinstall"), self.actionValue == const.Actions.REINSTALL)
+        Reinstall.setNotify(True)
+        if self.parent.update_only :
+            Reinstall.setDisabled()
+        rbg.addRadioButton(Reinstall)
+
+        Downgrade = self.factory.createRadioButton(self.factory.createLeft(frame), _("Downgrade"), self.actionValue == const.Actions.DOWNGRADE)
+        Downgrade.setNotify(True)
+        if self.parent.update_only :
+            Downgrade.setDisabled()
+        rbg.addRadioButton(Downgrade)
+
+        DistroSync = self.factory.createRadioButton(self.factory.createLeft(frame), _("Distro Sync"), self.actionValue == const.Actions.DISTRO_SYNC)
+        DistroSync.setNotify(True)
+        rbg.addRadioButton(DistroSync)
+    
+        align = self.factory.createRight(layout)
+        hbox = self.factory.createHBox(align)
+        okButton = self.factory.createPushButton(hbox, _("&Ok"))
+        cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
+        dlg.pollEvent()
+        dlg.setDefaultButton(cancelButton)
+
+        while (True) :
+            event = dlg.waitForEvent()
+            eventType = event.eventType()
+            #event type checking
+            if (eventType == yui.YEvent.CancelEvent) :
+                self.actionValue = self.savedActionValue
+                break
+            elif (eventType == yui.YEvent.WidgetEvent) :
+                # widget selected
+                widget = event.widget()
+
+                if (widget == cancelButton) :
+                    self.actionValue = self.savedActionValue
+                    break
+                elif (widget == okButton) :
+                    break
+                elif (widget == Normal) :
+                    self.actionValue = const.Actions.NORMAL
+                elif (widget == Reinstall) :
+                    self.actionValue = const.Actions.REINSTALL
+                elif (widget == Downgrade) :
+                    self.actionValue = const.Actions.DOWNGRADE
+                elif (widget == DistroSync) :
+                    self.actionValue = const.Actions.DISTRO_SYNC
+
+        dlg.destroy()
+
+        #restore old application title
+        yui.YUI.app().setApplicationTitle(appTitle)
+
+        return self.actionValue
+
+
 class TransactionResult:
     '''
     TransactionResult is a dialog that shows the transaction dependencies before

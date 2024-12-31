@@ -191,6 +191,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           'downloads' : {}
         } # obsoletes _files_to_download and _files_downloaded
 
+        self.packageActionValue = const.Actions.NORMAL
         # TODO... _package_name, _gpg_confirm imported from old event management
         # Try to remove them when fixing progress bar
         self._package_name = None
@@ -599,6 +600,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             #Items must be "disowned"
             for k in self.fileMenu.keys():
                 self.fileMenu[k].this.own(False)
+
+            # building Actions menu
+            mItem = self.menubar.addMenu(_("&Actions"))
+            self.ActionMenu = {
+                 'menu_name' : mItem,
+                 'actions'   : yui.YMenuItem(mItem, _("&Action on packages")),
+            }
+            #Items must be "disowned"
+            for k in self.ActionMenu.keys():
+                self.ActionMenu[k].this.own(False)
 
             # # building Information menu
             # mItem = self.menubar.addMenu(_("&Information"))
@@ -1339,19 +1350,42 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
           Populate a transaction
         '''
-        for action in const.QUEUE_PACKAGE_TYPES:
-            pkg_ids = self.packageQueue.get(action)
+        if self.packageActionValue == const.Actions.NORMAL:
+            for action in const.QUEUE_PACKAGE_TYPES.keys():
+                pkg_ids = self.packageQueue.get(action)
+                if len(pkg_ids) >0:
+                    pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
+                    logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkgs))
+                    if action == 'i':
+                        self.backend.Install(pkgs, sync=True)
+                    elif action == 'u':
+                        self.backend.Update(pkgs, sync=True)
+                    elif action == 'r':
+                        self.backend.Remove(pkgs, sync=True)
+                    else:
+                        logger.error('Action %s not managed' % (action))
+        elif self.packageActionValue == const.Actions.REINSTALL:
+            pkg_ids = self.packageQueue.get('r')
             if len(pkg_ids) >0:
-              pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
-              logger.debug('adding: %s %s' %(const.QUEUE_PACKAGE_TYPES[action], pkgs))
-              if action == 'i':
-                self.backend.Install(pkgs, sync=True)
-              elif action == 'u':
-                self.backend.Update(pkgs, sync=True)
-              elif action == 'r':
-                self.backend.Remove(pkgs, sync=True)
-              else:
-                logger.error('Action %s not managed' % (action))
+                pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
+                logger.debug('Reinstalling %s' %(pkgs))
+                self.backend.Reinstall(pkgs, sync=True)
+        elif self.packageActionValue == const.Actions.DOWNGRADE:
+            pkg_ids = self.packageQueue.get('r')
+            if len(pkg_ids) >0:
+                pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
+                logger.debug('Reinstalling %s' %(pkgs))
+                self.backend.Downgrade(pkgs, sync=True)
+        elif self.packageActionValue == const.Actions.DISTRO_SYNC:
+            pkg_ids = self.packageQueue.get('r')
+            pkgs=[]
+            if len(pkg_ids) >0:
+                pkgs.extend([ dnfdragora.misc.to_pkg_tuple(pkg_id)[0] for pkg_id in pkg_ids])
+            pkg_ids = self.packageQueue.get('u')
+            if len(pkg_ids) >0:
+                pkgs.extend([dnfdragora.misc.to_pkg_tuple(pkg_id)[0] for pkg_id in pkg_ids])
+            logger.debug('Distro Sync %s' %(pkgs))
+            self.backend.DistroSync(pkgs, sync=True)
 
     def _undo_transaction(self):
         '''
@@ -1467,6 +1501,82 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         hw = None
         return undo
 
+    def _updateActionView(self, newAction):
+        '''
+            Prepare the dnfdragora view according to the selected new action.
+            Remove any selections if the  action is changed (easy way to manage new action)
+            Force to rebuild the view if action is changed (easy way to manage new action)
+            Args:
+                newAction: action to be peroform on selected packages
+            Returns:
+                if packages view needs to be rebuilt
+        '''
+        rebuild_package_list = False
+        if newAction != self.packageActionValue:
+            rebuild_package_list = True
+            self.packageActionValue = newAction
+            ordered_filters = None
+            # reset any old selection to simplfy
+            self.packageQueue.clear()
+            #1. Changing Filters
+            filter_item = 'installed' #default
+            enable_select_all = False
+            apply_button_text = _("&Apply")
+            enable_apply_button = False
+            if newAction == const.Actions.NORMAL:
+                disable_select_all = True
+                #let's get back the last saved filter for NORMAL actions
+                filter_item = self.config.userPreferences['view']['filter']
+                ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
+                if platform.machine() == "x86_64" :
+                    ordered_filters.append('skip_other')
+            elif newAction == const.Actions.DOWNGRADE:
+                ordered_filters = [ 'installed' ]
+                apply_button_text = _("&Downgrade")
+            elif newAction == const.Actions.REINSTALL:
+                ordered_filters = [ 'installed' ]
+                apply_button_text = _("&Reinstall")
+            elif newAction == const.Actions.DISTRO_SYNC:
+                ordered_filters = [ 'installed', 'to_update' ]
+                apply_button_text = _("&Distro Sync")
+                #distro sync can ber run without any file selected (sync all)
+                enable_apply_button = True
+                if self.update_only:
+                    filter_item = 'to_update'
+
+            for f in self.filters:
+                self.filters[f]['item'] = None
+
+            itemColl = yui.YItemCollection()
+            for f in ordered_filters:
+                item = yui.YItem(self.filters[f]['title'])
+                if filter_item == f:
+                    item.setSelected(True)
+                # adding item to filters to find the item selected
+                self.filters[f]['item'] = item
+                itemColl.push_back(item)
+                item.this.own(False)
+
+            self.filter_box.startMultipleChanges()
+            self.filter_box.deleteAllItems()
+            self.filter_box.addItems(itemColl)
+            #self.filter_box.setEnabled(not self.update_only)
+            self.filter_box.doneMultipleChanges()
+
+            # fixing groups
+            view = self._viewNameSelected()
+            filter = self._filterNameSelected()
+            self._fillGroupTree()
+
+            #Change Apply Button text accordingly
+            self.applyButton.setLabel(apply_button_text)
+            self.applyButton.setEnabled(enable_apply_button)
+            #disable "select all" to avoid mistakes
+            self.checkAllButton.setEnabled(enable_select_all)
+
+
+        return rebuild_package_list
+
     def handleevent(self):
         """
         Event-handler for the maindialog
@@ -1506,6 +1616,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     elif item == self.optionsMenu['user_prefs'] :
                         up = dialogs.OptionDialog(self)
                         up.run()
+                    elif item == self.ActionMenu['actions'] :
+                        actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
+                        newAction = actDlg.run()
+                        rebuild_package_list = self._updateActionView(newAction)
+
                     #elif item == self.infoMenu['history'] :
                     #    self.backend.GetHistoryByDays(0, 120) #TODO add in config file
                     elif item == self.helpMenu['help']  :
@@ -1632,10 +1747,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             else:
               self.info.setValue("")
 
-            if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
+            if self.packageActionValue != const.Actions.DISTRO_SYNC:
+                if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
+                    self.applyButton.setEnabled()
+                elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
+                    self.applyButton.setEnabled(False)
+            elif not self.applyButton.isEnabled():
                 self.applyButton.setEnabled()
-            elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
-                self.applyButton.setEnabled(False)
 
         # Save user prefs on exit
         self.saveUserPreference()
@@ -2299,6 +2417,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'Install': {},
             'Remove':{},
             'Upgrade': {},
+            'Reinstall':{},
+            'Downgrade':{},
           }
           for typ, action, who, unk, pkg in resolve:
             '''
@@ -2346,11 +2466,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # and we are here most probably for a GPG key confirmed during last transaction
         #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
         if ok and not self.always_yes and self._status != DNFDragoraStatus.RUN_TRANSACTION:
-          transaction_result_dlg = dialogs.TransactionResult(self)
-          ok = transaction_result_dlg.run(self.started_transaction)
-          if not ok:
-            self._enableAction(True)
-            return
+            if len(resolve) >0:
+                transaction_result_dlg = dialogs.TransactionResult(self)
+                ok = transaction_result_dlg.run(self.started_transaction)
+                if not ok:
+                    self._enableAction(True)
+                    return
         elif ok !=0:
           logger.error("Build transaction error %d", ok) #TODO read errors from dnf daemon
 

@@ -10,6 +10,7 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 # NOTE part of this code is imported from yumex-dnf
 
+from enum import Enum
 import os.path
 import re
 import subprocess
@@ -61,6 +62,19 @@ else:  # use x86_64 as fallback
 DBUS_ERR_RE = re.compile(r'.*GDBus.Error:([\w\.]*): (.*)$')
 
 # Constants
+
+class Actions(Enum):
+    '''
+    Enum
+        NORMAL      Install/Update/Remove packages
+        REINSTALL   Reinstall packages
+        DOWNGRADE   Downgrade packages
+        DISTRO_SYNC Use Distro Sync to synchronize packages with repo
+    '''
+    NORMAL = 1
+    REINSTALL = 2
+    DOWNGRADE = 3
+    DISTRO_SYNC = 4
 
 # Main UI stack names
 PAGE_PACKAGES = 'packages'
