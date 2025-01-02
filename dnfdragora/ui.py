@@ -886,6 +886,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             self._setStatusToItem(pkg,item)
 
         if filter == 'all' or filter == 'not_installed' or filter == 'skip_other':
+            installed_pkgs = {}
+            if self.packageActionValue == const.Actions.DOWNGRADE:
+               installed = self.backend.get_packages('installed')
+               installed_pkgs = {p.name:p for p in installed}
+
             available = self.backend.get_packages('available')
             for pkg in available :
                 ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
@@ -896,6 +901,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   else:
                     groups_pkg = self.backend.get_groups_from_package(pkg)
                     insert_items = groupName in groups_pkg
+                # if looking for downgrade we must add only the available that are instaled
+                # TODO check if they are also updates
+                if self.packageActionValue == const.Actions.DOWNGRADE:
+                  if pkg.name not in installed_pkgs:
+                    insert_items = False
+                  elif pkg.fullname >= installed_pkgs[pkg.name].fullname:
+                     insert_items = False
 
                 if insert_items :
                     skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
@@ -1371,10 +1383,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 logger.debug('Reinstalling %s' %(pkgs))
                 self.backend.Reinstall(pkgs, sync=True)
         elif self.packageActionValue == const.Actions.DOWNGRADE:
-            pkg_ids = self.packageQueue.get('r')
+            pkg_ids = self.packageQueue.get('i')
             if len(pkg_ids) >0:
                 pkgs = [dnfdragora.misc.pkg_id_to_full_nevra(pkg_id) for pkg_id in pkg_ids]
-                logger.debug('Reinstalling %s' %(pkgs))
+                logger.debug('Downgrading %s' %(pkgs))
                 self.backend.Downgrade(pkgs, sync=True)
         elif self.packageActionValue == const.Actions.DISTRO_SYNC:
             pkg_ids = self.packageQueue.get('r')
@@ -1531,7 +1543,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if platform.machine() == "x86_64" :
                     ordered_filters.append('skip_other')
             elif newAction == const.Actions.DOWNGRADE:
-                ordered_filters = [ 'installed' ]
+                ordered_filters = [ 'not_installed' ]
+                filter_item = 'not_installed'
                 apply_button_text = _("&Downgrade")
             elif newAction == const.Actions.REINSTALL:
                 ordered_filters = [ 'installed' ]
