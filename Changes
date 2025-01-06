@@ -1,6 +1,8 @@
 202X-XX-XX v. 2.99.1
 --------------------
-- Added signal transactionelemprocess
+- Added a menu "Actions" to choose action to be perform by pressing "apply button"
+- Implemented Downgrade, Reinstall, DistroSync. Issue #242
+- Added signal transaction_elem_progress management
 
 2024-12-29 v. 2.99.0
 --------------------
