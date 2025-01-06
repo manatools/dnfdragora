@@ -901,8 +901,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   else:
                     groups_pkg = self.backend.get_groups_from_package(pkg)
                     insert_items = groupName in groups_pkg
-                # if looking for downgrade we must add only the available that are instaled
-                # TODO check if they are also updates
+                # if looking for downgrade we must add only the available that are installed and not upgrades
                 if self.packageActionValue == const.Actions.DOWNGRADE:
                   if pkg.name not in installed_pkgs:
                     insert_items = False
@@ -1814,6 +1813,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar.reset_all()
         # Clean up download and transaction data
         self.__resetDownloads()
+
+        #restore actions to Normal
+        self._updateActionView(const.Actions.NORMAL)
 
         # TODO change UI and manage this better afer a transaction report
         self.backend.reloadDaemon()
