@@ -537,11 +537,11 @@ msgstr "Revision"
 
 #: dnfdragora/dialogs.py:640
 msgid "Content tags"
-msgstr ""
+msgstr "Inhaltliche Tags"
 
 #: dnfdragora/dialogs.py:641
 msgid "Distro tags "
-msgstr ""
+msgstr "Distro-Tags"
 
 #: dnfdragora/dialogs.py:642
 msgid "Updated"
@@ -628,7 +628,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1016
 msgid "Consider packages to upgrade as updates"
-msgstr ""
+msgstr "Pakete zum Upgrade als Updates handhaben"
 
 #: dnfdragora/dialogs.py:1025
 msgid "Hide dnfdragora-update menu if there are no updates"
@@ -1474,12 +1474,18 @@ msgid ""
 "<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are "
 "added to updates and filtered as updates.</li>"
 msgstr ""
+"<li><b>Pakete zum Upgrade als Updates handhaben</b>: wenn ausgewählt werden "
+"Upgrades in die Liste der Updates hinzugefügt und als Aktualisierung "
+"gefiltert.</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked "
 "dnfdragora update is hidden if there are no updates."
 msgstr ""
+"<li><b>Verstecke das dnfdragora-update Menü, wenn keine Aktualisierungen "
+"verfügbar sind</b>: wenn ausgewählt wird dnfdragora update versteckt, wenn "
+"keine Aktualisierungen verfügbar sind."
 
 #: dnfdragora/helpinfo.py:125
 msgid ""
@@ -2089,6 +2095,8 @@ msgstr "Unbekannt"
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
+"[%(count_files)d] Dateien werden heruntergeladen - Datei %(id)s - "
+"%(description)s ..."
 
 #: dnfdragora/ui.py:2246
 #, python-format
