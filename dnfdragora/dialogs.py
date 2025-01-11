@@ -1127,8 +1127,8 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.fuzzy_search   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Fuzzy search (legacy mode)"), fuzzy_search )
     self.fuzzy_search.setNotify(True)
-    self.eventManager.addWidgetEvent(self.fuzzy_search, self.onMatchAll, True)
-    self.widget_callbacks.append( { 'widget': self.fuzzy_search, 'handler': self.onMatchAll} )
+    self.eventManager.addWidgetEvent(self.fuzzy_search, self.onFuzzySearch, True)
+    self.widget_callbacks.append( { 'widget': self.fuzzy_search, 'handler': self.onFuzzySearch} )
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
@@ -1246,7 +1246,7 @@ class OptionDialog(basedialog.BaseDialog):
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
-  def onMatchAll(self, obj):
+  def onFuzzySearch(self, obj):
     '''
     Newest Only Changing
     '''
