@@ -1,5 +1,7 @@
 202X-XX-XX v. 2.99.1
 --------------------
+- Restored "Show newest packages only" search option. Now works with reg exp also
+- Added Fuzzy Search option that adds wild characther * to input (legacy dnf4 behaviour)
 - Added a menu "Actions" to choose action to be perform by pressing "apply button"
 - Implemented Downgrade, Reinstall, DistroSync. Issue #242
 - Added signal transaction_elem_progress management
