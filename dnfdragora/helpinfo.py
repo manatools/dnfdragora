@@ -130,7 +130,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
           _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
         _('<h2>Search options</h2>') + \
-          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newest packages on search. <i>Note that is valid if searches are not performed by using regular expressions</i></li>') + \
+          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newest packages on search.</li>') + \
           _('<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using regular expressions will add "*" to the given words, restoring the behavior dnfdragora had usnig dnffdaemon 4.</li></ul>') + \
         _('<h2>Logging options</h2>') + \
           _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \

@@ -2647,14 +2647,37 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
           elif (event == 'RESearch'):
             if not info['error']:
-              packages = info['result']
+              pkgs = None
+              packages = None
+              if self.newest_only:
+                pkgs = sorted(info['result'], key=lambda p: p.full_nevra, reverse=True)
+                name = None
+                packages = []
+                for p in pkgs:
+                  if p.name != name:
+                    packages.append(p)
+                    name = p.name
+              else:
+                 packages = info['result']
               self._showSearchResult(packages, createTreeItem=True)
             else:
               self._showErrorAndContinue(_("Search error using regular expression"), info['error'])
               logger.error("Search error: %s", info['error'])
+
           elif (event == 'Search'):
             if not info['error']:
-              packages = self.backend.make_pkg_object_with_attr(info['result'])
+              pkgs = None
+              packages = None
+              if self.newest_only:
+                pkgs = sorted(self.backend.make_pkg_object_with_attr(info['result']), key=lambda p: p.full_nevra, reverse=True)
+                name = None
+                packages = []
+                for p in pkgs:
+                  if p.name != name:
+                    packages.append(p)
+                    name = p.name
+              else:
+                packages = self.backend.make_pkg_object_with_attr(info['result'])
               self._showSearchResult(packages, createTreeItem=True)
             else:
               logger.error("Search error: %s", info['error'])

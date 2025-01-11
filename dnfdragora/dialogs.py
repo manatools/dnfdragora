@@ -1248,7 +1248,7 @@ class OptionDialog(basedialog.BaseDialog):
 
   def onFuzzySearch(self, obj):
     '''
-    Newest Only Changing
+    Fuzzy Search Changing
     '''
     if isinstance(obj, yui.YCheckBox):
       try:
