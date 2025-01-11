@@ -1117,7 +1117,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox, 0.3)
     heading.setAutoWrap()
 
-    match_all = self.parent.match_all
+    fuzzy_search = self.parent.fuzzy_search
     newest_only = self.parent.newest_only
 
     self.newest_only = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show newest packages only"), newest_only )
@@ -1125,10 +1125,10 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.newest_only, self.onNewestOnly, True)
     self.widget_callbacks.append( { 'widget': self.newest_only, 'handler': self.onNewestOnly} )
 
-    self.match_all   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Match all words"), match_all )
-    self.match_all.setNotify(True)
-    self.eventManager.addWidgetEvent(self.match_all, self.onMatchAll, True)
-    self.widget_callbacks.append( { 'widget': self.match_all, 'handler': self.onMatchAll} )
+    self.fuzzy_search   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Fuzzy search (legacy mode)"), fuzzy_search )
+    self.fuzzy_search.setNotify(True)
+    self.eventManager.addWidgetEvent(self.fuzzy_search, self.onMatchAll, True)
+    self.widget_callbacks.append( { 'widget': self.fuzzy_search, 'handler': self.onMatchAll} )
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
@@ -1252,10 +1252,10 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     if isinstance(obj, yui.YCheckBox):
       try:
-        self.parent.config.userPreferences['settings']['search']['match_all'] = obj.isChecked()
+        self.parent.config.userPreferences['settings']['search']['fuzzy_search'] = obj.isChecked()
       except:
-        self.parent.config.userPreferences['settings']['search'] = { 'match_all' : obj.isChecked() }
-      self.parent.match_all = obj.isChecked()
+        self.parent.config.userPreferences['settings']['search'] = { 'fuzzy_search' : obj.isChecked() }
+      self.parent.fuzzy_search = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
@@ -1357,10 +1357,10 @@ class OptionDialog(basedialog.BaseDialog):
       self._openLayoutOptions()
     elif k == "search":
       self.parent.config.userPreferences['settings']['search'] = {
-        'match_all': True,
+        'fuzzy_search': False,
         'newest_only': False,
       }
-      self.parent.match_all = True
+      self.parent.fuzzy_search = False
       self.parent.newest_only = False
       self._openSearchOptions()
     elif k == "logging":

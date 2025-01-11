@@ -219,7 +219,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
-        self.match_all = False
+        self.fuzzy_search = False
         self.newest_only = False
         self.all_updates_filter = False
         self.log_enabled = False
@@ -320,8 +320,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             search = {}
             if 'search' in settings.keys():
                 search = settings['search']
-            if 'match_all' in search.keys():
-                self.match_all = search['match_all']
+            if 'fuzzy_search' in search.keys():
+                self.fuzzy_search = search['fuzzy_search']
             if 'newest_only' in search.keys():
                 self.newest_only = search['newest_only']
 
@@ -360,8 +360,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     search = user_settings['search']
                     if 'newest_only' in search.keys():
                         self.newest_only = search['newest_only']
-                    if 'match_all' in search.keys():
-                        self.match_all = search['match_all']
+                    if 'fuzzy_search' in search.keys():
+                        self.fuzzy_search = search['fuzzy_search']
                 #### Logging
                 if 'log' in user_settings.keys():
                   log = user_settings['log']
@@ -1334,10 +1334,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           # fixing attribute names
           if field == 'name' :
             field = 'fullname'
-
           self.backend.search(filter, field, search_string)
         else:
-          strings = re.split('[ ,|:;]',search_string)
+          strings = [s for s in re.split('[ ,|:;]',search_string) if s]
+          if self.fuzzy_search:
+             strings = [s.join(["*","*"]) for s in strings]
 
           options = {
             "scope": filter,
@@ -1486,7 +1487,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             }
 
         search = {
-            'match_all': self.match_all,
+            'fuzzy_search': self.fuzzy_search,
             'newest_only': self.newest_only
           }
 

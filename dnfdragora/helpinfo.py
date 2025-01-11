@@ -131,7 +131,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
         _('<h2>Search options</h2>') + \
           _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newest packages on search. <i>Note that is valid if searches are not performed by using regular expressions</i></li>') + \
-          _('<li><b>Match all words</b>: if checked a search without using regular expressions will match all the given words into the text field.</li></ul>') + \
+          _('<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using regular expressions will add "*" to the given words, restoring the behavior dnfdragora had usnig dnffdaemon 4.</li></ul>') + \
         _('<h2>Logging options</h2>') + \
           _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \
           _('<ul><li><b>Change directory</b>: this option allows to set logging directory, directory must exist and needs write permission.</li>') + \
