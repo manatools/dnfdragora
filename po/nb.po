@@ -6,16 +6,16 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2017
 # Yuri Chornoivan <yurchor@ukr.net>, 2024
-# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2024
+# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2025
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 18:30+0100\n"
+"POT-Creation-Date: 2025-01-11 18:25+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2024\n"
+"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2025\n"
 "Language-Team: Norwegian Bokmål (https://app.transifex.com/MageiaLinux/"
 "teams/9361/nb/)\n"
 "Language: nb\n"
@@ -340,27 +340,27 @@ msgstr "Sikkerhet"
 msgid "Enhancement"
 msgstr "Forbedring"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1405
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1417
 msgid "Undo transaction"
 msgstr "Angre transaksjon"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1430
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1442
 msgid "Error checking package signatures"
 msgstr "Feil ved sjekking av pakkesignaturer"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1434
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1446
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Nedlastingsfeil"
 msgstr[1] "Nedlastingsfeil"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1439
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1451
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Feil"
 msgstr[1] "Feil i transaksjonen"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1451
+#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1463
 msgid "Build transaction failure"
 msgstr "Transaksjonsfeil ved bygging"
 
@@ -447,7 +447,7 @@ msgstr "Identifikator"
 msgid "Name"
 msgstr "Navn"
 
-#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1156
+#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1167
 msgid "Type"
 msgstr "Type"
 
@@ -571,7 +571,7 @@ msgstr "Informasjon"
 msgid "Value"
 msgstr "Verdi"
 
-#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1524
+#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1536
 msgid "&Apply"
 msgstr "&Bruk"
 
@@ -654,8 +654,8 @@ msgid "Show newest packages only"
 msgstr "Vis bare de nyeste pakkene"
 
 #: dnfdragora/dialogs.py:1128
-msgid "Match all words"
-msgstr "Match alle ord"
+msgid "Fuzzy search (legacy mode)"
+msgstr "Fuzzy søk (eldre modus)"
 
 #: dnfdragora/dialogs.py:1150
 msgid "Logging options (active at next startup)"
@@ -1536,20 +1536,20 @@ msgstr "<h2>Søkealternativer</h2>"
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only "
-"newest packages on search. <i>Note that is valid if searches are not "
-"performed by using regular expressions</i></li>"
+"newest packages on search.</li>"
 msgstr ""
-"<ul><li><b>Viser bare de nyeste pakkene </b>: Dersom markert vil dnfdragora "
-"vise bare de nyeste pakkene når du søker. <i>Noter at det er gyldig hvis "
-"søket ikke benytter regulære uttrykk.</i></li>"
+"<ul><li><b>Vis kun de nyeste pakkene</b>:hvis avmerket viser dnfdragora kun "
+"de nyeste pakkene ved søk.</li>"
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
-"<li><b>Match all words</b>: if checked a search without using regular "
-"expressions will match all the given words into the text field.</li></ul>"
+"<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
+"regular expressions will add \"*\" to the given words, restoring the "
+"behavior dnfdragora had usnig dnffdaemon 4.</li></ul>"
 msgstr ""
-"<li><b>Match alle ord</b>:hvis avkrysset vil et søk uten å bruke regulære "
-"uttrykk samsvare med alle de gitte ordene i tekstfeltet.</li></ul>"
+"<li><b>Fuzzy  søk (eldre modus)</b>: Hvis du sjekket et søk uten å bruke "
+"regulære uttrykk, vil det legge til \"*\" til de gitte ordene, og "
+"gjenopprette oppførselen dnfdragora hadde ved bruk av dnffdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
@@ -1955,174 +1955,174 @@ msgstr "låst"
 msgid "installed"
 msgstr "installert"
 
-#: dnfdragora/ui.py:1139
+#: dnfdragora/ui.py:1150
 msgid "Missing information"
 msgstr "Mangler informasjon"
 
-#: dnfdragora/ui.py:1156
+#: dnfdragora/ui.py:1167
 msgid "Severity"
 msgstr "Alvorlighet"
 
-#: dnfdragora/ui.py:1165
+#: dnfdragora/ui.py:1176
 msgid "Repository"
 msgstr "Pakkebrønn"
 
-#: dnfdragora/ui.py:1535
+#: dnfdragora/ui.py:1548
 msgid "&Downgrade"
 msgstr "&Nedgrader"
 
-#: dnfdragora/ui.py:1538
+#: dnfdragora/ui.py:1551
 msgid "&Reinstall"
 msgstr "&Ominstaller"
 
-#: dnfdragora/ui.py:1541
+#: dnfdragora/ui.py:1554
 msgid "&Distro Sync"
 msgstr "&Distrosynk"
 
-#: dnfdragora/ui.py:1661
+#: dnfdragora/ui.py:1674
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Pakke%s kan ikke fjernes"
 
-#: dnfdragora/ui.py:1661
+#: dnfdragora/ui.py:1674
 msgid "Protected package selected"
 msgstr "Beskyttet pakke er valgt"
 
-#: dnfdragora/ui.py:1723
+#: dnfdragora/ui.py:1736
 msgid "Unmanaged widget"
 msgstr "Widget er ikke håndtert"
 
-#: dnfdragora/ui.py:1731
+#: dnfdragora/ui.py:1744
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Uhåndtert hendelse %d"
 
-#: dnfdragora/ui.py:1815
+#: dnfdragora/ui.py:1831
 msgid "Start transaction"
 msgstr "Start transaksjon"
 
-#: dnfdragora/ui.py:1817
+#: dnfdragora/ui.py:1833
 msgid "Downloading packages"
 msgstr "Laster ned pakker"
 
-#: dnfdragora/ui.py:1824
+#: dnfdragora/ui.py:1840
 msgid "Checking package signatures"
 msgstr "Sjekker pakkesignaturer"
 
-#: dnfdragora/ui.py:1832 dnfdragora/ui.py:2506
+#: dnfdragora/ui.py:1848 dnfdragora/ui.py:2522
 msgid "Applying changes to the system"
 msgstr "Utfører systemendringer"
 
-#: dnfdragora/ui.py:1835
+#: dnfdragora/ui.py:1851
 msgid "Verify changes on the system"
 msgstr "Verifiserer systemendringene"
 
-#: dnfdragora/ui.py:1845
+#: dnfdragora/ui.py:1861
 msgid "Info"
 msgstr "Informasjon"
 
-#: dnfdragora/ui.py:1846
+#: dnfdragora/ui.py:1862
 msgid "Changes applied"
 msgstr "Endringer tatt i bruk"
 
-#: dnfdragora/ui.py:1847
+#: dnfdragora/ui.py:1863
 msgid "OK"
 msgstr "OK"
 
-#: dnfdragora/ui.py:1852
+#: dnfdragora/ui.py:1868
 msgid "Build transaction"
 msgstr "Bygg transaksjon"
 
-#: dnfdragora/ui.py:1887
+#: dnfdragora/ui.py:1903
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Ukjent handling %(action)s på %(name)s"
 
-#: dnfdragora/ui.py:1916
+#: dnfdragora/ui.py:1932
 msgid "Transaction verification"
 msgstr "Transaksjonsverifikasjon"
 
-#: dnfdragora/ui.py:1963
+#: dnfdragora/ui.py:1979
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr "Transaksjon for pakke <%(nevra)s> startet"
 
-#: dnfdragora/ui.py:1980
+#: dnfdragora/ui.py:1996
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr "Transaksjon for pakke  <%(nevra)s> pågår"
 
-#: dnfdragora/ui.py:2013
+#: dnfdragora/ui.py:2029
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr "Transaksjon pågår: <%(nevra)s> starter"
 
-#: dnfdragora/ui.py:2029 dnfdragora/ui.py:2047
+#: dnfdragora/ui.py:2045 dnfdragora/ui.py:2063
 msgid "Preparation of transaction"
 msgstr "Forberedelse av transaksjon"
 
-#: dnfdragora/ui.py:2104
+#: dnfdragora/ui.py:2120
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr "Skriptlet <%(nevra)s> startet"
 
-#: dnfdragora/ui.py:2188
+#: dnfdragora/ui.py:2204
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: dnfdragora/ui.py:2218
+#: dnfdragora/ui.py:2234
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 "Start nedlasting av [%(count_files)d] - fil %(id)s - %(description)s ..."
 
-#: dnfdragora/ui.py:2246
+#: dnfdragora/ui.py:2262
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr "Nedlasting av fil %(id)s - %(description)s pågår"
 
-#: dnfdragora/ui.py:2333
+#: dnfdragora/ui.py:2349
 msgid "Caching updates"
 msgstr "Mellomlagre oppdateringer"
 
-#: dnfdragora/ui.py:2336
+#: dnfdragora/ui.py:2352
 msgid "Caching installed"
 msgstr "Mellomlagring installert"
 
-#: dnfdragora/ui.py:2340
+#: dnfdragora/ui.py:2356
 msgid "Caching available"
 msgstr "Mellomlagring finns tilgjengelig"
 
-#: dnfdragora/ui.py:2391
+#: dnfdragora/ui.py:2407
 msgid "Creating packages cache"
 msgstr "Opprette pakkemellomlager"
 
-#: dnfdragora/ui.py:2411
+#: dnfdragora/ui.py:2427
 msgid "Transaction with warnings"
 msgstr "Transaksjon med advarsler"
 
-#: dnfdragora/ui.py:2455 dnfdragora/ui.py:2511
+#: dnfdragora/ui.py:2471 dnfdragora/ui.py:2527
 msgid "Build Transaction error"
 msgstr "Transaksjonsfeil under bygging"
 
-#: dnfdragora/ui.py:2498
+#: dnfdragora/ui.py:2514
 msgid "Packages installed:"
 msgstr "Pakker som er installert"
 
-#: dnfdragora/ui.py:2501
+#: dnfdragora/ui.py:2517
 msgid "Packages removed:"
 msgstr "Pakker som er fjernet"
 
-#: dnfdragora/ui.py:2503
+#: dnfdragora/ui.py:2519
 msgid "Error occured:"
 msgstr "En feil oppstod:"
 
-#: dnfdragora/ui.py:2541
+#: dnfdragora/ui.py:2557
 #, python-format
 msgid "Error in status %(status)s on %(event)s"
 msgstr "Feil i status %(status)s på %(event)s"
 
-#: dnfdragora/ui.py:2637
+#: dnfdragora/ui.py:2664
 msgid "Search error using regular expression"
 msgstr "Søkefeil ved bruk av regulære uttrykk"
 
