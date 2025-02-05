@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the dnfdragora package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2017, 2018, 2019, 2020, 2024.
+# Yuri Chornoivan <yurchor@ukr.net>, 2017, 2018, 2019, 2020, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 18:30+0100\n"
-"PO-Revision-Date: 2024-12-31 20:14+0200\n"
+"POT-Creation-Date: 2025-01-11 18:25+0100\n"
+"PO-Revision-Date: 2025-02-05 09:08+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -336,15 +336,15 @@ msgstr "Безпека"
 msgid "Enhancement"
 msgstr "Поліпшення"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1405
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1417
 msgid "Undo transaction"
 msgstr "Скасувати дію"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1430
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1442
 msgid "Error checking package signatures"
 msgstr "Помилка під час спроби перевірити підписи пакунків"
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1434
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1446
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Помилки отримання даних"
@@ -352,7 +352,7 @@ msgstr[1] "Помилки отримання даних"
 msgstr[2] "Помилки отримання даних"
 msgstr[3] "Помилка отримання даних"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1439
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1451
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Помилки під час дії"
@@ -360,7 +360,7 @@ msgstr[1] "Помилки під час дії"
 msgstr[2] "Помилки під час дії"
 msgstr[3] "Помилка під час дії"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1451
+#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1463
 msgid "Build transaction failure"
 msgstr "Помилка під час побудови операції"
 
@@ -449,7 +449,7 @@ msgstr "Ідентифікатор"
 msgid "Name"
 msgstr "Назва"
 
-#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1156
+#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1167
 msgid "Type"
 msgstr "Тип"
 
@@ -573,7 +573,7 @@ msgstr "Інформація"
 msgid "Value"
 msgstr "Значення"
 
-#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1524
+#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1536
 msgid "&Apply"
 msgstr "&Застосувати"
 
@@ -655,8 +655,8 @@ msgid "Show newest packages only"
 msgstr "Показувати лише найновіші пакунки"
 
 #: dnfdragora/dialogs.py:1128
-msgid "Match all words"
-msgstr "Збіг за усіма словами"
+msgid "Fuzzy search (legacy mode)"
+msgstr "Нечіткий пошук (застарілий режим)"
 
 #: dnfdragora/dialogs.py:1150
 msgid "Logging options (active at next startup)"
@@ -694,10 +694,9 @@ msgid ""
 "\"%(fingerprint)s\"<br>Timestamp  : \"%(timestamp)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"Хочете імпортувати цей ключ GPG?<br><br>Ключ       : 0x%(id)s:"
-"<br>Ід. корист.: \"%(user)s\"<br>Відбиток   : "
-"\"%(fingerprint)s\"<br>Часова позн.: \"%(timestamp)s\"<br>З          : "
-"%(file)s"
+"Хочете імпортувати цей ключ GPG?<br><br>Ключ       : 0x%(id)s:<br>Ід. "
+"корист.: \"%(user)s\"<br>Відбиток   : \"%(fingerprint)s\"<br>Часова позн.: "
+"\"%(timestamp)s\"<br>З          : %(file)s"
 
 #: dnfdragora/dialogs.py:1615
 msgid "GPG key missed"
@@ -1467,25 +1466,25 @@ msgid ""
 "<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are "
 "added to updates and filtered as updates.</li>"
 msgstr ""
-"<li><b>Вважати пакунки оновленої версії оновленнями</b>: якщо позначено,"
-" пакунки оновленої версії буде додано до звичайних оновлень і фільтровано як"
-" оновлення.</li>"
+"<li><b>Вважати пакунки оновленої версії оновленнями</b>: якщо позначено, "
+"пакунки оновленої версії буде додано до звичайних оновлень і фільтровано як "
+"оновлення.</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
 "<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked "
 "dnfdragora update is hidden if there are no updates."
 msgstr ""
-"<li><b>Ховати меню dnfdragora-update, якщо оновлень немає</b>: якщо"
-" позначено, аплет оновлення dnfdragora буде приховано, якщо немає оновлень."
+"<li><b>Ховати меню dnfdragora-update, якщо оновлень немає</b>: якщо "
+"позначено, аплет оновлення dnfdragora буде приховано, якщо немає оновлень."
 
 #: dnfdragora/helpinfo.py:125
 msgid ""
 "<br><b>NOTE</b> that this option is experimental, not all desktops manage it "
 "as expected</li>"
 msgstr ""
-"<br><b>Зауваження</b>: цей параметр є експериментальним, працює очікуваним"
-" чином не в усіх стільничних середовищах</li>"
+"<br><b>Зауваження</b>: цей параметр є експериментальним, працює очікуваним "
+"чином не в усіх стільничних середовищах</li>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1541,22 +1540,22 @@ msgstr "<h2>Параметри пошуку</h2>"
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only "
-"newest packages on search. <i>Note that is valid if searches are not "
-"performed by using regular expressions</i></li>"
+"newest packages on search.</li>"
 msgstr ""
 "<ul><li><b>Показувати лише найновіші пакунки</b>: якщо позначено цей пункт, "
-"dnfdragora показуватиме у результатах пошуку лише найновіші пакунки. "
-"<i>Зауважте, що це стосується пошуків без використання формальних виразів</"
-"i></li>"
+"dnfdragora показуватиме у результатах пошуку лише найновіші пакунки.</li>"
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
-"<li><b>Match all words</b>: if checked a search without using regular "
-"expressions will match all the given words into the text field.</li></ul>"
+"<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
+"regular expressions will add \"*\" to the given words, restoring the "
+"behavior dnfdragora had usnig dnffdaemon 4.</li></ul>"
 msgstr ""
-"<li><b>Збіг за усіма словами</b>: якщо позначено, пошук без використання "
-"формальних виразів виконуватиметься за усіма вказаними у текстовому полі "
-"словами.</li></ul>"
+"<li><b>Нечіткий пошук (застарілий режим)</b>: якщо позначено, пошук без"
+" використання "
+"формальних виразів виконуватиметься з додаванням «*» до вказаних слів, з"
+" відтворенням поведінки, яку використовувала dnfdragora з dnfdaemon 4.</li><"
+"/ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
@@ -1968,175 +1967,175 @@ msgstr "заблоковано"
 msgid "installed"
 msgstr "встановлено"
 
-#: dnfdragora/ui.py:1139
+#: dnfdragora/ui.py:1150
 msgid "Missing information"
 msgstr "Немає даних"
 
-#: dnfdragora/ui.py:1156
+#: dnfdragora/ui.py:1167
 msgid "Severity"
 msgstr "Важливість"
 
-#: dnfdragora/ui.py:1165
+#: dnfdragora/ui.py:1176
 msgid "Repository"
 msgstr "Сховище"
 
-#: dnfdragora/ui.py:1535
+#: dnfdragora/ui.py:1548
 msgid "&Downgrade"
 msgstr "&Понизити"
 
-#: dnfdragora/ui.py:1538
+#: dnfdragora/ui.py:1551
 msgid "&Reinstall"
 msgstr "П&еревстановити"
 
-#: dnfdragora/ui.py:1541
+#: dnfdragora/ui.py:1554
 msgid "&Distro Sync"
 msgstr "Си&нхронізувати дистрибутив"
 
-#: dnfdragora/ui.py:1661
+#: dnfdragora/ui.py:1674
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Не можна вилучати пакунок %s"
 
-#: dnfdragora/ui.py:1661
+#: dnfdragora/ui.py:1674
 msgid "Protected package selected"
 msgstr "Позначено захищений пакунок"
 
-#: dnfdragora/ui.py:1723
+#: dnfdragora/ui.py:1736
 msgid "Unmanaged widget"
 msgstr "Некерований віджет"
 
-#: dnfdragora/ui.py:1731
+#: dnfdragora/ui.py:1744
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Некерована подія %d"
 
-#: dnfdragora/ui.py:1815
+#: dnfdragora/ui.py:1831
 msgid "Start transaction"
 msgstr "Початок операції"
 
-#: dnfdragora/ui.py:1817
+#: dnfdragora/ui.py:1833
 msgid "Downloading packages"
 msgstr "Отримання пакунків"
 
-#: dnfdragora/ui.py:1824
+#: dnfdragora/ui.py:1840
 msgid "Checking package signatures"
 msgstr "Перевіряємо підписи пакунків"
 
-#: dnfdragora/ui.py:1832 dnfdragora/ui.py:2506
+#: dnfdragora/ui.py:1848 dnfdragora/ui.py:2522
 msgid "Applying changes to the system"
 msgstr "Застосовуємо до системи зміни"
 
-#: dnfdragora/ui.py:1835
+#: dnfdragora/ui.py:1851
 msgid "Verify changes on the system"
 msgstr "Перевірити зміни у системі"
 
-#: dnfdragora/ui.py:1845
+#: dnfdragora/ui.py:1861
 msgid "Info"
 msgstr "Відомості"
 
-#: dnfdragora/ui.py:1846
+#: dnfdragora/ui.py:1862
 msgid "Changes applied"
 msgstr "Зміни застосовано"
 
-#: dnfdragora/ui.py:1847
+#: dnfdragora/ui.py:1863
 msgid "OK"
 msgstr "Гаразд"
 
-#: dnfdragora/ui.py:1852
+#: dnfdragora/ui.py:1868
 msgid "Build transaction"
 msgstr "Будуємо операцію"
 
-#: dnfdragora/ui.py:1887
+#: dnfdragora/ui.py:1903
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Невідома дія %(action)s над %(name)s"
 
-#: dnfdragora/ui.py:1916
+#: dnfdragora/ui.py:1932
 msgid "Transaction verification"
 msgstr "Перевірка дії"
 
-#: dnfdragora/ui.py:1963
+#: dnfdragora/ui.py:1979
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr "Розпочато операцію для пакунка <%(nevra)s>"
 
-#: dnfdragora/ui.py:1980
+#: dnfdragora/ui.py:1996
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr "Виконуємо операцію для пакунка <%(nevra)s>"
 
-#: dnfdragora/ui.py:2013
+#: dnfdragora/ui.py:2029
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr "Виконуємо операцію: розпочинається <%(nevra)s>"
 
-#: dnfdragora/ui.py:2029 dnfdragora/ui.py:2047
+#: dnfdragora/ui.py:2045 dnfdragora/ui.py:2063
 msgid "Preparation of transaction"
 msgstr "Приготування до операції"
 
-#: dnfdragora/ui.py:2104
+#: dnfdragora/ui.py:2120
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr "Запущено дієсценарій <%(nevra)s>"
 
-#: dnfdragora/ui.py:2188
+#: dnfdragora/ui.py:2204
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: dnfdragora/ui.py:2218
+#: dnfdragora/ui.py:2234
 #, python-format
 msgid ""
 "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 "Розпочато отримання [%(count_files)d] - файл %(id)s - %(description)s ..."
 
-#: dnfdragora/ui.py:2246
+#: dnfdragora/ui.py:2262
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr "Отримуємо файл %(id)s — виконуємо %(description)s"
 
-#: dnfdragora/ui.py:2333
+#: dnfdragora/ui.py:2349
 msgid "Caching updates"
 msgstr "Кешуємо оновлення"
 
-#: dnfdragora/ui.py:2336
+#: dnfdragora/ui.py:2352
 msgid "Caching installed"
 msgstr "Встановлено кешування"
 
-#: dnfdragora/ui.py:2340
+#: dnfdragora/ui.py:2356
 msgid "Caching available"
 msgstr "Доступне кешування"
 
-#: dnfdragora/ui.py:2391
+#: dnfdragora/ui.py:2407
 msgid "Creating packages cache"
 msgstr "Створюємо кеш пакунків"
 
-#: dnfdragora/ui.py:2411
+#: dnfdragora/ui.py:2427
 msgid "Transaction with warnings"
 msgstr "Операція із попередженнями"
 
-#: dnfdragora/ui.py:2455 dnfdragora/ui.py:2511
+#: dnfdragora/ui.py:2471 dnfdragora/ui.py:2527
 msgid "Build Transaction error"
 msgstr "Помилка під час побудови операції"
 
-#: dnfdragora/ui.py:2498
+#: dnfdragora/ui.py:2514
 msgid "Packages installed:"
 msgstr "Встановлено пакунків:"
 
-#: dnfdragora/ui.py:2501
+#: dnfdragora/ui.py:2517
 msgid "Packages removed:"
 msgstr "Вилучено пакунків:"
 
-#: dnfdragora/ui.py:2503
+#: dnfdragora/ui.py:2519
 msgid "Error occured:"
 msgstr "Сталася помилка:"
 
-#: dnfdragora/ui.py:2541
+#: dnfdragora/ui.py:2557
 #, python-format
 msgid "Error in status %(status)s on %(event)s"
 msgstr "Помилка у стані %(status)s при %(event)s"
 
-#: dnfdragora/ui.py:2637
+#: dnfdragora/ui.py:2664
 msgid "Search error using regular expression"
 msgstr "Помилка пошуку із використанням формального виразу"
 
@@ -2209,6 +2208,9 @@ msgstr ""
 "програма може працювати з використанням інтерфейсів Qt 5, GTK+ 3 або "
 "ncurses. Вона забезпечує роботу оболонки програми для керування пакунками "
 "DNF, якою можна скористатися у будь-якому типі системного середовища."
+
+#~ msgid "Match all words"
+#~ msgstr "Збіг за усіма словами"
 
 #~ msgid "Try again using a login shell (i.e. \"su -\")"
 #~ msgstr ""
