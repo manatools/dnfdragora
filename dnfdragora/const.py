@@ -17,7 +17,7 @@ import subprocess
 import sys
 import gettext
 
-import hawkey
+#import hawkey
 
 from dnfdragora.version import __version__ as VERSION
 
@@ -182,8 +182,8 @@ FEDORA_REPOS = ['fedora', 'updates', 'updates-testing', 'rawhide']
 
 
 ADVISORY_TYPES = {
-    hawkey.ADVISORY_BUGFIX: _('Bugfix'),
-    hawkey.ADVISORY_UNKNOWN: _('New Package'),
-    hawkey.ADVISORY_SECURITY: _('Security'),
-    hawkey.ADVISORY_ENHANCEMENT: _('Enhancement')
+ #   hawkey.ADVISORY_BUGFIX: _('Bugfix'),
+ #   hawkey.ADVISORY_UNKNOWN: _('New Package'),
+ #   hawkey.ADVISORY_SECURITY: _('Security'),
+ #   hawkey.ADVISORY_ENHANCEMENT: _('Enhancement')
 }
