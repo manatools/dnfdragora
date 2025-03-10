@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 18:30+0100\n"
+"POT-Creation-Date: 2025-01-11 18:25+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: psyca, 2025\n"
 "Language-Team: German (https://app.transifex.com/MageiaLinux/teams/9361/"
@@ -346,27 +346,27 @@ msgstr "Sicherheit"
 msgid "Enhancement"
 msgstr "Verbesserung"
 
-#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1405
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1417
 msgid "Undo transaction"
 msgstr "Vorgang rückgängig machen"
 
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1430
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1442
 msgid "Error checking package signatures"
 msgstr "Fehler beim Überprüfen der Paketsignaturen "
 
-#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1434
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1446
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Fehler beim Herunterladen"
 msgstr[1] "Fehler beim Herunterladen"
 
-#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1439
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1451
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Fehler bei der Übermittlung"
 msgstr[1] "Fehler bei den Übermittlungen"
 
-#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1451
+#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1463
 msgid "Build transaction failure"
 msgstr "Fehler bei der Erstellung der Transaktion"
 
@@ -455,7 +455,7 @@ msgstr "Identifikator"
 msgid "Name"
 msgstr "Name"
 
-#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1156
+#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1167
 msgid "Type"
 msgstr "Typ"
 
@@ -579,7 +579,7 @@ msgstr "Information"
 msgid "Value"
 msgstr "Wert"
 
-#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1524
+#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1536
 msgid "&Apply"
 msgstr "&Anwenden"
 
@@ -663,8 +663,8 @@ msgid "Show newest packages only"
 msgstr "Nur die neuesten Pakete zeigen"
 
 #: dnfdragora/dialogs.py:1128
-msgid "Match all words"
-msgstr "Alle Wörter stimmen überein"
+msgid "Fuzzy search (legacy mode)"
+msgstr "Unscharfe Suche (Legacy Modus)"
 
 #: dnfdragora/dialogs.py:1150
 msgid "Logging options (active at next startup)"
@@ -1458,8 +1458,8 @@ msgid ""
 "works as answering always <i>yes</i>."
 msgstr ""
 "<ul><li><b>Transaktionen für Pakete automatisch, ohne Rückfrage, "
-"durchführen</b>: Wenn dies aktiviert ist, werden keine Bestätigung für "
-"Transaktionen angefordert. dnfdragora antwortet immer mit <i>ja</i>."
+"durchführen</b>: Wenn diese Option aktiviert ist, werden keine Bestätigung "
+"für Transaktionen angefordert. dnfdragora antwortet immer mit <i>ja</i>."
 
 #: dnfdragora/helpinfo.py:122
 msgid ""
@@ -1474,9 +1474,9 @@ msgid ""
 "<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are "
 "added to updates and filtered as updates.</li>"
 msgstr ""
-"<li><b>Pakete zum Upgrade als Updates handhaben</b>: wenn ausgewählt werden "
-"Upgrades in die Liste der Updates hinzugefügt und als Aktualisierung "
-"gefiltert.</li>"
+"<li><b>Pakete zum Upgrade als Updates handhaben</b>: Wenn diese Option "
+"aktiviert ist, werden Upgrades in die Liste der Updates hinzugefügt und als "
+"Aktualisierung gefiltert.</li>"
 
 #: dnfdragora/helpinfo.py:124
 msgid ""
@@ -1484,8 +1484,8 @@ msgid ""
 "dnfdragora update is hidden if there are no updates."
 msgstr ""
 "<li><b>Verstecke das dnfdragora-update Menü, wenn keine Aktualisierungen "
-"verfügbar sind</b>: wenn ausgewählt wird dnfdragora update versteckt, wenn "
-"keine Aktualisierungen verfügbar sind."
+"verfügbar sind</b>: Wenn diese Option aktiviert ist, wird dnfdragora update "
+"versteckt, wenn keine Aktualisierungen verfügbar sind."
 
 #: dnfdragora/helpinfo.py:125
 msgid ""
@@ -1550,21 +1550,21 @@ msgstr "<h2>Suchoptionen</h2>"
 #: dnfdragora/helpinfo.py:133
 msgid ""
 "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only "
-"newest packages on search. <i>Note that is valid if searches are not "
-"performed by using regular expressions</i></li>"
+"newest packages on search.</li>"
 msgstr ""
-"<ul><li><b>Nur die neuesten Pakete anzeigen</b>: Wenn aktiviert, zeigt "
-"dnfdragora als Suchergebnis nur die neuesten Pakete an. <i>Dies gilt nicht, "
-"wenn eine Suche mit regulären Ausdrücken durchgeführt wird.</i></li>"
+"<ul><li><b>Nur die neuesten Pakete zeigen</b>: Wenn diese Option aktiviert "
+"ist, zeigt dnfdragora nur die neusten Pakete bei der Suche an.</li>"
 
 #: dnfdragora/helpinfo.py:134
 msgid ""
-"<li><b>Match all words</b>: if checked a search without using regular "
-"expressions will match all the given words into the text field.</li></ul>"
+"<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
+"regular expressions will add \"*\" to the given words, restoring the "
+"behavior dnfdragora had usnig dnffdaemon 4.</li></ul>"
 msgstr ""
-"<li><b>Ordne alle Wörter zu</b>: Wenn diese Option aktiviert ist, werden bei "
-"einer Suche ohne Verwendung regulärer Ausdrücke alle angegebenen Wörter in "
-"das Textfeld übernommen.</li></ul>"
+"<li><b>Unscharfe Suche (Legacy Modus)</b>: Wenn diese Option aktiviert ist, "
+"wird bei einer Suche ohne reguläre Ausdrücke den Wörtern ein \"*\" "
+"hinzugefügt, um das Verhalten wieder herzustellen, welches dnfdragora hatte, "
+"als es noch dnfdaemon 4 vewendete.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
@@ -1976,175 +1976,175 @@ msgstr "gesperrt"
 msgid "installed"
 msgstr "installiert"
 
-#: dnfdragora/ui.py:1139
+#: dnfdragora/ui.py:1150
 msgid "Missing information"
 msgstr "Fehlende Information"
 
-#: dnfdragora/ui.py:1156
+#: dnfdragora/ui.py:1167
 msgid "Severity"
 msgstr "Schwere"
 
-#: dnfdragora/ui.py:1165
+#: dnfdragora/ui.py:1176
 msgid "Repository"
 msgstr "Repositorium"
 
-#: dnfdragora/ui.py:1535
+#: dnfdragora/ui.py:1548
 msgid "&Downgrade"
 msgstr "&Downgrade"
 
-#: dnfdragora/ui.py:1538
+#: dnfdragora/ui.py:1551
 msgid "&Reinstall"
 msgstr "Neu installie&ren"
 
-#: dnfdragora/ui.py:1541
+#: dnfdragora/ui.py:1554
 msgid "&Distro Sync"
 msgstr "&Distro Sync"
 
-#: dnfdragora/ui.py:1661
+#: dnfdragora/ui.py:1674
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Das Paket %s kann nicht entfernt werden"
 
-#: dnfdragora/ui.py:1661
+#: dnfdragora/ui.py:1674
 msgid "Protected package selected"
 msgstr "Geschütztes Paket ausgewählt"
 
-#: dnfdragora/ui.py:1723
+#: dnfdragora/ui.py:1736
 msgid "Unmanaged widget"
 msgstr "Nicht unterstützes Objekt"
 
-#: dnfdragora/ui.py:1731
+#: dnfdragora/ui.py:1744
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Nicht unterstütztes Ereignis %d"
 
-#: dnfdragora/ui.py:1815
+#: dnfdragora/ui.py:1831
 msgid "Start transaction"
 msgstr "Transaktion starten"
 
-#: dnfdragora/ui.py:1817
+#: dnfdragora/ui.py:1833
 msgid "Downloading packages"
 msgstr "Pakete werden heruntergeladen"
 
-#: dnfdragora/ui.py:1824
+#: dnfdragora/ui.py:1840
 msgid "Checking package signatures"
 msgstr "Paketsignaturen werden überprüft"
 
-#: dnfdragora/ui.py:1832 dnfdragora/ui.py:2506
+#: dnfdragora/ui.py:1848 dnfdragora/ui.py:2522
 msgid "Applying changes to the system"
 msgstr "Änderungen auf das System anwenden"
 
-#: dnfdragora/ui.py:1835
+#: dnfdragora/ui.py:1851
 msgid "Verify changes on the system"
 msgstr "Änderungen auf dem System werden verifiziert"
 
-#: dnfdragora/ui.py:1845
+#: dnfdragora/ui.py:1861
 msgid "Info"
 msgstr "Informationen"
 
-#: dnfdragora/ui.py:1846
+#: dnfdragora/ui.py:1862
 msgid "Changes applied"
 msgstr "Änderungen übernommen"
 
-#: dnfdragora/ui.py:1847
+#: dnfdragora/ui.py:1863
 msgid "OK"
 msgstr "OK"
 
-#: dnfdragora/ui.py:1852
+#: dnfdragora/ui.py:1868
 msgid "Build transaction"
 msgstr "Transaktion erstellen"
 
-#: dnfdragora/ui.py:1887
+#: dnfdragora/ui.py:1903
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Unbekannte Aktion %(action)s mit %(name)s"
 
-#: dnfdragora/ui.py:1916
+#: dnfdragora/ui.py:1932
 msgid "Transaction verification"
 msgstr "Übertragung verifiziert"
 
-#: dnfdragora/ui.py:1963
+#: dnfdragora/ui.py:1979
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr "Übertragung von Paket <%(nevra)s> gestartet"
 
-#: dnfdragora/ui.py:1980
+#: dnfdragora/ui.py:1996
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr "Übertragung von Paket <%(nevra)s> läuft"
 
-#: dnfdragora/ui.py:2013
+#: dnfdragora/ui.py:2029
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr "Übertragung läuft: <%(nevra)s> startet"
 
-#: dnfdragora/ui.py:2029 dnfdragora/ui.py:2047
+#: dnfdragora/ui.py:2045 dnfdragora/ui.py:2063
 msgid "Preparation of transaction"
 msgstr "Vorbereitung zur Übertragung"
 
-#: dnfdragora/ui.py:2104
+#: dnfdragora/ui.py:2120
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr "Scriptlet <%(nevra)s> gestartet"
 
-#: dnfdragora/ui.py:2188
+#: dnfdragora/ui.py:2204
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: dnfdragora/ui.py:2218
+#: dnfdragora/ui.py:2234
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 "[%(count_files)d] Dateien werden heruntergeladen - Datei %(id)s - "
 "%(description)s ..."
 
-#: dnfdragora/ui.py:2246
+#: dnfdragora/ui.py:2262
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr "Laden der Datei %(id)s - %(description)s wird durchgeführt"
 
-#: dnfdragora/ui.py:2333
+#: dnfdragora/ui.py:2349
 msgid "Caching updates"
 msgstr "Aktualisierungen werden zwischengespeichert"
 
-#: dnfdragora/ui.py:2336
+#: dnfdragora/ui.py:2352
 msgid "Caching installed"
 msgstr "Installierte Pakete werden zwischengespeichert"
 
-#: dnfdragora/ui.py:2340
+#: dnfdragora/ui.py:2356
 msgid "Caching available"
 msgstr "Verfügbare Pakete werden zwischengespeichert"
 
-#: dnfdragora/ui.py:2391
+#: dnfdragora/ui.py:2407
 msgid "Creating packages cache"
 msgstr "Paketzwischenspeicher wird erstellt"
 
-#: dnfdragora/ui.py:2411
+#: dnfdragora/ui.py:2427
 msgid "Transaction with warnings"
 msgstr "Übertragung mit Warnungen"
 
-#: dnfdragora/ui.py:2455 dnfdragora/ui.py:2511
+#: dnfdragora/ui.py:2471 dnfdragora/ui.py:2527
 msgid "Build Transaction error"
 msgstr "Fehler beim Erstellen der Transaktion"
 
-#: dnfdragora/ui.py:2498
+#: dnfdragora/ui.py:2514
 msgid "Packages installed:"
 msgstr "Installierte Pakete:"
 
-#: dnfdragora/ui.py:2501
+#: dnfdragora/ui.py:2517
 msgid "Packages removed:"
 msgstr "Entfernte Pakete:"
 
-#: dnfdragora/ui.py:2503
+#: dnfdragora/ui.py:2519
 msgid "Error occured:"
 msgstr "Fehler aufgetreten:"
 
-#: dnfdragora/ui.py:2541
+#: dnfdragora/ui.py:2557
 #, python-format
 msgid "Error in status %(status)s on %(event)s"
-msgstr ""
+msgstr "Fehler im Status %(status)s bei %(event)s"
 
-#: dnfdragora/ui.py:2637
+#: dnfdragora/ui.py:2664
 msgid "Search error using regular expression"
 msgstr "Fehler bei der Suche mit regulären Ausdrücken"
 
