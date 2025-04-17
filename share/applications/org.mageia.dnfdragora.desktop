@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=dnfdragora
 Name[af]=dnfdragora
+Name[ast]=dnfdragora
 Name[bg]=dnfdragora
 Name[ca]=dnfdragora
 Name[cs]=dnfdragora
@@ -42,7 +43,7 @@ Name[zh_TW]=dnfdragora
 GenericName=Install & Remove Software
 GenericName[af]=Installeer en verwyder sagteware
 GenericName[ar]=تثبيت وحذف البرمجيات
-GenericName[ast]=Instalar y Desaniciar Software
+GenericName[ast]=Instalar ya quitar software
 GenericName[bg]=Инсталиране и премахване на софтуер
 GenericName[bn]=সফটওয়্যার ইন্সটল এবং সরিয়ে ফেলুন
 GenericName[br]=Staliañ ha distaliañ poelladoù

@@ -1,13 +1,14 @@
 # Translators:
-# Ḷḷumex03 <tornes@opmbx.org>, 2018
+# enolp <enolp@softastur.org>, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 14:55+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Ḷḷumex03 <tornes@opmbx.org>, 2018\n"
-"Language-Team: Asturian (https://www.transifex.com/MageiaLinux/teams/9361/ast/)\n"
+"POT-Creation-Date: 2025-02-08 21:17+0200\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>, 2025\n"
+"Language-Team: Asturian (https://app.transifex.com/MageiaLinux/teams/9361/ast/)\n"
 "Language: ast\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,12 +18,12 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr "Instalar y Desaniciar Software"
+msgstr "Instalar ya quitar software"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
@@ -32,7 +33,7 @@ msgstr "Un frontal gráficu pa instalar, desaniciar y anovar paquetes"
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-updater"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
@@ -47,12 +48,12 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "Instalador de paquetes dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "Instalador de paquetes RPM"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
