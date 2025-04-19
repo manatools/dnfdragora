@@ -32,7 +32,6 @@ if __name__ == "__main__":
     import logging
     logger = logging.getLogger('dnfdragora.updater')
 
-    import dnfdaemon.client
     import dnfdragora.updater
     options = {}
     if args.icon_path:

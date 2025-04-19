@@ -186,7 +186,6 @@ class Updater:
           self.__updater.join()
           try:
             if self.__backend:
-              self.__backend.Exit()
               self.__backend = None
           except:
             pass
@@ -207,8 +206,6 @@ class Updater:
             if self.__tray != None:
               self.__tray.stop()
             if self.__backend:
-              self.__backend.Exit(False)
-              time.sleep(0.5)
               self.__backend = None
 
     def __reschedule_update_in(self, minutes):
@@ -281,8 +278,9 @@ class Updater:
       if self.__hide_menu:
         self.__tray.visible = False
       try:
-        self.__backend.Lock()
-        self.__getUpdatesRequested = True
+        if not self.__getUpdatesRequested:
+           self.__get_updates()
+           self.__getUpdatesRequested = True
       except Exception as e:
         logger.error(_('Exception caught: [%s]')%(str(e)))
 
@@ -291,8 +289,20 @@ class Updater:
       Start get updates by simply locking the DB
       '''
       logger.debug("Start getting updates")
+
+      filter = "upgrades"
+      options = {"package_attrs": [
+        "repo_id",
+        "install_size",
+        "download_size",
+        "summary",
+        "nevra",
+        "group",
+        ],
+        "scope": filter }
       try:
-        self.__backend.Lock()
+        self.__backend.GetPackages(options)
+        logger.debug("Getting update packages")
       except Exception as e:
         logger.error(_('Exception caught: [%s]')%(str(e)))
 
@@ -305,7 +315,6 @@ class Updater:
 
     def __update_loop(self):
       self.__get_updates()
-      backend_locked = False
 
       while self.__running == True:
         update_next = self.__updateInterval
@@ -323,17 +332,7 @@ class Updater:
             event = item['event']
             info = item['value']
 
-            if (event == 'Lock') :
-              logger.info("Event received %s - info %s", event, str(info))
-              backend_locked = info['result']
-              if backend_locked:
-                self.__backend.GetPackages('updates_all')
-                logger.debug("Getting update packages")
-              else:
-                # no locked try again in a minute
-                update_next = 1
-                add_to_schedule = True
-            elif (event == 'OnRepoMetaDataProgress'):
+            if (event == 'OnRepoMetaDataProgress'):
               #let's log metadata since slows down the Lock requests
               self.__OnRepoMetaDataProgress(info['name'], info['frac'])
             elif (event == 'GetPackages'):
@@ -371,13 +370,9 @@ class Updater:
               #force scheduling again
               add_to_schedule = True
               # Let's release the db
-              self.__backend.Unlock(sync=True)
-              backend_locked = False
-              logger.debug("RPM DB unlocked")
             #elif (event == xxx)
             else:
-              if backend_locked:
-                logger.warning("Unmanaged event received %s - info %s", event, str(info))
+              logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
         except Empty as e:
           pass
