@@ -413,74 +413,139 @@ class Client:
             pass
 
         return result
-
+    
     def __async_thread_loop(self, data, *args):
       '''
-      thread function for glib main loop
+      Thread function for GLib main loop to handle D-Bus calls with timeouts.
       '''
       logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), repr(args) if args else "")
       proxy = self.Proxy(data['cmd'])
       method = self.proxyMethod[data['cmd']]
       logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
+      pipe_r, pipe_w = None, None
+
       try:
-        func = getattr(proxy, method)
-        if data['return_value']:
+          # Create a new GLib main loop for this thread
+          loop = GLib.MainLoop()#GLib.MainContext.ref_thread_default())
+
+          def on_error(error):
+              # Handle D-Bus error
+              logger.error("__async_thread_loop error for command %s: %s", data['cmd'], error)
+              if method == 'list_fd':
+                if pipe_r is not None:
+                    os.close(pipe_r)
+                if pipe_w is not None:
+                    os.close(pipe_w)
+
+              self._return_handler(error, data)             
+              # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
+              GLib.idle_add(loop.quit)            
+              #logger.debug("... on_error quit")
+
+          func = getattr(proxy, method)
+          if data['return_value']:
             # TODO find a better way to distinguish if cmd needs a pipe
             if method == 'list_fd':
-            #if data['cmd'] == 'GetPackages':
                 # create a pipe and pass the write end to the server
                 pipe_r, pipe_w = os.pipe()
-                pipe_id = func(*args, pipe_w)
-                # close the write end
-                os.close(pipe_w)
 
-                # read the data
-                timeout = 10000
-                buffer_size = 65536
-                poller = select.poll()
-                poller.register(pipe_r, select.POLLIN)
-                read_finished = False
-                parser = json.JSONDecoder()
-                to_parse = ""
-                pkglist = []
-                while (not read_finished):
-                    polled_event = poller.poll(timeout)
-                    if not polled_event:
-                        print("Timeout reached.")
-                        break
-                    for descriptor, event in polled_event:
-                        buffer = os.read(descriptor, buffer_size).decode()
-                        if (len(buffer) > 0):
-                            to_parse += buffer
-                            while to_parse:
-                                try:
-                                    obj, end = parser.raw_decode(to_parse)
-                                    pkglist.append(obj)
-                                    to_parse = to_parse[end:].strip()
-                                except json.decoder.JSONDecodeError:
-                                    # TODO - handle unfinished strings correctly
-                                    # current example implementation just tries to parse once again when
-                                    # more data arrive.
-                                    break
-                        else:
-                            read_finished = True
+                def on_list_id_success(rpipe_idesult):
+                    # Handle successful D-Bus call
+                    logger.debug("__async_thread_loop success for command %s", data['cmd'])
+                    # close the write end
+                    os.close(pipe_w)
+                    # read the data
+                    timeout = 1000 # 1 second timeout seems to be enough
+                    buffer_size = 65536
+                    poller = select.poll()
+                    poller.register(pipe_r, select.POLLIN | select.POLLHUP)
+                    read_finished = False
+                    parser = json.JSONDecoder()
+                    to_parse = ""                
+                    pkglist = []
+                    try:
+                        while (not read_finished):
+                            polled_event = poller.poll(timeout)
+                            if not polled_event:
+                                logger.warning("__async_thread_loop(list_fd): timeout reached while reading from pipe.")
+                                break
+                            for descriptor, event in polled_event:
+                                if event & select.POLLIN:
+                                    buffer = os.read(descriptor, buffer_size).decode()                                    
+                                    if buffer:
+                                        to_parse += buffer
+                                        while to_parse:
+                                            try:
+                                                obj, end = parser.raw_decode(to_parse)
+                                                pkglist.append(obj)
+                                                to_parse = to_parse[end:].strip()
+                                            except json.decoder.JSONDecodeError:
+                                                logger.error("__async_thread_loop(list_fd): JSONDecodeError while parsing buffer")                                                             
+                                                # TODO - handle unfinished strings correctly
+                                                # current example implementation just tries to parse once again when
+                                                # more data arrive.
+                                                break
+                                    else:
+                                        logger.debug("__async_thread_loop(list_fd): no more data to read from pipe.")
+                                        read_finished = True
+                                elif event & select.POLLHUP:
+                                    logger.debug("__async_thread_loop(list_fd): pipe closed by the writer.")
+                                    read_finished = True
+                    except Exception as err:
+                        logger.error("__async_thread_loop(list_fd): Exception while reading from pipe: %s", err)
+                        read_finished = True
+                    finally:
+                        os.close(pipe_r)
+                        logger.debug("__async_thread_loop(list_fd): pipe closed.")
 
-                os.close(pipe_r)
+                    self._return_handler(pkglist, data)
+                    # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
+                    GLib.idle_add(loop.quit)
+                    #logger.debug("__async_thread_loop(list_fd): loop quit")
+                func(*args, pipe_w, reply_handler=on_list_id_success, error_handler=on_error, timeout=600)                
+            else: 
+              def on_success(*result):
+                logger.debug("__async_thread_loop success for command %s with result: %s", str(data['cmd']), repr(result))                
+                if len(result) == 1:  # True if there are one or more values
+                  self._return_handler(unpack_dbus(result[0]), data)
+                elif len(result) == 2:  # True if there are one or more values
+                  self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
+                elif len(result) > 2:  # True if there are one or more values
+                  logger.warning("__async_thread_loop some return values are not managed")
+                # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
+                GLib.idle_add(loop.quit)
+                #logger.debug("... on_success quit")
 
-                #no needs to unpack results
-                self._return_handler(pkglist, data)
-            else:
-                result = func(*args)
-                self._return_handler(unpack_dbus(result), data)
-        else:
-            func(*args)
+              # Use asynchronous D-Bus call with success and error handlers
+              func(*args, reply_handler=on_success, error_handler=on_error, timeout=600)
+          else:
+              def on_success_novalue():
+                # Handle successful D-Bus call
+                logger.debug("__async_thread_loop.on_success_novalue success for command %s", str(data['cmd']))
+                # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
+                GLib.idle_add(loop.quit)
+                #logger.debug("... __async_thread_loop.on_success_novalue quit")
+              func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=600)
+          # Run the GLib main loop to process D-Bus events
+          # Add a timeout to force quit the loop if necessary
+          GLib.timeout_add_seconds(10, lambda: loop.quit())
+          loop.run()
       except Exception as err:
-        logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
-        self._return_handler(err, data)
-        #data['error'] = err
+          logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
+          self._return_handler(err, data)
+          if pipe_r is not None:
+             os.close(pipe_r)
+          if pipe_w is not None:
+             os.close(pipe_w)
+          logger.debug("__async_thread_loop.Exception quit ...")
+          # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
+          GLib.idle_add(loop.quit)          
+          #logger.debug("... __async_thread_loop.Exception quit")
+          # Close the pipe            
 
-      # We enqueue one request at the time by now, monitoring _sent
+      # Mark the request as completed
       self._sent = False
+      logger.debug("__async_thread_loop quit %s", str(data['cmd']))
 
     def _run_dbus_async(self, cmd, return_value, *args):
         '''Make an async call to a DBus method in the yumdaemon service
@@ -499,7 +564,6 @@ class Client:
           self._data = {'cmd': cmd, 'return_value': return_value, 'args': args, }
 
           data = self._data
-
           self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args), daemon=True)
           self.__async_thread.start()
         else:

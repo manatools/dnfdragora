@@ -2351,11 +2351,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif pkg_flt == 'installed':
         self.infobar.info_sub(_("Caching installed"))
         self._status = DNFDragoraStatus.CACHING_INSTALLED
-        self.backend.reloadDaemon()
+        #self.backend.reloadDaemon()
       elif pkg_flt == 'available':
         self.infobar.info_sub(_("Caching available"))
         self._status = DNFDragoraStatus.CACHING_AVAILABLE
-        self.backend.reloadDaemon()
+        #self.backend.reloadDaemon()
       else:
         logger.error("Wrong package filter %s", pkg_flt)
         return
