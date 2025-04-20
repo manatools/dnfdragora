@@ -1560,7 +1560,7 @@ msgid ""
 msgstr ""
 "<li><b>Pesquisa fuzzy (modo legado)</b>: se marcada, uma pesquisa sem usar "
 "expressões regulares adicionará \"*\" às palavras fornecidas, restaurando o "
-"comportamento que o dnfdragora tinha ao usar o dnffdaemon 4.</li></ul>"
+"comportamento que o dnfdragora tinha ao usar o dnfdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"

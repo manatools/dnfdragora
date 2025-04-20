@@ -1552,7 +1552,7 @@ msgid ""
 msgstr ""
 "<li><b>Cerca difusa (mode de llegat)</b>: si es marca, una cerca sense usar "
 "expressions regulars afegirà \"*\" a les paraules proporcionades, i es "
-"restaurarà el comportament que el dnfdragora tenia amb dnffdaemon 4.</li></"
+"restaurarà el comportament que el dnfdragora tenia amb dnfdaemon 4.</li></"
 "ul>"
 
 #: dnfdragora/helpinfo.py:135

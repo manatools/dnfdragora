@@ -1564,7 +1564,7 @@ msgid ""
 msgstr ""
 "<li><b>Нечёткий поиск (режим совместимости)</b>: если он выбран, при поиске "
 "без регулярных выражений ко всем словам будет добавляться \"*\", как было у "
-"dnfdragora с dnffdaemon 4.</li></ul>"
+"dnfdragora с dnfdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"

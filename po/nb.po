@@ -1549,7 +1549,7 @@ msgid ""
 msgstr ""
 "<li><b>Fuzzy  søk (eldre modus)</b>: Hvis du sjekket et søk uten å bruke "
 "regulære uttrykk, vil det legge til \"*\" til de gitte ordene, og "
-"gjenopprette oppførselen dnfdragora hadde ved bruk av dnffdaemon 4.</li></ul>"
+"gjenopprette oppførselen dnfdragora hadde ved bruk av dnfdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"

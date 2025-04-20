@@ -1558,7 +1558,7 @@ msgid ""
 msgstr ""
 "<li><b>Búsqueda difusa (modo heredado)</b>: al activar, en una búsqueda sin "
 "expresiones regulares, se añadirá  \"*\"a las palabras , volviendo "
-"dnfdragora al comportamiento  usado en dnffdaemon 4.</li></ul>"
+"dnfdragora al comportamiento  usado en dnfdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
