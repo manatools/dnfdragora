@@ -1,6 +1,6 @@
 202X-XX-XX v. 2.99.1
 --------------------
-- Fixed signal handling on relad daemon to avoid org.freedesktop.DBus.Error.LimitsExceeded
+- Fixed signal handling on reload daemon to avoid org.freedesktop.DBus.Error.LimitsExceeded
 - Fixed dnfdragora-updater dnfdaemon dependency. Issue #246
 - Added back Glib.MainLoop in thread to manage dbus timeout and long transaction better
 - Remove hawkey and dnf dependencies (thanks huakim)
