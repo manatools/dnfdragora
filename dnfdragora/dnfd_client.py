@@ -563,8 +563,10 @@ class Client:
               func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=600)
           # Run the GLib main loop to process D-Bus events
           # Add a timeout to force quit the loop if necessary
-          GLib.timeout_add_seconds(10, lambda: loop.quit())
+          GLib.timeout_add_seconds(2, lambda: loop.quit())
+          logger.debug("__async_thread_loop GLib main loop running %s", str(data['cmd']))
           loop.run()
+          logger.debug("__async_thread_loop GLib main loop quit %s", str(data['cmd']))
       except Exception as err:
           logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
           self._return_handler(err, data)
