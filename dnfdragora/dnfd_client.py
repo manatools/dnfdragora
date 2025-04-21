@@ -323,10 +323,45 @@ class Client:
             logger.critical("", exc_info=(exc_type, exc_value, exc_traceback))
 
     def reloadDaemon(self):
-        ''' close dbus connection and restart it '''
-        self.iface_session.close_session(self.session_path)
-        logger.debug(f"Close Dnf5Daemon session: {self.session_path}")
-        self._get_daemon()
+        '''Close the D-Bus connection, disconnect signals, and restart it.'''
+        try:
+            # Close the current session
+            self.iface_session.close_session(self.session_path)
+            logger.debug(f"Closed Dnf5Daemon session: {self.session_path}")
+
+            # Disconnect all signals
+            self.bus.remove_signal_receiver(self.on_DownloadStart, signal_name="download_add_new", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_DownloadProgress, signal_name="download_progress", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_DownloadEnd, signal_name="download_end", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_ErrorMessage, signal_name="download_mirror_failure", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_GPGImport, signal_name="repo_key_import_request", dbus_interface=None)
+
+            self.bus.remove_signal_receiver(self.on_TransactionUnpackError, signal_name="transaction_unpack_error", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionBeforeBegin, signal_name="transaction_before_begin", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionElemProgress, signal_name="transaction_elem_progress", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionVerifyStart, signal_name="transaction_verify_start", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionVerifyProgress, signal_name="transaction_verify_progress", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionVerifyStop, signal_name="transaction_verify_stop", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionActionStart, signal_name="transaction_action_start", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionActionProgress, signal_name="transaction_action_progress", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionActionStop, signal_name="transaction_action_stop", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionTransactionStart, signal_name="transaction_transaction_start", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionTransactionProgress, signal_name="transaction_transaction_progress", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionTransactionStop, signal_name="transaction_transaction_stop", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionScriptStart, signal_name="transaction_script_start", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionScriptStop, signal_name="transaction_script_stop", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionScriptError, signal_name="transaction_script_error", dbus_interface=None)
+            self.bus.remove_signal_receiver(self.on_TransactionAfterComplete, signal_name="transaction_after_complete", dbus_interface=None)
+
+            logger.debug("Disconnected all signals from Dnf5Daemon.")
+
+            # Reinitialize the daemon
+            self._get_daemon()
+            logger.debug("Reinitialized Dnf5Daemon.")
+
+        except Exception as err:
+            logger.error(f"Error during reloadDaemon: {err}")
+            self._handle_dbus_error(err)
 
     def _on_g_signal(self, proxy, sender, signal, params):
         '''DBUS signal Handler '''
