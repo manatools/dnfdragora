@@ -461,7 +461,7 @@ class Client:
 
       try:
           # Create a new GLib main loop for this thread
-          loop = GLib.MainLoop()#GLib.MainContext.ref_thread_default())
+          loop = GLib.MainLoop(GLib.MainContext.ref_thread_default())
 
           def on_error(error):
               # Handle D-Bus error
