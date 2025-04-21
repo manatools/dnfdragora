@@ -6,8 +6,8 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2020
-# Yuri Chornoivan <yurchor@ukr.net>, 2024
 # Rafa Llandres, 2024
+# Yuri Chornoivan <yurchor@ukr.net>, 2025
 # Davidmp <medipas@gmail.com>, 2025
 #
 #, fuzzy
@@ -1548,11 +1548,11 @@ msgstr ""
 msgid ""
 "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
 "regular expressions will add \"*\" to the given words, restoring the "
-"behavior dnfdragora had using dnfdaemon 4.</li></ul>"
+"behavior dnfdragora had usnig dnfdaemon 4.</li></ul>"
 msgstr ""
 "<li><b>Cerca difusa (mode de llegat)</b>: si es marca, una cerca sense usar "
 "expressions regulars afegirà \"*\" a les paraules proporcionades, i es "
-"restaurarà el comportament que el dnfdragora tenia amb dnfdaemon 4.</li></"
+"restaurarà el comportament que el dnfdragora tenia amb el dnfdaemon 4.</li></"
 "ul>"
 
 #: dnfdragora/helpinfo.py:135
