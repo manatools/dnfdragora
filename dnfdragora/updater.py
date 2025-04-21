@@ -301,6 +301,7 @@ class Updater:
         ],
         "scope": filter }
       try:
+        self.__backend.reloadDaemon()
         self.__backend.GetPackages(options)
         logger.debug("Getting update packages")
       except Exception as e:
