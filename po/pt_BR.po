@@ -147,7 +147,7 @@ msgstr "Desktop Hawaii"
 
 #: dnfdragora/compsicons.py:27
 msgid "Sugar Desktop Environment"
-msgstr "Ambiente de Desktop Sugar"
+msgstr "Ambiente de desktop Sugar"
 
 #: dnfdragora/compsicons.py:28
 msgid "GNOME Desktop"
@@ -209,7 +209,7 @@ msgstr "Pacotes atualizados"
 
 #: dnfdragora/const.py:141
 msgid "Downgraded packages"
-msgstr "Pacotes rebaixados"
+msgstr "Pacotes desatualizados"
 
 #: dnfdragora/const.py:142
 msgid "Obsoleting packages"
@@ -217,7 +217,7 @@ msgstr "Tornando pacotes obsoletos"
 
 #: dnfdragora/const.py:143
 msgid "Obsoleted packages"
-msgstr "Pacotes tornados obsoletos"
+msgstr "Pacotes obsoletados"
 
 #: dnfdragora/const.py:144
 msgid "Erased packages"
@@ -249,7 +249,7 @@ msgstr "Removendo"
 
 #: dnfdragora/const.py:156
 msgid "Downgrading"
-msgstr "Rebaixando"
+msgstr "Desatualizando"
 
 #: dnfdragora/const.py:157
 msgid "Replacing"
@@ -298,17 +298,17 @@ msgstr "Tornando obsoleto: %s"
 #: dnfdragora/const.py:169
 #, python-format
 msgid "Obsoleted: %s"
-msgstr "Tornado obsoleto: %s"
+msgstr "Obsoletado: %s"
 
 #: dnfdragora/const.py:170
 #, python-format
 msgid "Downgrading: %s"
-msgstr "Rebaixando: %s"
+msgstr "Desatualizando: %s"
 
 #: dnfdragora/const.py:171
 #, python-format
 msgid "Downgraded: %s"
-msgstr "Rebaixado: %s"
+msgstr "Desatualizado: %s"
 
 #: dnfdragora/const.py:172
 #, python-format
@@ -406,7 +406,7 @@ msgstr "Reinstalar"
 
 #: dnfdragora/dialogs.py:395
 msgid "Downgrade"
-msgstr "Rebaixar"
+msgstr "Desatualizar"
 
 #: dnfdragora/dialogs.py:401
 msgid "Distro Sync"
@@ -664,7 +664,7 @@ msgstr "Mostrar apenas os pacotes mais recentes"
 
 #: dnfdragora/dialogs.py:1128
 msgid "Fuzzy search (legacy mode)"
-msgstr "Pesquisa fuzzy (modo legado)"
+msgstr "Busca aproximada (modo legado)"
 
 #: dnfdragora/dialogs.py:1150
 msgid "Logging options (active at next startup)"
@@ -702,10 +702,10 @@ msgid ""
 "\"%(fingerprint)s\"<br>Timestamp  : \"%(timestamp)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"Deseja importar esta chave GPG?<br><br>Chave        : 0x%(id)s<br>Identidade "
-"do usuário     : \"%(user)s\"<br>Impressão digital: "
-"\"%(fingerprint)s\"<br>Carimbo de data/hora  : "
-"\"%(timestamp)s\"<br>Origem      : %(file)s"
+"Deseja importar esta chave GPG?<br><br>Chave        : 0x%(id)s<br>ID do "
+"usuário     : \"%(user)s\"<br>Impressão digital: "
+"\"%(fingerprint)s\"<br>Timestamp  : \"%(timestamp)s\"<br>Origem      : "
+"%(file)s"
 
 #: dnfdragora/dialogs.py:1615
 msgid "GPG key missed"
@@ -780,7 +780,7 @@ msgstr "Telefonia"
 
 #: dnfdragora/groupicons.py:77 dnfdragora/groupicons.py:97
 msgid "Databases"
-msgstr "Banco de dados"
+msgstr "Bancos de dados"
 
 #: dnfdragora/groupicons.py:84
 msgid "Basic"
@@ -1175,15 +1175,15 @@ msgstr "Ferramentas de console"
 
 #: dnfdragora/groupicons.py:550
 msgid "Game station"
-msgstr "Jogos"
+msgstr "Estação de jogos"
 
 #: dnfdragora/groupicons.py:554
 msgid "Internet station"
-msgstr "Internet"
+msgstr "Estação de Internet"
 
 #: dnfdragora/groupicons.py:558
 msgid "Multimedia station"
-msgstr "Multimídia"
+msgstr "Estação de multimídia"
 
 #: dnfdragora/groupicons.py:562
 msgid "Network Computer (client)"
@@ -1211,7 +1211,7 @@ msgstr "Desktop IceWm"
 
 #: dnfdragora/groupicons.py:586
 msgid "KDE Workstation"
-msgstr "KDE"
+msgstr "Estação de trabalho KDE"
 
 #: dnfdragora/groupicons.py:590
 msgid "Other Graphical Desktops"
@@ -1255,7 +1255,7 @@ msgstr "Linha do menu"
 
 #: dnfdragora/helpinfo.py:30
 msgid "Filters and search line"
-msgstr "Filtros e linha de pesquisa"
+msgstr "Filtros e linha de busca"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:183
 msgid "Group panel"
@@ -1279,19 +1279,19 @@ msgstr "Linha de botões"
 
 #: dnfdragora/helpinfo.py:48
 msgid "File menu"
-msgstr "Menu arquivo"
+msgstr "Menu 'arquivo'"
 
 #: dnfdragora/helpinfo.py:49
 msgid "Information menu"
-msgstr "Menu informação"
+msgstr "Menu 'informação'"
 
 #: dnfdragora/helpinfo.py:50
 msgid "Options menu"
-msgstr "Menu opções"
+msgstr "Menu 'opções'"
 
 #: dnfdragora/helpinfo.py:51
 msgid "Help menu"
-msgstr "Menu ajuda"
+msgstr "Menu 'ajuda'"
 
 #: dnfdragora/helpinfo.py:63
 msgid ""
@@ -1334,7 +1334,7 @@ msgstr "A barra de menu contém menus suspensos do dnfdragora:"
 
 #: dnfdragora/helpinfo.py:81
 msgid "File Menu"
-msgstr "Menu arquivo"
+msgstr "Menu 'arquivo'"
 
 #: dnfdragora/helpinfo.py:83
 msgid "<h2>Reset selection</h2>"
@@ -1386,7 +1386,7 @@ msgstr "Este menu encerra o dnfdragora.<br>"
 
 #: dnfdragora/helpinfo.py:97
 msgid "Information Menu"
-msgstr "Menu informações"
+msgstr "Menu 'Informações'"
 
 #: dnfdragora/helpinfo.py:99
 msgid "<h2>History</h2>"
@@ -1407,12 +1407,12 @@ msgid ""
 "<br><i>Note that this function is currently broken because of dnf API "
 "change</i><br>"
 msgstr ""
-"<br><i>Note que essa função está atualmente quebrada devido a uma mudança na "
-"API do dnf</i><br>"
+"<br><i>Observe que essa função está atualmente quebrada devido a uma mudança "
+"na API do dnf</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
-msgstr "Menu opções"
+msgstr "Menu 'Opções'"
 
 #: dnfdragora/helpinfo.py:110
 msgid "<h2>User preferences</h2>"
@@ -1465,8 +1465,8 @@ msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
-"<br><b>OBSERVAÇÃO</b> que essa opção significa que a remoção dos pacotes "
-"também será aceita silenciosamente</li>"
+"<br><b>OBSERVE</b> que essa opção significa que a remoção dos pacotes também "
+"será aceita silenciosamente</li>"
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
@@ -1491,8 +1491,8 @@ msgid ""
 "<br><b>NOTE</b> that this option is experimental, not all desktops manage it "
 "as expected</li>"
 msgstr ""
-"<br><b>NOTE</b> que esta opção é experimental, e nem todos os ambientes de "
-"desktop a gerenciam como esperado.</li>"
+"<br><b>OBSERVE</b> que esta opção é experimental, e nem todos os ambientes "
+"de desktop a gerenciam como esperado.</li>"
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
@@ -1538,11 +1538,11 @@ msgstr ""
 #: dnfdragora/helpinfo.py:131
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
-"<b>NOTE</b> que as opções acima exigem que o dnfdragora seja reiniciado."
+"<b>OBSERVE</b> que as opções acima exigem que o dnfdragora seja reiniciado."
 
 #: dnfdragora/helpinfo.py:132
 msgid "<h2>Search options</h2>"
-msgstr "<h2>Opções de pesquisa</h2>"
+msgstr "<h2>Opções de busca</h2>"
 
 #: dnfdragora/helpinfo.py:133
 msgid ""
@@ -1558,9 +1558,9 @@ msgid ""
 "regular expressions will add \"*\" to the given words, restoring the "
 "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
 msgstr ""
-"<li><b>Pesquisa fuzzy (modo legado)</b>: se marcada, uma pesquisa sem usar "
+"<li><b>Busca aproximada (modo legado)</b>: se marcada, uma pesquisa sem usar "
 "expressões regulares adicionará \"*\" às palavras fornecidas, restaurando o "
-"comportamento que o dnfdragora tinha ao usar o dnfdaemon 4.</li></ul>"
+"comportamento que dnfdragora teve usando dnfdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
@@ -1592,7 +1592,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
-msgstr "Menu ajuda"
+msgstr "Menu 'ajuda'"
 
 #: dnfdragora/helpinfo.py:148
 msgid "<h2>Manual</h2>"
@@ -1612,7 +1612,7 @@ msgstr "Este menu abre o diálogo 'sobre' do dnfdragora."
 
 #: dnfdragora/helpinfo.py:159
 msgid "Views and search"
-msgstr "Visualizações e pesquisa"
+msgstr "Visualizações e busca"
 
 #: dnfdragora/helpinfo.py:161
 msgid "<h2>Views</h2>"
@@ -1632,7 +1632,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:163
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
-"Se <i>todos</i> estiver selecionado, o painel de pacotes exibirá todos os "
+"Se <i>Todos</i> estiver selecionado, o painel de pacotes exibirá todos os "
 "pacotes."
 
 #: dnfdragora/helpinfo.py:164
@@ -1679,7 +1679,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:171
 msgid "<h2>Search</h2>"
-msgstr "<h2>Pesquisar</h2>"
+msgstr "<h2>Buscar</h2>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
@@ -1687,8 +1687,8 @@ msgid ""
 "filled. Search combobox allows to search given text into package <i>names</"
 "i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
 msgstr ""
-"A pesquisa é realizada ao pressionar o botão <i>pesquisar</i> se o campo de "
-"texto estiver preenchido. A caixa de combinação permite pesquisar o texto "
+"A busca é realizada ao pressionar o botão <i>Buscar</i> se o campo de texto "
+"estiver preenchido. A caixa de combinação permite pesquisar o texto "
 "fornecido em <i>nomes</i> de pacotes, <i>resumos</i>, <i>descrições</i> ou "
 "<i>arquivos</i>."
 
@@ -1708,12 +1708,12 @@ msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
 msgstr ""
-"<i>Note</i> que, se expressões regulares forem usadas para buscar por nomes, "
-"o nome completo do pacote com a versão será usado."
+"<i>Observe</i> que, se expressões regulares forem usadas para buscar por "
+"nomes, o nome completo do pacote com a versão será usado."
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
-msgstr "O botão <i>limpar pesquisa</i> redefine o campo de texto da pesquisa."
+msgstr "O botão <i>Limpar busca</i> redefine o campo de texto da busca."
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
@@ -1723,7 +1723,7 @@ msgid ""
 msgstr ""
 "Este painel exibe todos os grupos a serem usados na filtragem de pacotes por "
 "grupo, caso a visualização de grupos esteja selecionada. O grupo especial "
-"<i>buscar</i> é adicionado se uma busca for realizada."
+"<i>Buscar</i> é adicionado se uma busca for realizada."
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
@@ -1758,8 +1758,8 @@ msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
-"<br><br><i>Note que o registro de alterações não é fornecido pelo dnfdaemon "
-"no momento.</i>"
+"<br><br><i>Observe que o registro de alterações não é fornecido pelo "
+"dnfdaemon no momento.</i>"
 
 #: dnfdragora/helpinfo.py:215
 msgid "Progress bar"
@@ -1869,12 +1869,12 @@ msgstr "Não instalado"
 
 #: dnfdragora/ui.py:463
 msgid "To update"
-msgstr "Atualizar"
+msgstr "Para atualizar"
 
 #: dnfdragora/ui.py:469
 #, python-format
 msgid "Show %s and noarch only"
-msgstr "Mostrar %s e apenas noarch"
+msgstr "Mostrar somente %s e noarch"
 
 #: dnfdragora/ui.py:475
 msgid "Groups"
@@ -1902,11 +1902,11 @@ msgstr "Usar expressão regular"
 
 #: dnfdragora/ui.py:562
 msgid "&Search"
-msgstr "&Pesquisar"
+msgstr "&Buscar"
 
 #: dnfdragora/ui.py:566
 msgid "&Clear search"
-msgstr "&Limpar pesquisa"
+msgstr "&Limpar busca"
 
 #: dnfdragora/ui.py:576
 msgid "Sel&ect all"
@@ -1974,7 +1974,7 @@ msgstr "instalado"
 
 #: dnfdragora/ui.py:1150
 msgid "Missing information"
-msgstr "Falta de informação"
+msgstr "Informação ausente"
 
 #: dnfdragora/ui.py:1167
 msgid "Severity"
@@ -1986,7 +1986,7 @@ msgstr "Repositório"
 
 #: dnfdragora/ui.py:1548
 msgid "&Downgrade"
-msgstr "&Rebaixar"
+msgstr "&Desatualizar"
 
 #: dnfdragora/ui.py:1551
 msgid "&Reinstall"
@@ -2105,11 +2105,11 @@ msgstr "Armazenando atualizações em cache"
 
 #: dnfdragora/ui.py:2352
 msgid "Caching installed"
-msgstr "Armazenando em cache os pacotes instalados"
+msgstr "Armazenando os pacotes instalados em cache"
 
 #: dnfdragora/ui.py:2356
 msgid "Caching available"
-msgstr "Armazenando em cache disponível"
+msgstr "Armazenando os pacotes disponíveis em cache"
 
 #: dnfdragora/ui.py:2407
 msgid "Creating packages cache"
