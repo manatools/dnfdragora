@@ -249,12 +249,20 @@ class Client:
 
             # Managing dnf5daemon signals
             self.iface_base_signalhandler_maches = [
-                self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart),
-                self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress),
-                self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd),
-                self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage),
-                self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
+                ("download_add_new", self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart)),
+                ("download_progress", self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress)),
+                ("download_end", self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd)),
+                ("download_mirror_failure", self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)),
+                ("repo_key_import_request", self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport))
             ]
+
+            #self.iface_base_signalhandler_maches = [
+            #    self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart),
+            #    self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress),
+            #    self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd),
+            #    self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage),
+            #    self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
+            #]
 
             '''
                 transaction event sequence example (see https://github.com/rpm-software-management/dnf5/issues/1189)
@@ -291,30 +299,48 @@ class Client:
                 overall_transaction stop ("transaction_after_complete")
             '''
             self.iface_rpm_signalhandler_maches = [
-                self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError),
-
-                self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin),
-
-                self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress),
-
-                self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart),
-                self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress),
-                self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop),
-
-                self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart),
-                self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress),
-                self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop),
-
-                self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart),
-                self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress),
-                self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop),
-
-                self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart),
-                self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop),
-                self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError),
-
-                self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
+                ("transaction_unpack_error", self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError)),
+                ("transaction_before_begin", self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin)),
+                ("transaction_elem_progress", self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress)),
+                ("transaction_verify_start", self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart)),
+                ("transaction_verify_progress", self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress)),
+                ("transaction_verify_stop", self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop)),
+                ("transaction_action_start", self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart)),
+                ("transaction_action_progress", self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress)),
+                ("transaction_action_stop", self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop)),
+                ("transaction_transaction_start", self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart)),
+                ("transaction_transaction_progress", self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress)),
+                ("transaction_transaction_stop", self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop)),
+                ("transaction_script_start", self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart)),
+                ("transaction_script_stop", self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop)),
+                ("transaction_script_error", self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError)),
+                ("transaction_after_complete", self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete))
             ]
+            #self.iface_rpm_signalhandler_maches = [
+            #    self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart),
+            #    self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress),
+            #    self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart),
+            #    self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress),
+            #    self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart),
+            #    self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress),
+            #    self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart),
+            #    self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop),
+            #    self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError),
+#
+            #    self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
+            #]
             logger.debug("Connected all the signals from Dnf5Daemon.")
 
         ### TODO check dnf5daemon errors and manage correctly        
@@ -340,33 +366,35 @@ class Client:
         if self.session_path:
             try:
                 # Disconnect all signals
-                for signalMatch in self.iface_base_signalhandler_maches:
-                    self.bus.remove_signal_receiver(signalMatch)
-                #self.bus.remove_signal_receiver(self.on_DownloadStart, signal_name="download_add_new", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_DownloadProgress, signal_name="download_progress", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_DownloadEnd, signal_name="download_end", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_ErrorMessage, signal_name="download_mirror_failure", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_GPGImport, signal_name="repo_key_import_request", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##
-                for signalMatch in self.iface_rpm_signalhandler_maches:
-                    self.bus.remove_signal_receiver(signalMatch)
 
-                ##self.bus.remove_signal_receiver(self.on_TransactionUnpackError, signal_name="transaction_unpack_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionBeforeBegin, signal_name="transaction_before_begin", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionElemProgress, signal_name="transaction_elem_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionVerifyStart, signal_name="transaction_verify_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionVerifyProgress, signal_name="transaction_verify_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionVerifyStop, signal_name="transaction_verify_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionActionStart, signal_name="transaction_action_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionActionProgress, signal_name="transaction_action_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionActionStop, signal_name="transaction_action_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionTransactionStart, signal_name="transaction_transaction_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionTransactionProgress, signal_name="transaction_transaction_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionTransactionStop, signal_name="transaction_transaction_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionScriptStart, signal_name="transaction_script_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionScriptStop, signal_name="transaction_script_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                ##self.bus.remove_signal_receiver(self.on_TransactionScriptError, signal_name="transaction_script_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.on_TransactionAfterComplete, signal_name="transaction_after_complete", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                for signal_name, match in self.iface_base_signalhandler_maches:
+                    self.bus.remove_signal_receiver(match, signal_name=signal_name, dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[0], signal_name="download_add_new", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[1], signal_name="download_progress", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[2], signal_name="download_end", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[3], signal_name="download_mirror_failure", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[4], signal_name="repo_key_import_request", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                
+                for signal_name, match in self.iface_rpm_signalhandler_maches:
+                    self.bus.remove_signal_receiver(match, signal_name=signal_name, dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[0], signal_name="transaction_unpack_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[1], signal_name="transaction_before_begin", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[2], signal_name="transaction_elem_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[3], signal_name="transaction_verify_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[4], signal_name="transaction_verify_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[5], signal_name="transaction_verify_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[6], signal_name="transaction_action_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[7], signal_name="transaction_action_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[8], signal_name="transaction_action_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[9], signal_name="transaction_transaction_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[10], signal_name="transaction_transaction_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[11], signal_name="transaction_transaction_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[11], signal_name="transaction_script_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[12], signal_name="transaction_script_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[13], signal_name="transaction_script_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[14], signal_name="transaction_after_complete", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                
                 logger.debug("Disconnected all the signals from Dnf5Daemon.")
                 # Close the current session
                 self.iface_session.close_session(self.session_path)
