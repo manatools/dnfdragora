@@ -370,7 +370,8 @@ class Updater:
                 logger.error("GetPackages error %s", str(info['error']))
               #force scheduling again
               add_to_schedule = True
-              # Let's release the db
+              # Let's release the daemon
+              self.__backend.unloadDaemon()
             #elif (event == xxx)
             else:
               logger.warning("Unmanaged event received %s - info %s", event, str(info))

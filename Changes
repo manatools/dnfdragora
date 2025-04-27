@@ -1,6 +1,8 @@
 202X-XX-XX v. 2.99.1
 --------------------
+- Added unloadDaemon and disconnect dnfdragora-updater after an update check, to free the daemon
 - Fixed signal handling on reload daemon to avoid org.freedesktop.DBus.Error.LimitsExceeded
+  NOTE that it seems that disconnecting the signal handlers does not work properly
 - Fixed Typo on helpinfo, see issue #247 (thanks papoteur and yurchor)
 - Fixed dnfdragora-updater dnfdaemon dependency. Issue #246
 - Added back Glib.MainLoop in thread to manage dbus timeout and long transaction better

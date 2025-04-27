@@ -169,6 +169,9 @@ class Client:
         self.iface_rpm = None
         self.iface_goal = None
 
+        self.iface_base_signalhandler_maches = None
+        self.iface_rpm_signalhandler_maches = None
+
         self._sent = False
         self._data = {'cmd': None}
         self.eventQueue = SimpleQueue()
@@ -213,10 +216,13 @@ class Client:
     def _get_daemon(self):
         ''' Get the daemon dbus proxy object'''
         try:
+            if self.session_path:
+                logger.warning(f"Open Dnf5Daemon session: {self.session_path} already opened")
             self.iface_session = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, DNFDAEMON_OBJECT_PATH),
                 dbus_interface=IFACE_SESSION_MANAGER)
             self.session_path = self.iface_session.open_session({})
+            logger.debug(f"Open Dnf5Daemon session: {self.session_path}")
 
             self.iface_base = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
@@ -242,11 +248,13 @@ class Client:
 
 
             # Managing dnf5daemon signals
-            self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart)
-            self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress)
-            self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd)
-            self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)
-            self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
+            self.iface_base_signalhandler_maches = [
+                self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart),
+                self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress),
+                self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd),
+                self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage),
+                self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
+            ]
 
             '''
                 transaction event sequence example (see https://github.com/rpm-software-management/dnf5/issues/1189)
@@ -282,79 +290,98 @@ class Client:
                 # 5. transaction has finished
                 overall_transaction stop ("transaction_after_complete")
             '''
-            self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError)
+            self.iface_rpm_signalhandler_maches = [
+                self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError),
 
-            self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin)
+                self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin),
 
-            self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress)
+                self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress),
 
-            self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart)
-            self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress)
-            self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop)
+                self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart),
+                self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress),
+                self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop),
 
-            self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart)
-            self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress)
-            self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop)
+                self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart),
+                self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress),
+                self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop),
 
-            self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart)
-            self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress)
-            self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop)
+                self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart),
+                self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress),
+                self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop),
 
-            self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart)
-            self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop)
-            self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError)
+                self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart),
+                self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop),
+                self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError),
 
-            self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
+                self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
+            ]
+            logger.debug("Connected all the signals from Dnf5Daemon.")
 
-        ### TODO check dnf5daemon errors and manage correctly
+        ### TODO check dnf5daemon errors and manage correctly        
         except Exception as err:
             self._handle_dbus_error(err)
 
     def __del__(self):
         ''' destructor - closing session'''
-        self.iface_session.close_session(self.session_path)
-        logger.debug(f"Close Dnf5Daemon session: {self.session_path}")
+        self.unloadDaemon()
+        #self.iface_session.close_session(self.session_path)
+        logger.debug(f"__del__ - Dnf5Daemon Client session")
 
     def __exit__(self, exc_type, exc_value, exc_traceback) -> None:
         '''exit'''
-        self.iface_session.close_session(self.session_path)
-        logger.debug(f"Close Dnf5Daemon session: {self.session_path}")
+        self.unloadDaemon()
+        #self.iface_session.close_session(self.session_path)
+        logger.debug(f"__exit__ - Dnf5Daemon Client session")
         if exc_type:
             logger.critical("", exc_info=(exc_type, exc_value, exc_traceback))
+
+    def unloadDaemon(self):
+        '''Close the D-Bus connection and disconnect signals.'''
+        if self.session_path:
+            try:
+                # Disconnect all signals
+                for signalMatch in self.iface_base_signalhandler_maches:
+                    self.bus.remove_signal_receiver(signalMatch)
+                #self.bus.remove_signal_receiver(self.on_DownloadStart, signal_name="download_add_new", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_DownloadProgress, signal_name="download_progress", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_DownloadEnd, signal_name="download_end", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_ErrorMessage, signal_name="download_mirror_failure", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_GPGImport, signal_name="repo_key_import_request", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##
+                for signalMatch in self.iface_rpm_signalhandler_maches:
+                    self.bus.remove_signal_receiver(signalMatch)
+
+                ##self.bus.remove_signal_receiver(self.on_TransactionUnpackError, signal_name="transaction_unpack_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionBeforeBegin, signal_name="transaction_before_begin", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionElemProgress, signal_name="transaction_elem_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionVerifyStart, signal_name="transaction_verify_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionVerifyProgress, signal_name="transaction_verify_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionVerifyStop, signal_name="transaction_verify_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionActionStart, signal_name="transaction_action_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionActionProgress, signal_name="transaction_action_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionActionStop, signal_name="transaction_action_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionTransactionStart, signal_name="transaction_transaction_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionTransactionProgress, signal_name="transaction_transaction_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionTransactionStop, signal_name="transaction_transaction_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionScriptStart, signal_name="transaction_script_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionScriptStop, signal_name="transaction_script_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                ##self.bus.remove_signal_receiver(self.on_TransactionScriptError, signal_name="transaction_script_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                #self.bus.remove_signal_receiver(self.on_TransactionAfterComplete, signal_name="transaction_after_complete", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
+                logger.debug("Disconnected all the signals from Dnf5Daemon.")
+                # Close the current session
+                self.iface_session.close_session(self.session_path)
+                logger.debug(f"Closed Dnf5Daemon session: {self.session_path}")
+            except Exception as err:
+                logger.error(f"Error during reloadDaemon: {err}")
+                self._handle_dbus_error(err)
+            finally:
+                self.session_path = None
 
     def reloadDaemon(self):
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
             # Close the current session
-            self.iface_session.close_session(self.session_path)
-            logger.debug(f"Closed Dnf5Daemon session: {self.session_path}")
-
-            # Disconnect all signals
-            self.bus.remove_signal_receiver(self.on_DownloadStart, signal_name="download_add_new", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_DownloadProgress, signal_name="download_progress", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_DownloadEnd, signal_name="download_end", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_ErrorMessage, signal_name="download_mirror_failure", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_GPGImport, signal_name="repo_key_import_request", dbus_interface=None)
-
-            self.bus.remove_signal_receiver(self.on_TransactionUnpackError, signal_name="transaction_unpack_error", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionBeforeBegin, signal_name="transaction_before_begin", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionElemProgress, signal_name="transaction_elem_progress", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionVerifyStart, signal_name="transaction_verify_start", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionVerifyProgress, signal_name="transaction_verify_progress", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionVerifyStop, signal_name="transaction_verify_stop", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionActionStart, signal_name="transaction_action_start", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionActionProgress, signal_name="transaction_action_progress", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionActionStop, signal_name="transaction_action_stop", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionTransactionStart, signal_name="transaction_transaction_start", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionTransactionProgress, signal_name="transaction_transaction_progress", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionTransactionStop, signal_name="transaction_transaction_stop", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionScriptStart, signal_name="transaction_script_start", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionScriptStop, signal_name="transaction_script_stop", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionScriptError, signal_name="transaction_script_error", dbus_interface=None)
-            self.bus.remove_signal_receiver(self.on_TransactionAfterComplete, signal_name="transaction_after_complete", dbus_interface=None)
-
-            logger.debug("Disconnected all signals from Dnf5Daemon.")
-
+            self.unloadDaemon()
             # Reinitialize the daemon
             self._get_daemon()
             logger.debug("Reinitialized Dnf5Daemon.")
