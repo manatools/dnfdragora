@@ -1547,9 +1547,9 @@ msgid ""
 "regular expressions will add \"*\" to the given words, restoring the "
 "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
 msgstr ""
-"<li><b>Fuzzy  søk (eldre modus)</b>: Hvis du sjekket et søk uten å bruke "
-"regulære uttrykk, vil det legge til \"*\" til de gitte ordene, og "
-"gjenopprette oppførselen dnfdragora hadde ved bruk av dnfdaemon 4.</li></ul>"
+"<li><b>Fuzzy-søk (eldre modus)</b>: Hvis dette er avkrysset, vil et søk uten "
+"bruk av regulære uttrykk legge til \"*\" til de oppgitte ordene, og dermed "
+"gjenopprette virkemåten dnfdragora hadde med dnfdaemon 4.</li></ul>"
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
