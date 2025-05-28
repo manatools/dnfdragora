@@ -1,14 +1,14 @@
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Rémi Verschelde <akien@mageia.org>, 2018
+# Squalus acanthias, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 14:55+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rémi Verschelde <akien@mageia.org>, 2018\n"
-"Language-Team: Galician (https://www.transifex.com/MageiaLinux/teams/9361/gl/)\n"
+"POT-Creation-Date: 2025-04-23 08:43+0300\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: Squalus acanthias, 2025\n"
+"Language-Team: Galician (https://app.transifex.com/MageiaLinux/teams/9361/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,44 +18,45 @@ msgstr ""
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
 msgid "dnfdragora"
-msgstr ""
+msgstr "dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "GenericName"
 msgid "Install & Remove Software"
-msgstr "Instalar e eliminar software"
+msgstr "Instalar e desinstalar software"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
-msgstr "Unha interface gráfica para instalar, eliminar e actualizar paquetes"
+msgstr ""
+"Unha interface gráfica para instalar, desinstalar e actualizar paquetes"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-updater"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "GenericName"
 msgid "Tray-icon to check for updates"
-msgstr ""
+msgstr "Icona da área de notificación para comprobar se hai actualizacións"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Comment"
 msgid "Automatically check for updates and notify"
-msgstr ""
+msgstr "Comprobar automaticamente se hai actualizacións e notificar"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Name"
 msgid "dnfdragora Package Installer"
-msgstr ""
+msgstr "Instalador de paquetes dnfdragora"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr ""
+msgstr "Instalador de paquetes RPM"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr ""
+msgstr "Instalar paquetes locais no sistema"
