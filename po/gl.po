@@ -1477,7 +1477,8 @@ msgid ""
 "dnfdragora update is hidden if there are no updates."
 msgstr ""
 "<li><b>Agochar o menú de dnfdragora-updater se non hai actualizacións</b>: "
-"se está marcada, dnfdragora-updater está oculto cando non hai actualizacións."
+"se está marcada, dnfdragora-updater mantense oculto cando non hai "
+"actualizacións."
 
 #: dnfdragora/helpinfo.py:125
 msgid ""
@@ -1762,7 +1763,7 @@ msgid ""
 "and caching data."
 msgstr ""
 "A barra de progreso amosa o avance nas operacións de dnfdragora, "
-"concretamente as transaccións e os datos de caché."
+"concretamente as transaccións e os datos da caché."
 
 #: dnfdragora/helpinfo.py:225
 msgid "Buttons line"
@@ -2179,7 +2180,8 @@ msgstr "dnfdragora"
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:8
 msgid "A frontend for DNF using libyui UI abstraction library"
 msgstr ""
-"Unha interface para DNF que usa a biblioteca de abstracción gráfica libYUI"
+"Unha interface para DNF que usa a biblioteca de abstracción de controis "
+"libYUI"
 
 #: share/metainfo/org.mageia.dnfdragora.appdata.xml:10
 msgid ""
