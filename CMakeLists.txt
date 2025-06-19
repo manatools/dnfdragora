@@ -96,9 +96,9 @@ install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora-updat
 
 # Installing data files
 if(GETTEXT_FOUND)
-	install(FILES ${CMAKE_BINARY_DIR}/share/metainfo/org.mageia.dnfdragora.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata)
+	install(FILES ${CMAKE_BINARY_DIR}/share/metainfo/org.mageia.dnfdragora.metainfo.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
 else()
-	install(FILES ${CMAKE_SOURCE_DIR}/share/metainfo/org.mageia.dnfdragora.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/appdata)
+	install(FILES ${CMAKE_SOURCE_DIR}/share/metainfo/org.mageia.dnfdragora.metainfo.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
 endif(GETTEXT_FOUND)
 
 install(FILES ${CMAKE_SOURCE_DIR}/share/applications/org.mageia.dnfdragora.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)

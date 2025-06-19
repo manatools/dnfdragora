@@ -1,11 +1,11 @@
 # Find all translation-files
 file(GLOB PO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.po")
 
-# Set our target for AppData file
-set(xml_file ${CMAKE_BINARY_DIR}/share/metainfo/org.mageia.dnfdragora.appdata.xml)
-# Merge the translations into the initial AppData file
+# Set our target for AppStream file
+set(xml_file ${CMAKE_BINARY_DIR}/share/metainfo/org.mageia.dnfdragora.metainfo.xml)
+# Merge the translations into the initial AppStream file
 add_custom_command(OUTPUT ${xml_file}
-        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --xml -d ${CMAKE_CURRENT_SOURCE_DIR} --template ${CMAKE_SOURCE_DIR}/share/metainfo/org.mageia.dnfdragora.appdata.xml -o ${xml_file}
+        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --xml -d ${CMAKE_CURRENT_SOURCE_DIR} --template ${CMAKE_SOURCE_DIR}/share/metainfo/org.mageia.dnfdragora.metainfo.xml -o ${xml_file}
         COMMENT "Generating ${xml_file}"
         )
 add_custom_target(make_directory_for_xml ALL

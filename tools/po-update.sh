@@ -31,7 +31,7 @@ POT_FILE="$POT_DIR/$DOMAIN.pot"
 /usr/bin/xgettext \
 	-j \
 	--output="$POT_FILE" \
-	share/metainfo/org.mageia.dnfdragora.appdata.xml
+	share/metainfo/org.mageia.dnfdragora.metainfo.xml
 /bin/sed --in-place --expression="s/charset=CHARSET/charset=UTF-8/" "$POT_FILE"
 
 update_po() {
