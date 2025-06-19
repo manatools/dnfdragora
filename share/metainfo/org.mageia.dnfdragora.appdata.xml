@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2016 Neal Gompa <ngompa13@gmail.com> -->
-<component type="desktop">
- <id>org.mageia.dnfdragora.desktop</id>
- <metadata_license>CC-BY-SA-4.0</metadata_license>
- <project_license>GPL-3.0</project_license>
- <name>dnfdragora</name>
- <summary>A frontend for DNF using libyui UI abstraction library</summary>
- <description>
-  <p>
-     dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally rpmdrake).
-  </p>
+<component type="desktop-application">
+  <id>org.mageia.dnfdragora</id>
+  <metadata_license>CC-BY-SA-4.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>dnfdragora</name>
+  <developer id="org.mageia">
+    <name>ManaTools</name>
+  </developer>
+  <summary>A frontend for DNF using libyui UI abstraction library</summary>
+  <description>
+    <p>
+      dnfdragora is a DNF frontend, inspired by rpmdragora from Mageia (originally rpmdrake).
+    </p>
 
-  <p>
-     dnfdragora is written in Python 3 and uses libYui, the widget abstraction library written by SUSE,
-     so that it can be run using Qt 5, GTK+ 3, or ncurses interfaces. It provides a frontend for the
-     DNF package manager that can be used in any kind of system environment.
-  </p>
- </description>
- <screenshots>
-   <screenshot type="default" width="1706" height="862">
-       https://raw.githubusercontent.com/manatools/dnfdragora/master/screenshots/dnfdragora-qt.png
-   </screenshot>
- </screenshots>
- <url type="homepage">https://github.com/manatools/dnfdragora</url>
- <update_contact>ngompa_at_mageia.org</update_contact>
+    <p>
+      dnfdragora is written in Python 3 and uses libYui, the widget abstraction library written by SUSE,
+      so that it can be run using Qt 5, GTK+ 3, or ncurses interfaces. It provides a frontend for the
+      DNF package manager that can be used in any kind of system environment.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/manatools/dnfdragora/master/screenshots/dnfdragora-qt.png</image>
+      <caption>Main window</caption>
+    </screenshot>
+  </screenshots>
+  <url type="bugtracker">https://github.com/manatools/dnfdragora/issues</url>
+  <url type="homepage">https://github.com/manatools/dnfdragora</url>
+  <content_rating type="oars-1.1"/>
+  <launchable type="desktop-id">org.mageia.dnfdragora.desktop</launchable>
+  <update_contact>ngompa_at_mageia.org</update_contact>
 </component>
-
