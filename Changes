@@ -1,3 +1,9 @@
+202x-xx-xx v. 2.99.2
+--------------------
+- Updated translations
+- Modernized the AppStream metadata file
+- Fixed the AppStream metadata file name and installation directory
+
 2025-04-27 v. 2.99.1
 --------------------
 - Added unloadDaemon and disconnect dnfdragora-updater after an update check, to free the daemon
