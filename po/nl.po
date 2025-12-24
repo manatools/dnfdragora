@@ -6,20 +6,22 @@
 # Translators:
 # Yves Brungard, 2017
 # Geiger David <david.david@mageialinux-online.org>, 2020
-# Yuri Chornoivan <yurchor@ukr.net>, 2020
 # dragnadh, 2020
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
-# Marcel Pol <marcel@timelord.nl>, 2021
+# Yuri Chornoivan <yurchor@ukr.net>, 2024
+# Marcel Pol <marcel@timelord.nl>, 2024
+# Marja van Waes, 2025
+# Marc Laan, 2025
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 20:25+0300\n"
+"POT-Creation-Date: 2025-01-11 18:25+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Marcel Pol <marcel@timelord.nl>, 2021\n"
-"Language-Team: Dutch (https://www.transifex.com/MageiaLinux/teams/9361/nl/)\n"
+"Last-Translator: Marc Laan, 2025\n"
+"Language-Team: Dutch (https://app.transifex.com/MageiaLinux/teams/9361/nl/)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,49 +85,26 @@ msgstr ""
 "Forceer dnfdaemon dbus-diensten die worden gebruikt door dnfdragora om af te "
 "sluiten"
 
-#: bin/dnfdragora:53 bin/dnfdragora:103
-#, python-format
-msgid "dnfdaemon client failure [%s]"
-msgstr "Client-fout opgetreden in dnfdaemon [%s]"
-
-#: bin/dnfdragora:55
-msgid "Try again using a login shell (i.e. \"su -\")"
-msgstr "Probeer het opnieuw met een login-shell (d.w.z. \"su -\")"
-
-#: bin/dnfdragora:75
+#: bin/dnfdragora:68
 #, python-format
 msgid "%(prog)s %(NL)sversion: %(version)s%(NL)ssite: %(site)s"
 msgstr "%(prog)s %(NL)sversie: %(version)s%(NL)swebsite: %(site)s"
 
-#: bin/dnfdragora:89 bin/dnfdragora:92 bin/dnfdragora:95 bin/dnfdragora:98
-#: bin/dnfdragora:101 dnfdragora/basedragora.py:159
-msgid "Sorry"
-msgstr "Sorry"
-
-#: bin/dnfdragora:89
-#, python-format
-msgid "dnfdaemon client error occurred:%(NL)s%(error)s"
-msgstr "Er is een client-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
-
-#: bin/dnfdragora:92
-#, python-format
-msgid "dnfdaemon name error occurred:%(NL)s%(error)s"
-msgstr "Er is een naam-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
-
-#: bin/dnfdragora:95
-#, python-format
-msgid "dnfdaemon attribute error occurred:%(NL)s%(error)s"
-msgstr "Er is een attribuut-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
-
-#: bin/dnfdragora:98
-#, python-format
-msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
-msgstr "Er is een type-fout opgetreden in dnfdaemon:%(NL)s%(error)s"
-
-#: bin/dnfdragora:101
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88 bin/dnfdragora:91
+#: bin/dnfdragora:94 bin/dnfdragora:97
 #, python-format
 msgid "Error occurred:%(NL)s%(error)s"
 msgstr "Fout opgetreden:%(NL)s%(error)s"
+
+#: bin/dnfdragora:82 bin/dnfdragora:85 bin/dnfdragora:88 bin/dnfdragora:91
+#: bin/dnfdragora:94 bin/dnfdragora:97 dnfdragora/basedragora.py:127
+msgid "Sorry"
+msgstr "Sorry"
+
+#: bin/dnfdragora:99
+#, python-format
+msgid "dnfdaemon client failure [%s]"
+msgstr "Client-fout opgetreden in dnfdaemon [%s]"
 
 #: bin/dnfdragora-updater:24
 msgid ""
@@ -192,8 +171,8 @@ msgstr "Basissysteem"
 msgid "Content"
 msgstr "Inhoud"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:454
-#: dnfdragora/ui.py:468
+#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:460
+#: dnfdragora/ui.py:474
 msgid "All"
 msgstr "Alle"
 
@@ -209,583 +188,536 @@ msgstr "Zoekresultaten"
 msgid "Uncategorized"
 msgstr "Niet gecategoriseerd"
 
-#: dnfdragora/const.py:102
+#: dnfdragora/const.py:124
 msgid "Getting installed packages"
 msgstr "Geïnstalleerde pakketten ophalen"
 
-#: dnfdragora/const.py:103
+#: dnfdragora/const.py:125
 msgid "Getting available packages"
 msgstr "Beschikbare pakketten ophalen"
 
-#: dnfdragora/const.py:104
+#: dnfdragora/const.py:126
 msgid "Getting available updates"
 msgstr "Beschikbare herzieningen ophalen"
 
-#: dnfdragora/const.py:105
+#: dnfdragora/const.py:127
 msgid "Getting all packages"
 msgstr "Alle pakketten ophalen"
 
-#: dnfdragora/const.py:118
+#: dnfdragora/const.py:140
 msgid "Updated packages"
 msgstr "Bijgewerkte pakketten"
 
-#: dnfdragora/const.py:119
+#: dnfdragora/const.py:141
 msgid "Downgraded packages"
 msgstr "Gedegradeerde pakketten"
 
-#: dnfdragora/const.py:120
+#: dnfdragora/const.py:142
 msgid "Obsoleting packages"
 msgstr "Verouderde pakketten"
 
-#: dnfdragora/const.py:121
+#: dnfdragora/const.py:143
 msgid "Obsoleted packages"
 msgstr "Verouderde pakketten"
 
-#: dnfdragora/const.py:122
+#: dnfdragora/const.py:144
 msgid "Erased packages"
 msgstr "Gewiste pakketten"
 
-#: dnfdragora/const.py:123 dnfdragora/const.py:124
+#: dnfdragora/const.py:145 dnfdragora/const.py:146
 msgid "Installed packages"
 msgstr "Geïnstalleerde pakketten"
 
-#: dnfdragora/const.py:125
+#: dnfdragora/const.py:147
 msgid "Installed for dependencies"
 msgstr "Geïnstalleerd voor afhankelijkheden"
 
-#: dnfdragora/const.py:126
+#: dnfdragora/const.py:148
 msgid "Reinstalled packages"
 msgstr "Opnieuw geïnstalleerde pakketten"
 
-#: dnfdragora/const.py:131
+#: dnfdragora/const.py:153
 msgid "Installing"
 msgstr "Installeren"
 
-#: dnfdragora/const.py:132
+#: dnfdragora/const.py:154
 msgid "Updating"
 msgstr "Bijwerken"
 
-#: dnfdragora/const.py:133
+#: dnfdragora/const.py:155
 msgid "Removing"
 msgstr "Bezig met verwijderen"
 
-#: dnfdragora/const.py:134
+#: dnfdragora/const.py:156
 msgid "Downgrading"
 msgstr "Downgraden"
 
-#: dnfdragora/const.py:135
+#: dnfdragora/const.py:157
 msgid "Replacing"
 msgstr "Vervangen"
 
-#: dnfdragora/const.py:139
+#: dnfdragora/const.py:161
 #, python-format
 msgid "Updating: %s"
 msgstr "Bijwerken: %s"
 
-#: dnfdragora/const.py:140
+#: dnfdragora/const.py:162
 #, python-format
 msgid "Updated: %s"
 msgstr "Bijgewerkt: %s"
 
-#: dnfdragora/const.py:141
+#: dnfdragora/const.py:163
 #, python-format
 msgid "Installing: %s"
 msgstr "Installeren: %s"
 
-#: dnfdragora/const.py:142
+#: dnfdragora/const.py:164
 #, python-format
 msgid "Reinstalling: %s"
 msgstr "Opnieuw installeren: %s"
 
-#: dnfdragora/const.py:143
+#: dnfdragora/const.py:165
 #, python-format
 msgid "Reinstalled: %s"
 msgstr "Opnieuw geïnstalleerd: %s"
 
-#: dnfdragora/const.py:144
+#: dnfdragora/const.py:166
 #, python-format
 msgid "Cleanup: %s"
 msgstr "Opschonen: %s"
 
-#: dnfdragora/const.py:145
+#: dnfdragora/const.py:167
 #, python-format
 msgid "Removing: %s"
 msgstr "Verwijderen: %s"
 
-#: dnfdragora/const.py:146
+#: dnfdragora/const.py:168
 #, python-format
 msgid "Obsoleting: %s"
 msgstr "Verouderd: %s"
 
-#: dnfdragora/const.py:147
+#: dnfdragora/const.py:169
 #, python-format
 msgid "Obsoleted: %s"
 msgstr "Verouderd: %s"
 
-#: dnfdragora/const.py:148
+#: dnfdragora/const.py:170
 #, python-format
 msgid "Downgrading: %s"
 msgstr "Downgraden: %s"
 
-#: dnfdragora/const.py:149
+#: dnfdragora/const.py:171
 #, python-format
 msgid "Downgraded: %s"
 msgstr "Gedegradeerd: %s"
 
-#: dnfdragora/const.py:150
+#: dnfdragora/const.py:172
 #, python-format
 msgid "Verifying: %s"
 msgstr "Verifiëren: %s"
 
-#: dnfdragora/const.py:151
+#: dnfdragora/const.py:173
 #, python-format
 msgid "Running scriptlet: %s"
 msgstr "Uitvoeren van scriptlet: %s"
 
-#: dnfdragora/const.py:152
+#: dnfdragora/const.py:174
 #, python-format
 msgid "Preparing transaction: %s"
 msgstr "Voorbereiding van de transactie: %s"
 
-#: dnfdragora/const.py:153
+#: dnfdragora/const.py:175
 #, python-format
 msgid "Post-transaction script: %s"
 msgstr "Na-transactie script: %s"
 
-#: dnfdragora/const.py:163
+#: dnfdragora/const.py:185
 msgid "Bugfix"
 msgstr "Foutoplossing"
 
-#: dnfdragora/const.py:164
+#: dnfdragora/const.py:186
 msgid "New Package"
 msgstr "Nieuw pakket"
 
-#: dnfdragora/const.py:165 dnfdragora/groupicons.py:402
+#: dnfdragora/const.py:187 dnfdragora/groupicons.py:402
 msgid "Security"
 msgstr "Beveiliging"
 
-#: dnfdragora/const.py:166
+#: dnfdragora/const.py:188
 msgid "Enhancement"
 msgstr "Verbetering"
 
-#: dnfdragora/dialogs.py:203 dnfdragora/ui.py:1213
+#: dnfdragora/dialogs.py:202 dnfdragora/ui.py:1417
 msgid "Undo transaction"
 msgstr "Transactie ongedaan maken"
 
-#: dnfdragora/dialogs.py:228 dnfdragora/ui.py:1238
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1442
 msgid "Error checking package signatures"
 msgstr ""
 "Er is een fout opgetreden tijdens het controleren van de "
 "pakketondertekeningen..."
 
-#: dnfdragora/dialogs.py:232 dnfdragora/ui.py:1242 dnfdragora/ui.py:1752
+#: dnfdragora/dialogs.py:231 dnfdragora/ui.py:1446
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "Fout tijdens het downloaden"
 msgstr[1] "Fouten tijdens het downloaden"
 
-#: dnfdragora/dialogs.py:237 dnfdragora/ui.py:1247 dnfdragora/ui.py:1757
+#: dnfdragora/dialogs.py:236 dnfdragora/ui.py:1451
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "Fout in de transactie"
 msgstr[1] "Fouten in de transactie"
 
-#: dnfdragora/dialogs.py:249 dnfdragora/dialogs.py:252 dnfdragora/ui.py:1259
-#: dnfdragora/ui.py:1262
+#: dnfdragora/dialogs.py:248 dnfdragora/ui.py:1463
 msgid "Build transaction failure"
 msgstr "Fout in het voorbereiden van de transactie"
 
-#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:1262
-#, python-format
-msgid "dnfdaemon client not authorized:%(NL)s%(error)s"
-msgstr "dnfdaemon client is niet bevoegd: %(NL)s%(error)s"
-
-#: dnfdragora/dialogs.py:296
+#: dnfdragora/dialogs.py:292
 msgid "History"
 msgstr "Geschiedenis"
 
-#: dnfdragora/dialogs.py:303
+#: dnfdragora/dialogs.py:299
 msgid "History (Date/Time)"
 msgstr "Geschiedenis (Datum/Tijd)"
 
-#: dnfdragora/dialogs.py:305
+#: dnfdragora/dialogs.py:301
 msgid "Transaction History"
 msgstr "Transactiegeschiedenis"
 
-#: dnfdragora/dialogs.py:309
+#: dnfdragora/dialogs.py:305
 msgid "&Undo"
 msgstr "&Ongedaan maken"
 
-#: dnfdragora/dialogs.py:311 dnfdragora/dialogs.py:832
+#: dnfdragora/dialogs.py:307 dnfdragora/dialogs.py:947
 msgid "&Close"
 msgstr "S&luiten"
 
-#: dnfdragora/dialogs.py:373
-msgid "Transaction result"
-msgstr "Transactieresultaat"
+#: dnfdragora/dialogs.py:369
+msgid "Action on selected packages"
+msgstr "Actie op de geselecteerde pakketten"
 
-#: dnfdragora/dialogs.py:379
-msgid "Transaction dependency"
-msgstr "Transactie afhankelijkheid"
+#: dnfdragora/dialogs.py:385
+msgid "Normal (Install/Upgrade/Remove)"
+msgstr "Normaal (Installeren/Bijwerken/Verwijderen)"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:1258
-#: dnfdragora/dialogs.py:1296 dnfdragora/dialogs.py:1332
-#: dnfdragora/dialogs.py:1375
+#: dnfdragora/dialogs.py:389
+msgid "Reinstall"
+msgstr "Herinstalleren"
+
+#: dnfdragora/dialogs.py:395
+msgid "Downgrade"
+msgstr "Downgraden"
+
+#: dnfdragora/dialogs.py:401
+msgid "Distro Sync"
+msgstr "Distro Sync"
+
+#: dnfdragora/dialogs.py:407 dnfdragora/dialogs.py:478
+#: dnfdragora/dialogs.py:1413 dnfdragora/dialogs.py:1451
+#: dnfdragora/dialogs.py:1487 dnfdragora/dialogs.py:1530
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:614
-#: dnfdragora/dialogs.py:1376
+#: dnfdragora/dialogs.py:408 dnfdragora/dialogs.py:479
+#: dnfdragora/dialogs.py:703 dnfdragora/dialogs.py:1531
 msgid "&Cancel"
 msgstr "&Annuleren"
 
-#: dnfdragora/dialogs.py:404
+#: dnfdragora/dialogs.py:467
+msgid "Transaction result"
+msgstr "Transactieresultaat"
+
+#: dnfdragora/dialogs.py:473
+msgid "Transaction dependency"
+msgstr "Transactie afhankelijkheid"
+
+#: dnfdragora/dialogs.py:503
 msgid "replacing "
 msgstr "vervangen"
 
-#: dnfdragora/dialogs.py:410
+#: dnfdragora/dialogs.py:509
 msgid "Total size "
 msgstr "Totale grootte"
 
-#: dnfdragora/dialogs.py:475
+#: dnfdragora/dialogs.py:574
 msgid "Developers"
 msgstr "Ontwikkelaars"
 
-#: dnfdragora/dialogs.py:479
+#: dnfdragora/dialogs.py:578
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr ""
 "dnfdragora is een DNF-frontend dat werkt met behulp van GTK, ncurses en QT"
 
-#: dnfdragora/dialogs.py:516
-msgid "Bandwidth"
-msgstr "Bandbreedte"
+#: dnfdragora/dialogs.py:615
+msgid "Identifier"
+msgstr "Herkenningscode"
 
-#: dnfdragora/dialogs.py:517
-msgid "Base cache dir"
-msgstr "Basismap voor cache"
-
-#: dnfdragora/dialogs.py:518
-msgid "Base URL"
-msgstr "Basis-URL"
-
-#: dnfdragora/dialogs.py:519
-msgid "Cost"
-msgstr "Kosten"
-
-#: dnfdragora/dialogs.py:520
-msgid "DeltaRPM"
-msgstr "DeltaRPM"
-
-#: dnfdragora/dialogs.py:521
-msgid "DeltaRPM percentage"
-msgstr "DeltaRPM percentage"
-
-#: dnfdragora/dialogs.py:522 dnfdragora/dialogs.py:593
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-#: dnfdragora/dialogs.py:523
-msgid "Enabled metadata"
-msgstr "Metadata ingeschakeld"
-
-#: dnfdragora/dialogs.py:524
-msgid "Enable groups"
-msgstr "Groepen inschakelen"
-
-#: dnfdragora/dialogs.py:525
-msgid "Exclude"
-msgstr "Uitsluiten"
-
-#: dnfdragora/dialogs.py:526
-msgid "Exclude packages"
-msgstr "Pakketten uitsluiten"
-
-#: dnfdragora/dialogs.py:527
-msgid "Failover method"
-msgstr "Failover methode"
-
-#: dnfdragora/dialogs.py:528
-msgid "Fastest mirror"
-msgstr "Snelste spiegelserver"
-
-#: dnfdragora/dialogs.py:529
-msgid "GPG check"
-msgstr "GPG-controle"
-
-#: dnfdragora/dialogs.py:530
-msgid "GPG key"
-msgstr "GPG-sleutel"
-
-#: dnfdragora/dialogs.py:531
-msgid "Include packages"
-msgstr "Pakketten insluiten"
-
-#: dnfdragora/dialogs.py:532
-msgid "IP resolve"
-msgstr "IP-resolve"
-
-#: dnfdragora/dialogs.py:533
-msgid "Max parallel download"
-msgstr "Max parallel downloaden"
-
-#: dnfdragora/dialogs.py:534
-msgid "Media ID"
-msgstr "Media-ID"
-
-#: dnfdragora/dialogs.py:535
-msgid "Metadata expire"
-msgstr "Verlopen metagegevens"
-
-#: dnfdragora/dialogs.py:536
-msgid "Meta link"
-msgstr "Metalink"
-
-#: dnfdragora/dialogs.py:537
-msgid "Min rate"
-msgstr "Min snelheid"
-
-#: dnfdragora/dialogs.py:538
-msgid "Mirror list"
-msgstr "Lijst van spiegelservers"
-
-#: dnfdragora/dialogs.py:539 dnfdragora/dialogs.py:593 dnfdragora/ui.py:440
+#: dnfdragora/dialogs.py:616 dnfdragora/dialogs.py:683 dnfdragora/ui.py:445
 msgid "Name"
 msgstr "Naam"
 
-#: dnfdragora/dialogs.py:540
-msgid "Packages"
-msgstr "Pakketten"
-
-#: dnfdragora/dialogs.py:541
-msgid "Password"
-msgstr "Wachtwoord"
-
-#: dnfdragora/dialogs.py:542
-msgid "Priority"
-msgstr "Voorrang"
-
-#: dnfdragora/dialogs.py:543
-msgid "Protected packages"
-msgstr "Beschermde pakketten"
-
-#: dnfdragora/dialogs.py:544
-msgid "Proxy"
-msgstr "Proxy"
-
-#: dnfdragora/dialogs.py:545
-msgid "Proxy password"
-msgstr "Proxy-wachtwoord"
-
-#: dnfdragora/dialogs.py:546
-msgid "Proxy username"
-msgstr "Proxy-gebruikersnaam"
-
-#: dnfdragora/dialogs.py:547
-msgid "Repo GPG check"
-msgstr "Pakkettendepot GPG-controle"
-
-#: dnfdragora/dialogs.py:548
-msgid "Retries"
-msgstr "Nieuwe pogingen"
-
-#: dnfdragora/dialogs.py:549 dnfdragora/ui.py:440
-msgid "Size"
-msgstr "Grootte"
-
-#: dnfdragora/dialogs.py:550
-msgid "Skip if unavailable"
-msgstr "Overslaan indien niet beschikbaar"
-
-#: dnfdragora/dialogs.py:551
-msgid "SSL CA cert"
-msgstr "SSL CA cert"
-
-#: dnfdragora/dialogs.py:552
-msgid "SSL client cert"
-msgstr "SSL client cert"
-
-#: dnfdragora/dialogs.py:553
-msgid "SSL client key"
-msgstr "SSL client sleutel"
-
-#: dnfdragora/dialogs.py:554
-msgid "SSL verify"
-msgstr "SSL verifiëren"
-
-#: dnfdragora/dialogs.py:555
-msgid "Throttle"
-msgstr "Afknijpen"
-
-#: dnfdragora/dialogs.py:556
-msgid "Timeout"
-msgstr "Time-out"
-
-#: dnfdragora/dialogs.py:557
+#: dnfdragora/dialogs.py:617 dnfdragora/ui.py:1167
 msgid "Type"
 msgstr "Type"
 
-#: dnfdragora/dialogs.py:558
-msgid "Username"
-msgstr "Gebruikersnaam"
+#: dnfdragora/dialogs.py:618
+msgid "Enabled"
+msgstr "Ingeschakeld"
 
-#: dnfdragora/dialogs.py:567 dnfdragora/dialogs.py:582
+#: dnfdragora/dialogs.py:619
+msgid "Priority"
+msgstr "Voorrang"
+
+#: dnfdragora/dialogs.py:620
+msgid "Cost"
+msgstr "Kosten"
+
+#: dnfdragora/dialogs.py:621
+msgid "Base URL"
+msgstr "Basis-URL"
+
+#: dnfdragora/dialogs.py:622
+msgid "Meta link"
+msgstr "Metalink"
+
+#: dnfdragora/dialogs.py:623
+msgid "Mirror list"
+msgstr "Lijst van spiegelservers"
+
+#: dnfdragora/dialogs.py:624
+msgid "Metadata expire"
+msgstr "Verlopen metagegevens"
+
+#: dnfdragora/dialogs.py:625
+msgid "Cache Updated"
+msgstr "Cache bijgewerkt"
+
+#: dnfdragora/dialogs.py:626
+msgid "Exclude packages"
+msgstr "Pakketten uitsluiten"
+
+#: dnfdragora/dialogs.py:627
+msgid "Include packages"
+msgstr "Pakketten insluiten"
+
+#: dnfdragora/dialogs.py:628
+msgid "Skip if unavailable"
+msgstr "Overslaan indien niet beschikbaar"
+
+#: dnfdragora/dialogs.py:630
+msgid "GPG key"
+msgstr "GPG-sleutel"
+
+#: dnfdragora/dialogs.py:631
+msgid "GPG check"
+msgstr "GPG-controle"
+
+#: dnfdragora/dialogs.py:632
+msgid "Repo GPG check"
+msgstr "Pakkettendepot GPG-controle"
+
+#: dnfdragora/dialogs.py:634
+msgid "Proxy"
+msgstr "Proxy"
+
+#: dnfdragora/dialogs.py:635
+msgid "Proxy username"
+msgstr "Proxy-gebruikersnaam"
+
+#: dnfdragora/dialogs.py:636
+msgid "Proxy password"
+msgstr "Proxy-wachtwoord"
+
+#: dnfdragora/dialogs.py:638
+msgid "Repo file"
+msgstr "Repo-bestand"
+
+#: dnfdragora/dialogs.py:639
+msgid "Revision"
+msgstr "Herziening"
+
+#: dnfdragora/dialogs.py:640
+msgid "Content tags"
+msgstr "Inhoud-labels"
+
+#: dnfdragora/dialogs.py:641
+msgid "Distro tags "
+msgstr "Distro-labels"
+
+#: dnfdragora/dialogs.py:642
+msgid "Updated"
+msgstr "Bijgewerkt"
+
+#: dnfdragora/dialogs.py:643 dnfdragora/ui.py:445
+msgid "Size"
+msgstr "Grootte"
+
+#: dnfdragora/dialogs.py:644
+msgid "Packages"
+msgstr "Pakketten"
+
+#: dnfdragora/dialogs.py:645
+msgid "Available packages"
+msgstr "Beschikbare pakketten"
+
+#: dnfdragora/dialogs.py:646
+msgid "Mirrors"
+msgstr "Spiegelservers"
+
+#: dnfdragora/dialogs.py:655 dnfdragora/dialogs.py:670
 msgid "Repository Management"
 msgstr "Pakkettendepot-beheer"
 
-#: dnfdragora/dialogs.py:602
+#: dnfdragora/dialogs.py:684
+msgid "Id"
+msgstr "Id"
+
+#: dnfdragora/dialogs.py:691
 msgid "Information"
 msgstr "Informatie"
 
-#: dnfdragora/dialogs.py:602
+#: dnfdragora/dialogs.py:691
 msgid "Value"
 msgstr "Waarde"
 
-#: dnfdragora/dialogs.py:611 dnfdragora/ui.py:570
+#: dnfdragora/dialogs.py:700 dnfdragora/ui.py:572 dnfdragora/ui.py:1536
 msgid "&Apply"
 msgstr "&Toepassen"
 
-#: dnfdragora/dialogs.py:719
+#: dnfdragora/dialogs.py:771
 msgid "Never"
 msgstr "Nooit"
 
-#: dnfdragora/dialogs.py:721
+#: dnfdragora/dialogs.py:773
 #, python-format
 msgid "%s second(s)"
 msgstr "%sseconde(n)"
 
-#: dnfdragora/dialogs.py:727
+#: dnfdragora/dialogs.py:779
 msgid "Now"
 msgstr "Nu"
 
-#: dnfdragora/dialogs.py:798 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:913 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "Systeem"
 
-#: dnfdragora/dialogs.py:804
+#: dnfdragora/dialogs.py:919
 msgid "Layout"
 msgstr "Indeling"
 
-#: dnfdragora/dialogs.py:809
+#: dnfdragora/dialogs.py:924
 msgid "Search"
 msgstr "Zoeken"
 
-#: dnfdragora/dialogs.py:814
+#: dnfdragora/dialogs.py:929
 msgid "Logging"
 msgstr "Logboekregistratie"
 
-#: dnfdragora/dialogs.py:825
+#: dnfdragora/dialogs.py:940
 msgid "Restore &default"
 msgstr "Herstel &default"
 
-#: dnfdragora/dialogs.py:888
+#: dnfdragora/dialogs.py:1003
 msgid "System options"
 msgstr "Systeemopties"
 
-#: dnfdragora/dialogs.py:895
+#: dnfdragora/dialogs.py:1011
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 "Automatisch transacties op pakketten draaien zonder bevestiging te vereisen"
 
-#: dnfdragora/dialogs.py:904
+#: dnfdragora/dialogs.py:1016
+msgid "Consider packages to upgrade as updates"
+msgstr "Overweeg pakketten te upgraden als updates."
+
+#: dnfdragora/dialogs.py:1025
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr "Verberg \"dnfdragora-bijwerken\"-menu als er geen herzieningen zijn"
 
-#: dnfdragora/dialogs.py:920
+#: dnfdragora/dialogs.py:1041
 msgid "Interval to check for updates (minutes)"
 msgstr "Tijd tussen het controleren op herzieningen (minuten)"
 
-#: dnfdragora/dialogs.py:928
+#: dnfdragora/dialogs.py:1049
 msgid "Metadata expire time (hours)"
 msgstr "Verlooptijd metagegevens (uren)"
 
-#: dnfdragora/dialogs.py:953
+#: dnfdragora/dialogs.py:1074
 msgid "Layout options (active at next startup)"
 msgstr "Indelingsopties (actief bij volgende opstart)"
 
-#: dnfdragora/dialogs.py:967
+#: dnfdragora/dialogs.py:1089
 msgid "Show updates"
 msgstr "Herzieningen weergeven"
 
-#: dnfdragora/dialogs.py:972
+#: dnfdragora/dialogs.py:1094
 msgid "Do not show groups view"
 msgstr "Geen groepsweergave tonen"
 
-#: dnfdragora/dialogs.py:994
+#: dnfdragora/dialogs.py:1116
 msgid "Search options"
 msgstr "Zoekopties"
 
-#: dnfdragora/dialogs.py:1000
+#: dnfdragora/dialogs.py:1123
 msgid "Show newest packages only"
 msgstr "Toon alleen de nieuwste pakketten"
 
-#: dnfdragora/dialogs.py:1005
-msgid "Match all words"
-msgstr "Overeenkomen met alle woorden"
+#: dnfdragora/dialogs.py:1128
+msgid "Fuzzy search (legacy mode)"
+msgstr "Fuzzy zoeken (oorspronkelijke modus)"
 
-#: dnfdragora/dialogs.py:1027
+#: dnfdragora/dialogs.py:1150
 msgid "Logging options (active at next startup)"
 msgstr "Logboekopties (actief bij volgende opstart)"
 
-#: dnfdragora/dialogs.py:1051
+#: dnfdragora/dialogs.py:1175
 msgid "Enable logging"
 msgstr "Logboekregistratie inschakelen"
 
-#: dnfdragora/dialogs.py:1060
+#: dnfdragora/dialogs.py:1184
 msgid "Change &directory"
 msgstr "&Map wijzigen"
 
-#: dnfdragora/dialogs.py:1067
+#: dnfdragora/dialogs.py:1191
 msgid "Debug level"
 msgstr "Foutopsporing-niveau"
 
-#: dnfdragora/dialogs.py:1095
+#: dnfdragora/dialogs.py:1222
 msgid "Choose log destination directory"
 msgstr "Kies de map bestemd voor logboeken"
 
-#: dnfdragora/dialogs.py:1425
+#: dnfdragora/dialogs.py:1580
 msgid "&Yes"
 msgstr "&Ja"
 
-#: dnfdragora/dialogs.py:1426
+#: dnfdragora/dialogs.py:1581
 msgid "&No"
 msgstr "&Nee"
 
-#: dnfdragora/dialogs.py:1449
+#: dnfdragora/dialogs.py:1603
 #, python-format
 msgid ""
-"Do you want to import this GPG key <br>needed to verify the %(pkg)s package?"
-"<br><br>Key        : 0x%(id)s:<br>Userid     : \"%(user)s\"<br>From       : "
+"Do you want to import this GPG key?<br><br>Key        : 0x%(id)s:"
+"<br>Userid     : \"%(user)s\"<br>Fingerprint: "
+"\"%(fingerprint)s\"<br>Timestamp  : \"%(timestamp)s\"<br>From       : "
 "%(file)s"
 msgstr ""
-"Wilt u deze GPG-sleutel <br>die nodig is om het %(pkg)s pakket te "
-"controleren importeren?<br><br>Sleutel : 0x%(id)s:<br>Userid : \"%(user)s"
-"\"<br>Van: %(file)s"
+"Wilt u deze GPG-sleutel importeren?<br><br>Sleutel        : 0x%(id)s:"
+"<br>Gebruikers-ID     : \"%(user)s\"<br>Vingerafdruk: "
+"\"%(fingerprint)s\"<br>Tijdstempel  : \"%(timestamp)s\"<br>Van       : "
+"%(file)s"
 
-#: dnfdragora/dialogs.py:1456
+#: dnfdragora/dialogs.py:1615
 msgid "GPG key missed"
 msgstr "GPG-sleutel gemist"
 
-#: dnfdragora/dnf_backend.py:167
-#, python-format
-msgid ""
-"dnfdaemon api version : %(actual)d\n"
-"doesn't match\n"
-"needed api version : %(required)d"
-msgstr ""
-"dnfdaemon api-versie: %(actual)d\n"
-"komt niet overeen\n"
-"benodigde api-versie: %(required)d"
-
-#: dnfdragora/dnf_backend.py:365
+#: dnfdragora/dnf_backend.py:389
 #, python-format
 msgid "package has not any %s attributes"
 msgstr "pakket heeft geen enkele %s-attributen"
 
-#: dnfdragora/dnf_backend.py:483
-msgid "Caching groups from packages... "
-msgstr "Caching groepen van pakketten..."
-
-#: dnfdragora/dnfd_client.py:379
+#: dnfdragora/dnfd_client.py:509
 msgid "Command in progress"
 msgstr "Commando wordt verwerkt"
 
@@ -1326,15 +1258,15 @@ msgstr "Menuregel"
 msgid "Filters and search line"
 msgstr "Filters en zoekregel"
 
-#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:180
+#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:183
 msgid "Group panel"
 msgstr "Groepspaneel"
 
-#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:190
+#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:193
 msgid "Package panel"
 msgstr "Pakkettenpaneel"
 
-#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:201
+#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:204
 msgid "Information panel"
 msgstr "Informatiepaneel"
 
@@ -1539,6 +1471,31 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:123
 msgid ""
+"<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are "
+"added to updates and filtered as updates.</li>"
+msgstr ""
+"<li><b> Beschouw upgradepakketten als updates:</b> indien aangevinkt, worden "
+"upgrades toegevoegd aan de updates en als updates gefilterd.</li>"
+
+#: dnfdragora/helpinfo.py:124
+msgid ""
+"<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked "
+"dnfdragora update is hidden if there are no updates."
+msgstr ""
+"<li><b>Verberg het dnfdragora-update menu als er geen updates zijn:</b> als "
+"dit is aangevinkt, wordt het dnfdragora-update menu verborgen als er geen "
+"updates zijn."
+
+#: dnfdragora/helpinfo.py:125
+msgid ""
+"<br><b>NOTE</b> that this option is experimental, not all desktops manage it "
+"as expected</li>"
+msgstr ""
+"<br><b>NOTE:</b> deze optie is experimenteel en werkt niet op alle desktops "
+"zoals verwacht.</li>"
+
+#: dnfdragora/helpinfo.py:126
+msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents when "
 "dnfdragora needs to check for updates, value is expressed in minutes</li>"
 msgstr ""
@@ -1546,7 +1503,7 @@ msgstr ""
 "bepaalt hoe vaak dnfdragora op herzieningen controleert, de waarde wordt "
 "uitgedrukt in minuten</li>"
 
-#: dnfdragora/helpinfo.py:124
+#: dnfdragora/helpinfo.py:127
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
@@ -1554,11 +1511,11 @@ msgstr ""
 "<li><b>Verlooptijd voor metadata</b>: tijd om metadata te laten verlopen, de "
 "waarde wordt uitgedrukt in uren</li></ul>"
 
-#: dnfdragora/helpinfo.py:125
+#: dnfdragora/helpinfo.py:128
 msgid "<h2>Layout options</h2>"
 msgstr "<h2>Indelingsopties</h2>"
 
-#: dnfdragora/helpinfo.py:126
+#: dnfdragora/helpinfo.py:129
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
 "i> filter active, i.e. showing only package available for updates if any.</"
@@ -1568,7 +1525,7 @@ msgstr ""
 "starten met het <i>herzieningen</i> filter actief, oftewel enkel pakketten "
 "voor herzieningen worden weergegeven indien er herzieningen zijn.</li>"
 
-#: dnfdragora/helpinfo.py:127
+#: dnfdragora/helpinfo.py:130
 msgid ""
 "<li><b>Do not show groups view</b>: filtering by groups could require CPU if "
 "using comps, if this option is checked dnfdragora starts showing all "
@@ -1578,41 +1535,39 @@ msgstr ""
 "veel van de CPU vragen. Wanneer deze optie is ingeschakeld zal dnfdragora na "
 "het starten alle pakketten tonen.</li></ul>"
 
-#: dnfdragora/helpinfo.py:128
+#: dnfdragora/helpinfo.py:131
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
 "<b>Opmerking</b>: de bovenstaande opties zijn pas actief nadat dnfdragora "
 "herstart is."
 
-#: dnfdragora/helpinfo.py:129
+#: dnfdragora/helpinfo.py:132
 msgid "<h2>Search options</h2>"
 msgstr "<h2>Zoekopties</h2>"
 
-#: dnfdragora/helpinfo.py:130
+#: dnfdragora/helpinfo.py:133
 msgid ""
 "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only "
-"newest packages on search. <i>Note that is valid if searches are not "
-"performed by using regular expressions</i></li>"
+"newest packages on search.</li>"
 msgstr ""
-"<ul><li><b>Geef enkel het nieuwste pakket weer</b>: wanneer ingeschakeld zal "
-"dnfdragora enkel de nieuwste pakketten weergeven in de zoekresultaten. "
-"<i>Dit geldt enkel bij gewone zoekopdrachten, niet wanneer er gezocht is m.b."
-"v. reguliere expressies</i></li>"
+"<ul><li><b>Toon alleen de nieuwste pakketten</b>: indien ingeschakeld laat "
+"dnfdragora alleen de nieuwste pakketten zien in de zoekresultaten.</li>"
 
-#: dnfdragora/helpinfo.py:131
+#: dnfdragora/helpinfo.py:134
 msgid ""
-"<li><b>Match all words</b>: if checked a search without using regular "
-"expressions will match all the given words into the text field.</li></ul>"
+"<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
+"regular expressions will add \"*\" to the given words, restoring the "
+"behavior dnfdragora had using dnfdaemon 4.</li></ul>"
 msgstr ""
-"<li><b>Overeenkomen met alle woorden</b>: wanneer ingeschakeld zal zoeken "
-"(zonder reguliere expressies) de resultaten weergeven die overeenkomen met "
-"alle woorden die opgegeven zijn in het invoerveld.</li></ul>"
+"<li><b>Fuzzy zoeken (oorspronkelijke modus)</b>:indien aangevinkt worden er "
+"geen reguliere uitdrukkingen gebruikt, maar wordt  \"*\" aan de zoekwoorden "
+"toegevoegd, zoals toen dnfdragora gebruik maakte van dnfdaemon 4.</li></ul>"
 
-#: dnfdragora/helpinfo.py:132
+#: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
 msgstr "<h2>Logboek-opties</h2>"
 
-#: dnfdragora/helpinfo.py:133
+#: dnfdragora/helpinfo.py:136
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
@@ -1620,7 +1575,7 @@ msgstr ""
 "Met deze opties ingeschakeld zal dnfdragora een logboek wegschrijven naar "
 "het bestand <i>dnfdragora.log</i>."
 
-#: dnfdragora/helpinfo.py:134
+#: dnfdragora/helpinfo.py:137
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows to set logging "
 "directory, directory must exist and needs write permission.</li>"
@@ -1629,42 +1584,42 @@ msgstr ""
 "worden ingesteld. De map moet wel bestaan en er moeten schrijfrechten "
 "aanwezig zijn.</li>"
 
-#: dnfdragora/helpinfo.py:135
+#: dnfdragora/helpinfo.py:138
 msgid ""
 "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
 msgstr ""
 "<li><b>Foutopsporingsniveau</b>: wanneer ingeschakeld wordt er meer "
 "uitgebreid logs naar het logboek geschreven.</li></ul>"
 
-#: dnfdragora/helpinfo.py:143
+#: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
 msgstr "Hulpmenu"
 
-#: dnfdragora/helpinfo.py:145
+#: dnfdragora/helpinfo.py:148
 msgid "<h2>Manual</h2>"
 msgstr "<h2>Handleiding</h2>"
 
-#: dnfdragora/helpinfo.py:146
+#: dnfdragora/helpinfo.py:149
 msgid "This menu opens dnfdragora help dialog."
 msgstr "Dit menu-item opent de hulpdialoog van dnfdragora."
 
-#: dnfdragora/helpinfo.py:147
+#: dnfdragora/helpinfo.py:150
 msgid "<h2>About</h2>"
 msgstr "<h2>Over</h2>"
 
-#: dnfdragora/helpinfo.py:148
+#: dnfdragora/helpinfo.py:151
 msgid "This menu opens dnfdragora about dialog."
 msgstr "Dit menu-item opent de over-dialoog van dnfdragora."
 
-#: dnfdragora/helpinfo.py:156
+#: dnfdragora/helpinfo.py:159
 msgid "Views and search"
 msgstr "Weergaves en zoekregel"
 
-#: dnfdragora/helpinfo.py:158
+#: dnfdragora/helpinfo.py:161
 msgid "<h2>Views</h2>"
 msgstr "<h2>Weergaves</h2>"
 
-#: dnfdragora/helpinfo.py:159
+#: dnfdragora/helpinfo.py:162
 msgid ""
 "First combobox allows to show packages by groups. If <i>Groups</i> is "
 "selected group panel shows a tree view containing groups, while selecting a "
@@ -1675,31 +1630,31 @@ msgstr ""
 "Na het selecteren van een groep worden de pakketten in die groep weergegeven "
 "in het pakkettenpaneel."
 
-#: dnfdragora/helpinfo.py:160
+#: dnfdragora/helpinfo.py:163
 msgid "If <i>All</i> is selected, package panel contains all the packages."
 msgstr ""
 "Als <i>Alle</i> is geselecteerd worden alle pakketten weergegeven in het "
 "pakkettenpaneel."
 
-#: dnfdragora/helpinfo.py:161
+#: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
 msgstr "<h2>Filters</h2>"
 
-#: dnfdragora/helpinfo.py:162
+#: dnfdragora/helpinfo.py:165
 msgid "Filter combobox allows to filter packages shown into package panel by:"
 msgstr ""
 "In de filter-combobox kunt u pakketten in het pakkettenpaneel filteren op:"
 
-#: dnfdragora/helpinfo.py:163
+#: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
 "<ul><li><b>Geïnstalleerd</b>: Toont enkel geïnstalleerde pakketten.</li>"
 
-#: dnfdragora/helpinfo.py:164
+#: dnfdragora/helpinfo.py:167
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
 msgstr "<li><b>Niet-geïnstalleerd</b>: Toont enkel beschikbare pakketten.</li>"
 
-#: dnfdragora/helpinfo.py:165
+#: dnfdragora/helpinfo.py:168
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
@@ -1707,7 +1662,7 @@ msgstr ""
 "<li><b>Moet bijgewerkt worden</b>: toont enkel pakketten waar herzieningen "
 "voor beschikbaar zijn.</li>"
 
-#: dnfdragora/helpinfo.py:166
+#: dnfdragora/helpinfo.py:169
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
@@ -1715,7 +1670,7 @@ msgstr ""
 "<li><b>Toon alleen x86_64 en noarch</b>: als dnfdragora draait op de x86_64 "
 "architectuur worden i686-pakketten verborgen.</li>"
 
-#: dnfdragora/helpinfo.py:167
+#: dnfdragora/helpinfo.py:170
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li></ul>"
@@ -1723,11 +1678,11 @@ msgstr ""
 "<li><b>Alle</b>: toont alle pakketten, oftewel beschikbaar, herzieningen en "
 "geïnstalleerd.</li></ul>"
 
-#: dnfdragora/helpinfo.py:168
+#: dnfdragora/helpinfo.py:171
 msgid "<h2>Search</h2>"
 msgstr "<h2>Zoeken</h2>"
 
-#: dnfdragora/helpinfo.py:169
+#: dnfdragora/helpinfo.py:172
 msgid ""
 "Search is performed by pressing <i>Search</i> button if text field is "
 "filled. Search combobox allows to search given text into package <i>names</"
@@ -1738,7 +1693,7 @@ msgstr ""
 "zoeken op <i>pakketnamen</i>, <i>samenvattingen</i>, <i>omschrijvingen</i> "
 "of <i>bestandsnamen</i>."
 
-#: dnfdragora/helpinfo.py:170
+#: dnfdragora/helpinfo.py:173
 msgid ""
 "A special checkbox <i>Use regexp</i> is used to look for packages by python "
 "language regular expressions. This search is performed on cached package "
@@ -1749,7 +1704,7 @@ msgstr ""
 "programmeertaal. Deze zoekopdracht wordt uitgevoerd op de pakketinformatie "
 "in de cache zoals die op <b>pakketnamen en samenvattingen</b>."
 
-#: dnfdragora/helpinfo.py:171
+#: dnfdragora/helpinfo.py:174
 msgid ""
 "<i>Note</i> that if regular expressions are used to search by names full "
 "package filename with version is used."
@@ -1758,11 +1713,11 @@ msgstr ""
 "op pakketnamen, wordt de volledige pakketnaam inclusief versienummer "
 "gebruikt."
 
-#: dnfdragora/helpinfo.py:172
+#: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
 msgstr "De <i>Wis zoeken</i>-knop wist het invoerveld voor zoekopdrachten."
 
-#: dnfdragora/helpinfo.py:182
+#: dnfdragora/helpinfo.py:185
 msgid ""
 "This panel shows all the groups to be used to filter packages by group, if "
 "view groups is selected. Special group <i>Search</i> is added if a search is "
@@ -1772,7 +1727,7 @@ msgstr ""
 "groepsweergave geselecteerd is. Speciale groep <i>Zoekresultaten</i> wordt "
 "toegevoegd wanneer er een zoekopdracht is uitgevoerd."
 
-#: dnfdragora/helpinfo.py:192
+#: dnfdragora/helpinfo.py:195
 msgid ""
 "This panel shows all the filtered packages with they basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
@@ -1782,7 +1737,7 @@ msgstr ""
 "zoals <i>naam</i>, <i>samenvatting</i>, <i>versie</i>, <i>uitgave</i>, "
 "<i>architectuur</i>, <i>grootte</i> en <i>status</i>."
 
-#: dnfdragora/helpinfo.py:193
+#: dnfdragora/helpinfo.py:196
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
@@ -1790,7 +1745,7 @@ msgstr ""
 "Een aanvinkvakje voor ieder pakket is aanwezig om om gerelateerde pakketten "
 "toe te voegen aan de transactie voor installeren, bijwerken of verwijderen."
 
-#: dnfdragora/helpinfo.py:203
+#: dnfdragora/helpinfo.py:206
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
@@ -1800,7 +1755,7 @@ msgstr ""
 "<i>URL</i>, <i>pakkettendepot</i>, <i>vereisten</i>, <i>bestandslijst</i> en "
 "<i>wijzigingslogboek</i>."
 
-#: dnfdragora/helpinfo.py:204
+#: dnfdragora/helpinfo.py:207
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
@@ -1808,11 +1763,11 @@ msgstr ""
 "<br><br><i>Opmerking: het wijzigingslogboek is momenteel niet beschikbaar "
 "vanuit dnfdaemon.</i>"
 
-#: dnfdragora/helpinfo.py:212
+#: dnfdragora/helpinfo.py:215
 msgid "Progress bar"
 msgstr "Voortgangsbalk"
 
-#: dnfdragora/helpinfo.py:214
+#: dnfdragora/helpinfo.py:217
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
@@ -1820,11 +1775,11 @@ msgstr ""
 "Voortgangsbalk die de voortgang toont van handelingen van dnfdragora zoals "
 "transacties en de cache bijwerken van gegevens."
 
-#: dnfdragora/helpinfo.py:222
+#: dnfdragora/helpinfo.py:225
 msgid "Buttons line"
 msgstr "Knoplijn"
 
-#: dnfdragora/helpinfo.py:224
+#: dnfdragora/helpinfo.py:227
 msgid ""
 "<ul><li><b>Apply</b>: when some packages are selected for installing or "
 "updating or deselected for uninstalling this button runs the transaction to "
@@ -1834,7 +1789,7 @@ msgstr ""
 "installeren of bijwerken of zijn ge-deselecteerd voor verwijderen zal deze "
 "knop de transactie starten en uitvoeren.</li>"
 
-#: dnfdragora/helpinfo.py:225
+#: dnfdragora/helpinfo.py:228
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
@@ -1843,7 +1798,7 @@ msgstr ""
 "kan alleen deze knop gebruikt worden om alle pakketten in één keer te "
 "selecteren.</li>"
 
-#: dnfdragora/helpinfo.py:226
+#: dnfdragora/helpinfo.py:229
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
 msgstr "<li><b>Afsluiten</b>: sluit dnfdragora af.</li></ul>"
 
@@ -1862,288 +1817,370 @@ msgstr "Beginnen met downloaden: %s"
 msgid "Progress files (%(downloaded)d/%(total)d)"
 msgstr "Voortgang-bestanden (%(downloaded)d/%(total)d)"
 
-#: dnfdragora/ui.py:206
+#: dnfdragora/ui.py:202
+msgid "No transaction found"
+msgstr "Geen transactie gevonden"
+
+#: dnfdragora/ui.py:212
 msgid "Update information"
 msgstr "Bijwerkinformatie"
 
-#: dnfdragora/ui.py:207
+#: dnfdragora/ui.py:213
 msgid "File list"
 msgstr "Bestandslijst"
 
-#: dnfdragora/ui.py:208
+#: dnfdragora/ui.py:214
 msgid "Changelog"
 msgstr "Veranderingen-logboek"
 
-#: dnfdragora/ui.py:209
+#: dnfdragora/ui.py:215
 msgid "Requirements"
 msgstr "Vereisten"
 
-#: dnfdragora/ui.py:379
+#: dnfdragora/ui.py:389
 msgid "Software Management - dnfdragora"
 msgstr "Softwarebeheer - dnfdragora"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:445
 msgid "Arch"
 msgstr "Arch"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:445
 msgid "Release"
 msgstr "Uitgave"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:445
 msgid "Summary"
 msgstr "Samenvatting"
 
-#: dnfdragora/ui.py:440
+#: dnfdragora/ui.py:445
 msgid "Version"
 msgstr "Versie"
 
-#: dnfdragora/ui.py:447
+#: dnfdragora/ui.py:453
 msgid "Status"
 msgstr "Status"
 
-#: dnfdragora/ui.py:455
+#: dnfdragora/ui.py:461
 msgid "Installed"
 msgstr "Geïnstalleerd"
 
-#: dnfdragora/ui.py:456
+#: dnfdragora/ui.py:462
 msgid "Not installed"
 msgstr "Niet-geïnstalleerd"
 
-#: dnfdragora/ui.py:457
+#: dnfdragora/ui.py:463
 msgid "To update"
 msgstr "Moet bijgewerkt worden"
 
-#: dnfdragora/ui.py:463
+#: dnfdragora/ui.py:469
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Toon alleen %s en noarch"
 
-#: dnfdragora/ui.py:469
+#: dnfdragora/ui.py:475
 msgid "Groups"
 msgstr "Groepen"
 
-#: dnfdragora/ui.py:528
+#: dnfdragora/ui.py:534
 msgid "in names"
 msgstr "in namen"
 
-#: dnfdragora/ui.py:529
+#: dnfdragora/ui.py:535
 msgid "in descriptions"
 msgstr "in omschrijvingen"
 
-#: dnfdragora/ui.py:530
+#: dnfdragora/ui.py:536
 msgid "in summaries"
 msgstr "in samenvattingen"
 
-#: dnfdragora/ui.py:531
+#: dnfdragora/ui.py:537
 msgid "in file names"
 msgstr "in bestandsnamen"
 
-#: dnfdragora/ui.py:551
+#: dnfdragora/ui.py:558
 msgid "Use regexp"
 msgstr "Gebruik regex"
 
-#: dnfdragora/ui.py:555
+#: dnfdragora/ui.py:562
 msgid "&Search"
 msgstr "&Zoeken"
 
-#: dnfdragora/ui.py:560
+#: dnfdragora/ui.py:566
 msgid "&Clear search"
 msgstr "&Wis zoeken"
 
-#: dnfdragora/ui.py:574
+#: dnfdragora/ui.py:576
 msgid "Sel&ect all"
 msgstr "&Alles selecteren"
 
-#: dnfdragora/ui.py:580 dnfdragora/ui.py:594
+#: dnfdragora/ui.py:582 dnfdragora/ui.py:598 dnfdragora/ui.py:663
 msgid "&Quit"
 msgstr "Ver&laten"
 
-#: dnfdragora/ui.py:587
+#: dnfdragora/ui.py:591 dnfdragora/ui.py:659
 msgid "&File"
 msgstr "&Bestand"
 
-#: dnfdragora/ui.py:590
+#: dnfdragora/ui.py:594 dnfdragora/ui.py:660
 msgid "Reset the selection"
 msgstr "Reset de selectie"
 
-#: dnfdragora/ui.py:591
+#: dnfdragora/ui.py:595 dnfdragora/ui.py:661
 msgid "Refresh Metadata"
 msgstr "Ververs metadata"
 
-#: dnfdragora/ui.py:592
+#: dnfdragora/ui.py:596 dnfdragora/ui.py:662
 msgid "Repositories"
 msgstr "Pakkettendepots"
 
-#: dnfdragora/ui.py:602
-msgid "&Information"
-msgstr "&Informatie"
-
 #: dnfdragora/ui.py:605
-msgid "&History"
-msgstr "&Geschiedenis"
+msgid "&Actions"
+msgstr "&Acties"
 
-#: dnfdragora/ui.py:613
+#: dnfdragora/ui.py:608
+msgid "&Action on packages"
+msgstr "&Actie met betrekking tot pakketten"
+
+#: dnfdragora/ui.py:625 dnfdragora/ui.py:685
 msgid "&Options"
 msgstr "&Opties"
 
-#: dnfdragora/ui.py:616
+#: dnfdragora/ui.py:628 dnfdragora/ui.py:686
 msgid "User preferences"
 msgstr "Gebruikersinstellingen"
 
-#: dnfdragora/ui.py:624
+#: dnfdragora/ui.py:635 dnfdragora/ui.py:697
 msgid "&Help"
 msgstr "&Hulp"
 
-#: dnfdragora/ui.py:627
+#: dnfdragora/ui.py:638 dnfdragora/ui.py:698
 msgid "Manual"
 msgstr "Handleiding"
 
-#: dnfdragora/ui.py:629
+#: dnfdragora/ui.py:640 dnfdragora/ui.py:699
 msgid "&About"
 msgstr "&Over"
 
-#: dnfdragora/ui.py:666
+#: dnfdragora/ui.py:735
 msgid "update"
 msgstr "bijwerken"
 
-#: dnfdragora/ui.py:669
+#: dnfdragora/ui.py:738
 msgid "locked"
 msgstr "vergrendeld"
 
-#: dnfdragora/ui.py:672
+#: dnfdragora/ui.py:741
 msgid "installed"
 msgstr "geïnstalleerd"
 
-#: dnfdragora/ui.py:1000
+#: dnfdragora/ui.py:1150
 msgid "Missing information"
 msgstr "Missende informatie"
 
-#: dnfdragora/ui.py:1019
+#: dnfdragora/ui.py:1167
+msgid "Severity"
+msgstr "Ernst"
+
+#: dnfdragora/ui.py:1176
 msgid "Repository"
 msgstr "Pakkettendepot"
 
-#: dnfdragora/ui.py:1337
-msgid "Refreshing Repository Metadata"
-msgstr "Metadata van de pakkettendepots verversen"
+#: dnfdragora/ui.py:1548
+msgid "&Downgrade"
+msgstr "&Downgrade"
 
-#: dnfdragora/ui.py:1388
+#: dnfdragora/ui.py:1551
+msgid "&Reinstall"
+msgstr "&Herinstalleren"
+
+#: dnfdragora/ui.py:1554
+msgid "&Distro Sync"
+msgstr "&Distro Sync"
+
+#: dnfdragora/ui.py:1674
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Pakket %s kan niet verwijderd worden"
 
-#: dnfdragora/ui.py:1388
+#: dnfdragora/ui.py:1674
 msgid "Protected package selected"
 msgstr "Beschermd pakket geselecteerd"
 
-#: dnfdragora/ui.py:1449
+#: dnfdragora/ui.py:1736
 msgid "Unmanaged widget"
 msgstr "Onbeheerde widget"
 
-#: dnfdragora/ui.py:1467
+#: dnfdragora/ui.py:1744
 #, python-format
 msgid "Unmanaged event %d"
 msgstr "Onbeheerde gebeurtenis %d"
 
-#: dnfdragora/ui.py:1532
+#: dnfdragora/ui.py:1831
 msgid "Start transaction"
 msgstr "Transactie starten"
 
-#: dnfdragora/ui.py:1534
+#: dnfdragora/ui.py:1833
 msgid "Downloading packages"
 msgstr "Pakketten downloaden"
 
-#: dnfdragora/ui.py:1541
+#: dnfdragora/ui.py:1840
 msgid "Checking package signatures"
 msgstr "Pakketondertekeningen controleren"
 
-#: dnfdragora/ui.py:1549 dnfdragora/ui.py:1729
+#: dnfdragora/ui.py:1848 dnfdragora/ui.py:2522
 msgid "Applying changes to the system"
 msgstr "Wijzigingen worden aangebracht in het systeem"
 
-#: dnfdragora/ui.py:1552
+#: dnfdragora/ui.py:1851
 msgid "Verify changes on the system"
 msgstr "Wijzigingen aan het systeem verifiëren"
 
-#: dnfdragora/ui.py:1563
+#: dnfdragora/ui.py:1861
+msgid "Info"
+msgstr "Info"
+
+#: dnfdragora/ui.py:1862
+msgid "Changes applied"
+msgstr "Toegepaste wijzigingen"
+
+#: dnfdragora/ui.py:1863
+msgid "OK"
+msgstr "OK"
+
+#: dnfdragora/ui.py:1868
 msgid "Build transaction"
 msgstr "Transactie opbouwen"
 
-#: dnfdragora/ui.py:1598
+#: dnfdragora/ui.py:1903
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Onbekende actie %(action)s op %(name)s"
 
-#: dnfdragora/ui.py:1623
-#, python-format
-msgid "Downloading %(count_files)d files (%(count_bytes)sB)..."
-msgstr ""
-"Bezig met het downloaden van: %(count_files)d bestanden (%(count_bytes)sB)..."
+#: dnfdragora/ui.py:1932
+msgid "Transaction verification"
+msgstr "Transactie-verificatie"
 
-#: dnfdragora/ui.py:1659
+#: dnfdragora/ui.py:1979
+#, python-format
+msgid "Transaction for package <%(nevra)s> started"
+msgstr "Transactie voor pakket <%(nevra)s> begonnen"
+
+#: dnfdragora/ui.py:1996
+#, python-format
+msgid "Transaction for package <%(nevra)s> in progress"
+msgstr "Transactie voor pakket <%(nevra)s> is gaande"
+
+#: dnfdragora/ui.py:2029
+#, python-format
+msgid "Transaction in progress: <%(nevra)s> starts"
+msgstr "Transactie is gaande: <%(nevra)s> begint"
+
+#: dnfdragora/ui.py:2045 dnfdragora/ui.py:2063
+msgid "Preparation of transaction"
+msgstr "Voorbereiding van de transactie"
+
+#: dnfdragora/ui.py:2120
+#, python-format
+msgid "Scriptlet <%(nevra)s> started"
+msgstr "Scriptlet <%(nevra)s> gestart"
+
+#: dnfdragora/ui.py:2204
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: dnfdragora/ui.py:2234
+#, python-format
+msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
+msgstr ""
+"Start downloaden [%(count_files)d] - bestand %(id)s - %(description)s ..."
+
+#: dnfdragora/ui.py:2262
+#, python-format
+msgid "Downloading file %(id)s - %(description)s in progress"
+msgstr "Downloaden van bestand %(id)s - %(description)s is gaande"
+
+#: dnfdragora/ui.py:2349
 msgid "Caching updates"
 msgstr "Caching van herzieningen"
 
-#: dnfdragora/ui.py:1662
+#: dnfdragora/ui.py:2352
 msgid "Caching installed"
 msgstr "Caching van geïnstalleerd"
 
-#: dnfdragora/ui.py:1665
+#: dnfdragora/ui.py:2356
 msgid "Caching available"
 msgstr "Caching van beschikbaar"
 
-#: dnfdragora/ui.py:1711
+#: dnfdragora/ui.py:2407
 msgid "Creating packages cache"
 msgstr "Aanmaken van pakketten-cache"
 
-#: dnfdragora/ui.py:1734
+#: dnfdragora/ui.py:2427
+msgid "Transaction with warnings"
+msgstr "Transactie met waarschuwingen"
+
+#: dnfdragora/ui.py:2471 dnfdragora/ui.py:2527
 msgid "Build Transaction error"
 msgstr "Fout tijdens opbouw transactie"
 
-#: dnfdragora/ui.py:1750
-msgid "GPG key missing"
-msgstr "GPG-sleutel ontbreekt"
+#: dnfdragora/ui.py:2514
+msgid "Packages installed:"
+msgstr "Geïnstalleerde pakketten:"
 
-#: dnfdragora/ui.py:1874
+#: dnfdragora/ui.py:2517
+msgid "Packages removed:"
+msgstr "Verwijderde pakketten:"
+
+#: dnfdragora/ui.py:2519
+msgid "Error occured:"
+msgstr "Er is een fout opgetreden:"
+
+#: dnfdragora/ui.py:2557
+#, python-format
+msgid "Error in status %(status)s on %(event)s"
+msgstr "Fout in status %(status)s op %(event)s"
+
+#: dnfdragora/ui.py:2664
 msgid "Search error using regular expression"
 msgstr "Fout bij zoeken met reguliere expressie"
 
-#: dnfdragora/updater.py:121 dnfdragora/updater.py:124
+#: dnfdragora/updater.py:137
 #, python-format
 msgid "Error starting dnfdaemon service: [%s]"
 msgstr "Fout bij het opstarten van dnfdaemon-service: [%s]"
 
-#: dnfdragora/updater.py:133
+#: dnfdragora/updater.py:146
 msgid "Update"
 msgstr "Bijwerken"
 
-#: dnfdragora/updater.py:134
+#: dnfdragora/updater.py:147
 msgid "Open dnfdragora dialog"
 msgstr "Dialoogvenster dnfdragora openen"
 
-#: dnfdragora/updater.py:135
+#: dnfdragora/updater.py:148
 msgid "Check for updates"
 msgstr "Controleer op herzieningen"
 
-#: dnfdragora/updater.py:136
+#: dnfdragora/updater.py:149
 msgid "Exit"
 msgstr "Afsluiten"
 
-#: dnfdragora/updater.py:229
+#: dnfdragora/updater.py:242
 msgid "Running dnfdragora failure"
 msgstr "Fout bij het uitvoeren van dnfdragora"
 
-#: dnfdragora/updater.py:274 dnfdragora/updater.py:284
+#: dnfdragora/updater.py:287 dnfdragora/updater.py:297
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Uitzondering betrapt: [%s]"
 
-#: dnfdragora/updater.py:341
+#: dnfdragora/updater.py:354
 #, python-format
 msgid "%d updates available."
 msgstr "%d herzieningen beschikbaar."
 
-#: dnfdragora/updater.py:347
+#: dnfdragora/updater.py:360
 msgid "No updates available"
 msgstr "Geen herzieningen beschikbaar"
 
