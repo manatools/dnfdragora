@@ -51,9 +51,15 @@ if __name__ == "__main__":
     except:
       logger.error("Unexpected error: %s ", str(sys.exc_info()[0]))
     finally:
-        import yui
-        yui.YDialog.deleteAllDialogs()
-        # next line seems to be a workaround to prevent the qt-app from crashing
-        # see https://github.com/libyui/libyui-qt/issues/41
-        yui.YUILoader.deleteUI()
-        print("Closing dnfdragora-updater")
+      from manatools.aui import yui as yui
+      try:
+        if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
+          yui.YDialog.deleteAllDialogs()
+      except Exception:
+        pass
+      try:
+        if hasattr(yui, 'YUILoader') and hasattr(yui.YUILoader, 'deleteUI'):
+          yui.YUILoader.deleteUI()
+      except Exception:
+        pass
+      print("Closing dnfdragora-updater")

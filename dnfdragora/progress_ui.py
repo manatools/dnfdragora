@@ -1,21 +1,21 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
-import yui
+import manatools.aui.yui as MUI
 
 class ProgressBar:
 
     def __init__(self, main_dialog, layout):
-        self.factory = yui.YUI.widgetFactory()
+        self.factory = MUI.YUI.widgetFactory()
 
         self.main_dialog = main_dialog
         self.layout = layout
         vbox = self.factory.createVBox(layout)
         hbox = self.factory.createHBox(vbox)
         self.info_widget = self.factory.createLabel(hbox, "")
-        self.info_widget.setStretchable( yui.YD_HORIZ, True )
+        self.info_widget.setStretchable( MUI.YUIDimension.YD_HORIZ, True )
         self.info_sub_widget = self.factory.createLabel(hbox, "")
-        self.info_sub_widget.setStretchable( yui.YD_HORIZ, True )
+        self.info_sub_widget.setStretchable( MUI.YUIDimension.YD_HORIZ, True )
         self.progressbar = self.factory.createProgressBar(vbox, "")
 
 
@@ -43,7 +43,8 @@ class ProgressBar:
         self.__flush()
 
     def __flush(self) :
-        if self.main_dialog.isTopmostDialog() :
-            self.main_dialog.pollEvent()
+        pass
+        #if self.main_dialog.isTopmostDialog() :
+        #    self.main_dialog.pollEvent()
 
 

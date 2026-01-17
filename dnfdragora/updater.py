@@ -10,7 +10,7 @@ Author:  Björn Esser <besser82@fedoraproject.org>
 @package dnfdragora
 '''
 
-import gettext, sched, sys, threading, time, yui, os
+import gettext, sched, sys, threading, time, os
 
 from PIL import Image
 from dnfdragora import config, misc, dialogs, ui, dnfd_client
@@ -137,6 +137,9 @@ class Updater:
             logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
             return
 
+        # Use manatools.aui yui implementation instead of system "yui" package
+        from manatools.aui import yui as yui
+
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
         self.__scheduler = sched.scheduler(time.time, time.sleep)
@@ -189,8 +192,16 @@ class Updater:
               self.__backend = None
           except:
             pass
-          yui.YDialog.deleteAllDialogs()
-          yui.YUILoader.deleteUI()
+          try:
+            if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
+              yui.YDialog.deleteAllDialogs()
+          except Exception:
+            pass
+          try:
+            if hasattr(yui, 'YUILoader') and hasattr(yui.YUILoader, 'deleteUI'):
+              yui.YUILoader.deleteUI()
+          except Exception:
+            pass
 
         except:
           pass
@@ -237,7 +248,11 @@ class Updater:
             except Exception as e:
               logger.error("Exception on running dnfdragora with args %s - %s", str(args), str(e))
               dialogs.warningMsgBox({'title' : _("Running dnfdragora failure"), "text": str(e), "richtext":True})
-              yui.YDialog.deleteAllDialogs()
+              try:
+                if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
+                  yui.YDialog.deleteAllDialogs()
+              except Exception:
+                pass
               time.sleep(0.5)
               self.__main_gui = None
               return
@@ -248,7 +263,11 @@ class Updater:
             while self.__main_gui.loop_has_finished != True:
                 time.sleep(1)
             logger.info("Closed dnfdragora")
-            yui.YDialog.deleteAllDialogs()
+            try:
+              if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
+                yui.YDialog.deleteAllDialogs()
+            except Exception:
+              pass
             time.sleep(1)
             self.__main_gui = None
             logger.debug("Look for remaining updates")

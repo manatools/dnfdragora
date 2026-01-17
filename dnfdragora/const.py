@@ -17,6 +17,13 @@ import subprocess
 import sys
 import gettext
 
+# Ensure translation function exists at import time
+if '_' not in globals():
+    try:
+        _ = gettext.gettext
+    except Exception:
+        _ = lambda s: s
+
 #import hawkey
 
 from dnfdragora.version import __version__ as VERSION

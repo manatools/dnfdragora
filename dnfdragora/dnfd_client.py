@@ -172,6 +172,8 @@ class Client:
         self.iface_base_signalhandler_maches = None
         self.iface_rpm_signalhandler_maches = None
 
+        # Async request guard
+        self._async_lock = threading.Lock()
         self._sent = False
         self._data = {'cmd': None}
         self.eventQueue = SimpleQueue()
@@ -468,7 +470,13 @@ class Client:
 
         response = self._get_result(user_data)
         self.eventQueue.put({'event': user_data['cmd'], 'value': response})
-        self._sent = False
+        # clear sent flag under lock to avoid races with the async thread loop
+        try:
+            with self._async_lock:
+                self._sent = False
+        except Exception:
+            # fallback if lock missing for any reason
+            self._sent = False
         logger.debug("Quit return_handler error %s", user_data['error'])
 
 
@@ -510,13 +518,28 @@ class Client:
       '''
       logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), repr(args) if args else "")
       proxy = self.Proxy(data['cmd'])
-      method = self.proxyMethod[data['cmd']]
+      method = self.proxyMethod.get(data['cmd'])
+      if proxy is None:
+          # Defensive: proxy missing -> return error
+          err = DaemonError(f"No proxy available for command {data['cmd']}")
+          logger.error("__async_thread_loop: %s", err)
+          self._return_handler(err, data)
+          with self._async_lock:
+              self._sent = False
+          return
+      if method is None:
+          err = DaemonError(f"No proxyMethod configured for command {data['cmd']}")
+          logger.error("__async_thread_loop: %s", err)
+          self._return_handler(err, data)
+          with self._async_lock:
+              self._sent = False
+          return
       logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
       pipe_r, pipe_w = None, None
 
       try:
-          # Create a new GLib main loop for this thread
-          loop = GLib.MainLoop(GLib.MainContext.ref_thread_default())
+          # Create a GLib main loop for this thread (do NOT create a thread-default MainContext)
+          loop = GLib.MainLoop()
 
           def on_error(error):
               # Handle D-Bus error
@@ -544,54 +567,56 @@ class Client:
                     logger.debug("__async_thread_loop success for command %s", data['cmd'])
                     # close the write end
                     os.close(pipe_w)
-                    # read the data
-                    timeout = 1000 # 1 second timeout seems to be enough
+                    # read the data with robust cleanup and tolerant incremental JSON parsing
+                    timeout = 1000
                     buffer_size = 65536
                     poller = select.poll()
                     poller.register(pipe_r, select.POLLIN | select.POLLHUP)
                     read_finished = False
                     parser = json.JSONDecoder()
-                    to_parse = ""                
+                    to_parse = ""
                     pkglist = []
                     try:
-                        while (not read_finished):
+                        while not read_finished:
                             polled_event = poller.poll(timeout)
                             if not polled_event:
                                 logger.warning("__async_thread_loop(list_fd): timeout reached while reading from pipe.")
                                 break
                             for descriptor, event in polled_event:
                                 if event & select.POLLIN:
-                                    buffer = os.read(descriptor, buffer_size).decode()                                    
+                                    chunk = os.read(descriptor, buffer_size)
+                                    if not chunk:
+                                        read_finished = True
+                                        break
+                                    try:
+                                        buffer = chunk.decode()
+                                    except Exception:
+                                        buffer = ""
                                     if buffer:
                                         to_parse += buffer
+                                        # Try to decode as many JSON objects as possible; incomplete data is silently preserved
                                         while to_parse:
                                             try:
                                                 obj, end = parser.raw_decode(to_parse)
                                                 pkglist.append(obj)
-                                                to_parse = to_parse[end:].strip()
+                                                to_parse = to_parse[end:].lstrip()
                                             except json.decoder.JSONDecodeError:
-                                                logger.error("__async_thread_loop(list_fd): JSONDecodeError while parsing buffer")                                                             
-                                                # TODO - handle unfinished strings correctly
-                                                # current example implementation just tries to parse once again when
-                                                # more data arrive.
+                                                # Incomplete JSON -> wait for more data; do not log as error
                                                 break
-                                    else:
-                                        logger.debug("__async_thread_loop(list_fd): no more data to read from pipe.")
-                                        read_finished = True
                                 elif event & select.POLLHUP:
-                                    logger.debug("__async_thread_loop(list_fd): pipe closed by the writer.")
                                     read_finished = True
+                                    break
                     except Exception as err:
-                        logger.error("__async_thread_loop(list_fd): Exception while reading from pipe: %s", err)
-                        read_finished = True
+                        logger.exception("__async_thread_loop(list_fd): Exception while reading from pipe: %s", err)
                     finally:
-                        os.close(pipe_r)
+                        try:
+                            os.close(pipe_r)
+                        except Exception:
+                            pass
                         logger.debug("__async_thread_loop(list_fd): pipe closed.")
 
                     self._return_handler(pkglist, data)
-                    # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
                     GLib.idle_add(loop.quit)
-                    #logger.debug("__async_thread_loop(list_fd): loop quit")
                 func(*args, pipe_w, reply_handler=on_list_id_success, error_handler=on_error, timeout=600)                
             else: 
               def on_success(*result):
@@ -623,116 +648,317 @@ class Client:
           loop.run()
           logger.debug("__async_thread_loop GLib main loop quit %s", str(data['cmd']))
       except Exception as err:
-          logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
+          try:
+              proxy_iface = getattr(proxy, "dbus_interface", "<unknown>")
+          except Exception:
+              proxy_iface = "<unknown>"
+          logger.exception("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data.get('cmd')), proxy_iface, method, err)
           self._return_handler(err, data)
-          if pipe_r is not None:
-             os.close(pipe_r)
-          if pipe_w is not None:
-             os.close(pipe_w)
-          logger.debug("__async_thread_loop.Exception quit ...")
-          # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-          GLib.idle_add(loop.quit)          
-          #logger.debug("... __async_thread_loop.Exception quit")
-          # Close the pipe            
-
-      # Mark the request as completed
-      self._sent = False
-      logger.debug("__async_thread_loop quit %s", str(data['cmd']))
+      finally:
+          # Ensure pipes are closed if still open
+          try:
+              if pipe_r is not None:
+                  os.close(pipe_r)
+          except Exception:
+              pass
+          try:
+              if pipe_w is not None:
+                  os.close(pipe_w)
+          except Exception:
+              pass
+          # Mark the request as completed (thread-safe)
+          with self._async_lock:
+              self._sent = False
+          logger.debug("__async_thread_loop quit %s", str(data.get('cmd')))
 
     def _run_dbus_async(self, cmd, return_value, *args):
         '''Make an async call to a DBus method in the yumdaemon service
 
         cmd: method to run
         '''
-        # We enqueue one request at the time by now, monitoring _sent
-        if not self._sent:
-          logger.debug("run_dbus_async %s (return=%d) args: (%s)", cmd, return_value, repr(args) if args else "")
-          if self.__async_thread and self.__async_thread.is_alive():
-            logger.warning("run_dbus_async main loop running %s - probably last request is not terminated yet", self.__async_thread.is_alive())
-          # We enqueue one request at the time by now, monitoring _sent
-          self._sent = True
+        # Single outstanding async request enforced with a lock
+        with self._async_lock:
+            if self._sent:
+                logger.warning("run_dbus_async %s, previous command %s in progress", cmd, getattr(self._data, 'cmd', None))
+                result = {
+                    'result': False,
+                    'error': _("Command in progress"),
+                }
+                self.eventQueue.put({'event': cmd, 'value': result})
+                logger.debug("Command %s executed (rejected), result %s ", cmd, result)
+                return
+            self._sent = True
+            logger.debug("run_dbus_async %s (return=%d) args: (%s)", cmd, return_value, repr(args) if args else "")
+            self._data = {'cmd': cmd, 'return_value': return_value, 'args': args}
+            data = self._data
 
-          # let's pass also args, it could be useful for debug at certain point...
-          self._data = {'cmd': cmd, 'return_value': return_value, 'args': args, }
+        # Resolve proxy and method
+        proxy = self.Proxy(cmd)
+        if proxy is None:
+            err = DaemonError(f"No proxy available for command {cmd}")
+            self._return_handler(err, data)
+            return
+        method_name = self.proxyMethod.get(cmd)
+        if method_name is None:
+            err = DaemonError(f"No proxyMethod configured for command {cmd}")
+            self._return_handler(err, data)
+            return
 
-          data = self._data
-          self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args), daemon=True)
-          self.__async_thread.start()
+        try:
+            func = getattr(proxy, method_name)
+        except Exception as e:
+            logger.error("run_dbus_async: failed to get method %s on proxy: %s", method_name, e)
+            self._return_handler(e, data)
+            return
+
+        # Handlers
+        def on_error(error):
+            logger.error("run_dbus_async error for command %s: %s", cmd, error)
+            # Route via _return_handler so _sent is cleared and UI notified (when applicable)
+            self._return_handler(error, data)
+
+        if return_value:
+            # Methods that return values
+            if method_name == 'list_fd':
+                # Streamed JSON over FD -> read asynchronously
+                try:
+                    pipe_r, pipe_w = os.pipe()
+                except Exception as e:
+                    self._return_handler(e, data)
+                    return
+
+                parser = json.JSONDecoder()
+                state = {'buf': "", 'items': []}
+
+                def _finish_with(value):
+                    # Ensure callback runs in the main loop thread
+                    GLib.idle_add(lambda: (self._return_handler(value, data), False)[1])
+
+                def _reader_loop(fd):
+                    timeout = 1000
+                    buffer_size = 65536
+                    poller = select.poll()
+                    poller.register(fd, select.POLLIN | select.POLLHUP)
+                    try:
+                        while True:
+                            polled = poller.poll(timeout)
+                            if not polled:
+                                # keep waiting; server may still stream
+                                continue
+                            for descriptor, event in polled:
+                                if event & select.POLLIN:
+                                    chunk = os.read(descriptor, buffer_size)
+                                    if not chunk:
+                                        _finish_with(state['items'])
+                                        return
+                                    buffer = chunk.decode(errors='ignore')
+                                    if buffer:
+                                        state['buf'] += buffer
+                                        while state['buf']:
+                                            try:
+                                                obj, end = parser.raw_decode(state['buf'])
+                                                state['items'].append(obj)
+                                                state['buf'] = state['buf'][end:].lstrip()
+                                            except json.decoder.JSONDecodeError:
+                                                break
+                                if event & select.POLLHUP:
+                                    _finish_with(state['items'])
+                                    return
+                    except Exception as ex:
+                        logging.getLogger("dnfdaemon.client").exception("list_fd reader error: %s", ex)
+                        _finish_with(ex)
+                    finally:
+                        try:
+                            os.close(fd)
+                        except Exception:
+                            pass
+
+                # If GLib.unix_fd_add exists, use it; otherwise, fallback to thread reader
+                use_glib_fd_watch = hasattr(GLib, 'unix_fd_add')
+
+                if use_glib_fd_watch:
+                    def _fd_cb(fd, cond):
+                        try:
+                            if cond & GLib.IO_HUP:
+                                try:
+                                    os.close(pipe_r)
+                                except Exception:
+                                    pass
+                                self._return_handler(state['items'], data)
+                                return False
+                            if cond & GLib.IO_IN:
+                                chunk = os.read(fd, 65536)
+                                if not chunk:
+                                    try:
+                                        os.close(pipe_r)
+                                    except Exception:
+                                        pass
+                                    self._return_handler(state['items'], data)
+                                    return False
+                                buffer = chunk.decode(errors='ignore')
+                                if buffer:
+                                    state['buf'] += buffer
+                                    while state['buf']:
+                                        try:
+                                            obj, end = parser.raw_decode(state['buf'])
+                                            state['items'].append(obj)
+                                            state['buf'] = state['buf'][end:].lstrip()
+                                        except json.decoder.JSONDecodeError:
+                                            break
+                        except Exception as ex:
+                            logging.getLogger("dnfdaemon.client").exception("list_fd GLib watch error: %s", ex)
+                            try:
+                                os.close(pipe_r)
+                            except Exception:
+                                pass
+                            self._return_handler(ex, data)
+                            return False
+                        return True
+
+                    try:
+                        GLib.unix_fd_add(pipe_r, GLib.IO_IN | GLib.IO_HUP, _fd_cb)
+                    except Exception as e:
+                        # Fallback to thread reader if GLib watch setup fails
+                        threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True).start()
+                else:
+                    threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True).start()
+
+                # Schedule the daemon call; close our write end immediately after scheduling
+                try:
+                    func(*args, pipe_w, reply_handler=lambda *_: None, error_handler=lambda err: self._return_handler(err, data), timeout=600)
+                except Exception as e:
+                    try:
+                        os.close(pipe_r)
+                    except Exception:
+                        pass
+                    try:
+                        os.close(pipe_w)
+                    except Exception:
+                        pass
+                    self._return_handler(e, data)
+                    return
+                finally:
+                    # Always close local write end so reader can observe HUP when the daemon closes its end
+                    try:
+                        os.close(pipe_w)
+                    except Exception:
+                        pass
+
+            else:
+                # Regular async method with return value
+                def on_success(*result):
+                    logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result))
+                    if len(result) == 1:
+                        self._return_handler(unpack_dbus(result[0]), data)
+                    elif len(result) == 2:
+                        self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
+                    elif len(result) > 2:
+                        logger.warning("run_dbus_async: some return values are not managed")
+
+                try:
+                    func(*args, reply_handler=on_success, error_handler=on_error, timeout=600)
+                except Exception as e:
+                    self._return_handler(e, data)
+                    return
         else:
-          logger.warning("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent, self.__async_thread.is_alive())
-          result = {
-            'result': False,
-            'error': _("Command in progress"),
-          }
+            # Fire-and-forget: clear _sent when the daemon acks; results will arrive as signals
+            def on_success_novalue():
+                logger.debug("run_dbus_async.on_success_novalue %s", cmd)
+                try:
+                    with self._async_lock:
+                        self._sent = False
+                except Exception:
+                    self._sent = False
 
-          self.eventQueue.put({'event': cmd, 'value': result})
-          logger.debug("Command %s executed, result %s "%(cmd, result))
-
+            try:
+                func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=600)
+            except Exception as e:
+                # Route via _return_handler so _sent is cleared and UI handles error
+                self._return_handler(e, data)
+                return
 
     def _run_dbus_sync(self, cmd, *args):
-        '''Make a sync call to a DBus method in the yumdaemon service
-        cmd:
-        '''
+        '''Make a sync call to a DBus method in the dnf5daemon service'''
         logger.debug("_run_dbus_sync %s - args: (%s)", cmd, repr(args) if args else "")
         proxy = self.Proxy(cmd)
+        if proxy is None:
+            raise DaemonError(f"No proxy available for command {cmd}")
 
-        func = getattr(proxy, self.proxyMethod[cmd])
+        method_name = self.proxyMethod.get(cmd)
+        if method_name is None:
+            raise DaemonError(f"No proxyMethod configured for command {cmd}")
 
-        return_value = None
-
-        # TODO find a better way to distinguish if cmd needs a pipe
-        #if cmd == 'GetPackages':
-        if func == 'list_fd':
-            # create a pipe and pass the write end to the server
+        # list_fd requires pipe handling
+        if method_name == 'list_fd':
             pipe_r, pipe_w = os.pipe()
-            pipe_id = func(*args, pipe_w)
-            # close the write end
-            os.close(pipe_w)
+            try:
+                method = getattr(proxy, method_name)
+                # call with write-end; daemon writes JSON stream
+                method(*args, pipe_w)
+                # close local write-end so reader can receive HUP when daemon closes
+                try:
+                    os.close(pipe_w)
+                except Exception:
+                    pass
 
-            # read the data
-            timeout = 10000
-            buffer_size = 65536
-            poller = select.poll()
-            poller.register(pipe_r, select.POLLIN)
-            read_finished = False
-            parser = json.JSONDecoder()
-            to_parse = ""
-            pkglist = []
-            while (not read_finished):
-                polled_event = poller.poll(timeout)
-                if not polled_event:
-                    print("Timeout reached.")
-                    break
-                for descriptor, event in polled_event:
-                    buffer = os.read(descriptor, buffer_size).decode()
-                    if (len(buffer) > 0):
-                        to_parse += buffer
-                        while to_parse:
-                            try:
-                                obj, end = parser.raw_decode(to_parse)
-                                pkglist.append(obj)
-                                to_parse = to_parse[end:].strip()
-                            except json.decoder.JSONDecodeError:
-                                # TODO - handle unfinished strings correctly
-                                # current example implementation just tries to parse once again when
-                                # more data arrive.
+                timeout = 10000
+                buffer_size = 65536
+                poller = select.poll()
+                poller.register(pipe_r, select.POLLIN | select.POLLHUP)
+                parser = json.JSONDecoder()
+                to_parse = ""
+                items = []
+                read_finished = False
+
+                while not read_finished:
+                    events = poller.poll(timeout)
+                    if not events:
+                        logger.warning("_run_dbus_sync(list_fd): timeout reached while reading from pipe.")
+                        break
+                    for fd, ev in events:
+                        if ev & select.POLLIN:
+                            chunk = os.read(fd, buffer_size)
+                            if not chunk:
+                                read_finished = True
                                 break
-                    else:
-                        read_finished = True
-
-            os.close(pipe_r)
-            return_value = pkglist
+                            buf = chunk.decode(errors='ignore')
+                            if buf:
+                                to_parse += buf
+                                while to_parse:
+                                    try:
+                                        obj, end = parser.raw_decode(to_parse)
+                                        items.append(obj)
+                                        to_parse = to_parse[end:].lstrip()
+                                    except json.decoder.JSONDecodeError:
+                                        # wait for more data
+                                        break
+                        if ev & select.POLLHUP:
+                            read_finished = True
+                            break
+                return items
+            finally:
+                # ensure both ends are closed
+                try:
+                    os.close(pipe_r)
+                except Exception:
+                    pass
+                try:
+                    os.close(pipe_w)
+                except Exception:
+                    pass
         else:
-            return_value = func(*args)
-
-        return return_value
+            method = getattr(proxy, method_name)
+            return method(*args)
 
     def waitForLastAsyncRequestTermination(self):
       '''
       join async thread
       '''
-      self.__async_thread.join()
-
+      if self.__async_thread and self.__async_thread.is_alive():
+          try:
+              self.__async_thread.join(timeout=10)
+          except Exception:
+              pass
 #
 # Dbus Signal Handlers
 #
@@ -1664,6 +1890,7 @@ class Client:
         '''
             Resolve the transaction.
             Args:
+:
                 @options: an array of key/value pairs to modify dependency resolving
             Return:
                 @transaction_items: array

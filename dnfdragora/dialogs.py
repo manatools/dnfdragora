@@ -11,13 +11,14 @@ Author:  Angelo Naselli <anaselli@linux.it>
 
 # NOTE part of this code is imported from yumex-dnf
 
-import yui
+from manatools.aui import yui as yui
 import sys
 import os
 import datetime
 from gi.repository import GLib
 
 import manatools.ui.basedialog as basedialog
+import manatools.ui.common as common
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
@@ -172,7 +173,7 @@ class HistoryView:
         for year in main.keys():
             itemVect.append(main[year]['item'])
 
-        self._dlg .pollEvent()
+        #self._dlg .pollEvent()
 
         yui.YUI.app().busyCursor()
         itemCollection = yui.YItemCollection(itemVect)
@@ -309,16 +310,16 @@ class HistoryView:
         self._populateTree(data)
         self._populateHistory()
 
-        self._dlg .setDefaultButton(self._closeButton)
+        #self._dlg .setDefaultButton(self._closeButton)
 
         performedUndo = False
         while (True) :
             event = self._dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == yui.YEventType.CancelEvent) :
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == yui.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -333,7 +334,7 @@ class HistoryView:
                     if sel :
                         show_info = sel in self._tid.values()
                         self._undoButton.setEnabled(show_info)
-                        self._closeButton.setDefaultButton()
+                        #self._closeButton.setDefaultButton()
                         if not show_info:
                             sel = None
                     self._populateHistory(sel)
@@ -406,17 +407,17 @@ class PackageActionDialog:
         hbox = self.factory.createHBox(align)
         okButton = self.factory.createPushButton(hbox, _("&Ok"))
         cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
-        dlg.pollEvent()
-        dlg.setDefaultButton(cancelButton)
+        #dlg.pollEvent()
+        #dlg.setDefaultButton(cancelButton)
 
         while (True) :
             event = dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == yui.YEventType.CancelEvent) :
                 self.actionValue = self.savedActionValue
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == yui.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -507,7 +508,7 @@ class TransactionResult:
           itemVect.append(level1Item)
 
         sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
-        dlg.pollEvent()
+        #dlg.pollEvent()
 
         yui.YUI.app().busyCursor()
         itemCollection = yui.YItemCollection(itemVect)
@@ -517,7 +518,7 @@ class TransactionResult:
         treeWidget.doneMultipleChanges()
         yui.YUI.app().normalCursor()
 
-        dlg.setDefaultButton(okButton)
+        #dlg.setDefaultButton(okButton)
 
 
         accepting = False
@@ -556,7 +557,7 @@ class AboutDialog:
 
         '''
         self.parent = parent
-        self.factory = self.parent.mgaFactory
+        self.factory = yui.YUI.widgetFactory()
         # name        => the application name
         # version     =>  the application version
         # license     =>  the application license, the short length one (e.g. GPLv2, GPLv3, LGPLv2+, etc)
@@ -576,7 +577,8 @@ class AboutDialog:
                             "Neal   Gompa   &lt;ngompa13@gmail.com&gt;",
                             "Björn  Esser   &lt;besser82@fedoraproject.org&gt;")
         self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
-        self.dialog_mode = yui.YMGAAboutDialog.TABBED
+        # dialog mode retained for compatibility; common.AboutDialog handles layout
+        # self.dialog_mode = common.AboutDialogMode.TABBED
         # TODO
         self.logo = parent.images_path + "dnfdragora-logo.png"
         self.icon = parent.icon
@@ -587,14 +589,18 @@ class AboutDialog:
         '''
         shows the about dialog
         '''
-        dlg = self.factory.createAboutDialog(
-            self.name, self.version, self.license,
-            self.authors, self.description, self.logo,
-            self.icon, self.credits, self.information)
-
-        dlg.show(self.dialog_mode)
-
-        dlg = None;
+        info = {
+          'name': self.name,
+          'version': self.version,
+          'license': self.license,
+          'authors': self.authors,
+          'description': self.description,
+          'logo': self.logo,
+          'icon': self.icon,
+          'credits': self.credits,
+          'information': self.information,
+        }
+        common.AboutDialog(info)
 
 class RepoDialog:
     '''
@@ -608,7 +614,6 @@ class RepoDialog:
         '''
         self.parent = parent
         self.factory = self.parent.factory
-        self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
         self.infoKeys = {
@@ -678,13 +683,13 @@ class RepoDialog:
         hbox_footbar.setWeight(yui.YD_VERT,10)
 
         checkboxed = True
-        repoList_header = yui.YCBTableHeader()
+        repoList_header = yui.YTableHeader()
         repoList_header.addColumn("", checkboxed)
         repoList_header.addColumn(_('Name'), not checkboxed)
         repoList_header.addColumn(_('Id'), not checkboxed)
 
 
-        self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header)
+        self.repoList = self.factory.createTable(hbox_middle, repoList_header)
         self.repoList.setImmediateMode(True)
 
         info_header = yui.YTableHeader()
@@ -702,7 +707,7 @@ class RepoDialog:
 
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
         self.quitButton.setWeight(yui.YD_HORIZ,3)
-        self.dialog.setDefaultButton(self.quitButton)
+        #self.dialog.setDefaultButton(self.quitButton)
 
         self.itemList = {}
         repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
@@ -713,10 +718,10 @@ class RepoDialog:
         repos = self.backend.get_repositories()
 
         for r in repos:
-            item = yui.YCBTableItem()
-            item.addCell(r['enabled'])
-            item.addCell(r['name'])
-            item.addCell(r['id'])
+            item = yui.YTableItem()
+            item.addCell(bool(r['enabled']))
+            item.addCell(str(r['name']))
+            item.addCell(str(r['id']))
 
             self.itemList[r['id']] = {
                 'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
@@ -849,15 +854,19 @@ class RepoDialog:
                       self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
                     return True
                 elif (widget == self.repoList) :
-                    wEvent = yui.toYWidgetEvent(event)
-                    if (wEvent.reason() == yui.YEvent.ValueChanged) :
-                        changedItem = self.repoList.changedItem()
-                        if changedItem :
-                            cell = changedItem.cellChanged()
-                            for it in self.itemList:
-                                if (self.itemList[it]['item'] == changedItem) :
-                                    self.itemList[it]['enabled'] = cell.checked()
-                                    break
+                  if (event.reason() == yui.YEventReason.ValueChanged) :
+                    changedItem = self.repoList.changedItem()
+                    if changedItem :
+                      # first column is the checkbox
+                      new_state = False
+                      try:
+                        new_state = bool(changedItem.cell(0).checked())
+                      except Exception:
+                        pass
+                      for it in self.itemList:
+                        if (self.itemList[it]['item'] == changedItem) :
+                          self.itemList[it]['enabled'] = new_state
+                          break
 
                     repo_id = self._selectedRepository()
                     yui.YUI.app().busyCursor()
@@ -947,7 +956,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Close"))
     self.eventManager.addWidgetEvent(self.quitButton, self.onQuitEvent)
     self.quitButton.setWeight(0,1)
-    self.dialog.setDefaultButton(self.quitButton)
+    #self.dialog.setDefaultButton(self.quitButton)
 
     self.eventManager.addCancelEvent(self.onCancelEvent)
     self.onChangeConfig(self.config_tree)
@@ -1394,29 +1403,7 @@ def warningMsgBox (info) :
     if (not info) :
         return 0
 
-    retVal = 0
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE, yui.YMGAMessageBox.D_WARNING)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-#   dlg.setMinSize(50, 5)
-
-    retVal = dlg.show()
-    dlg = None
-
-    return 1
+    return common.warningMsgBox(info)
 
 
 def infoMsgBox (info) :
@@ -1432,29 +1419,7 @@ def infoMsgBox (info) :
     if (not info) :
         return 0
 
-    retVal = 0
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE, yui.YMGAMessageBox.D_INFO)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-#   dlg.setMinSize(50, 5)
-
-    retVal = dlg.show()
-    dlg = None
-
-    return 1
+    return common.infoMsgBox(info)
 
 def msgBox (info) :
     '''
@@ -1468,29 +1433,7 @@ def msgBox (info) :
     if (not info) :
         return 0
 
-    retVal = 0
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-#   dlg.setMinSize(50, 5)
-
-    retVal = dlg.show()
-    dlg = None
-
-    return 1
+    return common.msgBox(info)
 
 
 def askOkCancel (info) :
@@ -1511,36 +1454,7 @@ def askOkCancel (info) :
     if (not info) :
         return False
 
-    retVal = False
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_TWO)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-    dlg.setButtonLabel(_("&Cancel"), yui.YMGAMessageBox.B_TWO )
-
-    if ("default_button" in info.keys() and info["default_button"] == 1) :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_ONE)
-    else :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_TWO)
-
-    dlg.setMinSize(50, 5)
-
-    retVal = dlg.show() == yui.YMGAMessageBox.B_ONE;
-    dlg = None
-
-    return retVal
+    return common.askOkCancel(info)
 
 def askYesOrNo (info) :
     '''
@@ -1561,35 +1475,7 @@ def askYesOrNo (info) :
     if (not info) :
         return False
 
-    retVal = False
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_TWO)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Yes"), yui.YMGAMessageBox.B_ONE )
-    dlg.setButtonLabel(_("&No"), yui.YMGAMessageBox.B_TWO )
-    if ("default_button" in info.keys() and info["default_button"] == 1) :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_ONE)
-    else :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_TWO)
-    if ('size' in info.keys()) :
-        dlg.setMinSize(info['size'][0], info['size'][1])
-
-    retVal = dlg.show() == yui.YMGAMessageBox.B_ONE;
-    dlg = None
-
-    return retVal
+    return common.askYesOrNo(info)
 
 
 def ask_for_gpg_import (values):

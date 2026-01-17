@@ -16,7 +16,9 @@ import sys
 import platform
 import datetime
 import re
-import yui
+import manatools.aui.yui as MUI
+
+#from manatools.aui import yui_common as YUI
 import webbrowser
 from html import escape
 from queue import SimpleQueue, Empty
@@ -29,6 +31,7 @@ import threading
 from gi.repository import GLib
 
 import manatools.ui.helpdialog as helpdialog
+import manatools.ui.common as common
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
@@ -259,11 +262,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
-        if yui.YUI.app().isTextMode():
-          self.glib_loop = GLib.MainLoop()
-          self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
-          self.glib_thread.start()
-
+        #if MUI.YUI.app().isTextMode():
+        #  self.glib_loop = GLib.MainLoop()
+        #  self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
+        #  self.glib_thread.start()
+#
 
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
 
@@ -274,8 +277,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.pbar_layout.setEnabled(True)
 
         self.backend
-        self.dialog.pollEvent()
-        self.find_entry.setKeyboardFocus()
+        #self.dialog.pollEvent()
+        #self.find_entry.setKeyboardFocus()
 
 
 
@@ -386,19 +389,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
             setup main dialog
         '''
-        yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
+        MUI.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
         self.icon = self.images_path + "dnfdragora.png"
         self.logo = self.images_path + "dnfdragora-logo.png"
-        yui.YUI.app().setApplicationIcon(self.icon)
+        MUI.YUI.app().setApplicationIcon(self.icon)
 
-        MGAPlugin = "mga"
-
-        self.factory = yui.YUI.widgetFactory()
-        mgaFact = yui.YExternalWidgets.externalWidgetFactory(MGAPlugin)
-        self.mgaFactory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(mgaFact)
-        self.optFactory = yui.YUI.optionalWidgetFactory()
-
+        self.factory = MUI.YUI.widgetFactory()
+        
         self.AboutDialog = dialogs.AboutDialog(self)
 
         ### MAIN DIALOG ###
@@ -438,10 +436,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # Tree for groups
         self.tree = self.factory.createTree(hbox_middle, "")
-        self.tree.setWeight(yui.YD_HORIZ,20)
+        self.tree.setWeight(MUI.YUIDimension.YD_HORIZ,20)
         self.tree.setNotify(True)
 
-        packageList_header = yui.YCBTableHeader()
+        packageList_header = MUI.YTableHeader()
         columns = [ _('Name'), _('Summary'), _('Version'), _('Release'), _('Arch'), _('Size')]
 
         checkboxed = True
@@ -452,9 +450,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if not self.update_only :
             packageList_header.addColumn(_("Status"), not checkboxed)
 
-        self.packageList = self.mgaFactory.createCBTable(hbox_middle,packageList_header)
-        self.packageList.setWeight(yui.YD_HORIZ,80)
-        self.packageList.setImmediateMode(True)
+        self.packageList = self.factory.createTable(hbox_middle, packageList_header)
+        self.packageList.setWeight(MUI.YUIDimension.YD_HORIZ,80)
+        #self.packageList.setImmediateMode(True)
 
         self.filters = {
             'all' : {'title' : _("All")},
@@ -477,7 +475,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         ordered_views = [ 'groups', 'all' ]
 
         self.view_box = self.factory.createComboBox(hbox_top,"")
-        itemColl = yui.YItemCollection()
+        itemColl = []
 
         view = {}
         settings = {}
@@ -499,13 +497,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           view['show'] if 'show' in view.keys() else 'groups'
 
         for v in ordered_views:
-            item = yui.YItem(self.views[v]['title'])
+            item = MUI.YItem(self.views[v]['title'])
             if show_item == v :
                 item.setSelected(True)
             # adding item to views to find the item selected
             self.views[v]['item'] = item
-            itemColl.push_back(item)
-            item.this.own(False)
+            itemColl.append(item)
 
         self.view_box.addItems(itemColl)
         self.view_box.setNotify(True)
@@ -518,13 +515,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           else view['filter'] if 'filter' in view.keys() else 'all'
 
         for f in ordered_filters:
-            item = yui.YItem(self.filters[f]['title'])
+            item = MUI.YItem(self.filters[f]['title'])
             if filter_item == f:
                 item.setSelected(True)
             # adding item to filters to find the item selected
             self.filters[f]['item'] = item
-            itemColl.push_back(item)
-            item.this.own(False)
+            itemColl.append(item)
 
         self.filter_box.addItems(itemColl)
         self.filter_box.setNotify(True)
@@ -541,26 +537,25 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.search_list = self.factory.createComboBox(hbox_top,"")
         itemColl.clear()
         for s in search_types:
-            item = yui.YItem(self.local_search_types[s]['title'])
+            item = MUI.YItem(self.local_search_types[s]['title'])
             if s == search_types[0] :
                 item.setSelected(True)
             # adding item to local_search_types to find the item selected
             self.local_search_types[s]['item'] = item
-            itemColl.push_back(item)
-            item.this.own(False)
+            itemColl.append(item)
 
         self.search_list.addItems(itemColl)
         self.search_list.setNotify(True)
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
-        self.find_entry.setWeight(yui.YD_HORIZ,1)
+        self.find_entry.setWeight(MUI.YUIDimension.YD_HORIZ,1)
 
         self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
         self.use_regexp.setNotify(True)
 
         icon_file = self.images_path + "find.png"
         self.find_button = self.factory.createIconButton(hbox_top, 'system-search', _("&Search"))
-        self.find_button.setDefaultButton(True)
+        #TODO self.find_button.setDefaultButton(True)
 
         icon_file = self.images_path + "clear_22x22.png"
         self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Clear search"))
@@ -570,17 +565,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
-        self.applyButton.setWeight(yui.YD_HORIZ,1)
+        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.applyButton.setEnabled(False)
 
         self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Sel&ect all"))
-        self.checkAllButton.setWeight(yui.YD_HORIZ,1)
+        self.checkAllButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.checkAllButton.setEnabled(False)
         spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
         self.quitButton = self.factory.createIconButton(right_footbar,"",_("&Quit"))
-        self.quitButton.setWeight(yui.YD_HORIZ,1)
+        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
 
         ### BEGIN Menus #########################
         if (hasattr(self.factory, 'createMenuBar') and ismethod(getattr(self.factory, 'createMenuBar'))):
@@ -588,34 +583,36 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.menubar = self.factory.createMenuBar(hbox_menubar)
 
             # building File menu
-            mItem = self.menubar.addMenu(_("&File"))
+            # def addMenu(self, label: str="", icon_name: str = "", menu: YMenuItem = None) -> YMenuItem:
+            # ef addItem(self, menu: YMenuItem, label: str, icon_name: str = "", enabled: bool = True) -> YMenuItem:
+            mItem = self.menubar.addMenu(label=_("&File"))
             self.fileMenu = {
                 'menu_name' : mItem,
-                'reset_sel' : yui.YMenuItem(mItem, _("Reset the selection")),
-                'reload'    : yui.YMenuItem(mItem, _("Refresh Metadata")),
-                'repos'     : yui.YMenuItem(mItem, _("Repositories")),
+                'reset_sel' : self.menubar.addItem(mItem, _("Reset the selection")),
+                'reload'    : self.menubar.addItem(mItem, _("Refresh Metadata")),
+                'repos'     : self.menubar.addItem(mItem, _("Repositories")),
                 'sep0'      : mItem.addSeparator(),
-                'quit'      : yui.YMenuItem(mItem, _("&Quit"), "application-exit"),
+                'quit'      : self.menubar.addItem(mItem, _("&Quit"), "application-exit"),
             }
             #Items must be "disowned"
-            for k in self.fileMenu.keys():
-                self.fileMenu[k].this.own(False)
+            #for k in self.fileMenu.keys():
+            #    self.fileMenu[k].this.own(False)
 
             # building Actions menu
             mItem = self.menubar.addMenu(_("&Actions"))
             self.ActionMenu = {
                  'menu_name' : mItem,
-                 'actions'   : yui.YMenuItem(mItem, _("&Action on packages")),
+                 'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
             }
             #Items must be "disowned"
-            for k in self.ActionMenu.keys():
-                self.ActionMenu[k].this.own(False)
+            #for k in self.ActionMenu.keys():
+            #    self.ActionMenu[k].this.own(False)
 
             # # building Information menu
             # mItem = self.menubar.addMenu(_("&Information"))
             # self.infoMenu = {
             #     'menu_name' : mItem,
-            #     'history'   : yui.YMenuItem(mItem, _("&History")),
+            #     'history'   : MUI.YMenuItem(mItem, _("&History")),
             # }
             # #Items must be "disowned"
             # for k in self.infoMenu.keys():
@@ -625,26 +622,26 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             mItem = self.menubar.addMenu(_("&Options"))
             self.optionsMenu = {
                 'menu_name'  : mItem,
-                'user_prefs' : yui.YMenuItem(mItem, _("User preferences")),
+                'user_prefs' : self.menubar.addItem(mItem, _("User preferences")),
             }
             #Items must be "disowned"
-            for k in self.optionsMenu.keys():
-                self.optionsMenu[k].this.own(False)
+            #for k in self.optionsMenu.keys():
+            #    self.optionsMenu[k].this.own(False)
 
             # build Help menu
             mItem = self.menubar.addMenu(_("&Help"))
             self.helpMenu = {
                 'menu_name': mItem,
-                'help'     : yui.YMenuItem(mItem, _("Manual")),
+                'help'     : self.menubar.addItem(mItem, _("Manual")),
                 'sep0'     : mItem.addSeparator(),
-                'about'    : yui.YMenuItem(mItem, _("&About"), 'dnfdragora'),
+                'about'    : self.menubar.addItem(mItem, _("&About"), 'dnfdragora'),
             }
             #Items must be "disowned"
-            for k in self.helpMenu.keys():
-                self.helpMenu[k].this.own(False)
+            #for k in self.helpMenu.keys():
+            #    self.helpMenu[k].this.own(False)
 
-            self.menubar.resolveShortcutConflicts()
-            self.menubar.rebuildMenuTree()
+            #TODO self.menubar.resolveShortcutConflicts()
+            self.menubar.rebuildMenus()
         else:
             logger.info("System has not createMenuBar, using old menu buttons")
             self._createMenuButtons(self.factory.createHBox(self.factory.createLeft(hbox_menubar)))
@@ -657,10 +654,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build File menu
         self.fileMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&File")),
-            'reset_sel' : yui.YMenuItem(_("Reset the selection")),
-            'reload'    : yui.YMenuItem(_("Refresh Metadata")),
-            'repos'     : yui.YMenuItem(_("Repositories")),
-            'quit'      : yui.YMenuItem(_("&Quit"), "application-exit"),
+            'reset_sel' : MUI.YMenuItem(_("Reset the selection")),
+            'reload'    : MUI.YMenuItem(_("Refresh Metadata")),
+            'repos'     : MUI.YMenuItem(_("Repositories")),
+            'quit'      : MUI.YMenuItem(_("&Quit"), "application-exit"),
         }
 
         ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
@@ -671,7 +668,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build Options menu
         #self.infoMenu = {
         #    'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
-        #    'history' : yui.YMenuItem(_("History")),
+        #    'history' : MUI.YMenuItem(_("History")),
         #}
 
         #NOTE following the same behavior to simplfy further menu entry addtion
@@ -683,7 +680,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build Options menu
         self.optionsMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
-            'user_prefs' : yui.YMenuItem(_("User preferences")),
+            'user_prefs' : MUI.YMenuItem(_("User preferences")),
         }
 
         #NOTE following the same behavior to simplfy further menu entry addtion
@@ -695,8 +692,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build help menu
         self.helpMenu = {
             'widget': self.factory.createMenuButton(headbar, _("&Help")),
-            'help'  : yui.YMenuItem(_("Manual")),
-            'about' : yui.YMenuItem(_("&About"), 'dnfdragora'),
+            'help'  : MUI.YMenuItem(_("Manual")),
+            'about' : MUI.YMenuItem(_("&About"), 'dnfdragora'),
         }
         ordered_menu_lines = ['help', 'about']
         for l in ordered_menu_lines :
@@ -744,10 +741,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 status = ""
                 icon = self.images_path + "available.png"
         if icon:
-            cell.setLabel(status)
-            cell.setIconName(icon)
-            if emit_changed:
-                self.packageList.cellChanged(cell)
+          cell.setLabel(status)
+          cell.setIconName(icon)
+          # AUI table updates automatically; no explicit cellChanged needed
 
     def _selectedPackage(self) :
         '''
@@ -781,19 +777,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         (sizeInt, decMark, decimals) = sizePadded.partition('.')
         sizeIntPadded = sizeInt.rjust(digitsNeeded, '0')
         sizePadded = sizeIntPadded + decMark + decimals
-        cells =  list([
-                      yui.YCBTableCell( checked ),
-                      yui.YCBTableCell( pkg_name ),
-                      yui.YCBTableCell( pkg_summary ),
-                      yui.YCBTableCell( pkg_version ),
-                      yui.YCBTableCell( pkg_release ),
-                      yui.YCBTableCell( pkg_arch ),
-                      yui.YCBTableCell( pkg_sizeM , "", sizePadded)
-                      ])
-        for cell in cells:
-            cell.this.own(False)
-        item = yui.YCBTableItem( *cells )
-        item.this.own(False)
+        item = MUI.YTableItem()
+        item.addCell(bool(checked))
+        item.addCell(str(pkg_name))
+        item.addCell(str(pkg_summary))
+        item.addCell(str(pkg_version))
+        item.addCell(str(pkg_release))
+        item.addCell(str(pkg_arch))
+        size_cell = MUI.YTableCell(pkg_sizeM, "", sizePadded)
+        item.addCell(size_cell)
         return item
 
     def _fillPackageList(self, groupName=None, filter="all") :
@@ -808,7 +800,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # reset info view
         # TODO self.info.setValue("")
 
-        yui.YUI.app().busyCursor()
+        MUI.YUI.app().busyCursor()
 
         self.itemList = {}
         # {
@@ -936,16 +928,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             v.append(item)
 
         #NOTE workaround to get YItemCollection working in python
-        itemCollection = yui.YItemCollection(v)
+        itemCollection = v
 
-        self.packageList.startMultipleChanges()
+        #self.packageList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
-        self.packageList.setChangedItem(None)
+        #self.packageList.setChangedItem(None)
         self.packageList.deleteAllItems()
         self.packageList.addItems(itemCollection)
-        self.packageList.doneMultipleChanges()
-
-        yui.YUI.app().normalCursor()
+        #self.packageList.doneMultipleChanges()
+        MUI.YUI.app().normalCursor()
 
     def _viewNameSelected(self):
         '''
@@ -978,7 +969,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         return the group name to be used for a search by group
         '''
-        # TODO check type yui.YTreeItem?
+        # TODO check type MUI.YTreeItem?
         for g in group.keys() :
             if g == 'name' or g == 'item' :
                 continue
@@ -1014,7 +1005,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.groupList = {}
         rpm_groups = []
-        yui.YUI.app().busyCursor()
+        MUI.YUI.app().busyCursor()
 
         view = self._viewNameSelected()
         filter = self._filterNameSelected()
@@ -1091,10 +1082,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         # create the item
                         item = None
                         if parentItem:
-                            item = yui.YTreeItem(parentItem, currG["title"], icon)
+                            item = MUI.YTreeItem(parent=parentItem, label=currG["title"], icon_name=icon)
                         else :
-                            item = yui.YTreeItem(currG["title"], icon)
-                        item.this.own(False)
+                            item = MUI.YTreeItem(label=currG["title"], icon_name=icon)
                         currT[currG["title"]] = { "item" : item, "name" : groupName }
                         currT = currT[currG["title"]]
                         parentItem = item
@@ -1107,10 +1097,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     else :
                         item = None
                         if parentItem:
-                            item = yui.YTreeItem(parentItem, sg, icon)
+                            item = MUI.YTreeItem(parent=parentItem, label=sg, icon_name=icon)
                         else :
-                            item = yui.YTreeItem(sg, icon)
-                        item.this.own(False)
+                            item = MUI.YTreeItem(label=sg, icon_name=icon)
                         currT[sg] = { "item" : item, "name": groupName }
                         currT = currT[sg]
                         parentItem = item
@@ -1123,12 +1112,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             item = self.groupList[key]['item']
             v.append(item)
 
-        itemCollection = yui.YItemCollection(v)
-        self.tree.startMultipleChanges()
+        itemCollection = v
+        #self.tree.startMultipleChanges()
         self.tree.deleteAllItems()
-        self.tree.doneMultipleChanges()
+        #self.tree.doneMultipleChanges()
         self.tree.addItems(itemCollection)
-        yui.YUI.app().normalCursor()
+        MUI.YUI.app().normalCursor()
 
 
     def _formatLink(self, description, url) :
@@ -1273,23 +1262,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           item = self.itemList[key]['item']
           v.append(item)
 
-      itemCollection = yui.YItemCollection(v)
+      itemCollection = v
 
       self.packageList.startMultipleChanges()
       # cleanup old changed items since we are removing all of them
-      self.packageList.setChangedItem(None)
+      #self.packageList.setChangedItem(None)
       self.packageList.deleteAllItems()
       self.packageList.addItems(itemCollection)
-      self.packageList.doneMultipleChanges()
+      #self.packageList.doneMultipleChanges()
 
       if createTreeItem:
-          self.tree.startMultipleChanges()
+          #self.tree.startMultipleChanges()
           icon = self.gIcons.icon("Search")
-          treeItem = yui.YTreeItem(self.gIcons.groups['Search']['title'] , icon, False)
+          treeItem = MUI.YTreeItem(label=self.gIcons.groups['Search']['title'], icon_name=icon, selected=False)
           treeItem.setSelected(True)
           self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
           self.tree.addItem(treeItem)
-          self.tree.doneMultipleChanges()
+          #self.tree.doneMultipleChanges()
           self.tree.rebuildTree()
 
       self._enableAction(True)
@@ -1560,21 +1549,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             for f in self.filters:
                 self.filters[f]['item'] = None
 
-            itemColl = yui.YItemCollection()
+            itemColl = []
             for f in ordered_filters:
-                item = yui.YItem(self.filters[f]['title'])
+                item = MUI.YItem(self.filters[f]['title'])
                 if filter_item == f:
                     item.setSelected(True)
                 # adding item to filters to find the item selected
                 self.filters[f]['item'] = item
-                itemColl.push_back(item)
-                item.this.own(False)
+                itemColl.append(item)
 
-            self.filter_box.startMultipleChanges()
+            #self.filter_box.startMultipleChanges()
             self.filter_box.deleteAllItems()
             self.filter_box.addItems(itemColl)
             #self.filter_box.setEnabled(not self.update_only)
-            self.filter_box.doneMultipleChanges()
+            #self.filter_box.doneMultipleChanges()
 
             # fixing groups
             view = self._viewNameSelected()
@@ -1607,10 +1595,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             rebuild_package_list = False
             group = None
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 self.running = False
                 break
-            elif (eventType == yui.YEvent.MenuEvent) :
+            elif (eventType == MUI.YEventType.MenuEvent) :
                 ### MENU ###
                 item = event.item()
                 if (item) :
@@ -1643,8 +1631,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     elif item == self.helpMenu['about']  :
                         self.AboutDialog.run()
                 else:
-                    url = yui.toYMenuEvent(event).id()
-                    if url :
+                  # AUI menu events expose id() directly on the event
+                  url = getattr(event, 'id', lambda: None)()
+                  if url :
                         logger.debug("Url selected: %s", url)
                         if url in self.infoshown.keys():
                             self.infoshown[url]["show"] = not self.infoshown[url]["show"]
@@ -1655,7 +1644,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         else :
                             logger.debug("run browser, URL: %s"%url)
                             webbrowser.open(url, 2)
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
                 if (widget == self.quitButton) :
@@ -1663,8 +1652,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self.running = False
                     break
                 elif (widget == self.packageList) :
-                    wEvent = yui.toYWidgetEvent(event)
-                    if (wEvent.reason() == yui.YEvent.ValueChanged) :
+                    if (event.reason() == MUI.YEventReason.ValueChanged) :
                         changedItem = self.packageList.changedItem()
                         if changedItem :
                             for it in self.itemList:
@@ -1674,9 +1662,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                                         dialogs.warningMsgBox({'title' : _("Protected package selected"), "text": _("Package %s cannot be removed")%pkg.name, "richtext":True})
                                         rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                                     else :
-                                        if changedItem.checked(self.checkBoxColumn):
-                                          if not self.packageQueue.checked(pkg):
-                                              self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+                                        # checkbox is first column (0)
+                                        if changedItem.cell(0).checked():
+                                                    if not self.packageQueue.checked(pkg):
+                                                        self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
                                         elif self.packageQueue.checked(pkg):
                                             self.packageQueue.add(pkg, 'r')
                                         self._setStatusToItem(pkg, self.itemList[it]['item'], True)
@@ -1708,7 +1697,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     self._enableAction(False)
                     self.pbar_layout.setEnabled(True)
                     # for some reasons here does not refresh the layout, let's force it with a poll request
-                    self.dialog.pollEvent()
+                    #self.dialog.pollEvent()
 
                     self._populate_transaction()
                     self.backend.BuildTransaction()
@@ -1734,7 +1723,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   rebuild_package_list = not self._searchPackages()
                 else:
                     print(_("Unmanaged widget"))
-            elif (eventType == yui.YEvent.TimeoutEvent) :
+            elif (eventType == MUI.YEventType.TimeoutEvent) :
               rebuild_package_list = self._manageDnfDaemonEvent()
               if rebuild_package_list:
                 logger.debug("Rebuilding %s", rebuild_package_list)
@@ -1771,7 +1760,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # Save user prefs on exit
         self.saveUserPreference()
 
-        if yui.YUI.app().isTextMode():
+        if MUI.YUI.app().isTextMode():
           self.glib_loop.quit()
 
         self.dialog.destroy()
@@ -1784,7 +1773,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.backend.waitForLastAsyncRequestTermination()
 
-        if yui.YUI.app().isTextMode():
+        if MUI.YUI.app().isTextMode():
           self.glib_thread.join()
 
         #self.backend.quit()
@@ -1857,12 +1846,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif event == 'end-run':
         self.infobar.set_progress(1.0)
         self.infobar.reset_all()
-        dlg = self.mgaFactory.createDialogBox(yui.YMGAMessageBox.B_ONE)
-        dlg.setTitle(_("Info"))
-        dlg.setText(_("Changes applied") + "\n" + self.started_transaction + "\n")
-        dlg.setButtonLabel(_("OK"), yui.YMGAMessageBox.B_ONE)
-        dlg.setMinSize(60, 10)
-        dlg.show()
+        common.infoMsgBox({'title': _("Info"), 'text': _("Changes applied") + "\n" + self.started_transaction + "\n"})
       elif event == 'start-build':
         self.infobar.set_progress(0.0)
         self.infobar.info(_('Build transaction'))
