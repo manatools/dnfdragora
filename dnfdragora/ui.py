@@ -262,10 +262,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
-        #if MUI.YUI.app().isTextMode():
-        #  self.glib_loop = GLib.MainLoop()
-        #  self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
-        #  self.glib_thread.start()
+        if MUI.YUI.app().isTextMode():
+          self.glib_loop = GLib.MainLoop()
+          self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
+          self.glib_thread.start()
 #
 
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
@@ -553,28 +553,26 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
         self.use_regexp.setNotify(True)
 
-        icon_file = self.images_path + "find.png"
-        self.find_button = self.factory.createIconButton(hbox_top, 'system-search', _("&Search"))
+        self.find_button = self.factory.createIconButton(hbox_top, 'edit-find', _("&Search"))
         #TODO self.find_button.setDefaultButton(True)
 
-        icon_file = self.images_path + "clear_22x22.png"
-        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Clear search"))
+        self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
 
         self.info = self.factory.createRichText(hbox_bottom,"")
 
         self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)
 
-        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
+        self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
         self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.applyButton.setEnabled(False)
 
-        self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Sel&ect all"))
+        self.checkAllButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
         self.checkAllButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.checkAllButton.setEnabled(False)
         spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
-        self.quitButton = self.factory.createIconButton(right_footbar,"",_("&Quit"))
+        self.quitButton = self.factory.createIconButton(right_footbar, 'application-exit', _("&Quit"))
         self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
 
         ### BEGIN Menus #########################
@@ -1279,7 +1277,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
           self.tree.addItem(treeItem)
           #self.tree.doneMultipleChanges()
-          self.tree.rebuildTree()
+          #self.tree.rebuildTree()
 
       self._enableAction(True)
 
