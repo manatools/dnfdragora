@@ -512,9 +512,9 @@ class TransactionResult:
             event = dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == MUI.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 break
-            elif (eventType == MUI.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -646,9 +646,8 @@ class RepoDialog:
         MUI.YUI.app().setApplicationTitle(_("Repository Management") )
 
         self.dialog = self.factory.createPopupDialog()
-
-        minSize = self.factory.createMinSize( self.dialog, 100, 26 )
-
+        vbox = self.factory.createVBox(self.dialog)
+        minSize = self.factory.createMinSize( vbox, 320, 100 )
         vbox = self.factory.createVBox(minSize)
 
         #Line for logo and title
@@ -670,9 +669,9 @@ class RepoDialog:
 
         checkboxed = True
         repoList_header = MUI.YTableHeader()
-        repoList_header.addColumn("", checkboxed)
-        repoList_header.addColumn(_('Name'), not checkboxed)
-        repoList_header.addColumn(_('Id'), not checkboxed)
+        repoList_header.addColumn("", checkboxed, alignment=MUI.YAlignmentType.YAlignCenter)
+        repoList_header.addColumn(_('Name'))
+        repoList_header.addColumn(_('Id'))
 
 
         self.repoList = self.factory.createTable(hbox_middle, repoList_header)
@@ -687,10 +686,10 @@ class RepoDialog:
         #self.info.setWeight(0,40)
         #self.info.setWeight(1,40)
 
-        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
+        self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
         self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
 
-        self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
+        self.quitButton = self.factory.createPushButton(hbox_footbar, _("&Cancel"))
         self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
         #self.dialog.setDefaultButton(self.quitButton)
 
@@ -808,9 +807,9 @@ class RepoDialog:
             rebuild_package_list = False
             group = None
             #event type checking
-            if (eventType == MUI.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 break
-            elif (eventType == MUI.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
                 if (widget == self.quitButton) :
