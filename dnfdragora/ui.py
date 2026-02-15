@@ -166,7 +166,10 @@ class PackageQueue:
 #################
 class mainGui(dnfdragora.basedragora.BaseDragora):
     """
-    Main class
+  Main UI controller for dnfdragora.
+
+  It builds the AUI layout, handles frontend events, and bridges
+  asynchronous backend (dnfdaemon) notifications to widgets.
     """
 
     def __init__(self, options={}):
@@ -1463,13 +1466,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #except dnfdaemon.client.AccessDeniedError as e:
         #    logger.error("dnfdaemon client AccessDeniedError: %s ", e)
         #    dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
-        except:
-            exc, msg = misc.parse_dbus_error()
-            if 'AccessDeniedError' in exc:
-                logger.warning("User pressed cancel button in policykit window")
-                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
-            else:
-                pass
+        except Exception as err:
+          exc, msg = misc.parse_dbus_error()
+          if 'AccessDeniedError' in exc:
+            logger.warning("User pressed cancel button in policykit window")
+            logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
+          else:
+            logger.exception("Unexpected error while undoing transaction: %s", err)
 
         return performedUndo
 
@@ -1588,206 +1591,211 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return rebuild_package_list
 
-    def handleevent(self):
-        """
-        Event-handler for the maindialog
-        """
-        self.running = True
-        while self.running == True:
-            loop_timeout = 20 if  self._status in (DNFDragoraStatus.CACHING_AVAILABLE, \
-                    DNFDragoraStatus.CACHING_UPDATE, \
-                    DNFDragoraStatus.CACHING_INSTALLED) \
-                    else 200
-            event = self.dialog.waitForEvent(loop_timeout)
+    def _event_loop_timeout(self):
+      """Return the polling timeout used by the main AUI event loop."""
+      if self._status in (
+        DNFDragoraStatus.CACHING_AVAILABLE,
+        DNFDragoraStatus.CACHING_UPDATE,
+        DNFDragoraStatus.CACHING_INSTALLED,
+      ):
+        return 20
+      return 200
 
-            eventType = event.eventType()
+    def _handle_menu_event(self, event):
+      """Handle AUI menu events and return (rebuild_package_list, request_exit)."""
+      rebuild_package_list = False
+      request_exit = False
 
-            rebuild_package_list = False
-            group = None
-            #event type checking
-            if (eventType == MUI.YEventType.CancelEvent) :
-                self.running = False
-                break
-            elif (eventType == MUI.YEventType.MenuEvent) :
-                ### MENU ###
-                item = event.item()
-                if (item) :
-                    if  item == self.fileMenu['reset_sel'] :
-                        self.packageQueue.clear()
-                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
-                    elif item == self.fileMenu['reload'] :
-                        self.backend.ExpireCache()
-                    elif item == self.fileMenu['repos']:
-                        rd = dialogs.RepoDialog(self)
-                        rd.run()
-                    elif item == self.fileMenu['quit'] :
-                        #### QUIT
-                        self.running = False
-                        break
-                    elif item == self.optionsMenu['user_prefs'] :
-                        up = dialogs.OptionDialog(self)
-                        up.run()
-                    elif item == self.ActionMenu['actions'] :
-                        actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
-                        newAction = actDlg.run()
-                        rebuild_package_list = self._updateActionView(newAction)
-
-                    #elif item == self.infoMenu['history'] :
-                    #    self.backend.GetHistoryByDays(0, 120) #TODO add in config file
-                    elif item == self.helpMenu['help']  :
-                        info = helpinfo.DNFDragoraHelpInfo()
-                        hd = helpdialog.HelpDialog(info)
-                        hd.run()
-                    elif item == self.helpMenu['about']  :
-                        self.AboutDialog.run()
-                else:
-                  # AUI menu events expose id() directly on the event
-                  url = getattr(event, 'id', lambda: None)()
-                  if url :
-                        logger.debug("Url selected: %s", url)
-                        if url in self.infoshown.keys():
-                            self.infoshown[url]["show"] = not self.infoshown[url]["show"]
-                            logger.debug("Info to show: %s"%(self.infoshown))
-                            sel_pkg = self._selectedPackage()
-                            self._setInfoOnWidget(sel_pkg)
-                            self._selPkg = sel_pkg
-                        else :
-                            logger.debug("run browser, URL: %s"%url)
-                            webbrowser.open(url, 2)
-            elif (eventType == MUI.YEventType.WidgetEvent) :
-                # widget selected
-                widget  = event.widget()
-                if (widget == self.quitButton) :
-                    #### QUIT
-                    self.running = False
-                    break
-                elif (widget == self.packageList) :
-                    if (event.reason() == MUI.YEventReason.ValueChanged) :
-                        changedItem = self.packageList.changedItem()
-                        if changedItem :
-                            for it in self.itemList:
-                                if (self.itemList[it]['item'] == changedItem) :
-                                    pkg = self.itemList[it]['pkg']
-                                    if pkg.installed and self.backend.protected(pkg) :
-                                        dialogs.warningMsgBox({'title' : _("Protected package selected"), "text": _("Package %s cannot be removed")%pkg.name, "richtext":True})
-                                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
-                                    else :
-                                        # checkbox is first column (0)
-                                        if changedItem.cell(0).checked():
-                                                    if not self.packageQueue.checked(pkg):
-                                                        self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-                                        elif self.packageQueue.checked(pkg):
-                                            self.packageQueue.add(pkg, 'r')
-                                        self._setStatusToItem(pkg, self.itemList[it]['item'], True)
-                                    break
-                    else:
-                      logger.debug("package list selected, but no items changed")
-
-                elif (widget == self.reset_search_button) :
-                    #### RESET
-                    rebuild_package_list = True
-                    self.find_entry.setValue("")
-                    self._fillGroupTree()
-
-                elif (widget == self.find_button) or (widget == self.search_list) or (widget == self.use_regexp):
-                    #### FIND
-                    if not self._searchPackages() :
-                      rebuild_package_list = True
-                      self._fillGroupTree()
-
-                elif (widget == self.checkAllButton) :
-                    for it in self.itemList:
-                        pkg = self.itemList[it]['pkg']
-                        self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
-
-                elif (widget == self.applyButton) :
-                    #### APPLY
-                    # disable actions
-                    self._enableAction(False)
-                    self.pbar_layout.setEnabled(True)
-                    # for some reasons here does not refresh the layout, let's force it with a poll request
-                    #self.dialog.pollEvent()
-
-                    self._populate_transaction()
-                    self.backend.BuildTransaction()
-
-                elif (widget == self.view_box) :
-                    view = self._viewNameSelected()
-                    filter = self._filterNameSelected()
-                    self.checkAllButton.setEnabled(filter == 'to_update')
-                    rebuild_package_list = True
-                    #reset find entry, it does not make sense here
-                    self.find_entry.setValue("")
-                    self._fillGroupTree()
-
-                elif (widget == self.tree):
-                  rebuild_package_list = True
-                  self.find_entry.setValue("")
-
-                elif (widget == self.filter_box) :
-                  view = self._viewNameSelected()
-                  filter = self._filterNameSelected()
-                  self._fillGroupTree()
-                  self.checkAllButton.setEnabled(filter == 'to_update')
-                  rebuild_package_list = not self._searchPackages()
-                else:
-                    print(_("Unmanaged widget"))
-            elif (eventType == MUI.YEventType.TimeoutEvent) :
-              rebuild_package_list = self._manageDnfDaemonEvent()
-              if rebuild_package_list:
-                logger.debug("Rebuilding %s", rebuild_package_list)
-                self._fillGroupTree()
-
-            else:
-                print(_("Unmanaged event %d"), eventType)
-
-            if rebuild_package_list :
-              filter = self._filterNameSelected()
-              search_string = self.find_entry.value()
-              if not search_string :
-                sel = self.tree.selectedItem()
-                if sel :
-                  group = self._groupNameFromItem(self.groupList, sel)
-                  self._fillPackageList(group, filter)
-
+      item = event.item()
+      if item:
+        if item == self.fileMenu['reset_sel']:
+          self.packageQueue.clear()
+          rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+        elif item == self.fileMenu['reload']:
+          self.backend.ExpireCache()
+        elif item == self.fileMenu['repos']:
+          rd = dialogs.RepoDialog(self)
+          rd.run()
+        elif item == self.fileMenu['quit']:
+          request_exit = True
+        elif item == self.optionsMenu['user_prefs']:
+          up = dialogs.OptionDialog(self)
+          up.run()
+        elif item == self.ActionMenu['actions']:
+          actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
+          newAction = actDlg.run()
+          rebuild_package_list = self._updateActionView(newAction)
+        elif item == self.helpMenu['help']:
+          info = helpinfo.DNFDragoraHelpInfo()
+          hd = helpdialog.HelpDialog(info)
+          hd.run()
+        elif item == self.helpMenu['about']:
+          self.AboutDialog.run()
+      else:
+        # AUI menu events expose id() directly on the event for rich text links.
+        url = getattr(event, 'id', lambda: None)()
+        if url:
+          logger.debug("Url selected: %s", url)
+          if url in self.infoshown.keys():
+            self.infoshown[url]["show"] = not self.infoshown[url]["show"]
+            logger.debug("Info to show: %s", self.infoshown)
             sel_pkg = self._selectedPackage()
-            if sel_pkg :
-              if self._selPkg != sel_pkg:
-                self._setInfoOnWidget(sel_pkg)
-                self._selPkg = sel_pkg
-            else:
-              self.info.setValue("")
+            self._setInfoOnWidget(sel_pkg)
+            self._selPkg = sel_pkg
+          else:
+            logger.debug("run browser, URL: %s", url)
+            webbrowser.open(url, 2)
 
-            if self.packageActionValue != const.Actions.DISTRO_SYNC:
-                if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
-                    self.applyButton.setEnabled()
-                elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
-                    self.applyButton.setEnabled(False)
-            elif not self.applyButton.isEnabled():
-                self.applyButton.setEnabled()
+      return rebuild_package_list, request_exit
 
-        # Save user prefs on exit
-        self.saveUserPreference()
+    def _handle_widget_event(self, event):
+      """Handle AUI widget events and return (rebuild_package_list, request_exit)."""
+      rebuild_package_list = False
+      request_exit = False
+      widget = event.widget()
 
-        if MUI.YUI.app().isTextMode():
-          self.glib_loop.quit()
+      if widget == self.quitButton:
+        request_exit = True
+      elif widget == self.packageList:
+        if event.reason() == MUI.YEventReason.ValueChanged:
+          changedItem = self.packageList.changedItem()
+          if changedItem:
+            for it in self.itemList:
+              if self.itemList[it]['item'] == changedItem:
+                pkg = self.itemList[it]['pkg']
+                if pkg.installed and self.backend.protected(pkg):
+                  dialogs.warningMsgBox({'title': _("Protected package selected"), "text": _("Package %s cannot be removed") % pkg.name, "richtext": True})
+                  rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                else:
+                  # Checkbox is first column (0).
+                  if changedItem.cell(0).checked():
+                    if not self.packageQueue.checked(pkg):
+                      self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+                  elif self.packageQueue.checked(pkg):
+                    self.packageQueue.add(pkg, 'r')
+                  self._setStatusToItem(pkg, self.itemList[it]['item'], True)
+                break
+        else:
+          logger.debug("Package list selected, but no items changed")
+      elif widget == self.reset_search_button:
+        rebuild_package_list = True
+        self.find_entry.setValue("")
+        self._fillGroupTree()
+      elif widget == self.find_button or widget == self.search_list or widget == self.use_regexp:
+        if not self._searchPackages():
+          rebuild_package_list = True
+          self._fillGroupTree()
+      elif widget == self.checkAllButton:
+        for it in self.itemList:
+          pkg = self.itemList[it]['pkg']
+          self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+      elif widget == self.applyButton:
+        # Disable actions while creating and running transaction.
+        self._enableAction(False)
+        self.pbar_layout.setEnabled(True)
+        self._populate_transaction()
+        self.backend.BuildTransaction()
+      elif widget == self.view_box:
+        filter = self._filterNameSelected()
+        self.checkAllButton.setEnabled(filter == 'to_update')
+        rebuild_package_list = True
+        self.find_entry.setValue("")
+        self._fillGroupTree()
+      elif widget == self.tree:
+        rebuild_package_list = True
+        self.find_entry.setValue("")
+      elif widget == self.filter_box:
+        filter = self._filterNameSelected()
+        self._fillGroupTree()
+        self.checkAllButton.setEnabled(filter == 'to_update')
+        rebuild_package_list = not self._searchPackages()
+      else:
+        logger.warning("Unmanaged widget event received")
 
-        self.dialog.destroy()
+      return rebuild_package_list, request_exit
 
-        try:
-            self.backend.quit()
-        except Exception as err:
-            logger.error("Excpion on exit %s", err)
-        self.loop_has_finished = True
+    def _refresh_ui_after_event(self, rebuild_package_list):
+      """Refresh package list and info panel after a single event is processed."""
+      if rebuild_package_list:
+        filter = self._filterNameSelected()
+        search_string = self.find_entry.value()
+        if not search_string:
+          sel = self.tree.selectedItem()
+          if sel:
+            group = self._groupNameFromItem(self.groupList, sel)
+            self._fillPackageList(group, filter)
 
-        self.backend.waitForLastAsyncRequestTermination()
+      sel_pkg = self._selectedPackage()
+      if sel_pkg:
+        if self._selPkg != sel_pkg:
+          self._setInfoOnWidget(sel_pkg)
+          self._selPkg = sel_pkg
+      else:
+        self.info.setValue("")
 
-        if MUI.YUI.app().isTextMode():
-          self.glib_thread.join()
+    def _sync_apply_button_state(self):
+      """Keep Apply button enabled state consistent with queue and action mode."""
+      if self.packageActionValue != const.Actions.DISTRO_SYNC:
+        if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
+          self.applyButton.setEnabled()
+        elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
+          self.applyButton.setEnabled(False)
+      elif not self.applyButton.isEnabled():
+        self.applyButton.setEnabled()
 
-        #self.backend.quit()
-        #self.backend.release_root_backend()
+    def handleevent(self):
+      """Main AUI event loop coordinating frontend and backend asynchronous events."""
+      self.running = True
+      while self.running:
+        event = self.dialog.waitForEvent(self._event_loop_timeout())
+        eventType = event.eventType()
+
+        rebuild_package_list = False
+        request_exit = False
+
+        if eventType == MUI.YEventType.CancelEvent:
+          request_exit = True
+        elif eventType == MUI.YEventType.MenuEvent:
+          rebuild_package_list, request_exit = self._handle_menu_event(event)
+        elif eventType == MUI.YEventType.WidgetEvent:
+          rebuild_package_list, request_exit = self._handle_widget_event(event)
+        elif eventType == MUI.YEventType.TimeoutEvent:
+          rebuild_package_list = self._manageDnfDaemonEvent()
+          if rebuild_package_list:
+            logger.debug("Rebuilding %s", rebuild_package_list)
+            self._fillGroupTree()
+        else:
+          logger.warning("Unmanaged event type received: %s", eventType)
+
+        if request_exit:
+          self.running = False
+          break
+
+        self._refresh_ui_after_event(rebuild_package_list)
+        self._sync_apply_button_state()
+
+      # Save user prefs on exit
+      self.saveUserPreference()
+
+      if MUI.YUI.app().isTextMode():
+        self.glib_loop.quit()
+
+      self.dialog.destroy()
+
+      try:
+          self.backend.quit()
+      except Exception as err:
+        logger.exception("Exception on backend quit: %s", err)
+      self.loop_has_finished = True
+
+      self.backend.waitForLastAsyncRequestTermination()
+
+      if MUI.YUI.app().isTextMode():
+        self.glib_thread.join()
+
+      #self.backend.quit()
+      #self.backend.release_root_backend()
 
     def _OnRepoMetaDataProgress(self, name, frac):
       '''Repository Metadata Download progress.'''
@@ -2583,7 +2591,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.backend_locked = False
           elif (event == 'ExpireCache'):
             if not info['result']:
-              logger.Warning("Event %s received (%s)", event, info['result'])
+              logger.warning("Event %s received (%s)", event, info['result'])
             # ExpireCache has been invoked let's refresh data
             self.backend.reloadDaemon()
             self.backend.clear_cache(also_groups=True)
@@ -2727,7 +2735,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug(info)
             self._OnDownloadEnd(info['session_object_path'], info['download_id'], info['status'], info['error'])
           elif (event == 'OnErrorMessage'):
-            logger.warn(info)
+            logger.warning(info)
             self._OnErrorMessage(info['session_object_path'], info['download_id'], info['error'], info['url'], info['metadata'])
           elif (event == 'GetHistoryByDays'):
             if not info['error']:
@@ -2759,7 +2767,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           else:
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
-      except Empty as e:
+      except Empty:
           if self._status == DNFDragoraStatus.STARTUP:
             self._status = DNFDragoraStatus.RUNNING
             self._start_caching_packages()
