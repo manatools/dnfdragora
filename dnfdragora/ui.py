@@ -391,7 +391,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         MUI.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
-        self.icon = self.images_path + "dnfdragora.png"
+        self.icon = "dnfdragora" #self.images_path + "dnfdragora.png"
         self.logo = self.images_path + "dnfdragora-logo.png"
         MUI.YUI.app().setApplicationIcon(self.icon)
 
@@ -436,22 +436,25 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # Tree for groups
         self.tree = self.factory.createTree(hbox_middle, "")
-        self.tree.setWeight(MUI.YUIDimension.YD_HORIZ,20)
-        self.tree.setNotify(True)
+        self.tree.setWeight(MUI.YUIDimension.YD_HORIZ, 30)
+        self.tree.setWeight(MUI.YUIDimension.YD_VERT, 60)
+        self.tree.setNotify(True)        
 
         packageList_header = MUI.YTableHeader()
         columns = [ _('Name'), _('Summary'), _('Version'), _('Release'), _('Arch'), _('Size')]
 
         checkboxed = True
-        packageList_header.addColumn("", checkboxed)
+        packageList_header.addColumn("", checkboxed, alignment=MUI.YAlignmentType.YAlignCenter)
         for col in (columns):
             packageList_header.addColumn(col, not checkboxed)
 
-        if not self.update_only :
+        if not self.update_only:
             packageList_header.addColumn(_("Status"), not checkboxed)
 
         self.packageList = self.factory.createTable(hbox_middle, packageList_header)
-        self.packageList.setWeight(MUI.YUIDimension.YD_HORIZ,80)
+        self.packageList.setWeight(MUI.YUIDimension.YD_HORIZ, 70)
+        self.packageList.setWeight(MUI.YUIDimension.YD_VERT, 60)
+        self.packageList.setHelpText("Package list")
         #self.packageList.setImmediateMode(True)
 
         self.filters = {
@@ -475,6 +478,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         ordered_views = [ 'groups', 'all' ]
 
         self.view_box = self.factory.createComboBox(hbox_top,"")
+        self.view_box.setHelpText(_("Grouping packages"))
         itemColl = []
 
         view = {}
@@ -509,6 +513,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.view_box.setEnabled(not self.update_only)
 
         self.filter_box = self.factory.createComboBox(hbox_top,"")
+        self.filter_box.setHelpText(_("Filtering packages"))
         itemColl.clear()
 
         filter_item = 'to_update' if self.all_updates_filter or self.update_only \
@@ -548,19 +553,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.search_list.setNotify(True)
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
-        self.find_entry.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.find_entry.setWeight(MUI.YUIDimension.YD_HORIZ, 50)
+        self.find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self.find_entry.setNotify(False)
 
         self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
         self.use_regexp.setNotify(True)
 
         self.find_button = self.factory.createIconButton(hbox_top, 'edit-find', _("&Search"))
+        self.find_button.setHelpText(_("Search packages"))
         #TODO self.find_button.setDefaultButton(True)
 
         self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
+        self.reset_search_button.setHelpText(_("Clear search field"))
 
         self.info = self.factory.createRichText(hbox_bottom,"")
-
-        self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)
+        self.info.setWeight(MUI.YUIDimension.YD_VERT, 30)
+        
+        self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)        
 
         self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
         self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
@@ -568,12 +578,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.checkAllButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
         self.checkAllButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.checkAllButton.setHelpText(_("Select all the packages"))
         self.checkAllButton.setEnabled(False)
         spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
         self.quitButton = self.factory.createIconButton(right_footbar, 'application-exit', _("&Quit"))
         self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.quitButton.setHelpText(_("Quit the application"))
 
         ### BEGIN Menus #########################
         if (hasattr(self.factory, 'createMenuBar') and ismethod(getattr(self.factory, 'createMenuBar'))):
@@ -1262,7 +1274,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       itemCollection = v
 
-      self.packageList.startMultipleChanges()
+      #self.packageList.startMultipleChanges()
       # cleanup old changed items since we are removing all of them
       #self.packageList.setChangedItem(None)
       self.packageList.deleteAllItems()
