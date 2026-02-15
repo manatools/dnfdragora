@@ -102,31 +102,28 @@ class HistoryView:
                     num = len(states[state])
                     cat = MUI.YTreeItem("%s (%i)" %
                             (const.HISTORY_STATE_LABLES[state], num), True)
-                    cat.this.own(False)
 
                     for pkg_list in states[state]:
                         pkg_id, st, is_inst = pkg_list[0]
                         name = misc.pkg_id_to_full_name(pkg_id)
                         pkg_cat = MUI.YTreeItem(cat, name, True)
-                        pkg_cat.this.own(False)
 
                         if len(pkg_list) == 2:
                             pkg_id, st, is_inst = pkg_list[1]
                             name = misc.pkg_id_to_full_name(pkg_id)
                             item = MUI.YTreeItem(pkg_cat, name, True)
-                            item.this.own(False)
 
                     itemVect.append(cat)
 
         itemCollection = None
         MUI.YUI.app().busyCursor()
         if selected:
-            itemCollection = MUI.YItemCollection(itemVect)
-        self._historyView.startMultipleChanges()
+            itemCollection = itemVect
+
         self._historyView.deleteAllItems()
         if selected:
             self._historyView.addItems(itemCollection)
-        self._historyView.doneMultipleChanges()
+
         MUI.YUI.app().normalCursor()
 
     def _populateTree(self, data):
@@ -145,7 +142,6 @@ class HistoryView:
             if date.year not in main.keys():
                 main[date.year] = {}
                 item = MUI.YTreeItem(date.strftime("%Y"), True)
-                item.this.own(False)
                 main[date.year]['item'] = item
 
             mdict = main[date.year]
@@ -153,7 +149,6 @@ class HistoryView:
             if date.month not in mdict.keys():
                 mdict[date.month] = {}
                 item = MUI.YTreeItem(main[date.year]['item'], date.strftime("%m"), True)
-                item.this.own(False)
                 mdict[date.month]['item'] = item
 
             ddict = mdict[date.month]
@@ -161,11 +156,9 @@ class HistoryView:
             if date.day not in ddict.keys():
                 ddict[date.day] = {}
                 item = MUI.YTreeItem(mdict[date.month]['item'], date.strftime("%d"), True)
-                item.this.own(False)
                 ddict[date.day]['item'] = item
             ddict[date.day][date.strftime("%H:%M:%S")] = tid
             item = MUI.YTreeItem(ddict[date.day]['item'], date.strftime("%H:%M:%S"), False)
-            item.this.own(False)
             self._tid[tid]= item
 
         itemVect = []
@@ -175,11 +168,9 @@ class HistoryView:
         #self._dlg .pollEvent()
 
         MUI.YUI.app().busyCursor()
-        itemCollection = MUI.YItemCollection(itemVect)
-        self._historyTree.startMultipleChanges()
+        itemCollection = itemVect
         self._historyTree.deleteAllItems()
         self._historyTree.addItems(itemCollection)
-        self._historyTree.doneMultipleChanges()
         MUI.YUI.app().normalCursor()
 
     def _run_transaction(self):
@@ -485,7 +476,7 @@ class TransactionResult:
             continue
           label = const.TRANSACTION_RESULT_TYPES[action]
           level1Item = MUI.YTreeItem(label, True)
-          level1Item.this.own(False)
+
           for name in pkglist[action].keys():
             pkgid, size, replaces = (None, None, None)
             if len(pkglist[action][name]) > 2:
@@ -496,13 +487,11 @@ class TransactionResult:
 
             label = pkgid + " (" +  misc.format_number(size) + ")"
             level2Item = MUI.YTreeItem(level1Item, label, True)
-            level2Item.this.own(False)
             total_size += size
             if replaces:
                 for rep in replaces:
                     label =  _("replacing ") + rep
                     item = MUI.YTreeItem(level2Item, label, False)
-                    item.this.own(False)
 
           itemVect.append(level1Item)
 
@@ -510,11 +499,9 @@ class TransactionResult:
         #dlg.pollEvent()
 
         MUI.YUI.app().busyCursor()
-        itemCollection = MUI.YItemCollection(itemVect)
-        treeWidget.startMultipleChanges()
+        itemCollection = itemVect
         treeWidget.deleteAllItems()
         treeWidget.addItems(itemCollection)
-        treeWidget.doneMultipleChanges()
         MUI.YUI.app().normalCursor()
 
         #dlg.setDefaultButton(okButton)
@@ -689,7 +676,6 @@ class RepoDialog:
 
 
         self.repoList = self.factory.createTable(hbox_middle, repoList_header)
-        self.repoList.setImmediateMode(True)
 
         info_header = MUI.YTableHeader()
         columns = [_('Information'), _('Value') ]
@@ -725,7 +711,6 @@ class RepoDialog:
             self.itemList[r['id']] = {
                 'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
             }
-            item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
         v = []
@@ -733,14 +718,11 @@ class RepoDialog:
             item = self.itemList[key]['item']
             v.append(item)
 
-        #NOTE workaround to get YItemCollection working in python
-        itemCollection = MUI.YItemCollection(v)
+        itemCollection = v
 
-        self.repoList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
         self.repoList.deleteAllItems()
         self.repoList.addItems(itemCollection)
-        self.repoList.doneMultipleChanges()
         repo_id = self._selectedRepository()
         self._addAttributeInfo(repo_id)
 
@@ -783,7 +765,6 @@ class RepoDialog:
                 value = _('Now')
             if key:
               item = MUI.YTableItem(key, value)
-              item.this.own(False)
               v.append(item)
 
       except NameError as e:
@@ -795,14 +776,11 @@ class RepoDialog:
       except:
           logger.error("Unexpected error: %s ", sys.exc_info()[0])
 
-      #NOTE workaround to get YItemCollection working in python
-      itemCollection = MUI.YItemCollection(v)
+      itemCollection = v
 
-      self.info.startMultipleChanges()
       # cleanup old changed items since we are removing all of them
       self.info.deleteAllItems()
       self.info.addItems(itemCollection)
-      self.info.doneMultipleChanges()
 
     def _selectedRepository(self) :
         '''
@@ -919,27 +897,23 @@ class OptionDialog(basedialog.BaseDialog):
     #YTreeItem self, std::string const & label, std::string const & iconName, bool isOpen=False)
     # TODO add icons
     item = MUI.YTreeItem(_("System"))
-    item.this.own(False)
     itemVect.append(item)
     item.setSelected()
     self.option_items ["system"] = item
 
     item = MUI.YTreeItem(_("Layout"))
-    item.this.own(False)
     itemVect.append(item)
     self.option_items ["layout"] = item
 
     item = MUI.YTreeItem(_("Search"))
-    item.this.own(False)
     itemVect.append(item)
     self.option_items ["search"] = item
 
     item = MUI.YTreeItem(_("Logging"))
-    item.this.own(False)
     itemVect.append(item)
     self.option_items ["logging"] = item
 
-    itemCollection = MUI.YItemCollection(itemVect)
+    itemCollection = itemVect
     self.config_tree.addItems(itemCollection)
 
     self.config_tab = self.factory.createReplacePoint(hbox_config)
