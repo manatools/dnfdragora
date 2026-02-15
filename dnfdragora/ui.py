@@ -418,7 +418,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #self.factory.createHeading(hbox_iconbar, _("Software Management"))
 
         hbox_top = self.factory.createHBox(vbox)
-        hbox_middle = self.factory.createHBox(vbox)
+        #hbox_middle = self.factory.createHBox(vbox)
+        hbox_middle = self.factory.createPaned(vbox, MUI.YUIDimension.YD_HORIZ)
         hbox_bottom = self.factory.createHBox(vbox)
         self.pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
