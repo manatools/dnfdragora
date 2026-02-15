@@ -17,15 +17,13 @@ class ProgressBar:
         self.info_sub_widget = self.factory.createLabel(hbox, "")
         self.info_sub_widget.setStretchable( MUI.YUIDimension.YD_HORIZ, True )
         self.progressbar = self.factory.createProgressBar(vbox, "")
-
+        self.progressbar.setStretchable( MUI.YUIDimension.YD_HORIZ, True )
 
     def info(self, text) :
         self.info_widget.setValue(text)
-        #self.__flush()
 
     def info_sub(self, text) :
         self.info_sub_widget.setValue(text)
-        #self.__flush()
 
     def set_progress(self, frac, label=None) :
         if label is not None:
@@ -34,17 +32,17 @@ class ProgressBar:
         newval = int(100*frac)
         if (val != newval) :
             self.progressbar.setValue(newval)
-        #self.__flush()
+        self.__setVisible(newval > 0 and newval < 100)
 
     def reset_all(self) :
         self.info_widget.setValue('')
         self.info_sub_widget.setValue('')
         self.set_progress(0, "")
-        self.__flush()
 
-    def __flush(self) :
-        pass
-        #if self.main_dialog.isTopmostDialog() :
-        #    self.main_dialog.pollEvent()
+    def __setVisible(self, on: bool = True):
+        self.info_widget.setVisible(bool(on))
+        self.info_sub_widget.setVisible(bool(on))
+        self.progressbar.setVisible(bool(on))
 
-
+    def setHelpText(self, help_text: str):    
+        self.progressbar.setHelpText(help_text)
