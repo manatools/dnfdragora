@@ -423,6 +423,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
+        # Keep package browsing area at about 2/3 and info area at about 1/3.
+        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT, 67)
+        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT, 33)
+        if hasattr(hbox_middle, 'setStretchable'):
+          hbox_middle.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        if hasattr(hbox_bottom, 'setStretchable'):
+          hbox_bottom.setStretchable(MUI.YUIDimension.YD_VERT, True)
+
         #######
         foot_align_left = self.factory.createLeft(hbox_footbar)
         foot_align_right = self.factory.createRight(hbox_footbar)
@@ -441,6 +449,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.tree = self.factory.createTree(hbox_middle, "")
         self.tree.setWeight(MUI.YUIDimension.YD_HORIZ, 30)
         self.tree.setWeight(MUI.YUIDimension.YD_VERT, 60)
+        if hasattr(self.tree, 'setStretchable'):
+          self.tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
         self.tree.setNotify(True)        
 
         packageList_header = MUI.YTableHeader()
@@ -457,6 +467,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.packageList = self.factory.createTable(hbox_middle, packageList_header)
         self.packageList.setWeight(MUI.YUIDimension.YD_HORIZ, 70)
         self.packageList.setWeight(MUI.YUIDimension.YD_VERT, 60)
+        if hasattr(self.packageList, 'setStretchable'):
+          self.packageList.setStretchable(MUI.YUIDimension.YD_VERT, True)
         self.packageList.setHelpText("Package list")
         #self.packageList.setImmediateMode(True)
 
@@ -572,6 +584,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.info = self.factory.createRichText(hbox_bottom,"")
         self.info.setWeight(MUI.YUIDimension.YD_VERT, 30)
+        if hasattr(self.info, 'setStretchable'):
+            self.info.setStretchable(MUI.YUIDimension.YD_VERT, True)
         
         self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)        
 
