@@ -283,7 +283,7 @@ class HistoryView:
         MUI.YUI.app().setApplicationTitle(_("History") )
         minWidth  = 80;
         minHeight = 25;
-        self._dlg     = self.factory.createPopupDialog(MUI.YDialogNormalColor)
+        self._dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(self._dlg , minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         hbox = self.factory.createHBox(layout)
@@ -360,38 +360,24 @@ class PackageActionDialog:
         MUI.YUI.app().setApplicationTitle(_("Action on selected packages") )
         minWidth  = 60;
         minHeight = 10;
-        dlg     = self.factory.createPopupDialog(MUI.YDialogNormalColor)
+        dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
 
         #labeledFrameBox - Actions
         frame = self.factory.createFrame(layout, "Actions")
         frame.setWeight( MUI.YUIDimension.YD_HORIZ, 1 )
-        frame = self.factory.createHVCenter( frame )
-        frame = self.factory.createHVSquash( frame )
+        frame = self.factory.createHVCenter( frame )        
         frame = self.factory.createVBox( frame )
-
-        rbg       = self.factory.createRadioButtonGroup(frame)
-        frame   = self.factory.createVBox(rbg)
-        Normal  = self.factory.createRadioButton(self.factory.createLeft(frame), _("Normal (Install/Upgrade/Remove)"), self.actionValue == const.Actions.NORMAL)
-        Normal.setNotify(True)
-        rbg.addRadioButton(Normal)
         
-        Reinstall = self.factory.createRadioButton(self.factory.createLeft(frame), _("Reinstall"), self.actionValue == const.Actions.REINSTALL)
-        Reinstall.setNotify(True)
+        Normal  = self.factory.createRadioButton(frame, _("Normal (Install/Upgrade/Remove)"), self.actionValue == const.Actions.NORMAL)
+        Reinstall = self.factory.createRadioButton(frame, _("Reinstall"), self.actionValue == const.Actions.REINSTALL)
         if self.parent.update_only :
             Reinstall.setDisabled()
-        rbg.addRadioButton(Reinstall)
-
-        Downgrade = self.factory.createRadioButton(self.factory.createLeft(frame), _("Downgrade"), self.actionValue == const.Actions.DOWNGRADE)
-        Downgrade.setNotify(True)
+        Downgrade = self.factory.createRadioButton(frame, _("Downgrade"), self.actionValue == const.Actions.DOWNGRADE)
         if self.parent.update_only :
             Downgrade.setDisabled()
-        rbg.addRadioButton(Downgrade)
-
-        DistroSync = self.factory.createRadioButton(self.factory.createLeft(frame), _("Distro Sync"), self.actionValue == const.Actions.DISTRO_SYNC)
-        DistroSync.setNotify(True)
-        rbg.addRadioButton(DistroSync)
+        DistroSync = self.factory.createRadioButton(frame, _("Distro Sync"), self.actionValue == const.Actions.DISTRO_SYNC)
     
         align = self.factory.createRight(layout)
         hbox = self.factory.createHBox(align)
@@ -458,7 +444,7 @@ class TransactionResult:
         MUI.YUI.app().setApplicationTitle(_("Transaction result") )
         minWidth  = 80;
         minHeight = 25;
-        dlg     = self.factory.createPopupDialog(MUI.YDialogNormalColor)
+        dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         treeWidget = self.factory.createTree(layout, _("Transaction dependency"))
