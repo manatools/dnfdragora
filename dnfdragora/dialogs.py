@@ -9,9 +9,8 @@ Author:  Angelo Naselli <anaselli@linux.it>
 @package dnfdragora
 '''
 
-# NOTE part of this code is imported from yumex-dnf
+import manatools.aui.yui as MUI
 
-from manatools.aui import yui as yui
 import sys
 import os
 import datetime
@@ -101,34 +100,34 @@ class HistoryView:
             for state in const.HISTORY_SORT_ORDER:
                 if state in states:
                     num = len(states[state])
-                    cat = yui.YTreeItem("%s (%i)" %
+                    cat = MUI.YTreeItem("%s (%i)" %
                             (const.HISTORY_STATE_LABLES[state], num), True)
                     cat.this.own(False)
 
                     for pkg_list in states[state]:
                         pkg_id, st, is_inst = pkg_list[0]
                         name = misc.pkg_id_to_full_name(pkg_id)
-                        pkg_cat = yui.YTreeItem(cat, name, True)
+                        pkg_cat = MUI.YTreeItem(cat, name, True)
                         pkg_cat.this.own(False)
 
                         if len(pkg_list) == 2:
                             pkg_id, st, is_inst = pkg_list[1]
                             name = misc.pkg_id_to_full_name(pkg_id)
-                            item = yui.YTreeItem(pkg_cat, name, True)
+                            item = MUI.YTreeItem(pkg_cat, name, True)
                             item.this.own(False)
 
                     itemVect.append(cat)
 
         itemCollection = None
-        yui.YUI.app().busyCursor()
+        MUI.YUI.app().busyCursor()
         if selected:
-            itemCollection = yui.YItemCollection(itemVect)
+            itemCollection = MUI.YItemCollection(itemVect)
         self._historyView.startMultipleChanges()
         self._historyView.deleteAllItems()
         if selected:
             self._historyView.addItems(itemCollection)
         self._historyView.doneMultipleChanges()
-        yui.YUI.app().normalCursor()
+        MUI.YUI.app().normalCursor()
 
     def _populateTree(self, data):
         '''
@@ -145,7 +144,7 @@ class HistoryView:
             # year
             if date.year not in main.keys():
                 main[date.year] = {}
-                item = yui.YTreeItem(date.strftime("%Y"), True)
+                item = MUI.YTreeItem(date.strftime("%Y"), True)
                 item.this.own(False)
                 main[date.year]['item'] = item
 
@@ -153,7 +152,7 @@ class HistoryView:
             # month
             if date.month not in mdict.keys():
                 mdict[date.month] = {}
-                item = yui.YTreeItem(main[date.year]['item'], date.strftime("%m"), True)
+                item = MUI.YTreeItem(main[date.year]['item'], date.strftime("%m"), True)
                 item.this.own(False)
                 mdict[date.month]['item'] = item
 
@@ -161,11 +160,11 @@ class HistoryView:
             # day
             if date.day not in ddict.keys():
                 ddict[date.day] = {}
-                item = yui.YTreeItem(mdict[date.month]['item'], date.strftime("%d"), True)
+                item = MUI.YTreeItem(mdict[date.month]['item'], date.strftime("%d"), True)
                 item.this.own(False)
                 ddict[date.day]['item'] = item
             ddict[date.day][date.strftime("%H:%M:%S")] = tid
-            item = yui.YTreeItem(ddict[date.day]['item'], date.strftime("%H:%M:%S"), False)
+            item = MUI.YTreeItem(ddict[date.day]['item'], date.strftime("%H:%M:%S"), False)
             item.this.own(False)
             self._tid[tid]= item
 
@@ -175,13 +174,13 @@ class HistoryView:
 
         #self._dlg .pollEvent()
 
-        yui.YUI.app().busyCursor()
-        itemCollection = yui.YItemCollection(itemVect)
+        MUI.YUI.app().busyCursor()
+        itemCollection = MUI.YItemCollection(itemVect)
         self._historyTree.startMultipleChanges()
         self._historyTree.deleteAllItems()
         self._historyTree.addItems(itemCollection)
         self._historyTree.doneMultipleChanges()
-        yui.YUI.app().normalCursor()
+        MUI.YUI.app().normalCursor()
 
     def _run_transaction(self):
         '''
@@ -288,12 +287,12 @@ class HistoryView:
         '''
 
         ## push application title
-        appTitle = yui.YUI.app().applicationTitle()
+        appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("History") )
+        MUI.YUI.app().setApplicationTitle(_("History") )
         minWidth  = 80;
         minHeight = 25;
-        self._dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        self._dlg     = self.factory.createPopupDialog(MUI.YDialogNormalColor)
         minSize = self.factory.createMinSize(self._dlg , minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         hbox = self.factory.createHBox(layout)
@@ -317,9 +316,9 @@ class HistoryView:
             event = self._dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEventType.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 break
-            elif (eventType == yui.YEventType.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -342,7 +341,7 @@ class HistoryView:
         self._dlg.destroy()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(appTitle)
+        MUI.YUI.app().setApplicationTitle(appTitle)
 
         return performedUndo
 
@@ -365,18 +364,18 @@ class PackageActionDialog:
         '''
 
         ## push application title
-        appTitle = yui.YUI.app().applicationTitle()
+        appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("Action on selected packages") )
+        MUI.YUI.app().setApplicationTitle(_("Action on selected packages") )
         minWidth  = 60;
         minHeight = 10;
-        dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        dlg     = self.factory.createPopupDialog(MUI.YDialogNormalColor)
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
 
         #labeledFrameBox - Actions
         frame = self.factory.createFrame(layout, "Actions")
-        frame.setWeight( yui.YD_HORIZ, 1 )
+        frame.setWeight( MUI.YUIDimension.YD_HORIZ, 1 )
         frame = self.factory.createHVCenter( frame )
         frame = self.factory.createHVSquash( frame )
         frame = self.factory.createVBox( frame )
@@ -414,10 +413,10 @@ class PackageActionDialog:
             event = dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEventType.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 self.actionValue = self.savedActionValue
                 break
-            elif (eventType == yui.YEventType.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -438,7 +437,7 @@ class PackageActionDialog:
         dlg.destroy()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(appTitle)
+        MUI.YUI.app().setApplicationTitle(appTitle)
 
         return self.actionValue
 
@@ -463,12 +462,12 @@ class TransactionResult:
 
 
         ## push application title
-        appTitle = yui.YUI.app().applicationTitle()
+        appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("Transaction result") )
+        MUI.YUI.app().setApplicationTitle(_("Transaction result") )
         minWidth  = 80;
         minHeight = 25;
-        dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        dlg     = self.factory.createPopupDialog(MUI.YDialogNormalColor)
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         treeWidget = self.factory.createTree(layout, _("Transaction dependency"))
@@ -485,7 +484,7 @@ class TransactionResult:
           if not pkglist[action]:
             continue
           label = const.TRANSACTION_RESULT_TYPES[action]
-          level1Item = yui.YTreeItem(label, True)
+          level1Item = MUI.YTreeItem(label, True)
           level1Item.this.own(False)
           for name in pkglist[action].keys():
             pkgid, size, replaces = (None, None, None)
@@ -496,13 +495,13 @@ class TransactionResult:
               pkgid, size = pkglist[action][name]
 
             label = pkgid + " (" +  misc.format_number(size) + ")"
-            level2Item = yui.YTreeItem(level1Item, label, True)
+            level2Item = MUI.YTreeItem(level1Item, label, True)
             level2Item.this.own(False)
             total_size += size
             if replaces:
                 for rep in replaces:
                     label =  _("replacing ") + rep
-                    item = yui.YTreeItem(level2Item, label, False)
+                    item = MUI.YTreeItem(level2Item, label, False)
                     item.this.own(False)
 
           itemVect.append(level1Item)
@@ -510,13 +509,13 @@ class TransactionResult:
         sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
         #dlg.pollEvent()
 
-        yui.YUI.app().busyCursor()
-        itemCollection = yui.YItemCollection(itemVect)
+        MUI.YUI.app().busyCursor()
+        itemCollection = MUI.YItemCollection(itemVect)
         treeWidget.startMultipleChanges()
         treeWidget.deleteAllItems()
         treeWidget.addItems(itemCollection)
         treeWidget.doneMultipleChanges()
-        yui.YUI.app().normalCursor()
+        MUI.YUI.app().normalCursor()
 
         #dlg.setDefaultButton(okButton)
 
@@ -526,9 +525,9 @@ class TransactionResult:
             event = dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEvent.CancelEvent) :
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEvent.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -541,7 +540,7 @@ class TransactionResult:
         dlg.destroy()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(appTitle)
+        MUI.YUI.app().setApplicationTitle(appTitle)
 
         return accepting
 
@@ -557,7 +556,7 @@ class AboutDialog:
 
         '''
         self.parent = parent
-        self.factory = yui.YUI.widgetFactory()
+        self.factory = MUI.YUI.widgetFactory()
         # name        => the application name
         # version     =>  the application version
         # license     =>  the application license, the short length one (e.g. GPLv2, GPLv3, LGPLv2+, etc)
@@ -655,9 +654,9 @@ class RepoDialog:
         '''
         setup the dialog layout
         '''
-        self.appTitle = yui.YUI.app().applicationTitle()
+        self.appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("Repository Management") )
+        MUI.YUI.app().setApplicationTitle(_("Repository Management") )
 
         self.dialog = self.factory.createPopupDialog()
 
@@ -678,12 +677,12 @@ class RepoDialog:
         hbox_bottom = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
-        hbox_middle.setWeight(yui.YD_VERT,50)
-        hbox_bottom.setWeight(yui.YD_VERT,30)
-        hbox_footbar.setWeight(yui.YD_VERT,10)
+        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT,50)
+        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT,30)
+        hbox_footbar.setWeight(MUI.YUIDimension.YD_VERT,10)
 
         checkboxed = True
-        repoList_header = yui.YTableHeader()
+        repoList_header = MUI.YTableHeader()
         repoList_header.addColumn("", checkboxed)
         repoList_header.addColumn(_('Name'), not checkboxed)
         repoList_header.addColumn(_('Id'), not checkboxed)
@@ -692,7 +691,7 @@ class RepoDialog:
         self.repoList = self.factory.createTable(hbox_middle, repoList_header)
         self.repoList.setImmediateMode(True)
 
-        info_header = yui.YTableHeader()
+        info_header = MUI.YTableHeader()
         columns = [_('Information'), _('Value') ]
         for col in (columns):
             info_header.addColumn(col)
@@ -703,10 +702,10 @@ class RepoDialog:
         #self.info.setWeight(1,40)
 
         self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
-        self.applyButton.setWeight(yui.YD_HORIZ,3)
+        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
 
         self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
-        self.quitButton.setWeight(yui.YD_HORIZ,3)
+        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
         #self.dialog.setDefaultButton(self.quitButton)
 
         self.itemList = {}
@@ -718,7 +717,7 @@ class RepoDialog:
         repos = self.backend.get_repositories()
 
         for r in repos:
-            item = yui.YTableItem()
+            item = MUI.YTableItem()
             item.addCell(bool(r['enabled']))
             item.addCell(str(r['name']))
             item.addCell(str(r['id']))
@@ -735,7 +734,7 @@ class RepoDialog:
             v.append(item)
 
         #NOTE workaround to get YItemCollection working in python
-        itemCollection = yui.YItemCollection(v)
+        itemCollection = MUI.YItemCollection(v)
 
         self.repoList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
@@ -783,7 +782,7 @@ class RepoDialog:
                 key = self.infoKeys[k]
                 value = _('Now')
             if key:
-              item = yui.YTableItem(key, value)
+              item = MUI.YTableItem(key, value)
               item.this.own(False)
               v.append(item)
 
@@ -797,7 +796,7 @@ class RepoDialog:
           logger.error("Unexpected error: %s ", sys.exc_info()[0])
 
       #NOTE workaround to get YItemCollection working in python
-      itemCollection = yui.YItemCollection(v)
+      itemCollection = MUI.YItemCollection(v)
 
       self.info.startMultipleChanges()
       # cleanup old changed items since we are removing all of them
@@ -831,9 +830,9 @@ class RepoDialog:
             rebuild_package_list = False
             group = None
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEvent.CancelEvent) :
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEvent.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
                 if (widget == self.quitButton) :
@@ -854,7 +853,7 @@ class RepoDialog:
                       self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
                     return True
                 elif (widget == self.repoList) :
-                  if (event.reason() == yui.YEventReason.ValueChanged) :
+                  if (event.reason() == MUI.YEventReason.ValueChanged) :
                     changedItem = self.repoList.changedItem()
                     if changedItem :
                       # first column is the checkbox
@@ -869,9 +868,9 @@ class RepoDialog:
                           break
 
                     repo_id = self._selectedRepository()
-                    yui.YUI.app().busyCursor()
+                    MUI.YUI.app().busyCursor()
                     self._addAttributeInfo(repo_id)
-                    yui.YUI.app().normalCursor()
+                    MUI.YUI.app().normalCursor()
 
         return False
 
@@ -883,7 +882,7 @@ class RepoDialog:
         refresh_data=self._handleEvents()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(self.appTitle)
+        MUI.YUI.app().setApplicationTitle(self.appTitle)
 
         self.dialog.destroy()
         self.dialog = None
@@ -919,28 +918,28 @@ class OptionDialog(basedialog.BaseDialog):
     ### Options items
     #YTreeItem self, std::string const & label, std::string const & iconName, bool isOpen=False)
     # TODO add icons
-    item = yui.YTreeItem(_("System"))
+    item = MUI.YTreeItem(_("System"))
     item.this.own(False)
     itemVect.append(item)
     item.setSelected()
     self.option_items ["system"] = item
 
-    item = yui.YTreeItem(_("Layout"))
+    item = MUI.YTreeItem(_("Layout"))
     item.this.own(False)
     itemVect.append(item)
     self.option_items ["layout"] = item
 
-    item = yui.YTreeItem(_("Search"))
+    item = MUI.YTreeItem(_("Search"))
     item.this.own(False)
     itemVect.append(item)
     self.option_items ["search"] = item
 
-    item = yui.YTreeItem(_("Logging"))
+    item = MUI.YTreeItem(_("Logging"))
     item.this.own(False)
     itemVect.append(item)
     self.option_items ["logging"] = item
 
-    itemCollection = yui.YItemCollection(itemVect)
+    itemCollection = MUI.YItemCollection(itemVect)
     self.config_tree.addItems(itemCollection)
 
     self.config_tab = self.factory.createReplacePoint(hbox_config)
@@ -967,7 +966,7 @@ class OptionDialog(basedialog.BaseDialog):
     fill option configuration data starting from config tree selection
     '''
     logger.debug('Config tab %s', self.selected_option)
-    if isinstance(obj, yui.YTree):
+    if isinstance(obj, MUI.YTree):
       item = self.config_tree.selectedItem()
       for k in self.option_items.keys():
         if self.option_items[k] == item:
@@ -1212,7 +1211,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     enable logging check box event
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       self.log_vbox.setEnabled(obj.isChecked())
       try:
         self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
@@ -1226,7 +1225,7 @@ class OptionDialog(basedialog.BaseDialog):
     Change directory button has been invoked
     '''
     start_dir = self.log_directory.text() if self.log_directory.text() else os.path.expanduser("~")
-    log_directory = yui.YUI.app().askForExistingDirectory(
+    log_directory = MUI.YUI.app().askForExistingDirectory(
           start_dir,
           _("Choose log destination directory"))
     if log_directory:
@@ -1241,7 +1240,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Show All Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       self.parent.config.userPreferences['settings']['do not show groups at startup'] = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1250,7 +1249,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Show Updates Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       self.parent.config.userPreferences['settings']['show updates at startup'] = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1259,7 +1258,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Fuzzy Search Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       try:
         self.parent.config.userPreferences['settings']['search']['fuzzy_search'] = obj.isChecked()
       except:
@@ -1272,7 +1271,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Newest Only Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       try:
         self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
       except:
@@ -1285,7 +1284,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Debug level Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       try:
         self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
       except:
@@ -1297,7 +1296,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     manage an update interval change
     '''
-    if isinstance(obj, yui.YIntField):
+    if isinstance(obj, MUI.YIntField):
       self.parent.config.userPreferences['settings']['interval for checking updates'] = obj.value()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1306,7 +1305,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     manage an MD update interval change
     '''
-    if isinstance(obj, yui.YIntField):
+    if isinstance(obj, MUI.YIntField):
       try:
         self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
       except:
@@ -1320,7 +1319,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Always Yes Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       self.parent.config.userPreferences['settings']['always_yes'] = obj.isChecked()
       self.parent.always_yes = obj.isChecked()
       logger.debug("always_yes %d", obj.value())
@@ -1331,7 +1330,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Consider Upgrades as Updates
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       self.parent.config.userPreferences['settings']['upgrades as updates'] = obj.isChecked()
       logger.debug("onUpgradesAsUpdates %d", obj.value())
       self.parent.upgrades_as_updates = self.parent.config.userPreferences['settings']['upgrades as updates']
@@ -1342,7 +1341,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Hide update menu changing
     '''
-    if isinstance(obj, yui.YCheckBox):
+    if isinstance(obj, MUI.YCheckBox):
       self.parent.config.userPreferences['settings']['hide_update_menu'] = obj.isChecked()
       logger.debug("hide_update_menu %d", obj.value())
     else:
