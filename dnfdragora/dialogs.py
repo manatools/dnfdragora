@@ -628,10 +628,11 @@ class RepoDialog:
         setup the dialog layout
         '''
         self.appTitle = MUI.YUI.app().applicationTitle()
+
+        self.dialog = self.factory.createPopupDialog()
         ## set new title to get it in dialog
         MUI.YUI.app().setApplicationTitle(_("Repository Management") )
 
-        self.dialog = self.factory.createPopupDialog()
         vbox = self.factory.createVBox(self.dialog)
         minSize = self.factory.createMinSize( vbox, 320, 100 )
         vbox = self.factory.createVBox(minSize)
@@ -853,7 +854,7 @@ class RepoDialog:
 
 class OptionDialog(basedialog.BaseDialog):
   def __init__(self, parent):
-    basedialog.BaseDialog.__init__(self, "dnfdragora options", "dnfdragora", basedialog.DialogType.POPUP, 80, 15)
+    basedialog.BaseDialog.__init__(self, _("dnfdragora options"), "dnfdragora", basedialog.DialogType.POPUP, 640, 480)
     self.parent = parent
     self.log_vbox = None
     self.widget_callbacks = []
@@ -864,10 +865,13 @@ class OptionDialog(basedialog.BaseDialog):
     '''
 
     hbox_config = self.factory.createHBox(layout)
+    self.factory.createVStretch(layout)
     hbox_bottom = self.factory.createHBox(layout)
     self.config_tree = self.factory.createTree(hbox_config, "")
+    self.config_tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
+    self.config_tree.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
     self.config_tree.setWeight(0,30)
-    self.config_tree.setNotify(True)
+
     self.eventManager.addWidgetEvent(self.config_tree, self.onChangeConfig, sendWidget=True)
 
     itemVect = []
@@ -882,8 +886,7 @@ class OptionDialog(basedialog.BaseDialog):
     #YTreeItem self, std::string const & label, std::string const & iconName, bool isOpen=False)
     # TODO add icons
     item = MUI.YTreeItem(_("System"))
-    itemVect.append(item)
-    item.setSelected()
+    itemVect.append(item)    
     self.option_items ["system"] = item
 
     item = MUI.YTreeItem(_("Layout"))
@@ -897,23 +900,22 @@ class OptionDialog(basedialog.BaseDialog):
     item = MUI.YTreeItem(_("Logging"))
     itemVect.append(item)
     self.option_items ["logging"] = item
-
+    
     itemCollection = itemVect
     self.config_tree.addItems(itemCollection)
-
-    self.config_tab = self.factory.createReplacePoint(hbox_config)
-    self.config_tab.setWeight(0,70)
-
-    self.RestoreButton = self.factory.createIconButton(hbox_bottom,"",_("Restore &default"))
+    self.config_tree.selectItem(itemVect[0], True)
+    frame = self.factory.createFrame(hbox_config)
+    frame.setWeight(0,70)
+    self.config_tab = self.factory.createReplacePoint(frame)
+    
+    self.RestoreButton = self.factory.createPushButton(hbox_bottom, _("Restore &default"))
     self.eventManager.addWidgetEvent(self.RestoreButton, self.onRestoreButton)
-    self.RestoreButton.setWeight(0,1)
 
     st = self.factory.createHStretch(hbox_bottom)
-    st.setWeight(0,1)
 
-    self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Close"))
+    self.quitButton = self.factory.createIconButton(hbox_bottom, "window-close",_("&Close"))
     self.eventManager.addWidgetEvent(self.quitButton, self.onQuitEvent)
-    self.quitButton.setWeight(0,1)
+
     #self.dialog.setDefaultButton(self.quitButton)
 
     self.eventManager.addCancelEvent(self.onCancelEvent)
@@ -925,7 +927,8 @@ class OptionDialog(basedialog.BaseDialog):
     fill option configuration data starting from config tree selection
     '''
     logger.debug('Config tab %s', self.selected_option)
-    if isinstance(obj, MUI.YTree):
+    
+    if obj.widgetClass() == "YTree":
       item = self.config_tree.selectedItem()
       for k in self.option_items.keys():
         if self.option_items[k] == item:
@@ -1023,7 +1026,6 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVStretch(vbox)
 
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def _openLayoutOptions(self):
     '''
@@ -1065,7 +1067,6 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def _openSearchOptions(self):
     '''
@@ -1099,7 +1100,6 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def _openLoggingOptions(self):
     '''
@@ -1148,7 +1148,7 @@ class OptionDialog(basedialog.BaseDialog):
     hbox = self.factory.createHBox(self.log_vbox)
     self.factory.createHSpacing(hbox, 2.0)
     self.log_directory = self.factory.createLabel(self.factory.createLeft(hbox), "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-    self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "", _("Change &directory"))
+    self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "folder", _("Change &directory"))
     self.eventManager.addWidgetEvent(self.choose_dir, self.onChangeLogDirectory)
     self.widget_callbacks.append( { 'widget': self.choose_dir, 'handler': self.onChangeLogDirectory} )
 
@@ -1164,13 +1164,12 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def onEnableLogging(self, obj) :
     '''
     enable logging check box event
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       self.log_vbox.setEnabled(obj.isChecked())
       try:
         self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
@@ -1189,7 +1188,6 @@ class OptionDialog(basedialog.BaseDialog):
           _("Choose log destination directory"))
     if log_directory:
       self.log_directory.setText(log_directory)
-      self.dialog.recalcLayout()
       try:
         self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
       except:
@@ -1199,7 +1197,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Show All Changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":    
       self.parent.config.userPreferences['settings']['do not show groups at startup'] = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1208,7 +1206,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Show Updates Changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       self.parent.config.userPreferences['settings']['show updates at startup'] = obj.isChecked()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1217,7 +1215,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Fuzzy Search Changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       try:
         self.parent.config.userPreferences['settings']['search']['fuzzy_search'] = obj.isChecked()
       except:
@@ -1230,7 +1228,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Newest Only Changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       try:
         self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
       except:
@@ -1243,7 +1241,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Debug level Changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       try:
         self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
       except:
@@ -1255,7 +1253,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     manage an update interval change
     '''
-    if isinstance(obj, MUI.YIntField):
+    if obj.widgetClass() == "YIntField":
       self.parent.config.userPreferences['settings']['interval for checking updates'] = obj.value()
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1264,7 +1262,7 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     manage an MD update interval change
     '''
-    if isinstance(obj, MUI.YIntField):
+    if obj.widgetClass() == "YIntField":
       try:
         self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
       except:
@@ -1278,10 +1276,10 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Always Yes Changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       self.parent.config.userPreferences['settings']['always_yes'] = obj.isChecked()
       self.parent.always_yes = obj.isChecked()
-      logger.debug("always_yes %d", obj.value())
+      logger.debug("always_yes %d", obj.isChecked())
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
@@ -1289,9 +1287,9 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Consider Upgrades as Updates
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       self.parent.config.userPreferences['settings']['upgrades as updates'] = obj.isChecked()
-      logger.debug("onUpgradesAsUpdates %d", obj.value())
+      logger.debug("onUpgradesAsUpdates %d", obj.isChecked())
       self.parent.upgrades_as_updates = self.parent.config.userPreferences['settings']['upgrades as updates']
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1300,9 +1298,9 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     Hide update menu changing
     '''
-    if isinstance(obj, MUI.YCheckBox):
+    if obj.widgetClass() == "YCheckBox":
       self.parent.config.userPreferences['settings']['hide_update_menu'] = obj.isChecked()
-      logger.debug("hide_update_menu %d", obj.value())
+      logger.debug("hide_update_menu %d", obj.isChecked())
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
 
