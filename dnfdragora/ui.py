@@ -1124,6 +1124,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for key in keylist :
             item = self.groupList[key]['item']
             v.append(item)
+        v[0].setSelected(True)
 
         itemCollection = v
         #self.tree.startMultipleChanges()
@@ -2064,7 +2065,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar.set_progress(total_frac)
         self.infobar.info( _('Preparation of transaction'))
 
-
     def _OnTransactionTransactionStop(self, session_object_path, total):
         '''
             Preparation of transaction packages has finished.
@@ -2173,7 +2173,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         'total_to_download' : total_to_download,
       }
 
-
     def __resetDownloads(self):
       '''
         reset download evennts either repos or packages
@@ -2209,7 +2208,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         }
 
       return downloads[download_id]
-
 
     def _OnDownloadStart(self, session_object_path, download_id, description, total_to_download):
       '''
@@ -2263,7 +2261,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar.set_progress(total_frac)
         self.infobar.info(_('Downloading file %(id)s - %(description)s in progress')%
                           { 'id': download_id, 'description':download['description'] })
-
 
     def _OnDownloadEnd(self, session_object_path, download_id, status, error):
       '''
@@ -2362,7 +2359,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error("Wrong package filter %s", pkg_flt)
         return
       self.backend.GetPackages(options)
-
 
     def _populateCache(self, pkg_flt, po_list) :
       if pkg_flt == 'updates_all':
