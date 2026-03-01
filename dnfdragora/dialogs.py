@@ -867,10 +867,14 @@ class OptionDialog(basedialog.BaseDialog):
     hbox_config = self.factory.createHBox(layout)
     self.factory.createVStretch(layout)
     hbox_bottom = self.factory.createHBox(layout)
-    self.config_tree = self.factory.createTree(hbox_config, "")
+    # Wrap the tree in MinSize to guarantee a minimum column width regardless
+    # of the ReplacePoint content on the right (long labels in System options
+    # would otherwise squeeze the tree below its usable width).
+    tree_col = self.factory.createMinSize(hbox_config, 20, 3)
+    tree_col.setWeight(MUI.YUIDimension.YD_HORIZ, 25)
+    self.config_tree = self.factory.createTree(tree_col, "")
     self.config_tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
     self.config_tree.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-    self.config_tree.setWeight(0,30)
 
     self.eventManager.addWidgetEvent(self.config_tree, self.onChangeConfig, sendWidget=True)
 
@@ -905,7 +909,9 @@ class OptionDialog(basedialog.BaseDialog):
     self.config_tree.addItems(itemCollection)
     self.config_tree.selectItem(itemVect[0], True)
     frame = self.factory.createFrame(hbox_config)
-    frame.setWeight(0,70)
+    frame.setStretchable(MUI.YUIDimension.YD_VERT, True)
+    frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    frame.setWeight(MUI.YUIDimension.YD_HORIZ, 75)
     self.config_tab = self.factory.createReplacePoint(frame)
     
     self.RestoreButton = self.factory.createPushButton(hbox_bottom, _("Restore &default"))
@@ -1173,7 +1179,7 @@ class OptionDialog(basedialog.BaseDialog):
       self.log_vbox.setEnabled(obj.isChecked())
       try:
         self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
-      except:
+      except KeyError:
         self.parent.config.userPreferences['settings']['log'] = { 'enabled' : obj.isChecked() }
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1190,7 +1196,7 @@ class OptionDialog(basedialog.BaseDialog):
       self.log_directory.setText(log_directory)
       try:
         self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
-      except:
+      except KeyError:
         self.parent.config.userPreferences['settings']['log'] = { 'directory' : self.log_directory.text() }
 
   def onShowAll(self, obj):
@@ -1218,7 +1224,7 @@ class OptionDialog(basedialog.BaseDialog):
     if obj.widgetClass() == "YCheckBox":
       try:
         self.parent.config.userPreferences['settings']['search']['fuzzy_search'] = obj.isChecked()
-      except:
+      except KeyError:
         self.parent.config.userPreferences['settings']['search'] = { 'fuzzy_search' : obj.isChecked() }
       self.parent.fuzzy_search = obj.isChecked()
     else:
@@ -1231,7 +1237,7 @@ class OptionDialog(basedialog.BaseDialog):
     if obj.widgetClass() == "YCheckBox":
       try:
         self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
-      except:
+      except KeyError:
         self.parent.config.userPreferences['settings']['search'] = { 'newest_only' : obj.isChecked() }
       self.parent.newest_only = obj.isChecked()
     else:
@@ -1244,7 +1250,7 @@ class OptionDialog(basedialog.BaseDialog):
     if obj.widgetClass() == "YCheckBox":
       try:
         self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
-      except:
+      except KeyError:
         self.parent.config.userPreferences['settings']['log'] = { 'level_debug' : obj.isChecked() }
     else:
       logger.error("Invalid object passed %s", obj.widgetClass())
@@ -1265,7 +1271,7 @@ class OptionDialog(basedialog.BaseDialog):
     if obj.widgetClass() == "YIntField":
       try:
         self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
-      except:
+      except KeyError:
         self.parent.config.userPreferences['settings']['metadata'] = { 'update_interval' : obj.value() }
       self.parent.md_update_interval = obj.value()
       logger.debug("update_interval %d", obj.value())
