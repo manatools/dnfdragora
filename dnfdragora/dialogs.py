@@ -858,6 +858,8 @@ class OptionDialog(basedialog.BaseDialog):
     self.parent = parent
     self.log_vbox = None
     self.widget_callbacks = []
+    self._HSPACING_PX = 6
+    self._VSPACING_PX = 12
 
   def UIlayout(self, layout):
     '''
@@ -977,7 +979,7 @@ class OptionDialog(basedialog.BaseDialog):
 
     # Title
     heading = self.factory.createHeading( vbox, _("System options") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
     always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
@@ -1003,7 +1005,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
     self.widget_callbacks.append( { 'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu} )
 
-    self.factory.createVSpacing(vbox)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
 
     updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
         if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
@@ -1047,7 +1049,7 @@ class OptionDialog(basedialog.BaseDialog):
 
     # Title
     heading = self.factory.createHeading( vbox, _("Layout options (active at next startup)") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
     showUpdates = self.parent.config.userPreferences['settings']['show updates at startup'] \
@@ -1088,7 +1090,7 @@ class OptionDialog(basedialog.BaseDialog):
 
     # Title
     heading=self.factory.createHeading( vbox, _("Search options") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
     fuzzy_search = self.parent.fuzzy_search
@@ -1115,13 +1117,13 @@ class OptionDialog(basedialog.BaseDialog):
       self.config_tab.deleteChildren()
 
     hbox = self.factory.createHBox(self.config_tab)
-    self.factory.createHSpacing(hbox, 1.5)
+    self.factory.createHSpacing(hbox, 1.5*self._HSPACING_PX)
     vbox = self.factory.createVBox(hbox)
-    self.factory.createHSpacing(hbox, 1.5)
+    self.factory.createHSpacing(hbox, 1.5*self._HSPACING_PX)
 
     # Title
     heading=self.factory.createHeading( vbox, _("Logging options (active at next startup)") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
     log_enabled = self.parent.config.userPreferences['settings']['log']['enabled'] \
@@ -1145,23 +1147,22 @@ class OptionDialog(basedialog.BaseDialog):
     if not 'log' in self.parent.config.userPreferences['settings'].keys():
       self.parent.config.userPreferences['settings']['log'] = {}
 
-    self.log_enabled  = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Enable logging"), log_enabled )
+    ####
+    self.log_enabled = self.factory.createCheckBoxFrame(vbox, _("Enable logging"), log_enabled)
     self.log_enabled.setNotify(True)
     self.eventManager.addWidgetEvent(self.log_enabled, self.onEnableLogging, True)
     self.widget_callbacks.append( { 'widget': self.log_enabled, 'handler': self.onEnableLogging} )
-
-    self.log_vbox = self.factory.createVBox(vbox)
-    hbox = self.factory.createHBox(self.log_vbox)
-    self.factory.createHSpacing(hbox, 2.0)
-    self.log_directory = self.factory.createLabel(self.factory.createLeft(hbox), "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-    self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "folder", _("Change &directory"))
+    
+    self.log_vbox = self.factory.createVBox(self.log_enabled)
+    hbox = self.factory.createHBox(self.log_vbox)    
+    self.log_directory = self.factory.createLabel(self.factory.createLeft(hbox), "")
+    self.factory.createHSpacing(hbox)
+    self.choose_dir = self.factory.createIconButton(hbox, "folder", _("Change &directory"))
     self.eventManager.addWidgetEvent(self.choose_dir, self.onChangeLogDirectory)
     self.widget_callbacks.append( { 'widget': self.choose_dir, 'handler': self.onChangeLogDirectory} )
-
     self.log_directory.setText(log_directory)
-    hbox = self.factory.createHBox(self.log_vbox)
-    self.factory.createHSpacing(hbox, 2.0)
-    self.level_debug = self.factory.createCheckBox(self.factory.createLeft(hbox) , _("Debug level"), level_debug )
+        
+    self.level_debug = self.factory.createCheckBox(self.log_vbox , _("Debug level"), level_debug )
     self.level_debug.setNotify(True)
     self.eventManager.addWidgetEvent(self.level_debug, self.onLevelDebugChange, True)
     self.widget_callbacks.append( { 'widget': self.level_debug, 'handler': self.onLevelDebugChange} )
