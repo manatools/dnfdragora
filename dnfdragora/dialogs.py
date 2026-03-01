@@ -100,18 +100,17 @@ class HistoryView:
             for state in const.HISTORY_SORT_ORDER:
                 if state in states:
                     num = len(states[state])
-                    cat = MUI.YTreeItem("%s (%i)" %
-                            (const.HISTORY_STATE_LABLES[state], num), True)
+                    cat = MUI.YTreeItem(label="%s (%i)"%(const.HISTORY_STATE_LABLES[state], num), is_open=True)
 
                     for pkg_list in states[state]:
                         pkg_id, st, is_inst = pkg_list[0]
                         name = misc.pkg_id_to_full_name(pkg_id)
-                        pkg_cat = MUI.YTreeItem(cat, name, True)
+                        pkg_cat = MUI.YTreeItem(parent=cat, label=name, is_open=True)
 
                         if len(pkg_list) == 2:
                             pkg_id, st, is_inst = pkg_list[1]
                             name = misc.pkg_id_to_full_name(pkg_id)
-                            item = MUI.YTreeItem(pkg_cat, name, True)
+                            item = MUI.YTreeItem(parent=pkg_cat, label=name, is_open=True)
 
                     itemVect.append(cat)
 
@@ -141,24 +140,24 @@ class HistoryView:
             # year
             if date.year not in main.keys():
                 main[date.year] = {}
-                item = MUI.YTreeItem(date.strftime("%Y"), True)
+                item = MUI.YTreeItem(label=date.strftime("%Y"), is_open=True)
                 main[date.year]['item'] = item
 
             mdict = main[date.year]
             # month
             if date.month not in mdict.keys():
                 mdict[date.month] = {}
-                item = MUI.YTreeItem(main[date.year]['item'], date.strftime("%m"), True)
+                item = MUI.YTreeItem(parent=main[date.year]['item'], label=date.strftime("%m"), is_open=True)
                 mdict[date.month]['item'] = item
 
             ddict = mdict[date.month]
             # day
             if date.day not in ddict.keys():
                 ddict[date.day] = {}
-                item = MUI.YTreeItem(mdict[date.month]['item'], date.strftime("%d"), True)
+                item = MUI.YTreeItem(parent=mdict[date.month]['item'], label=date.strftime("%d"), is_open=True)
                 ddict[date.day]['item'] = item
             ddict[date.day][date.strftime("%H:%M:%S")] = tid
-            item = MUI.YTreeItem(ddict[date.day]['item'], date.strftime("%H:%M:%S"), False)
+            item = MUI.YTreeItem(parent=ddict[date.day]['item'], label=date.strftime("%H:%M:%S"), is_open=False)
             self._tid[tid]= item
 
         itemVect = []
@@ -461,7 +460,7 @@ class TransactionResult:
           if not pkglist[action]:
             continue
           label = const.TRANSACTION_RESULT_TYPES[action]
-          level1Item = MUI.YTreeItem(label, True)
+          level1Item = MUI.YTreeItem(label=label, is_open=True)
 
           for name in pkglist[action].keys():
             pkgid, size, replaces = (None, None, None)
@@ -472,12 +471,12 @@ class TransactionResult:
               pkgid, size = pkglist[action][name]
 
             label = pkgid + " (" +  misc.format_number(size) + ")"
-            level2Item = MUI.YTreeItem(level1Item, label, True)
+            level2Item = MUI.YTreeItem(parent=level1Item, label=label, is_open=True)
             total_size += size
             if replaces:
                 for rep in replaces:
                     label =  _("replacing ") + rep
-                    item = MUI.YTreeItem(level2Item, label, False)
+                    item = MUI.YTreeItem(parent=level2Item, label=label, is_open=False)
 
           itemVect.append(level1Item)
 
