@@ -40,5 +40,8 @@ Any helps would be appreciated, since most of us have a daily job and we do our 
     select from the set of options (in the case with Requires with "or") or offer ways to enable
     additional functionality (in the case where Requires only activate if something is installed).
 
+# Porting to MANATOOLS AUI
 
+[ ] Using icon from theme (evaluating if forcing by setting images_path
+    but using local icon into home should be enough)
 
