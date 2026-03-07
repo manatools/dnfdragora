@@ -729,10 +729,13 @@ class Client:
 
                 parser = json.JSONDecoder()
                 state = {'buf': "", 'items': []}
+                _done = [False]  # one-shot guard: first caller wins, prevents double delivery
 
                 def _finish_with(value):
-                    # Ensure callback runs in the main loop thread
-                    GLib.idle_add(lambda: (self._return_handler(value, data), False)[1])
+                    if not _done[0]:
+                        _done[0] = True
+                        # _return_handler is thread-safe (SimpleQueue + Lock); no GLib.idle_add needed
+                        self._return_handler(value, data)
 
                 def _reader_loop(fd):
                     timeout = 1000
@@ -773,60 +776,14 @@ class Client:
                         except Exception:
                             pass
 
-                # If GLib.unix_fd_add exists, use it; otherwise, fallback to thread reader
-                use_glib_fd_watch = hasattr(GLib, 'unix_fd_add')
-
-                if use_glib_fd_watch:
-                    def _fd_cb(fd, cond):
-                        try:
-                            if cond & GLib.IO_HUP:
-                                try:
-                                    os.close(pipe_r)
-                                except Exception:
-                                    pass
-                                self._return_handler(state['items'], data)
-                                return False
-                            if cond & GLib.IO_IN:
-                                chunk = os.read(fd, 65536)
-                                if not chunk:
-                                    try:
-                                        os.close(pipe_r)
-                                    except Exception:
-                                        pass
-                                    self._return_handler(state['items'], data)
-                                    return False
-                                buffer = chunk.decode(errors='ignore')
-                                if buffer:
-                                    state['buf'] += buffer
-                                    while state['buf']:
-                                        try:
-                                            obj, end = parser.raw_decode(state['buf'])
-                                            state['items'].append(obj)
-                                            state['buf'] = state['buf'][end:].lstrip()
-                                        except json.decoder.JSONDecodeError:
-                                            break
-                        except Exception as ex:
-                            logging.getLogger("dnfdaemon.client").exception("list_fd GLib watch error: %s", ex)
-                            try:
-                                os.close(pipe_r)
-                            except Exception:
-                                pass
-                            self._return_handler(ex, data)
-                            return False
-                        return True
-
-                    try:
-                        GLib.unix_fd_add(pipe_r, GLib.IO_IN | GLib.IO_HUP, _fd_cb)
-                    except Exception as e:
-                        # Fallback to thread reader if GLib watch setup fails
-                        threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True).start()
-                else:
-                    threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True).start()
-
-                # Schedule the daemon call; close our write end immediately after scheduling
+                # 1. Schedule the D-Bus call; pass pipe_w FD to the daemon.
+                #    error_handler uses _finish_with so the _done guard prevents
+                #    double delivery if the thread also fires later.
                 try:
-                    func(*args, pipe_w, reply_handler=lambda *_: None, error_handler=lambda err: self._return_handler(err, data), timeout=600)
+                    func(*args, pipe_w, reply_handler=lambda *_: None, error_handler=_finish_with, timeout=600)
                 except Exception as e:
+                    # func() raised before even queuing the call: close both ends and return.
+                    # Thread not started yet, so no double delivery.
                     try:
                         os.close(pipe_r)
                     except Exception:
@@ -838,11 +795,68 @@ class Client:
                     self._return_handler(e, data)
                     return
                 finally:
-                    # Always close local write end so reader can observe HUP when the daemon closes its end
+                    # 2. Close local write end so the reader observes HUP
+                    #    once the daemon closes its copy.
                     try:
                         os.close(pipe_w)
                     except Exception:
                         pass
+
+                # 3. D-Bus call queued and local pipe_w closed; start reader.
+                #    Use GLib.io_add_watch (the proper PyGObject API for FD monitoring).
+                #    GLib.unix_fd_add does NOT exist in PyGObject — it is a C-only GLib macro;
+                #    the Python binding exposes g_io_add_watch via GLib.io_add_watch instead.
+                #    Thread reference is stored so waitForLastAsyncRequestTermination() can join it.
+                channel = GLib.IOChannel.unix_new(pipe_r)
+                channel.set_encoding(None)   # binary / no character conversion
+                channel.set_buffered(False)  # direct reads, no internal buffering
+
+                def _fd_cb(channel, cond):
+                    try:
+                        if cond & GLib.IOCondition.HUP:
+                            _finish_with(state['items'])
+                            try:
+                                os.close(pipe_r)
+                            except Exception:
+                                pass
+                            return False
+                        if cond & GLib.IOCondition.IN:
+                            chunk = os.read(pipe_r, 65536)
+                            if not chunk:
+                                _finish_with(state['items'])
+                                try:
+                                    os.close(pipe_r)
+                                except Exception:
+                                    pass
+                                return False
+                            buffer = chunk.decode(errors='ignore')
+                            if buffer:
+                                state['buf'] += buffer
+                                while state['buf']:
+                                    try:
+                                        obj, end = parser.raw_decode(state['buf'])
+                                        state['items'].append(obj)
+                                        state['buf'] = state['buf'][end:].lstrip()
+                                    except json.decoder.JSONDecodeError:
+                                        break
+                    except Exception as ex:
+                        logging.getLogger("dnfdaemon.client").exception("list_fd io_add_watch error: %s", ex)
+                        _finish_with(ex)
+                        try:
+                            os.close(pipe_r)
+                        except Exception:
+                            pass
+                        return False
+                    return True
+
+                try:
+                    GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT,
+                                      GLib.IOCondition.IN | GLib.IOCondition.HUP, _fd_cb)
+                    logger.debug("list_fd: using GLib.io_add_watch for pipe_r=%d", pipe_r)
+                except Exception as e:
+                    logger.warning("GLib.io_add_watch failed; using thread reader for list_fd: %s", e)
+                    self.__async_thread = threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True)
+                    self.__async_thread.start()
 
             else:
                 # Regular async method with return value
