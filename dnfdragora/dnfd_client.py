@@ -196,7 +196,6 @@ class Client:
           'Update'              : 'upgrade',
           'Downgrade'           : 'downgrade',
           'Reinstall'           : 'reinstall',
-          'Install'             : 'install',
           'DistroSync'          : 'distro_sync',
 
           'SetEnabledRepos'     : 'enable',
@@ -402,8 +401,9 @@ class Client:
                 self.iface_session.close_session(self.session_path)
                 logger.debug(f"Closed Dnf5Daemon session: {self.session_path}")
             except Exception as err:
-                logger.error(f"Error during reloadDaemon: {err}")
-                self._handle_dbus_error(err)
+                # Log and continue cleanup — _handle_dbus_error always raises,
+                # which must not happen inside __del__ or other cleanup callers.
+                logger.error(f"Error during unloadDaemon: {err}")
             finally:
                 self.session_path = None
 
@@ -449,8 +449,8 @@ class Client:
 
     def _parse_error(self):
         '''parse values from a DBus related exception '''
-        (type, value, traceback) = sys.exc_info()
-        res = DBUS_ERR_RE.match(str(value))
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        res = DBUS_ERR_RE.match(str(exc_value))
         if res:
             return res.groups()
         return "", ""
@@ -1053,12 +1053,12 @@ class Client:
         '''
         self.eventQueue.put({'event': 'OnGPGImport',
                              'value': {
-                                 'session_object_path':session_object_path,
-                                 'key_id':key_id,
-                                 'user_ids':user_ids,
-                                 'key_fingerprint':key_fingerprint,
-                                 'key_url':key_url,
-                                 'timestamp':timestamp,
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'key_id': unpack_dbus(key_id),
+                                 'user_ids': unpack_dbus(user_ids),
+                                 'key_fingerprint': unpack_dbus(key_fingerprint),
+                                 'key_url': unpack_dbus(key_url),
+                                 'timestamp': unpack_dbus(timestamp),
                                  }
                              })
 
@@ -1402,7 +1402,9 @@ class Client:
         query = libdnf5.comps.GroupQuery(base)
 
         # workaround to get_translated_name()
-        loc = locale.getlocale()[0].split('_')[0] #let's take the first part of locales
+        # locale.getlocale()[0] can return None when no locale is set
+        loc_raw = locale.getlocale()[0]
+        loc = loc_raw.split('_')[0] if loc_raw else 'en'
 
         groups = [ [grp.get_groupid(), grp.get_translated_name(loc)] for grp in query ]
         return groups
