@@ -981,11 +981,23 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'always_yes' in self.parent.config.userPreferences['settings'].keys() \
-        else self.parent.always_yes
+    # Safely fetch configuration values: userPreferences and systemSettings
+    config_obj = getattr(self.parent, 'config', None) or {}
+    user_prefs = getattr(config_obj, 'userPreferences', {}) or {}
+    system_settings = getattr(config_obj, 'systemSettings', {}) or {}
 
-    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes )
+    def _get_setting(cfg, section, key, default=None):
+      try:
+        if isinstance(cfg, dict):
+          return cfg.get(section, {}).get(key, default)
+        # fallback for mapping-like objects
+        return getattr(cfg, 'get', lambda s, d={}: d)(section, {}).get(key, default)
+      except Exception:
+        return default
+
+    always_yes_val = _get_setting(user_prefs, 'settings', 'always_yes', self.parent.always_yes)
+
+    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes_val )
     self.always_yes.setNotify(True)
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
@@ -995,22 +1007,27 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.upgrades_as_updates, self.onUpgradesAsUpdates, True)
     self.widget_callbacks.append( { 'widget': self.upgrades_as_updates, 'handler': self.onUpgradesAsUpdates} )
 
-    hide_update_menu = self.parent.config.userPreferences['settings']['hide_update_menu'] \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'hide_update_menu' in self.parent.config.userPreferences['settings'].keys() \
-        else False
+    hide_update_menu_val = _get_setting(user_prefs, 'settings', 'hide_update_menu', False)
 
-    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu )
+    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu_val )
     self.hide_update_menu.setNotify(True)
     self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
     self.widget_callbacks.append( { 'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu} )
 
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
 
-    updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
-        else int(self.parent.config.systemSettings['settings']['update_interval']) \
-        if 'settings' in self.parent.config.systemSettings.keys() and 'update_interval' in self.parent.config.systemSettings['settings'].keys() \
-        else 180
+    # Determine update interval with fallbacks and robust parsing
+    updateInterval = 180
+    try:
+      val = _get_setting(user_prefs, 'settings', 'interval for checking updates', None)
+      if val is not None:
+        updateInterval = int(val)
+      else:
+        val = _get_setting(system_settings, 'settings', 'update_interval', None)
+        if val is not None:
+          updateInterval = int(val)
+    except (TypeError, ValueError):
+      updateInterval = 180
 
     hbox = self.factory.createHBox(vbox)
     col1 = self.factory.createVBox(hbox)
