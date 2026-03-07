@@ -354,6 +354,10 @@ class Client:
         #self.iface_session.close_session(self.session_path)
         logger.debug(f"__del__ - Dnf5Daemon Client session")
 
+    def __enter__(self):
+        '''Support use as a context manager: `with Client() as c:`'''
+        return self
+
     def __exit__(self, exc_type, exc_value, exc_traceback) -> None:
         '''exit'''
         self.unloadDaemon()
@@ -459,6 +463,13 @@ class Client:
     def _return_handler(self, result, user_data):
         '''Async DBus call, return handler '''
         logger.debug("return_handler %s", user_data['cmd'])
+        # clear sent flag under lock to avoid races with the async thread loop
+        try:
+            with self._async_lock:
+                self._sent = False
+        except Exception:
+            # fallback if lock missing for any reason
+            self._sent = False
         if isinstance(result, Exception):
             # print(result)
             user_data['result'] = None
@@ -469,14 +480,7 @@ class Client:
         #user_data['main_loop'].quit()
 
         response = self._get_result(user_data)
-        self.eventQueue.put({'event': user_data['cmd'], 'value': response})
-        # clear sent flag under lock to avoid races with the async thread loop
-        try:
-            with self._async_lock:
-                self._sent = False
-        except Exception:
-            # fallback if lock missing for any reason
-            self._sent = False
+        self.eventQueue.put({'event': user_data['cmd'], 'value': response})        
         logger.debug("Quit return_handler error %s", user_data['error'])
 
 
@@ -504,182 +508,24 @@ class Client:
             elif user_data['result'] == ':not_found':  # package not found
               result['error'] = "Package not found"
             else:
-              attr = user_data["args"]["package_attrs"][0]
-              result['result'] = user_data['result'][0][attr] if result['result'][0] else None
+              # args is a tuple (options_dict,); options_dict['package_attrs'] holds the requested attr name
+              attr = user_data["args"][0]["package_attrs"][0]
+              result['result'] = user_data['result'][0][attr] if result['result'] else None
 
           else:
             pass
 
         return result
-    
-    def __async_thread_loop(self, data, *args):
-      '''
-      Thread function for GLib main loop to handle D-Bus calls with timeouts.
-      '''
-      logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), repr(args) if args else "")
-      proxy = self.Proxy(data['cmd'])
-      method = self.proxyMethod.get(data['cmd'])
-      if proxy is None:
-          # Defensive: proxy missing -> return error
-          err = DaemonError(f"No proxy available for command {data['cmd']}")
-          logger.error("__async_thread_loop: %s", err)
-          self._return_handler(err, data)
-          with self._async_lock:
-              self._sent = False
-          return
-      if method is None:
-          err = DaemonError(f"No proxyMethod configured for command {data['cmd']}")
-          logger.error("__async_thread_loop: %s", err)
-          self._return_handler(err, data)
-          with self._async_lock:
-              self._sent = False
-          return
-      logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
-      pipe_r, pipe_w = None, None
-
-      try:
-          # Create a GLib main loop for this thread (do NOT create a thread-default MainContext)
-          loop = GLib.MainLoop()
-
-          def on_error(error):
-              # Handle D-Bus error
-              logger.error("__async_thread_loop error for command %s: %s", data['cmd'], error)
-              if method == 'list_fd':
-                if pipe_r is not None:
-                    os.close(pipe_r)
-                if pipe_w is not None:
-                    os.close(pipe_w)
-
-              self._return_handler(error, data)             
-              # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-              GLib.idle_add(loop.quit)            
-              #logger.debug("... on_error quit")
-
-          func = getattr(proxy, method)
-          if data['return_value']:
-            # TODO find a better way to distinguish if cmd needs a pipe
-            if method == 'list_fd':
-                # create a pipe and pass the write end to the server
-                pipe_r, pipe_w = os.pipe()
-
-                def on_list_id_success(rpipe_idesult):
-                    # Handle successful D-Bus call
-                    logger.debug("__async_thread_loop success for command %s", data['cmd'])
-                    # close the write end
-                    os.close(pipe_w)
-                    # read the data with robust cleanup and tolerant incremental JSON parsing
-                    timeout = 1000
-                    buffer_size = 65536
-                    poller = select.poll()
-                    poller.register(pipe_r, select.POLLIN | select.POLLHUP)
-                    read_finished = False
-                    parser = json.JSONDecoder()
-                    to_parse = ""
-                    pkglist = []
-                    try:
-                        while not read_finished:
-                            polled_event = poller.poll(timeout)
-                            if not polled_event:
-                                logger.warning("__async_thread_loop(list_fd): timeout reached while reading from pipe.")
-                                break
-                            for descriptor, event in polled_event:
-                                if event & select.POLLIN:
-                                    chunk = os.read(descriptor, buffer_size)
-                                    if not chunk:
-                                        read_finished = True
-                                        break
-                                    try:
-                                        buffer = chunk.decode()
-                                    except Exception:
-                                        buffer = ""
-                                    if buffer:
-                                        to_parse += buffer
-                                        # Try to decode as many JSON objects as possible; incomplete data is silently preserved
-                                        while to_parse:
-                                            try:
-                                                obj, end = parser.raw_decode(to_parse)
-                                                pkglist.append(obj)
-                                                to_parse = to_parse[end:].lstrip()
-                                            except json.decoder.JSONDecodeError:
-                                                # Incomplete JSON -> wait for more data; do not log as error
-                                                break
-                                elif event & select.POLLHUP:
-                                    read_finished = True
-                                    break
-                    except Exception as err:
-                        logger.exception("__async_thread_loop(list_fd): Exception while reading from pipe: %s", err)
-                    finally:
-                        try:
-                            os.close(pipe_r)
-                        except Exception:
-                            pass
-                        logger.debug("__async_thread_loop(list_fd): pipe closed.")
-
-                    self._return_handler(pkglist, data)
-                    GLib.idle_add(loop.quit)
-                func(*args, pipe_w, reply_handler=on_list_id_success, error_handler=on_error, timeout=600)                
-            else: 
-              def on_success(*result):
-                logger.debug("__async_thread_loop success for command %s with result: %s", str(data['cmd']), repr(result))                
-                if len(result) == 1:  # True if there are one or more values
-                  self._return_handler(unpack_dbus(result[0]), data)
-                elif len(result) == 2:  # True if there are one or more values
-                  self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
-                elif len(result) > 2:  # True if there are one or more values
-                  logger.warning("__async_thread_loop some return values are not managed")
-                # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-                GLib.idle_add(loop.quit)
-                #logger.debug("... on_success quit")
-
-              # Use asynchronous D-Bus call with success and error handlers
-              func(*args, reply_handler=on_success, error_handler=on_error, timeout=600)
-          else:
-              def on_success_novalue():
-                # Handle successful D-Bus call
-                logger.debug("__async_thread_loop.on_success_novalue success for command %s", str(data['cmd']))
-                # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-                GLib.idle_add(loop.quit)
-                #logger.debug("... __async_thread_loop.on_success_novalue quit")
-              func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=600)
-          # Run the GLib main loop to process D-Bus events
-          # Add a timeout to force quit the loop if necessary
-          GLib.timeout_add_seconds(2, lambda: loop.quit())
-          logger.debug("__async_thread_loop GLib main loop running %s", str(data['cmd']))
-          loop.run()
-          logger.debug("__async_thread_loop GLib main loop quit %s", str(data['cmd']))
-      except Exception as err:
-          try:
-              proxy_iface = getattr(proxy, "dbus_interface", "<unknown>")
-          except Exception:
-              proxy_iface = "<unknown>"
-          logger.exception("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data.get('cmd')), proxy_iface, method, err)
-          self._return_handler(err, data)
-      finally:
-          # Ensure pipes are closed if still open
-          try:
-              if pipe_r is not None:
-                  os.close(pipe_r)
-          except Exception:
-              pass
-          try:
-              if pipe_w is not None:
-                  os.close(pipe_w)
-          except Exception:
-              pass
-          # Mark the request as completed (thread-safe)
-          with self._async_lock:
-              self._sent = False
-          logger.debug("__async_thread_loop quit %s", str(data.get('cmd')))
 
     def _run_dbus_async(self, cmd, return_value, *args):
-        '''Make an async call to a DBus method in the yumdaemon service
+        '''Make an async call to a DBus method in the dnf5daemon service
 
         cmd: method to run
         '''
         # Single outstanding async request enforced with a lock
         with self._async_lock:
             if self._sent:
-                logger.warning("run_dbus_async %s, previous command %s in progress", cmd, getattr(self._data, 'cmd', None))
+                logger.warning("run_dbus_async %s, previous command %s in progress", cmd, self._data.get('cmd'))
                 result = {
                     'result': False,
                     'error': _("Command in progress"),
@@ -867,7 +713,13 @@ class Client:
                     elif len(result) == 2:
                         self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
                     elif len(result) > 2:
-                        logger.warning("run_dbus_async: some return values are not managed")
+                        logger.error("run_dbus_async: some return values are not managed")
+                        # since return_handler is not invoked we need to clear _sent here
+                        try:
+                            with self._async_lock:
+                                self._sent = False
+                        except Exception:
+                            self._sent = False
 
                 try:
                     func(*args, reply_handler=on_success, error_handler=on_error, timeout=600)
@@ -1358,7 +1210,7 @@ class Client:
                           }
                       })
 
-    def on_TransactionUnpackError(self, *args) : # nevra):
+    def on_TransactionUnpackError(self, session_object_path, nevra):
         '''
             Error while unpacking the package.
             Manages the transaction_unpack_error signal.
@@ -1366,14 +1218,14 @@ class Client:
                 @session_object_path: object path of the dnf5daemon session
                 @nevra: full NEVRA of the package
         '''
-        logger.error("on_TransactionUnpackError (%s)", repr(args))
+        logger.error("on_TransactionUnpackError nevra=%s", nevra)
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionUnpackError',
-        #                     'value': {
-        #                         'session_object_path':unpack_dbus(session_object_path),
-        #                         'nevra': unpack_dbus(nevra),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionUnpackError',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 }
+                             })
 
     ##########TODO fix next signals
     def on_RPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
