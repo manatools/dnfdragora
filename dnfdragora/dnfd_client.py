@@ -36,7 +36,7 @@ INTERFACE = ORG
 ORG_READONLY = 'org.baseurl.DnfSession'
 INTERFACE_READONLY = ORG_READONLY
 
-DBUS_ERR_RE = re.compile('.*GDBus.Error:([\w\.]*): (.*)$')
+DBUS_ERR_RE = re.compile(r'.*GDBus.Error:([\w\.]*): (.*)$')
 
 #
 # Exceptions
