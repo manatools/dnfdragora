@@ -1496,29 +1496,35 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def saveUserPreference(self):
         '''
-        Save user preferences on exit and view layout if needed
+        Save user preferences on exit and view layout if needed.
+        The view-state update (filter/view widgets) is guarded with try/except
+        so that failures in popup-dialog context (widget not accessible) do not
+        prevent the actual YAML file write.
         '''
-        filter = self._filterNameSelected()
-        view = self._viewNameSelected()
-        self.config.userPreferences['view'] = {
-            'show': view,
-            'filter': filter
-            }
+        try:
+            filter = self._filterNameSelected()
+            view = self._viewNameSelected()
+            self.config.userPreferences['view'] = {
+                'show': view,
+                'filter': filter
+                }
 
-        search = {
-            'fuzzy_search': self.fuzzy_search,
-            'newest_only': self.newest_only
-          }
+            search = {
+                'fuzzy_search': self.fuzzy_search,
+                'newest_only': self.newest_only
+              }
 
-        if 'settings' in self.config.userPreferences.keys() :
-            settings = self.config.userPreferences['settings']
-            settings['search'] = search
-            if 'show updates at startup' in settings.keys() :
-                if settings['show updates at startup'] :
-                    self.config.userPreferences['view']['filter'] = 'to_update'
-            if 'do not show groups at startup' in settings.keys():
-                if settings['do not show groups at startup'] :
-                    self.config.userPreferences['view']['show'] = 'all'
+            if 'settings' in self.config.userPreferences.keys() :
+                settings = self.config.userPreferences['settings']
+                settings['search'] = search
+                if 'show updates at startup' in settings.keys() :
+                    if settings['show updates at startup'] :
+                        self.config.userPreferences['view']['filter'] = 'to_update'
+                if 'do not show groups at startup' in settings.keys():
+                    if settings['do not show groups at startup'] :
+                        self.config.userPreferences['view']['show'] = 'all'
+        except Exception:
+            logger.exception("saveUserPreference: could not collect view/search state; settings will still be saved")
         self.config.saveUserPreferences()
 
     def _load_history(self, transactions):

@@ -860,6 +860,45 @@ class OptionDialog(basedialog.BaseDialog):
     self._HSPACING_PX = 6
     self._VSPACING_PX = 12
 
+  # ------------------------------------------------------------------
+  # Safe config-access helpers
+  # ------------------------------------------------------------------
+
+  @staticmethod
+  def _safe_cfg_get(cfg, *keys, default=None):
+    """Navigate a nested dict safely; return *default* if any level is None or missing."""
+    try:
+      node = cfg if cfg is not None else {}
+      for key in keys:
+        if not isinstance(node, dict):
+          return default
+        node = node.get(key)
+        if node is None:
+          return default
+      return node
+    except Exception:
+      return default
+
+  def _user_prefs(self):
+    """Return config.userPreferences as a dict, or {} if None/missing."""
+    config = getattr(self.parent, 'config', None)
+    return getattr(config, 'userPreferences', None) or {}
+
+  def _system_settings(self):
+    """Return config.systemSettings as a dict, or {} if None/missing."""
+    config = getattr(self.parent, 'config', None)
+    return getattr(config, 'systemSettings', None) or {}
+
+  def _ensure_settings(self):
+    """Return config.userPreferences['settings'] dict, creating the key path if needed.
+    Safe to use both for reads and writes."""
+    config = getattr(self.parent, 'config', None)
+    if config is None:
+      return {}  # throwaway – at least we won't crash
+    if not isinstance(getattr(config, 'userPreferences', None), dict):
+      config.userPreferences = {}
+    return config.userPreferences.setdefault('settings', {})
+
   def UIlayout(self, layout):
     '''
     dnfdragora options layout implementation
@@ -981,21 +1020,8 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    # Safely fetch configuration values: userPreferences and systemSettings
-    config_obj = getattr(self.parent, 'config', None) or {}
-    user_prefs = getattr(config_obj, 'userPreferences', {}) or {}
-    system_settings = getattr(config_obj, 'systemSettings', {}) or {}
-
-    def _get_setting(cfg, section, key, default=None):
-      try:
-        if isinstance(cfg, dict):
-          return cfg.get(section, {}).get(key, default)
-        # fallback for mapping-like objects
-        return getattr(cfg, 'get', lambda s, d={}: d)(section, {}).get(key, default)
-      except Exception:
-        return default
-
-    always_yes_val = _get_setting(user_prefs, 'settings', 'always_yes', self.parent.always_yes)
+    always_yes_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'always_yes',
+                                         default=self.parent.always_yes)
 
     self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes_val )
     self.always_yes.setNotify(True)
@@ -1007,7 +1033,8 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.upgrades_as_updates, self.onUpgradesAsUpdates, True)
     self.widget_callbacks.append( { 'widget': self.upgrades_as_updates, 'handler': self.onUpgradesAsUpdates} )
 
-    hide_update_menu_val = _get_setting(user_prefs, 'settings', 'hide_update_menu', False)
+    hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
+                                               default=False)
 
     self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu_val )
     self.hide_update_menu.setNotify(True)
@@ -1019,11 +1046,11 @@ class OptionDialog(basedialog.BaseDialog):
     # Determine update interval with fallbacks and robust parsing
     updateInterval = 180
     try:
-      val = _get_setting(user_prefs, 'settings', 'interval for checking updates', None)
+      val = self._safe_cfg_get(self._user_prefs(), 'settings', 'interval for checking updates')
       if val is not None:
         updateInterval = int(val)
       else:
-        val = _get_setting(system_settings, 'settings', 'update_interval', None)
+        val = self._safe_cfg_get(self._system_settings(), 'settings', 'update_interval')
         if val is not None:
           updateInterval = int(val)
     except (TypeError, ValueError):
@@ -1068,15 +1095,11 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    showUpdates = self.parent.config.userPreferences['settings']['show updates at startup'] \
-      if 'settings' in self.parent.config.userPreferences.keys() \
-        and 'show updates at startup' in self.parent.config.userPreferences['settings'].keys() \
-      else False
+    showUpdates = self._safe_cfg_get(self._user_prefs(), 'settings', 'show updates at startup',
+                                      default=False)
 
-    showAll =  self.parent.config.userPreferences['settings']['do not show groups at startup']\
-      if 'settings' in self.parent.config.userPreferences.keys() \
-        and 'do not show groups at startup' in self.parent.config.userPreferences['settings'].keys() \
-      else False
+    showAll = self._safe_cfg_get(self._user_prefs(), 'settings', 'do not show groups at startup',
+                                  default=False)
 
 
     self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show updates"), showUpdates )
@@ -1142,26 +1165,17 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    log_enabled = self.parent.config.userPreferences['settings']['log']['enabled'] \
-        if 'settings' in self.parent.config.userPreferences.keys() \
-          and 'log' in self.parent.config.userPreferences['settings'].keys() \
-          and 'enabled' in self.parent.config.userPreferences['settings']['log'].keys() \
-        else False
+    log_enabled = self._safe_cfg_get(self._user_prefs(), 'settings', 'log', 'enabled',
+                                      default=False)
 
-    log_directory = self.parent.config.userPreferences['settings']['log']['directory'] \
-        if 'settings' in self.parent.config.userPreferences.keys() \
-          and 'log' in self.parent.config.userPreferences['settings'].keys() \
-          and 'directory' in self.parent.config.userPreferences['settings']['log'].keys() \
-        else os.path.expanduser("~")
+    log_directory = self._safe_cfg_get(self._user_prefs(), 'settings', 'log', 'directory',
+                                        default=os.path.expanduser("~"))
 
-    level_debug = self.parent.config.userPreferences['settings']['log']['level_debug'] \
-        if 'settings' in self.parent.config.userPreferences.keys() \
-          and 'log' in self.parent.config.userPreferences['settings'].keys() \
-          and 'level_debug' in self.parent.config.userPreferences['settings']['log'].keys() \
-        else False
+    level_debug = self._safe_cfg_get(self._user_prefs(), 'settings', 'log', 'level_debug',
+                                      default=False)
 
-    if not 'log' in self.parent.config.userPreferences['settings'].keys():
-      self.parent.config.userPreferences['settings']['log'] = {}
+    # Ensure the 'log' sub-dict exists in userPreferences['settings'] for later writes
+    self._ensure_settings().setdefault('log', {})
 
     ####
     self.log_enabled = self.factory.createCheckBoxFrame(vbox, _("Enable logging"), log_enabled)
@@ -1192,14 +1206,11 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     enable logging check box event
     '''
-    if obj.widgetClass() == "YCheckBox":
-      self.log_vbox.setEnabled(obj.isChecked())
-      try:
-        self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
-      except KeyError:
-        self.parent.config.userPreferences['settings']['log'] = { 'enabled' : obj.isChecked() }
+    if obj.widgetClass() == "YCheckBoxFrame":
+      self.log_vbox.setEnabled(obj.value())
+      self._ensure_settings().setdefault('log', {})['enabled'] = obj.value()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onChangeLogDirectory(self):
     '''
@@ -1211,140 +1222,126 @@ class OptionDialog(basedialog.BaseDialog):
           _("Choose log destination directory"))
     if log_directory:
       self.log_directory.setText(log_directory)
-      try:
-        self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
-      except KeyError:
-        self.parent.config.userPreferences['settings']['log'] = { 'directory' : self.log_directory.text() }
+      self._ensure_settings().setdefault('log', {})['directory'] = self.log_directory.text()
 
   def onShowAll(self, obj):
     '''
     Show All Changing
     '''
     if obj.widgetClass() == "YCheckBox":    
-      self.parent.config.userPreferences['settings']['do not show groups at startup'] = obj.isChecked()
+      self._ensure_settings()['do not show groups at startup'] = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onShowUpdates(self, obj):
     '''
     Show Updates Changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      self.parent.config.userPreferences['settings']['show updates at startup'] = obj.isChecked()
+      self._ensure_settings()['show updates at startup'] = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onFuzzySearch(self, obj):
     '''
     Fuzzy Search Changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      try:
-        self.parent.config.userPreferences['settings']['search']['fuzzy_search'] = obj.isChecked()
-      except KeyError:
-        self.parent.config.userPreferences['settings']['search'] = { 'fuzzy_search' : obj.isChecked() }
+      self._ensure_settings().setdefault('search', {})['fuzzy_search'] = obj.isChecked()
       self.parent.fuzzy_search = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onNewestOnly(self, obj):
     '''
     Newest Only Changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      try:
-        self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
-      except KeyError:
-        self.parent.config.userPreferences['settings']['search'] = { 'newest_only' : obj.isChecked() }
+      self._ensure_settings().setdefault('search', {})['newest_only'] = obj.isChecked()
       self.parent.newest_only = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onLevelDebugChange(self, obj):
     '''
     Debug level Changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      try:
-        self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
-      except KeyError:
-        self.parent.config.userPreferences['settings']['log'] = { 'level_debug' : obj.isChecked() }
+      self._ensure_settings().setdefault('log', {})['level_debug'] = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onUpdateIntervalChange(self, obj):
     '''
     manage an update interval change
     '''
     if obj.widgetClass() == "YIntField":
-      self.parent.config.userPreferences['settings']['interval for checking updates'] = obj.value()
+      self._ensure_settings()['interval for checking updates'] = obj.value()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onMDUpdateIntervalChange(self, obj):
     '''
     manage an MD update interval change
     '''
     if obj.widgetClass() == "YIntField":
-      try:
-        self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
-      except KeyError:
-        self.parent.config.userPreferences['settings']['metadata'] = { 'update_interval' : obj.value() }
+      self._ensure_settings().setdefault('metadata', {})['update_interval'] = obj.value()
       self.parent.md_update_interval = obj.value()
       logger.debug("update_interval %d", obj.value())
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onAlwaysYesChange(self, obj):
     '''
     Always Yes Changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      self.parent.config.userPreferences['settings']['always_yes'] = obj.isChecked()
+      self._ensure_settings()['always_yes'] = obj.isChecked()
       self.parent.always_yes = obj.isChecked()
       logger.debug("always_yes %d", obj.isChecked())
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onUpgradesAsUpdates (self, obj):
     '''
     Consider Upgrades as Updates
     '''
     if obj.widgetClass() == "YCheckBox":
-      self.parent.config.userPreferences['settings']['upgrades as updates'] = obj.isChecked()
+      s = self._ensure_settings()
+      s['upgrades as updates'] = obj.isChecked()
       logger.debug("onUpgradesAsUpdates %d", obj.isChecked())
-      self.parent.upgrades_as_updates = self.parent.config.userPreferences['settings']['upgrades as updates']
+      self.parent.upgrades_as_updates = s['upgrades as updates']
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onHideUpdateMenu(self, obj):
     '''
     Hide update menu changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      self.parent.config.userPreferences['settings']['hide_update_menu'] = obj.isChecked()
+      self._ensure_settings()['hide_update_menu'] = obj.isChecked()
       logger.debug("hide_update_menu %d", obj.isChecked())
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onRestoreButton(self) :
     logger.debug('Restore pressed')
     k = self.selected_option
     if k == "system":
-      self.parent.config.userPreferences['settings']['always_yes'] = False
+      s = self._ensure_settings()
+      s['always_yes'] = False
       self.parent.always_yes = False
-      self.parent.config.userPreferences['settings']['interval for checking updates'] = 180
-      self.parent.config.userPreferences['settings']['metadata'] = {
-        'update_interval' :  48
-      }
+      s['interval for checking updates'] = 180
+      s['metadata'] = {'update_interval': 48}
       self.parent.md_update_interval = 48
       self._openSystemOptions()
     elif  k == "layout":
-      self.parent.config.userPreferences['settings']['show updates at startup'] = False
-      self.parent.config.userPreferences['settings']['do not show groups at startup'] = False
+      s = self._ensure_settings()
+      s['show updates at startup'] = False
+      s['do not show groups at startup'] = False
       self._openLayoutOptions()
     elif k == "search":
-      self.parent.config.userPreferences['settings']['search'] = {
+      self._ensure_settings()['search'] = {
         'fuzzy_search': False,
         'newest_only': False,
       }
@@ -1352,7 +1349,7 @@ class OptionDialog(basedialog.BaseDialog):
       self.parent.newest_only = False
       self._openSearchOptions()
     elif k == "logging":
-      self.parent.config.userPreferences['settings']['log'] = {
+      self._ensure_settings()['log'] = {
         'enabled': False,
         'directory': os.path.expanduser("~"),
         'level_debug': False,
@@ -1360,11 +1357,18 @@ class OptionDialog(basedialog.BaseDialog):
       self._openLoggingOptions()
 
   def onCancelEvent(self) :
-    logger.debug("Got a cancel event")
+    logger.debug("OptionDialog: Cancel button pressed")
 
   def onQuitEvent(self) :
-    logger.debug("Quit button pressed")
-    self.parent.saveUserPreference()
+    logger.debug("OptionDialog: Quit button pressed")
+    try:
+      self.parent.saveUserPreference()
+    except Exception:
+      logger.exception("OptionDialog: saveUserPreference raised; attempting direct config save")
+      try:
+        self.parent.config.saveUserPreferences()
+      except Exception:
+        logger.exception("OptionDialog: failed to save user preferences to disk")
     # BaseDialog needs to force to exit the handle event loop
     self.ExitLoop()
 
