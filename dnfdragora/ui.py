@@ -2677,7 +2677,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 #TODO check --install option how it works using dnf5daemon and fix eventually
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
-                  pkgs = " ".join(i.replace(" ", "\ ") for i in self.options['install'])
+                  pkgs = " ".join(i.replace(" ", "\\ ") for i in self.options['install'])
                   self.backend.Install(pkgs, sync=True)
                   self.backend.BuildTransaction()
                   self._runtime_option_managed = True
