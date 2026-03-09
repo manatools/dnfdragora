@@ -370,9 +370,22 @@ class Client:
         if exc_type:
             logger.critical("", exc_info=(exc_type, exc_value, exc_traceback))
 
+    def _reset_async_request_guard(self, reason=""):
+        '''Reset single-flight async command guard state.
+
+        This is required when reloading/unloading daemon sessions because
+        pending callbacks from the old session may never arrive.
+        '''
+        with self._async_lock:
+            if self._sent:
+                logger.debug("Reset async guard (previous cmd=%s) reason=%s", self._data.get('cmd'), reason)
+            self._sent = False
+            self._data = {'cmd': None}
+
     def unloadDaemon(self):
         '''Close the D-Bus connection and disconnect signals.'''
         self._invalidate_comps_base()
+        self._reset_async_request_guard("unloadDaemon")
         if self.session_path:
             try:
                 # Disconnect all signals
@@ -420,10 +433,12 @@ class Client:
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
             self._invalidate_comps_base()
+            self._reset_async_request_guard("reloadDaemon-start")
             # Close the current session
             self.unloadDaemon()
             # Reinitialize the daemon
             self._get_daemon()
+            self._reset_async_request_guard("reloadDaemon-end")
             logger.debug("Reinitialized Dnf5Daemon.")
 
         except Exception as err:
