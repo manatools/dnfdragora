@@ -835,25 +835,38 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
-        group_packages = []
+        group_packages = set()
         if self.use_comps and groupName and (groupName != 'All'):
-          #get pacakges from group
-          group_packages = self.backend.GetGroupPackageNames(groupName, sync=True)
+            # Get packages from group once and use O(1) membership checks.
+            try:
+                group_packages = set(self.backend.GetGroupPackageNames(groupName, sync=True) or [])
+            except Exception as error:
+                logger.exception("Failed to load package names for comps group '%s': %s", groupName, error)
+
+        machine_arch = platform.machine()
+
+        def _is_package_in_selected_group(pkg):
+            """Return True when package belongs to selected group or no group filter is active."""
+            if not groupName:
+                return True
+            if groupName == 'All':
+                return True
+            if self.use_comps:
+                return pkg.name in group_packages
+            try:
+                groups_pkg = self.backend.get_groups_from_package(pkg) or []
+            except Exception as error:
+                logger.exception("Cannot read groups for package '%s': %s", pkg.name, error)
+                return False
+            return groupName in groups_pkg
 
         if filter == 'all' or filter == 'to_update' or filter == 'skip_other':
             updates = self.backend.get_packages('updates')
             for pkg in updates :
-                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
-                insert_items = groupName and (groupName == 'All')
-                if not insert_items and groupName :
-                  if self.use_comps:
-                    insert_items = pkg.name in group_packages
-                  else:
-                    groups_pkg = self.backend.get_groups_from_package(pkg)
-                    insert_items = groupName in groups_pkg
+                insert_items = _is_package_in_selected_group(pkg)
 
                 if insert_items :
-                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == machine_arch))
                     if not skip_insert :
                         item = self._createCBItem(self.packageQueue.checked(pkg),
                                            pkg.name,
@@ -876,17 +889,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if filter == 'all' or filter == 'installed' or filter == 'skip_other':
             installed = self.backend.get_packages('installed')
             for pkg in installed :
-                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
-                insert_items = groupName and (groupName == 'All')
-                if not insert_items and groupName :
-                  if self.use_comps:
-                    insert_items = pkg.name in group_packages
-                  else:
-                    groups_pkg = self.backend.get_groups_from_package(pkg)
-                    insert_items = groupName in groups_pkg
+                insert_items = _is_package_in_selected_group(pkg)
 
                 if insert_items :
-                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == machine_arch))
                     if not skip_insert :
                         item = self._createCBItem(self.packageQueue.checked(pkg),
                                            pkg.name,
@@ -914,14 +920,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             available = self.backend.get_packages('available')
             for pkg in available :
-                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
-                insert_items = groupName and (groupName == 'All')
-                if not insert_items and groupName :
-                  if self.use_comps:
-                    insert_items = pkg.name in group_packages
-                  else:
-                    groups_pkg = self.backend.get_groups_from_package(pkg)
-                    insert_items = groupName in groups_pkg
+                insert_items = _is_package_in_selected_group(pkg)
                 # if looking for downgrade we must add only the available that are installed and not upgrades
                 if self.packageActionValue == const.Actions.DOWNGRADE:
                   if pkg.name not in installed_pkgs:
@@ -930,7 +929,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                      insert_items = False
 
                 if insert_items :
-                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == machine_arch))
                     if not skip_insert :
                         item = self._createCBItem(self.packageQueue.checked(pkg),
                                            pkg.name,
@@ -1002,14 +1001,68 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         for g in group.keys() :
             if g == 'name' or g == 'item' :
                 continue
-            if group[g]['item'] == treeItem :
-                return group[g]['name']
-            elif group[g]['item'].hasChildren():
-                gName =  self._groupNameFromItem(group[g], treeItem)
+            node = group.get(g, {})
+            item = node.get('item')
+            if item == treeItem :
+                return node.get('name')
+            elif item and item.hasChildren():
+                gName = self._groupNameFromItem(node, treeItem)
                 if gName :
                     return gName
 
         return None
+
+    def _collect_groups_for_tree(self, view_name, filter_name):
+        """Return normalized group names for the left tree according to view and filter."""
+        if view_name == 'all':
+            return ['All']
+
+        if filter_name == 'to_update':
+            logger.debug("Collecting groups from update packages")
+            package_scope = 'updates'
+        elif filter_name == 'installed':
+            logger.debug("Collecting groups from installed packages")
+            package_scope = 'installed'
+        elif filter_name == 'not_installed':
+            logger.debug("Collecting groups from available packages")
+            package_scope = 'available'
+        else:
+            logger.debug("Collecting all groups from backend cache")
+            try:
+                return sorted(g for g in (self.backend.get_groups() or []) if isinstance(g, str) and g)
+            except Exception as error:
+                logger.exception("Cannot read group cache from backend: %s", error)
+                return []
+
+        try:
+            packages = self.backend.get_packages(package_scope)
+        except Exception as error:
+            logger.exception("Cannot load packages for scope '%s': %s", package_scope, error)
+            return []
+
+        if self.use_comps:
+            pkg_names = [pkg.name for pkg in packages if getattr(pkg, 'name', None)]
+            if not pkg_names:
+                return []
+            try:
+                groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True) or []
+            except Exception as error:
+                logger.exception("Cannot map comps groups from %d packages: %s", len(pkg_names), error)
+                return []
+            return sorted(g for g in groups if isinstance(g, str) and g)
+
+        group_set = set()
+        for pkg in packages:
+            try:
+                package_groups = self.backend.get_groups_from_package(pkg) or []
+            except Exception as error:
+                logger.exception("Cannot map groups for package '%s': %s", getattr(pkg, 'name', '<unknown>'), error)
+                continue
+            for grp in package_groups:
+                if isinstance(grp, str) and grp:
+                    group_set.add(grp)
+
+        return sorted(group_set)
 
     def _rebuildPackageListWithSearchGroup(self):
       '''
@@ -1035,119 +1088,73 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.groupList = {}
         rpm_groups = []
         MUI.YUI.app().busyCursor()
+        try:
+            view = self._viewNameSelected()
+            filter_name = self._filterNameSelected()
+            rpm_groups = self._collect_groups_for_tree(view, filter_name)
 
-        view = self._viewNameSelected()
-        filter = self._filterNameSelected()
+            if not rpm_groups:
+                logger.info("No groups found for view='%s' filter='%s'; using Empty placeholder", view, filter_name)
+                rpm_groups = ['Empty']
 
-        if view != 'all' :
-            print ("Start looking for groups")
+            groups = self.gIcons.groups
 
-            #filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
-            if (filter == 'to_update'):
-                logger.debug("get groups for update packages only")
-                pkgs = self.backend.get_packages('updates')
-                if self.use_comps:
-                  pkg_names = [ pkg.name for pkg in pkgs ]
-                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
-                else:
-                  for pkg in pkgs:
-                    groups = self.backend.get_groups_from_package(pkg)
-                    rpm_groups = list(set().union(rpm_groups, groups))
-            elif (filter == 'installed'):
-                logger.debug("get groups for installed packages only")
-                pkgs = self.backend.get_packages('installed')
-                if self.use_comps:
-                  pkg_names = [ pkg.name for pkg in pkgs ]
-                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
-                else:
-                  for pkg in pkgs:
-                    groups = self.backend.get_groups_from_package(pkg)
-                    rpm_groups = list(set().union(rpm_groups, groups))
-            elif (filter == 'not_installed'):
-                logger.debug("get groups for available packages only")
-                pkgs = self.backend.get_packages('available')
-                if self.use_comps:
-                  pkg_names = [ pkg.name for pkg in pkgs ]
-                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
-                else:
-                  for pkg in pkgs:
-                    groups = self.backend.get_groups_from_package(pkg)
-                    rpm_groups = list(set().union(rpm_groups, groups))
-            else:
-                # all pr arch
-                logger.debug("get all groups")
-                rpm_groups = self.backend.get_groups()
-            rpm_groups = sorted(rpm_groups)
-        else:
-            rpm_groups = ['All']
+            for group_path in rpm_groups:
+                # Build tree path X/Y/Z...
+                currG = groups
+                currT = self.groupList
+                subGroups = [part for part in group_path.split("/") if part]
+                parentItem = None
+                fullGroupName = None
 
-        if not rpm_groups:
-            rpm_groups = ['Empty']
+                if not subGroups:
+                    logger.debug("Skipping invalid empty group path: '%s'", group_path)
+                    continue
 
-        groups = self.gIcons.groups
+                for subgroup in subGroups:
+                    fullGroupName = subgroup if fullGroupName is None else "%s/%s" % (fullGroupName, subgroup)
+                    icon = self.gIcons.icon(fullGroupName)
 
-        for g in rpm_groups:
-            #X/Y/Z/...
-            currG = groups
-            currT = self.groupList
-            subGroups = g.split("/")
-            currItem = None
-            parentItem = None
-            groupName = None
+                    if subgroup in currG:
+                        currG = currG[subgroup]
+                        title = currG.get("title", subgroup)
+                        if title in currT:
+                            currT = currT[title]
+                            parentItem = currT.get("item")
+                        else:
+                            item = MUI.YTreeItem(parent=parentItem, label=title, icon_name=icon) if parentItem else MUI.YTreeItem(label=title, icon_name=icon)
+                            currT[title] = {"item": item, "name": fullGroupName}
+                            currT = currT[title]
+                            parentItem = item
+                    else:
+                        # Group is not in our predefined metadata; keep backend-provided label.
+                        if subgroup in currT:
+                            currT = currT[subgroup]
+                            parentItem = currT.get("item")
+                        else:
+                            item = MUI.YTreeItem(parent=parentItem, label=subgroup, icon_name=icon) if parentItem else MUI.YTreeItem(label=subgroup, icon_name=icon)
+                            currT[subgroup] = {"item": item, "name": fullGroupName}
+                            currT = currT[subgroup]
+                            parentItem = item
 
-            for sg in subGroups:
-                if groupName:
-                    groupName += "/%s"%(sg)
-                else:
-                    groupName = sg
-                icon = self.gIcons.icon(groupName)
+            logger.debug("Found %d groups for tree", len(rpm_groups))
 
-                if sg in currG:
-                    currG = currG[sg]
-                    if currG["title"] in currT :
-                        currT = currT[currG["title"]]
-                        parentItem = currT["item"]
-                    else :
-                        # create the item
-                        item = None
-                        if parentItem:
-                            item = MUI.YTreeItem(parent=parentItem, label=currG["title"], icon_name=icon)
-                        else :
-                            item = MUI.YTreeItem(label=currG["title"], icon_name=icon)
-                        currT[currG["title"]] = { "item" : item, "name" : groupName }
-                        currT = currT[currG["title"]]
-                        parentItem = item
-                else:
-                    # group is not in our group definition, but it's into the repository
-                    # we just use it
-                    if sg in currT :
-                        currT = currT[sg]
-                        parentItem = currT["item"]
-                    else :
-                        item = None
-                        if parentItem:
-                            item = MUI.YTreeItem(parent=parentItem, label=sg, icon_name=icon)
-                        else :
-                            item = MUI.YTreeItem(label=sg, icon_name=icon)
-                        currT[sg] = { "item" : item, "name": groupName }
-                        currT = currT[sg]
-                        parentItem = item
+            keylist = sorted(self.groupList.keys())
+            items = []
+            for key in keylist:
+                group_item = self.groupList[key].get('item')
+                if group_item:
+                    items.append(group_item)
 
-        print ("End found %d groups" %len(rpm_groups))
+            if items:
+                items[0].setSelected(True)
 
-        keylist = sorted(self.groupList.keys())
-        v = []
-        for key in keylist :
-            item = self.groupList[key]['item']
-            v.append(item)
-        v[0].setSelected(True)
-
-        itemCollection = v
-        #self.tree.startMultipleChanges()
-        self.tree.deleteAllItems()
-        #self.tree.doneMultipleChanges()
-        self.tree.addItems(itemCollection)
-        MUI.YUI.app().normalCursor()
+            #self.tree.startMultipleChanges()
+            self.tree.deleteAllItems()
+            #self.tree.doneMultipleChanges()
+            self.tree.addItems(items)
+        finally:
+            MUI.YUI.app().normalCursor()
 
 
     def _formatLink(self, description, url) :
