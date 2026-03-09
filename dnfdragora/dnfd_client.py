@@ -184,6 +184,10 @@ class Client:
         self.__TransactionTimer = dnfdragora.misc.TimerEvent(60, self.on_TransactionTimeoutEvent)
         self.__TransactionTimer.AutoRpeat = False
 
+        # Shared libdnf5 Base used by comps queries to avoid repeated repo metadata loading.
+        self._comps_base = None
+        self._comps_base_lock = threading.RLock()
+
         self.proxyMethod = {
           'ExpireCache'         : 'read_all_repos',
 
@@ -368,6 +372,7 @@ class Client:
 
     def unloadDaemon(self):
         '''Close the D-Bus connection and disconnect signals.'''
+        self._invalidate_comps_base()
         if self.session_path:
             try:
                 # Disconnect all signals
@@ -414,6 +419,7 @@ class Client:
     def reloadDaemon(self):
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
+            self._invalidate_comps_base()
             # Close the current session
             self.unloadDaemon()
             # Reinitialize the daemon
@@ -1246,34 +1252,57 @@ class Client:
 #
 # Calls to libdnf5
 #
+    def _invalidate_comps_base(self):
+        '''Drop cached libdnf5 Base used by comps queries.'''
+        with self._comps_base_lock:
+            if self._comps_base is not None:
+                logger.debug("Invalidating cached comps base")
+            self._comps_base = None
+
+    def _get_comps_base(self):
+        '''Return a shared, lazily initialized libdnf5 Base configured for comps metadata.'''
+        with self._comps_base_lock:
+            if self._comps_base is not None:
+                return self._comps_base
+
+            logger.debug("Initializing shared comps base")
+            base = libdnf5.base.Base()
+            base.load_config()
+            config = base.get_config()
+
+            types_config = config.get_optional_metadata_types_option()
+            types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+
+            base.setup()
+
+            repo_sack = base.get_repo_sack()
+            repo_sack.create_repos_from_system_configuration()
+            repo_sack.update_and_load_enabled_repos(True)
+
+            self._comps_base = base
+            return self._comps_base
+
     def __getComps(self):
         '''
             Perform Get groups call it works only for Comps.
 
             Returns a list of groups
         '''
-        base = libdnf5.base.Base()
-        base.load_config()
-        config = base.get_config()
+        for attempt in (1, 2):
+            try:
+                base = self._get_comps_base()
+                query = libdnf5.comps.GroupQuery(base)
 
-        types_config = config.get_optional_metadata_types_option()
-        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+                # locale.getlocale()[0] can return None when no locale is set.
+                loc_raw = locale.getlocale()[0]
+                loc = loc_raw.split('_')[0] if loc_raw else 'en'
 
-        base.setup()
-
-        repo_sack = base.get_repo_sack()
-        repo_sack.create_repos_from_system_configuration()
-        repo_sack.update_and_load_enabled_repos(True)
-
-        query = libdnf5.comps.GroupQuery(base)
-
-        # workaround to get_translated_name()
-        # locale.getlocale()[0] can return None when no locale is set
-        loc_raw = locale.getlocale()[0]
-        loc = loc_raw.split('_')[0] if loc_raw else 'en'
-
-        groups = [ [grp.get_groupid(), grp.get_translated_name(loc)] for grp in query ]
-        return groups
+                groups = [[grp.get_groupid(), grp.get_translated_name(loc)] for grp in query]
+                return groups
+            except Exception as error:
+                logger.exception("Failed to load comps groups (attempt %d/2): %s", attempt, error)
+                self._invalidate_comps_base()
+        return []
 
     def __getPackageNamesFromGroup(self, groupID):
         '''
@@ -1284,29 +1313,20 @@ class Client:
 
             Returns a list of package names or an empyty list.
         '''
-        base = libdnf5.base.Base()
-        base.load_config()
-        config = base.get_config()
+        for attempt in (1, 2):
+            try:
+                base = self._get_comps_base()
+                query = libdnf5.comps.GroupQuery(base)
+                query.filter_groupid(groupID)
 
-        types_config = config.get_optional_metadata_types_option()
-        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
-
-        base.setup()
-
-        repo_sack = base.get_repo_sack()
-        repo_sack.create_repos_from_system_configuration()
-        repo_sack.update_and_load_enabled_repos(True)
-
-        query = libdnf5.comps.GroupQuery(base)
-        query.filter_groupid(groupID)
-
-        comps = [ grp for grp in query ]
-        if len(comps):
-            packages=[]
-            gr = comps[0]
-            packages = gr.get_packages()
-
-            return [package.get_name() for package in packages]
+                comps = [grp for grp in query]
+                if len(comps):
+                    packages = comps[0].get_packages()
+                    return [package.get_name() for package in packages]
+                return []
+            except Exception as error:
+                logger.exception("Failed to load package names for comps group '%s' (attempt %d/2): %s", groupID, attempt, error)
+                self._invalidate_comps_base()
         return []
 
 
@@ -1319,24 +1339,16 @@ class Client:
 
             Returns a list of package names or an empyty list.
         '''
-        base = libdnf5.base.Base()
-        base.load_config()
-        config = base.get_config()
-
-        types_config = config.get_optional_metadata_types_option()
-        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
-
-        base.setup()
-
-        repo_sack = base.get_repo_sack()
-        repo_sack.create_repos_from_system_configuration()
-        repo_sack.update_and_load_enabled_repos(True)
-
-        query = libdnf5.comps.GroupQuery(base)
-        query.filter_package_name(packageNames)
-
-        comps = [ grp.get_groupid() for grp in query ]
-        return comps
+        for attempt in (1, 2):
+            try:
+                base = self._get_comps_base()
+                query = libdnf5.comps.GroupQuery(base)
+                query.filter_package_name(packageNames)
+                return [grp.get_groupid() for grp in query]
+            except Exception as error:
+                logger.exception("Failed to map comps groups from package names (attempt %d/2): %s", attempt, error)
+                self._invalidate_comps_base()
+        return []
 
 
 #
@@ -1570,10 +1582,12 @@ class Client:
             repo_ids: list of repo ids to enable
         '''
         if not sync:
-          self._run_dbus_async('SetEnabledRepos', True, repo_ids)
+                    self._invalidate_comps_base()
+                    self._run_dbus_async('SetEnabledRepos', True, repo_ids)
         else:
-          result = self._run_dbus_sync('SetEnabledRepos', repo_ids)
-          return unpack_dbus(result)
+                    result = self._run_dbus_sync('SetEnabledRepos', repo_ids)
+                    self._invalidate_comps_base()
+                    return unpack_dbus(result)
 
     def SetDisabledRepos(self, repo_ids, sync=False):
         '''Disabled a list of repositories
@@ -1582,10 +1596,12 @@ class Client:
             repo_ids: list of repo ids to disable
         '''
         if not sync:
-          self._run_dbus_async('SetDisabledRepos', True, repo_ids)
+                    self._invalidate_comps_base()
+                    self._run_dbus_async('SetDisabledRepos', True, repo_ids)
         else:
-          result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
-          return unpack_dbus(result)
+                    result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
+                    self._invalidate_comps_base()
+                    return unpack_dbus(result)
 
     def ExpireCache(self, sync=False):
         '''
@@ -1596,10 +1612,12 @@ class Client:
                 `true` if repositories were successfuly loaded, `false` otherwise.
         '''
         if not sync:
-          self._run_dbus_async('ExpireCache', True)
+                    self._invalidate_comps_base()
+                    self._run_dbus_async('ExpireCache', True)
         else:
-          result = self._run_dbus_sync('ExpireCache')
-          return unpack_dbus(result)
+                    result = self._run_dbus_sync('ExpireCache')
+                    self._invalidate_comps_base()
+                    return unpack_dbus(result)
 
     def ConfirmGPGImport(self, key_id, confirmed, sync=False):
         '''
