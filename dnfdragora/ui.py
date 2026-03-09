@@ -205,6 +205,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._gpg_confirm = None
         # ...TODO
         self._transaction_tries = 0
+        self._transaction_noreply_warned = False
         self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -1756,6 +1757,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             group = self._groupNameFromItem(self.groupList, sel)
             self._fillPackageList(group, filter)
 
+      # Avoid sync GetAttribute calls while transaction is running.
+      # The daemon can legitimately be busy and not answer metadata requests quickly.
+      if self._status == DNFDragoraStatus.RUN_TRANSACTION:
+        return
+
       sel_pkg = self._selectedPackage()
       if sel_pkg:
         if self._selPkg != sel_pkg:
@@ -1845,6 +1851,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values = (event, data)
       logger.debug('OnTransactionEvent: %s', repr(values))
       if event == 'OnTransactionActionStart':
+        self._transaction_noreply_warned = False
         pass
       elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
         self.infobar.set_progress(1.0)
@@ -1860,6 +1867,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.backend.clear_cache(also_groups=True)
         self.packageQueue.clear()
         self._status = DNFDragoraStatus.STARTUP
+        self._transaction_noreply_warned = False
         self._enableAction(False)
 
       return
@@ -1902,6 +1910,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.infobar.set_progress(1.0)
       else:
         logger.error('Unmanaged transaction event : %s', str(event))
+
+    def exception_handler(self, e):
+      """Handle frontend exceptions; keep transaction alive on transient DBus NoReply."""
+      msg = str(e)
+      err, errmsg = self._parse_error(msg)
+      if err == 'NoReply' and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+        if not self._transaction_noreply_warned:
+          logger.warning("Transient DBus NoReply during RUN_TRANSACTION; keeping transaction alive")
+          # TODO remove later
+          dialogs.warningMsgBox({
+            'title': _("Backend busy"),
+            'text': _("The backend is busy processing the transaction. The operation will continue and progress events will still be tracked."),
+            'richtext': False
+          })
+          self._transaction_noreply_warned = True
+        return
+      super().exception_handler(e)
 
     def _OnRPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
       ''' _OnRPMProgress manages RPM Progress event

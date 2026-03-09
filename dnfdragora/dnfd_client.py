@@ -781,7 +781,7 @@ class Client:
             try:
                 method = getattr(proxy, method_name)
                 # call with write-end; daemon writes JSON stream
-                method(*args, pipe_w)
+                method(*args, pipe_w, timeout=600)
                 # close local write-end so reader can receive HUP when daemon closes
                 try:
                     os.close(pipe_w)
@@ -835,7 +835,7 @@ class Client:
                     pass
         else:
             method = getattr(proxy, method_name)
-            return method(*args)
+            return method(*args, timeout=600)
 
     def waitForLastAsyncRequestTermination(self):
       '''
