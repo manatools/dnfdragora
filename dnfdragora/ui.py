@@ -1643,7 +1643,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.packageQueue.clear()
           rebuild_package_list = self._rebuildPackageListWithSearchGroup()
         elif item == self.fileMenu['reload']:
-          self.backend.ExpireCache()
+          self.backend.CleanCache(sync=True) #TODO manage async eventually
+          self.backend.ReloadMetadata()
         elif item == self.fileMenu['repos']:
           rd = dialogs.RepoDialog(self)
           rd.run()
@@ -2628,7 +2629,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.backend.SetWatchdogState(False, sync=True)
               # Only if expired
               if self._check_MD_cache_expired():
-                self.backend.ExpireCache()
+                self.backend.CleanCache(sync=True) #TODO manage async
+                self.backend.ReloadMetadata()
               else:
                 self._start_caching_packages()
             else:
@@ -2639,7 +2641,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'Unlock') :
             logger.info("Event %s received (%s)", event, info['result'])
             self.backend_locked = False
-          elif (event == 'ExpireCache'):
+          elif (event == 'ReloadMetadata'):
             if not info['result']:
               logger.warning("Event %s received (%s)", event, info['result'])
             # ExpireCache has been invoked let's refresh data

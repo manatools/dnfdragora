@@ -70,7 +70,8 @@ class BaseDragora:
 
     def reset_cache(self):
         logger.debug('Refresh system cache')
-        self._root_backend.ExpireCache()
+        self.backend.CleanCache(sync=True)
+        self._root_backend.ReloadMetadata()
 
     def get_root_backend(self):
         """Get the current root backend.

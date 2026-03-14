@@ -189,10 +189,10 @@ class Client:
         self._comps_base_lock = threading.RLock()
 
         self.proxyMethod = {
-          #Base
+          ##Base
           'CleanCache'          : 'clean',
           'ResetSession'        : 'reset',
-          'ExpireCache'         : 'read_all_repos',
+          'ReloadMetadata'      : 'read_all_repos',
 
           'GetPackages'         : 'list_fd',
           #'GetPackages'         : 'list', WARNING list often hangs for big data through dbus, use list_fd
@@ -213,7 +213,7 @@ class Client:
 
           'Advisories'          : 'list',
 
-          #Goal
+          ##Goal
           'BuildTransaction'    : 'resolve',
           'RunTransaction'      : 'do_transaction',
           'TransactionProblems' : 'get_transaction_problems_string',
@@ -1330,7 +1330,7 @@ class Client:
             return  self.iface_repoconf
         elif cmd == 'Advisories':
             return self.iface_advisory
-        elif cmd == 'ExpireCache' or cmd == 'CleanCache' or cmd == 'ResetSession':
+        elif cmd == 'ReloadMetadata' or cmd == 'CleanCache' or cmd == 'ResetSession':
             return self.iface_base
         elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
@@ -1567,19 +1567,17 @@ class Client:
                     self._invalidate_comps_base()
                     return unpack_dbus(result)
 
-    def ExpireCache(self, sync=False):
+    def ReloadMetadata(self, sync=False):
         '''
-            Explicitely ask for loading repositories metadata.Expire the dnf metadata,
-            so they will be refresed
-
-            retval:
-                `true` if repositories were successfuly loaded, `false` otherwise.
+            Explicitly ask for loading repositories metadata.
+            Return:
+                @success: `true` if repositories were successfully loaded, `false` otherwise.
         '''
         if not sync:
                     self._invalidate_comps_base()
-                    self._run_dbus_async('ExpireCache', True)
+                    self._run_dbus_async('ReloadMetadata', True)
         else:
-                    result = self._run_dbus_sync('ExpireCache')
+                    result = self._run_dbus_sync('ReloadMetadata')
                     self._invalidate_comps_base()
                     return unpack_dbus(result)
 
