@@ -63,6 +63,13 @@ class DNFDragoraStatus(Enum):
     Enum
         STARTUP Starting
         LOCKING Lock requested
+        CACHING_UPDATE Caching updates
+        CACHING_INSTALLED Caching installed packages
+        CACHING_AVAILABLE Caching available packages
+        RUN_TRANSACTION Running transaction
+        EXPIRE_CACHE Expire cache
+        RESET_SESSION Reset session
+        RELOAD_METADATA Reload metadata
         RUNNING Locked, normal running no requests
     '''
     STARTUP = 1
@@ -71,7 +78,10 @@ class DNFDragoraStatus(Enum):
     CACHING_INSTALLED = 4
     CACHING_AVAILABLE = 5
     RUN_TRANSACTION = 6
-    RUNNING = 7
+    EXPIRE_CACHE = 7
+    RESET_SESSION = 8
+    RELOAD_METADATA = 9
+    RUNNING = 10
 
 
 
@@ -1643,8 +1653,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.packageQueue.clear()
           rebuild_package_list = self._rebuildPackageListWithSearchGroup()
         elif item == self.fileMenu['reload']:
-          self.backend.CleanCache(sync=True) #TODO manage async eventually
-          self.backend.ReloadMetadata()
+          self.backend.CleanCache()
         elif item == self.fileMenu['repos']:
           rd = dialogs.RepoDialog(self)
           rd.run()
@@ -1863,13 +1872,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #restore actions to Normal
         self._updateActionView(const.Actions.NORMAL)
 
-        # TODO change UI and manage this better afer a transaction report
-        self.backend.reloadDaemon()
+        # TODO change UI and manage this better afer a transaction report        
         self.backend.clear_cache(also_groups=True)
         self.packageQueue.clear()
-        self._status = DNFDragoraStatus.STARTUP
+        self._status = DNFDragoraStatus.RESET_SESSION
         self._transaction_noreply_warned = False
         self._enableAction(False)
+        self.backend.ResetSession()
 
       return
       #TODO manage new events
@@ -2629,8 +2638,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.backend.SetWatchdogState(False, sync=True)
               # Only if expired
               if self._check_MD_cache_expired():
-                self.backend.CleanCache(sync=True) #TODO manage async
-                self.backend.ReloadMetadata()
+                self.backend.CleanCache()
               else:
                 self._start_caching_packages()
             else:
@@ -2641,14 +2649,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'Unlock') :
             logger.info("Event %s received (%s)", event, info['result'])
             self.backend_locked = False
+          elif (event == 'ResetSession'):
+            logger.info("Event %s received (%s)", event, info['result'])
+            # ResetSession has been invoked let's refresh data
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.STARTUP
+            self._enableAction(False)
           elif (event == 'ReloadMetadata'):
             if not info['result']:
               logger.warning("Event %s received (%s)", event, info['result'])
             # ExpireCache has been invoked let's refresh data
-            self.backend.reloadDaemon()
             self.backend.clear_cache(also_groups=True)
-            self._status = DNFDragoraStatus.STARTUP
+            self._status = DNFDragoraStatus.RESET_SESSION
             self._enableAction(False)
+            self.backend.ResetSession()
+          elif (event == 'CleanCache'):
+            if not info['result']:
+              logger.warning("Event %s received (%s)", event, info['result'])
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.RELOAD_METADATA
+            self._enableAction(False)
+            # CleanCache has been invoked let's refresh data => ReloadMetadata
+            self.backend.ReloadMetadata()            
           elif (event == 'GetPackages'):
             if not info['error']:
               if self._status == DNFDragoraStatus.CACHING_INSTALLED:
@@ -2811,11 +2833,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._undo_transaction()
           elif (event == 'SetEnabledRepos') or (event == 'SetDisabledRepos'):
             logger.debug("%s - %s", event, info['result'])
-            # Enabled repositories are changes we need to force caching again
-            self.backend.reloadDaemon()
             self.backend.clear_cache(also_groups=True)
             self._status = DNFDragoraStatus.STARTUP
             self._enableAction(False)
+            # Enabled repositories are changes we need to force caching again
+            self.backend.ResetSession()
           else:
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
