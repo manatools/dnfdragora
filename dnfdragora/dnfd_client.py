@@ -189,6 +189,9 @@ class Client:
         self._comps_base_lock = threading.RLock()
 
         self.proxyMethod = {
+          #Base
+          'CleanCache'          : 'clean',
+          'ResetSession'        : 'reset',
           'ExpireCache'         : 'read_all_repos',
 
           'GetPackages'         : 'list_fd',
@@ -214,6 +217,7 @@ class Client:
           'BuildTransaction'    : 'resolve',
           'RunTransaction'      : 'do_transaction',
           'TransactionProblems' : 'get_transaction_problems_string',
+
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -1326,7 +1330,7 @@ class Client:
             return  self.iface_repoconf
         elif cmd == 'Advisories':
             return self.iface_advisory
-        elif cmd == 'ExpireCache':
+        elif cmd == 'ExpireCache' or cmd == 'CleanCache' or cmd == 'ResetSession':
             return self.iface_base
         elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
@@ -1578,6 +1582,37 @@ class Client:
                     result = self._run_dbus_sync('ExpireCache')
                     self._invalidate_comps_base()
                     return unpack_dbus(result)
+
+    def CleanCache(self, cache_type='all', sync=False):
+        '''
+            Remove or expire cached data.
+            Args:
+                @cache_type: cache type to clean up. Supported types are "all", "packages",
+                             "metadata", "dbcache", and "expire-cache".
+            Return:
+                @success: True if the cache was successfully cleaned, False otherwise.
+                @error_msg: string, contains errors encountered while cleaning the cache.
+        '''
+        self._invalidate_comps_base()
+        if not sync:
+            self._run_dbus_async('CleanCache', True, cache_type)
+        else:
+            success, error_msg = self._run_dbus_sync('CleanCache', cache_type)
+            return (unpack_dbus(success), unpack_dbus(error_msg))
+
+    def ResetSession(self, sync=False):
+        '''
+            Completely reset the session.
+            Return:
+                @success: True if the session was successfully reset, False otherwise.
+                @error_msg: string, contains errors encountered while resetting the session.
+        '''
+        self._invalidate_comps_base()
+        if not sync:
+            self._run_dbus_async('ResetSession', True)
+        else:
+            success, error_msg = self._run_dbus_sync('ResetSession')
+            return (unpack_dbus(success), unpack_dbus(error_msg))
 
     def ConfirmGPGImport(self, key_id, confirmed, sync=False):
         '''
