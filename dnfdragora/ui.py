@@ -1878,7 +1878,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._status = DNFDragoraStatus.RESET_SESSION
         self._transaction_noreply_warned = False
         self._enableAction(False)
-        self.backend.ResetSession()
+        # NOTE: do NOT call backend.ResetSession() here.
+        # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+        # RunTransaction D-Bus method reply, so _sent is still True at this
+        # point. ResetSession would be rejected with "Command in progress".
+        # The RunTransaction event handler below waits for the reply (which
+        # clears _sent) and then issues ResetSession safely.
 
       return
       #TODO manage new events
@@ -2845,6 +2850,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if self._status == DNFDragoraStatus.STARTUP:
             self._status = DNFDragoraStatus.RUNNING
             self._start_caching_packages()
+          elif self._status == DNFDragoraStatus.RESET_SESSION:
+            # RunTransaction (do_transaction) is fire-and-forget: its D-Bus ack
+            # clears _sent without queuing any event, and it arrives AFTER the
+            # OnTransactionAfterComplete signal. Poll on each timer tick until
+            # _sent is cleared before issuing ResetSession.
+            if not self.backend._sent:
+              logger.debug("RESET_SESSION: _sent cleared, issuing ResetSession")
+              self.backend.ResetSession()
 
 
       return rebuild_package_list
