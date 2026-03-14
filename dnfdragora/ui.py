@@ -2624,7 +2624,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 title = _("Error in status %(status)s on %(event)s")%({'status':self._status, 'event':(event if event else "---")})
                 dialogs.warningMsgBox({'title' : title, "text": str(info['error']), "richtext":True})
                 # Force return on STARTUP on error
-                self.backend.reloadDaemon()
+                try:
+                  self.backend.reloadDaemon()
+                except Exception as reload_err:
+                  logger.error("reloadDaemon failed during error recovery: %s", reload_err)
                 self.backend.clear_cache(also_groups=True)
                 self.packageQueue.clear()
                 self._status = DNFDragoraStatus.STARTUP

@@ -113,6 +113,11 @@ DNFDAEMON_OBJECT_PATH = '/' + DNFDAEMON_BUS_NAME.replace('.', '/')
 
 IFACE_SESSION_MANAGER = '{}.SessionManager'.format(DNFDAEMON_BUS_NAME)
 IFACE_BASE = '{}.Base'.format(DNFDAEMON_BUS_NAME)
+
+# dbus-python timeout is in seconds (converted to ms internally via int(t*1000)).
+# DBUS_TIMEOUT_INFINITE maps to libdbus INT_MAX milliseconds = 0x7FFFFFFF ms.
+_DBUS_TIMEOUT_INFINITE = int(0x7FFFFFFF / 1000)  # ~2147483 seconds (~24.8 days)
+_DBUS_TIMEOUT_DEFAULT  = 600                       # 10 minutes (adequate for most calls)
 IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
@@ -487,10 +492,12 @@ class Client:
 
         return result
 
-    def _run_dbus_async(self, cmd, return_value, *args):
+    def _run_dbus_async(self, cmd, return_value, *args, timeout=_DBUS_TIMEOUT_DEFAULT):
         '''Make an async call to a DBus method in the dnf5daemon service
 
         cmd: method to run
+        timeout: D-Bus reply timeout in seconds (default _DBUS_TIMEOUT_DEFAULT).
+                 Use _DBUS_TIMEOUT_INFINITE for long-running commands like RunTransaction.
         '''
         # Single outstanding async request enforced with a lock
         with self._async_lock:
@@ -692,7 +699,7 @@ class Client:
                             self._sent = False
 
                 try:
-                    func(*args, reply_handler=on_success, error_handler=on_error, timeout=600)
+                    func(*args, reply_handler=on_success, error_handler=on_error, timeout=timeout)
                 except Exception as e:
                     self._return_handler(e, data)
                     return
@@ -707,7 +714,7 @@ class Client:
                     self._sent = False
 
             try:
-                func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=600)
+                func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=timeout)
             except Exception as e:
                 # Route via _return_handler so _sent is cleared and UI handles error
                 self._return_handler(e, data)
@@ -1803,7 +1810,11 @@ class Client:
             Unknown options are ignored
         '''
         if not sync:
-          self._run_dbus_async('RunTransaction', False, options)
+          # RunTransaction (do_transaction) is a long-running call: the D-Bus reply
+          # arrives only after the entire transaction completes (downloads + RPM install).
+          # A 10-minute transaction would exceed the default 600s timeout and trigger
+          # a spurious NoReply.  Use an effectively infinite timeout instead.
+          self._run_dbus_async('RunTransaction', False, options, timeout=_DBUS_TIMEOUT_INFINITE)
         else:
           self._run_dbus_sync('RunTransaction', options)
 
