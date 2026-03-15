@@ -120,6 +120,7 @@ class TransactionProgressDialog:
         """
         self.parent = parent
         self.factory = parent.factory
+        self._icon = parent.icon
         self._complete = False
         self._success = None
         self._pkg_done = 0
@@ -346,6 +347,7 @@ class TransactionProgressDialog:
         self._close_button = self.factory.createIconButton(
             bottom_hbox, 'window-close', _("&Close"))
         self._close_button.setEnabled(False)
+        MUI.YUI.app().setApplicationIcon(self._icon)
 
     def _ts(self):
         """Current time as HH:MM:SS string for log entries."""
