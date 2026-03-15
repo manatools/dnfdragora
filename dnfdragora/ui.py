@@ -1806,6 +1806,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if eventType == MUI.YEventType.CancelEvent:
           if self._trans_dialog is not None:
             self._close_trans_dialog()
+            # Clean up download and transaction data
+            self.__resetDownloads()
+            #restore actions to Normal
+            self._updateActionView(const.Actions.NORMAL)
+            # TODO change UI and manage this better afer a transaction report        
+            self.backend.clear_cache(also_groups=True)
+            self.packageQueue.clear()
+            self._status = DNFDragoraStatus.RESET_SESSION
+            self._transaction_noreply_warned = False
+            self._enableAction(False)
+            # NOTE: do NOT call backend.ResetSession() here.
+            # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+            # RunTransaction D-Bus method reply, so _sent is still True at this
+            # point. ResetSession would be rejected with "Command in progress".
+            # The RunTransaction event handler below waits for the reply (which
+            # clears _sent) and then issues ResetSession safely.
+            rebuild_package_list = True
           else:
             request_exit = True
         elif eventType == MUI.YEventType.MenuEvent:
@@ -1815,6 +1832,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if self._trans_dialog is not None:
             if self._trans_dialog.handle_event(event):
               self._close_trans_dialog()
+              # Clean up download and transaction data
+              self.__resetDownloads()
+              #restore actions to Normal
+              self._updateActionView(const.Actions.NORMAL)
+              # TODO change UI and manage this better afer a transaction report        
+              self.backend.clear_cache(also_groups=True)
+              self.packageQueue.clear()
+              self._status = DNFDragoraStatus.RESET_SESSION
+              self._transaction_noreply_warned = False
+              self._enableAction(False)
+              # NOTE: do NOT call backend.ResetSession() here.
+              # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+              # RunTransaction D-Bus method reply, so _sent is still True at this
+              # point. ResetSession would be rejected with "Command in progress".
+              # The RunTransaction event handler below waits for the reply (which
+              # clears _sent) and then issues ResetSession safely.
+              rebuild_package_list = True
           else:
             rebuild_package_list, request_exit = self._handle_widget_event(event)
         elif eventType == MUI.YEventType.TimeoutEvent:
@@ -1864,6 +1898,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self._trans_dialog is not None:
             self._trans_dialog.close()
             self._trans_dialog = None
+        # Reset progress bar now that the main window is visible again
+        self.infobar.reset_all()
+        self.pbar_layout.setEnabled(True)
 
     def _OnRepoMetaDataProgress(self, name, frac):
       '''Repository Metadata Download progress.'''
@@ -1884,71 +1921,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       logger.debug('OnTransactionEvent: %s', repr(values))
       if event == 'OnTransactionActionStart':
         self._transaction_noreply_warned = False
-        pass
       elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
         if self._trans_dialog is not None:
           self._trans_dialog.mark_complete(event == 'OnTransactionAfterComplete')
-        self.infobar.set_progress(1.0)
-        self.infobar.reset_all()
-        # Clean up download and transaction data
-        self.__resetDownloads()
-
-        #restore actions to Normal
-        self._updateActionView(const.Actions.NORMAL)
-
-        # TODO change UI and manage this better afer a transaction report        
-        self.backend.clear_cache(also_groups=True)
-        self.packageQueue.clear()
-        self._status = DNFDragoraStatus.RESET_SESSION
-        self._transaction_noreply_warned = False
-        self._enableAction(False)
-        # NOTE: do NOT call backend.ResetSession() here.
-        # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
-        # RunTransaction D-Bus method reply, so _sent is still True at this
-        # point. ResetSession would be rejected with "Command in progress".
-        # The RunTransaction event handler below waits for the reply (which
-        # clears _sent) and then issues ResetSession safely.
-
-      return
-      #TODO manage new events
-      if event == 'start-run':
-        self.infobar.info(_('Start transaction'))
-      elif event == 'download':
-          self.infobar.info(_('Downloading packages'))
-      elif event == 'pkg-to-download':
-        #TODO manage event pkg-to-download
-        self._dnl_packages = data
-      elif event == 'signature-check':
-        # self.infobar.show_progress(False)
-        self.infobar.set_progress(0.0)
-        self.infobar.info(_('Checking package signatures'))
-        self.infobar.set_progress(1.0)
-        self.infobar.info_sub('')
-      elif event == 'run-test-transaction':
-        # self.infobar.info(_('Testing Package Transactions')) #
-        # User don't care
-        pass
-      elif event == 'run-transaction':
-        self.infobar.info(_('Applying changes to the system'))
-        self.infobar.info_sub('')
-      elif event == 'verify':
-        self.infobar.info(_('Verify changes on the system'))
-        #self.infobar.hide_sublabel()
-      # elif event == '':
-      elif event == 'fail':
-        logger.error('TransactionEvent failure: %s', repr(values))
-        self.infobar.reset_all()
-      elif event == 'end-run':
-        self.infobar.set_progress(1.0)
-        self.infobar.reset_all()
-        common.infoMsgBox({'title': _("Info"), 'text': _("Changes applied") + "\n" + self.started_transaction + "\n"})
-      elif event == 'start-build':
-        self.infobar.set_progress(0.0)
-        self.infobar.info(_('Build transaction'))
-      elif event == 'end-build':
-        self.infobar.set_progress(1.0)
-      else:
-        logger.error('Unmanaged transaction event : %s', str(event))
+        else:
+            logger.warning("Transaction complete event received, but transaction dialog is not open")
 
     def exception_handler(self, e):
       """Handle frontend exceptions; keep transaction alive on transient DBus NoReply."""
@@ -2349,7 +2326,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._download_events['in_progress'] += 1
       self.__addDownload(download_id, description, total_to_download)
 
-      if self._trans_dialog is not None:
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
           self._trans_dialog.on_download_start(download_id, description, total_to_download)
       self.infobar.set_progress(0.0)
       self.infobar.info(_('Start downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
@@ -2378,7 +2355,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
-        if self._trans_dialog is not None:
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
             self._trans_dialog.on_download_progress(download_id, downloaded, total_to_download)
         #num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
         self.infobar.set_progress(total_frac)
@@ -2398,7 +2375,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values =  (download_id, download['description'], status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
-      if self._trans_dialog is not None:
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
           self._trans_dialog.on_download_end(download_id, download['description'], status, error)
       if (self._download_events['in_progress'] > 0) :
         self._download_events['in_progress'] -= 1
