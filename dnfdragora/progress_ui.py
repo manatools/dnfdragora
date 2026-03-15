@@ -399,12 +399,9 @@ class TransactionProgressDialog:
     def _set_main_window_visible(self, visible):
         """Show or hide the main application window."""
         try:
-            bw = self.parent.dialog.get_backend_widget()
-            if bw is not None and hasattr(bw, 'setVisible'):
-                bw.setVisible(visible)
-                return
+            self.parent.dialog.setVisible(visible)
         except Exception:
-            logger.debug("_set_main_window_visible: setVisible not available")
+            logger.error("_set_main_window_visible: setVisible not available")
         # Fallback: enable/disable
         try:
             self.parent.dialog.setEnabled(visible)
