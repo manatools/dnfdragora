@@ -216,6 +216,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # ...TODO
         self._transaction_tries = 0
         self._transaction_noreply_warned = False
+        self._trans_dialog = None  # TransactionProgressDialog, active during RUN_TRANSACTION
         self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -1794,18 +1795,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       """Main AUI event loop coordinating frontend and backend asynchronous events."""
       self.running = True
       while self.running:
-        event = self.dialog.waitForEvent(self._event_loop_timeout())
+        _active_dialog = (self._trans_dialog.dialog
+                          if self._trans_dialog is not None else self.dialog)
+        event = _active_dialog.waitForEvent(self._event_loop_timeout())
         eventType = event.eventType()
 
         rebuild_package_list = False
         request_exit = False
 
         if eventType == MUI.YEventType.CancelEvent:
-          request_exit = True
+          if self._trans_dialog is not None:
+            self._close_trans_dialog()
+          else:
+            request_exit = True
         elif eventType == MUI.YEventType.MenuEvent:
-          rebuild_package_list, request_exit = self._handle_menu_event(event)
+          if self._trans_dialog is None:
+            rebuild_package_list, request_exit = self._handle_menu_event(event)
         elif eventType == MUI.YEventType.WidgetEvent:
-          rebuild_package_list, request_exit = self._handle_widget_event(event)
+          if self._trans_dialog is not None:
+            if self._trans_dialog.handle_event(event):
+              self._close_trans_dialog()
+          else:
+            rebuild_package_list, request_exit = self._handle_widget_event(event)
         elif eventType == MUI.YEventType.TimeoutEvent:
           rebuild_package_list = self._manageDnfDaemonEvent()
           if rebuild_package_list:
@@ -1843,6 +1854,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       #self.backend.quit()
       #self.backend.release_root_backend()
 
+    def _show_trans_dialog(self):
+        """Create the transaction progress dialog and hide the main window."""
+        self._trans_dialog = progress_ui.TransactionProgressDialog(self)
+        self._trans_dialog.open()
+
+    def _close_trans_dialog(self):
+        """Destroy the transaction progress dialog and restore the main window."""
+        if self._trans_dialog is not None:
+            self._trans_dialog.close()
+            self._trans_dialog = None
+
     def _OnRepoMetaDataProgress(self, name, frac):
       '''Repository Metadata Download progress.'''
       values = (name, frac)
@@ -1864,6 +1886,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._transaction_noreply_warned = False
         pass
       elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
+        if self._trans_dialog is not None:
+          self._trans_dialog.mark_complete(event == 'OnTransactionAfterComplete')
         self.infobar.set_progress(1.0)
         self.infobar.reset_all()
         # Clean up download and transaction data
@@ -2000,6 +2024,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if session_object_path != self.backend.session_path :
         logger.warning("OnTransactionVerifyStart: Different session path received")
         return
+      if self._trans_dialog is not None:
+          self._trans_dialog.on_verify_start(total)
       self.infobar.set_progress(0.0)
       self.infobar.info(_('Transaction verification'))
 
@@ -2015,6 +2041,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           logger.warning("_OnTransactionVerifyProgress: Different session path received")
           return
       total_frac = processed / total if total > 0 else 0
+      if self._trans_dialog is not None:
+          self._trans_dialog.on_verify_progress(processed, total)
       self.infobar.set_progress(total_frac)
 
     def _OnTransactionVerifyStop(self, session_object_path, total):
@@ -2029,6 +2057,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if session_object_path != self.backend.session_path :
         logger.warning("OnTransactionVerifyStop: Different session path received")
         return
+      if self._trans_dialog is not None:
+          self._trans_dialog.on_verify_stop(total)
       self.infobar.reset_all()
 
     def _OnTransactionActionStart(self, session_object_path, nevra, action, total):
@@ -2047,6 +2077,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionActionStart: Different session path received")
             return
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_action_start(nevra, act_str)
         self.infobar.set_progress(0.0)
         self.infobar.info( _('Transaction for package <%(nevra)s> started') %{'nevra': nevra })
 
@@ -2065,6 +2097,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionActionProgress: Different session path received")
             return
         #TODO bar with processed??? if not always 0 self.infobar.set_progress(0.0)
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_action_progress(nevra, processed, total)
         self.infobar.info( _('Transaction for package <%(nevra)s> in progress') %{'nevra': nevra, })
 
     def _OnTransactionActionStop(self, session_object_path, nevra, total):
@@ -2080,6 +2114,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionActionStop: Different session path received")
             return
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_action_stop(nevra)
         self.infobar.reset_all()
 
     def _OnTransactionElemProgress(self, session_object_path, nevra, processed, total):
@@ -2097,6 +2133,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionElemProgress: Different session path received")
             return
         total_frac = (processed+1) / total if total > 0 else 0
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_elem_progress(nevra, processed, total)
         self.infobar.set_progress(total_frac)
         self.infobar.info( _('Transaction in progress: <%(nevra)s> starts') %{'nevra': nevra, })
 
@@ -2113,6 +2151,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionTransactionStart: Different session path received")
             return
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_transaction_start(total)
         self.infobar.set_progress(0.0)
         self.infobar.info( _('Preparation of transaction'))
 
@@ -2131,6 +2171,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionTransactionProgress: Different session path received")
             return
         total_frac = processed / total if total > 0 else 0
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_transaction_progress(processed, total)
         self.infobar.set_progress(total_frac)
         self.infobar.info( _('Preparation of transaction'))
 
@@ -2147,6 +2189,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionTransactionStop: Different session path received")
             return
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_transaction_stop(total)
         self.infobar.reset_all()
 
     def _OnTransactionScriptStart(self, session_object_path, nevra, scriptlet_type):
@@ -2187,6 +2231,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionScriptStart: Different session path received")
             return
 
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_script_start(nevra, scriptletType)
         self.infobar.set_progress(0.0)
         self.infobar.info( _('Scriptlet <%(nevra)s> started') %{'nevra': nevra, })
 
@@ -2206,6 +2252,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionScriptStop: Different session path received")
             return
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_script_stop(nevra, scriptletType, return_code)
         self.infobar.reset_all()
 
     def _OnTransactionScriptError(self, session_object_path, nevra, scriptlet_type, return_code):
@@ -2224,6 +2272,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("_OnTransactionScriptError: Different session path received")
             return
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_script_error(nevra, scriptletType, return_code)
         self.infobar.reset_all()
 
     def __addDownload(self, download_id, description, total_to_download):
@@ -2299,6 +2349,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._download_events['in_progress'] += 1
       self.__addDownload(download_id, description, total_to_download)
 
+      if self._trans_dialog is not None:
+          self._trans_dialog.on_download_start(download_id, description, total_to_download)
       self.infobar.set_progress(0.0)
       self.infobar.info(_('Start downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
           {'count_files': len(self._download_events['downloads'].keys()), 'id': download_id, 'description':description })
@@ -2326,6 +2378,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         total_frac = downloaded / total_to_download if total_to_download > 0 else 0
 
+        if self._trans_dialog is not None:
+            self._trans_dialog.on_download_progress(download_id, downloaded, total_to_download)
         #num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
         self.infobar.set_progress(total_frac)
         self.infobar.info(_('Downloading file %(id)s - %(description)s in progress')%
@@ -2344,6 +2398,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values =  (download_id, download['description'], status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
+      if self._trans_dialog is not None:
+          self._trans_dialog.on_download_end(download_id, download['description'], status, error)
       if (self._download_events['in_progress'] > 0) :
         self._download_events['in_progress'] -= 1
 
@@ -2587,6 +2643,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         if ok:
           self.infobar.info(_('Applying changes to the system'))
+          self._show_trans_dialog()
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
