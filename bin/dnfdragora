@@ -11,6 +11,7 @@
 #
 
 import sys
+import os
 import gettext
 
 if __name__ == "__main__":
@@ -39,6 +40,14 @@ if __name__ == "__main__":
     parser.add_argument('--version',     help=_('show application version and exit'), action='store_true')
     parser.add_argument('--exit',        help=_('force dnfdaemon dbus services used by dnfdragora to exit'), action='store_true')
     args = parser.parse_args()
+
+    # Bypass backend auto-detection: set MUI_BACKEND from --gtk/--ncurses/--qt
+    if args.gtk:
+        os.environ['MUI_BACKEND'] = 'gtk'
+    elif args.ncurses:
+        os.environ['MUI_BACKEND'] = 'ncurses'
+    elif args.qt:
+        os.environ['MUI_BACKEND'] = 'qt'
 
     # Change localedir if "--locales-dir" option is specified
     if args.locales_dir:
