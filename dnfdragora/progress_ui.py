@@ -33,6 +33,8 @@ class ProgressBar:
         self.info_sub_widget.setStretchable( MUI.YUIDimension.YD_HORIZ, True )
         self.progressbar = self.factory.createProgressBar(vbox, "")
         self.progressbar.setStretchable( MUI.YUIDimension.YD_HORIZ, True )
+        # Start hidden; set_progress() will show the bar when activity begins.
+        self.__setVisible(False)
 
     def info(self, text) :
         self.info_widget.setValue(text)
@@ -41,18 +43,30 @@ class ProgressBar:
         self.info_sub_widget.setValue(text)
 
     def set_progress(self, frac, label=None) :
+        """Update the progress bar value and make the bar visible.
+
+        The bar is always shown when this method is called, regardless of the
+        fraction value.  The only way to hide the bar is through reset_all().
+        This ensures visibility both at the very start (frac=0) and at
+        completion (frac=1), avoiding the flicker caused by immediately hiding
+        on boundary values.
+        """
         if label is not None:
             self.progressbar.setLabel(label)
         val = self.progressbar.value()
         newval = int(100*frac)
         if (val != newval) :
             self.progressbar.setValue(newval)
-        self.__setVisible(newval > 0 and newval < 100)
+        # Always show while progress is being reported; hiding is done via reset_all().
+        self.__setVisible(True)
 
     def reset_all(self) :
+        """Clear all labels, reset the bar to zero, and hide all widgets."""
+        self.__setVisible(False)
         self.info_widget.setValue('')
         self.info_sub_widget.setValue('')
-        self.set_progress(0, "")
+        self.progressbar.setLabel('')
+        self.progressbar.setValue(0)
 
     def __setVisible(self, on: bool = True):
         self.info_widget.setVisible(bool(on))

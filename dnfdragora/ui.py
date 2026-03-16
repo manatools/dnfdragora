@@ -2367,12 +2367,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             download['total_to_download'] = total_to_download
         download['downloaded'] = downloaded
 
-        total_frac = downloaded / total_to_download if total_to_download > 0 else 0
+        # When the event carries an unknown total (-1), fall back to the last
+        # positive total stored in the download dict.  This prevents the
+        # fraction from jumping back to 0 on alternating events where
+        # dnf5daemon oscillates between a real size and -1 for the same id.
+        effective_total = total_to_download if total_to_download > 0 else download['total_to_download']
+        total_frac = downloaded / effective_total if effective_total > 0 else 0
+        logger.debug('OnDownloadProgress: %s frac=%.3f (effective_total=%s)',
+                     download_id, total_frac, effective_total)
 
         if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
-            self._trans_dialog.on_download_progress(download_id, downloaded, total_to_download)
+            self._trans_dialog.on_download_progress(download_id, downloaded, effective_total)
         else:
-          #num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
           self.infobar.set_progress(total_frac)
           self.infobar.info(_('Downloading file %(id)s - %(description)s in progress')%
                             { 'id': download_id, 'description':download['description'] })
