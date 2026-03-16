@@ -185,8 +185,9 @@ class Client:
         self._get_daemon()
         self.__async_thread = None
 
-        # 60 secs without receiving anything during a transaction
-        self.__TransactionTimer = dnfdragora.misc.TimerEvent(60, self.on_TransactionTimeoutEvent)
+        # 300 secs, e.g. 5 minutes without receiving anything during a transaction
+        # kernel postscriptlet execution can take a long time, so we need a long timeout here to avoid false positives.
+        self.__TransactionTimer = dnfdragora.misc.TimerEvent(300, self.on_TransactionTimeoutEvent)
         self.__TransactionTimer.AutoRpeat = False
 
         # Shared libdnf5 Base used by comps queries to avoid repeated repo metadata loading.
