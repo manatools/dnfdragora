@@ -280,8 +280,8 @@ class HistoryView:
         appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
         MUI.YUI.app().setApplicationTitle(_("History") )
-        minWidth  = 80;
-        minHeight = 25;
+        minWidth  = 700  # pixels
+        minHeight = 500  # pixels
         self._dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(self._dlg , minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
@@ -357,8 +357,8 @@ class PackageActionDialog:
         appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
         MUI.YUI.app().setApplicationTitle(_("Action on selected packages") )
-        minWidth  = 60;
-        minHeight = 10;
+        minWidth  = 400  # pixels
+        minHeight = 250  # pixels
         dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
@@ -441,12 +441,19 @@ class TransactionResult:
         appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
         MUI.YUI.app().setApplicationTitle(_("Transaction result") )
-        minWidth  = 80;
-        minHeight = 25;
+        # Pixel dimensions: wide enough to display full package NEVRAs
+        # (e.g. python3-something-1.2.3-4.mga10.x86_64) without truncation;
+        # tall enough for the dependency tree without excessive scrolling.
+        minWidth  = 800  # pixels
+        minHeight = 550  # pixels
         dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         treeWidget = self.factory.createTree(layout, _("Transaction dependency"))
+        # Let the tree fill all available vertical space so the package list
+        # is as visible as possible before the user needs to scroll.
+        treeWidget.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        treeWidget.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         sizeLabel = self.factory.createLabel(layout,"")
 
         align = self.factory.createRight(layout)
@@ -633,7 +640,7 @@ class RepoDialog:
         MUI.YUI.app().setApplicationTitle(_("Repository Management") )
 
         vbox = self.factory.createVBox(self.dialog)
-        minSize = self.factory.createMinSize( vbox, 320, 100 )
+        minSize = self.factory.createMinSize( vbox, 700, 500 )  # pixels
         vbox = self.factory.createVBox(minSize)
 
         #Line for logo and title
