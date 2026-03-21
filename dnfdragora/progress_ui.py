@@ -347,7 +347,8 @@ class TransactionProgressDialog:
 
         # ── Log view ────────────────────────────────────────────────────
         self._log_view = self.factory.createLogView(
-            vbox, _("Transaction log"), 20, 2000)
+            vbox, _("Transaction log"), 20, storedLines=2000, 
+            focus=MUI.YLogViewFocus.TAIL, reverse=False)
         self._log_view.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         self._log_view.setStretchable(MUI.YUIDimension.YD_VERT, True)
 
