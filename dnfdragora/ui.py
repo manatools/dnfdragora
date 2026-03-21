@@ -1090,14 +1090,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       the case of an active search result
       '''
       rebuild_package_list = False
-      sel = self.tree.selectedItem()
-      if sel :
-        group = self._groupNameFromItem(self.groupList, sel)
-        if (group == "Search"):
-          rebuild_package_list = not self._searchPackages()
-        else:
+      search_string = self.find_entry.value() if hasattr(self, 'find_entry') else ''
+      if search_string:
+        # Search is active and tree is hidden; re-run the search.
+        rebuild_package_list = not self._searchPackages()
+      else:
+        sel = self.tree.selectedItem()
+        if sel :
+          group = self._groupNameFromItem(self.groupList, sel)
+          rebuild_package_list = True
+        elif self._viewNameSelected() == 'all':
           rebuild_package_list = True
       return rebuild_package_list
+
+    def _set_tree_visible(self, show: bool):
+        '''Show or hide the group tree pane. Does not fill the tree when hiding.'''
+        if hasattr(self, 'tree') and self.tree is not None:
+            self.tree.setVisible(show)
 
     def _fillGroupTree(self) :
         '''
@@ -1111,6 +1120,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         try:
             view = self._viewNameSelected()
             filter_name = self._filterNameSelected()
+
+            if view == 'all':
+                self._set_tree_visible(False)
+                return
+
+            self._set_tree_visible(True)
             rpm_groups = self._collect_groups_for_tree(view, filter_name)
 
             if not rpm_groups:
@@ -1282,7 +1297,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       #clean up tree
       if createTreeItem:
-          self._fillGroupTree()
+          self._set_tree_visible(False)
 
       filter = self._filterNameSelected()
       self.itemList = {}
@@ -1329,14 +1344,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       #self.packageList.doneMultipleChanges()
 
       if createTreeItem:
-          #self.tree.startMultipleChanges()
-          icon = self.gIcons.icon("Search")
-          treeItem = MUI.YTreeItem(label=self.gIcons.groups['Search']['title'], icon_name=icon, selected=False)
-          treeItem.setSelected(True)
-          self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
-          self.tree.addItem(treeItem)
-          #self.tree.doneMultipleChanges()
-          #self.tree.rebuildTree()
+          pass  # tree is hidden during searches; no tree item needed
 
       self._enableAction(True)
 
@@ -1771,10 +1779,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         filter = self._filterNameSelected()
         search_string = self.find_entry.value()
         if not search_string:
-          sel = self.tree.selectedItem()
-          if sel:
-            group = self._groupNameFromItem(self.groupList, sel)
-            self._fillPackageList(group, filter)
+          view = self._viewNameSelected()
+          if view == 'all':
+            # Tree is hidden when view is 'all'; show all packages directly.
+            self._fillPackageList(None, filter)
+          else:
+            sel = self.tree.selectedItem()
+            if sel:
+              group = self._groupNameFromItem(self.groupList, sel)
+              self._fillPackageList(group, filter)
 
       # Avoid sync GetAttribute calls while transaction is running.
       # The daemon can legitimately be busy and not answer metadata requests quickly.
