@@ -166,6 +166,7 @@ class TransactionProgressDialog:
 
     def open(self):
         """Show this dialog and hide the main application window."""
+        self._dialog.open()
         self._set_main_window_visible(False)
 
     def close(self):
