@@ -417,7 +417,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         ### MAIN DIALOG ###
         self.dialog = self.factory.createMainDialog()
 
-        vbox = self.factory.createVBox(self.dialog)
+        # Enforce a comfortable minimum size so the window opens with enough
+        # space for the group tree, the full package table, and the description
+        # pane.  Units are PIXELS: 900×680 is comfortable on a 1080p display.
+        min_size = self.factory.createMinSize(self.dialog, 900, 680)
+        vbox = self.factory.createVBox(min_size)
 
         hbox_menubar = self.factory.createHBox(vbox)
 
@@ -437,9 +441,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
-        # Keep package browsing area at about 2/3 and info area at about 1/3.
-        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT, 67)
-        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT, 33)
+        # Package browsing area (tree + table): 70 % of vertical space.
+        # Info / description area: 30 % — more than the old 33/67 split
+        # expressed differently to give text room to display 3-4 lines.
+        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT, 70)
+        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT, 30)
         if hasattr(hbox_middle, 'setStretchable'):
           hbox_middle.setStretchable(MUI.YUIDimension.YD_VERT, True)
         if hasattr(hbox_bottom, 'setStretchable'):
@@ -597,9 +603,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.reset_search_button.setHelpText(_("Clear search field"))
 
         self.info = self.factory.createRichText(hbox_bottom,"")
-        self.info.setWeight(MUI.YUIDimension.YD_VERT, 30)
-        if hasattr(self.info, 'setStretchable'):
-            self.info.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        # Give the description area a larger share of the bottom pane so
+        # multi-line package descriptions are readable without scrolling.
+        self.info.setWeight(MUI.YUIDimension.YD_VERT, 100)
+        self.info.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self.info.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         
         self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)        
 
