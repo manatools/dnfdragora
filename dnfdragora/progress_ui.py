@@ -320,7 +320,10 @@ class TransactionProgressDialog:
     def _build_dialog(self):
         """Construct the popup dialog with all widgets."""
         self._dialog = self.factory.createPopupDialog()
-        min_size = self.factory.createMinSize(self._dialog, 80, 30)
+        # Pixel dimensions: 800×500 gives enough width to read full package
+        # NEVRAs and rpm scriptlet output without horizontal scrolling, and
+        # enough height to display a meaningful trace at a glance.
+        min_size = self.factory.createMinSize(self._dialog, 800, 500)
         vbox = self.factory.createVBox(min_size)
 
         # ── Title ──────────────────────────────────────────────────────
