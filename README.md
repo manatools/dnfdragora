@@ -1,7 +1,7 @@
 # dnfdragora 
 ![logo](https://raw.githubusercontent.com/manatools/dnfdragora/master/share/images/64x64/dnfdragora-logo.png "dnfdragora") dnfdragora is a [DNF](http://dnf.readthedocs.io/en/latest/) frontend, based on rpmdragora from Mageia (originally rpmdrake) Perl code.
 
-dnfdragora is written in Python 3 and uses libYui, the widget abstraction library written by SUSE, so that it can be run using Qt 5, GTK+ 3, or ncurses interfaces.
+dnfdragora is written in Python 3 and uses [manatools.aui](https://github.com/manatools/python-manatools), the widget abstraction layer from python-manatools, so that it can be run using Qt (PySide6), GTK 4, or ncurses interfaces.
 
 Example with Qt:
 ![dnfdragora with Qt UI](screenshots/dnfdragora-qt.png "dnfdragora with Qt UI")
@@ -14,38 +14,37 @@ Example with ncurses:
 
 ## REQUIREMENTS
 
-### DNF5 Daemon
+### DNF5 Daemon (dnf5daemon-server) >= 5.2.7
 * https://github.com/rpm-software-management/dnf5
-* Version higher than 5.2.7 required.
+* Provides the D-Bus service `org.rpm.dnf.v0` used by dnfdragora.
 
-### pystray >= 0.17.3
-* https://github.com/moses-palmer/pystray
+### libdnf5 Python bindings
+* Included in the DNF5 distribution.
+* Required when `use_comps` is enabled (group metadata loading via `libdnf5.comps`).
 
-### SUSE libyui >= 4.2.14
-* https://github.com/libyui/libyui
-* Consider to check some not yet approved changes here https://github.com/anaselli/libyui
-
-### libyui-mga >= 1.2.1 - our widget extension
-* https://github.com/manatools/libyui-mga
-
-### SUSE libyui-bindings (included into libyui)
-* https://github.com/libyui/libyui
-
-### python-manatools >= 0.0.4
+### python-manatools > 0.0.4
 * https://github.com/manatools/python-manatools
+* Provides `manatools.aui` (the UI abstraction layer) and `manatools.ui` (common dialogs and helpers).
 
-### at least one of the SUSE libyui plugins
-* libyui-gtk     - https://github.com/libyui/libyui-gtk
-* libyui-ncurses - https://github.com/libyui/libyui
-* libyui-qt      - https://github.com/libyui/libyui
-* Consider here also to check some not yet approved changes at
-  https://github.com/anaselli/libyui-XXX forks (where XXX is
-  gtk, qt or ncurses)
+### At least one of the manatools.aui UI backends
+* **Qt** — requires PySide6 (`python3-pyside6`)
+* **GTK** — requires PyGObject with GTK 4 (`python3-gobject`, `gtk4`)
+* **ncurses** — requires the standard `curses` module (included with Python)
 
-### at least one of the MGA libyui widget extension plugins (according to the one above)
-* libyui-mga-gtk     - https://github.com/manatools/libyui-mga-gtk
-* libyui-mga-ncurses - https://github.com/manatools/libyui-mga-ncurses
-* libyui-mga-qt      - https://github.com/manatools/libyui-mga-qt
+### dbus-python
+* Required for D-Bus communication with dnf5daemon.
+
+### pystray >= 0.17.3 *(updater only)*
+* https://github.com/moses-palmer/pystray
+* Required only for `dnfdragora-updater` (the system-tray update notifier).
+
+### Pillow *(updater only)*
+* https://python-pillow.org
+* Required by `dnfdragora-updater` for tray icon handling.
+
+### cairosvg *(updater only, optional)*
+* https://cairosvg.org
+* Used by `dnfdragora-updater` to render SVG icons. Not required if only PNG icons are available.
 
 ## INSTALLATION
 
@@ -65,9 +64,9 @@ Example with ncurses:
     * optional: gettext        (for locales)
     * optional: python3-sphinx (for manpages)
 * Configure: `mkdir build && cd build && cmake ..`
-    * -DCMAKE_INSTALL_PREFIX=/usr      - Sets the install path, eg. /usr, /usr/local or /opt
-    * -DCHECK_RUNTIME_DEPENDENCIES=ON  - Checks if the needed runtime dependencies are met.
-    * -DENABLE_COMPS=ON                - Useful if your distribution uses COMPS for groups, eg. Fedora, RHEL, CentOS
+    * `-DCMAKE_INSTALL_PREFIX=/usr`     — Sets the install path, e.g. /usr, /usr/local or /opt
+    * `-DCHECK_RUNTIME_DEPENDENCIES=ON` — Checks if the needed runtime dependencies are met.
+    * `-DENABLE_COMPS=ON`               — Useful if your distribution uses COMPS for groups (Fedora, RHEL, CentOS)
 * Build:     `make`
 * Install:   `make install`
 * Run:       `dnfdragora`
@@ -80,20 +79,20 @@ Example with ncurses:
     * optional: gettext        (for locales)
     * optional: python3-sphinx (for manpages)
 * Setup your virtual environment
-    * cd $DNFDRAGORA_PROJ_DIR                 # DNFDRAGORA_PROJ_DIR is the dnfdragora project directory
-    * virtualenv --system-site-packages venv  # create virtual environment under venv directory
-    * . venv/bin/activate                     # activate virtual environment
-* Configure: `mkdir build && cd build && cmake -D... .. && make install`
-    * needed cmake options are
-        * -DCMAKE_INSTALL_PREFIX=$DNFDRAGORA_PROJ_DIR/venv              - venv install prefix 
-        * -DCMAKE_INSTALL_FULL_SYSCONFDIR=$DNFDRAGORA_PROJ_DIR/venv/etc - venv sysconfig directory
-    * useful cmake options are
-        * -DCHECK_RUNTIME_DEPENDENCIES=ON  - Checks if the needed runtime dependencies are met.
-        * -DENABLE_COMPS=ON                - Useful if your distribution uses COMPS for groups, eg. Fedora, RHEL, CentOS
-* Run: `dnfdragora` into virtual environment, add '--locales-dir' option if you want to test localization locally)
-    * useful dnfdragora options are
-        * --locales-dir         - if you want to test localization locally
-        * --images-path         - local icons and images (set to $DNFDRAGORA_PROJ_DIR/venv/share/dnfdragora/images/)
+    * `cd $DNFDRAGORA_PROJ_DIR`                          — DNFDRAGORA_PROJ_DIR is the dnfdragora project directory
+    * `virtualenv --system-site-packages venv`           — create virtual environment under venv directory
+    * `. venv/bin/activate`                              — activate virtual environment
+    * `pip install python-manatools`                     — install python-manatools (or install from sources)
+* Configure and install: `mkdir build && cd build && cmake -D... .. && make install`
+    * Required cmake options:
+        * `-DCMAKE_INSTALL_PREFIX=$DNFDRAGORA_PROJ_DIR/venv`              — venv install prefix
+        * `-DCMAKE_INSTALL_FULL_SYSCONFDIR=$DNFDRAGORA_PROJ_DIR/venv/etc` — venv sysconfig directory
+    * Useful cmake options:
+        * `-DCHECK_RUNTIME_DEPENDENCIES=ON` — checks runtime dependencies
+        * `-DENABLE_COMPS=ON`               — enables COMPS group support (Fedora, RHEL, CentOS)
+* Run `dnfdragora` inside the virtual environment:
+    * `--locales-dir`  — test localization locally
+    * `--images-path`  — local icons and images (set to `$DNFDRAGORA_PROJ_DIR/venv/share/dnfdragora/images/`)
 
 ## CONTRIBUTE
 
