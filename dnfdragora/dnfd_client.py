@@ -1254,7 +1254,13 @@ class Client:
 
             repo_sack = base.get_repo_sack()
             repo_sack.create_repos_from_system_configuration()
-            repo_sack.update_and_load_enabled_repos(True)
+            # load_repos(Type_AVAILABLE) is the non-deprecated replacement for
+            # update_and_load_enabled_repos(True) introduced in libdnf5 ≥ 5.2.
+            # Fall back to the old API on older installations.
+            if hasattr(repo_sack, 'load_repos'):
+                repo_sack.load_repos(libdnf5.repo.Repo.Type_AVAILABLE)
+            else:
+                repo_sack.update_and_load_enabled_repos(True)
 
             self._comps_base = base
             return self._comps_base
