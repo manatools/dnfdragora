@@ -364,6 +364,7 @@ class Client:
 
     def unloadDaemon(self):
         '''Close the D-Bus connection and disconnect signals.'''
+        logger.debug(f"Unloading Dnf5Daemon session: {self.session_path if self.session_path else 'None'}...")
         self._invalidate_comps_base()
         self._reset_async_request_guard("unloadDaemon")
         if self.session_path:
@@ -378,8 +379,8 @@ class Client:
                 
                 logger.debug("Disconnected all the signals from Dnf5Daemon.")
                 # Close the current session
-                self.iface_session.close_session(self.session_path)
-                logger.debug(f"Closed Dnf5Daemon session: {self.session_path}")
+                retVal = self.iface_session.close_session(self.session_path)
+                logger.debug(f"Closed Dnf5Daemon session: {self.session_path} {'retVal(success)=' + str(retVal) if retVal is not None else 'None'}")
             except Exception as err:
                 # Log and continue cleanup — _handle_dbus_error always raises,
                 # which must not happen inside __del__ or other cleanup callers.
@@ -390,6 +391,7 @@ class Client:
     def reloadDaemon(self):
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
+            logger.info("Reloading Dnf5Daemon...")
             self._invalidate_comps_base()
             self._reset_async_request_guard("reloadDaemon-start")
             # Close the current session
