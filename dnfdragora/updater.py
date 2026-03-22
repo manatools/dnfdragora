@@ -10,7 +10,7 @@ Author:  Björn Esser <besser82@fedoraproject.org>
 @package dnfdragora
 '''
 
-import gettext, sched, sys, threading, time, yui, os
+import gettext, sched, sys, threading, time, os
 
 from PIL import Image
 from dnfdragora import config, misc, dialogs, ui, dnfd_client
@@ -38,8 +38,22 @@ class DnfdragoraUpdaterTray(Tray):
 
 class Updater:
 
-    def __init__(self, options={}):
-        self.__main_gui  = None
+    def __init__(self, options=None):
+        if options is None:
+            options = {}
+        # Initialize critical attributes upfront so that __shutdown__ and
+        # main() are safe even if construction exits early (e.g. backend error).
+        self.__main_gui            = None
+        self.__running             = False
+        self.__updater             = None
+        self.__scheduler           = None
+        self.__tray                = None
+        self.__backend             = None
+        self.__getUpdatesRequested = False
+        # Set to True while a dnfdragora dialog is open so that __update_loop
+        # stands down and __get_updates skips (backend session is intentionally
+        # closed during that window to free a D-Bus session slot).
+        self.__dialog_open         = False
 
         self.__config         = config.AppConfig('dnfdragora')
         self.__updateInterval = 180
@@ -83,53 +97,58 @@ class Updater:
            print("Logging disabled")
 
         # if missing gets the default icon from our folder (same as dnfdragora)
-        icon_path = '/usr/share/dnfdragora/images/'
-
-        if 'icon-path' in options.keys() :
+        # If no icon-path was explicitly supplied, rely entirely on the theme
+        # search (__load_icon_image).  Only use the explicit path when the user
+        # has passed --icon-path, ensuring forward-compatibility with distros
+        # that install icons only through the theme.
+        if 'icon-path' in options.keys():
             icon_path = options['icon-path']
-        if icon_path.endswith('/'):
-            icon_path = icon_path + 'dnfdragora.svg' if ( os.path.exists(icon_path + 'dnfdragora.svg') ) else icon_path + 'dnfdragora.png'
+            if not icon_path.endswith('/'):
+                icon_path += '/'
+            for ext in ('svg', 'png'):
+                candidate = icon_path + 'dnfdragora.' + ext
+                if os.path.exists(candidate):
+                    icon_path = candidate
+                    break
+            logger.debug("Icon (from --icon-path): %s", icon_path)
+            self.__icon = Image.Image()
+            try:
+                if icon_path.endswith('.svg'):
+                    with open(icon_path, 'rb') as svg:
+                        self.__icon = self.__svg_to_Image(svg.read())
+                else:
+                    self.__icon = Image.open(icon_path)
+            except Exception:
+                logger.warning("Cannot open icon from --icon-path: %s", icon_path, exc_info=True)
         else:
-            icon_path = icon_path + '/dnfdragora.svg' if ( os.path.exists(icon_path + '/dnfdragora.svg') ) else icon_path + '/dnfdragora.png'
+            self.__icon = self.__load_icon_image('dnfdragora')
 
-        theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname() or icon_path
+        logger.debug("Normal icon loaded: %s", type(self.__icon))
 
-        logger.debug("Icon: %s"%(theme_icon_pathname))
-        #empty icon as last chance
-        self.__icon = Image.Image()
-        try:
-          if theme_icon_pathname.endswith('.svg'):
-              with open(theme_icon_pathname, 'rb') as svg:
-                  self.__icon = self.__svg_to_Image(svg.read())
-          else:
-              self.__icon  = Image.open(theme_icon_pathname)
-        except Exception as e:
-          logger.error(e)
-          logger.error("Cannot open theme icon using default one %s"%(icon_path))
-          self.__icon  = Image.open(icon_path)
-
-        # resetting icon_path to default value
-        icon_path = '/usr/share/dnfdragora/images/'
-        if 'icon-path' in options.keys() :
+        if 'icon-path' in options.keys():
             icon_path = options['icon-path']
-        if icon_path.endswith('/'):
-            icon_path = icon_path + 'dnfdragora-update.svg' if ( os.path.exists(icon_path + 'dnfdragora-update.svg') ) else icon_path + 'dnfdragora-update.png'
+            if not icon_path.endswith('/'):
+                icon_path += '/'
+            for ext in ('svg', 'png'):
+                candidate = icon_path + 'dnfdragora-update.' + ext
+                if os.path.exists(candidate):
+                    icon_path = candidate
+                    break
+            logger.debug("Update icon (from --icon-path): %s", icon_path)
+            self.__icon_update = Image.Image()
+            try:
+                if icon_path.endswith('.svg'):
+                    with open(icon_path, 'rb') as svg:
+                        self.__icon_update = self.__svg_to_Image(svg.read())
+                else:
+                    self.__icon_update = Image.open(icon_path)
+            except Exception:
+                logger.warning("Cannot open update icon from --icon-path: %s", icon_path, exc_info=True)
         else:
-            icon_path = icon_path + '/dnfdragora-update.svg' if ( os.path.exists(icon_path + '/dnfdragora-update.svg') ) else icon_path + '/dnfdragora-update.png'
+            self.__icon_update = self.__load_icon_image('dnfdragora-update')
 
-        theme_icon_pathname = icon_path if 'icon-path' in options.keys() else self.__get_theme_icon_pathname(name="dnfdragora-update") or icon_path
+        logger.debug("Update icon loaded: %s", type(self.__icon_update))
 
-        self.__icon_update = Image.Image()
-        try:
-          if theme_icon_pathname.endswith('.svg'):
-              with open(theme_icon_pathname, 'rb') as svg:
-                  self.__icon_update = self.__svg_to_Image(svg.read())
-          else:
-              self.__icon_update  = Image.open(theme_icon_pathname)
-        except Exception as e:
-          logger.error(e)
-          logger.error("Cannot open theme icon using default one %s"%(icon_path))
-          self.__icon_update  = Image.open(icon_path)
 
         try:
             self.__backend = dnfd_client.Client()
@@ -139,6 +158,7 @@ class Updater:
 
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
+        self.__updater.daemon = True  # don't prevent process exit on unexpected termination
         self.__scheduler = sched.scheduler(time.time, time.sleep)
         self.__getUpdatesRequested = False
 
@@ -154,17 +174,65 @@ class Updater:
 
     def __get_theme_icon_pathname(self, name='dnfdragora'):
       '''
-        return theme icon pathname or None if missing
+        Return a filesystem path for the named icon, searching (in order):
+          1. XDG icon theme via xdg.IconTheme (same lookup as Qt fromTheme)
+          2. hicolor theme directories at common sizes
+          3. /usr/share/pixmaps
+        Returns None if nothing is found.
       '''
+      # 1. XDG icon theme
       try:
           import xdg.IconTheme
-      except ImportError:
-          logger.error("Error: module xdg.IconTheme is missing")
-          return None
-      else:
           pathname = xdg.IconTheme.getIconPath(name, 256)
-          return pathname
+          if pathname and os.path.exists(pathname):
+              return pathname
+          logger.debug("xdg.IconTheme did not find '%s' (returned %s)", name, pathname)
+      except ImportError:
+          logger.warning("xdg.IconTheme is not available; falling back to manual icon search")
+      except Exception:
+          logger.warning("xdg.IconTheme lookup failed for '%s'", name, exc_info=True)
+
+      # 2. hicolor theme at common sizes
+      for size in ('256x256', '128x128', '64x64', '48x48', '32x32'):
+          for ext in ('png', 'svg', 'xpm'):
+              candidate = '/usr/share/icons/hicolor/%s/apps/%s.%s' % (size, name, ext)
+              if os.path.exists(candidate):
+                  logger.debug("Found icon via hicolor: %s", candidate)
+                  return candidate
+
+      # 3. /usr/share/pixmaps
+      for ext in ('png', 'svg', 'xpm'):
+          candidate = '/usr/share/pixmaps/%s.%s' % (name, ext)
+          if os.path.exists(candidate):
+              logger.debug("Found icon via pixmaps: %s", candidate)
+              return candidate
+
+      logger.warning("No icon found for '%s' in any search path", name)
       return None
+
+    def __load_icon_image(self, name):
+      '''
+        Return a PIL.Image for the given icon name.
+        Searches the theme (via __get_theme_icon_pathname) first, then the
+        user-supplied or default icon-path, and finally falls back to an empty
+        Image.Image() so that the updater always starts regardless of missing
+        icon files.
+      '''
+      pathname = self.__get_theme_icon_pathname(name)
+      if pathname:
+          logger.debug("Loading icon '%s' from %s", name, pathname)
+          try:
+              if pathname.endswith('.svg'):
+                  with open(pathname, 'rb') as svg:
+                      return self.__svg_to_Image(svg.read())
+              else:
+                  return Image.open(pathname)
+          except Exception:
+              logger.warning("Failed to open theme icon '%s' at %s", name, pathname,
+                             exc_info=True)
+
+      logger.warning("Could not load icon '%s' from theme; using empty image", name)
+      return Image.Image()
 
     def __svg_to_Image(self, svg_string):
       '''
@@ -183,30 +251,52 @@ class Updater:
           return
         try:
           self.__running = False
-          self.__updater.join()
+          if self.__updater is not None:
+            self.__updater.join(timeout=5)
           try:
             if self.__backend:
               self.__backend = None
-          except:
+          except Exception:
             pass
-          yui.YDialog.deleteAllDialogs()
-          yui.YUILoader.deleteUI()
 
-        except:
+        except Exception:
           pass
 
         finally:
-            if not self.__scheduler.empty():
+            if self.__scheduler is not None and not self.__scheduler.empty():
                 for task in self.__scheduler.queue:
                     try:
                         self.__scheduler.cancel(task)
-                    except:
+                    except Exception:
                         pass
 
-            if self.__tray != None:
+            if self.__tray is not None:
               self.__tray.stop()
             if self.__backend:
               self.__backend = None
+
+    def __reopen_backend(self):
+        '''
+        Try to reopen the D-Bus backend session up to 3 times.
+        Returns True on success, False if all attempts failed.
+        '''
+        for attempt in range(1, 4):
+            try:
+                self.__backend.reloadDaemon()
+                if self.__backend.session_path:
+                    logger.info("Backend session reopened (attempt %d): %s",
+                                attempt, self.__backend.session_path)
+                    return True
+                else:
+                    logger.warning("reloadDaemon attempt %d returned but session_path is None",
+                                   attempt)
+            except Exception:
+                logger.warning("reloadDaemon attempt %d raised an exception", attempt,
+                               exc_info=True)
+            if attempt < 3:
+                time.sleep(2)
+        logger.error("Failed to reopen backend session after 3 attempts")
+        return False
 
     def __reschedule_update_in(self, minutes):
       '''
@@ -218,7 +308,7 @@ class Updater:
         for task in self.__scheduler.queue:
           try:
             self.__scheduler.cancel(task)
-          except:
+          except Exception:
             pass
       if self.__scheduler.empty():
         self.__scheduler.enter(minutes * 60, 1, self.__get_updates)
@@ -232,29 +322,99 @@ class Updater:
             if self.__hide_menu:
               self.__tray.visible = False
             time.sleep(0.5)
+
+            # ── Step 1: pause the update loop ────────────────────────────────
+            # Setting __dialog_open=True tells __update_loop to idle and tells
+            # __get_updates to return early (no-op), so neither thread will
+            # access self.__backend while we are manipulating its session.
+            self.__dialog_open = True
+            logger.debug("Dialog opening: update loop paused")
+
+            # Give __update_loop time to finish its current 0.5-second iteration
+            # before we touch the backend or the scheduler.
+            time.sleep(1.0)
+
+            # ── Step 2: cancel pending scheduler tasks ───────────────────────
+            # Now that the loop is idle, no new tasks will be added concurrently.
+            for task in list(self.__scheduler.queue):
+                try:
+                    self.__scheduler.cancel(task)
+                except Exception:
+                    pass
+            logger.debug("Scheduler cleared before dialog open")
+
+            # ── Step 3: close the updater D-Bus session ───────────────────────
+            # dnf5daemon limits concurrent sessions per user.  We must free our
+            # slot BEFORE dnfdragora opens its own session.
+            if self.__backend:
+                try:
+                    self.__backend.unloadDaemon()
+                    logger.info("Backend session closed to free slot for dnfdragora")
+                except Exception:
+                    logger.warning("unloadDaemon before dialog raised an exception",
+                                   exc_info=True)
+
+            # ── Step 4: launch the dnfdragora dialog ─────────────────────────
             try:
                 self.__main_gui = ui.mainGui(args)
             except Exception as e:
-              logger.error("Exception on running dnfdragora with args %s - %s", str(args), str(e))
-              dialogs.warningMsgBox({'title' : _("Running dnfdragora failure"), "text": str(e), "richtext":True})
-              yui.YDialog.deleteAllDialogs()
-              time.sleep(0.5)
-              self.__main_gui = None
-              return
-            #self.__tray.icon = None
+                logger.error("Exception launching dnfdragora (args=%s): %s", args, e)
+                dialogs.warningMsgBox({'title': _("Running dnfdragora failure"),
+                                       "text": str(e), "richtext": True})
+                self.__main_gui = None
+                # Reopen backend and resume loop even on launch failure.
+                self.__reopen_backend()
+                self.__dialog_open = False
+                logger.debug("Update loop resumed after dialog launch failure")
+                self.__reschedule_update_in(0.5)
+                return
+
             self.__main_gui.handleevent()
 
-            logger.debug("Closing dnfdragora")
+            logger.debug("Waiting for dnfdragora to finish")
             while self.__main_gui.loop_has_finished != True:
                 time.sleep(1)
-            logger.info("Closed dnfdragora")
-            yui.YDialog.deleteAllDialogs()
-            time.sleep(1)
+            logger.info("dnfdragora dialog closed")
+
+            # ── Step 5a: explicitly close dnfdragora's D-Bus session ─────────
+            # mainGui → DnfRootBackend → mainGui (parent) is a circular
+            # reference, so CPython's reference counting cannot collect it
+            # immediately when we set __main_gui = None.  The cyclic GC runs
+            # non-deterministically and may leave dnfdragora's session open for
+            # several seconds.  After N cycles, N leaked sessions accumulate and
+            # the dnf5daemon limit is hit.
+            #
+            # Fix: call unloadDaemon() explicitly on the DnfRootBackend BEFORE
+            # releasing the reference.  Because unloadDaemon() sets
+            # session_path = None, the eventual __del__ call will be a no-op.
+            try:
+                root_backend = getattr(self.__main_gui, '_root_backend', None)
+                if root_backend is not None and root_backend.session_path:
+                    root_backend.unloadDaemon()
+                    logger.info("Explicitly closed dnfdragora D-Bus session (session leaked prevention)")
+                else:
+                    logger.debug("dnfdragora _root_backend session already closed or not found "
+                                 "(session=%s)",
+                                 root_backend.session_path if root_backend else 'N/A')
+            except Exception:
+                logger.warning("Could not explicitly close dnfdragora backend", exc_info=True)
+
             self.__main_gui = None
-            logger.debug("Look for remaining updates")
-            # Let's delay a bit the check, otherwise Lock will fail
-            done=self.__reschedule_update_in(0.5)
-            logger.debug("Scheduled %s", "done" if done else "skipped")
+
+            # Brief pause to let the daemon acknowledge the session close on
+            # its side before we request a new slot.
+            time.sleep(1)
+
+            # ── Step 5b: reopen the updater session ──────────────────────────
+            self.__reopen_backend()
+
+            # ── Step 6: resume the update loop ───────────────────────────────
+            self.__dialog_open = False
+            logger.debug("Update loop resumed after dnfdragora closed (session=%s)",
+                         self.__backend.session_path if self.__backend else 'N/A')
+
+            done = self.__reschedule_update_in(0.5)
+            logger.debug("Post-dialog update check scheduled: %s", "yes" if done else "skipped")
         else:
           if self.__main_gui:
             logger.warning("Cannot run dnfdragora because it is already running")
@@ -277,6 +437,13 @@ class Updater:
       logger.debug("Start checking for updates, by menu command")
       if self.__hide_menu:
         self.__tray.visible = False
+      if self.__dialog_open:
+        logger.info("Check for updates requested while dialog is open; "
+                    "will check automatically after the dialog closes")
+        # Remember the user's request so we show a notification even if
+        # 0 updates are found when the post-dialog check fires.
+        self.__getUpdatesRequested = True
+        return
       try:
         if not self.__getUpdatesRequested:
            self.__get_updates()
@@ -288,7 +455,18 @@ class Updater:
       '''
       Start get updates by simply locking the DB
       '''
-      logger.debug("Start getting updates")
+      # Guard: skip entirely if the dialog is open (backend session is
+      # intentionally closed) or the backend session is not available.
+      # This prevents __get_updates from trying to call ResetSession on a
+      # closed session (which would trigger the reloadDaemon fallback and
+      # consume a D-Bus session slot while dnfdragora is already using one).
+      session_path = self.__backend.session_path if self.__backend else None
+      if self.__dialog_open or session_path is None:
+        logger.info("Skipping update check: dialog_open=%s session=%s",
+                    self.__dialog_open, session_path)
+        return
+
+      logger.debug("Start getting updates (session=%s)", session_path)
 
       filter = "upgrades"
       options = {"package_attrs": [
@@ -301,7 +479,18 @@ class Updater:
         ],
         "scope": filter }
       try:
-        self.__backend.reloadDaemon()
+        # Reset the existing session state without tearing down the D-Bus
+        # connection.  Cheaper than reloadDaemon() (close + reopen) and avoids
+        # the risk of losing the connection if the daemon is slow to respond.
+        try:
+          self.__backend.ResetSession(sync=True)
+          logger.debug("ResetSession completed")
+        except Exception as reset_err:
+          logger.warning("ResetSession failed (%s), falling back to reloadDaemon", reset_err)
+          self.__backend.reloadDaemon()
+          if not self.__backend.session_path:
+            logger.error("reloadDaemon fallback did not restore the session; skipping GetPackages")
+            return
         self.__backend.GetPackages(options)
         logger.debug("Getting update packages")
       except Exception as e:
@@ -318,6 +507,13 @@ class Updater:
       self.__get_updates()
 
       while self.__running == True:
+        # While a dnfdragora dialog is open the backend session is intentionally
+        # closed.  Idle here rather than attempting to use the backend or adding
+        # new scheduler entries that would fire on the closed session.
+        if self.__dialog_open:
+          time.sleep(0.5)
+          continue
+
         update_next = self.__updateInterval
         add_to_schedule = False
         try:
@@ -370,13 +566,12 @@ class Updater:
                 logger.error("GetPackages error %s", str(info['error']))
               #force scheduling again
               add_to_schedule = True
-              # Let's release the daemon
-              self.__backend.unloadDaemon()
+              # Session is kept open; no unloadDaemon() here.
             #elif (event == xxx)
             else:
               logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
-        except Empty as e:
+        except Empty:
           pass
 
         if add_to_schedule:
@@ -404,4 +599,30 @@ class Updater:
 
 
     def main(self):
+        if not self.__running:
+            logger.error("Updater not fully initialized; cannot start.")
+            return
+        # On Fedora, pystray's notify_dbus.Notifier() (which uses Gio.bus_get_sync)
+        # interacts with dbus-python's DBusGMainLoop in a way that causes a benign
+        # 'g_main_context_pop_thread_default: assertion stack != NULL' GLib-CRITICAL
+        # message.  It is cosmetic: the updater works correctly.  Install a targeted
+        # GLib log handler to suppress it from cluttering the terminal.
+        try:
+            from gi.repository import GLib as _GLib
+
+            def _suppress_pop_context_warning(domain, level, message, data):
+                if message and 'g_main_context_pop_thread_default' in message:
+                    return  # swallow harmless assertion
+                try:
+                    _GLib.log_default_handler(domain, level, message, data)
+                except Exception:
+                    pass
+
+            _GLib.log_set_handler(
+                'GLib',
+                _GLib.LogLevelFlags.LEVEL_CRITICAL | _GLib.LogLevelFlags.LEVEL_WARNING,
+                _suppress_pop_context_warning,
+                None)
+        except Exception:
+            pass  # non-critical: filter could not be installed; warning may still appear
         self.__main_loop()

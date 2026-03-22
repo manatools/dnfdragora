@@ -12,6 +12,7 @@ This module implements the interface to dnf5daemon dbus APIs
 '''
 
 import dbus
+import dbus.mainloop.glib
 import json # needed for list_fd
 import sys
 import re
@@ -36,7 +37,7 @@ INTERFACE = ORG
 ORG_READONLY = 'org.baseurl.DnfSession'
 INTERFACE_READONLY = ORG_READONLY
 
-DBUS_ERR_RE = re.compile('.*GDBus.Error:([\w\.]*): (.*)$')
+DBUS_ERR_RE = re.compile(r'.*GDBus.Error:([\w\.]*): (.*)$')
 
 #
 # Exceptions
@@ -113,6 +114,11 @@ DNFDAEMON_OBJECT_PATH = '/' + DNFDAEMON_BUS_NAME.replace('.', '/')
 
 IFACE_SESSION_MANAGER = '{}.SessionManager'.format(DNFDAEMON_BUS_NAME)
 IFACE_BASE = '{}.Base'.format(DNFDAEMON_BUS_NAME)
+
+# dbus-python timeout is in seconds (converted to ms internally via int(t*1000)).
+# DBUS_TIMEOUT_INFINITE maps to libdbus INT_MAX milliseconds = 0x7FFFFFFF ms.
+_DBUS_TIMEOUT_INFINITE = int(0x7FFFFFFF / 1000)  # ~2147483 seconds (~24.8 days)
+_DBUS_TIMEOUT_DEFAULT  = 600                       # 10 minutes (adequate for most calls)
 IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
@@ -153,15 +159,23 @@ def unpack_dbus(data):
 # Main Client Class
 #
 
+# Module-level singleton for the dbus-python GLib main loop.
+# DBusGMainLoop(set_as_default=True) must be called exactly once per process:
+# calling it multiple times from different threads (e.g. updater + dialog)
+# can leave mis-matched push/pop pairs on per-thread GLib context stacks,
+# causing the GLib-CRITICAL 'g_main_context_pop_thread_default: assertion
+# stack != NULL failed' warning on Fedora.  Storing the object also prevents
+# premature garbage collection, which would trigger a spurious context-pop.
+_dbus_glib_main_loop = None
+
 
 class Client:
 
     def __init__(self):
-        from dbus.mainloop.glib import DBusGMainLoop
-        #dbus_loop = DBusGMainLoop()
-        #self.bus = dbus.SessionBus(mainloop=dbus_loop)
-        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-        self.bus = dbus.SystemBus()
+        global _dbus_glib_main_loop
+        if _dbus_glib_main_loop is None:
+            _dbus_glib_main_loop = dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        self.bus = dbus.SystemBus(mainloop=_dbus_glib_main_loop)
         self.dbus_org = DNFDAEMON_BUS_NAME
         self.iface_session = None
         self.session_path = None
@@ -172,18 +186,31 @@ class Client:
         self.iface_base_signalhandler_maches = None
         self.iface_rpm_signalhandler_maches = None
 
+        # Async request guard
+        self._async_lock = threading.Lock()
         self._sent = False
         self._data = {'cmd': None}
         self.eventQueue = SimpleQueue()
-        self._get_daemon()
         self.__async_thread = None
 
-        # 60 secs without receiving anything during a transaction
-        self.__TransactionTimer = dnfdragora.misc.TimerEvent(60, self.on_TransactionTimeoutEvent)
+        # 300 secs, e.g. 5 minutes without receiving anything during a transaction
+        # kernel postscriptlet execution can take a long time, so we need a long timeout here to avoid false positives.
+        self.__TransactionTimer = dnfdragora.misc.TimerEvent(300, self.on_TransactionTimeoutEvent)
         self.__TransactionTimer.AutoRpeat = False
 
+        # Shared libdnf5 Base used by comps queries to avoid repeated repo metadata loading.
+        # Initialised BEFORE _get_daemon() so that __del__ -> unloadDaemon() ->
+        # _invalidate_comps_base() never raises AttributeError if _get_daemon() fails.
+        self._comps_base = None
+        self._comps_base_lock = threading.RLock()
+
+        self._get_daemon()
+
         self.proxyMethod = {
-          'ExpireCache'         : 'read_all_repos',
+          ##Base
+          'CleanCache'          : 'clean',
+          'ResetSession'        : 'reset',
+          'ReloadMetadata'      : 'read_all_repos',
 
           'GetPackages'         : 'list_fd',
           #'GetPackages'         : 'list', WARNING list often hangs for big data through dbus, use list_fd
@@ -194,7 +221,6 @@ class Client:
           'Update'              : 'upgrade',
           'Downgrade'           : 'downgrade',
           'Reinstall'           : 'reinstall',
-          'Install'             : 'install',
           'DistroSync'          : 'distro_sync',
 
           'SetEnabledRepos'     : 'enable',
@@ -205,10 +231,11 @@ class Client:
 
           'Advisories'          : 'list',
 
-          #Goal
+          ##Goal
           'BuildTransaction'    : 'resolve',
           'RunTransaction'      : 'do_transaction',
           'TransactionProblems' : 'get_transaction_problems_string',
+
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -255,14 +282,6 @@ class Client:
                 ("download_mirror_failure", self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage)),
                 ("repo_key_import_request", self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport))
             ]
-
-            #self.iface_base_signalhandler_maches = [
-            #    self.iface_base.connect_to_signal("download_add_new", self.on_DownloadStart),
-            #    self.iface_base.connect_to_signal("download_progress", self.on_DownloadProgress),
-            #    self.iface_base.connect_to_signal("download_end", self.on_DownloadEnd),
-            #    self.iface_base.connect_to_signal("download_mirror_failure", self.on_ErrorMessage),
-            #    self.iface_base.connect_to_signal("repo_key_import_request", self.on_GPGImport)
-            #]
 
             '''
                 transaction event sequence example (see https://github.com/rpm-software-management/dnf5/issues/1189)
@@ -316,31 +335,6 @@ class Client:
                 ("transaction_script_error", self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError)),
                 ("transaction_after_complete", self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete))
             ]
-            #self.iface_rpm_signalhandler_maches = [
-            #    self.iface_rpm.connect_to_signal("transaction_unpack_error", self.on_TransactionUnpackError),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_before_begin", self.on_TransactionBeforeBegin),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_elem_progress", self.on_TransactionElemProgress),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_verify_start", self.on_TransactionVerifyStart),
-            #    self.iface_rpm.connect_to_signal("transaction_verify_progress", self.on_TransactionVerifyProgress),
-            #    self.iface_rpm.connect_to_signal("transaction_verify_stop", self.on_TransactionVerifyStop),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_action_start", self.on_TransactionActionStart),
-            #    self.iface_rpm.connect_to_signal("transaction_action_progress", self.on_TransactionActionProgress),
-            #    self.iface_rpm.connect_to_signal("transaction_action_stop", self.on_TransactionActionStop),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_transaction_start", self.on_TransactionTransactionStart),
-            #    self.iface_rpm.connect_to_signal("transaction_transaction_progress", self.on_TransactionTransactionProgress),
-            #    self.iface_rpm.connect_to_signal("transaction_transaction_stop", self.on_TransactionTransactionStop),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_script_start", self.on_TransactionScriptStart),
-            #    self.iface_rpm.connect_to_signal("transaction_script_stop", self.on_TransactionScriptStop),
-            #    self.iface_rpm.connect_to_signal("transaction_script_error", self.on_TransactionScriptError),
-#
-            #    self.iface_rpm.connect_to_signal("transaction_after_complete", self.on_TransactionAfterComplete)
-            #]
             logger.debug("Connected all the signals from Dnf5Daemon.")
 
         ### TODO check dnf5daemon errors and manage correctly        
@@ -353,6 +347,10 @@ class Client:
         #self.iface_session.close_session(self.session_path)
         logger.debug(f"__del__ - Dnf5Daemon Client session")
 
+    def __enter__(self):
+        '''Support use as a context manager: `with Client() as c:`'''
+        return self
+
     def __exit__(self, exc_type, exc_value, exc_traceback) -> None:
         '''exit'''
         self.unloadDaemon()
@@ -361,57 +359,55 @@ class Client:
         if exc_type:
             logger.critical("", exc_info=(exc_type, exc_value, exc_traceback))
 
+    def _reset_async_request_guard(self, reason=""):
+        '''Reset single-flight async command guard state.
+
+        This is required when reloading/unloading daemon sessions because
+        pending callbacks from the old session may never arrive.
+        '''
+        with self._async_lock:
+            if self._sent:
+                logger.debug("Reset async guard (previous cmd=%s) reason=%s", self._data.get('cmd'), reason)
+            self._sent = False
+            self._data = {'cmd': None}
+
     def unloadDaemon(self):
         '''Close the D-Bus connection and disconnect signals.'''
+        logger.debug(f"Unloading Dnf5Daemon session: {self.session_path if self.session_path else 'None'}...")
+        self._invalidate_comps_base()
+        self._reset_async_request_guard("unloadDaemon")
         if self.session_path:
             try:
                 # Disconnect all signals
 
                 for signal_name, match in self.iface_base_signalhandler_maches:
                     self.bus.remove_signal_receiver(match, signal_name=signal_name, dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[0], signal_name="download_add_new", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[1], signal_name="download_progress", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[2], signal_name="download_end", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[3], signal_name="download_mirror_failure", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_base_signalhandler_maches[4], signal_name="repo_key_import_request", dbus_interface=IFACE_BASE, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
                 
                 for signal_name, match in self.iface_rpm_signalhandler_maches:
                     self.bus.remove_signal_receiver(match, signal_name=signal_name, dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[0], signal_name="transaction_unpack_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[1], signal_name="transaction_before_begin", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[2], signal_name="transaction_elem_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[3], signal_name="transaction_verify_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[4], signal_name="transaction_verify_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[5], signal_name="transaction_verify_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[6], signal_name="transaction_action_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[7], signal_name="transaction_action_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[8], signal_name="transaction_action_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[9], signal_name="transaction_transaction_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[10], signal_name="transaction_transaction_progress", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[11], signal_name="transaction_transaction_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[11], signal_name="transaction_script_start", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[12], signal_name="transaction_script_stop", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[13], signal_name="transaction_script_error", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
-                #self.bus.remove_signal_receiver(self.iface_rpm_signalhandler_maches[14], signal_name="transaction_after_complete", dbus_interface=IFACE_RPM, bus_name=DNFDAEMON_BUS_NAME, path=self.session_path)
                 
                 logger.debug("Disconnected all the signals from Dnf5Daemon.")
                 # Close the current session
-                self.iface_session.close_session(self.session_path)
-                logger.debug(f"Closed Dnf5Daemon session: {self.session_path}")
+                retVal = self.iface_session.close_session(self.session_path)
+                logger.debug(f"Closed Dnf5Daemon session: {self.session_path} {'retVal(success)=' + str(retVal) if retVal is not None else 'None'}")
             except Exception as err:
-                logger.error(f"Error during reloadDaemon: {err}")
-                self._handle_dbus_error(err)
+                # Log and continue cleanup — _handle_dbus_error always raises,
+                # which must not happen inside __del__ or other cleanup callers.
+                logger.error(f"Error during unloadDaemon: {err}")
             finally:
                 self.session_path = None
 
     def reloadDaemon(self):
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
+            logger.info("Reloading Dnf5Daemon...")
+            self._invalidate_comps_base()
+            self._reset_async_request_guard("reloadDaemon-start")
             # Close the current session
             self.unloadDaemon()
             # Reinitialize the daemon
             self._get_daemon()
+            self._reset_async_request_guard("reloadDaemon-end")
             logger.debug("Reinitialized Dnf5Daemon.")
 
         except Exception as err:
@@ -447,8 +443,8 @@ class Client:
 
     def _parse_error(self):
         '''parse values from a DBus related exception '''
-        (type, value, traceback) = sys.exc_info()
-        res = DBUS_ERR_RE.match(str(value))
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        res = DBUS_ERR_RE.match(str(exc_value))
         if res:
             return res.groups()
         return "", ""
@@ -457,6 +453,13 @@ class Client:
     def _return_handler(self, result, user_data):
         '''Async DBus call, return handler '''
         logger.debug("return_handler %s", user_data['cmd'])
+        # clear sent flag under lock to avoid races with the async thread loop
+        try:
+            with self._async_lock:
+                self._sent = False
+        except Exception:
+            # fallback if lock missing for any reason
+            self._sent = False
         if isinstance(result, Exception):
             # print(result)
             user_data['result'] = None
@@ -467,8 +470,7 @@ class Client:
         #user_data['main_loop'].quit()
 
         response = self._get_result(user_data)
-        self.eventQueue.put({'event': user_data['cmd'], 'value': response})
-        self._sent = False
+        self.eventQueue.put({'event': user_data['cmd'], 'value': response})        
         logger.debug("Quit return_handler error %s", user_data['error'])
 
 
@@ -496,243 +498,325 @@ class Client:
             elif user_data['result'] == ':not_found':  # package not found
               result['error'] = "Package not found"
             else:
-              attr = user_data["args"]["package_attrs"][0]
-              result['result'] = user_data['result'][0][attr] if result['result'][0] else None
+              # args is a tuple (options_dict,); options_dict['package_attrs'] holds the requested attr name
+              attr = user_data["args"][0]["package_attrs"][0]
+              result['result'] = user_data['result'][0][attr] if result['result'] else None
 
           else:
             pass
 
         return result
-    
-    def __async_thread_loop(self, data, *args):
-      '''
-      Thread function for GLib main loop to handle D-Bus calls with timeouts.
-      '''
-      logger.debug("__async_thread_loop Command %s(%s) requested ", str(data['cmd']), repr(args) if args else "")
-      proxy = self.Proxy(data['cmd'])
-      method = self.proxyMethod[data['cmd']]
-      logger.debug("__async_thread_loop proxy %s method %s", proxy.dbus_interface, method)
-      pipe_r, pipe_w = None, None
 
-      try:
-          # Create a new GLib main loop for this thread
-          loop = GLib.MainLoop(GLib.MainContext.ref_thread_default())
-
-          def on_error(error):
-              # Handle D-Bus error
-              logger.error("__async_thread_loop error for command %s: %s", data['cmd'], error)
-              if method == 'list_fd':
-                if pipe_r is not None:
-                    os.close(pipe_r)
-                if pipe_w is not None:
-                    os.close(pipe_w)
-
-              self._return_handler(error, data)             
-              # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-              GLib.idle_add(loop.quit)            
-              #logger.debug("... on_error quit")
-
-          func = getattr(proxy, method)
-          if data['return_value']:
-            # TODO find a better way to distinguish if cmd needs a pipe
-            if method == 'list_fd':
-                # create a pipe and pass the write end to the server
-                pipe_r, pipe_w = os.pipe()
-
-                def on_list_id_success(rpipe_idesult):
-                    # Handle successful D-Bus call
-                    logger.debug("__async_thread_loop success for command %s", data['cmd'])
-                    # close the write end
-                    os.close(pipe_w)
-                    # read the data
-                    timeout = 1000 # 1 second timeout seems to be enough
-                    buffer_size = 65536
-                    poller = select.poll()
-                    poller.register(pipe_r, select.POLLIN | select.POLLHUP)
-                    read_finished = False
-                    parser = json.JSONDecoder()
-                    to_parse = ""                
-                    pkglist = []
-                    try:
-                        while (not read_finished):
-                            polled_event = poller.poll(timeout)
-                            if not polled_event:
-                                logger.warning("__async_thread_loop(list_fd): timeout reached while reading from pipe.")
-                                break
-                            for descriptor, event in polled_event:
-                                if event & select.POLLIN:
-                                    buffer = os.read(descriptor, buffer_size).decode()                                    
-                                    if buffer:
-                                        to_parse += buffer
-                                        while to_parse:
-                                            try:
-                                                obj, end = parser.raw_decode(to_parse)
-                                                pkglist.append(obj)
-                                                to_parse = to_parse[end:].strip()
-                                            except json.decoder.JSONDecodeError:
-                                                logger.error("__async_thread_loop(list_fd): JSONDecodeError while parsing buffer")                                                             
-                                                # TODO - handle unfinished strings correctly
-                                                # current example implementation just tries to parse once again when
-                                                # more data arrive.
-                                                break
-                                    else:
-                                        logger.debug("__async_thread_loop(list_fd): no more data to read from pipe.")
-                                        read_finished = True
-                                elif event & select.POLLHUP:
-                                    logger.debug("__async_thread_loop(list_fd): pipe closed by the writer.")
-                                    read_finished = True
-                    except Exception as err:
-                        logger.error("__async_thread_loop(list_fd): Exception while reading from pipe: %s", err)
-                        read_finished = True
-                    finally:
-                        os.close(pipe_r)
-                        logger.debug("__async_thread_loop(list_fd): pipe closed.")
-
-                    self._return_handler(pkglist, data)
-                    # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-                    GLib.idle_add(loop.quit)
-                    #logger.debug("__async_thread_loop(list_fd): loop quit")
-                func(*args, pipe_w, reply_handler=on_list_id_success, error_handler=on_error, timeout=600)                
-            else: 
-              def on_success(*result):
-                logger.debug("__async_thread_loop success for command %s with result: %s", str(data['cmd']), repr(result))                
-                if len(result) == 1:  # True if there are one or more values
-                  self._return_handler(unpack_dbus(result[0]), data)
-                elif len(result) == 2:  # True if there are one or more values
-                  self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
-                elif len(result) > 2:  # True if there are one or more values
-                  logger.warning("__async_thread_loop some return values are not managed")
-                # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-                GLib.idle_add(loop.quit)
-                #logger.debug("... on_success quit")
-
-              # Use asynchronous D-Bus call with success and error handlers
-              func(*args, reply_handler=on_success, error_handler=on_error, timeout=600)
-          else:
-              def on_success_novalue():
-                # Handle successful D-Bus call
-                logger.debug("__async_thread_loop.on_success_novalue success for command %s", str(data['cmd']))
-                # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-                GLib.idle_add(loop.quit)
-                #logger.debug("... __async_thread_loop.on_success_novalue quit")
-              func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=600)
-          # Run the GLib main loop to process D-Bus events
-          # Add a timeout to force quit the loop if necessary
-          GLib.timeout_add_seconds(2, lambda: loop.quit())
-          logger.debug("__async_thread_loop GLib main loop running %s", str(data['cmd']))
-          loop.run()
-          logger.debug("__async_thread_loop GLib main loop quit %s", str(data['cmd']))
-      except Exception as err:
-          logger.error("__async_thread_loop (%s) proxy %s, method %s - Exception %s", str(data['cmd']), proxy.dbus_interface, method, err)
-          self._return_handler(err, data)
-          if pipe_r is not None:
-             os.close(pipe_r)
-          if pipe_w is not None:
-             os.close(pipe_w)
-          logger.debug("__async_thread_loop.Exception quit ...")
-          # Usa GLib.idle_add per chiamare loop.quit() nel contesto corretto
-          GLib.idle_add(loop.quit)          
-          #logger.debug("... __async_thread_loop.Exception quit")
-          # Close the pipe            
-
-      # Mark the request as completed
-      self._sent = False
-      logger.debug("__async_thread_loop quit %s", str(data['cmd']))
-
-    def _run_dbus_async(self, cmd, return_value, *args):
-        '''Make an async call to a DBus method in the yumdaemon service
+    def _run_dbus_async(self, cmd, return_value, *args, timeout=_DBUS_TIMEOUT_DEFAULT):
+        '''Make an async call to a DBus method in the dnf5daemon service
 
         cmd: method to run
+        timeout: D-Bus reply timeout in seconds (default _DBUS_TIMEOUT_DEFAULT).
+                 Use _DBUS_TIMEOUT_INFINITE for long-running commands like RunTransaction.
         '''
-        # We enqueue one request at the time by now, monitoring _sent
-        if not self._sent:
-          logger.debug("run_dbus_async %s (return=%d) args: (%s)", cmd, return_value, repr(args) if args else "")
-          if self.__async_thread and self.__async_thread.is_alive():
-            logger.warning("run_dbus_async main loop running %s - probably last request is not terminated yet", self.__async_thread.is_alive())
-          # We enqueue one request at the time by now, monitoring _sent
-          self._sent = True
+        # Single outstanding async request enforced with a lock
+        with self._async_lock:
+            if self._sent:
+                logger.warning("run_dbus_async %s, previous command %s in progress", cmd, self._data.get('cmd'))
+                result = {
+                    'result': False,
+                    'error': _("Command in progress"),
+                }
+                self.eventQueue.put({'event': cmd, 'value': result})
+                logger.debug("Command %s executed (rejected), result %s ", cmd, result)
+                return
+            self._sent = True
+            logger.debug("run_dbus_async %s (return=%d) args: (%s)", cmd, return_value, repr(args) if args else "")
+            self._data = {'cmd': cmd, 'return_value': return_value, 'args': args}
+            data = self._data
 
-          # let's pass also args, it could be useful for debug at certain point...
-          self._data = {'cmd': cmd, 'return_value': return_value, 'args': args, }
+        # Resolve proxy and method
+        proxy = self.Proxy(cmd)
+        if proxy is None:
+            err = DaemonError(f"No proxy available for command {cmd}")
+            self._return_handler(err, data)
+            return
+        method_name = self.proxyMethod.get(cmd)
+        if method_name is None:
+            err = DaemonError(f"No proxyMethod configured for command {cmd}")
+            self._return_handler(err, data)
+            return
 
-          data = self._data
-          self.__async_thread = threading.Thread(target=self.__async_thread_loop, args=(data, *args), daemon=True)
-          self.__async_thread.start()
+        try:
+            func = getattr(proxy, method_name)
+        except Exception as e:
+            logger.error("run_dbus_async: failed to get method %s on proxy: %s", method_name, e)
+            self._return_handler(e, data)
+            return
+
+        # Handlers
+        def on_error(error):
+            logger.error("run_dbus_async error for command %s: %s", cmd, error)
+            # Route via _return_handler so _sent is cleared and UI notified (when applicable)
+            self._return_handler(error, data)
+
+        if return_value:
+            # Methods that return values
+            if method_name == 'list_fd':
+                # Streamed JSON over FD -> read asynchronously
+                try:
+                    pipe_r, pipe_w = os.pipe()
+                except Exception as e:
+                    self._return_handler(e, data)
+                    return
+
+                parser = json.JSONDecoder()
+                state = {'buf': "", 'items': []}
+                _done = [False]  # one-shot guard: first caller wins, prevents double delivery
+
+                def _finish_with(value):
+                    if not _done[0]:
+                        _done[0] = True
+                        # _return_handler is thread-safe (SimpleQueue + Lock); no GLib.idle_add needed
+                        self._return_handler(value, data)
+
+                def _reader_loop(fd):
+                    timeout = 1000
+                    buffer_size = 65536
+                    poller = select.poll()
+                    poller.register(fd, select.POLLIN | select.POLLHUP)
+                    try:
+                        while True:
+                            polled = poller.poll(timeout)
+                            if not polled:
+                                # keep waiting; server may still stream
+                                continue
+                            for descriptor, event in polled:
+                                if event & select.POLLIN:
+                                    chunk = os.read(descriptor, buffer_size)
+                                    if not chunk:
+                                        _finish_with(state['items'])
+                                        return
+                                    buffer = chunk.decode(errors='ignore')
+                                    if buffer:
+                                        state['buf'] += buffer
+                                        while state['buf']:
+                                            try:
+                                                obj, end = parser.raw_decode(state['buf'])
+                                                state['items'].append(obj)
+                                                state['buf'] = state['buf'][end:].lstrip()
+                                            except json.decoder.JSONDecodeError:
+                                                break
+                                if event & select.POLLHUP:
+                                    _finish_with(state['items'])
+                                    return
+                    except Exception as ex:
+                        logging.getLogger("dnfdaemon.client").exception("list_fd reader error: %s", ex)
+                        _finish_with(ex)
+                    finally:
+                        try:
+                            os.close(fd)
+                        except Exception:
+                            pass
+
+                # 1. Schedule the D-Bus call; pass pipe_w FD to the daemon.
+                #    error_handler uses _finish_with so the _done guard prevents
+                #    double delivery if the thread also fires later.
+                try:
+                    func(*args, pipe_w, reply_handler=lambda *_: None, error_handler=_finish_with, timeout=600)
+                except Exception as e:
+                    # func() raised before even queuing the call: close both ends and return.
+                    # Thread not started yet, so no double delivery.
+                    try:
+                        os.close(pipe_r)
+                    except Exception:
+                        pass
+                    try:
+                        os.close(pipe_w)
+                    except Exception:
+                        pass
+                    self._return_handler(e, data)
+                    return
+                finally:
+                    # 2. Close local write end so the reader observes HUP
+                    #    once the daemon closes its copy.
+                    try:
+                        os.close(pipe_w)
+                    except Exception:
+                        pass
+
+                # 3. D-Bus call queued and local pipe_w closed; start reader.
+                #    Use GLib.io_add_watch (the proper PyGObject API for FD monitoring).
+                #    GLib.unix_fd_add does NOT exist in PyGObject — it is a C-only GLib macro;
+                #    the Python binding exposes g_io_add_watch via GLib.io_add_watch instead.
+                #    Thread reference is stored so waitForLastAsyncRequestTermination() can join it.
+                channel = GLib.IOChannel.unix_new(pipe_r)
+                channel.set_encoding(None)   # binary / no character conversion
+                channel.set_buffered(False)  # direct reads, no internal buffering
+
+                def _fd_cb(channel, cond):
+                    try:
+                        if cond & GLib.IOCondition.HUP:
+                            _finish_with(state['items'])
+                            try:
+                                os.close(pipe_r)
+                            except Exception:
+                                pass
+                            return False
+                        if cond & GLib.IOCondition.IN:
+                            chunk = os.read(pipe_r, 65536)
+                            if not chunk:
+                                _finish_with(state['items'])
+                                try:
+                                    os.close(pipe_r)
+                                except Exception:
+                                    pass
+                                return False
+                            buffer = chunk.decode(errors='ignore')
+                            if buffer:
+                                state['buf'] += buffer
+                                while state['buf']:
+                                    try:
+                                        obj, end = parser.raw_decode(state['buf'])
+                                        state['items'].append(obj)
+                                        state['buf'] = state['buf'][end:].lstrip()
+                                    except json.decoder.JSONDecodeError:
+                                        break
+                    except Exception as ex:
+                        logging.getLogger("dnfdaemon.client").exception("list_fd io_add_watch error: %s", ex)
+                        _finish_with(ex)
+                        try:
+                            os.close(pipe_r)
+                        except Exception:
+                            pass
+                        return False
+                    return True
+
+                try:
+                    GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT,
+                                      GLib.IOCondition.IN | GLib.IOCondition.HUP, _fd_cb)
+                    logger.debug("list_fd: using GLib.io_add_watch for pipe_r=%d", pipe_r)
+                except Exception as e:
+                    logger.warning("GLib.io_add_watch failed; using thread reader for list_fd: %s", e)
+                    self.__async_thread = threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True)
+                    self.__async_thread.start()
+
+            else:
+                # Regular async method with return value
+                def on_success(*result):
+                    logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result))
+                    if len(result) == 1:
+                        self._return_handler(unpack_dbus(result[0]), data)
+                    elif len(result) == 2:
+                        self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
+                    elif len(result) > 2:
+                        logger.error("run_dbus_async: some return values are not managed")
+                        # since return_handler is not invoked we need to clear _sent here
+                        try:
+                            with self._async_lock:
+                                self._sent = False
+                        except Exception:
+                            self._sent = False
+
+                try:
+                    func(*args, reply_handler=on_success, error_handler=on_error, timeout=timeout)
+                except Exception as e:
+                    self._return_handler(e, data)
+                    return
         else:
-          logger.warning("run_dbus_async %s, previous command %s in progress %s, loop running %s", cmd, self._data['cmd'], self._sent, self.__async_thread.is_alive())
-          result = {
-            'result': False,
-            'error': _("Command in progress"),
-          }
+            # Fire-and-forget: clear _sent when the daemon acks; results will arrive as signals
+            def on_success_novalue():
+                logger.debug("run_dbus_async.on_success_novalue %s", cmd)
+                try:
+                    with self._async_lock:
+                        self._sent = False
+                except Exception:
+                    self._sent = False
 
-          self.eventQueue.put({'event': cmd, 'value': result})
-          logger.debug("Command %s executed, result %s "%(cmd, result))
-
+            try:
+                func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=timeout)
+            except Exception as e:
+                # Route via _return_handler so _sent is cleared and UI handles error
+                self._return_handler(e, data)
+                return
 
     def _run_dbus_sync(self, cmd, *args):
-        '''Make a sync call to a DBus method in the yumdaemon service
-        cmd:
-        '''
+        '''Make a sync call to a DBus method in the dnf5daemon service'''
         logger.debug("_run_dbus_sync %s - args: (%s)", cmd, repr(args) if args else "")
         proxy = self.Proxy(cmd)
+        if proxy is None:
+            raise DaemonError(f"No proxy available for command {cmd}")
 
-        func = getattr(proxy, self.proxyMethod[cmd])
+        method_name = self.proxyMethod.get(cmd)
+        if method_name is None:
+            raise DaemonError(f"No proxyMethod configured for command {cmd}")
 
-        return_value = None
-
-        # TODO find a better way to distinguish if cmd needs a pipe
-        #if cmd == 'GetPackages':
-        if func == 'list_fd':
-            # create a pipe and pass the write end to the server
+        # list_fd requires pipe handling
+        if method_name == 'list_fd':
             pipe_r, pipe_w = os.pipe()
-            pipe_id = func(*args, pipe_w)
-            # close the write end
-            os.close(pipe_w)
+            try:
+                method = getattr(proxy, method_name)
+                # call with write-end; daemon writes JSON stream
+                method(*args, pipe_w, timeout=600)
+                # close local write-end so reader can receive HUP when daemon closes
+                try:
+                    os.close(pipe_w)
+                except Exception:
+                    pass
 
-            # read the data
-            timeout = 10000
-            buffer_size = 65536
-            poller = select.poll()
-            poller.register(pipe_r, select.POLLIN)
-            read_finished = False
-            parser = json.JSONDecoder()
-            to_parse = ""
-            pkglist = []
-            while (not read_finished):
-                polled_event = poller.poll(timeout)
-                if not polled_event:
-                    print("Timeout reached.")
-                    break
-                for descriptor, event in polled_event:
-                    buffer = os.read(descriptor, buffer_size).decode()
-                    if (len(buffer) > 0):
-                        to_parse += buffer
-                        while to_parse:
-                            try:
-                                obj, end = parser.raw_decode(to_parse)
-                                pkglist.append(obj)
-                                to_parse = to_parse[end:].strip()
-                            except json.decoder.JSONDecodeError:
-                                # TODO - handle unfinished strings correctly
-                                # current example implementation just tries to parse once again when
-                                # more data arrive.
+                timeout = 10000
+                buffer_size = 65536
+                poller = select.poll()
+                poller.register(pipe_r, select.POLLIN | select.POLLHUP)
+                parser = json.JSONDecoder()
+                to_parse = ""
+                items = []
+                read_finished = False
+
+                while not read_finished:
+                    events = poller.poll(timeout)
+                    if not events:
+                        logger.warning("_run_dbus_sync(list_fd): timeout reached while reading from pipe.")
+                        break
+                    for fd, ev in events:
+                        if ev & select.POLLIN:
+                            chunk = os.read(fd, buffer_size)
+                            if not chunk:
+                                read_finished = True
                                 break
-                    else:
-                        read_finished = True
-
-            os.close(pipe_r)
-            return_value = pkglist
+                            buf = chunk.decode(errors='ignore')
+                            if buf:
+                                to_parse += buf
+                                while to_parse:
+                                    try:
+                                        obj, end = parser.raw_decode(to_parse)
+                                        items.append(obj)
+                                        to_parse = to_parse[end:].lstrip()
+                                    except json.decoder.JSONDecodeError:
+                                        # wait for more data
+                                        break
+                        if ev & select.POLLHUP:
+                            read_finished = True
+                            break
+                return items
+            finally:
+                # ensure both ends are closed
+                try:
+                    os.close(pipe_r)
+                except Exception:
+                    pass
+                try:
+                    os.close(pipe_w)
+                except Exception:
+                    pass
         else:
-            return_value = func(*args)
-
-        return return_value
+            method = getattr(proxy, method_name)
+            return method(*args, timeout=600)
 
     def waitForLastAsyncRequestTermination(self):
       '''
       join async thread
       '''
-      self.__async_thread.join()
-
+      if self.__async_thread and self.__async_thread.is_alive():
+          try:
+              self.__async_thread.join(timeout=10)
+          except Exception:
+              pass
 #
 # Dbus Signal Handlers
 #
@@ -827,12 +911,12 @@ class Client:
         '''
         self.eventQueue.put({'event': 'OnGPGImport',
                              'value': {
-                                 'session_object_path':session_object_path,
-                                 'key_id':key_id,
-                                 'user_ids':user_ids,
-                                 'key_fingerprint':key_fingerprint,
-                                 'key_url':key_url,
-                                 'timestamp':timestamp,
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'key_id': unpack_dbus(key_id),
+                                 'user_ids': unpack_dbus(user_ids),
+                                 'key_fingerprint': unpack_dbus(key_fingerprint),
+                                 'key_url': unpack_dbus(key_url),
+                                 'timestamp': unpack_dbus(timestamp),
                                  }
                              })
 
@@ -1118,7 +1202,7 @@ class Client:
                           }
                       })
 
-    def on_TransactionUnpackError(self, *args) : # nevra):
+    def on_TransactionUnpackError(self, session_object_path, nevra):
         '''
             Error while unpacking the package.
             Manages the transaction_unpack_error signal.
@@ -1126,14 +1210,14 @@ class Client:
                 @session_object_path: object path of the dnf5daemon session
                 @nevra: full NEVRA of the package
         '''
-        logger.error("on_TransactionUnpackError (%s)", repr(args))
+        logger.error("on_TransactionUnpackError nevra=%s", nevra)
         self.__TransactionTimer.start()
-        #self.eventQueue.put({'event': 'OnTransactionUnpackError',
-        #                     'value': {
-        #                         'session_object_path':unpack_dbus(session_object_path),
-        #                         'nevra': unpack_dbus(nevra),
-        #                         }
-        #                     })
+        self.eventQueue.put({'event': 'OnTransactionUnpackError',
+                             'value': {
+                                 'session_object_path': unpack_dbus(session_object_path),
+                                 'nevra': unpack_dbus(nevra),
+                                 }
+                             })
 
     ##########TODO fix next signals
     def on_RPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
@@ -1154,32 +1238,63 @@ class Client:
 #
 # Calls to libdnf5
 #
+    def _invalidate_comps_base(self):
+        '''Drop cached libdnf5 Base used by comps queries.'''
+        with self._comps_base_lock:
+            if self._comps_base is not None:
+                logger.debug("Invalidating cached comps base")
+            self._comps_base = None
+
+    def _get_comps_base(self):
+        '''Return a shared, lazily initialized libdnf5 Base configured for comps metadata.'''
+        with self._comps_base_lock:
+            if self._comps_base is not None:
+                return self._comps_base
+
+            logger.debug("Initializing shared comps base")
+            base = libdnf5.base.Base()
+            base.load_config()
+            config = base.get_config()
+
+            types_config = config.get_optional_metadata_types_option()
+            types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+
+            base.setup()
+
+            repo_sack = base.get_repo_sack()
+            repo_sack.create_repos_from_system_configuration()
+            # load_repos(Type_AVAILABLE) is the non-deprecated replacement for
+            # update_and_load_enabled_repos(True) introduced in libdnf5 ≥ 5.2.
+            # Fall back to the old API on older installations.
+            if hasattr(repo_sack, 'load_repos'):
+                repo_sack.load_repos(libdnf5.repo.Repo.Type_AVAILABLE)
+            else:
+                repo_sack.update_and_load_enabled_repos(True)
+
+            self._comps_base = base
+            return self._comps_base
+
     def __getComps(self):
         '''
             Perform Get groups call it works only for Comps.
 
             Returns a list of groups
         '''
-        base = libdnf5.base.Base()
-        base.load_config()
-        config = base.get_config()
+        for attempt in (1, 2):
+            try:
+                base = self._get_comps_base()
+                query = libdnf5.comps.GroupQuery(base)
 
-        types_config = config.get_optional_metadata_types_option()
-        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
+                # locale.getlocale()[0] can return None when no locale is set.
+                loc_raw = locale.getlocale()[0]
+                loc = loc_raw.split('_')[0] if loc_raw else 'en'
 
-        base.setup()
-
-        repo_sack = base.get_repo_sack()
-        repo_sack.create_repos_from_system_configuration()
-        repo_sack.update_and_load_enabled_repos(True)
-
-        query = libdnf5.comps.GroupQuery(base)
-
-        # workaround to get_translated_name()
-        loc = locale.getlocale()[0].split('_')[0] #let's take the first part of locales
-
-        groups = [ [grp.get_groupid(), grp.get_translated_name(loc)] for grp in query ]
-        return groups
+                groups = [[grp.get_groupid(), grp.get_translated_name(loc)] for grp in query]
+                return groups
+            except Exception as error:
+                logger.exception("Failed to load comps groups (attempt %d/2): %s", attempt, error)
+                self._invalidate_comps_base()
+        return []
 
     def __getPackageNamesFromGroup(self, groupID):
         '''
@@ -1190,29 +1305,20 @@ class Client:
 
             Returns a list of package names or an empyty list.
         '''
-        base = libdnf5.base.Base()
-        base.load_config()
-        config = base.get_config()
+        for attempt in (1, 2):
+            try:
+                base = self._get_comps_base()
+                query = libdnf5.comps.GroupQuery(base)
+                query.filter_groupid(groupID)
 
-        types_config = config.get_optional_metadata_types_option()
-        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
-
-        base.setup()
-
-        repo_sack = base.get_repo_sack()
-        repo_sack.create_repos_from_system_configuration()
-        repo_sack.update_and_load_enabled_repos(True)
-
-        query = libdnf5.comps.GroupQuery(base)
-        query.filter_groupid(groupID)
-
-        comps = [ grp for grp in query ]
-        if len(comps):
-            packages=[]
-            gr = comps[0]
-            packages = gr.get_packages()
-
-            return [package.get_name() for package in packages]
+                comps = [grp for grp in query]
+                if len(comps):
+                    packages = comps[0].get_packages()
+                    return [package.get_name() for package in packages]
+                return []
+            except Exception as error:
+                logger.exception("Failed to load package names for comps group '%s' (attempt %d/2): %s", groupID, attempt, error)
+                self._invalidate_comps_base()
         return []
 
 
@@ -1225,24 +1331,16 @@ class Client:
 
             Returns a list of package names or an empyty list.
         '''
-        base = libdnf5.base.Base()
-        base.load_config()
-        config = base.get_config()
-
-        types_config = config.get_optional_metadata_types_option()
-        types_config.add(libdnf5.conf.Option.Priority_RUNTIME, (libdnf5.conf.METADATA_TYPE_COMPS))
-
-        base.setup()
-
-        repo_sack = base.get_repo_sack()
-        repo_sack.create_repos_from_system_configuration()
-        repo_sack.update_and_load_enabled_repos(True)
-
-        query = libdnf5.comps.GroupQuery(base)
-        query.filter_package_name(packageNames)
-
-        comps = [ grp.get_groupid() for grp in query ]
-        return comps
+        for attempt in (1, 2):
+            try:
+                base = self._get_comps_base()
+                query = libdnf5.comps.GroupQuery(base)
+                query.filter_package_name(packageNames)
+                return [grp.get_groupid() for grp in query]
+            except Exception as error:
+                logger.exception("Failed to map comps groups from package names (attempt %d/2): %s", attempt, error)
+                self._invalidate_comps_base()
+        return []
 
 
 #
@@ -1260,7 +1358,7 @@ class Client:
             return  self.iface_repoconf
         elif cmd == 'Advisories':
             return self.iface_advisory
-        elif cmd == 'ExpireCache':
+        elif cmd == 'ReloadMetadata' or cmd == 'CleanCache' or cmd == 'ResetSession':
             return self.iface_base
         elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
@@ -1476,10 +1574,12 @@ class Client:
             repo_ids: list of repo ids to enable
         '''
         if not sync:
-          self._run_dbus_async('SetEnabledRepos', True, repo_ids)
+                    self._invalidate_comps_base()
+                    self._run_dbus_async('SetEnabledRepos', True, repo_ids)
         else:
-          result = self._run_dbus_sync('SetEnabledRepos', repo_ids)
-          return unpack_dbus(result)
+                    result = self._run_dbus_sync('SetEnabledRepos', repo_ids)
+                    self._invalidate_comps_base()
+                    return unpack_dbus(result)
 
     def SetDisabledRepos(self, repo_ids, sync=False):
         '''Disabled a list of repositories
@@ -1488,24 +1588,57 @@ class Client:
             repo_ids: list of repo ids to disable
         '''
         if not sync:
-          self._run_dbus_async('SetDisabledRepos', True, repo_ids)
+                    self._invalidate_comps_base()
+                    self._run_dbus_async('SetDisabledRepos', True, repo_ids)
         else:
-          result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
-          return unpack_dbus(result)
+                    result = self._run_dbus_sync('SetDisabledRepos', repo_ids)
+                    self._invalidate_comps_base()
+                    return unpack_dbus(result)
 
-    def ExpireCache(self, sync=False):
+    def ReloadMetadata(self, sync=False):
         '''
-            Explicitely ask for loading repositories metadata.Expire the dnf metadata,
-            so they will be refresed
-
-            retval:
-                `true` if repositories were successfuly loaded, `false` otherwise.
+            Explicitly ask for loading repositories metadata.
+            Return:
+                @success: `true` if repositories were successfully loaded, `false` otherwise.
         '''
         if not sync:
-          self._run_dbus_async('ExpireCache', True)
+                    self._invalidate_comps_base()
+                    self._run_dbus_async('ReloadMetadata', True)
         else:
-          result = self._run_dbus_sync('ExpireCache')
-          return unpack_dbus(result)
+                    result = self._run_dbus_sync('ReloadMetadata')
+                    self._invalidate_comps_base()
+                    return unpack_dbus(result)
+
+    def CleanCache(self, cache_type='all', sync=False):
+        '''
+            Remove or expire cached data.
+            Args:
+                @cache_type: cache type to clean up. Supported types are "all", "packages",
+                             "metadata", "dbcache", and "expire-cache".
+            Return:
+                @success: True if the cache was successfully cleaned, False otherwise.
+                @error_msg: string, contains errors encountered while cleaning the cache.
+        '''
+        self._invalidate_comps_base()
+        if not sync:
+            self._run_dbus_async('CleanCache', True, cache_type)
+        else:
+            success, error_msg = self._run_dbus_sync('CleanCache', cache_type)
+            return (unpack_dbus(success), unpack_dbus(error_msg))
+
+    def ResetSession(self, sync=False):
+        '''
+            Completely reset the session.
+            Return:
+                @success: True if the session was successfully reset, False otherwise.
+                @error_msg: string, contains errors encountered while resetting the session.
+        '''
+        self._invalidate_comps_base()
+        if not sync:
+            self._run_dbus_async('ResetSession', True)
+        else:
+            success, error_msg = self._run_dbus_sync('ResetSession')
+            return (unpack_dbus(success), unpack_dbus(error_msg))
 
     def ConfirmGPGImport(self, key_id, confirmed, sync=False):
         '''
@@ -1664,6 +1797,7 @@ class Client:
         '''
             Resolve the transaction.
             Args:
+:
                 @options: an array of key/value pairs to modify dependency resolving
             Return:
                 @transaction_items: array
@@ -1697,7 +1831,11 @@ class Client:
             Unknown options are ignored
         '''
         if not sync:
-          self._run_dbus_async('RunTransaction', False, options)
+          # RunTransaction (do_transaction) is a long-running call: the D-Bus reply
+          # arrives only after the entire transaction completes (downloads + RPM install).
+          # A 10-minute transaction would exceed the default 600s timeout and trigger
+          # a spurious NoReply.  Use an effectively infinite timeout instead.
+          self._run_dbus_async('RunTransaction', False, options, timeout=_DBUS_TIMEOUT_INFINITE)
         else:
           self._run_dbus_sync('RunTransaction', options)
 

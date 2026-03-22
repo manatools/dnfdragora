@@ -23,7 +23,7 @@ import time
 import dnfdragora.const as const
 import dnfdragora.dialogs as dialogs
 import dnfdragora.dnf_backend
-import yui
+from manatools.aui import yui as yui
 
 logger = logging.getLogger('dnfdragora.base')
 
@@ -70,7 +70,8 @@ class BaseDragora:
 
     def reset_cache(self):
         logger.debug('Refresh system cache')
-        self._root_backend.ExpireCache()
+        self.backend.CleanCache(sync=True)
+        self._root_backend.ReloadMetadata()
 
     def get_root_backend(self):
         """Get the current root backend.
@@ -134,10 +135,7 @@ class BaseDragora:
             except:
                 pass
 
-        yui.YDialog.deleteTopmostDialog()
-        # next line seems to be a workaround to prevent the qt-app from crashing
-        # see https://github.com/libyui/libyui-qt/issues/41
-        yui.YUILoader.deleteUI()
+        # AUI manages dialog lifecycle; no explicit teardown needed here.
         sys.exit(1)
 
     def _parse_error(self, value):

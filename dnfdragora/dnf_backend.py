@@ -46,8 +46,27 @@ class DnfPackage(dnfdragora.backend.Package):
 
             if "nevra" in dbus_pkg.keys():
                 # example: zypper-aptitude-0:1.14.59-1.fc38.noarch
-                # Nevra.parse return a vector of nevras, first one is the one we need
-                pkg = libdnf5.rpm.Nevra.parse(dbus_pkg["nevra"])[0]
+                # Nevra.parse returns a SWIG vector-like object; be robust
+                # about SWIG variations and ensure we extract the first Nevra safely.
+                nevra_input = dbus_pkg.get("nevra")
+                try:
+                    nevras = libdnf5.rpm.Nevra.parse(str(nevra_input))
+                except Exception:
+                    # Fall back: ensure string and retry
+                    nevras = libdnf5.rpm.Nevra.parse("%s" % nevra_input)
+
+                try:
+                    pkg = nevras[0]
+                except Exception:
+                    # Some SWIG bindings don't support direct indexing; convert to list
+                    try:
+                        nevra_list = [n for n in nevras]
+                        pkg = nevra_list[0]
+                    except Exception:
+                        pkg = None
+                if pkg is None:
+                    logger.error("Failed to parse Nevra for package: %s", nevra_input)
+                    raise Exception("DnfPackage init: failed to parse Nevra")
                 self.name  = pkg.get_name()
                 self.epoch = pkg.get_epoch() if pkg.get_epoch() else 0
                 self.ver   = pkg.get_version()

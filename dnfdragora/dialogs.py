@@ -9,15 +9,15 @@ Author:  Angelo Naselli <anaselli@linux.it>
 @package dnfdragora
 '''
 
-# NOTE part of this code is imported from yumex-dnf
+import manatools.aui.yui as MUI
 
-import yui
 import sys
 import os
 import datetime
 from gi.repository import GLib
 
 import manatools.ui.basedialog as basedialog
+import manatools.ui.common as common
 from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
@@ -100,34 +100,30 @@ class HistoryView:
             for state in const.HISTORY_SORT_ORDER:
                 if state in states:
                     num = len(states[state])
-                    cat = yui.YTreeItem("%s (%i)" %
-                            (const.HISTORY_STATE_LABLES[state], num), True)
-                    cat.this.own(False)
+                    cat = MUI.YTreeItem(label="%s (%i)"%(const.HISTORY_STATE_LABLES[state], num), is_open=True)
 
                     for pkg_list in states[state]:
                         pkg_id, st, is_inst = pkg_list[0]
                         name = misc.pkg_id_to_full_name(pkg_id)
-                        pkg_cat = yui.YTreeItem(cat, name, True)
-                        pkg_cat.this.own(False)
+                        pkg_cat = MUI.YTreeItem(parent=cat, label=name, is_open=True)
 
                         if len(pkg_list) == 2:
                             pkg_id, st, is_inst = pkg_list[1]
                             name = misc.pkg_id_to_full_name(pkg_id)
-                            item = yui.YTreeItem(pkg_cat, name, True)
-                            item.this.own(False)
+                            item = MUI.YTreeItem(parent=pkg_cat, label=name, is_open=True)
 
                     itemVect.append(cat)
 
         itemCollection = None
-        yui.YUI.app().busyCursor()
+        MUI.YUI.app().busyCursor()
         if selected:
-            itemCollection = yui.YItemCollection(itemVect)
-        self._historyView.startMultipleChanges()
+            itemCollection = itemVect
+
         self._historyView.deleteAllItems()
         if selected:
             self._historyView.addItems(itemCollection)
-        self._historyView.doneMultipleChanges()
-        yui.YUI.app().normalCursor()
+
+        MUI.YUI.app().normalCursor()
 
     def _populateTree(self, data):
         '''
@@ -144,43 +140,37 @@ class HistoryView:
             # year
             if date.year not in main.keys():
                 main[date.year] = {}
-                item = yui.YTreeItem(date.strftime("%Y"), True)
-                item.this.own(False)
+                item = MUI.YTreeItem(label=date.strftime("%Y"), is_open=True)
                 main[date.year]['item'] = item
 
             mdict = main[date.year]
             # month
             if date.month not in mdict.keys():
                 mdict[date.month] = {}
-                item = yui.YTreeItem(main[date.year]['item'], date.strftime("%m"), True)
-                item.this.own(False)
+                item = MUI.YTreeItem(parent=main[date.year]['item'], label=date.strftime("%m"), is_open=True)
                 mdict[date.month]['item'] = item
 
             ddict = mdict[date.month]
             # day
             if date.day not in ddict.keys():
                 ddict[date.day] = {}
-                item = yui.YTreeItem(mdict[date.month]['item'], date.strftime("%d"), True)
-                item.this.own(False)
+                item = MUI.YTreeItem(parent=mdict[date.month]['item'], label=date.strftime("%d"), is_open=True)
                 ddict[date.day]['item'] = item
             ddict[date.day][date.strftime("%H:%M:%S")] = tid
-            item = yui.YTreeItem(ddict[date.day]['item'], date.strftime("%H:%M:%S"), False)
-            item.this.own(False)
+            item = MUI.YTreeItem(parent=ddict[date.day]['item'], label=date.strftime("%H:%M:%S"), is_open=False)
             self._tid[tid]= item
 
         itemVect = []
         for year in main.keys():
             itemVect.append(main[year]['item'])
 
-        self._dlg .pollEvent()
+        #self._dlg .pollEvent()
 
-        yui.YUI.app().busyCursor()
-        itemCollection = yui.YItemCollection(itemVect)
-        self._historyTree.startMultipleChanges()
+        MUI.YUI.app().busyCursor()
+        itemCollection = itemVect
         self._historyTree.deleteAllItems()
         self._historyTree.addItems(itemCollection)
-        self._historyTree.doneMultipleChanges()
-        yui.YUI.app().normalCursor()
+        MUI.YUI.app().normalCursor()
 
     def _run_transaction(self):
         '''
@@ -287,12 +277,12 @@ class HistoryView:
         '''
 
         ## push application title
-        appTitle = yui.YUI.app().applicationTitle()
+        appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("History") )
-        minWidth  = 80;
-        minHeight = 25;
-        self._dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        MUI.YUI.app().setApplicationTitle(_("History") )
+        minWidth  = 700  # pixels
+        minHeight = 500  # pixels
+        self._dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(self._dlg , minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         hbox = self.factory.createHBox(layout)
@@ -309,16 +299,16 @@ class HistoryView:
         self._populateTree(data)
         self._populateHistory()
 
-        self._dlg .setDefaultButton(self._closeButton)
+        #self._dlg .setDefaultButton(self._closeButton)
 
         performedUndo = False
         while (True) :
             event = self._dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -333,7 +323,7 @@ class HistoryView:
                     if sel :
                         show_info = sel in self._tid.values()
                         self._undoButton.setEnabled(show_info)
-                        self._closeButton.setDefaultButton()
+                        #self._closeButton.setDefaultButton()
                         if not show_info:
                             sel = None
                     self._populateHistory(sel)
@@ -341,7 +331,7 @@ class HistoryView:
         self._dlg.destroy()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(appTitle)
+        MUI.YUI.app().setApplicationTitle(appTitle)
 
         return performedUndo
 
@@ -364,59 +354,45 @@ class PackageActionDialog:
         '''
 
         ## push application title
-        appTitle = yui.YUI.app().applicationTitle()
+        appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("Action on selected packages") )
-        minWidth  = 60;
-        minHeight = 10;
-        dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        MUI.YUI.app().setApplicationTitle(_("Action on selected packages") )
+        minWidth  = 400  # pixels
+        minHeight = 250  # pixels
+        dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
 
         #labeledFrameBox - Actions
         frame = self.factory.createFrame(layout, "Actions")
-        frame.setWeight( yui.YD_HORIZ, 1 )
-        frame = self.factory.createHVCenter( frame )
-        frame = self.factory.createHVSquash( frame )
+        frame.setWeight( MUI.YUIDimension.YD_HORIZ, 1 )
+        frame = self.factory.createHVCenter( frame )        
         frame = self.factory.createVBox( frame )
-
-        rbg       = self.factory.createRadioButtonGroup(frame)
-        frame   = self.factory.createVBox(rbg)
-        Normal  = self.factory.createRadioButton(self.factory.createLeft(frame), _("Normal (Install/Upgrade/Remove)"), self.actionValue == const.Actions.NORMAL)
-        Normal.setNotify(True)
-        rbg.addRadioButton(Normal)
         
-        Reinstall = self.factory.createRadioButton(self.factory.createLeft(frame), _("Reinstall"), self.actionValue == const.Actions.REINSTALL)
-        Reinstall.setNotify(True)
+        Normal  = self.factory.createRadioButton(frame, _("Normal (Install/Upgrade/Remove)"), self.actionValue == const.Actions.NORMAL)
+        Reinstall = self.factory.createRadioButton(frame, _("Reinstall"), self.actionValue == const.Actions.REINSTALL)
         if self.parent.update_only :
             Reinstall.setDisabled()
-        rbg.addRadioButton(Reinstall)
-
-        Downgrade = self.factory.createRadioButton(self.factory.createLeft(frame), _("Downgrade"), self.actionValue == const.Actions.DOWNGRADE)
-        Downgrade.setNotify(True)
+        Downgrade = self.factory.createRadioButton(frame, _("Downgrade"), self.actionValue == const.Actions.DOWNGRADE)
         if self.parent.update_only :
             Downgrade.setDisabled()
-        rbg.addRadioButton(Downgrade)
-
-        DistroSync = self.factory.createRadioButton(self.factory.createLeft(frame), _("Distro Sync"), self.actionValue == const.Actions.DISTRO_SYNC)
-        DistroSync.setNotify(True)
-        rbg.addRadioButton(DistroSync)
+        DistroSync = self.factory.createRadioButton(frame, _("Distro Sync"), self.actionValue == const.Actions.DISTRO_SYNC)
     
         align = self.factory.createRight(layout)
         hbox = self.factory.createHBox(align)
         okButton = self.factory.createPushButton(hbox, _("&Ok"))
         cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
-        dlg.pollEvent()
-        dlg.setDefaultButton(cancelButton)
+        #dlg.pollEvent()
+        #dlg.setDefaultButton(cancelButton)
 
         while (True) :
             event = dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 self.actionValue = self.savedActionValue
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -437,7 +413,7 @@ class PackageActionDialog:
         dlg.destroy()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(appTitle)
+        MUI.YUI.app().setApplicationTitle(appTitle)
 
         return self.actionValue
 
@@ -462,15 +438,22 @@ class TransactionResult:
 
 
         ## push application title
-        appTitle = yui.YUI.app().applicationTitle()
+        appTitle = MUI.YUI.app().applicationTitle()
         ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("Transaction result") )
-        minWidth  = 80;
-        minHeight = 25;
-        dlg     = self.factory.createPopupDialog(yui.YDialogNormalColor)
+        MUI.YUI.app().setApplicationTitle(_("Transaction result") )
+        # Pixel dimensions: wide enough to display full package NEVRAs
+        # (e.g. python3-something-1.2.3-4.mga10.x86_64) without truncation;
+        # tall enough for the dependency tree without excessive scrolling.
+        minWidth  = 800  # pixels
+        minHeight = 550  # pixels
+        dlg     = self.factory.createPopupDialog()
         minSize = self.factory.createMinSize(dlg, minWidth, minHeight)
         layout  = self.factory.createVBox(minSize)
         treeWidget = self.factory.createTree(layout, _("Transaction dependency"))
+        # Let the tree fill all available vertical space so the package list
+        # is as visible as possible before the user needs to scroll.
+        treeWidget.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        treeWidget.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         sizeLabel = self.factory.createLabel(layout,"")
 
         align = self.factory.createRight(layout)
@@ -484,8 +467,8 @@ class TransactionResult:
           if not pkglist[action]:
             continue
           label = const.TRANSACTION_RESULT_TYPES[action]
-          level1Item = yui.YTreeItem(label, True)
-          level1Item.this.own(False)
+          level1Item = MUI.YTreeItem(label=label, is_open=True)
+
           for name in pkglist[action].keys():
             pkgid, size, replaces = (None, None, None)
             if len(pkglist[action][name]) > 2:
@@ -495,29 +478,25 @@ class TransactionResult:
               pkgid, size = pkglist[action][name]
 
             label = pkgid + " (" +  misc.format_number(size) + ")"
-            level2Item = yui.YTreeItem(level1Item, label, True)
-            level2Item.this.own(False)
+            level2Item = MUI.YTreeItem(parent=level1Item, label=label, is_open=True)
             total_size += size
             if replaces:
                 for rep in replaces:
                     label =  _("replacing ") + rep
-                    item = yui.YTreeItem(level2Item, label, False)
-                    item.this.own(False)
+                    item = MUI.YTreeItem(parent=level2Item, label=label, is_open=False)
 
           itemVect.append(level1Item)
 
         sizeLabel.setText(_("Total size ") +  misc.format_number(total_size))
-        dlg.pollEvent()
+        #dlg.pollEvent()
 
-        yui.YUI.app().busyCursor()
-        itemCollection = yui.YItemCollection(itemVect)
-        treeWidget.startMultipleChanges()
+        MUI.YUI.app().busyCursor()
+        itemCollection = itemVect
         treeWidget.deleteAllItems()
         treeWidget.addItems(itemCollection)
-        treeWidget.doneMultipleChanges()
-        yui.YUI.app().normalCursor()
+        MUI.YUI.app().normalCursor()
 
-        dlg.setDefaultButton(okButton)
+        #dlg.setDefaultButton(okButton)
 
 
         accepting = False
@@ -525,9 +504,9 @@ class TransactionResult:
             event = dlg.waitForEvent()
             eventType = event.eventType()
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget = event.widget()
 
@@ -540,7 +519,7 @@ class TransactionResult:
         dlg.destroy()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(appTitle)
+        MUI.YUI.app().setApplicationTitle(appTitle)
 
         return accepting
 
@@ -556,7 +535,7 @@ class AboutDialog:
 
         '''
         self.parent = parent
-        self.factory = self.parent.mgaFactory
+        self.factory = MUI.YUI.widgetFactory()
         # name        => the application name
         # version     =>  the application version
         # license     =>  the application license, the short length one (e.g. GPLv2, GPLv3, LGPLv2+, etc)
@@ -576,7 +555,8 @@ class AboutDialog:
                             "Neal   Gompa   &lt;ngompa13@gmail.com&gt;",
                             "Björn  Esser   &lt;besser82@fedoraproject.org&gt;")
         self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
-        self.dialog_mode = yui.YMGAAboutDialog.TABBED
+        # dialog mode retained for compatibility; common.AboutDialog handles layout
+        # self.dialog_mode = common.AboutDialogMode.TABBED
         # TODO
         self.logo = parent.images_path + "dnfdragora-logo.png"
         self.icon = parent.icon
@@ -587,14 +567,18 @@ class AboutDialog:
         '''
         shows the about dialog
         '''
-        dlg = self.factory.createAboutDialog(
-            self.name, self.version, self.license,
-            self.authors, self.description, self.logo,
-            self.icon, self.credits, self.information)
-
-        dlg.show(self.dialog_mode)
-
-        dlg = None;
+        info = {
+          'name': self.name,
+          'version': self.version,
+          'license': self.license,
+          'authors': self.authors,
+          'description': self.description,
+          'logo': self.logo,
+          'icon': self.icon,
+          'credits': self.credits,
+          'information': self.information,
+        }
+        common.AboutDialog(info)
 
 class RepoDialog:
     '''
@@ -608,7 +592,6 @@ class RepoDialog:
         '''
         self.parent = parent
         self.factory = self.parent.factory
-        self.mgaFactory = self.parent.mgaFactory
         self.backend = self.parent.backend
         self.itemList = {}
         self.infoKeys = {
@@ -650,14 +633,14 @@ class RepoDialog:
         '''
         setup the dialog layout
         '''
-        self.appTitle = yui.YUI.app().applicationTitle()
-        ## set new title to get it in dialog
-        yui.YUI.app().setApplicationTitle(_("Repository Management") )
+        self.appTitle = MUI.YUI.app().applicationTitle()
 
         self.dialog = self.factory.createPopupDialog()
+        ## set new title to get it in dialog
+        MUI.YUI.app().setApplicationTitle(_("Repository Management") )
 
-        minSize = self.factory.createMinSize( self.dialog, 100, 26 )
-
+        vbox = self.factory.createVBox(self.dialog)
+        minSize = self.factory.createMinSize( vbox, 700, 500 )  # pixels
         vbox = self.factory.createVBox(minSize)
 
         #Line for logo and title
@@ -673,21 +656,20 @@ class RepoDialog:
         hbox_bottom = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
 
-        hbox_middle.setWeight(yui.YD_VERT,50)
-        hbox_bottom.setWeight(yui.YD_VERT,30)
-        hbox_footbar.setWeight(yui.YD_VERT,10)
+        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT,50)
+        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT,30)
+        hbox_footbar.setWeight(MUI.YUIDimension.YD_VERT,10)
 
         checkboxed = True
-        repoList_header = yui.YCBTableHeader()
-        repoList_header.addColumn("", checkboxed)
-        repoList_header.addColumn(_('Name'), not checkboxed)
-        repoList_header.addColumn(_('Id'), not checkboxed)
+        repoList_header = MUI.YTableHeader()
+        repoList_header.addColumn("", checkboxed, alignment=MUI.YAlignmentType.YAlignCenter)
+        repoList_header.addColumn(_('Name'))
+        repoList_header.addColumn(_('Id'))
 
 
-        self.repoList = self.mgaFactory.createCBTable(hbox_middle,repoList_header)
-        self.repoList.setImmediateMode(True)
+        self.repoList = self.factory.createTable(hbox_middle, repoList_header)
 
-        info_header = yui.YTableHeader()
+        info_header = MUI.YTableHeader()
         columns = [_('Information'), _('Value') ]
         for col in (columns):
             info_header.addColumn(col)
@@ -697,12 +679,12 @@ class RepoDialog:
         #self.info.setWeight(0,40)
         #self.info.setWeight(1,40)
 
-        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
-        self.applyButton.setWeight(yui.YD_HORIZ,3)
+        self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
+        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
 
-        self.quitButton = self.factory.createIconButton(hbox_footbar,"",_("&Cancel"))
-        self.quitButton.setWeight(yui.YD_HORIZ,3)
-        self.dialog.setDefaultButton(self.quitButton)
+        self.quitButton = self.factory.createPushButton(hbox_footbar, _("&Cancel"))
+        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
+        #self.dialog.setDefaultButton(self.quitButton)
 
         self.itemList = {}
         repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
@@ -713,15 +695,14 @@ class RepoDialog:
         repos = self.backend.get_repositories()
 
         for r in repos:
-            item = yui.YCBTableItem()
-            item.addCell(r['enabled'])
-            item.addCell(r['name'])
-            item.addCell(r['id'])
+            item = MUI.YTableItem()
+            item.addCell(bool(r['enabled']))
+            item.addCell(str(r['name']))
+            item.addCell(str(r['id']))
 
             self.itemList[r['id']] = {
                 'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
             }
-            item.this.own(False)
 
         keylist = sorted(self.itemList.keys())
         v = []
@@ -729,14 +710,11 @@ class RepoDialog:
             item = self.itemList[key]['item']
             v.append(item)
 
-        #NOTE workaround to get YItemCollection working in python
-        itemCollection = yui.YItemCollection(v)
+        itemCollection = v
 
-        self.repoList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
         self.repoList.deleteAllItems()
         self.repoList.addItems(itemCollection)
-        self.repoList.doneMultipleChanges()
         repo_id = self._selectedRepository()
         self._addAttributeInfo(repo_id)
 
@@ -778,8 +756,7 @@ class RepoDialog:
                 key = self.infoKeys[k]
                 value = _('Now')
             if key:
-              item = yui.YTableItem(key, value)
-              item.this.own(False)
+              item = MUI.YTableItem(key, value)
               v.append(item)
 
       except NameError as e:
@@ -791,14 +768,11 @@ class RepoDialog:
       except:
           logger.error("Unexpected error: %s ", sys.exc_info()[0])
 
-      #NOTE workaround to get YItemCollection working in python
-      itemCollection = yui.YItemCollection(v)
+      itemCollection = v
 
-      self.info.startMultipleChanges()
       # cleanup old changed items since we are removing all of them
       self.info.deleteAllItems()
       self.info.addItems(itemCollection)
-      self.info.doneMultipleChanges()
 
     def _selectedRepository(self) :
         '''
@@ -826,9 +800,9 @@ class RepoDialog:
             rebuild_package_list = False
             group = None
             #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
+            if (eventType == MUI.YEventType.CancelEvent) :
                 break
-            elif (eventType == yui.YEvent.WidgetEvent) :
+            elif (eventType == MUI.YEventType.WidgetEvent) :
                 # widget selected
                 widget  = event.widget()
                 if (widget == self.quitButton) :
@@ -849,20 +823,24 @@ class RepoDialog:
                       self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
                     return True
                 elif (widget == self.repoList) :
-                    wEvent = yui.toYWidgetEvent(event)
-                    if (wEvent.reason() == yui.YEvent.ValueChanged) :
-                        changedItem = self.repoList.changedItem()
-                        if changedItem :
-                            cell = changedItem.cellChanged()
-                            for it in self.itemList:
-                                if (self.itemList[it]['item'] == changedItem) :
-                                    self.itemList[it]['enabled'] = cell.checked()
-                                    break
+                  if (event.reason() == MUI.YEventReason.ValueChanged) :
+                    changedItem = self.repoList.changedItem()
+                    if changedItem :
+                      # first column is the checkbox
+                      new_state = False
+                      try:
+                        new_state = bool(changedItem.cell(0).checked())
+                      except Exception:
+                        pass
+                      for it in self.itemList:
+                        if (self.itemList[it]['item'] == changedItem) :
+                          self.itemList[it]['enabled'] = new_state
+                          break
 
                     repo_id = self._selectedRepository()
-                    yui.YUI.app().busyCursor()
+                    MUI.YUI.app().busyCursor()
                     self._addAttributeInfo(repo_id)
-                    yui.YUI.app().normalCursor()
+                    MUI.YUI.app().normalCursor()
 
         return False
 
@@ -874,7 +852,7 @@ class RepoDialog:
         refresh_data=self._handleEvents()
 
         #restore old application title
-        yui.YUI.app().setApplicationTitle(self.appTitle)
+        MUI.YUI.app().setApplicationTitle(self.appTitle)
 
         self.dialog.destroy()
         self.dialog = None
@@ -882,10 +860,51 @@ class RepoDialog:
 
 class OptionDialog(basedialog.BaseDialog):
   def __init__(self, parent):
-    basedialog.BaseDialog.__init__(self, "dnfdragora options", "dnfdragora", basedialog.DialogType.POPUP, 80, 15)
+    basedialog.BaseDialog.__init__(self, _("dnfdragora options"), "dnfdragora", basedialog.DialogType.POPUP, 640, 480)
     self.parent = parent
     self.log_vbox = None
     self.widget_callbacks = []
+    self._HSPACING_PX = 6
+    self._VSPACING_PX = 12
+
+  # ------------------------------------------------------------------
+  # Safe config-access helpers
+  # ------------------------------------------------------------------
+
+  @staticmethod
+  def _safe_cfg_get(cfg, *keys, default=None):
+    """Navigate a nested dict safely; return *default* if any level is None or missing."""
+    try:
+      node = cfg if cfg is not None else {}
+      for key in keys:
+        if not isinstance(node, dict):
+          return default
+        node = node.get(key)
+        if node is None:
+          return default
+      return node
+    except Exception:
+      return default
+
+  def _user_prefs(self):
+    """Return config.userPreferences as a dict, or {} if None/missing."""
+    config = getattr(self.parent, 'config', None)
+    return getattr(config, 'userPreferences', None) or {}
+
+  def _system_settings(self):
+    """Return config.systemSettings as a dict, or {} if None/missing."""
+    config = getattr(self.parent, 'config', None)
+    return getattr(config, 'systemSettings', None) or {}
+
+  def _ensure_settings(self):
+    """Return config.userPreferences['settings'] dict, creating the key path if needed.
+    Safe to use both for reads and writes."""
+    config = getattr(self.parent, 'config', None)
+    if config is None:
+      return {}  # throwaway – at least we won't crash
+    if not isinstance(getattr(config, 'userPreferences', None), dict):
+      config.userPreferences = {}
+    return config.userPreferences.setdefault('settings', {})
 
   def UIlayout(self, layout):
     '''
@@ -893,10 +912,17 @@ class OptionDialog(basedialog.BaseDialog):
     '''
 
     hbox_config = self.factory.createHBox(layout)
+    self.factory.createVStretch(layout)
     hbox_bottom = self.factory.createHBox(layout)
-    self.config_tree = self.factory.createTree(hbox_config, "")
-    self.config_tree.setWeight(0,30)
-    self.config_tree.setNotify(True)
+    # Wrap the tree in MinSize to guarantee a minimum column width regardless
+    # of the ReplacePoint content on the right (long labels in System options
+    # would otherwise squeeze the tree below its usable width).
+    tree_col = self.factory.createMinSize(hbox_config, 20, 3)
+    tree_col.setWeight(MUI.YUIDimension.YD_HORIZ, 25)
+    self.config_tree = self.factory.createTree(tree_col, "")
+    self.config_tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
+    self.config_tree.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
     self.eventManager.addWidgetEvent(self.config_tree, self.onChangeConfig, sendWidget=True)
 
     itemVect = []
@@ -910,44 +936,40 @@ class OptionDialog(basedialog.BaseDialog):
     ### Options items
     #YTreeItem self, std::string const & label, std::string const & iconName, bool isOpen=False)
     # TODO add icons
-    item = yui.YTreeItem(_("System"))
-    item.this.own(False)
-    itemVect.append(item)
-    item.setSelected()
+    item = MUI.YTreeItem(_("System"))
+    itemVect.append(item)    
     self.option_items ["system"] = item
 
-    item = yui.YTreeItem(_("Layout"))
-    item.this.own(False)
+    item = MUI.YTreeItem(_("Layout"))
     itemVect.append(item)
     self.option_items ["layout"] = item
 
-    item = yui.YTreeItem(_("Search"))
-    item.this.own(False)
+    item = MUI.YTreeItem(_("Search"))
     itemVect.append(item)
     self.option_items ["search"] = item
 
-    item = yui.YTreeItem(_("Logging"))
-    item.this.own(False)
+    item = MUI.YTreeItem(_("Logging"))
     itemVect.append(item)
     self.option_items ["logging"] = item
-
-    itemCollection = yui.YItemCollection(itemVect)
+    
+    itemCollection = itemVect
     self.config_tree.addItems(itemCollection)
-
-    self.config_tab = self.factory.createReplacePoint(hbox_config)
-    self.config_tab.setWeight(0,70)
-
-    self.RestoreButton = self.factory.createIconButton(hbox_bottom,"",_("Restore &default"))
+    self.config_tree.selectItem(itemVect[0], True)
+    frame = self.factory.createFrame(hbox_config)
+    frame.setStretchable(MUI.YUIDimension.YD_VERT, True)
+    frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    frame.setWeight(MUI.YUIDimension.YD_HORIZ, 75)
+    self.config_tab = self.factory.createReplacePoint(frame)
+    
+    self.RestoreButton = self.factory.createPushButton(hbox_bottom, _("Restore &default"))
     self.eventManager.addWidgetEvent(self.RestoreButton, self.onRestoreButton)
-    self.RestoreButton.setWeight(0,1)
 
     st = self.factory.createHStretch(hbox_bottom)
-    st.setWeight(0,1)
 
-    self.quitButton = self.factory.createIconButton(hbox_bottom,"",_("&Close"))
+    self.quitButton = self.factory.createIconButton(hbox_bottom, "window-close",_("&Close"))
     self.eventManager.addWidgetEvent(self.quitButton, self.onQuitEvent)
-    self.quitButton.setWeight(0,1)
-    self.dialog.setDefaultButton(self.quitButton)
+
+    #self.dialog.setDefaultButton(self.quitButton)
 
     self.eventManager.addCancelEvent(self.onCancelEvent)
     self.onChangeConfig(self.config_tree)
@@ -958,7 +980,8 @@ class OptionDialog(basedialog.BaseDialog):
     fill option configuration data starting from config tree selection
     '''
     logger.debug('Config tab %s', self.selected_option)
-    if isinstance(obj, yui.YTree):
+    
+    if obj.widgetClass() == "YTree":
       item = self.config_tree.selectedItem()
       for k in self.option_items.keys():
         if self.option_items[k] == item:
@@ -1001,14 +1024,13 @@ class OptionDialog(basedialog.BaseDialog):
 
     # Title
     heading = self.factory.createHeading( vbox, _("System options") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    always_yes = self.parent.config.userPreferences['settings']['always_yes'] \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'always_yes' in self.parent.config.userPreferences['settings'].keys() \
-        else self.parent.always_yes
+    always_yes_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'always_yes',
+                                         default=self.parent.always_yes)
 
-    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes )
+    self.always_yes  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Run transactions on packages automatically without confirmation needed"), always_yes_val )
     self.always_yes.setNotify(True)
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
@@ -1018,22 +1040,28 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.upgrades_as_updates, self.onUpgradesAsUpdates, True)
     self.widget_callbacks.append( { 'widget': self.upgrades_as_updates, 'handler': self.onUpgradesAsUpdates} )
 
-    hide_update_menu = self.parent.config.userPreferences['settings']['hide_update_menu'] \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'hide_update_menu' in self.parent.config.userPreferences['settings'].keys() \
-        else False
+    hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
+                                               default=False)
 
-    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu )
+    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu_val )
     self.hide_update_menu.setNotify(True)
     self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
     self.widget_callbacks.append( { 'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu} )
 
-    self.factory.createVSpacing(vbox)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
 
-    updateInterval = int(self.parent.config.userPreferences['settings']['interval for checking updates']) \
-        if 'settings' in self.parent.config.userPreferences.keys() and 'interval for checking updates' in self.parent.config.userPreferences['settings'].keys() \
-        else int(self.parent.config.systemSettings['settings']['update_interval']) \
-        if 'settings' in self.parent.config.systemSettings.keys() and 'update_interval' in self.parent.config.systemSettings['settings'].keys() \
-        else 180
+    # Determine update interval with fallbacks and robust parsing
+    updateInterval = 180
+    try:
+      val = self._safe_cfg_get(self._user_prefs(), 'settings', 'interval for checking updates')
+      if val is not None:
+        updateInterval = int(val)
+      else:
+        val = self._safe_cfg_get(self._system_settings(), 'settings', 'update_interval')
+        if val is not None:
+          updateInterval = int(val)
+    except (TypeError, ValueError):
+      updateInterval = 180
 
     hbox = self.factory.createHBox(vbox)
     col1 = self.factory.createVBox(hbox)
@@ -1056,7 +1084,6 @@ class OptionDialog(basedialog.BaseDialog):
     self.factory.createVStretch(vbox)
 
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def _openLayoutOptions(self):
     '''
@@ -1072,18 +1099,14 @@ class OptionDialog(basedialog.BaseDialog):
 
     # Title
     heading = self.factory.createHeading( vbox, _("Layout options (active at next startup)") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    showUpdates = self.parent.config.userPreferences['settings']['show updates at startup'] \
-      if 'settings' in self.parent.config.userPreferences.keys() \
-        and 'show updates at startup' in self.parent.config.userPreferences['settings'].keys() \
-      else False
+    showUpdates = self._safe_cfg_get(self._user_prefs(), 'settings', 'show updates at startup',
+                                      default=False)
 
-    showAll =  self.parent.config.userPreferences['settings']['do not show groups at startup']\
-      if 'settings' in self.parent.config.userPreferences.keys() \
-        and 'do not show groups at startup' in self.parent.config.userPreferences['settings'].keys() \
-      else False
+    showAll = self._safe_cfg_get(self._user_prefs(), 'settings', 'do not show groups at startup',
+                                  default=False)
 
 
     self.showUpdates =  self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show updates"), showUpdates )
@@ -1098,7 +1121,6 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def _openSearchOptions(self):
     '''
@@ -1114,7 +1136,7 @@ class OptionDialog(basedialog.BaseDialog):
 
     # Title
     heading=self.factory.createHeading( vbox, _("Search options") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
     fuzzy_search = self.parent.fuzzy_search
@@ -1132,7 +1154,6 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def _openLoggingOptions(self):
     '''
@@ -1142,53 +1163,43 @@ class OptionDialog(basedialog.BaseDialog):
       self.config_tab.deleteChildren()
 
     hbox = self.factory.createHBox(self.config_tab)
-    self.factory.createHSpacing(hbox, 1.5)
+    self.factory.createHSpacing(hbox, 1.5*self._HSPACING_PX)
     vbox = self.factory.createVBox(hbox)
-    self.factory.createHSpacing(hbox, 1.5)
+    self.factory.createHSpacing(hbox, 1.5*self._HSPACING_PX)
 
     # Title
     heading=self.factory.createHeading( vbox, _("Logging options (active at next startup)") )
-    self.factory.createVSpacing(vbox, 0.3)
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
     heading.setAutoWrap()
 
-    log_enabled = self.parent.config.userPreferences['settings']['log']['enabled'] \
-        if 'settings' in self.parent.config.userPreferences.keys() \
-          and 'log' in self.parent.config.userPreferences['settings'].keys() \
-          and 'enabled' in self.parent.config.userPreferences['settings']['log'].keys() \
-        else False
+    log_enabled = self._safe_cfg_get(self._user_prefs(), 'settings', 'log', 'enabled',
+                                      default=False)
 
-    log_directory = self.parent.config.userPreferences['settings']['log']['directory'] \
-        if 'settings' in self.parent.config.userPreferences.keys() \
-          and 'log' in self.parent.config.userPreferences['settings'].keys() \
-          and 'directory' in self.parent.config.userPreferences['settings']['log'].keys() \
-        else os.path.expanduser("~")
+    log_directory = self._safe_cfg_get(self._user_prefs(), 'settings', 'log', 'directory',
+                                        default=os.path.expanduser("~"))
 
-    level_debug = self.parent.config.userPreferences['settings']['log']['level_debug'] \
-        if 'settings' in self.parent.config.userPreferences.keys() \
-          and 'log' in self.parent.config.userPreferences['settings'].keys() \
-          and 'level_debug' in self.parent.config.userPreferences['settings']['log'].keys() \
-        else False
+    level_debug = self._safe_cfg_get(self._user_prefs(), 'settings', 'log', 'level_debug',
+                                      default=False)
 
-    if not 'log' in self.parent.config.userPreferences['settings'].keys():
-      self.parent.config.userPreferences['settings']['log'] = {}
+    # Ensure the 'log' sub-dict exists in userPreferences['settings'] for later writes
+    self._ensure_settings().setdefault('log', {})
 
-    self.log_enabled  = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Enable logging"), log_enabled )
+    ####
+    self.log_enabled = self.factory.createCheckBoxFrame(vbox, _("Enable logging"), log_enabled)
     self.log_enabled.setNotify(True)
     self.eventManager.addWidgetEvent(self.log_enabled, self.onEnableLogging, True)
     self.widget_callbacks.append( { 'widget': self.log_enabled, 'handler': self.onEnableLogging} )
-
-    self.log_vbox = self.factory.createVBox(vbox)
-    hbox = self.factory.createHBox(self.log_vbox)
-    self.factory.createHSpacing(hbox, 2.0)
-    self.log_directory = self.factory.createLabel(self.factory.createLeft(hbox), "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-    self.choose_dir = self.factory.createIconButton(self.factory.createLeft(hbox), "", _("Change &directory"))
+    
+    self.log_vbox = self.factory.createVBox(self.log_enabled)
+    hbox = self.factory.createHBox(self.log_vbox)    
+    self.log_directory = self.factory.createLabel(self.factory.createLeft(hbox), "")
+    self.factory.createHSpacing(hbox)
+    self.choose_dir = self.factory.createIconButton(hbox, "folder", _("Change &directory"))
     self.eventManager.addWidgetEvent(self.choose_dir, self.onChangeLogDirectory)
     self.widget_callbacks.append( { 'widget': self.choose_dir, 'handler': self.onChangeLogDirectory} )
-
     self.log_directory.setText(log_directory)
-    hbox = self.factory.createHBox(self.log_vbox)
-    self.factory.createHSpacing(hbox, 2.0)
-    self.level_debug = self.factory.createCheckBox(self.factory.createLeft(hbox) , _("Debug level"), level_debug )
+        
+    self.level_debug = self.factory.createCheckBox(self.log_vbox , _("Debug level"), level_debug )
     self.level_debug.setNotify(True)
     self.eventManager.addWidgetEvent(self.level_debug, self.onLevelDebugChange, True)
     self.widget_callbacks.append( { 'widget': self.level_debug, 'handler': self.onLevelDebugChange} )
@@ -1197,166 +1208,147 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
     self.config_tab.showChild()
-    self.dialog.recalcLayout()
 
   def onEnableLogging(self, obj) :
     '''
     enable logging check box event
     '''
-    if isinstance(obj, yui.YCheckBox):
-      self.log_vbox.setEnabled(obj.isChecked())
-      try:
-        self.parent.config.userPreferences['settings']['log']['enabled'] = obj.isChecked()
-      except:
-        self.parent.config.userPreferences['settings']['log'] = { 'enabled' : obj.isChecked() }
+    if obj.widgetClass() == "YCheckBoxFrame":
+      self.log_vbox.setEnabled(obj.value())
+      self._ensure_settings().setdefault('log', {})['enabled'] = obj.value()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onChangeLogDirectory(self):
     '''
     Change directory button has been invoked
     '''
     start_dir = self.log_directory.text() if self.log_directory.text() else os.path.expanduser("~")
-    log_directory = yui.YUI.app().askForExistingDirectory(
+    log_directory = MUI.YUI.app().askForExistingDirectory(
           start_dir,
           _("Choose log destination directory"))
     if log_directory:
       self.log_directory.setText(log_directory)
-      self.dialog.recalcLayout()
-      try:
-        self.parent.config.userPreferences['settings']['log']['directory'] = self.log_directory.text()
-      except:
-        self.parent.config.userPreferences['settings']['log'] = { 'directory' : self.log_directory.text() }
+      self._ensure_settings().setdefault('log', {})['directory'] = self.log_directory.text()
 
   def onShowAll(self, obj):
     '''
     Show All Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['do not show groups at startup'] = obj.isChecked()
+    if obj.widgetClass() == "YCheckBox":    
+      self._ensure_settings()['do not show groups at startup'] = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onShowUpdates(self, obj):
     '''
     Show Updates Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['show updates at startup'] = obj.isChecked()
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings()['show updates at startup'] = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onFuzzySearch(self, obj):
     '''
     Fuzzy Search Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      try:
-        self.parent.config.userPreferences['settings']['search']['fuzzy_search'] = obj.isChecked()
-      except:
-        self.parent.config.userPreferences['settings']['search'] = { 'fuzzy_search' : obj.isChecked() }
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings().setdefault('search', {})['fuzzy_search'] = obj.isChecked()
       self.parent.fuzzy_search = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onNewestOnly(self, obj):
     '''
     Newest Only Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      try:
-        self.parent.config.userPreferences['settings']['search']['newest_only'] = obj.isChecked()
-      except:
-        self.parent.config.userPreferences['settings']['search'] = { 'newest_only' : obj.isChecked() }
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings().setdefault('search', {})['newest_only'] = obj.isChecked()
       self.parent.newest_only = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onLevelDebugChange(self, obj):
     '''
     Debug level Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      try:
-        self.parent.config.userPreferences['settings']['log']['level_debug'] = obj.isChecked()
-      except:
-        self.parent.config.userPreferences['settings']['log'] = { 'level_debug' : obj.isChecked() }
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings().setdefault('log', {})['level_debug'] = obj.isChecked()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onUpdateIntervalChange(self, obj):
     '''
     manage an update interval change
     '''
-    if isinstance(obj, yui.YIntField):
-      self.parent.config.userPreferences['settings']['interval for checking updates'] = obj.value()
+    if obj.widgetClass() == "YIntField":
+      self._ensure_settings()['interval for checking updates'] = obj.value()
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onMDUpdateIntervalChange(self, obj):
     '''
     manage an MD update interval change
     '''
-    if isinstance(obj, yui.YIntField):
-      try:
-        self.parent.config.userPreferences['settings']['metadata']['update_interval'] = obj.value()
-      except:
-        self.parent.config.userPreferences['settings']['metadata'] = { 'update_interval' : obj.value() }
+    if obj.widgetClass() == "YIntField":
+      self._ensure_settings().setdefault('metadata', {})['update_interval'] = obj.value()
       self.parent.md_update_interval = obj.value()
       logger.debug("update_interval %d", obj.value())
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onAlwaysYesChange(self, obj):
     '''
     Always Yes Changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['always_yes'] = obj.isChecked()
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings()['always_yes'] = obj.isChecked()
       self.parent.always_yes = obj.isChecked()
-      logger.debug("always_yes %d", obj.value())
+      logger.debug("always_yes %d", obj.isChecked())
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onUpgradesAsUpdates (self, obj):
     '''
     Consider Upgrades as Updates
     '''
-    if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['upgrades as updates'] = obj.isChecked()
-      logger.debug("onUpgradesAsUpdates %d", obj.value())
-      self.parent.upgrades_as_updates = self.parent.config.userPreferences['settings']['upgrades as updates']
+    if obj.widgetClass() == "YCheckBox":
+      s = self._ensure_settings()
+      s['upgrades as updates'] = obj.isChecked()
+      logger.debug("onUpgradesAsUpdates %d", obj.isChecked())
+      self.parent.upgrades_as_updates = s['upgrades as updates']
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onHideUpdateMenu(self, obj):
     '''
     Hide update menu changing
     '''
-    if isinstance(obj, yui.YCheckBox):
-      self.parent.config.userPreferences['settings']['hide_update_menu'] = obj.isChecked()
-      logger.debug("hide_update_menu %d", obj.value())
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings()['hide_update_menu'] = obj.isChecked()
+      logger.debug("hide_update_menu %d", obj.isChecked())
     else:
-      logger.error("Invalid object passed %s", obj.widgetClass())
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onRestoreButton(self) :
     logger.debug('Restore pressed')
     k = self.selected_option
     if k == "system":
-      self.parent.config.userPreferences['settings']['always_yes'] = False
+      s = self._ensure_settings()
+      s['always_yes'] = False
       self.parent.always_yes = False
-      self.parent.config.userPreferences['settings']['interval for checking updates'] = 180
-      self.parent.config.userPreferences['settings']['metadata'] = {
-        'update_interval' :  48
-      }
+      s['interval for checking updates'] = 180
+      s['metadata'] = {'update_interval': 48}
       self.parent.md_update_interval = 48
       self._openSystemOptions()
     elif  k == "layout":
-      self.parent.config.userPreferences['settings']['show updates at startup'] = False
-      self.parent.config.userPreferences['settings']['do not show groups at startup'] = False
+      s = self._ensure_settings()
+      s['show updates at startup'] = False
+      s['do not show groups at startup'] = False
       self._openLayoutOptions()
     elif k == "search":
-      self.parent.config.userPreferences['settings']['search'] = {
+      self._ensure_settings()['search'] = {
         'fuzzy_search': False,
         'newest_only': False,
       }
@@ -1364,7 +1356,7 @@ class OptionDialog(basedialog.BaseDialog):
       self.parent.newest_only = False
       self._openSearchOptions()
     elif k == "logging":
-      self.parent.config.userPreferences['settings']['log'] = {
+      self._ensure_settings()['log'] = {
         'enabled': False,
         'directory': os.path.expanduser("~"),
         'level_debug': False,
@@ -1372,11 +1364,18 @@ class OptionDialog(basedialog.BaseDialog):
       self._openLoggingOptions()
 
   def onCancelEvent(self) :
-    logger.debug("Got a cancel event")
+    logger.debug("OptionDialog: Cancel button pressed")
 
   def onQuitEvent(self) :
-    logger.debug("Quit button pressed")
-    self.parent.saveUserPreference()
+    logger.debug("OptionDialog: Quit button pressed")
+    try:
+      self.parent.saveUserPreference()
+    except Exception:
+      logger.exception("OptionDialog: saveUserPreference raised; attempting direct config save")
+      try:
+        self.parent.config.saveUserPreferences()
+      except Exception:
+        logger.exception("OptionDialog: failed to save user preferences to disk")
     # BaseDialog needs to force to exit the handle event loop
     self.ExitLoop()
 
@@ -1394,29 +1393,7 @@ def warningMsgBox (info) :
     if (not info) :
         return 0
 
-    retVal = 0
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE, yui.YMGAMessageBox.D_WARNING)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-#   dlg.setMinSize(50, 5)
-
-    retVal = dlg.show()
-    dlg = None
-
-    return 1
+    return common.warningMsgBox(info)
 
 
 def infoMsgBox (info) :
@@ -1432,29 +1409,7 @@ def infoMsgBox (info) :
     if (not info) :
         return 0
 
-    retVal = 0
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE, yui.YMGAMessageBox.D_INFO)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-#   dlg.setMinSize(50, 5)
-
-    retVal = dlg.show()
-    dlg = None
-
-    return 1
+    return common.infoMsgBox(info)
 
 def msgBox (info) :
     '''
@@ -1468,29 +1423,7 @@ def msgBox (info) :
     if (not info) :
         return 0
 
-    retVal = 0
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_ONE)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-#   dlg.setMinSize(50, 5)
-
-    retVal = dlg.show()
-    dlg = None
-
-    return 1
+    return common.msgBox(info)
 
 
 def askOkCancel (info) :
@@ -1511,36 +1444,7 @@ def askOkCancel (info) :
     if (not info) :
         return False
 
-    retVal = False
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_TWO)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Ok"), yui.YMGAMessageBox.B_ONE )
-    dlg.setButtonLabel(_("&Cancel"), yui.YMGAMessageBox.B_TWO )
-
-    if ("default_button" in info.keys() and info["default_button"] == 1) :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_ONE)
-    else :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_TWO)
-
-    dlg.setMinSize(50, 5)
-
-    retVal = dlg.show() == yui.YMGAMessageBox.B_ONE;
-    dlg = None
-
-    return retVal
+    return common.askOkCancel(info)
 
 def askYesOrNo (info) :
     '''
@@ -1561,35 +1465,7 @@ def askYesOrNo (info) :
     if (not info) :
         return False
 
-    retVal = False
-    yui.YUI.widgetFactory
-    factory = yui.YExternalWidgets.externalWidgetFactory("mga")
-    factory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(factory)
-    dlg = factory.createDialogBox(yui.YMGAMessageBox.B_TWO)
-
-    if ('title' in info.keys()) :
-        dlg.setTitle(info['title'])
-
-    rt = False
-    if ("richtext" in info.keys()) :
-        rt = info['richtext']
-
-    if ('text' in info.keys()) :
-        dlg.setText(info['text'], rt)
-
-    dlg.setButtonLabel(_("&Yes"), yui.YMGAMessageBox.B_ONE )
-    dlg.setButtonLabel(_("&No"), yui.YMGAMessageBox.B_TWO )
-    if ("default_button" in info.keys() and info["default_button"] == 1) :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_ONE)
-    else :
-        dlg.setDefaultButton(yui.YMGAMessageBox.B_TWO)
-    if ('size' in info.keys()) :
-        dlg.setMinSize(info['size'][0], info['size'][1])
-
-    retVal = dlg.show() == yui.YMGAMessageBox.B_ONE;
-    dlg = None
-
-    return retVal
+    return common.askYesOrNo(info)
 
 
 def ask_for_gpg_import (values):

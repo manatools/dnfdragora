@@ -40,7 +40,7 @@ if __name__ == "__main__":
     try:
         upd = dnfdragora.updater.Updater(options)
         upd.main()
-    except dnfdaemon.client.DaemonError as e:
+    except dnfdragora.dnfd_client.DaemonError as e:
       logger.error("dnfdaemon client error: %s ", str(e))
     except NameError as e:
       logger.error("dnfdaemon NameError: %s ", str(e))
@@ -51,9 +51,4 @@ if __name__ == "__main__":
     except:
       logger.error("Unexpected error: %s ", str(sys.exc_info()[0]))
     finally:
-        import yui
-        yui.YDialog.deleteAllDialogs()
-        # next line seems to be a workaround to prevent the qt-app from crashing
-        # see https://github.com/libyui/libyui-qt/issues/41
-        yui.YUILoader.deleteUI()
-        print("Closing dnfdragora-updater")
+      logger.info("Closing dnfdragora-updater")

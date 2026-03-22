@@ -182,7 +182,7 @@ def format_block(block, indent):
 
 def parse_dbus_error():
     '''parse values from a DBus related exception '''
-    DBUS_ERR_RE = re.compile('.*GDBus.Error:([\w\.]*): (.*)$')
+    DBUS_ERR_RE = re.compile(r'.*GDBus.Error:([\w\.]*): (.*)$')
 
     (type, value, traceback) = sys.exc_info()
     res = DBUS_ERR_RE.match(str(value))

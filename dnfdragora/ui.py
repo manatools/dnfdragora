@@ -16,7 +16,9 @@ import sys
 import platform
 import datetime
 import re
-import yui
+import manatools.aui.yui as MUI
+
+#from manatools.aui import yui_common as YUI
 import webbrowser
 from html import escape
 from queue import SimpleQueue, Empty
@@ -29,6 +31,7 @@ import threading
 from gi.repository import GLib
 
 import manatools.ui.helpdialog as helpdialog
+import manatools.ui.common as common
 import dnfdragora.basedragora
 import dnfdragora.compsicons as compsicons
 import dnfdragora.groupicons as groupicons
@@ -60,6 +63,13 @@ class DNFDragoraStatus(Enum):
     Enum
         STARTUP Starting
         LOCKING Lock requested
+        CACHING_UPDATE Caching updates
+        CACHING_INSTALLED Caching installed packages
+        CACHING_AVAILABLE Caching available packages
+        RUN_TRANSACTION Running transaction
+        EXPIRE_CACHE Expire cache
+        RESET_SESSION Reset session
+        RELOAD_METADATA Reload metadata
         RUNNING Locked, normal running no requests
     '''
     STARTUP = 1
@@ -68,7 +78,10 @@ class DNFDragoraStatus(Enum):
     CACHING_INSTALLED = 4
     CACHING_AVAILABLE = 5
     RUN_TRANSACTION = 6
-    RUNNING = 7
+    EXPIRE_CACHE = 7
+    RESET_SESSION = 8
+    RELOAD_METADATA = 9
+    RUNNING = 10
 
 
 
@@ -163,7 +176,10 @@ class PackageQueue:
 #################
 class mainGui(dnfdragora.basedragora.BaseDragora):
     """
-    Main class
+  Main UI controller for dnfdragora.
+
+  It builds the AUI layout, handles frontend events, and bridges
+  asynchronous backend (dnfdaemon) notifications to widgets.
     """
 
     def __init__(self, options={}):
@@ -176,7 +192,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.running = False
         self.loop_has_finished = False
         self.options = options
-        self._progressBar = None
+        self.infobar = None
         self.packageQueue = PackageQueue()
         self.toRemove = []
         self.toInstall = []
@@ -199,6 +215,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._gpg_confirm = None
         # ...TODO
         self._transaction_tries = 0
+        self._transaction_noreply_warned = False
+        self._trans_dialog = None  # TransactionProgressDialog, active during RUN_TRANSACTION
         self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -259,11 +277,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
-        if yui.YUI.app().isTextMode():
+        if MUI.YUI.app().isTextMode():
           self.glib_loop = GLib.MainLoop()
           self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
           self.glib_thread.start()
-
+#
 
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
 
@@ -274,8 +292,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.pbar_layout.setEnabled(True)
 
         self.backend
-        self.dialog.pollEvent()
-        self.find_entry.setKeyboardFocus()
+        #self.dialog.pollEvent()
+        #self.find_entry.setKeyboardFocus()
 
 
 
@@ -386,25 +404,24 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
             setup main dialog
         '''
-        yui.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
+        MUI.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
-        self.icon = self.images_path + "dnfdragora.png"
+        self.icon = "dnfdragora" #self.images_path + "dnfdragora.png"
         self.logo = self.images_path + "dnfdragora-logo.png"
-        yui.YUI.app().setApplicationIcon(self.icon)
+        MUI.YUI.app().setApplicationIcon(self.icon)
 
-        MGAPlugin = "mga"
-
-        self.factory = yui.YUI.widgetFactory()
-        mgaFact = yui.YExternalWidgets.externalWidgetFactory(MGAPlugin)
-        self.mgaFactory = yui.YMGAWidgetFactory.getYMGAWidgetFactory(mgaFact)
-        self.optFactory = yui.YUI.optionalWidgetFactory()
-
+        self.factory = MUI.YUI.widgetFactory()
+        
         self.AboutDialog = dialogs.AboutDialog(self)
 
         ### MAIN DIALOG ###
         self.dialog = self.factory.createMainDialog()
 
-        vbox = self.factory.createVBox(self.dialog)
+        # Enforce a comfortable minimum size so the window opens with enough
+        # space for the group tree, the full package table, and the description
+        # pane.  Units are PIXELS: 900×680 is comfortable on a 1080p display.
+        min_size = self.factory.createMinSize(self.dialog, 900, 680)
+        vbox = self.factory.createVBox(min_size)
 
         hbox_menubar = self.factory.createHBox(vbox)
 
@@ -417,10 +434,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #self.factory.createHeading(hbox_iconbar, _("Software Management"))
 
         hbox_top = self.factory.createHBox(vbox)
-        hbox_middle = self.factory.createHBox(vbox)
-        hbox_bottom = self.factory.createHBox(vbox)
+        #hbox_middle = self.factory.createHBox(vbox)
+        hbox_bottom = self.factory.createPaned(vbox, MUI.YUIDimension.YD_VERT)
+        hbox_middle = self.factory.createPaned(hbox_bottom, MUI.YUIDimension.YD_HORIZ)
+        #hbox_bottom = self.factory.createHBox(vbox)
         self.pbar_layout = self.factory.createHBox(vbox)
         hbox_footbar = self.factory.createHBox(vbox)
+
+        # Package browsing area (tree + table): 70 % of vertical space.
+        # Info / description area: 30 % — more than the old 33/67 split
+        # expressed differently to give text room to display 3-4 lines.
+        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT, 70)
+        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT, 30)
+        if hasattr(hbox_middle, 'setStretchable'):
+          hbox_middle.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        if hasattr(hbox_bottom, 'setStretchable'):
+          hbox_bottom.setStretchable(MUI.YUIDimension.YD_VERT, True)
 
         #######
         foot_align_left = self.factory.createLeft(hbox_footbar)
@@ -438,23 +467,30 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # Tree for groups
         self.tree = self.factory.createTree(hbox_middle, "")
-        self.tree.setWeight(yui.YD_HORIZ,20)
-        self.tree.setNotify(True)
+        self.tree.setWeight(MUI.YUIDimension.YD_HORIZ, 30)
+        self.tree.setWeight(MUI.YUIDimension.YD_VERT, 60)
+        if hasattr(self.tree, 'setStretchable'):
+          self.tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self.tree.setNotify(True)        
 
-        packageList_header = yui.YCBTableHeader()
+        packageList_header = MUI.YTableHeader()
         columns = [ _('Name'), _('Summary'), _('Version'), _('Release'), _('Arch'), _('Size')]
 
         checkboxed = True
-        packageList_header.addColumn("", checkboxed)
+        packageList_header.addColumn("", checkboxed, alignment=MUI.YAlignmentType.YAlignCenter)
         for col in (columns):
             packageList_header.addColumn(col, not checkboxed)
 
-        if not self.update_only :
+        if not self.update_only:
             packageList_header.addColumn(_("Status"), not checkboxed)
 
-        self.packageList = self.mgaFactory.createCBTable(hbox_middle,packageList_header)
-        self.packageList.setWeight(yui.YD_HORIZ,80)
-        self.packageList.setImmediateMode(True)
+        self.packageList = self.factory.createTable(hbox_middle, packageList_header)
+        self.packageList.setWeight(MUI.YUIDimension.YD_HORIZ, 70)
+        self.packageList.setWeight(MUI.YUIDimension.YD_VERT, 60)
+        if hasattr(self.packageList, 'setStretchable'):
+          self.packageList.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self.packageList.setHelpText("Package list")
+        #self.packageList.setImmediateMode(True)
 
         self.filters = {
             'all' : {'title' : _("All")},
@@ -477,7 +513,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         ordered_views = [ 'groups', 'all' ]
 
         self.view_box = self.factory.createComboBox(hbox_top,"")
-        itemColl = yui.YItemCollection()
+        self.view_box.setHelpText(_("Grouping packages"))
+        itemColl = []
 
         view = {}
         settings = {}
@@ -499,32 +536,31 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           view['show'] if 'show' in view.keys() else 'groups'
 
         for v in ordered_views:
-            item = yui.YItem(self.views[v]['title'])
+            item = MUI.YItem(self.views[v]['title'])
             if show_item == v :
                 item.setSelected(True)
             # adding item to views to find the item selected
             self.views[v]['item'] = item
-            itemColl.push_back(item)
-            item.this.own(False)
+            itemColl.append(item)
 
         self.view_box.addItems(itemColl)
         self.view_box.setNotify(True)
         self.view_box.setEnabled(not self.update_only)
 
         self.filter_box = self.factory.createComboBox(hbox_top,"")
+        self.filter_box.setHelpText(_("Filtering packages"))
         itemColl.clear()
 
         filter_item = 'to_update' if self.all_updates_filter or self.update_only \
           else view['filter'] if 'filter' in view.keys() else 'all'
 
         for f in ordered_filters:
-            item = yui.YItem(self.filters[f]['title'])
+            item = MUI.YItem(self.filters[f]['title'])
             if filter_item == f:
                 item.setSelected(True)
             # adding item to filters to find the item selected
             self.filters[f]['item'] = item
-            itemColl.push_back(item)
-            item.this.own(False)
+            itemColl.append(item)
 
         self.filter_box.addItems(itemColl)
         self.filter_box.setNotify(True)
@@ -541,46 +577,54 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.search_list = self.factory.createComboBox(hbox_top,"")
         itemColl.clear()
         for s in search_types:
-            item = yui.YItem(self.local_search_types[s]['title'])
+            item = MUI.YItem(self.local_search_types[s]['title'])
             if s == search_types[0] :
                 item.setSelected(True)
             # adding item to local_search_types to find the item selected
             self.local_search_types[s]['item'] = item
-            itemColl.push_back(item)
-            item.this.own(False)
+            itemColl.append(item)
 
         self.search_list.addItems(itemColl)
         self.search_list.setNotify(True)
 
         self.find_entry = self.factory.createInputField(hbox_top, "")
-        self.find_entry.setWeight(yui.YD_HORIZ,1)
+        self.find_entry.setWeight(MUI.YUIDimension.YD_HORIZ, 50)
+        self.find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self.find_entry.setNotify(False)
 
         self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
         self.use_regexp.setNotify(True)
 
-        icon_file = self.images_path + "find.png"
-        self.find_button = self.factory.createIconButton(hbox_top, 'system-search', _("&Search"))
-        self.find_button.setDefaultButton(True)
+        self.find_button = self.factory.createIconButton(hbox_top, 'edit-find', _("&Search"))
+        self.find_button.setHelpText(_("Search packages"))
+        #TODO self.find_button.setDefaultButton(True)
 
-        icon_file = self.images_path + "clear_22x22.png"
-        self.reset_search_button = self.factory.createIconButton(hbox_top, icon_file, _("&Clear search"))
+        self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
+        self.reset_search_button.setHelpText(_("Clear search field"))
 
         self.info = self.factory.createRichText(hbox_bottom,"")
+        # Give the description area a larger share of the bottom pane so
+        # multi-line package descriptions are readable without scrolling.
+        self.info.setWeight(MUI.YUIDimension.YD_VERT, 100)
+        self.info.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self.info.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        
+        self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)        
 
-        self.infobar = progress_ui.ProgressBar(self.dialog, self.pbar_layout)
-
-        self.applyButton = self.factory.createIconButton(hbox_footbar,"",_("&Apply"))
-        self.applyButton.setWeight(yui.YD_HORIZ,1)
+        self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
+        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.applyButton.setEnabled(False)
 
-        self.checkAllButton = self.factory.createIconButton(hbox_footbar,"",_("Sel&ect all"))
-        self.checkAllButton.setWeight(yui.YD_HORIZ,1)
+        self.checkAllButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
+        self.checkAllButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.checkAllButton.setHelpText(_("Select all the packages"))
         self.checkAllButton.setEnabled(False)
         spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
-        self.quitButton = self.factory.createIconButton(right_footbar,"",_("&Quit"))
-        self.quitButton.setWeight(yui.YD_HORIZ,1)
+        self.quitButton = self.factory.createIconButton(right_footbar, 'application-exit', _("&Quit"))
+        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.quitButton.setHelpText(_("Quit the application"))
 
         ### BEGIN Menus #########################
         if (hasattr(self.factory, 'createMenuBar') and ismethod(getattr(self.factory, 'createMenuBar'))):
@@ -588,34 +632,36 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.menubar = self.factory.createMenuBar(hbox_menubar)
 
             # building File menu
-            mItem = self.menubar.addMenu(_("&File"))
+            # def addMenu(self, label: str="", icon_name: str = "", menu: YMenuItem = None) -> YMenuItem:
+            # ef addItem(self, menu: YMenuItem, label: str, icon_name: str = "", enabled: bool = True) -> YMenuItem:
+            mItem = self.menubar.addMenu(label=_("&File"))
             self.fileMenu = {
                 'menu_name' : mItem,
-                'reset_sel' : yui.YMenuItem(mItem, _("Reset the selection")),
-                'reload'    : yui.YMenuItem(mItem, _("Refresh Metadata")),
-                'repos'     : yui.YMenuItem(mItem, _("Repositories")),
+                'reset_sel' : self.menubar.addItem(mItem, _("Reset the selection")),
+                'reload'    : self.menubar.addItem(mItem, _("Refresh Metadata")),
+                'repos'     : self.menubar.addItem(mItem, _("Repositories")),
                 'sep0'      : mItem.addSeparator(),
-                'quit'      : yui.YMenuItem(mItem, _("&Quit"), "application-exit"),
+                'quit'      : self.menubar.addItem(mItem, _("&Quit"), "application-exit"),
             }
             #Items must be "disowned"
-            for k in self.fileMenu.keys():
-                self.fileMenu[k].this.own(False)
+            #for k in self.fileMenu.keys():
+            #    self.fileMenu[k].this.own(False)
 
             # building Actions menu
             mItem = self.menubar.addMenu(_("&Actions"))
             self.ActionMenu = {
                  'menu_name' : mItem,
-                 'actions'   : yui.YMenuItem(mItem, _("&Action on packages")),
+                 'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
             }
             #Items must be "disowned"
-            for k in self.ActionMenu.keys():
-                self.ActionMenu[k].this.own(False)
+            #for k in self.ActionMenu.keys():
+            #    self.ActionMenu[k].this.own(False)
 
             # # building Information menu
             # mItem = self.menubar.addMenu(_("&Information"))
             # self.infoMenu = {
             #     'menu_name' : mItem,
-            #     'history'   : yui.YMenuItem(mItem, _("&History")),
+            #     'history'   : MUI.YMenuItem(mItem, _("&History")),
             # }
             # #Items must be "disowned"
             # for k in self.infoMenu.keys():
@@ -625,26 +671,26 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             mItem = self.menubar.addMenu(_("&Options"))
             self.optionsMenu = {
                 'menu_name'  : mItem,
-                'user_prefs' : yui.YMenuItem(mItem, _("User preferences")),
+                'user_prefs' : self.menubar.addItem(mItem, _("User preferences")),
             }
             #Items must be "disowned"
-            for k in self.optionsMenu.keys():
-                self.optionsMenu[k].this.own(False)
+            #for k in self.optionsMenu.keys():
+            #    self.optionsMenu[k].this.own(False)
 
             # build Help menu
             mItem = self.menubar.addMenu(_("&Help"))
             self.helpMenu = {
                 'menu_name': mItem,
-                'help'     : yui.YMenuItem(mItem, _("Manual")),
+                'help'     : self.menubar.addItem(mItem, _("Manual")),
                 'sep0'     : mItem.addSeparator(),
-                'about'    : yui.YMenuItem(mItem, _("&About"), 'dnfdragora'),
+                'about'    : self.menubar.addItem(mItem, _("&About"), 'dnfdragora'),
             }
             #Items must be "disowned"
-            for k in self.helpMenu.keys():
-                self.helpMenu[k].this.own(False)
+            #for k in self.helpMenu.keys():
+            #    self.helpMenu[k].this.own(False)
 
-            self.menubar.resolveShortcutConflicts()
-            self.menubar.rebuildMenuTree()
+            #TODO self.menubar.resolveShortcutConflicts()
+            self.menubar.rebuildMenus()
         else:
             logger.info("System has not createMenuBar, using old menu buttons")
             self._createMenuButtons(self.factory.createHBox(self.factory.createLeft(hbox_menubar)))
@@ -657,10 +703,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build File menu
         self.fileMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&File")),
-            'reset_sel' : yui.YMenuItem(_("Reset the selection")),
-            'reload'    : yui.YMenuItem(_("Refresh Metadata")),
-            'repos'     : yui.YMenuItem(_("Repositories")),
-            'quit'      : yui.YMenuItem(_("&Quit"), "application-exit"),
+            'reset_sel' : MUI.YMenuItem(_("Reset the selection")),
+            'reload'    : MUI.YMenuItem(_("Refresh Metadata")),
+            'repos'     : MUI.YMenuItem(_("Repositories")),
+            'quit'      : MUI.YMenuItem(_("&Quit"), "application-exit"),
         }
 
         ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
@@ -671,7 +717,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build Options menu
         #self.infoMenu = {
         #    'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
-        #    'history' : yui.YMenuItem(_("History")),
+        #    'history' : MUI.YMenuItem(_("History")),
         #}
 
         #NOTE following the same behavior to simplfy further menu entry addtion
@@ -683,7 +729,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build Options menu
         self.optionsMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
-            'user_prefs' : yui.YMenuItem(_("User preferences")),
+            'user_prefs' : MUI.YMenuItem(_("User preferences")),
         }
 
         #NOTE following the same behavior to simplfy further menu entry addtion
@@ -695,8 +741,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # build help menu
         self.helpMenu = {
             'widget': self.factory.createMenuButton(headbar, _("&Help")),
-            'help'  : yui.YMenuItem(_("Manual")),
-            'about' : yui.YMenuItem(_("&About"), 'dnfdragora'),
+            'help'  : MUI.YMenuItem(_("Manual")),
+            'about' : MUI.YMenuItem(_("&About"), 'dnfdragora'),
         }
         ordered_menu_lines = ['help', 'about']
         for l in ordered_menu_lines :
@@ -744,10 +790,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 status = ""
                 icon = self.images_path + "available.png"
         if icon:
-            cell.setLabel(status)
-            cell.setIconName(icon)
-            if emit_changed:
-                self.packageList.cellChanged(cell)
+          cell.setLabel(status)
+          cell.setIconName(icon)
+          # AUI table updates automatically; no explicit cellChanged needed
 
     def _selectedPackage(self) :
         '''
@@ -781,19 +826,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         (sizeInt, decMark, decimals) = sizePadded.partition('.')
         sizeIntPadded = sizeInt.rjust(digitsNeeded, '0')
         sizePadded = sizeIntPadded + decMark + decimals
-        cells =  list([
-                      yui.YCBTableCell( checked ),
-                      yui.YCBTableCell( pkg_name ),
-                      yui.YCBTableCell( pkg_summary ),
-                      yui.YCBTableCell( pkg_version ),
-                      yui.YCBTableCell( pkg_release ),
-                      yui.YCBTableCell( pkg_arch ),
-                      yui.YCBTableCell( pkg_sizeM , "", sizePadded)
-                      ])
-        for cell in cells:
-            cell.this.own(False)
-        item = yui.YCBTableItem( *cells )
-        item.this.own(False)
+        item = MUI.YTableItem()
+        item.addCell(bool(checked))
+        item.addCell(str(pkg_name))
+        item.addCell(str(pkg_summary))
+        item.addCell(str(pkg_version))
+        item.addCell(str(pkg_release))
+        item.addCell(str(pkg_arch))
+        size_cell = MUI.YTableCell(pkg_sizeM, "", sizePadded)
+        item.addCell(size_cell)
         return item
 
     def _fillPackageList(self, groupName=None, filter="all") :
@@ -808,31 +849,44 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # reset info view
         # TODO self.info.setValue("")
 
-        yui.YUI.app().busyCursor()
+        MUI.YUI.app().busyCursor()
 
         self.itemList = {}
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
         # }
-        group_packages = []
+        group_packages = set()
         if self.use_comps and groupName and (groupName != 'All'):
-          #get pacakges from group
-          group_packages = self.backend.GetGroupPackageNames(groupName, sync=True)
+            # Get packages from group once and use O(1) membership checks.
+            try:
+                group_packages = set(self.backend.GetGroupPackageNames(groupName, sync=True) or [])
+            except Exception as error:
+                logger.exception("Failed to load package names for comps group '%s': %s", groupName, error)
+
+        machine_arch = platform.machine()
+
+        def _is_package_in_selected_group(pkg):
+            """Return True when package belongs to selected group or no group filter is active."""
+            if not groupName:
+                return True
+            if groupName == 'All':
+                return True
+            if self.use_comps:
+                return pkg.name in group_packages
+            try:
+                groups_pkg = self.backend.get_groups_from_package(pkg) or []
+            except Exception as error:
+                logger.exception("Cannot read groups for package '%s': %s", pkg.name, error)
+                return False
+            return groupName in groups_pkg
 
         if filter == 'all' or filter == 'to_update' or filter == 'skip_other':
             updates = self.backend.get_packages('updates')
             for pkg in updates :
-                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
-                insert_items = groupName and (groupName == 'All')
-                if not insert_items and groupName :
-                  if self.use_comps:
-                    insert_items = pkg.name in group_packages
-                  else:
-                    groups_pkg = self.backend.get_groups_from_package(pkg)
-                    insert_items = groupName in groups_pkg
+                insert_items = _is_package_in_selected_group(pkg)
 
                 if insert_items :
-                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == machine_arch))
                     if not skip_insert :
                         item = self._createCBItem(self.packageQueue.checked(pkg),
                                            pkg.name,
@@ -855,17 +909,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if filter == 'all' or filter == 'installed' or filter == 'skip_other':
             installed = self.backend.get_packages('installed')
             for pkg in installed :
-                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
-                insert_items = groupName and (groupName == 'All')
-                if not insert_items and groupName :
-                  if self.use_comps:
-                    insert_items = pkg.name in group_packages
-                  else:
-                    groups_pkg = self.backend.get_groups_from_package(pkg)
-                    insert_items = groupName in groups_pkg
+                insert_items = _is_package_in_selected_group(pkg)
 
                 if insert_items :
-                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == machine_arch))
                     if not skip_insert :
                         item = self._createCBItem(self.packageQueue.checked(pkg),
                                            pkg.name,
@@ -893,14 +940,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             available = self.backend.get_packages('available')
             for pkg in available :
-                ## NOTE get_groups_from_package calls group caching so we try to avoid it if 'all' is selected
-                insert_items = groupName and (groupName == 'All')
-                if not insert_items and groupName :
-                  if self.use_comps:
-                    insert_items = pkg.name in group_packages
-                  else:
-                    groups_pkg = self.backend.get_groups_from_package(pkg)
-                    insert_items = groupName in groups_pkg
+                insert_items = _is_package_in_selected_group(pkg)
                 # if looking for downgrade we must add only the available that are installed and not upgrades
                 if self.packageActionValue == const.Actions.DOWNGRADE:
                   if pkg.name not in installed_pkgs:
@@ -909,7 +949,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                      insert_items = False
 
                 if insert_items :
-                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == platform.machine()))
+                    skip_insert = (filter == 'skip_other' and not (pkg.arch == 'noarch' or pkg.arch == machine_arch))
                     if not skip_insert :
                         item = self._createCBItem(self.packageQueue.checked(pkg),
                                            pkg.name,
@@ -936,16 +976,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             v.append(item)
 
         #NOTE workaround to get YItemCollection working in python
-        itemCollection = yui.YItemCollection(v)
+        itemCollection = v
 
-        self.packageList.startMultipleChanges()
+        #self.packageList.startMultipleChanges()
         # cleanup old changed items since we are removing all of them
-        self.packageList.setChangedItem(None)
+        #self.packageList.setChangedItem(None)
         self.packageList.deleteAllItems()
         self.packageList.addItems(itemCollection)
-        self.packageList.doneMultipleChanges()
-
-        yui.YUI.app().normalCursor()
+        #self.packageList.doneMultipleChanges()
+        MUI.YUI.app().normalCursor()
 
     def _viewNameSelected(self):
         '''
@@ -978,18 +1017,72 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         '''
         return the group name to be used for a search by group
         '''
-        # TODO check type yui.YTreeItem?
+        # TODO check type MUI.YTreeItem?
         for g in group.keys() :
             if g == 'name' or g == 'item' :
                 continue
-            if group[g]['item'] == treeItem :
-                return group[g]['name']
-            elif group[g]['item'].hasChildren():
-                gName =  self._groupNameFromItem(group[g], treeItem)
+            node = group.get(g, {})
+            item = node.get('item')
+            if item == treeItem :
+                return node.get('name')
+            elif item and item.hasChildren():
+                gName = self._groupNameFromItem(node, treeItem)
                 if gName :
                     return gName
 
         return None
+
+    def _collect_groups_for_tree(self, view_name, filter_name):
+        """Return normalized group names for the left tree according to view and filter."""
+        if view_name == 'all':
+            return ['All']
+
+        if filter_name == 'to_update':
+            logger.debug("Collecting groups from update packages")
+            package_scope = 'updates'
+        elif filter_name == 'installed':
+            logger.debug("Collecting groups from installed packages")
+            package_scope = 'installed'
+        elif filter_name == 'not_installed':
+            logger.debug("Collecting groups from available packages")
+            package_scope = 'available'
+        else:
+            logger.debug("Collecting all groups from backend cache")
+            try:
+                return sorted(g for g in (self.backend.get_groups() or []) if isinstance(g, str) and g)
+            except Exception as error:
+                logger.exception("Cannot read group cache from backend: %s", error)
+                return []
+
+        try:
+            packages = self.backend.get_packages(package_scope)
+        except Exception as error:
+            logger.exception("Cannot load packages for scope '%s': %s", package_scope, error)
+            return []
+
+        if self.use_comps:
+            pkg_names = [pkg.name for pkg in packages if getattr(pkg, 'name', None)]
+            if not pkg_names:
+                return []
+            try:
+                groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True) or []
+            except Exception as error:
+                logger.exception("Cannot map comps groups from %d packages: %s", len(pkg_names), error)
+                return []
+            return sorted(g for g in groups if isinstance(g, str) and g)
+
+        group_set = set()
+        for pkg in packages:
+            try:
+                package_groups = self.backend.get_groups_from_package(pkg) or []
+            except Exception as error:
+                logger.exception("Cannot map groups for package '%s': %s", getattr(pkg, 'name', '<unknown>'), error)
+                continue
+            for grp in package_groups:
+                if isinstance(grp, str) and grp:
+                    group_set.add(grp)
+
+        return sorted(group_set)
 
     def _rebuildPackageListWithSearchGroup(self):
       '''
@@ -997,14 +1090,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       the case of an active search result
       '''
       rebuild_package_list = False
-      sel = self.tree.selectedItem()
-      if sel :
-        group = self._groupNameFromItem(self.groupList, sel)
-        if (group == "Search"):
-          rebuild_package_list = not self._searchPackages()
-        else:
+      search_string = self.find_entry.value() if hasattr(self, 'find_entry') else ''
+      if search_string:
+        # Search is active and tree is hidden; re-run the search.
+        rebuild_package_list = not self._searchPackages()
+      else:
+        sel = self.tree.selectedItem()
+        if sel :
+          group = self._groupNameFromItem(self.groupList, sel)
+          rebuild_package_list = True
+        elif self._viewNameSelected() == 'all':
           rebuild_package_list = True
       return rebuild_package_list
+
+    def _set_tree_visible(self, show: bool):
+        '''Show or hide the group tree pane. Does not fill the tree when hiding.'''
+        if hasattr(self, 'tree') and self.tree is not None:
+            self.tree.setVisible(show)
 
     def _fillGroupTree(self) :
         '''
@@ -1014,121 +1116,80 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self.groupList = {}
         rpm_groups = []
-        yui.YUI.app().busyCursor()
+        MUI.YUI.app().busyCursor()
+        try:
+            view = self._viewNameSelected()
+            filter_name = self._filterNameSelected()
 
-        view = self._viewNameSelected()
-        filter = self._filterNameSelected()
+            if view == 'all':
+                self._set_tree_visible(False)
+                return
 
-        if view != 'all' :
-            print ("Start looking for groups")
+            self._set_tree_visible(True)
+            rpm_groups = self._collect_groups_for_tree(view, filter_name)
 
-            #filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
-            if (filter == 'to_update'):
-                logger.debug("get groups for update packages only")
-                pkgs = self.backend.get_packages('updates')
-                if self.use_comps:
-                  pkg_names = [ pkg.name for pkg in pkgs ]
-                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
-                else:
-                  for pkg in pkgs:
-                    groups = self.backend.get_groups_from_package(pkg)
-                    rpm_groups = list(set().union(rpm_groups, groups))
-            elif (filter == 'installed'):
-                logger.debug("get groups for installed packages only")
-                pkgs = self.backend.get_packages('installed')
-                if self.use_comps:
-                  pkg_names = [ pkg.name for pkg in pkgs ]
-                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
-                else:
-                  for pkg in pkgs:
-                    groups = self.backend.get_groups_from_package(pkg)
-                    rpm_groups = list(set().union(rpm_groups, groups))
-            elif (filter == 'not_installed'):
-                logger.debug("get groups for available packages only")
-                pkgs = self.backend.get_packages('available')
-                if self.use_comps:
-                  pkg_names = [ pkg.name for pkg in pkgs ]
-                  rpm_groups = self.backend.GetGroupsFromPackage(pkg_names, sync=True)
-                else:
-                  for pkg in pkgs:
-                    groups = self.backend.get_groups_from_package(pkg)
-                    rpm_groups = list(set().union(rpm_groups, groups))
-            else:
-                # all pr arch
-                logger.debug("get all groups")
-                rpm_groups = self.backend.get_groups()
-            rpm_groups = sorted(rpm_groups)
-        else:
-            rpm_groups = ['All']
+            if not rpm_groups:
+                logger.info("No groups found for view='%s' filter='%s'; using Empty placeholder", view, filter_name)
+                rpm_groups = ['Empty']
 
-        if not rpm_groups:
-            rpm_groups = ['Empty']
+            groups = self.gIcons.groups
 
-        groups = self.gIcons.groups
+            for group_path in rpm_groups:
+                # Build tree path X/Y/Z...
+                currG = groups
+                currT = self.groupList
+                subGroups = [part for part in group_path.split("/") if part]
+                parentItem = None
+                fullGroupName = None
 
-        for g in rpm_groups:
-            #X/Y/Z/...
-            currG = groups
-            currT = self.groupList
-            subGroups = g.split("/")
-            currItem = None
-            parentItem = None
-            groupName = None
+                if not subGroups:
+                    logger.debug("Skipping invalid empty group path: '%s'", group_path)
+                    continue
 
-            for sg in subGroups:
-                if groupName:
-                    groupName += "/%s"%(sg)
-                else:
-                    groupName = sg
-                icon = self.gIcons.icon(groupName)
+                for subgroup in subGroups:
+                    fullGroupName = subgroup if fullGroupName is None else "%s/%s" % (fullGroupName, subgroup)
+                    icon = self.gIcons.icon(fullGroupName)
 
-                if sg in currG:
-                    currG = currG[sg]
-                    if currG["title"] in currT :
-                        currT = currT[currG["title"]]
-                        parentItem = currT["item"]
-                    else :
-                        # create the item
-                        item = None
-                        if parentItem:
-                            item = yui.YTreeItem(parentItem, currG["title"], icon)
-                        else :
-                            item = yui.YTreeItem(currG["title"], icon)
-                        item.this.own(False)
-                        currT[currG["title"]] = { "item" : item, "name" : groupName }
-                        currT = currT[currG["title"]]
-                        parentItem = item
-                else:
-                    # group is not in our group definition, but it's into the repository
-                    # we just use it
-                    if sg in currT :
-                        currT = currT[sg]
-                        parentItem = currT["item"]
-                    else :
-                        item = None
-                        if parentItem:
-                            item = yui.YTreeItem(parentItem, sg, icon)
-                        else :
-                            item = yui.YTreeItem(sg, icon)
-                        item.this.own(False)
-                        currT[sg] = { "item" : item, "name": groupName }
-                        currT = currT[sg]
-                        parentItem = item
+                    if subgroup in currG:
+                        currG = currG[subgroup]
+                        title = currG.get("title", subgroup)
+                        if title in currT:
+                            currT = currT[title]
+                            parentItem = currT.get("item")
+                        else:
+                            item = MUI.YTreeItem(parent=parentItem, label=title, icon_name=icon) if parentItem else MUI.YTreeItem(label=title, icon_name=icon)
+                            currT[title] = {"item": item, "name": fullGroupName}
+                            currT = currT[title]
+                            parentItem = item
+                    else:
+                        # Group is not in our predefined metadata; keep backend-provided label.
+                        if subgroup in currT:
+                            currT = currT[subgroup]
+                            parentItem = currT.get("item")
+                        else:
+                            item = MUI.YTreeItem(parent=parentItem, label=subgroup, icon_name=icon) if parentItem else MUI.YTreeItem(label=subgroup, icon_name=icon)
+                            currT[subgroup] = {"item": item, "name": fullGroupName}
+                            currT = currT[subgroup]
+                            parentItem = item
 
-        print ("End found %d groups" %len(rpm_groups))
+            logger.debug("Found %d groups for tree", len(rpm_groups))
 
-        keylist = sorted(self.groupList.keys())
-        v = []
-        for key in keylist :
-            item = self.groupList[key]['item']
-            v.append(item)
+            keylist = sorted(self.groupList.keys())
+            items = []
+            for key in keylist:
+                group_item = self.groupList[key].get('item')
+                if group_item:
+                    items.append(group_item)
 
-        itemCollection = yui.YItemCollection(v)
-        self.tree.startMultipleChanges()
-        self.tree.deleteAllItems()
-        self.tree.doneMultipleChanges()
-        self.tree.addItems(itemCollection)
-        yui.YUI.app().normalCursor()
+            if items:
+                items[0].setSelected(True)
+
+            #self.tree.startMultipleChanges()
+            self.tree.deleteAllItems()
+            #self.tree.doneMultipleChanges()
+            self.tree.addItems(items)
+        finally:
+            MUI.YUI.app().normalCursor()
 
 
     def _formatLink(self, description, url) :
@@ -1236,7 +1297,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       #clean up tree
       if createTreeItem:
-          self._fillGroupTree()
+          self._set_tree_visible(False)
 
       filter = self._filterNameSelected()
       self.itemList = {}
@@ -1273,24 +1334,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           item = self.itemList[key]['item']
           v.append(item)
 
-      itemCollection = yui.YItemCollection(v)
+      itemCollection = v
 
-      self.packageList.startMultipleChanges()
+      #self.packageList.startMultipleChanges()
       # cleanup old changed items since we are removing all of them
-      self.packageList.setChangedItem(None)
+      #self.packageList.setChangedItem(None)
       self.packageList.deleteAllItems()
       self.packageList.addItems(itemCollection)
-      self.packageList.doneMultipleChanges()
+      #self.packageList.doneMultipleChanges()
 
       if createTreeItem:
-          self.tree.startMultipleChanges()
-          icon = self.gIcons.icon("Search")
-          treeItem = yui.YTreeItem(self.gIcons.groups['Search']['title'] , icon, False)
-          treeItem.setSelected(True)
-          self.groupList[self.gIcons.groups['Search']['title']] = { "item" : treeItem, "name" : "Search" }
-          self.tree.addItem(treeItem)
-          self.tree.doneMultipleChanges()
-          self.tree.rebuildTree()
+          pass  # tree is hidden during searches; no tree item needed
 
       self._enableAction(True)
 
@@ -1464,42 +1518,48 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #except dnfdaemon.client.AccessDeniedError as e:
         #    logger.error("dnfdaemon client AccessDeniedError: %s ", e)
         #    dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
-        except:
-            exc, msg = misc.parse_dbus_error()
-            if 'AccessDeniedError' in exc:
-                logger.warning("User pressed cancel button in policykit window")
-                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
-            else:
-                pass
+        except Exception as err:
+          exc, msg = misc.parse_dbus_error()
+          if 'AccessDeniedError' in exc:
+            logger.warning("User pressed cancel button in policykit window")
+            logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
+          else:
+            logger.exception("Unexpected error while undoing transaction: %s", err)
 
         return performedUndo
 
 
     def saveUserPreference(self):
         '''
-        Save user preferences on exit and view layout if needed
+        Save user preferences on exit and view layout if needed.
+        The view-state update (filter/view widgets) is guarded with try/except
+        so that failures in popup-dialog context (widget not accessible) do not
+        prevent the actual YAML file write.
         '''
-        filter = self._filterNameSelected()
-        view = self._viewNameSelected()
-        self.config.userPreferences['view'] = {
-            'show': view,
-            'filter': filter
-            }
+        try:
+            filter = self._filterNameSelected()
+            view = self._viewNameSelected()
+            self.config.userPreferences['view'] = {
+                'show': view,
+                'filter': filter
+                }
 
-        search = {
-            'fuzzy_search': self.fuzzy_search,
-            'newest_only': self.newest_only
-          }
+            search = {
+                'fuzzy_search': self.fuzzy_search,
+                'newest_only': self.newest_only
+              }
 
-        if 'settings' in self.config.userPreferences.keys() :
-            settings = self.config.userPreferences['settings']
-            settings['search'] = search
-            if 'show updates at startup' in settings.keys() :
-                if settings['show updates at startup'] :
-                    self.config.userPreferences['view']['filter'] = 'to_update'
-            if 'do not show groups at startup' in settings.keys():
-                if settings['do not show groups at startup'] :
-                    self.config.userPreferences['view']['show'] = 'all'
+            if 'settings' in self.config.userPreferences.keys() :
+                settings = self.config.userPreferences['settings']
+                settings['search'] = search
+                if 'show updates at startup' in settings.keys() :
+                    if settings['show updates at startup'] :
+                        self.config.userPreferences['view']['filter'] = 'to_update'
+                if 'do not show groups at startup' in settings.keys():
+                    if settings['do not show groups at startup'] :
+                        self.config.userPreferences['view']['show'] = 'all'
+        except Exception:
+            logger.exception("saveUserPreference: could not collect view/search state; settings will still be saved")
         self.config.saveUserPreferences()
 
     def _load_history(self, transactions):
@@ -1560,21 +1620,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             for f in self.filters:
                 self.filters[f]['item'] = None
 
-            itemColl = yui.YItemCollection()
+            itemColl = []
             for f in ordered_filters:
-                item = yui.YItem(self.filters[f]['title'])
+                item = MUI.YItem(self.filters[f]['title'])
                 if filter_item == f:
                     item.setSelected(True)
                 # adding item to filters to find the item selected
                 self.filters[f]['item'] = item
-                itemColl.push_back(item)
-                item.this.own(False)
+                itemColl.append(item)
 
-            self.filter_box.startMultipleChanges()
+            #self.filter_box.startMultipleChanges()
             self.filter_box.deleteAllItems()
             self.filter_box.addItems(itemColl)
             #self.filter_box.setEnabled(not self.update_only)
-            self.filter_box.doneMultipleChanges()
+            #self.filter_box.doneMultipleChanges()
 
             # fixing groups
             view = self._viewNameSelected()
@@ -1590,205 +1649,279 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return rebuild_package_list
 
-    def handleevent(self):
-        """
-        Event-handler for the maindialog
-        """
-        self.running = True
-        while self.running == True:
-            loop_timeout = 20 if  self._status in (DNFDragoraStatus.CACHING_AVAILABLE, \
-                    DNFDragoraStatus.CACHING_UPDATE, \
-                    DNFDragoraStatus.CACHING_INSTALLED) \
-                    else 200
-            event = self.dialog.waitForEvent(loop_timeout)
+    def _event_loop_timeout(self):
+      """Return the polling timeout used by the main AUI event loop."""
+      if self._status in (
+        DNFDragoraStatus.CACHING_AVAILABLE,
+        DNFDragoraStatus.CACHING_UPDATE,
+        DNFDragoraStatus.CACHING_INSTALLED,
+      ):
+        return 20
+      return 200
 
-            eventType = event.eventType()
+    def _handle_menu_event(self, event):
+      """Handle AUI menu events and return (rebuild_package_list, request_exit)."""
+      rebuild_package_list = False
+      request_exit = False
 
-            rebuild_package_list = False
-            group = None
-            #event type checking
-            if (eventType == yui.YEvent.CancelEvent) :
-                self.running = False
-                break
-            elif (eventType == yui.YEvent.MenuEvent) :
-                ### MENU ###
-                item = event.item()
-                if (item) :
-                    if  item == self.fileMenu['reset_sel'] :
-                        self.packageQueue.clear()
-                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
-                    elif item == self.fileMenu['reload'] :
-                        self.backend.ExpireCache()
-                    elif item == self.fileMenu['repos']:
-                        rd = dialogs.RepoDialog(self)
-                        rd.run()
-                    elif item == self.fileMenu['quit'] :
-                        #### QUIT
-                        self.running = False
-                        break
-                    elif item == self.optionsMenu['user_prefs'] :
-                        up = dialogs.OptionDialog(self)
-                        up.run()
-                    elif item == self.ActionMenu['actions'] :
-                        actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
-                        newAction = actDlg.run()
-                        rebuild_package_list = self._updateActionView(newAction)
-
-                    #elif item == self.infoMenu['history'] :
-                    #    self.backend.GetHistoryByDays(0, 120) #TODO add in config file
-                    elif item == self.helpMenu['help']  :
-                        info = helpinfo.DNFDragoraHelpInfo()
-                        hd = helpdialog.HelpDialog(info)
-                        hd.run()
-                    elif item == self.helpMenu['about']  :
-                        self.AboutDialog.run()
-                else:
-                    url = yui.toYMenuEvent(event).id()
-                    if url :
-                        logger.debug("Url selected: %s", url)
-                        if url in self.infoshown.keys():
-                            self.infoshown[url]["show"] = not self.infoshown[url]["show"]
-                            logger.debug("Info to show: %s"%(self.infoshown))
-                            sel_pkg = self._selectedPackage()
-                            self._setInfoOnWidget(sel_pkg)
-                            self._selPkg = sel_pkg
-                        else :
-                            logger.debug("run browser, URL: %s"%url)
-                            webbrowser.open(url, 2)
-            elif (eventType == yui.YEvent.WidgetEvent) :
-                # widget selected
-                widget  = event.widget()
-                if (widget == self.quitButton) :
-                    #### QUIT
-                    self.running = False
-                    break
-                elif (widget == self.packageList) :
-                    wEvent = yui.toYWidgetEvent(event)
-                    if (wEvent.reason() == yui.YEvent.ValueChanged) :
-                        changedItem = self.packageList.changedItem()
-                        if changedItem :
-                            for it in self.itemList:
-                                if (self.itemList[it]['item'] == changedItem) :
-                                    pkg = self.itemList[it]['pkg']
-                                    if pkg.installed and self.backend.protected(pkg) :
-                                        dialogs.warningMsgBox({'title' : _("Protected package selected"), "text": _("Package %s cannot be removed")%pkg.name, "richtext":True})
-                                        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
-                                    else :
-                                        if changedItem.checked(self.checkBoxColumn):
-                                          if not self.packageQueue.checked(pkg):
-                                              self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-                                        elif self.packageQueue.checked(pkg):
-                                            self.packageQueue.add(pkg, 'r')
-                                        self._setStatusToItem(pkg, self.itemList[it]['item'], True)
-                                    break
-                    else:
-                      logger.debug("package list selected, but no items changed")
-
-                elif (widget == self.reset_search_button) :
-                    #### RESET
-                    rebuild_package_list = True
-                    self.find_entry.setValue("")
-                    self._fillGroupTree()
-
-                elif (widget == self.find_button) or (widget == self.search_list) or (widget == self.use_regexp):
-                    #### FIND
-                    if not self._searchPackages() :
-                      rebuild_package_list = True
-                      self._fillGroupTree()
-
-                elif (widget == self.checkAllButton) :
-                    for it in self.itemList:
-                        pkg = self.itemList[it]['pkg']
-                        self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
-
-                elif (widget == self.applyButton) :
-                    #### APPLY
-                    # disable actions
-                    self._enableAction(False)
-                    self.pbar_layout.setEnabled(True)
-                    # for some reasons here does not refresh the layout, let's force it with a poll request
-                    self.dialog.pollEvent()
-
-                    self._populate_transaction()
-                    self.backend.BuildTransaction()
-
-                elif (widget == self.view_box) :
-                    view = self._viewNameSelected()
-                    filter = self._filterNameSelected()
-                    self.checkAllButton.setEnabled(filter == 'to_update')
-                    rebuild_package_list = True
-                    #reset find entry, it does not make sense here
-                    self.find_entry.setValue("")
-                    self._fillGroupTree()
-
-                elif (widget == self.tree):
-                  rebuild_package_list = True
-                  self.find_entry.setValue("")
-
-                elif (widget == self.filter_box) :
-                  view = self._viewNameSelected()
-                  filter = self._filterNameSelected()
-                  self._fillGroupTree()
-                  self.checkAllButton.setEnabled(filter == 'to_update')
-                  rebuild_package_list = not self._searchPackages()
-                else:
-                    print(_("Unmanaged widget"))
-            elif (eventType == yui.YEvent.TimeoutEvent) :
-              rebuild_package_list = self._manageDnfDaemonEvent()
-              if rebuild_package_list:
-                logger.debug("Rebuilding %s", rebuild_package_list)
-                self._fillGroupTree()
-
-            else:
-                print(_("Unmanaged event %d"), eventType)
-
-            if rebuild_package_list :
-              filter = self._filterNameSelected()
-              search_string = self.find_entry.value()
-              if not search_string :
-                sel = self.tree.selectedItem()
-                if sel :
-                  group = self._groupNameFromItem(self.groupList, sel)
-                  self._fillPackageList(group, filter)
-
+      item = event.item()
+      if item:
+        if item == self.fileMenu['reset_sel']:
+          self.packageQueue.clear()
+          rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+        elif item == self.fileMenu['reload']:
+          self.backend.CleanCache()
+        elif item == self.fileMenu['repos']:
+          rd = dialogs.RepoDialog(self)
+          rd.run()
+        elif item == self.fileMenu['quit']:
+          request_exit = True
+        elif item == self.optionsMenu['user_prefs']:
+          up = dialogs.OptionDialog(self)
+          up.run()
+        elif item == self.ActionMenu['actions']:
+          actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
+          newAction = actDlg.run()
+          rebuild_package_list = self._updateActionView(newAction)
+        elif item == self.helpMenu['help']:
+          info = helpinfo.DNFDragoraHelpInfo()
+          hd = helpdialog.HelpDialog(info)
+          hd.run()
+        elif item == self.helpMenu['about']:
+          self.AboutDialog.run()
+      else:
+        # AUI menu events expose id() directly on the event for rich text links.
+        url = getattr(event, 'id', lambda: None)()
+        if url:
+          logger.debug("Url selected: %s", url)
+          if url in self.infoshown.keys():
+            self.infoshown[url]["show"] = not self.infoshown[url]["show"]
+            logger.debug("Info to show: %s", self.infoshown)
             sel_pkg = self._selectedPackage()
-            if sel_pkg :
-              if self._selPkg != sel_pkg:
-                self._setInfoOnWidget(sel_pkg)
-                self._selPkg = sel_pkg
-            else:
-              self.info.setValue("")
+            self._setInfoOnWidget(sel_pkg)
+            self._selPkg = sel_pkg
+          else:
+            logger.debug("run browser, URL: %s", url)
+            webbrowser.open(url, 2)
 
-            if self.packageActionValue != const.Actions.DISTRO_SYNC:
-                if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
-                    self.applyButton.setEnabled()
-                elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
-                    self.applyButton.setEnabled(False)
-            elif not self.applyButton.isEnabled():
-                self.applyButton.setEnabled()
+      return rebuild_package_list, request_exit
 
-        # Save user prefs on exit
-        self.saveUserPreference()
+    def _handle_widget_event(self, event):
+      """Handle AUI widget events and return (rebuild_package_list, request_exit)."""
+      rebuild_package_list = False
+      request_exit = False
+      widget = event.widget()
 
-        if yui.YUI.app().isTextMode():
-          self.glib_loop.quit()
+      if widget == self.quitButton:
+        request_exit = True
+      elif widget == self.packageList:
+        if event.reason() == MUI.YEventReason.ValueChanged:
+          changedItem = self.packageList.changedItem()
+          if changedItem:
+            for it in self.itemList:
+              if self.itemList[it]['item'] == changedItem:
+                pkg = self.itemList[it]['pkg']
+                if pkg.installed and self.backend.protected(pkg):
+                  dialogs.warningMsgBox({'title': _("Protected package selected"), "text": _("Package %s cannot be removed") % pkg.name, "richtext": True})
+                  rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                else:
+                  # Checkbox is first column (0).
+                  if changedItem.cell(0).checked():
+                    if not self.packageQueue.checked(pkg):
+                      self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+                  elif self.packageQueue.checked(pkg):
+                    self.packageQueue.add(pkg, 'r')
+                  self._setStatusToItem(pkg, self.itemList[it]['item'], True)
+                break
+        else:
+          logger.debug("Package list selected, but no items changed")
+      elif widget == self.reset_search_button:
+        rebuild_package_list = True
+        self.find_entry.setValue("")
+        self._fillGroupTree()
+      elif widget == self.find_button or widget == self.search_list or widget == self.use_regexp:
+        if not self._searchPackages():
+          rebuild_package_list = True
+          self._fillGroupTree()
+      elif widget == self.checkAllButton:
+        for it in self.itemList:
+          pkg = self.itemList[it]['pkg']
+          self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+      elif widget == self.applyButton:
+        # Disable actions while creating and running transaction.
+        self._enableAction(False)
+        self.pbar_layout.setEnabled(True)
+        self._populate_transaction()
+        self.backend.BuildTransaction()
+      elif widget == self.view_box:
+        filter = self._filterNameSelected()
+        self.checkAllButton.setEnabled(filter == 'to_update')
+        rebuild_package_list = True
+        self.find_entry.setValue("")
+        self._fillGroupTree()
+      elif widget == self.tree:
+        rebuild_package_list = True
+        self.find_entry.setValue("")
+      elif widget == self.filter_box:
+        filter = self._filterNameSelected()
+        self._fillGroupTree()
+        self.checkAllButton.setEnabled(filter == 'to_update')
+        rebuild_package_list = not self._searchPackages()
+      else:
+        logger.warning("Unmanaged widget event received")
 
-        self.dialog.destroy()
+      return rebuild_package_list, request_exit
 
-        try:
-            self.backend.quit()
-        except Exception as err:
-            logger.error("Excpion on exit %s", err)
-        self.loop_has_finished = True
+    def _refresh_ui_after_event(self, rebuild_package_list):
+      """Refresh package list and info panel after a single event is processed."""
+      if rebuild_package_list:
+        filter = self._filterNameSelected()
+        search_string = self.find_entry.value()
+        if not search_string:
+          view = self._viewNameSelected()
+          if view == 'all':
+            # Tree is hidden when view is 'all'; show all packages directly.
+            self._fillPackageList(None, filter)
+          else:
+            sel = self.tree.selectedItem()
+            if sel:
+              group = self._groupNameFromItem(self.groupList, sel)
+              self._fillPackageList(group, filter)
 
-        self.backend.waitForLastAsyncRequestTermination()
+      # Avoid sync GetAttribute calls while transaction is running.
+      # The daemon can legitimately be busy and not answer metadata requests quickly.
+      if self._status == DNFDragoraStatus.RUN_TRANSACTION:
+        return
 
-        if yui.YUI.app().isTextMode():
-          self.glib_thread.join()
+      sel_pkg = self._selectedPackage()
+      if sel_pkg:
+        if self._selPkg != sel_pkg:
+          self._setInfoOnWidget(sel_pkg)
+          self._selPkg = sel_pkg
+      else:
+        self.info.setValue("")
 
-        #self.backend.quit()
-        #self.backend.release_root_backend()
+    def _sync_apply_button_state(self):
+      """Keep Apply button enabled state consistent with queue and action mode."""
+      if self.packageActionValue != const.Actions.DISTRO_SYNC:
+        if self.packageQueue.total() > 0 and not self.applyButton.isEnabled():
+          self.applyButton.setEnabled()
+        elif self.packageQueue.total() == 0 and self.applyButton.isEnabled():
+          self.applyButton.setEnabled(False)
+      elif not self.applyButton.isEnabled():
+        self.applyButton.setEnabled()
+
+    def handleevent(self):
+      """Main AUI event loop coordinating frontend and backend asynchronous events."""
+      self.running = True
+      while self.running:
+        _active_dialog = (self._trans_dialog.dialog
+                          if self._trans_dialog is not None else self.dialog)
+        event = _active_dialog.waitForEvent(self._event_loop_timeout())
+        eventType = event.eventType()
+
+        rebuild_package_list = False
+        request_exit = False
+
+        if eventType == MUI.YEventType.CancelEvent:
+          if self._trans_dialog is not None:
+            self._close_trans_dialog()
+            # Clean up download and transaction data
+            self.__resetDownloads()
+            #restore actions to Normal
+            self._updateActionView(const.Actions.NORMAL)
+            # TODO change UI and manage this better afer a transaction report        
+            self.backend.clear_cache(also_groups=True)
+            self.packageQueue.clear()
+            self._status = DNFDragoraStatus.RESET_SESSION
+            self._transaction_noreply_warned = False
+            self._enableAction(False)
+            # NOTE: do NOT call backend.ResetSession() here.
+            # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+            # RunTransaction D-Bus method reply, so _sent is still True at this
+            # point. ResetSession would be rejected with "Command in progress".
+            # The RunTransaction event handler below waits for the reply (which
+            # clears _sent) and then issues ResetSession safely.
+            rebuild_package_list = True
+          else:
+            request_exit = True
+        elif eventType == MUI.YEventType.MenuEvent:
+          if self._trans_dialog is None:
+            rebuild_package_list, request_exit = self._handle_menu_event(event)
+        elif eventType == MUI.YEventType.WidgetEvent:
+          if self._trans_dialog is not None:
+            if self._trans_dialog.handle_event(event):
+              self._close_trans_dialog()
+              # Clean up download and transaction data
+              self.__resetDownloads()
+              #restore actions to Normal
+              self._updateActionView(const.Actions.NORMAL)
+              # TODO change UI and manage this better afer a transaction report        
+              self.backend.clear_cache(also_groups=True)
+              self.packageQueue.clear()
+              self._status = DNFDragoraStatus.RESET_SESSION
+              self._transaction_noreply_warned = False
+              self._enableAction(False)
+              # NOTE: do NOT call backend.ResetSession() here.
+              # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+              # RunTransaction D-Bus method reply, so _sent is still True at this
+              # point. ResetSession would be rejected with "Command in progress".
+              # The RunTransaction event handler below waits for the reply (which
+              # clears _sent) and then issues ResetSession safely.
+              rebuild_package_list = True
+          else:
+            rebuild_package_list, request_exit = self._handle_widget_event(event)
+        elif eventType == MUI.YEventType.TimeoutEvent:
+          rebuild_package_list = self._manageDnfDaemonEvent()
+          if rebuild_package_list:
+            logger.debug("Rebuilding %s", rebuild_package_list)
+            self._fillGroupTree()
+        else:
+          logger.warning("Unmanaged event type received: %s", eventType)
+
+        if request_exit:
+          self.running = False
+          break
+
+        self._refresh_ui_after_event(rebuild_package_list)
+        self._sync_apply_button_state()
+
+      # Save user prefs on exit
+      self.saveUserPreference()
+
+      if MUI.YUI.app().isTextMode():
+        self.glib_loop.quit()
+
+      self.dialog.destroy()
+
+      try:
+          self.backend.quit()
+      except Exception as err:
+        logger.exception("Exception on backend quit: %s", err)
+      self.loop_has_finished = True
+
+      self.backend.waitForLastAsyncRequestTermination()
+
+      if MUI.YUI.app().isTextMode():
+        self.glib_thread.join()
+
+      #self.backend.quit()
+      #self.backend.release_root_backend()
+
+    def _show_trans_dialog(self):
+        """Create the transaction progress dialog and hide the main window."""
+        self._trans_dialog = progress_ui.TransactionProgressDialog(self)
+        self._trans_dialog.open()
+
+    def _close_trans_dialog(self):
+        """Destroy the transaction progress dialog and restore the main window."""
+        if self._trans_dialog is not None:
+            self._trans_dialog.close()
+            self._trans_dialog = None
+        # Reset progress bar now that the main window is visible again
+        self.infobar.reset_all()
+        self.pbar_layout.setEnabled(True)
 
     def _OnRepoMetaDataProgress(self, name, frac):
       '''Repository Metadata Download progress.'''
@@ -1808,68 +1941,29 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values = (event, data)
       logger.debug('OnTransactionEvent: %s', repr(values))
       if event == 'OnTransactionActionStart':
-        pass
+        self._transaction_noreply_warned = False
       elif event == 'OnTransactionAfterComplete' or event == 'OnTransactionTimeoutEvent':
-        self.infobar.set_progress(1.0)
-        self.infobar.reset_all()
-        # Clean up download and transaction data
-        self.__resetDownloads()
+        if self._trans_dialog is not None:
+          self._trans_dialog.mark_complete(event == 'OnTransactionAfterComplete')
+        else:
+            logger.warning("Transaction complete event received, but transaction dialog is not open")
 
-        #restore actions to Normal
-        self._updateActionView(const.Actions.NORMAL)
-
-        # TODO change UI and manage this better afer a transaction report
-        self.backend.reloadDaemon()
-        self.backend.clear_cache(also_groups=True)
-        self.packageQueue.clear()
-        self._status = DNFDragoraStatus.STARTUP
-        self._enableAction(False)
-
-      return
-      #TODO manage new events
-      if event == 'start-run':
-        self.infobar.info(_('Start transaction'))
-      elif event == 'download':
-          self.infobar.info(_('Downloading packages'))
-      elif event == 'pkg-to-download':
-        #TODO manage event pkg-to-download
-        self._dnl_packages = data
-      elif event == 'signature-check':
-        # self.infobar.show_progress(False)
-        self.infobar.set_progress(0.0)
-        self.infobar.info(_('Checking package signatures'))
-        self.infobar.set_progress(1.0)
-        self.infobar.info_sub('')
-      elif event == 'run-test-transaction':
-        # self.infobar.info(_('Testing Package Transactions')) #
-        # User don't care
-        pass
-      elif event == 'run-transaction':
-        self.infobar.info(_('Applying changes to the system'))
-        self.infobar.info_sub('')
-      elif event == 'verify':
-        self.infobar.info(_('Verify changes on the system'))
-        #self.infobar.hide_sublabel()
-      # elif event == '':
-      elif event == 'fail':
-        logger.error('TransactionEvent failure: %s', repr(values))
-        self.infobar.reset_all()
-      elif event == 'end-run':
-        self.infobar.set_progress(1.0)
-        self.infobar.reset_all()
-        dlg = self.mgaFactory.createDialogBox(yui.YMGAMessageBox.B_ONE)
-        dlg.setTitle(_("Info"))
-        dlg.setText(_("Changes applied") + "\n" + self.started_transaction + "\n")
-        dlg.setButtonLabel(_("OK"), yui.YMGAMessageBox.B_ONE)
-        dlg.setMinSize(60, 10)
-        dlg.show()
-      elif event == 'start-build':
-        self.infobar.set_progress(0.0)
-        self.infobar.info(_('Build transaction'))
-      elif event == 'end-build':
-        self.infobar.set_progress(1.0)
-      else:
-        logger.error('Unmanaged transaction event : %s', str(event))
+    def exception_handler(self, e):
+      """Handle frontend exceptions; keep transaction alive on transient DBus NoReply."""
+      msg = str(e)
+      err, errmsg = self._parse_error(msg)
+      if err == 'NoReply' and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+        if not self._transaction_noreply_warned:
+          logger.warning("Transient DBus NoReply during RUN_TRANSACTION; keeping transaction alive")
+          # TODO remove later
+          dialogs.warningMsgBox({
+            'title': _("Backend busy"),
+            'text': _("The backend is busy processing the transaction. The operation will continue and progress events will still be tracked."),
+            'richtext': False
+          })
+          self._transaction_noreply_warned = True
+        return
+      super().exception_handler(e)
 
     def _OnRPMProgress(self, package, action, te_current, te_total, ts_current, ts_total):
       ''' _OnRPMProgress manages RPM Progress event
@@ -1928,8 +2022,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if session_object_path != self.backend.session_path :
         logger.warning("OnTransactionVerifyStart: Different session path received")
         return
-      self.infobar.set_progress(0.0)
-      self.infobar.info(_('Transaction verification'))
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+          self._trans_dialog.on_verify_start(total)
+      else:
+        self.infobar.set_progress(0.0)
+        self.infobar.info(_('Transaction verification'))
 
     def _OnTransactionVerifyProgress(self, session_object_path, processed, total):
       '''
@@ -1943,7 +2040,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           logger.warning("_OnTransactionVerifyProgress: Different session path received")
           return
       total_frac = processed / total if total > 0 else 0
-      self.infobar.set_progress(total_frac)
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+          self._trans_dialog.on_verify_progress(processed, total)
+      else:
+        self.infobar.set_progress(total_frac)
 
     def _OnTransactionVerifyStop(self, session_object_path, total):
       '''
@@ -1957,7 +2057,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if session_object_path != self.backend.session_path :
         logger.warning("OnTransactionVerifyStop: Different session path received")
         return
-      self.infobar.reset_all()
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+          self._trans_dialog.on_verify_stop(total)
+      else:
+        self.infobar.reset_all()
 
     def _OnTransactionActionStart(self, session_object_path, nevra, action, total):
         '''
@@ -1975,8 +2078,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionActionStart: Different session path received")
             return
-        self.infobar.set_progress(0.0)
-        self.infobar.info( _('Transaction for package <%(nevra)s> started') %{'nevra': nevra })
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_action_start(nevra, act_str)
+        else:
+            self.infobar.set_progress(0.0)
+            self.infobar.info( _('Transaction for package <%(nevra)s> started') %{'nevra': nevra })
 
     def _OnTransactionActionProgress(self, session_object_path, nevra, processed, total):
         '''
@@ -1993,7 +2099,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionActionProgress: Different session path received")
             return
         #TODO bar with processed??? if not always 0 self.infobar.set_progress(0.0)
-        self.infobar.info( _('Transaction for package <%(nevra)s> in progress') %{'nevra': nevra, })
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_action_progress(nevra, processed, total)
+        else:
+            self.infobar.info( _('Transaction for package <%(nevra)s> in progress') %{'nevra': nevra, })
 
     def _OnTransactionActionStop(self, session_object_path, nevra, total):
         '''
@@ -2008,7 +2117,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionActionStop: Different session path received")
             return
-        self.infobar.reset_all()
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_action_stop(nevra)
+        else:
+            self.infobar.reset_all()
 
     def _OnTransactionElemProgress(self, session_object_path, nevra, processed, total):
         """
@@ -2025,8 +2137,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionElemProgress: Different session path received")
             return
         total_frac = (processed+1) / total if total > 0 else 0
-        self.infobar.set_progress(total_frac)
-        self.infobar.info( _('Transaction in progress: <%(nevra)s> starts') %{'nevra': nevra, })
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_elem_progress(nevra, processed, total)
+        else:
+            self.infobar.set_progress(total_frac)
+            self.infobar.info( _('Transaction in progress: <%(nevra)s> starts') %{'nevra': nevra, })
 
     def _OnTransactionTransactionStart(self, session_object_path, total):
         '''
@@ -2041,8 +2156,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionTransactionStart: Different session path received")
             return
-        self.infobar.set_progress(0.0)
-        self.infobar.info( _('Preparation of transaction'))
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_transaction_start(total)
+        else:
+            self.infobar.set_progress(0.0)
+            self.infobar.info( _('Preparation of transaction'))
 
     def _OnTransactionTransactionProgress(self, session_object_path, processed, total):
         '''
@@ -2059,9 +2177,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionTransactionProgress: Different session path received")
             return
         total_frac = processed / total if total > 0 else 0
-        self.infobar.set_progress(total_frac)
-        self.infobar.info( _('Preparation of transaction'))
-
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_transaction_progress(processed, total)
+        else:
+            self.infobar.set_progress(total_frac)
+            self.infobar.info( _('Preparation of transaction'))
 
     def _OnTransactionTransactionStop(self, session_object_path, total):
         '''
@@ -2076,7 +2196,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionTransactionStop: Different session path received")
             return
-        self.infobar.reset_all()
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_transaction_stop(total)
+        else:
+            self.infobar.reset_all()
 
     def _OnTransactionScriptStart(self, session_object_path, nevra, scriptlet_type):
         '''
@@ -2116,8 +2239,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("OnTransactionScriptStart: Different session path received")
             return
 
-        self.infobar.set_progress(0.0)
-        self.infobar.info( _('Scriptlet <%(nevra)s> started') %{'nevra': nevra, })
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_script_start(nevra, scriptletType)
+        else:
+            self.infobar.set_progress(0.0)
+            self.infobar.info( _('Scriptlet <%(nevra)s> started') %{'nevra': nevra, })
 
     def _OnTransactionScriptStop(self, session_object_path, nevra, scriptlet_type, return_code):
         '''
@@ -2135,7 +2261,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionScriptStop: Different session path received")
             return
-        self.infobar.reset_all()
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_script_stop(nevra, scriptletType, return_code)
+        else:
+            self.infobar.reset_all()
 
     def _OnTransactionScriptError(self, session_object_path, nevra, scriptlet_type, return_code):
         '''
@@ -2153,7 +2282,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("_OnTransactionScriptError: Different session path received")
             return
-        self.infobar.reset_all()
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_script_error(nevra, scriptletType, return_code)
+        else:
+            self.infobar.reset_all()
 
     def __addDownload(self, download_id, description, total_to_download):
       '''
@@ -2170,7 +2302,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         'downloaded'        : 0,
         'total_to_download' : total_to_download,
       }
-
 
     def __resetDownloads(self):
       '''
@@ -2208,7 +2339,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       return downloads[download_id]
 
-
     def _OnDownloadStart(self, session_object_path, download_id, description, total_to_download):
       '''
          Starting a new parallel download batch managing signal download_add_new
@@ -2230,9 +2360,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._download_events['in_progress'] += 1
       self.__addDownload(download_id, description, total_to_download)
 
-      self.infobar.set_progress(0.0)
-      self.infobar.info(_('Start downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
-          {'count_files': len(self._download_events['downloads'].keys()), 'id': download_id, 'description':description })
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+          self._trans_dialog.on_download_start(download_id, description, total_to_download)
+      else:
+        self.infobar.set_progress(0.0)
+        self.infobar.info(_('Start downloading [%(count_files)d] - file %(id)s - %(description)s ...') %
+            {'count_files': len(self._download_events['downloads'].keys()), 'id': download_id, 'description':description })
 
     def _OnDownloadProgress(self, session_object_path, download_id, total_to_download, downloaded):
         '''
@@ -2255,13 +2388,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             download['total_to_download'] = total_to_download
         download['downloaded'] = downloaded
 
-        total_frac = downloaded / total_to_download if total_to_download > 0 else 0
+        # When the event carries an unknown total (-1), fall back to the last
+        # positive total stored in the download dict.  This prevents the
+        # fraction from jumping back to 0 on alternating events where
+        # dnf5daemon oscillates between a real size and -1 for the same id.
+        effective_total = total_to_download if total_to_download > 0 else download['total_to_download']
+        total_frac = downloaded / effective_total if effective_total > 0 else 0
+        logger.debug('OnDownloadProgress: %s frac=%.3f (effective_total=%s)',
+                     download_id, total_frac, effective_total)
 
-        #num = '(%d/%d - %s)' % (downloaded, total_to_download, download['description'])
-        self.infobar.set_progress(total_frac)
-        self.infobar.info(_('Downloading file %(id)s - %(description)s in progress')%
-                          { 'id': download_id, 'description':download['description'] })
-
+        if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+            self._trans_dialog.on_download_progress(download_id, downloaded, effective_total)
+        else:
+          self.infobar.set_progress(total_frac)
+          self.infobar.info(_('Downloading file %(id)s - %(description)s in progress')%
+                            { 'id': download_id, 'description':download['description'] })
 
     def _OnDownloadEnd(self, session_object_path, download_id, status, error):
       '''
@@ -2276,19 +2417,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values =  (download_id, download['description'], status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
-      if (self._download_events['in_progress'] > 0) :
-        self._download_events['in_progress'] -= 1
-
-      # (0 - successful, 1 - already exists, 2 - error)
-      if status == 0 or status == 1:  # download OK or already exists
-        logger.debug('Downloaded : %s - %s', download_id, download['description'])
+      if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
+          self._trans_dialog.on_download_end(download_id, download['description'], status, error)
       else:
-        logger.error('Download Error : [%s]:[%s] - %s', download_id, download['description'], error)
+        if (self._download_events['in_progress'] > 0) :
+          self._download_events['in_progress'] -= 1
 
-      self.infobar.info_sub("")
-      if (self._download_events['in_progress'] == 0) :
-        self.infobar.reset_all()
-        self.__resetDownloads()
+        # (0 - successful, 1 - already exists, 2 - error)
+        if status == 0 or status == 1:  # download OK or already exists
+          logger.debug('Downloaded : %s - %s', download_id, download['description'])
+        else:
+          logger.error('Download Error : [%s]:[%s] - %s', download_id, download['description'], error)
+
+        self.infobar.info_sub("")
+        if (self._download_events['in_progress'] == 0) :
+          self.infobar.reset_all()
+          self.__resetDownloads()
 
     def _OnErrorMessage(self, session_object_path, download_id, error, url, metadata):
       logger.error('OnErrorMessage(%s) - name: %s, err: %s url: %s, metadata: %s ', session_object_path, download_id, error, url, metadata)
@@ -2360,7 +2504,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         logger.error("Wrong package filter %s", pkg_flt)
         return
       self.backend.GetPackages(options)
-
 
     def _populateCache(self, pkg_flt, po_list) :
       if pkg_flt == 'updates_all':
@@ -2520,6 +2663,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         if ok:
           self.infobar.info(_('Applying changes to the system'))
+          self._show_trans_dialog()
           self.backend.RunTransaction()
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
@@ -2557,7 +2701,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 title = _("Error in status %(status)s on %(event)s")%({'status':self._status, 'event':(event if event else "---")})
                 dialogs.warningMsgBox({'title' : title, "text": str(info['error']), "richtext":True})
                 # Force return on STARTUP on error
-                self.backend.reloadDaemon()
+                try:
+                  self.backend.reloadDaemon()
+                except Exception as reload_err:
+                  logger.error("reloadDaemon failed during error recovery: %s", reload_err)
                 self.backend.clear_cache(also_groups=True)
                 self.packageQueue.clear()
                 self._status = DNFDragoraStatus.STARTUP
@@ -2576,7 +2723,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.backend.SetWatchdogState(False, sync=True)
               # Only if expired
               if self._check_MD_cache_expired():
-                self.backend.ExpireCache()
+                self.backend.CleanCache()
               else:
                 self._start_caching_packages()
             else:
@@ -2587,14 +2734,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'Unlock') :
             logger.info("Event %s received (%s)", event, info['result'])
             self.backend_locked = False
-          elif (event == 'ExpireCache'):
-            if not info['result']:
-              logger.Warning("Event %s received (%s)", event, info['result'])
-            # ExpireCache has been invoked let's refresh data
-            self.backend.reloadDaemon()
+          elif (event == 'ResetSession'):
+            logger.info("Event %s received (%s)", event, info['result'])
+            # ResetSession has been invoked let's refresh data
             self.backend.clear_cache(also_groups=True)
             self._status = DNFDragoraStatus.STARTUP
             self._enableAction(False)
+          elif (event == 'ReloadMetadata'):
+            if not info['result']:
+              logger.warning("Event %s received (%s)", event, info['result'])
+            # ExpireCache has been invoked let's refresh data
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.RESET_SESSION
+            self._enableAction(False)
+            self.backend.ResetSession()
+          elif (event == 'CleanCache'):
+            if not info['result']:
+              logger.warning("Event %s received (%s)", event, info['result'])
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.RELOAD_METADATA
+            self._enableAction(False)
+            # CleanCache has been invoked let's refresh data => ReloadMetadata
+            self.backend.ReloadMetadata()            
           elif (event == 'GetPackages'):
             if not info['error']:
               if self._status == DNFDragoraStatus.CACHING_INSTALLED:
@@ -2625,7 +2786,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 #TODO check --install option how it works using dnf5daemon and fix eventually
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
-                  pkgs = " ".join(i.replace(" ", "\ ") for i in self.options['install'])
+                  pkgs = " ".join(i.replace(" ", "\\ ") for i in self.options['install'])
                   self.backend.Install(pkgs, sync=True)
                   self.backend.BuildTransaction()
                   self._runtime_option_managed = True
@@ -2733,7 +2894,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug(info)
             self._OnDownloadEnd(info['session_object_path'], info['download_id'], info['status'], info['error'])
           elif (event == 'OnErrorMessage'):
-            logger.warn(info)
+            logger.warning(info)
             self._OnErrorMessage(info['session_object_path'], info['download_id'], info['error'], info['url'], info['metadata'])
           elif (event == 'GetHistoryByDays'):
             if not info['error']:
@@ -2757,18 +2918,26 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._undo_transaction()
           elif (event == 'SetEnabledRepos') or (event == 'SetDisabledRepos'):
             logger.debug("%s - %s", event, info['result'])
-            # Enabled repositories are changes we need to force caching again
-            self.backend.reloadDaemon()
             self.backend.clear_cache(also_groups=True)
             self._status = DNFDragoraStatus.STARTUP
             self._enableAction(False)
+            # Enabled repositories are changes we need to force caching again
+            self.backend.ResetSession()
           else:
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
-      except Empty as e:
+      except Empty:
           if self._status == DNFDragoraStatus.STARTUP:
             self._status = DNFDragoraStatus.RUNNING
             self._start_caching_packages()
+          elif self._status == DNFDragoraStatus.RESET_SESSION:
+            # RunTransaction (do_transaction) is fire-and-forget: its D-Bus ack
+            # clears _sent without queuing any event, and it arrives AFTER the
+            # OnTransactionAfterComplete signal. Poll on each timer tick until
+            # _sent is cleared before issuing ResetSession.
+            if not self.backend._sent:
+              logger.debug("RESET_SESSION: _sent cleared, issuing ResetSession")
+              self.backend.ResetSession()
 
 
       return rebuild_package_list
