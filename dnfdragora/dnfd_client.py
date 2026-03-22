@@ -182,7 +182,6 @@ class Client:
         self._sent = False
         self._data = {'cmd': None}
         self.eventQueue = SimpleQueue()
-        self._get_daemon()
         self.__async_thread = None
 
         # 300 secs, e.g. 5 minutes without receiving anything during a transaction
@@ -191,8 +190,12 @@ class Client:
         self.__TransactionTimer.AutoRpeat = False
 
         # Shared libdnf5 Base used by comps queries to avoid repeated repo metadata loading.
+        # Initialised BEFORE _get_daemon() so that __del__ -> unloadDaemon() ->
+        # _invalidate_comps_base() never raises AttributeError if _get_daemon() fails.
         self._comps_base = None
         self._comps_base_lock = threading.RLock()
+
+        self._get_daemon()
 
         self.proxyMethod = {
           ##Base
