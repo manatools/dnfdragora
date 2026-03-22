@@ -40,7 +40,7 @@ if __name__ == "__main__":
     try:
         upd = dnfdragora.updater.Updater(options)
         upd.main()
-    except dnfdaemon.client.DaemonError as e:
+    except dnfdragora.dnfd_client.DaemonError as e:
       logger.error("dnfdaemon client error: %s ", str(e))
     except NameError as e:
       logger.error("dnfdaemon NameError: %s ", str(e))
