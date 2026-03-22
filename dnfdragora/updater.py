@@ -38,8 +38,18 @@ class DnfdragoraUpdaterTray(Tray):
 
 class Updater:
 
-    def __init__(self, options={}):
-        self.__main_gui  = None
+    def __init__(self, options=None):
+        if options is None:
+            options = {}
+        # Initialize critical attributes upfront so that __shutdown__ and
+        # main() are safe even if construction exits early (e.g. backend error).
+        self.__main_gui            = None
+        self.__running             = False
+        self.__updater             = None
+        self.__scheduler           = None
+        self.__tray                = None
+        self.__backend             = None
+        self.__getUpdatesRequested = False
 
         self.__config         = config.AppConfig('dnfdragora')
         self.__updateInterval = 180
@@ -137,11 +147,9 @@ class Updater:
             logger.error(_('Error starting dnfdaemon service: [%s]')%( str(e)))
             return
 
-        # Use manatools.aui yui implementation instead of system "yui" package
-        from manatools.aui import yui as yui
-
         self.__running   = True
         self.__updater   = threading.Thread(target=self.__update_loop)
+        self.__updater.daemon = True  # don't prevent process exit on unexpected termination
         self.__scheduler = sched.scheduler(time.time, time.sleep)
         self.__getUpdatesRequested = False
 
@@ -167,7 +175,6 @@ class Updater:
       else:
           pathname = xdg.IconTheme.getIconPath(name, 256)
           return pathname
-      return None
 
     def __svg_to_Image(self, svg_string):
       '''
@@ -186,35 +193,26 @@ class Updater:
           return
         try:
           self.__running = False
-          self.__updater.join()
+          if self.__updater is not None:
+            self.__updater.join(timeout=5)
           try:
             if self.__backend:
               self.__backend = None
-          except:
-            pass
-          try:
-            if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
-              yui.YDialog.deleteAllDialogs()
-          except Exception:
-            pass
-          try:
-            if hasattr(yui, 'YUILoader') and hasattr(yui.YUILoader, 'deleteUI'):
-              yui.YUILoader.deleteUI()
           except Exception:
             pass
 
-        except:
+        except Exception:
           pass
 
         finally:
-            if not self.__scheduler.empty():
+            if self.__scheduler is not None and not self.__scheduler.empty():
                 for task in self.__scheduler.queue:
                     try:
                         self.__scheduler.cancel(task)
-                    except:
+                    except Exception:
                         pass
 
-            if self.__tray != None:
+            if self.__tray is not None:
               self.__tray.stop()
             if self.__backend:
               self.__backend = None
@@ -229,7 +227,7 @@ class Updater:
         for task in self.__scheduler.queue:
           try:
             self.__scheduler.cancel(task)
-          except:
+          except Exception:
             pass
       if self.__scheduler.empty():
         self.__scheduler.enter(minutes * 60, 1, self.__get_updates)
@@ -248,11 +246,6 @@ class Updater:
             except Exception as e:
               logger.error("Exception on running dnfdragora with args %s - %s", str(args), str(e))
               dialogs.warningMsgBox({'title' : _("Running dnfdragora failure"), "text": str(e), "richtext":True})
-              try:
-                if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
-                  yui.YDialog.deleteAllDialogs()
-              except Exception:
-                pass
               time.sleep(0.5)
               self.__main_gui = None
               return
@@ -263,11 +256,6 @@ class Updater:
             while self.__main_gui.loop_has_finished != True:
                 time.sleep(1)
             logger.info("Closed dnfdragora")
-            try:
-              if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
-                yui.YDialog.deleteAllDialogs()
-            except Exception:
-              pass
             time.sleep(1)
             self.__main_gui = None
             logger.debug("Look for remaining updates")
@@ -395,7 +383,7 @@ class Updater:
             else:
               logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
-        except Empty as e:
+        except Empty:
           pass
 
         if add_to_schedule:
@@ -423,4 +411,7 @@ class Updater:
 
 
     def main(self):
+        if not self.__running:
+            logger.error("Updater not fully initialized; cannot start.")
+            return
         self.__main_loop()
