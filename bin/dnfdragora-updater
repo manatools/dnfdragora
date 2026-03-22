@@ -51,15 +51,4 @@ if __name__ == "__main__":
     except:
       logger.error("Unexpected error: %s ", str(sys.exc_info()[0]))
     finally:
-      from manatools.aui import yui as yui
-      try:
-        if hasattr(yui, 'YDialog') and hasattr(yui.YDialog, 'deleteAllDialogs'):
-          yui.YDialog.deleteAllDialogs()
-      except Exception:
-        pass
-      try:
-        if hasattr(yui, 'YUILoader') and hasattr(yui.YUILoader, 'deleteUI'):
-          yui.YUILoader.deleteUI()
-      except Exception:
-        pass
-      print("Closing dnfdragora-updater")
+      logger.info("Closing dnfdragora-updater")
