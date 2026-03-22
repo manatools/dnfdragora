@@ -602,4 +602,27 @@ class Updater:
         if not self.__running:
             logger.error("Updater not fully initialized; cannot start.")
             return
+        # On Fedora, pystray's notify_dbus.Notifier() (which uses Gio.bus_get_sync)
+        # interacts with dbus-python's DBusGMainLoop in a way that causes a benign
+        # 'g_main_context_pop_thread_default: assertion stack != NULL' GLib-CRITICAL
+        # message.  It is cosmetic: the updater works correctly.  Install a targeted
+        # GLib log handler to suppress it from cluttering the terminal.
+        try:
+            from gi.repository import GLib as _GLib
+
+            def _suppress_pop_context_warning(domain, level, message, data):
+                if message and 'g_main_context_pop_thread_default' in message:
+                    return  # swallow harmless assertion
+                try:
+                    _GLib.log_default_handler(domain, level, message, data)
+                except Exception:
+                    pass
+
+            _GLib.log_set_handler(
+                'GLib',
+                _GLib.LogLevelFlags.LEVEL_CRITICAL | _GLib.LogLevelFlags.LEVEL_WARNING,
+                _suppress_pop_context_warning,
+                None)
+        except Exception:
+            pass  # non-critical: filter could not be installed; warning may still appear
         self.__main_loop()

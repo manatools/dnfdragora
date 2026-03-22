@@ -12,6 +12,7 @@ This module implements the interface to dnf5daemon dbus APIs
 '''
 
 import dbus
+import dbus.mainloop.glib
 import json # needed for list_fd
 import sys
 import re
@@ -158,15 +159,23 @@ def unpack_dbus(data):
 # Main Client Class
 #
 
+# Module-level singleton for the dbus-python GLib main loop.
+# DBusGMainLoop(set_as_default=True) must be called exactly once per process:
+# calling it multiple times from different threads (e.g. updater + dialog)
+# can leave mis-matched push/pop pairs on per-thread GLib context stacks,
+# causing the GLib-CRITICAL 'g_main_context_pop_thread_default: assertion
+# stack != NULL failed' warning on Fedora.  Storing the object also prevents
+# premature garbage collection, which would trigger a spurious context-pop.
+_dbus_glib_main_loop = None
+
 
 class Client:
 
     def __init__(self):
-        from dbus.mainloop.glib import DBusGMainLoop
-        #dbus_loop = DBusGMainLoop()
-        #self.bus = dbus.SessionBus(mainloop=dbus_loop)
-        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-        self.bus = dbus.SystemBus()
+        global _dbus_glib_main_loop
+        if _dbus_glib_main_loop is None:
+            _dbus_glib_main_loop = dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        self.bus = dbus.SystemBus(mainloop=_dbus_glib_main_loop)
         self.dbus_org = DNFDAEMON_BUS_NAME
         self.iface_session = None
         self.session_path = None
