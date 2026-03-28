@@ -29,8 +29,6 @@ option(CHECK_RUNTIME_DEPENDENCIES "Verify the presence of runtime-only dependenc
 if(CHECK_RUNTIME_DEPENDENCIES)
 	include(FindPython3Module)
 
-	# Find yui module
-	find_python3_module(yui REQUIRED)
 
 	# Find manatools module
 	find_python3_module(manatools REQUIRED)
