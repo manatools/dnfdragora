@@ -1,5 +1,7 @@
 202x-xx-xx v. 2.99.2
 --------------------
+- Complete rework on UI moved to manatools.aui.
+- Fixed "Show newest packages only" sometimes wrong #261
 - Updated translations
 - Modernized the AppStream metadata file
 - Fixed the AppStream metadata file name and installation directory
