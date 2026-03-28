@@ -140,6 +140,122 @@ def pkg_id_to_full_name(pkg_id):
         return "%s-%s-%s.%s" % (n, v, r, a)
 
 
+def rpmvercmp(a, b):
+    """Compare two RPM version or release strings using the rpmvercmp algorithm.
+
+    Implements the same logic as librpm's rpmvercmp():
+    - Segments are alternating runs of digits or alpha characters; separators
+      (anything that is not alnum and not '~') are skipped between segments.
+    - '~' (tilde) is a pre-release marker: it sorts *before* everything else,
+      including the empty string.
+    - Digit segments are compared as integers (no leading-zero significance).
+    - Alpha segments are compared lexicographically (byte order).
+    - A digit segment always beats an alpha segment at the same position.
+
+    Returns -1 if a < b, 0 if a == b, 1 if a > b.
+    """
+    if a == b:
+        return 0
+
+    ia, ib = 0, 0
+    la, lb = len(a), len(b)
+
+    while True:
+        # Skip non-alphanumeric, non-tilde separators (dots, dashes, …)
+        while ia < la and not a[ia].isalnum() and a[ia] != '~':
+            ia += 1
+        while ib < lb and not b[ib].isalnum() and b[ib] != '~':
+            ib += 1
+
+        # Tilde is a pre-release marker and sorts before anything else.
+        at_a = ia < la and a[ia] == '~'
+        at_b = ib < lb and b[ib] == '~'
+        if at_a or at_b:
+            if not at_a:
+                return 1    # b has '~', a does not → a is *newer*
+            if not at_b:
+                return -1   # a has '~', b does not → a is *older* (pre-release)
+            ia += 1
+            ib += 1
+            continue
+
+        # Check exhaustion after separator skipping.
+        if ia >= la and ib >= lb:
+            return 0
+        if ia >= la:
+            return -1   # a exhausted first → a is older
+        if ib >= lb:
+            return 1    # b exhausted first → a is newer
+
+        # Determine segment type from the current character of *a*.
+        is_digit = a[ia].isdigit()
+
+        start_a, start_b = ia, ib
+        if is_digit:
+            while ia < la and a[ia].isdigit():
+                ia += 1
+            while ib < lb and b[ib].isdigit():
+                ib += 1
+        else:
+            while ia < la and a[ia].isalpha():
+                ia += 1
+            while ib < lb and b[ib].isalpha():
+                ib += 1
+
+        seg_a = a[start_a:ia]
+        seg_b = b[start_b:ib]
+
+        # seg_b is empty when b's character at start_b had a different type
+        # (e.g. a has digits but b has letters at this position).
+        if not seg_b:
+            # Digits > letters: if a is numeric at this point, a wins.
+            return 1 if is_digit else -1
+
+        if is_digit:
+            # Compare numerically (handles leading zeros correctly).
+            diff = int(seg_a) - int(seg_b)
+            if diff:
+                return -1 if diff < 0 else 1
+        else:
+            # b might have switched to digits mid-stream.
+            if seg_b[0].isdigit():
+                return -1   # a is alpha, b is digit → b (digit) wins → a is older
+            # Lexicographic comparison.
+            if seg_a < seg_b:
+                return -1
+            if seg_a > seg_b:
+                return 1
+        # Segments equal; continue to next segment.
+
+
+def rpm_pkg_evr_cmp(p1, p2):
+    """Compare two DnfPackage objects by name then by Epoch:Version-Release.
+
+    Suitable for use as the ``key`` argument via ``functools.cmp_to_key``.
+    The primary sort key is the package *name* (ASCII order) so that packages
+    with the same name end up adjacent after sorting.  Within the same name
+    group, packages are ordered oldest-to-newest using proper RPM version
+    comparison (see :func:`rpmvercmp`).
+
+    Returns -1, 0, or 1.
+    """
+    if p1.name < p2.name:
+        return -1
+    if p1.name > p2.name:
+        return 1
+    # Same name: compare epoch as integer.
+    e1 = int(p1.epoch or 0)
+    e2 = int(p2.epoch or 0)
+    if e1 != e2:
+        return -1 if e1 < e2 else 1
+    # Same epoch: compare version string.
+    vc = rpmvercmp(p1.version, p2.version)
+    if vc != 0:
+        return vc
+    # Same version: compare release string.
+    return rpmvercmp(p1.release, p2.release)
+
+
 #def color_floats(spec):
     #rgba = Gdk.RGBA()
     #rgba.parse(spec)

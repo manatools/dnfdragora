@@ -16,6 +16,7 @@ import sys
 import platform
 import datetime
 import re
+from functools import cmp_to_key
 import manatools.aui.yui as MUI
 
 #from manatools.aui import yui_common as YUI
@@ -2812,7 +2813,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               pkgs = None
               packages = None
               if self.newest_only:
-                pkgs = sorted(info['result'], key=lambda p: p.full_nevra, reverse=True)
+                # Sort by (name, EVR) using the RPM version-comparison algorithm
+                # so that, within each name group, the newest package comes first
+                # after the reverse.  Sorting by full_nevra as a string is wrong
+                # because '1.mga9' < '1.1.mga9' lexicographically but numerically
+                # '1.1.mga9' is the newer release.
+                pkgs = sorted(info['result'],
+                              key=cmp_to_key(misc.rpm_pkg_evr_cmp),
+                              reverse=True)
                 name = None
                 packages = []
                 for p in pkgs:
