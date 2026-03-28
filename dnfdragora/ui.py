@@ -1404,8 +1404,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             "patterns": strings
           }
 
-          #['name', 'summary', 'description', 'file' ]
-          ### TODO how to manage mach_all, newest_only, summary and description????
+          if self.newest_only:
+              options['latest-limit'] = 1
+
           self.backend.Search(options)
 
         self._enableAction(False)
@@ -2828,17 +2829,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'Search'):
             if not info['error']:
               pkgs = None
-              packages = None
-              if self.newest_only:
-                pkgs = sorted(self.backend.make_pkg_object_with_attr(info['result']), key=lambda p: p.full_nevra, reverse=True)
-                name = None
-                packages = []
-                for p in pkgs:
-                  if p.name != name:
-                    packages.append(p)
-                    name = p.name
-              else:
-                packages = self.backend.make_pkg_object_with_attr(info['result'])
+              packages = self.backend.make_pkg_object_with_attr(info['result'])
               self._showSearchResult(packages, createTreeItem=True)
             else:
               logger.error("Search error: %s", info['error'])

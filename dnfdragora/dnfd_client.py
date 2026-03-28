@@ -1484,21 +1484,19 @@ class Client:
         '''Search for packages where keys is matched in fields
 
         Args:
-            options: dnf5daeon options for list method except
-                     for package attributes (package_attrs) that is overwritten
+            options: dnf5daemon options for list method.
+                     The attrs "name", "epoch", "version", "release", "arch" and
+                     "repo_id" are always added to options["package_attrs"] because
+                     they are required to build pkg_id in the sync return path.
+                     Any additional attrs already present in options["package_attrs"]
+                     are preserved.
 
         Returns:
             list of pkg_id's
         '''
-
-        options['package_attrs'] = [
-            "name",
-            "epoch",
-            "version",
-            "release",
-            "arch",
-            "repo_id",
-        ]
+        _required_attrs = {"name", "epoch", "version", "release", "arch", "repo_id"}
+        existing = set(options.get('package_attrs', []))
+        options['package_attrs'] = list(existing | _required_attrs)
         if not sync:
           self._run_dbus_async('Search', True, options)
         else:
