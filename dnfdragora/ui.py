@@ -2813,20 +2813,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               pkgs = None
               packages = None
               if self.newest_only:
-                # Sort by (name, EVR) using the RPM version-comparison algorithm
-                # so that, within each name group, the newest package comes first
-                # after the reverse.  Sorting by full_nevra as a string is wrong
-                # because '1.mga9' < '1.1.mga9' lexicographically but numerically
-                # '1.1.mga9' is the newer release.
+                # Sort by (name, arch, EVR) using the RPM version-comparison
+                # algorithm so that, within each (name, arch) group, the newest
+                # package comes first after the reverse sort.
+                # Using only p.name as dedup key was wrong: packages with the
+                # same name but different arches (e.g. glibc.x86_64 and
+                # glibc.i686) must be kept independently.
                 pkgs = sorted(info['result'],
                               key=cmp_to_key(misc.rpm_pkg_evr_cmp),
                               reverse=True)
-                name = None
+                seen = set()
                 packages = []
                 for p in pkgs:
-                  if p.name != name:
+                  key = (p.name, p.arch)
+                  if key not in seen:
                     packages.append(p)
-                    name = p.name
+                    seen.add(key)
               else:
                  packages = info['result']
               self._showSearchResult(packages, createTreeItem=True)
