@@ -700,7 +700,13 @@ class Client:
                 # Regular async method with return value
                 def on_success(*result):
                     logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result))
-                    if len(result) == 1:
+                    if len(result) == 0:
+                        # Method has no output args (e.g. Repo.enable / Repo.disable):
+                        # call _return_handler with True so the event is queued and
+                        # _sent is cleared.  Without this branch _sent stayed True
+                        # forever and ui.py never received the SetEnabledRepos event.
+                        self._return_handler(True, data)
+                    elif len(result) == 1:
                         self._return_handler(unpack_dbus(result[0]), data)
                     elif len(result) == 2:
                         self._return_handler((unpack_dbus(result[0]), unpack_dbus(result[1])), data)
@@ -1355,7 +1361,7 @@ class Client:
         elif cmd == 'GetRepositories' or cmd == 'ConfirmGPGImport':
             return self.iface_repo
         elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
-            return  self.iface_repoconf
+            return  self.iface_repo
         elif cmd == 'Advisories':
             return self.iface_advisory
         elif cmd == 'ReloadMetadata' or cmd == 'CleanCache' or cmd == 'ResetSession':
