@@ -32,6 +32,12 @@ class Updater:
         if options is None:
             options = {}
 
+        # ── Backend probe: must run before QApplication creation ─────────────
+        # Determines whether MUI_BACKEND needs to be overridden to 'qt'.
+        # Must come first so QApplication's own GLib/D-Bus integration does
+        # not influence the probe's sys.modules check.
+        Updater._probe_backend_for_process()
+
         # ── QApplication must be the very first Qt object ─────────────────────
         # setQuitOnLastWindowClosed(False) prevents QApplication from quitting
         # automatically when the dnfdragora dialog is closed (it is the last
@@ -145,6 +151,106 @@ class Updater:
         self.__getUpdatesRequested = False
 
     # ── Icon loading ─────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _probe_backend_for_process():
+        '''
+        Determine the safe manatools.aui backend for dialogs opened inside
+        this process and set MUI_BACKEND accordingly — without importing GTK.
+
+        IMPORTANT: this method must never call _detect_backend() or import
+        anything from gi.repository.  Those probes execute
+        "from gi.repository import Gtk" which registers all GLib/GObject
+        boxed types into the process.  When QApplication is subsequently
+        created, Qt's own GLib integration tries to register the same types
+        a second time, producing:
+          • g_boxed_type_register_static: assertion '…' failed
+          • cannot register existing type 'GtkWidget'
+          • QColor::fromRgbF: Alpha parameter out of range   (platform theme)
+          • etc.
+        The probe therefore uses only environment variables and
+        importlib.util.find_spec (which locates packages without executing
+        their code).
+
+        Decision tree
+        -------------
+        1. MUI_BACKEND already set by the user/environment → no-op.
+        2. No desktop session (XDG_CURRENT_DESKTOP unset) → NCurses would be
+           the natural choice; no GTK conflict possible → no-op.
+        3. Qt-preferred desktop (KDE, LXQt, …) → Qt is already natural → no-op.
+        4. GTK-preferred desktop (GNOME, XFCE, LXDE, …):
+           a. PySide6 already in sys.modules → loading GTK4 later would clash;
+              override to MUI_BACKEND=qt.
+           b. PySide6 not yet loaded AND gi/python-gobject not installed →
+              GTK4 is unavailable anyway; override to MUI_BACKEND=qt.
+           c. PySide6 not yet loaded AND gi is present → GTK4 is safe to use;
+              leave MUI_BACKEND unset.
+        '''
+        import importlib.util
+
+        if os.environ.get('MUI_BACKEND'):
+            logger.debug("MUI_BACKEND already set to '%s' — probe skipped",
+                         os.environ['MUI_BACKEND'])
+            return
+
+        xdg = os.environ.get('XDG_CURRENT_DESKTOP', '')
+        if not xdg:
+            # No desktop session → NCurses path; no Qt/GTK conflict.
+            logger.debug("Backend probe: no XDG_CURRENT_DESKTOP — no override")
+            return
+
+        _GTK_DESKTOPS = {
+            'GNOME', 'XFCE', 'MATE', 'LXDE', 'CINNAMON',
+            'PANTHEON', 'UNITY', 'ENLIGHTENMENT', 'SUGAR',
+        }
+        desktops = {d.strip().upper() for d in xdg.split(':')}
+
+        if not (desktops & _GTK_DESKTOPS):
+            # Qt-preferred desktop → Qt is already the natural choice.
+            logger.debug("Backend probe: Qt-preferred desktop (%s) — no override",
+                         ', '.join(sorted(desktops)))
+            return
+
+        # GTK-preferred desktop ─────────────────────────────────────────────
+        matched = ', '.join(sorted(desktops & _GTK_DESKTOPS))
+
+        if any(k.startswith('PySide6') for k in sys.modules):
+            # PySide6 is already imported (always the case in this process
+            # because updater.py imports PySide6 at module level).  Loading
+            # GTK4 after Qt's GLib initialisation would cause type conflicts.
+            logger.warning(
+                "Backend probe: GTK desktop (%s) detected but PySide6 is "
+                "already imported — overriding MUI_BACKEND=qt to avoid "
+                "GLib type-registration conflicts", matched
+            )
+            os.environ['MUI_BACKEND'] = 'qt'
+            return
+
+        # PySide6 not yet loaded: check gi availability without importing it.
+        # Check sys.modules first (already loaded → definitely available);
+        # fall back to find_spec for the not-yet-loaded case.
+        # find_spec can raise ValueError if a stale mock is in sys.modules, so
+        # guard with try/except.
+        try:
+            gi_available = ('gi' in sys.modules) or (
+                importlib.util.find_spec('gi') is not None
+            )
+        except (ValueError, AttributeError):
+            gi_available = 'gi' in sys.modules
+
+        if not gi_available:
+            logger.warning(
+                "Backend probe: GTK desktop (%s) but python-gobject (gi) "
+                "is not installed — overriding MUI_BACKEND=qt", matched
+            )
+            os.environ['MUI_BACKEND'] = 'qt'
+            return
+
+        # gi is available and PySide6 is not active → GTK4 is safe.
+        logger.debug(
+            "Backend probe: GTK desktop (%s), gi available, PySide6 not "
+            "active — MUI_BACKEND left unset (GTK)", matched
+        )
 
     def __load_qicon(self, name, icon_dir=None):
         '''
@@ -475,6 +581,19 @@ class Updater:
                            exc_info=True)
 
         self.__main_gui = None
+
+        # Reset the manatools YUI singleton so the next dialog open gets a
+        # fresh widget-factory instance.  The dialog's Qt widgets are already
+        # destroyed at this point; keeping a stale _instance would cause the
+        # next mainGui() call to reuse a factory whose internal state may
+        # reference closed/deleted objects.
+        try:
+            import manatools.aui.yui as _yui_mod
+            _yui_mod.YUI._instance = None
+            _yui_mod.YUI._backend  = None
+            logger.debug("YUI singleton reset after dialog close")
+        except Exception:
+            logger.debug("YUI singleton reset skipped (module not loaded)")
 
         # ── Step 5b: brief pause, then reopen the updater session ─────────────
         self.__processEvents(1.0)
