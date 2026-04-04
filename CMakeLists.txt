@@ -42,14 +42,8 @@ if(CHECK_RUNTIME_DEPENDENCIES)
 	# Find xdg module
 	find_python3_module(xdg REQUIRED)
 
-	# Find cairosvg module
-	find_python3_module(cairosvg REQUIRED)
-
-	# Find PIL module
-	find_python3_module(PIL REQUIRED)
-
-	# Find pystray module
-	find_python3_module(pystray REQUIRED)
+	# Find PySide6 module (replaces pystray + PIL + cairosvg for the tray)
+	find_python3_module(PySide6 REQUIRED)
 
 endif(CHECK_RUNTIME_DEPENDENCIES)
 
