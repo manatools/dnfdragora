@@ -3,16 +3,11 @@
 '''
 dnfdragora system tray updater — PySide6 / QSystemTrayIcon implementation.
 
-Replaces pystray + PIL with the Qt tray API so that a single widget toolkit
-(PySide6) covers both the updater tray and the dnfdragora dialog, eliminating:
-  • the GTK3/GTK4 version-conflict crash that pystray's appindicator/gtk
-    backends triggered by loading GTK 3 before yui_gtk.py loaded GTK 4;
-  • the PIL / cairosvg dependencies that were only needed for icon loading
-    (QIcon handles PNG, SVG and XPM natively).
-
 License: GPLv3
 
-Author:  Björn Esser <besser82@fedoraproject.org>
+Author:  Angelo Naselli <anaselli@linux.it>
+
+Former author:  Björn Esser <besser82@fedoraproject.org>
 
 @package dnfdragora
 '''
@@ -56,6 +51,15 @@ class Updater:
         # stands down and __get_updates skips (backend session intentionally
         # closed during that window to free a D-Bus session slot).
         self.__dialog_open         = False
+        # True from the moment updates are first confirmed until a check
+        # confirms zero updates.  Used to keep the update icon stable.
+        self.__has_updates         = False
+        # Monotonically-increasing counter bumped by every __get_updates call.
+        # The counter value is stamped on every ('no_updates', gen) message so
+        # that __on_no_updates can detect and discard stale results (a stale
+        # result has gen < self.__check_gen at the time the main thread
+        # processes the message).
+        self.__check_gen           = 0
 
         # ── Configuration ─────────────────────────────────────────────────────
         self.__config         = config.AppConfig('dnfdragora')
@@ -95,8 +99,13 @@ class Updater:
 
         # ── Icons ─────────────────────────────────────────────────────────────
         icon_dir = options.get('icon-path')
-        self._icon        = self.__load_qicon('dnfdragora',        icon_dir)
-        self._icon_update = self.__load_qicon('dnfdragora-update', icon_dir)
+        self._icon        = self.__load_qicon('dnfdragora',               icon_dir)
+        # Prefer the standard FreeDesktop theme icon; fall back to the
+        # application-specific one if the theme does not provide it.
+        self._icon_update = self.__load_qicon('software-update-available', icon_dir)
+        if self._icon_update.isNull():
+            logger.debug("Falling back to application-specific update icon")
+            self._icon_update = self.__load_qicon('dnfdragora-update', icon_dir)
 
         # ── System tray ───────────────────────────────────────────────────────
         self._tray = QSystemTrayIcon(self._icon, self._app)
@@ -186,6 +195,30 @@ class Updater:
                        "tray icon may be invisible", name)
         return QIcon()
 
+    # ── Tray state helpers (main-thread only) ────────────────────────────────
+
+    def __set_tray_icon(self, icon, reason=''):
+        '''Set the tray icon and log every change.'''
+        name = 'update' if icon is self._icon_update else 'normal'
+        logger.info("Tray icon → %s%s", name, ' [%s]' % reason if reason else '')
+        self._tray.setIcon(icon)
+
+    def __set_tray_visible(self, visible, reason=''):
+        '''Show or hide the tray icon.  Log every change; skip no-op calls.'''
+        current = self._tray.isVisible()
+        if current == visible:
+            logger.debug("Tray already %s — skipped%s",
+                         'visible' if visible else 'hidden',
+                         ' [%s]' % reason if reason else '')
+            return
+        logger.info("Tray %s%s",
+                    'shown' if visible else 'hidden',
+                    ' [%s]' % reason if reason else '')
+        if visible:
+            self._tray.show()
+        else:
+            self._tray.hide()
+
     # ── Cross-thread GUI queue processing (main thread, every 100 ms) ────────
 
     def __process_gui_queue(self):
@@ -196,17 +229,20 @@ class Updater:
             except Empty:
                 break
             if cmd == 'updates_found':
-                self.__on_updates_found(args[0])
+                # args = (count, gen)
+                self.__on_updates_found(args[0], args[1] if len(args) > 1 else None)
             elif cmd == 'no_updates':
-                self.__on_no_updates()
+                # args = (gen,)
+                self.__on_no_updates(args[0] if args else None)
             elif cmd == 'check_failed':
                 self.__on_check_failed(args[0])
 
-    def __on_updates_found(self, n):
-        logger.info("Found %d update(s)", n)
-        self._tray.setIcon(self._icon_update)
-        if not self._tray.isVisible():
-            self._tray.show()
+    def __on_updates_found(self, n, gen=None):
+        logger.info("updates_found: %d update(s) [gen=%s current_gen=%d]",
+                    n, gen, self.__check_gen)
+        self.__has_updates = True
+        self.__set_tray_icon(self._icon_update, 'updates found')
+        self.__set_tray_visible(True, 'updates found')
         if QSystemTrayIcon.supportsMessages():
             self._tray.showMessage(
                 'dnfdragora-update',
@@ -216,9 +252,20 @@ class Updater:
             )
         self.__getUpdatesRequested = False
 
-    def __on_no_updates(self):
-        logger.info("No updates found (requested=%s)", self.__getUpdatesRequested)
-        self._tray.setIcon(self._icon)
+    def __on_no_updates(self, gen=None):
+        # Discard stale results: if a newer check has already been initiated
+        # (check_gen advanced), this result is from a previous cycle and must
+        # not reset the update icon.
+        if gen is not None and gen != self.__check_gen:
+            logger.warning("Ignoring stale no_updates result "
+                           "[gen=%d, current_gen=%d]", gen, self.__check_gen)
+            return
+        logger.info("no_updates [gen=%s current_gen=%d "
+                    "was_updates=%s requested=%s]",
+                    gen, self.__check_gen,
+                    self.__has_updates, self.__getUpdatesRequested)
+        self.__has_updates = False
+        self.__set_tray_icon(self._icon, 'no updates')
         if self.__getUpdatesRequested and QSystemTrayIcon.supportsMessages():
             self._tray.showMessage(
                 'dnfdragora-update',
@@ -228,9 +275,9 @@ class Updater:
             )
         self.__getUpdatesRequested = False
         if self.__hide_menu:
-            self._tray.hide()
+            self.__set_tray_visible(False, 'no updates, hide_menu')
         else:
-            self._tray.show()
+            self.__set_tray_visible(True, 'no updates, always-visible')
 
     def __on_check_failed(self, error):
         logger.error("GetPackages error: %s", error)
@@ -256,7 +303,7 @@ class Updater:
             self.__backend = None
         self._poll_timer.stop()
         if self._tray is not None:
-            self._tray.hide()
+            self.__set_tray_visible(False, 'shutdown')
         self._app.quit()
 
     # ── Backend helpers ───────────────────────────────────────────────────────
@@ -345,13 +392,25 @@ class Updater:
             return
 
         if self.__hide_menu:
-            self._tray.hide()
+            self.__set_tray_visible(False, 'dialog opening, hide_menu')
 
         # ── Step 1: pause the update loop ─────────────────────────────────────
         # Give the update loop up to 1 s to finish its current iteration and
         # notice __dialog_open = True.  processEvents keeps the tray responsive.
         self.__dialog_open = True
-        logger.debug("Dialog opening: update loop paused")
+        # Discard any pending GUI commands that arrived before we paused the
+        # update loop.  Without this flush, a stale ('no_updates', gen) sitting
+        # in the queue could be drained by the poll timer during the 1-second
+        # processEvents window and wrongly reset the update icon.
+        flushed = 0
+        while True:
+            try:
+                self._gui_queue.get_nowait()
+                flushed += 1
+            except Empty:
+                break
+        logger.debug("Dialog opening: update loop paused, "
+                     "gui_queue flushed (%d item(s))", flushed)
         self.__processEvents(1.0)
 
         # ── Step 2: cancel pending scheduler tasks ────────────────────────────
@@ -384,8 +443,7 @@ class Updater:
             self.__reopen_backend()
             self.__dialog_open = False
             logger.debug("Update loop resumed after dialog launch failure")
-            if not self.__hide_menu:
-                self._tray.show()
+            self.__set_tray_visible(not self.__hide_menu, 'dialog launch failure')
             self.__reschedule_update_in(0.5)
             return
 
@@ -426,8 +484,7 @@ class Updater:
         self.__dialog_open = False
         logger.debug("Update loop resumed (session=%s)",
                      self.__backend.session_path if self.__backend else 'N/A')
-        if not self.__hide_menu:
-            self._tray.show()
+        self.__set_tray_visible(not self.__hide_menu, 'dialog closed')
         done = self.__reschedule_update_in(0.5)
         logger.debug("Post-dialog update check scheduled: %s",
                      "yes" if done else "skipped")
@@ -435,7 +492,7 @@ class Updater:
     def __check_updates(self):
         logger.debug("Start checking for updates, by menu command")
         if self.__hide_menu:
-            self._tray.hide()
+            self.__set_tray_visible(False, 'check_updates, hide_menu')
         if self.__dialog_open:
             logger.info("Check for updates requested while dialog is open; "
                         "will check automatically after the dialog closes")
@@ -456,6 +513,27 @@ class Updater:
             logger.info("Skipping update check: dialog_open=%s session=%s",
                         self.__dialog_open, session_path)
             return
+
+        # Each call gets a new generation number.  This number is stamped on
+        # ('no_updates', gen) messages so the main thread can detect and
+        # discard results that belong to an older check cycle.
+        self.__check_gen += 1
+        logger.debug("Starting update check (gen=%d session=%s)",
+                     self.__check_gen, session_path)
+
+        # Discard any stale events left over from a previous (possibly
+        # cancelled) check.  Without this flush, the loop might read an old
+        # empty GetPackages result and wrongly clear the update icon.
+        stale = 0
+        while True:
+            try:
+                self.__backend.eventQueue.get_nowait()
+                stale += 1
+            except Empty:
+                break
+        if stale:
+            logger.debug("Discarded %d stale backend event(s) before fetching updates",
+                         stale)
 
         logger.debug("Start getting updates (session=%s)", session_path)
         options = {
@@ -511,16 +589,22 @@ class Updater:
                         self.__OnRepoMetaDataProgress(info['name'], info['frac'])
 
                     elif event == 'GetPackages':
-                        logger.debug("Got GetPackages event")
+                        # Capture the generation number at read-time (update
+                        # thread).  If __get_updates fires again and increments
+                        # __check_gen before the main thread drains the queue,
+                        # the main thread will see gen < __check_gen and
+                        # correctly discard the no_updates result as stale.
+                        gen = self.__check_gen
+                        logger.debug("Got GetPackages event [gen=%d]", gen)
                         if not info['error']:
                             po_list = info['result']
                             self.__update_count = len(po_list)
                             if self.__update_count >= 1:
                                 # Post to main thread via GUI queue
                                 self._gui_queue.put(('updates_found',
-                                                     self.__update_count))
+                                                     self.__update_count, gen))
                             else:
-                                self._gui_queue.put(('no_updates',))
+                                self._gui_queue.put(('no_updates', gen))
                         else:
                             self._gui_queue.put(('check_failed',
                                                  str(info['error'])))
@@ -557,7 +641,7 @@ class Updater:
         # Show the tray icon immediately if __hide_menu is False; otherwise
         # it will be shown by __on_updates_found when updates are found.
         if not self.__hide_menu:
-            self._tray.show()
+            self.__set_tray_visible(True, 'startup')
 
         self.__updater.start()
         sys.exit(self._app.exec())
