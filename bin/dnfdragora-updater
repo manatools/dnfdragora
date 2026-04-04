@@ -46,9 +46,11 @@ if __name__ == "__main__":
       logger.error("dnfdaemon NameError: %s ", str(e))
     except AttributeError as e:
       logger.error("dnfdaemon AttributeError: %s ", str(e))
+    except SystemExit:
+      pass  # normal exit path: sys.exit() raised by app.exec()
     except Exception as e:
       logger.error("Unexpected error: %s ", str(e))
-    except:
+    except BaseException:
       logger.error("Unexpected error: %s ", str(sys.exc_info()[0]))
     finally:
       logger.info("Closing dnfdragora-updater")
