@@ -61,8 +61,8 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
     self.text = {
       'home': '<h1>DNFDragora</h1>%s<br>%s'%(
         _("dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora yumex-dnf interaction with dnfdaemon.<br><br>") + \
-        _("dnfdragora is basically a package manager user interface that allows to install, update, remove, search packages and more.<br><br>") + \
-        _("dnfdragora is part of manatools and it is based on libyui so that it can work using Gtk, Qt or ncurses, i.e. both graphical and textual user interfaces.<br><br>") +\
+        _("dnfdragora is basically a package manager user interface that allows you to install, update, remove, and search for packages and more.<br><br>") + \
+        _("dnfdragora is part of manatools and it is based on manatools.aui so that it can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and textual user interfaces.<br><br>") +\
         _("dnfdragora window is comprised of:"),
         index
       ),
@@ -81,11 +81,11 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('File Menu'),
         # help
         _('<h2>Reset selection</h2>') +\
-          _('This menu removes any flags on packages, if any packages have been selected for installation or removal they will be back to previous status.<br>') +\
+          _('This menu removes any flags on packages; if any packages have been selected for installation or removal, they will be reset to their previous status.<br>') +\
         _('<h2>Refresh metadata</h2>') +\
-          _('This menu send a request to dnfdaemon to force a refresh of all the meta data. This action is asynchronous and requires to rebuild package information cache.<br>') +\
+          _('This menu sends a request to dnfdaemon to force a refresh of all the metadata. This action is asynchronous and requires rebuilding the package information cache.<br>') +\
         _('<h2>Repositories</h2>') +\
-          _('This menu opens a dialog that allows to enable or disable repositories. Any changes are valid for the time dnfdragora is running and it is not permanent.<br>')+\
+          _('This menu opens a dialog that allows you to enable or disable repositories. Any changes are valid only while dnfdragora is running and are not permanent.<br>')+\
         _('<h2>Quit</h2>') +\
           _('This menu exits from dnfdragora.<br>'),
         # back home
@@ -98,7 +98,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # help
         _('<h2>History</h2>') +\
           _('This menu runs a dialog containing transaction history shown in a tree ordered by date. Selected history can be undone by pressing <b>Undo</b> button.<br>') + \
-          _('<br><i>Note that this function is currently broken because of dnf API change</i><br>'),
+          _('<br><i>Note that this function is currently broken because of a DNF API change</i><br>'),
         # back home
         home_lnk,
       ),
@@ -123,7 +123,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are added to updates and filtered as updates.</li>') + \
           _('<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked dnfdragora update is hidden if there are no updates.') + \
             _('<br><b>NOTE</b> that this option is experimental, not all desktops manage it as expected</li>') + \
-          _('<li><b>Interval to check for updates</b>: the given number represents when dnfdragora needs to check for updates, value is expressed in minutes</li>') + \
+          _('<li><b>Interval to check for updates</b>: the given number represents how often dnfdragora checks for updates; the value is expressed in minutes</li>') + \
           _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
         _('<h2>Layout options</h2>') + \
           _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, i.e. showing only package available for updates if any.</li>') + \
@@ -134,8 +134,8 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using regular expressions will add "*" to the given words, restoring the behavior dnfdragora had using dnfdaemon 4.</li></ul>') + \
         _('<h2>Logging options</h2>') + \
           _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \
-          _('<ul><li><b>Change directory</b>: this option allows to set logging directory, directory must exist and needs write permission.</li>') + \
-          _('<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>') + \
+          _('<ul><li><b>Change directory</b>: this option allows you to set the logging directory; the directory must exist and needs write permission.</li>') + \
+          _('<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>') + \
           '<br>',
         # back home
         home_lnk,
@@ -159,19 +159,19 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Views and search'),
         # help
         _('<h2>Views</h2>') +\
-          _('First combobox allows to show packages by groups. If <i>Groups</i> is selected group panel shows a tree view containing groups, while selecting a group shows related packages into package panel.') + \
-          _('If <i>All</i> is selected, package panel contains all the packages.') + \
+          _('The first combobox allows you to show packages by groups. If <i>Groups</i> is selected, the group panel shows a tree view containing groups, and selecting a group shows related packages in the package panel.') + \
+          _('If <i>All</i> is selected, the package panel contains all the packages.') + \
         _('<h2>Filters</h2>') +\
-          _('Filter combobox allows to filter packages shown into package panel by:') + \
+          _('The Filter combobox allows you to filter the packages shown in the package panel by:') + \
             _('<ul><li><b>Installed</b>: shows installed packages only.</li>') + \
             _('<li><b>Not installed</b>: shows available packages only.</li>') + \
             _('<li><b>To update</b>: shows packages that are available for updates only.</li>') + \
             _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
             _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li></ul>') + \
         _('<h2>Search</h2>') +\
-          _('Search is performed by pressing <i>Search</i> button if text field is filled. Search combobox allows to search given text into package <i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>.') + \
+          _('Search is performed by pressing the <i>Search</i> button when the text field is not empty. The Search combobox allows you to search the given text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>.') + \
           _('A special checkbox <i>Use regexp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
-          _('<i>Note</i> that if regular expressions are used to search by names full package filename with version is used.') + \
+          _('<i>Note</i>: when regular expressions are used to search by name, the full package filename including the version is used.') + \
           _('The <i>Clear search</i> button resets search text field.') + \
         '<br>',
         # back home
@@ -182,7 +182,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # title
         _('Group panel'),
         # help
-        _('This panel shows all the groups to be used to filter packages by group, if view groups is selected. Special group <i>Search</i> is added if a search is performed.') + \
+        _('This panel shows all the groups available to filter packages, if the Groups view is selected. The special group <i>Search</i> is added after a search is performed.') + \
         '<br>',
         # back home
         home_lnk,
@@ -192,7 +192,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         # title
         _('Package panel'),
         # help
-        _('This panel shows all the filtered packages with they basic information such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, <i>architecture</i>, <i>size</i>, and <i>status</i>.') + \
+        _('This panel shows all the filtered packages with their basic information such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, <i>architecture</i>, <i>size</i>, and <i>status</i>.') + \
         _('A checkbox for any packages is available to add related package to transaction for installing, updating or removing.') + \
         '<br>',
         # back home
