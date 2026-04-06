@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 13:35+0200\n"
+"POT-Creation-Date: 2026-04-06 17:26+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Kempelen <HarlowThornee@netengine.hu>, 2025\n"
 "Language-Team: Hungarian (https://app.transifex.com/MageiaLinux/teams/9361/"
@@ -1284,21 +1284,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
-"dnfdragora is basically a package manager user interface that allows to "
-"install, update, remove, search packages and more.<br><br>"
+"dnfdragora is basically a package manager user interface that allows you to "
+"install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
-"A dnfdragora tulajdonképpen egy csomagkezelő felület, amellyel keresni, "
-"telepíteni, frissíteni vagy eltávolítani lehet a szoftvercsomagokat.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-"interfaces.<br><br>"
+"dnfdragora is part of manatools and it is based on manatools.aui so that it "
+"can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
+"textual user interfaces.<br><br>"
 msgstr ""
-"A dnfdragora a manatools részre, és a libyui használatával készül, ami azt "
-"jelenti, hogy Gtk, Qt és ncurses felülettel egyaránt működik, azaz akár "
-"terminálban is.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1322,12 +1317,9 @@ msgstr "<h2>Kijelölés visszaállítása</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
-"This menu removes any flags on packages, if any packages have been selected "
-"for installation or removal they will be back to previous status.<br>"
+"This menu removes any flags on packages; if any packages have been selected "
+"for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
-"Ez a menü eltávolít minden jelzőt a csomagokról. Ha bármilyen csomag "
-"kijelölésre került telepítésre vagy eltávolításra, ezek visszaállnak az "
-"előző állapotba.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1335,13 +1327,10 @@ msgstr "<h2>Metaadatok frissítése</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
-"This menu send a request to dnfdaemon to force a refresh of all the meta "
-"data. This action is asynchronous and requires to rebuild package "
+"This menu sends a request to dnfdaemon to force a refresh of all the "
+"metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
-"Egy jelzést küld a dnfdaemon számára, hogy kényszerítetten frissítsen minden "
-"metaadatot. Ez a művelet valós időben fut és a csomag-információs gyorstárat "
-"újraépíti.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1349,13 +1338,10 @@ msgstr "<h2>Csomagforrások</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
-"This menu opens a dialog that allows to enable or disable repositories. Any "
-"changes are valid for the time dnfdragora is running and it is not permanent."
+"This menu opens a dialog that allows you to enable or disable repositories. "
+"Any changes are valid only while dnfdragora is running and are not permanent."
 "<br>"
 msgstr ""
-"Megnyit egy ablakot, amelyben a csomagforrásokat lehet engedélyezni vagy "
-"letiltani. A változtatások csak a dnfdragora futásáig lesznek érvényben, nem "
-"véglegesek.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1385,11 +1371,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
-"<br><i>Note that this function is currently broken because of dnf API "
+"<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
 msgstr ""
-"<br><i>Megjegyzés: ez a funkció jelenleg hibás a dnf API egy változása "
-"miatt</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1471,11 +1455,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
-"<li><b>Interval to check for updates</b>: the given number represents when "
-"dnfdragora needs to check for updates, value is expressed in minutes</li>"
+"<li><b>Interval to check for updates</b>: the given number represents how "
+"often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
-"<li><b>Frissítések ellenőrzési időköze</b>: a megadott szám meghatározza, "
-"hogy a dnfdragora hány percenként keressen frissítéseket</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1551,18 +1533,14 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:137
 msgid ""
-"<ul><li><b>Change directory</b>: this option allows to set logging "
-"directory, directory must exist and needs write permission.</li>"
+"<ul><li><b>Change directory</b>: this option allows you to set the logging "
+"directory; the directory must exist and needs write permission.</li>"
 msgstr ""
-"<ul><li><b>Mappa választása</b>: ezzel adhatja meg a naplózási könyvtárat. A "
-"könyvtárnak léteznie kell és írás jogosultság szükséges hozzá.</li>"
 
 #: dnfdragora/helpinfo.py:138
 msgid ""
-"<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
+"<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
-"<li><b>Hibakeresési szint</b>: bekapcsolásakor részletes információk "
-"kerülnek a naplóba.</li></ul>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
@@ -1594,30 +1572,24 @@ msgstr "<h2>Nézetek</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid ""
-"First combobox allows to show packages by groups. If <i>Groups</i> is "
-"selected group panel shows a tree view containing groups, while selecting a "
-"group shows related packages into package panel."
+"The first combobox allows you to show packages by groups. If <i>Groups</i> "
+"is selected, the group panel shows a tree view containing groups, and "
+"selecting a group shows related packages in the package panel."
 msgstr ""
-"Az első lenyílómezővel kiválasztható, hogy a csomagok csoportosítva "
-"jelenjenek meg. Ha a <i>Csoportok</i> van kiválasztva, a csoport panel egy "
-"csoportokat tartalmazó fa nézetet jelenít meg, és egy csoport kiválasztása a "
-"kapcsolódó csomagokat mutatja a csomag panelben."
 
 #: dnfdragora/helpinfo.py:163
-msgid "If <i>All</i> is selected, package panel contains all the packages."
+msgid "If <i>All</i> is selected, the package panel contains all the packages."
 msgstr ""
-"Ha az <i>Összes</i> van kiválasztva, a csomagpanel az összes csomagot "
-"megjeleníti."
 
 #: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
 msgstr "<h2>Szűrők</h2>"
 
 #: dnfdragora/helpinfo.py:165
-msgid "Filter combobox allows to filter packages shown into package panel by:"
+msgid ""
+"The Filter combobox allows you to filter the packages shown in the package "
+"panel by:"
 msgstr ""
-"A szűrő lenyílómező segítségével kiválasztható, hogy mely csomagok "
-"jelenjenek meg a csomagpanelen:"
 
 #: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1659,14 +1631,10 @@ msgstr "<h2>Keresés</h2>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
-"Search is performed by pressing <i>Search</i> button if text field is "
-"filled. Search combobox allows to search given text into package <i>names</"
-"i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+"Search is performed by pressing the <i>Search</i> button when the text field "
+"is not empty. The Search combobox allows you to search the given text in "
+"package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
 msgstr ""
-"A keresés a <i>Keresés</i> gomb megnyomásával történik, ha a szövegmező ki "
-"van töltve. A keresés lenyílómező lehetővé teszi a megadott szöveg keresését "
-"a <i>csomagnevekben</i>, <i>összefoglalókban</i>, <i>leírásokban</i> vagy "
-"<i>fájlokban</i>."
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
@@ -1681,12 +1649,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:174
 msgid ""
-"<i>Note</i> that if regular expressions are used to search by names full "
-"package filename with version is used."
+"<i>Note</i>: when regular expressions are used to search by name, the full "
+"package filename including the version is used."
 msgstr ""
-"<i>Vegye figyelembe</i>, hogy ha reguláris kifejezéseket használ a nevekben "
-"való kereséshez, akkor a csomag teljes fájlneve - a verzióval együtt - kerül "
-"kiértékelésre."
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1694,23 +1659,17 @@ msgstr "A <i>Keresés törlése</i> gomb kiüríti a keresőmezőt."
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
-"This panel shows all the groups to be used to filter packages by group, if "
-"view groups is selected. Special group <i>Search</i> is added if a search is "
+"This panel shows all the groups available to filter packages, if the Groups "
+"view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
-"Ez a panel mutatja a csomagok csoportonkénti szűréséhez használható "
-"csoportokat, ha a csoportok megtekintése van kiválasztva Keresés esetén egy "
-"speciális <i>Keresés</i> csoport kerül a listába."
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
-"This panel shows all the filtered packages with they basic information such "
+"This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
-"Ez a panel az összes szűrt csomagot jeleníti meg, alapvető információkkal, "
-"mint például <i>név</i>, <i>összefoglaló</i>, <i>verzió</i>, <i>kiadás</i>, "
-"<i>architektúra</i>, <i>méret</i> és <i>állapot</i>."
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -2257,6 +2216,44 @@ msgstr ""
 #~ msgid "&Yes"
 #~ msgstr "&Igen"
 
+#~ msgid ""
+#~ "<br><i>Note that this function is currently broken because of dnf API "
+#~ "change</i><br>"
+#~ msgstr ""
+#~ "<br><i>Megjegyzés: ez a funkció jelenleg hibás a dnf API egy változása "
+#~ "miatt</i><br>"
+
+#~ msgid ""
+#~ "<i>Note</i> that if regular expressions are used to search by names full "
+#~ "package filename with version is used."
+#~ msgstr ""
+#~ "<i>Vegye figyelembe</i>, hogy ha reguláris kifejezéseket használ a "
+#~ "nevekben való kereséshez, akkor a csomag teljes fájlneve - a verzióval "
+#~ "együtt - kerül kiértékelésre."
+
+#~ msgid ""
+#~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
+#~ "ul>"
+#~ msgstr ""
+#~ "<li><b>Hibakeresési szint</b>: bekapcsolásakor részletes információk "
+#~ "kerülnek a naplóba.</li></ul>"
+
+#~ msgid ""
+#~ "<li><b>Interval to check for updates</b>: the given number represents "
+#~ "when dnfdragora needs to check for updates, value is expressed in "
+#~ "minutes</li>"
+#~ msgstr ""
+#~ "<li><b>Frissítések ellenőrzési időköze</b>: a megadott szám meghatározza, "
+#~ "hogy a dnfdragora hány percenként keressen frissítéseket</li>"
+
+#~ msgid ""
+#~ "<ul><li><b>Change directory</b>: this option allows to set logging "
+#~ "directory, directory must exist and needs write permission.</li>"
+#~ msgstr ""
+#~ "<ul><li><b>Mappa választása</b>: ezzel adhatja meg a naplózási "
+#~ "könyvtárat. A könyvtárnak léteznie kell és írás jogosultság szükséges "
+#~ "hozzá.</li>"
+
 #~ msgid "Bugfix"
 #~ msgstr "Hibajavítás"
 
@@ -2279,6 +2276,27 @@ msgstr ""
 #~ msgid "Enhancement"
 #~ msgstr "Továbbfejlesztés"
 
+#~ msgid ""
+#~ "Filter combobox allows to filter packages shown into package panel by:"
+#~ msgstr ""
+#~ "A szűrő lenyílómező segítségével kiválasztható, hogy mely csomagok "
+#~ "jelenjenek meg a csomagpanelen:"
+
+#~ msgid ""
+#~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
+#~ "selected group panel shows a tree view containing groups, while selecting "
+#~ "a group shows related packages into package panel."
+#~ msgstr ""
+#~ "Az első lenyílómezővel kiválasztható, hogy a csomagok csoportosítva "
+#~ "jelenjenek meg. Ha a <i>Csoportok</i> van kiválasztva, a csoport panel "
+#~ "egy csoportokat tartalmazó fa nézetet jelenít meg, és egy csoport "
+#~ "kiválasztása a kapcsolódó csomagokat mutatja a csomag panelben."
+
+#~ msgid "If <i>All</i> is selected, package panel contains all the packages."
+#~ msgstr ""
+#~ "Ha az <i>Összes</i> van kiválasztva, a csomagpanel az összes csomagot "
+#~ "megjeleníti."
+
 #~ msgid "Info"
 #~ msgstr "Információ"
 
@@ -2292,12 +2310,67 @@ msgstr ""
 #~ msgid "Progress files (%(downloaded)d/%(total)d)"
 #~ msgstr "Fájlok folyamatban (%(downloaded)d/%(total)d)"
 
+#~ msgid ""
+#~ "Search is performed by pressing <i>Search</i> button if text field is "
+#~ "filled. Search combobox allows to search given text into package "
+#~ "<i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+#~ msgstr ""
+#~ "A keresés a <i>Keresés</i> gomb megnyomásával történik, ha a szövegmező "
+#~ "ki van töltve. A keresés lenyílómező lehetővé teszi a megadott szöveg "
+#~ "keresését a <i>csomagnevekben</i>, <i>összefoglalókban</i>, "
+#~ "<i>leírásokban</i> vagy <i>fájlokban</i>."
+
 #~ msgid "Start transaction"
 #~ msgstr "Tranzakció indítása"
 
 #, python-format
 #~ msgid "Starting to download : %s "
 #~ msgstr "Letöltés megkezdése: %s "
+
+#~ msgid ""
+#~ "This menu opens a dialog that allows to enable or disable repositories. "
+#~ "Any changes are valid for the time dnfdragora is running and it is not "
+#~ "permanent.<br>"
+#~ msgstr ""
+#~ "Megnyit egy ablakot, amelyben a csomagforrásokat lehet engedélyezni vagy "
+#~ "letiltani. A változtatások csak a dnfdragora futásáig lesznek érvényben, "
+#~ "nem véglegesek.<br>"
+
+#~ msgid ""
+#~ "This menu removes any flags on packages, if any packages have been "
+#~ "selected for installation or removal they will be back to previous status."
+#~ "<br>"
+#~ msgstr ""
+#~ "Ez a menü eltávolít minden jelzőt a csomagokról. Ha bármilyen csomag "
+#~ "kijelölésre került telepítésre vagy eltávolításra, ezek visszaállnak az "
+#~ "előző állapotba.<br>"
+
+#~ msgid ""
+#~ "This menu send a request to dnfdaemon to force a refresh of all the meta "
+#~ "data. This action is asynchronous and requires to rebuild package "
+#~ "information cache.<br>"
+#~ msgstr ""
+#~ "Egy jelzést küld a dnfdaemon számára, hogy kényszerítetten frissítsen "
+#~ "minden metaadatot. Ez a művelet valós időben fut és a csomag-információs "
+#~ "gyorstárat újraépíti.<br>"
+
+#~ msgid ""
+#~ "This panel shows all the filtered packages with they basic information "
+#~ "such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
+#~ "<i>architecture</i>, <i>size</i>, and <i>status</i>."
+#~ msgstr ""
+#~ "Ez a panel az összes szűrt csomagot jeleníti meg, alapvető "
+#~ "információkkal, mint például <i>név</i>, <i>összefoglaló</i>, <i>verzió</"
+#~ "i>, <i>kiadás</i>, <i>architektúra</i>, <i>méret</i> és <i>állapot</i>."
+
+#~ msgid ""
+#~ "This panel shows all the groups to be used to filter packages by group, "
+#~ "if view groups is selected. Special group <i>Search</i> is added if a "
+#~ "search is performed."
+#~ msgstr ""
+#~ "Ez a panel mutatja a csomagok csoportonkénti szűréséhez használható "
+#~ "csoportokat, ha a csoportok megtekintése van kiválasztva Keresés esetén "
+#~ "egy speciális <i>Keresés</i> csoport kerül a listába."
 
 #, python-format
 #~ msgid "Unmanaged event %d"
@@ -2312,6 +2385,23 @@ msgstr ""
 #, python-format
 #~ msgid "dnfdaemon client failure [%s]"
 #~ msgstr "dnfdaemon kliens oldali hiba [%s]"
+
+#~ msgid ""
+#~ "dnfdragora is basically a package manager user interface that allows to "
+#~ "install, update, remove, search packages and more.<br><br>"
+#~ msgstr ""
+#~ "A dnfdragora tulajdonképpen egy csomagkezelő felület, amellyel keresni, "
+#~ "telepíteni, frissíteni vagy eltávolítani lehet a szoftvercsomagokat."
+#~ "<br><br>"
+
+#~ msgid ""
+#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
+#~ "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
+#~ "interfaces.<br><br>"
+#~ msgstr ""
+#~ "A dnfdragora a manatools részre, és a libyui használatával készül, ami "
+#~ "azt jelenti, hogy Gtk, Qt és ncurses felülettel egyaránt működik, azaz "
+#~ "akár terminálban is.<br><br>"
 
 #~ msgid ""
 #~ "dnfdragora is written in Python 3 and uses libYui, the widget abstraction "

@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 13:35+0200\n"
+"POT-Creation-Date: 2026-04-06 17:26+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Michael Martins, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/MageiaLinux/"
@@ -1279,22 +1279,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
-"dnfdragora is basically a package manager user interface that allows to "
-"install, update, remove, search packages and more.<br><br>"
+"dnfdragora is basically a package manager user interface that allows you to "
+"install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
-"dnfdragora é basicamente uma interface de usuário para o gerenciador de "
-"pacotes que permite instalar, atualizar, remover, buscar pacotes e muito "
-"mais.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-"interfaces.<br><br>"
+"dnfdragora is part of manatools and it is based on manatools.aui so that it "
+"can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
+"textual user interfaces.<br><br>"
 msgstr ""
-"dnfdragora faz parte do manatools e é baseado na libyui, o que permite que "
-"funcione usando Gtk, Qt ou ncurses, ou seja, tanto interfaces de usuário "
-"gráficas quanto textuais.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1318,11 +1312,9 @@ msgstr "<h2>Redefinir seleção</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
-"This menu removes any flags on packages, if any packages have been selected "
-"for installation or removal they will be back to previous status.<br>"
+"This menu removes any flags on packages; if any packages have been selected "
+"for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
-"Este menu remove quaisquer marcações em pacotes; se algum pacote for "
-"selecionado para instalação ou remoção, ele voltará ao estado anterior.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1330,13 +1322,10 @@ msgstr "<h2>Atualizar metadados</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
-"This menu send a request to dnfdaemon to force a refresh of all the meta "
-"data. This action is asynchronous and requires to rebuild package "
+"This menu sends a request to dnfdaemon to force a refresh of all the "
+"metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
-"Este menu envia uma solicitação ao dnfdaemon para forçar uma atualização de "
-"todos os metadados. Esta ação é assíncrona e requer a reconstrução do cache "
-"de informações do pacote.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1344,13 +1333,10 @@ msgstr "<h2>Repositórios</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
-"This menu opens a dialog that allows to enable or disable repositories. Any "
-"changes are valid for the time dnfdragora is running and it is not permanent."
+"This menu opens a dialog that allows you to enable or disable repositories. "
+"Any changes are valid only while dnfdragora is running and are not permanent."
 "<br>"
 msgstr ""
-"Este menu abre um diálogo que permite habilitar ou desabilitar repositórios. "
-"Quaisquer alterações são válidas apenas enquanto o dnfdragora estiver em "
-"execução e não são permanentes.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1380,11 +1366,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
-"<br><i>Note that this function is currently broken because of dnf API "
+"<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
 msgstr ""
-"<br><i>Observe que essa função está atualmente quebrada devido a uma mudança "
-"na API do dnf</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1468,12 +1452,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
-"<li><b>Interval to check for updates</b>: the given number represents when "
-"dnfdragora needs to check for updates, value is expressed in minutes</li>"
+"<li><b>Interval to check for updates</b>: the given number represents how "
+"often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
-"<li><b>Intervalo para verificar atualizações</b>: o número fornecido "
-"representa com que frequência o dnfdragora deverá verificar atualizações, "
-"sendo o valor expresso em minutos</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1548,19 +1529,14 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:137
 msgid ""
-"<ul><li><b>Change directory</b>: this option allows to set logging "
-"directory, directory must exist and needs write permission.</li>"
+"<ul><li><b>Change directory</b>: this option allows you to set the logging "
+"directory; the directory must exist and needs write permission.</li>"
 msgstr ""
-"<ul><li><b>Alterar diretório</b>: esta opção permite definir o diretório "
-"onde os registros serão armazenados. O diretório deve existir e ter "
-"permissões de gravação.</li>"
 
 #: dnfdragora/helpinfo.py:138
 msgid ""
-"<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
+"<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
-"<li><b>Nível de depuração</b>: se marcado, o registro será feito de forma "
-"detalhada.</li></ul>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
@@ -1592,30 +1568,24 @@ msgstr "<h2>Visualizações</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid ""
-"First combobox allows to show packages by groups. If <i>Groups</i> is "
-"selected group panel shows a tree view containing groups, while selecting a "
-"group shows related packages into package panel."
+"The first combobox allows you to show packages by groups. If <i>Groups</i> "
+"is selected, the group panel shows a tree view containing groups, and "
+"selecting a group shows related packages in the package panel."
 msgstr ""
-"A primeira caixa de combinação permite exibir os pacotes por grupos. Se "
-"<i>Grupos</i> estiver selecionado, o painel de grupos mostra uma "
-"visualização em árvore contendo os grupos, enquanto a seleção de um grupo "
-"exibe os pacotes relacionados no painel de pacotes."
 
 #: dnfdragora/helpinfo.py:163
-msgid "If <i>All</i> is selected, package panel contains all the packages."
+msgid "If <i>All</i> is selected, the package panel contains all the packages."
 msgstr ""
-"Se <i>Todos</i> estiver selecionado, o painel de pacotes exibe todos os "
-"pacotes."
 
 #: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
 msgstr "<h2>Filtros</h2>"
 
 #: dnfdragora/helpinfo.py:165
-msgid "Filter combobox allows to filter packages shown into package panel by:"
+msgid ""
+"The Filter combobox allows you to filter the packages shown in the package "
+"panel by:"
 msgstr ""
-"A caixa de combinação de filtro permite filtrar os pacotes exibidos no "
-"painel de pacotes por:"
 
 #: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1655,14 +1625,10 @@ msgstr "<h2>Pesquisar</h2>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
-"Search is performed by pressing <i>Search</i> button if text field is "
-"filled. Search combobox allows to search given text into package <i>names</"
-"i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+"Search is performed by pressing the <i>Search</i> button when the text field "
+"is not empty. The Search combobox allows you to search the given text in "
+"package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
 msgstr ""
-"A pesquisa é realizada ao pressionar o botão <i>pesquisar</i> se o campo de "
-"texto estiver preenchido. A caixa de combinação permite pesquisar o texto "
-"fornecido em <i>nomes</i> de pacotes, <i>resumos</i>, <i>descrições</i> ou "
-"<i>arquivos</i>."
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
@@ -1677,11 +1643,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:174
 msgid ""
-"<i>Note</i> that if regular expressions are used to search by names full "
-"package filename with version is used."
+"<i>Note</i>: when regular expressions are used to search by name, the full "
+"package filename including the version is used."
 msgstr ""
-"<i>Observe</i> que se expressões regulares forem usadas para pesquisar por "
-"nomes, o nome completo do arquivo do pacote com a versão será usado."
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1689,23 +1653,17 @@ msgstr "O botão <i>Limpar pesquisa</i> redefine o campo de texto da pesquisa."
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
-"This panel shows all the groups to be used to filter packages by group, if "
-"view groups is selected. Special group <i>Search</i> is added if a search is "
+"This panel shows all the groups available to filter packages, if the Groups "
+"view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
-"Este painel exibe todos os grupos a serem usados na filtragem de pacotes por "
-"grupo, caso a visualização de grupos esteja selecionada. O grupo especial "
-"<i>Pesquisar</i> é adicionado se uma pesquisa for realizada."
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
-"This panel shows all the filtered packages with they basic information such "
+"This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
-"Este painel exibe todos os pacotes filtrados com suas informações básicas, "
-"como <i>nome</i>, <i>resumo</i>, <i>versão</i>,<i> lançamento</i>,<i> "
-"arquitetura</i>, <i>tamanho</i> e <i>status</i>."
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -2254,6 +2212,44 @@ msgstr ""
 #~ msgid "&Yes"
 #~ msgstr "&Sim"
 
+#~ msgid ""
+#~ "<br><i>Note that this function is currently broken because of dnf API "
+#~ "change</i><br>"
+#~ msgstr ""
+#~ "<br><i>Observe que essa função está atualmente quebrada devido a uma "
+#~ "mudança na API do dnf</i><br>"
+
+#~ msgid ""
+#~ "<i>Note</i> that if regular expressions are used to search by names full "
+#~ "package filename with version is used."
+#~ msgstr ""
+#~ "<i>Observe</i> que se expressões regulares forem usadas para pesquisar "
+#~ "por nomes, o nome completo do arquivo do pacote com a versão será usado."
+
+#~ msgid ""
+#~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
+#~ "ul>"
+#~ msgstr ""
+#~ "<li><b>Nível de depuração</b>: se marcado, o registro será feito de forma "
+#~ "detalhada.</li></ul>"
+
+#~ msgid ""
+#~ "<li><b>Interval to check for updates</b>: the given number represents "
+#~ "when dnfdragora needs to check for updates, value is expressed in "
+#~ "minutes</li>"
+#~ msgstr ""
+#~ "<li><b>Intervalo para verificar atualizações</b>: o número fornecido "
+#~ "representa com que frequência o dnfdragora deverá verificar atualizações, "
+#~ "sendo o valor expresso em minutos</li>"
+
+#~ msgid ""
+#~ "<ul><li><b>Change directory</b>: this option allows to set logging "
+#~ "directory, directory must exist and needs write permission.</li>"
+#~ msgstr ""
+#~ "<ul><li><b>Alterar diretório</b>: esta opção permite definir o diretório "
+#~ "onde os registros serão armazenados. O diretório deve existir e ter "
+#~ "permissões de gravação.</li>"
+
 #~ msgid "Bugfix"
 #~ msgstr "Correção de bug"
 
@@ -2276,6 +2272,27 @@ msgstr ""
 #~ msgid "Enhancement"
 #~ msgstr "Melhoria"
 
+#~ msgid ""
+#~ "Filter combobox allows to filter packages shown into package panel by:"
+#~ msgstr ""
+#~ "A caixa de combinação de filtro permite filtrar os pacotes exibidos no "
+#~ "painel de pacotes por:"
+
+#~ msgid ""
+#~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
+#~ "selected group panel shows a tree view containing groups, while selecting "
+#~ "a group shows related packages into package panel."
+#~ msgstr ""
+#~ "A primeira caixa de combinação permite exibir os pacotes por grupos. Se "
+#~ "<i>Grupos</i> estiver selecionado, o painel de grupos mostra uma "
+#~ "visualização em árvore contendo os grupos, enquanto a seleção de um grupo "
+#~ "exibe os pacotes relacionados no painel de pacotes."
+
+#~ msgid "If <i>All</i> is selected, package panel contains all the packages."
+#~ msgstr ""
+#~ "Se <i>Todos</i> estiver selecionado, o painel de pacotes exibe todos os "
+#~ "pacotes."
+
 #~ msgid "Info"
 #~ msgstr "Informações"
 
@@ -2289,12 +2306,67 @@ msgstr ""
 #~ msgid "Progress files (%(downloaded)d/%(total)d)"
 #~ msgstr "(%(downloaded)d/%(total)d) arquivos em andamento"
 
+#~ msgid ""
+#~ "Search is performed by pressing <i>Search</i> button if text field is "
+#~ "filled. Search combobox allows to search given text into package "
+#~ "<i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+#~ msgstr ""
+#~ "A pesquisa é realizada ao pressionar o botão <i>pesquisar</i> se o campo "
+#~ "de texto estiver preenchido. A caixa de combinação permite pesquisar o "
+#~ "texto fornecido em <i>nomes</i> de pacotes, <i>resumos</i>, "
+#~ "<i>descrições</i> ou <i>arquivos</i>."
+
 #~ msgid "Start transaction"
 #~ msgstr "Iniciar a transação"
 
 #, python-format
 #~ msgid "Starting to download : %s "
 #~ msgstr "Iniciando o download : %s "
+
+#~ msgid ""
+#~ "This menu opens a dialog that allows to enable or disable repositories. "
+#~ "Any changes are valid for the time dnfdragora is running and it is not "
+#~ "permanent.<br>"
+#~ msgstr ""
+#~ "Este menu abre um diálogo que permite habilitar ou desabilitar "
+#~ "repositórios. Quaisquer alterações são válidas apenas enquanto o "
+#~ "dnfdragora estiver em execução e não são permanentes.<br>"
+
+#~ msgid ""
+#~ "This menu removes any flags on packages, if any packages have been "
+#~ "selected for installation or removal they will be back to previous status."
+#~ "<br>"
+#~ msgstr ""
+#~ "Este menu remove quaisquer marcações em pacotes; se algum pacote for "
+#~ "selecionado para instalação ou remoção, ele voltará ao estado anterior."
+#~ "<br>"
+
+#~ msgid ""
+#~ "This menu send a request to dnfdaemon to force a refresh of all the meta "
+#~ "data. This action is asynchronous and requires to rebuild package "
+#~ "information cache.<br>"
+#~ msgstr ""
+#~ "Este menu envia uma solicitação ao dnfdaemon para forçar uma atualização "
+#~ "de todos os metadados. Esta ação é assíncrona e requer a reconstrução do "
+#~ "cache de informações do pacote.<br>"
+
+#~ msgid ""
+#~ "This panel shows all the filtered packages with they basic information "
+#~ "such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
+#~ "<i>architecture</i>, <i>size</i>, and <i>status</i>."
+#~ msgstr ""
+#~ "Este painel exibe todos os pacotes filtrados com suas informações "
+#~ "básicas, como <i>nome</i>, <i>resumo</i>, <i>versão</i>,<i> lançamento</"
+#~ "i>,<i> arquitetura</i>, <i>tamanho</i> e <i>status</i>."
+
+#~ msgid ""
+#~ "This panel shows all the groups to be used to filter packages by group, "
+#~ "if view groups is selected. Special group <i>Search</i> is added if a "
+#~ "search is performed."
+#~ msgstr ""
+#~ "Este painel exibe todos os grupos a serem usados na filtragem de pacotes "
+#~ "por grupo, caso a visualização de grupos esteja selecionada. O grupo "
+#~ "especial <i>Pesquisar</i> é adicionado se uma pesquisa for realizada."
 
 #, python-format
 #~ msgid "Unmanaged event %d"
@@ -2309,6 +2381,23 @@ msgstr ""
 #, python-format
 #~ msgid "dnfdaemon client failure [%s]"
 #~ msgstr "falha do cliente dnfdaemon [%s]"
+
+#~ msgid ""
+#~ "dnfdragora is basically a package manager user interface that allows to "
+#~ "install, update, remove, search packages and more.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora é basicamente uma interface de usuário para o gerenciador de "
+#~ "pacotes que permite instalar, atualizar, remover, buscar pacotes e muito "
+#~ "mais.<br><br>"
+
+#~ msgid ""
+#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
+#~ "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
+#~ "interfaces.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora faz parte do manatools e é baseado na libyui, o que permite "
+#~ "que funcione usando Gtk, Qt ou ncurses, ou seja, tanto interfaces de "
+#~ "usuário gráficas quanto textuais.<br><br>"
 
 #~ msgid ""
 #~ "dnfdragora is written in Python 3 and uses libYui, the widget abstraction "

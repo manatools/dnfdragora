@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 13:35+0200\n"
+"POT-Creation-Date: 2026-04-06 17:26+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Masanori Kakura <kakurasan@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -1263,21 +1263,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
-"dnfdragora is basically a package manager user interface that allows to "
-"install, update, remove, search packages and more.<br><br>"
+"dnfdragora is basically a package manager user interface that allows you to "
+"install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
-"dnfdragora は基本的にパッケージマネージャのユーザ インターフェースで、パッ"
-"ケージのインストール, 更新, 削除, 検索などが行えます。<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-"interfaces.<br><br>"
+"dnfdragora is part of manatools and it is based on manatools.aui so that it "
+"can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
+"textual user interfaces.<br><br>"
 msgstr ""
-"dnfdragora は manatools の一部で、Gtk, Qt, ncurses つまりグラフィカル形式とテ"
-"キスト形式の両方のユーザ インターフェースを用いて動作できるように libyui に基"
-"づいています。<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1301,11 +1296,9 @@ msgstr "<h2>選択を全て解除</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
-"This menu removes any flags on packages, if any packages have been selected "
-"for installation or removal they will be back to previous status.<br>"
+"This menu removes any flags on packages; if any packages have been selected "
+"for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
-"このメニューはパッケージのフラグを削除します。追加または削除の選択をしたパッ"
-"ケージがある場合、前の状態に戻ります。<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1313,12 +1306,10 @@ msgstr "<h2>メタデータを更新</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
-"This menu send a request to dnfdaemon to force a refresh of all the meta "
-"data. This action is asynchronous and requires to rebuild package "
+"This menu sends a request to dnfdaemon to force a refresh of all the "
+"metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
-"このメニューは dnfdaemon に全てのメタデータの更新を行うように要求を送ります。"
-"このアクションは非同期で、パッケージ情報キャッシュの再構築が必要です。<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1326,12 +1317,10 @@ msgstr "<h2>リポジトリ</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
-"This menu opens a dialog that allows to enable or disable repositories. Any "
-"changes are valid for the time dnfdragora is running and it is not permanent."
+"This menu opens a dialog that allows you to enable or disable repositories. "
+"Any changes are valid only while dnfdragora is running and are not permanent."
 "<br>"
 msgstr ""
-"このメニューはリポジトリの有効化または無効化を行えるダイアログを開きます。こ"
-"こでの変更は dnfdragora の動作中に有効で、永続的ではありません。<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1361,10 +1350,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
-"<br><i>Note that this function is currently broken because of dnf API "
+"<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
 msgstr ""
-"<br><i>この機能は dnf の API の変更により現在正しく動作しません</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1439,11 +1427,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
-"<li><b>Interval to check for updates</b>: the given number represents when "
-"dnfdragora needs to check for updates, value is expressed in minutes</li>"
+"<li><b>Interval to check for updates</b>: the given number represents how "
+"often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
-"<li><b>更新を確認する間隔</b>: 指定される値は dnfdragora が更新をいつチェック"
-"する必要があるかを表し、値は分単位で表します</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1513,18 +1499,14 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:137
 msgid ""
-"<ul><li><b>Change directory</b>: this option allows to set logging "
-"directory, directory must exist and needs write permission.</li>"
+"<ul><li><b>Change directory</b>: this option allows you to set the logging "
+"directory; the directory must exist and needs write permission.</li>"
 msgstr ""
-"<ul><li><b>ディレクトリを変更</b>: この項目ではログのディレクトリを設定でき、"
-"ディレクトリは存在していなければならず、書き込み権限が必要となります。</li>"
 
 #: dnfdragora/helpinfo.py:138
 msgid ""
-"<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
+"<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
-"<li><b>デバッグ レベル</b>: チェック時に詳細なログ出力が有効になります。</"
-"li></ul>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
@@ -1556,29 +1538,24 @@ msgstr "<h2>ビュー</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid ""
-"First combobox allows to show packages by groups. If <i>Groups</i> is "
-"selected group panel shows a tree view containing groups, while selecting a "
-"group shows related packages into package panel."
+"The first combobox allows you to show packages by groups. If <i>Groups</i> "
+"is selected, the group panel shows a tree view containing groups, and "
+"selecting a group shows related packages in the package panel."
 msgstr ""
-"最初のコンボボックスではパッケージをグループで表示します。<i>グループ</i>が選"
-"択されている場合、グループ パネルはグループを含んだツリー ビューを表示し、グ"
-"ループ選択時には関連パッケージをパッケージ パネルに表示します。"
 
 #: dnfdragora/helpinfo.py:163
-msgid "If <i>All</i> is selected, package panel contains all the packages."
+msgid "If <i>All</i> is selected, the package panel contains all the packages."
 msgstr ""
-"<i>すべて</i>が選択されている場合、パッケージ パネルはすべてのパッケージを含"
-"みます。"
 
 #: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
 msgstr "<h2>フィルタ</h2>"
 
 #: dnfdragora/helpinfo.py:165
-msgid "Filter combobox allows to filter packages shown into package panel by:"
+msgid ""
+"The Filter combobox allows you to filter the packages shown in the package "
+"panel by:"
 msgstr ""
-"フィルタのコンボボックスでは、パッケージ パネルに表示されるパッケージを以下で"
-"フィルタできます:"
 
 #: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1619,13 +1596,10 @@ msgstr "<h2>検索</h2>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
-"Search is performed by pressing <i>Search</i> button if text field is "
-"filled. Search combobox allows to search given text into package <i>names</"
-"i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+"Search is performed by pressing the <i>Search</i> button when the text field "
+"is not empty. The Search combobox allows you to search the given text in "
+"package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
 msgstr ""
-"検索はテキスト フィールドが入力されているときに<i>検索</i>ボタンを押すことで"
-"行われます。検索のコンボボックスでは入力されたテキストでパッケージの<i>名前</"
-"i>, <i>概要</i>, <i>説明文</i>, <i>ファイル</i>から検索できます。"
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
@@ -1639,11 +1613,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:174
 msgid ""
-"<i>Note</i> that if regular expressions are used to search by names full "
-"package filename with version is used."
+"<i>Note</i>: when regular expressions are used to search by name, the full "
+"package filename including the version is used."
 msgstr ""
-"名前を正規表現で検索した場合、バージョンを含んだファイル名全体が使用されるこ"
-"とに<i>留意</i>してください。"
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1651,23 +1623,17 @@ msgstr "<i>検索をクリア</i> ボタンは検索テキスト フィールド
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
-"This panel shows all the groups to be used to filter packages by group, if "
-"view groups is selected. Special group <i>Search</i> is added if a search is "
+"This panel shows all the groups available to filter packages, if the Groups "
+"view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
-"グループ表示が選択されている場合、このパネルはパッケージをグループでフィルタ"
-"するのに用いられるすべてのグループを表示します。検索が行われると特別なグルー"
-"プ<i>検索</i>が追加されます。"
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
-"This panel shows all the filtered packages with they basic information such "
+"This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
-"このパネルはすべてのフィルタされたパッケージを<i>名前</i>, <i>概要</i>, <i>"
-"バージョン</i>, <i>リリース</i>, <i>アーキテクチャ</i>, <i>サイズ</i>, <i>状"
-"態</i>といった基本情報と一緒に表示します。"
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -2217,12 +2183,48 @@ msgstr ""
 #~ msgstr "はい(&Y)"
 
 #~ msgid ""
+#~ "<br><i>Note that this function is currently broken because of dnf API "
+#~ "change</i><br>"
+#~ msgstr ""
+#~ "<br><i>この機能は dnf の API の変更により現在正しく動作しません</i><br>"
+
+#~ msgid ""
+#~ "<i>Note</i> that if regular expressions are used to search by names full "
+#~ "package filename with version is used."
+#~ msgstr ""
+#~ "名前を正規表現で検索した場合、バージョンを含んだファイル名全体が使用される"
+#~ "ことに<i>留意</i>してください。"
+
+#~ msgid ""
+#~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
+#~ "ul>"
+#~ msgstr ""
+#~ "<li><b>デバッグ レベル</b>: チェック時に詳細なログ出力が有効になります。</"
+#~ "li></ul>"
+
+#~ msgid ""
+#~ "<li><b>Interval to check for updates</b>: the given number represents "
+#~ "when dnfdragora needs to check for updates, value is expressed in "
+#~ "minutes</li>"
+#~ msgstr ""
+#~ "<li><b>更新を確認する間隔</b>: 指定される値は dnfdragora が更新をいつ"
+#~ "チェックする必要があるかを表し、値は分単位で表します</li>"
+
+#~ msgid ""
 #~ "<li><b>Match all words</b>: if checked a search without using regular "
 #~ "expressions will match all the given words into the text field.</li></ul>"
 #~ msgstr ""
 #~ "<li><b>すべての単語にマッチ</b>: チェックした場合、正規表現を使用せずに検"
 #~ "索したときにテキスト フィールドに入力されたすべての単語にマッチします。</"
 #~ "li></ul>"
+
+#~ msgid ""
+#~ "<ul><li><b>Change directory</b>: this option allows to set logging "
+#~ "directory, directory must exist and needs write permission.</li>"
+#~ msgstr ""
+#~ "<ul><li><b>ディレクトリを変更</b>: この項目ではログのディレクトリを設定で"
+#~ "き、ディレクトリは存在していなければならず、書き込み権限が必要となります。"
+#~ "</li>"
 
 #~ msgid ""
 #~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
@@ -2298,11 +2300,31 @@ msgstr ""
 #~ msgid "Fastest mirror"
 #~ msgstr "最も速いミラー"
 
+#~ msgid ""
+#~ "Filter combobox allows to filter packages shown into package panel by:"
+#~ msgstr ""
+#~ "フィルタのコンボボックスでは、パッケージ パネルに表示されるパッケージを以"
+#~ "下でフィルタできます:"
+
+#~ msgid ""
+#~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
+#~ "selected group panel shows a tree view containing groups, while selecting "
+#~ "a group shows related packages into package panel."
+#~ msgstr ""
+#~ "最初のコンボボックスではパッケージをグループで表示します。<i>グループ</i>"
+#~ "が選択されている場合、グループ パネルはグループを含んだツリー ビューを表示"
+#~ "し、グループ選択時には関連パッケージをパッケージ パネルに表示します。"
+
 #~ msgid "GPG key missing"
 #~ msgstr "GPG 鍵がありません"
 
 #~ msgid "IP resolve"
 #~ msgstr "IP の解決"
+
+#~ msgid "If <i>All</i> is selected, package panel contains all the packages."
+#~ msgstr ""
+#~ "<i>すべて</i>が選択されている場合、パッケージ パネルはすべてのパッケージを"
+#~ "含みます。"
 
 #~ msgid "Match all words"
 #~ msgstr "すべての単語にマッチ"
@@ -2347,12 +2369,64 @@ msgstr ""
 #~ msgid "SSL verify"
 #~ msgstr "SSL の検証"
 
+#~ msgid ""
+#~ "Search is performed by pressing <i>Search</i> button if text field is "
+#~ "filled. Search combobox allows to search given text into package "
+#~ "<i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+#~ msgstr ""
+#~ "検索はテキスト フィールドが入力されているときに<i>検索</i>ボタンを押すこと"
+#~ "で行われます。検索のコンボボックスでは入力されたテキストでパッケージの<i>"
+#~ "名前</i>, <i>概要</i>, <i>説明文</i>, <i>ファイル</i>から検索できます。"
+
 #~ msgid "Start transaction"
 #~ msgstr "トランザクションを開始"
 
 #, python-format
 #~ msgid "Starting to download : %s "
 #~ msgstr "ダウンロードを開始しています : %s "
+
+#~ msgid ""
+#~ "This menu opens a dialog that allows to enable or disable repositories. "
+#~ "Any changes are valid for the time dnfdragora is running and it is not "
+#~ "permanent.<br>"
+#~ msgstr ""
+#~ "このメニューはリポジトリの有効化または無効化を行えるダイアログを開きます。"
+#~ "ここでの変更は dnfdragora の動作中に有効で、永続的ではありません。<br>"
+
+#~ msgid ""
+#~ "This menu removes any flags on packages, if any packages have been "
+#~ "selected for installation or removal they will be back to previous status."
+#~ "<br>"
+#~ msgstr ""
+#~ "このメニューはパッケージのフラグを削除します。追加または削除の選択をした"
+#~ "パッケージがある場合、前の状態に戻ります。<br>"
+
+#~ msgid ""
+#~ "This menu send a request to dnfdaemon to force a refresh of all the meta "
+#~ "data. This action is asynchronous and requires to rebuild package "
+#~ "information cache.<br>"
+#~ msgstr ""
+#~ "このメニューは dnfdaemon に全てのメタデータの更新を行うように要求を送りま"
+#~ "す。このアクションは非同期で、パッケージ情報キャッシュの再構築が必要です。"
+#~ "<br>"
+
+#~ msgid ""
+#~ "This panel shows all the filtered packages with they basic information "
+#~ "such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
+#~ "<i>architecture</i>, <i>size</i>, and <i>status</i>."
+#~ msgstr ""
+#~ "このパネルはすべてのフィルタされたパッケージを<i>名前</i>, <i>概要</i>, "
+#~ "<i>バージョン</i>, <i>リリース</i>, <i>アーキテクチャ</i>, <i>サイズ</i>, "
+#~ "<i>状態</i>といった基本情報と一緒に表示します。"
+
+#~ msgid ""
+#~ "This panel shows all the groups to be used to filter packages by group, "
+#~ "if view groups is selected. Special group <i>Search</i> is added if a "
+#~ "search is performed."
+#~ msgstr ""
+#~ "グループ表示が選択されている場合、このパネルはパッケージをグループでフィル"
+#~ "タするのに用いられるすべてのグループを表示します。検索が行われると特別なグ"
+#~ "ループ<i>検索</i>が追加されます。"
 
 #~ msgid "Throttle"
 #~ msgstr "速度制限"
@@ -2409,6 +2483,22 @@ msgstr ""
 #, python-format
 #~ msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
 #~ msgstr "dnfdaemon の種類エラーが発生しました:%(NL)s%(error)s"
+
+#~ msgid ""
+#~ "dnfdragora is basically a package manager user interface that allows to "
+#~ "install, update, remove, search packages and more.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora は基本的にパッケージマネージャのユーザ インターフェースで、パッ"
+#~ "ケージのインストール, 更新, 削除, 検索などが行えます。<br><br>"
+
+#~ msgid ""
+#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
+#~ "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
+#~ "interfaces.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora は manatools の一部で、Gtk, Qt, ncurses つまりグラフィカル形式"
+#~ "とテキスト形式の両方のユーザ インターフェースを用いて動作できるように "
+#~ "libyui に基づいています。<br><br>"
 
 #~ msgid ""
 #~ "dnfdragora is written in Python 3 and uses libYui, the widget abstraction "

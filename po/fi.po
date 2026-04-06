@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 13:35+0200\n"
+"POT-Creation-Date: 2026-04-06 17:26+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Tinde (Joke), 2026\n"
 "Language-Team: Finnish (https://app.transifex.com/MageiaLinux/teams/9361/"
@@ -1270,21 +1270,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
-"dnfdragora is basically a package manager user interface that allows to "
-"install, update, remove, search packages and more.<br><br>"
+"dnfdragora is basically a package manager user interface that allows you to "
+"install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
-"dnfdragora on pohjimmiltaan paketinhallinnan käyttöliittymä, jonka avulla "
-"voidaan asentaa, päivittää, poistaa, etsiä paketteja ja paljon muuta.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-"interfaces.<br><br>"
+"dnfdragora is part of manatools and it is based on manatools.aui so that it "
+"can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
+"textual user interfaces.<br><br>"
 msgstr ""
-"dnfdragora on manatools komponentti ja libyui:n perustuen se voi käyttää "
-"Gtk, Qt, ncurses mallisia graafisia sekä tekstillisiä käyttöliittymiä."
-"<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1308,11 +1303,9 @@ msgstr "<h2>Nollaa valinta</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
-"This menu removes any flags on packages, if any packages have been selected "
-"for installation or removal they will be back to previous status.<br>"
+"This menu removes any flags on packages; if any packages have been selected "
+"for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
-"Tämä valikko poistaa kaikki valinnat paketeista. Jos paketteja on valittu "
-"asennettavaksi tai poistettavaksi ne palautuu edelliseen tilaan.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1320,13 +1313,10 @@ msgstr "<h2>Virkistä metatiedot</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
-"This menu send a request to dnfdaemon to force a refresh of all the meta "
-"data. This action is asynchronous and requires to rebuild package "
+"This menu sends a request to dnfdaemon to force a refresh of all the "
+"metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
-"Tämä valikko lähettää dnfdaemonille käskyn pakottaa päivittämään kaikki "
-"metatiedot. Toiminto on asynkroninen ja vaatii pakettitietojen välimuistin "
-"rakentamisen uudelleen.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1334,13 +1324,10 @@ msgstr "<h2>Repositories - Pakettivarastot</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
-"This menu opens a dialog that allows to enable or disable repositories. Any "
-"changes are valid for the time dnfdragora is running and it is not permanent."
+"This menu opens a dialog that allows you to enable or disable repositories. "
+"Any changes are valid only while dnfdragora is running and are not permanent."
 "<br>"
 msgstr ""
-"Valikko avaa valintaikkunan, jonka avulla pakettivarastot voidaan poistaa "
-"tai ottaa käyttöön. Kaikki muutokset ovat voimassa dnfdragoran käyttöajan, "
-"eivätkä ole pysyviä.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1370,11 +1357,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
-"<br><i>Note that this function is currently broken because of dnf API "
+"<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
 msgstr ""
-"<br><i>Huomaa, että toiminto on rikki tällä hetkellä dnf API:n muutoksen "
-"vuoksi</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1454,11 +1439,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
-"<li><b>Interval to check for updates</b>: the given number represents when "
-"dnfdragora needs to check for updates, value is expressed in minutes</li>"
+"<li><b>Interval to check for updates</b>: the given number represents how "
+"often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
-"<li><b>Päivitysten tarkistamisen aikaväli</b>: annettu numero edustaa aikaa "
-"milloin dnfdragoran on tarkistettava päivitykset. Arvo on minuutteina</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1533,18 +1516,14 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:137
 msgid ""
-"<ul><li><b>Change directory</b>: this option allows to set logging "
-"directory, directory must exist and needs write permission.</li>"
+"<ul><li><b>Change directory</b>: this option allows you to set the logging "
+"directory; the directory must exist and needs write permission.</li>"
 msgstr ""
-"<ul><li><b>Vaihda hakemisto</b>: Tämä valinta sallii lokin asettamisen. "
-"Hakemisto on oltava olemassa ja se tarvitsee kirjoitusoikeuden.</li>"
 
 #: dnfdragora/helpinfo.py:138
 msgid ""
-"<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
+"<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
-"<li><b>Virheen taso</b>: jos valittuna lokin kirjaaminen on käytössä.</li></"
-"ul>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
@@ -1576,28 +1555,24 @@ msgstr "<h2>Näkymät</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid ""
-"First combobox allows to show packages by groups. If <i>Groups</i> is "
-"selected group panel shows a tree view containing groups, while selecting a "
-"group shows related packages into package panel."
+"The first combobox allows you to show packages by groups. If <i>Groups</i> "
+"is selected, the group panel shows a tree view containing groups, and "
+"selecting a group shows related packages in the package panel."
 msgstr ""
-"Ensimmäinen laatikko näyttää paketit ryhmittäin. Jos <i>Ryhmät</i> on "
-"valittuna näytetään ryhmiä sisältävä puunäkymä. Kun valitset ryhmän, siihen "
-"liittyvät paketit näkyvät pakettipaneelissa."
 
 #: dnfdragora/helpinfo.py:163
-msgid "If <i>All</i> is selected, package panel contains all the packages."
+msgid "If <i>All</i> is selected, the package panel contains all the packages."
 msgstr ""
-"Jos <i>Kaikki</i> on valittuna, pakettipaneeli sisältää kaikki paketit."
 
 #: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
 msgstr "<h2>Suodattimet</h2>"
 
 #: dnfdragora/helpinfo.py:165
-msgid "Filter combobox allows to filter packages shown into package panel by:"
+msgid ""
+"The Filter combobox allows you to filter the packages shown in the package "
+"panel by:"
 msgstr ""
-"Suodatinlaatikko sallii pakettipaneelissa näkyvien pakettien suodattamisen "
-"seuraavasti:"
 
 #: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1637,14 +1612,10 @@ msgstr "<h2>Haku</h2>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
-"Search is performed by pressing <i>Search</i> button if text field is "
-"filled. Search combobox allows to search given text into package <i>names</"
-"i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+"Search is performed by pressing the <i>Search</i> button when the text field "
+"is not empty. The Search combobox allows you to search the given text in "
+"package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
 msgstr ""
-"Haku tehdään painamalla <i>Haku</i> painiketta, jos tekstikenttää on "
-"täytetty. Hakuyhdistelmä mahdollistaa tietyn tekstin hakemisen paketin "
-"<i>nimen</i>, <i>yhteenvedon</i>, <i>kuvauksen</i> tai <i>tiedoston</"
-"i>perusteella</i>."
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
@@ -1658,11 +1629,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:174
 msgid ""
-"<i>Note</i> that if regular expressions are used to search by names full "
-"package filename with version is used."
+"<i>Note</i>: when regular expressions are used to search by name, the full "
+"package filename including the version is used."
 msgstr ""
-"<i>Huomaa</i> jos säännöllisiä lauseita käytetään nimien perusteella "
-"etsimiseen, käytetään koko paketin tiedostonimeä version kanssa."
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1670,22 +1639,17 @@ msgstr "<i>Tyhjennä haku</i> painike tyhjentää hakukentän."
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
-"This panel shows all the groups to be used to filter packages by group, if "
-"view groups is selected. Special group <i>Search</i> is added if a search is "
+"This panel shows all the groups available to filter packages, if the Groups "
+"view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
-"Paneeli näyttää kaikki ryhmät, joita käytetään pakettien suodattamiseen "
-"ryhmien mukaan. Tietyn ryhmän <i>Haku</i> lisätään, jos haku suoritetaan."
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
-"This panel shows all the filtered packages with they basic information such "
+"This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
-"Paneeli näyttää kaikki suodatetut paketit perustietoineen, kuten <i>nimi</"
-"i>, <i>yhteenveto</i>, <i>versio</i>, <i>julkaisu</i>, <i>arkkitehtuuri</i>, "
-"<i>koko</i>, ja <i>tila</i>."
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -2229,6 +2193,43 @@ msgstr ""
 #~ msgid "&Yes"
 #~ msgstr "&Kyllä"
 
+#~ msgid ""
+#~ "<br><i>Note that this function is currently broken because of dnf API "
+#~ "change</i><br>"
+#~ msgstr ""
+#~ "<br><i>Huomaa, että toiminto on rikki tällä hetkellä dnf API:n muutoksen "
+#~ "vuoksi</i><br>"
+
+#~ msgid ""
+#~ "<i>Note</i> that if regular expressions are used to search by names full "
+#~ "package filename with version is used."
+#~ msgstr ""
+#~ "<i>Huomaa</i> jos säännöllisiä lauseita käytetään nimien perusteella "
+#~ "etsimiseen, käytetään koko paketin tiedostonimeä version kanssa."
+
+#~ msgid ""
+#~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
+#~ "ul>"
+#~ msgstr ""
+#~ "<li><b>Virheen taso</b>: jos valittuna lokin kirjaaminen on käytössä.</"
+#~ "li></ul>"
+
+#~ msgid ""
+#~ "<li><b>Interval to check for updates</b>: the given number represents "
+#~ "when dnfdragora needs to check for updates, value is expressed in "
+#~ "minutes</li>"
+#~ msgstr ""
+#~ "<li><b>Päivitysten tarkistamisen aikaväli</b>: annettu numero edustaa "
+#~ "aikaa milloin dnfdragoran on tarkistettava päivitykset. Arvo on "
+#~ "minuutteina</li>"
+
+#~ msgid ""
+#~ "<ul><li><b>Change directory</b>: this option allows to set logging "
+#~ "directory, directory must exist and needs write permission.</li>"
+#~ msgstr ""
+#~ "<ul><li><b>Vaihda hakemisto</b>: Tämä valinta sallii lokin asettamisen. "
+#~ "Hakemisto on oltava olemassa ja se tarvitsee kirjoitusoikeuden.</li>"
+
 #~ msgid "Bugfix"
 #~ msgstr "Bugikorjaus"
 
@@ -2251,6 +2252,25 @@ msgstr ""
 #~ msgid "Enhancement"
 #~ msgstr "Lisätoiminto"
 
+#~ msgid ""
+#~ "Filter combobox allows to filter packages shown into package panel by:"
+#~ msgstr ""
+#~ "Suodatinlaatikko sallii pakettipaneelissa näkyvien pakettien "
+#~ "suodattamisen seuraavasti:"
+
+#~ msgid ""
+#~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
+#~ "selected group panel shows a tree view containing groups, while selecting "
+#~ "a group shows related packages into package panel."
+#~ msgstr ""
+#~ "Ensimmäinen laatikko näyttää paketit ryhmittäin. Jos <i>Ryhmät</i> on "
+#~ "valittuna näytetään ryhmiä sisältävä puunäkymä. Kun valitset ryhmän, "
+#~ "siihen liittyvät paketit näkyvät pakettipaneelissa."
+
+#~ msgid "If <i>All</i> is selected, package panel contains all the packages."
+#~ msgstr ""
+#~ "Jos <i>Kaikki</i> on valittuna, pakettipaneeli sisältää kaikki paketit."
+
 #~ msgid "Info"
 #~ msgstr "Info"
 
@@ -2264,12 +2284,65 @@ msgstr ""
 #~ msgid "Progress files (%(downloaded)d/%(total)d)"
 #~ msgstr "Tiedostojen edistyminen (%(downloaded)d/%(total)d)"
 
+#~ msgid ""
+#~ "Search is performed by pressing <i>Search</i> button if text field is "
+#~ "filled. Search combobox allows to search given text into package "
+#~ "<i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+#~ msgstr ""
+#~ "Haku tehdään painamalla <i>Haku</i> painiketta, jos tekstikenttää on "
+#~ "täytetty. Hakuyhdistelmä mahdollistaa tietyn tekstin hakemisen paketin "
+#~ "<i>nimen</i>, <i>yhteenvedon</i>, <i>kuvauksen</i> tai <i>tiedoston</"
+#~ "i>perusteella</i>."
+
 #~ msgid "Start transaction"
 #~ msgstr "Aloita toiminta"
 
 #, python-format
 #~ msgid "Starting to download : %s "
 #~ msgstr "Lataus alkaa : %s "
+
+#~ msgid ""
+#~ "This menu opens a dialog that allows to enable or disable repositories. "
+#~ "Any changes are valid for the time dnfdragora is running and it is not "
+#~ "permanent.<br>"
+#~ msgstr ""
+#~ "Valikko avaa valintaikkunan, jonka avulla pakettivarastot voidaan poistaa "
+#~ "tai ottaa käyttöön. Kaikki muutokset ovat voimassa dnfdragoran "
+#~ "käyttöajan, eivätkä ole pysyviä.<br>"
+
+#~ msgid ""
+#~ "This menu removes any flags on packages, if any packages have been "
+#~ "selected for installation or removal they will be back to previous status."
+#~ "<br>"
+#~ msgstr ""
+#~ "Tämä valikko poistaa kaikki valinnat paketeista. Jos paketteja on valittu "
+#~ "asennettavaksi tai poistettavaksi ne palautuu edelliseen tilaan.<br>"
+
+#~ msgid ""
+#~ "This menu send a request to dnfdaemon to force a refresh of all the meta "
+#~ "data. This action is asynchronous and requires to rebuild package "
+#~ "information cache.<br>"
+#~ msgstr ""
+#~ "Tämä valikko lähettää dnfdaemonille käskyn pakottaa päivittämään kaikki "
+#~ "metatiedot. Toiminto on asynkroninen ja vaatii pakettitietojen "
+#~ "välimuistin rakentamisen uudelleen.<br>"
+
+#~ msgid ""
+#~ "This panel shows all the filtered packages with they basic information "
+#~ "such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
+#~ "<i>architecture</i>, <i>size</i>, and <i>status</i>."
+#~ msgstr ""
+#~ "Paneeli näyttää kaikki suodatetut paketit perustietoineen, kuten <i>nimi</"
+#~ "i>, <i>yhteenveto</i>, <i>versio</i>, <i>julkaisu</i>, <i>arkkitehtuuri</"
+#~ "i>, <i>koko</i>, ja <i>tila</i>."
+
+#~ msgid ""
+#~ "This panel shows all the groups to be used to filter packages by group, "
+#~ "if view groups is selected. Special group <i>Search</i> is added if a "
+#~ "search is performed."
+#~ msgstr ""
+#~ "Paneeli näyttää kaikki ryhmät, joita käytetään pakettien suodattamiseen "
+#~ "ryhmien mukaan. Tietyn ryhmän <i>Haku</i> lisätään, jos haku suoritetaan."
 
 #, python-format
 #~ msgid "Unmanaged event %d"
@@ -2284,6 +2357,23 @@ msgstr ""
 #, python-format
 #~ msgid "dnfdaemon client failure [%s]"
 #~ msgstr "dnfdaemon ohjelmavirhe [%s]"
+
+#~ msgid ""
+#~ "dnfdragora is basically a package manager user interface that allows to "
+#~ "install, update, remove, search packages and more.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora on pohjimmiltaan paketinhallinnan käyttöliittymä, jonka avulla "
+#~ "voidaan asentaa, päivittää, poistaa, etsiä paketteja ja paljon muuta."
+#~ "<br><br>"
+
+#~ msgid ""
+#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
+#~ "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
+#~ "interfaces.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora on manatools komponentti ja libyui:n perustuen se voi käyttää "
+#~ "Gtk, Qt, ncurses mallisia graafisia sekä tekstillisiä käyttöliittymiä."
+#~ "<br><br>"
 
 #~ msgid ""
 #~ "dnfdragora is written in Python 3 and uses libYui, the widget abstraction "

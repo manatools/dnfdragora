@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 13:35+0200\n"
+"POT-Creation-Date: 2026-04-06 17:26+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -1261,20 +1261,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:64
 msgid ""
-"dnfdragora is basically a package manager user interface that allows to "
-"install, update, remove, search packages and more.<br><br>"
+"dnfdragora is basically a package manager user interface that allows you to "
+"install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
-"dnfdragora 基本上是一个包管理器用户界面，允许安装、更新、删除、搜索包等。"
-"<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
-"dnfdragora is part of manatools and it is based on libyui so that it can "
-"work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-"interfaces.<br><br>"
+"dnfdragora is part of manatools and it is based on manatools.aui so that it "
+"can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
+"textual user interfaces.<br><br>"
 msgstr ""
-"dnfdragora 是 manatools 的一部分，它基于 libyui，因此它可以使用 Gtk、Qt 或 "
-"ncurses，即图形和文本用户界面。<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1298,11 +1294,9 @@ msgstr "<h2>重置选择</h2>"
 
 #: dnfdragora/helpinfo.py:84
 msgid ""
-"This menu removes any flags on packages, if any packages have been selected "
-"for installation or removal they will be back to previous status.<br>"
+"This menu removes any flags on packages; if any packages have been selected "
+"for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
-"此菜单删除包上的任何标志，如果已选择安装或删除任何包，它们将返回到以前的状"
-"态。<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1310,12 +1304,10 @@ msgstr "<h2>刷新元数据</h2>"
 
 #: dnfdragora/helpinfo.py:86
 msgid ""
-"This menu send a request to dnfdaemon to force a refresh of all the meta "
-"data. This action is asynchronous and requires to rebuild package "
+"This menu sends a request to dnfdaemon to force a refresh of all the "
+"metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
-"此菜单向 dnfdaemon 发送请求以强制刷新所有元数据。 此操作是异步的，需要重建包"
-"信息缓存。<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1323,12 +1315,10 @@ msgstr "<h2>存储库</h2>"
 
 #: dnfdragora/helpinfo.py:88
 msgid ""
-"This menu opens a dialog that allows to enable or disable repositories. Any "
-"changes are valid for the time dnfdragora is running and it is not permanent."
+"This menu opens a dialog that allows you to enable or disable repositories. "
+"Any changes are valid only while dnfdragora is running and are not permanent."
 "<br>"
 msgstr ""
-"此菜单打开一个对话框，允许启用或禁用存储库。 任何更改都在 dnfdragora 运行期间"
-"有效，并且不是永久性的。<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1357,9 +1347,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:101
 msgid ""
-"<br><i>Note that this function is currently broken because of dnf API "
+"<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
-msgstr "<br><i>请注意，由于 dnf API 更改，此功能目前已损坏</i><br>"
+msgstr ""
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1428,11 +1418,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
-"<li><b>Interval to check for updates</b>: the given number represents when "
-"dnfdragora needs to check for updates, value is expressed in minutes</li>"
+"<li><b>Interval to check for updates</b>: the given number represents how "
+"often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
-"<li><b>检查更新的时间间隔</b>: 给定的数字表示 dnfdragora 需要检查更新的时间，"
-"值以分钟表示</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1496,16 +1484,14 @@ msgstr "启用这些选项让 dnfdragora 登录名为 <i>dnfdragora.log</i>."
 
 #: dnfdragora/helpinfo.py:137
 msgid ""
-"<ul><li><b>Change directory</b>: this option allows to set logging "
-"directory, directory must exist and needs write permission.</li>"
+"<ul><li><b>Change directory</b>: this option allows you to set the logging "
+"directory; the directory must exist and needs write permission.</li>"
 msgstr ""
-"<ul><li><b>更改目录</b>: 这个选项允许设置日志目录，目录必须存在并且需要写权"
-"限。</li>"
 
 #: dnfdragora/helpinfo.py:138
 msgid ""
-"<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></ul>"
-msgstr "<li><b>调试级别</b>: 如果启用了选中的日志详细日志记录。</li></ul>"
+"<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
+msgstr ""
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
@@ -1537,24 +1523,24 @@ msgstr "<h2>观看次数</h2>"
 
 #: dnfdragora/helpinfo.py:162
 msgid ""
-"First combobox allows to show packages by groups. If <i>Groups</i> is "
-"selected group panel shows a tree view containing groups, while selecting a "
-"group shows related packages into package panel."
+"The first combobox allows you to show packages by groups. If <i>Groups</i> "
+"is selected, the group panel shows a tree view containing groups, and "
+"selecting a group shows related packages in the package panel."
 msgstr ""
-"第一个组合框允许按组显示包。 如果 <i>团体</i> 选择组面板显示包含组的树视图，"
-"而选择组显示相关包到包面板中。"
 
 #: dnfdragora/helpinfo.py:163
-msgid "If <i>All</i> is selected, package panel contains all the packages."
-msgstr "如果 <i>全部</i> 被选中，包面板包含所有包。"
+msgid "If <i>All</i> is selected, the package panel contains all the packages."
+msgstr ""
 
 #: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
 msgstr "<h2>过滤器</h2>"
 
 #: dnfdragora/helpinfo.py:165
-msgid "Filter combobox allows to filter packages shown into package panel by:"
-msgstr "过滤器组合框允许通过以下方式过滤显示在包面板中的包："
+msgid ""
+"The Filter combobox allows you to filter the packages shown in the package "
+"panel by:"
+msgstr ""
 
 #: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1590,12 +1576,10 @@ msgstr "<h2>搜索</h2>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
-"Search is performed by pressing <i>Search</i> button if text field is "
-"filled. Search combobox allows to search given text into package <i>names</"
-"i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+"Search is performed by pressing the <i>Search</i> button when the text field "
+"is not empty. The Search combobox allows you to search the given text in "
+"package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
 msgstr ""
-"通过按执行搜索 <i>搜索</i> 按钮（如果文本字段已填充）。 搜索组合框允许将给定"
-"的文本搜索到包中 <i>名字</i>, <i>总结</i>, <i>说明</i> 或 <i>文件</i>."
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
@@ -1608,9 +1592,9 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:174
 msgid ""
-"<i>Note</i> that if regular expressions are used to search by names full "
-"package filename with version is used."
-msgstr "<i>注</i> 如果使用正则表达式按名称搜索，则使用带有版本的完整包文件名。"
+"<i>Note</i>: when regular expressions are used to search by name, the full "
+"package filename including the version is used."
+msgstr ""
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1618,21 +1602,17 @@ msgstr "该 <i>清除搜索</i> 按钮重置搜索文本字段。"
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
-"This panel shows all the groups to be used to filter packages by group, if "
-"view groups is selected. Special group <i>Search</i> is added if a search is "
+"This panel shows all the groups available to filter packages, if the Groups "
+"view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
-"如果选择了查看组，此面板将显示用于按组过滤包的所有组。 特殊群体 <i>搜索</i> "
-"如果执行搜索，则会添加。"
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
-"This panel shows all the filtered packages with they basic information such "
+"This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
-"此面板显示所有过滤的包及其基本信息，例如 <i>姓名</i>, <i>总结</i>, <i>版本</"
-"i>, <i>释放</i>, <i>建筑学</i>, <i>尺寸</i>, 和 <i>地位</i>."
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -2173,11 +2153,42 @@ msgstr ""
 #~ msgstr "是(&Y)"
 
 #~ msgid ""
+#~ "<br><i>Note that this function is currently broken because of dnf API "
+#~ "change</i><br>"
+#~ msgstr "<br><i>请注意，由于 dnf API 更改，此功能目前已损坏</i><br>"
+
+#~ msgid ""
+#~ "<i>Note</i> that if regular expressions are used to search by names full "
+#~ "package filename with version is used."
+#~ msgstr ""
+#~ "<i>注</i> 如果使用正则表达式按名称搜索，则使用带有版本的完整包文件名。"
+
+#~ msgid ""
+#~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
+#~ "ul>"
+#~ msgstr "<li><b>调试级别</b>: 如果启用了选中的日志详细日志记录。</li></ul>"
+
+#~ msgid ""
+#~ "<li><b>Interval to check for updates</b>: the given number represents "
+#~ "when dnfdragora needs to check for updates, value is expressed in "
+#~ "minutes</li>"
+#~ msgstr ""
+#~ "<li><b>检查更新的时间间隔</b>: 给定的数字表示 dnfdragora 需要检查更新的时"
+#~ "间，值以分钟表示</li>"
+
+#~ msgid ""
 #~ "<li><b>Match all words</b>: if checked a search without using regular "
 #~ "expressions will match all the given words into the text field.</li></ul>"
 #~ msgstr ""
 #~ "<li><b>匹配所有单词</b>: 如果选中，不使用正则表达式的搜索会将所有给定的单"
 #~ "词匹配到文本字段中。</li></ul>"
+
+#~ msgid ""
+#~ "<ul><li><b>Change directory</b>: this option allows to set logging "
+#~ "directory, directory must exist and needs write permission.</li>"
+#~ msgstr ""
+#~ "<ul><li><b>更改目录</b>: 这个选项允许设置日志目录，目录必须存在并且需要写"
+#~ "权限。</li>"
 
 #~ msgid ""
 #~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
@@ -2252,11 +2263,26 @@ msgstr ""
 #~ msgid "Fastest mirror"
 #~ msgstr "最快的镜像"
 
+#~ msgid ""
+#~ "Filter combobox allows to filter packages shown into package panel by:"
+#~ msgstr "过滤器组合框允许通过以下方式过滤显示在包面板中的包："
+
+#~ msgid ""
+#~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
+#~ "selected group panel shows a tree view containing groups, while selecting "
+#~ "a group shows related packages into package panel."
+#~ msgstr ""
+#~ "第一个组合框允许按组显示包。 如果 <i>团体</i> 选择组面板显示包含组的树视"
+#~ "图，而选择组显示相关包到包面板中。"
+
 #~ msgid "GPG key missing"
 #~ msgstr "GPG 密钥丢失"
 
 #~ msgid "IP resolve"
 #~ msgstr "解析IP地址"
+
+#~ msgid "If <i>All</i> is selected, package panel contains all the packages."
+#~ msgstr "如果 <i>全部</i> 被选中，包面板包含所有包。"
 
 #~ msgid "Match all words"
 #~ msgstr "匹配所有关键词"
@@ -2301,12 +2327,60 @@ msgstr ""
 #~ msgid "SSL verify"
 #~ msgstr "SSL 检查"
 
+#~ msgid ""
+#~ "Search is performed by pressing <i>Search</i> button if text field is "
+#~ "filled. Search combobox allows to search given text into package "
+#~ "<i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
+#~ msgstr ""
+#~ "通过按执行搜索 <i>搜索</i> 按钮（如果文本字段已填充）。 搜索组合框允许将给"
+#~ "定的文本搜索到包中 <i>名字</i>, <i>总结</i>, <i>说明</i> 或 <i>文件</i>."
+
 #~ msgid "Start transaction"
 #~ msgstr "开始处理事务"
 
 #, python-format
 #~ msgid "Starting to download : %s "
 #~ msgstr "开始下载：%s "
+
+#~ msgid ""
+#~ "This menu opens a dialog that allows to enable or disable repositories. "
+#~ "Any changes are valid for the time dnfdragora is running and it is not "
+#~ "permanent.<br>"
+#~ msgstr ""
+#~ "此菜单打开一个对话框，允许启用或禁用存储库。 任何更改都在 dnfdragora 运行"
+#~ "期间有效，并且不是永久性的。<br>"
+
+#~ msgid ""
+#~ "This menu removes any flags on packages, if any packages have been "
+#~ "selected for installation or removal they will be back to previous status."
+#~ "<br>"
+#~ msgstr ""
+#~ "此菜单删除包上的任何标志，如果已选择安装或删除任何包，它们将返回到以前的状"
+#~ "态。<br>"
+
+#~ msgid ""
+#~ "This menu send a request to dnfdaemon to force a refresh of all the meta "
+#~ "data. This action is asynchronous and requires to rebuild package "
+#~ "information cache.<br>"
+#~ msgstr ""
+#~ "此菜单向 dnfdaemon 发送请求以强制刷新所有元数据。 此操作是异步的，需要重建"
+#~ "包信息缓存。<br>"
+
+#~ msgid ""
+#~ "This panel shows all the filtered packages with they basic information "
+#~ "such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
+#~ "<i>architecture</i>, <i>size</i>, and <i>status</i>."
+#~ msgstr ""
+#~ "此面板显示所有过滤的包及其基本信息，例如 <i>姓名</i>, <i>总结</i>, <i>版本"
+#~ "</i>, <i>释放</i>, <i>建筑学</i>, <i>尺寸</i>, 和 <i>地位</i>."
+
+#~ msgid ""
+#~ "This panel shows all the groups to be used to filter packages by group, "
+#~ "if view groups is selected. Special group <i>Search</i> is added if a "
+#~ "search is performed."
+#~ msgstr ""
+#~ "如果选择了查看组，此面板将显示用于按组过滤包的所有组。 特殊群体 <i>搜索</"
+#~ "i> 如果执行搜索，则会添加。"
 
 #~ msgid "Throttle"
 #~ msgstr "限速"
@@ -2362,6 +2436,21 @@ msgstr ""
 #, python-format
 #~ msgid "dnfdaemon type error occurred:%(NL)s%(error)s"
 #~ msgstr "dnfdaemon type error occurred:%(NL)s%(error)s"
+
+#~ msgid ""
+#~ "dnfdragora is basically a package manager user interface that allows to "
+#~ "install, update, remove, search packages and more.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora 基本上是一个包管理器用户界面，允许安装、更新、删除、搜索包等。"
+#~ "<br><br>"
+
+#~ msgid ""
+#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
+#~ "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
+#~ "interfaces.<br><br>"
+#~ msgstr ""
+#~ "dnfdragora 是 manatools 的一部分，它基于 libyui，因此它可以使用 Gtk、Qt "
+#~ "或 ncurses，即图形和文本用户界面。<br><br>"
 
 #~ msgid ""
 #~ "dnfdragora is written in Python 3 and uses libYui, the widget abstraction "
