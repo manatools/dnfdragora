@@ -195,13 +195,13 @@ class HistoryView:
                     # imported)
                     while rc == 1:
                         logger.debug('GPG key missing: %s' % repr(result))
-                        # get info about gpgkey to be comfirmed
-                        values = parent.backend._gpg_confirm
+                        # get info about gpgkey to be confirmed
+                        values = parent._gpg_confirm
                         if values:  # There is a gpgkey to be verified
-                            (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                            (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
                             logger.debug('GPGKey : %s' % repr(values))
                             resp = ask_for_gpg_import(values)
-                            parent.backend.ConfirmGPGImport(hexkeyid, resp)
+                            parent.backend.ConfirmGPGImport(key_id, resp)
                             # tell the backend that the gpg key is confirmed
                             # rerun the transaction
                             # FIXME: It should not be needed to populate
@@ -1476,6 +1476,28 @@ def ask_for_gpg_import (values):
         True:  Yes button has been pressed
     '''
     (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
+
+    # dnf5daemon delivers user_ids as a list (dbus.Array → list[str]).
+    # Join multiple IDs; fall back to str() for any unexpected type.
+    if isinstance(user_ids, list):
+        display_user = ', '.join(str(u) for u in user_ids)
+    else:
+        display_user = str(user_ids) if user_ids else ''
+
+    # key_url can be None when the key is embedded in the repository metadata
+    # rather than hosted at a separate URL.
+    if key_url:
+        display_url = key_url.replace("file://", "")
+    else:
+        display_url = _("(embedded in repository metadata)")
+
+    # dnf5daemon delivers timestamp as an int (Unix epoch).
+    # Convert to a human-readable local datetime string.
+    if isinstance(timestamp, int):
+        display_timestamp = str(datetime.datetime.fromtimestamp(timestamp))
+    else:
+        display_timestamp = str(timestamp) if timestamp else ''
+
     msg = (_('Do you want to import this GPG key?<br>'
              '<br>Key        : 0x%(id)s:<br>'
              'Userid     : "%(user)s"<br>'
@@ -1483,10 +1505,10 @@ def ask_for_gpg_import (values):
              'Timestamp  : "%(timestamp)s"<br>'
              'From       : %(file)s') %
            {'id': key_id,
-            'user': user_ids,
-            'fingerprint':key_fingerprint,
-            'timestamp':timestamp,
-            'file': key_url.replace("file://", "")})
+            'user': display_user,
+            'fingerprint': key_fingerprint,
+            'timestamp': display_timestamp,
+            'file': display_url})
 
     return askYesOrNo({'title' : _("GPG key missed"),
                        'text': msg,

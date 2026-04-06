@@ -1477,12 +1477,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     while rc == 1:
                         logger.debug('GPG key missing: %s' % repr(result))
                         # get info about gpgkey to be confirmed
-                        values = self.backend._gpg_confirm
+                        values = self._gpg_confirm
                         if values:  # There is a gpgkey to be verified
-                            (pkg_id, userid, hexkeyid, keyurl, timestamp) = values
+                            (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
                             logger.debug('GPGKey : %s' % repr(values))
                             resp = dialogs.ask_for_gpg_import(values)
-                            self.backend.ConfirmGPGImport(hexkeyid, resp, sync)
+                            self.backend.ConfirmGPGImport(key_id, resp, sync)
                             # tell the backend that the gpg key is confirmed
                             # rerun the transaction
                             # FIXME: It should not be needed to populate
