@@ -15,9 +15,9 @@
     </p>
 
     <p>
-      dnfdragora is written in Python 3 and uses libYui, the widget abstraction library written by SUSE,
-      so that it can be run using Qt 5, GTK+ 3, or ncurses interfaces. It provides a frontend for the
-      DNF package manager that can be used in any kind of system environment.
+      dnfdragora is written in Python 3 and uses manatools AUI, the widget abstraction library written for manatools application
+      based on the libYUI experience, so that it can be run using Qt 6 (pySide), GTK 4, or ncurses interfaces.
+      It provides a frontend for the DNF package manager, using DNF 5 daemon, that can be used in any kind of system environment.
     </p>
   </description>
   <screenshots>
