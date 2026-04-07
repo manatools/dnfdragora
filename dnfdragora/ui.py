@@ -410,6 +410,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.icon = "dnfdragora" #self.images_path + "dnfdragora.png"
         self.logo = self.images_path + "dnfdragora-logo.png"
         MUI.YUI.app().setApplicationIcon(self.icon)
+        # Wayland/Plasma: tell the compositor which .desktop file represents this
+        # window so the task manager shows the correct icon and application name.
+        MUI.YUI.app().desktop_file_name = "org.mageia.dnfdragora"
 
         self.factory = MUI.YUI.widgetFactory()
         
