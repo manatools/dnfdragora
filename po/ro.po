@@ -1277,6 +1277,9 @@ msgid ""
 "dnfdragora is basically a package manager user interface that allows you to "
 "install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
+"dnfdragora este practic o interfață utilizator pentru managerul de pachete "
+"care vă permite să instalați, să actualizați, să eliminați și să căutați "
+"pachete și multe altele.<br><br>"
 
 #: dnfdragora/helpinfo.py:65
 msgid ""
@@ -1284,6 +1287,9 @@ msgid ""
 "can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
 "textual user interfaces.<br><br>"
 msgstr ""
+"dnfdragora face parte din manatools și se bazează pe manatools.aui, astfel "
+"încât poate funcționa folosind Qt (PySide6), GTK 4 sau ncurses, adică atât "
+"interfețe grafice, cât și textuale.<br><br>"
 
 #: dnfdragora/helpinfo.py:66
 msgid "dnfdragora window is comprised of:"
@@ -1310,6 +1316,9 @@ msgid ""
 "This menu removes any flags on packages; if any packages have been selected "
 "for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
+"Acest meniu elimină orice stegulețe de pe pachete; dacă au fost selectate "
+"pachete pentru instalare sau eliminare, acestea vor fi aduse la starea "
+"anterioară.<br>"
 
 #: dnfdragora/helpinfo.py:85
 msgid "<h2>Refresh metadata</h2>"
@@ -1321,6 +1330,9 @@ msgid ""
 "metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
+"Acest meniu trimite o cerere către dnfdaemon pentru a forța o reîmprospătare "
+"a tuturor metadatelor. Această acțiune este asincronă și necesită "
+"reconstruirea memoriei cache cu informații despre pachet.<br>"
 
 #: dnfdragora/helpinfo.py:87
 msgid "<h2>Repositories</h2>"
@@ -1332,6 +1344,9 @@ msgid ""
 "Any changes are valid only while dnfdragora is running and are not permanent."
 "<br>"
 msgstr ""
+"Acest meniu deschide o casetă de dialog care vă permite să activați sau să "
+"dezactivați repozitoriile. Orice modificări sunt valabile atât timp cât "
+"dnfdragora rulează și nu sunt permanente.<br>"
 
 #: dnfdragora/helpinfo.py:89
 msgid "<h2>Quit</h2>"
@@ -1364,6 +1379,8 @@ msgid ""
 "<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
 msgstr ""
+"<br><i>Rețineți că această funcție nu funcționează din cauza unei modificări "
+"a API-ului DNF.</i><br>"
 
 #: dnfdragora/helpinfo.py:108
 msgid "Option Menu"
@@ -1449,6 +1466,9 @@ msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents how "
 "often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
+"<li><b>Interval de verificare a actualizărilor</b>: numărul dat reprezintă "
+"frecvența cu care dnfdragora verifică actualizările; valoarea este exprimată "
+"în minute.</li>"
 
 #: dnfdragora/helpinfo.py:127
 msgid ""
@@ -1526,11 +1546,16 @@ msgid ""
 "<ul><li><b>Change directory</b>: this option allows you to set the logging "
 "directory; the directory must exist and needs write permission.</li>"
 msgstr ""
+"<ul><li><b>Schimbare director</b>: această opțiune vă permite să setați "
+"directorul de înregistrare; directorul trebuie să existe și necesită "
+"permisiuni de scriere.</li>"
 
 #: dnfdragora/helpinfo.py:138
 msgid ""
 "<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
+"<li><b>Nivel de depanare</b>: dacă este bifat, este activată înregistrarea "
+"detaliată.</li></ul>"
 
 #: dnfdragora/helpinfo.py:146
 msgid "Help Menu"
@@ -1566,10 +1591,16 @@ msgid ""
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel."
 msgstr ""
+"Prima casetă combinată vă permite să afișați pachetele pe grupuri. Dacă este "
+"selectată opțiunea <i>Grupuri</i>, panoul de grupuri afișează o vizualizare "
+"arborescentă care conține grupuri, iar selectarea unui grup afișează "
+"pachetele corelate în panoul de pachete."
 
 #: dnfdragora/helpinfo.py:163
 msgid "If <i>All</i> is selected, the package panel contains all the packages."
 msgstr ""
+"Dacă este selectată opțiunea <i>Toate</i>, panoul de pachete conține toate "
+"pachetele."
 
 #: dnfdragora/helpinfo.py:164
 msgid "<h2>Filters</h2>"
@@ -1580,6 +1611,8 @@ msgid ""
 "The Filter combobox allows you to filter the packages shown in the package "
 "panel by:"
 msgstr ""
+"Caseta combinată Filtru vă permite să filtrați pachetele afișate în panoul "
+"de pachete după:"
 
 #: dnfdragora/helpinfo.py:166
 msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
@@ -1623,6 +1656,10 @@ msgid ""
 "is not empty. The Search combobox allows you to search the given text in "
 "package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
 msgstr ""
+"Căutarea se efectuează apăsând butonul <i>Căutare</i> atunci când câmpul de "
+"text nu este gol. Caseta combinată Căutare vă permite să căutați textul dat "
+"în <i>nume</i> de pachete, <i>rezumate</i>, <i>descrieri</i> sau <i>fișiere</"
+"i>."
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
@@ -1640,6 +1677,8 @@ msgid ""
 "<i>Note</i>: when regular expressions are used to search by name, the full "
 "package filename including the version is used."
 msgstr ""
+"<i>Notă</i>: când se utilizează expresii regulate pentru a căuta după nume, "
+"se utilizează numele complet al fișierului pachetului, inclusiv versiunea."
 
 #: dnfdragora/helpinfo.py:175
 msgid "The <i>Clear search</i> button resets search text field."
@@ -1651,6 +1690,9 @@ msgid ""
 "view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
+"Acest panou afișează toate grupurile disponibile pentru filtrarea "
+"pachetelor, dacă este selectată vizualizarea Grupuri. Grupul special "
+"<i>Căutare</i> este adăugat după efectuarea unei căutări."
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
@@ -1658,6 +1700,9 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
+"Acest panou afișează toate pachetele filtrate cu informațiile lor de bază, "
+"cum ar fi <i>numele</i>, <i>rezumatul</i>, <i>versiunea</i>, <i>lansarea</"
+"i>, <i>arhitectura</i>, <i>dimensiunea</i> și <i>starea</i>."
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -1727,84 +1772,84 @@ msgstr "<li><b>Ieșire</b>: ieșire din dnfdragora.</li></ul>"
 
 #: dnfdragora/progress_ui.py:191
 msgid "Transaction completed successfully"
-msgstr ""
+msgstr "Tranzacția a fost finalizată cu succes"
 
 #: dnfdragora/progress_ui.py:192
 msgid "Transaction completed with errors"
-msgstr ""
+msgstr "Tranzacția a fost finalizată cu erori"
 
 #: dnfdragora/progress_ui.py:195
 msgid "Transaction completed"
-msgstr ""
+msgstr "Tranzacția a fost finalizată"
 
 #: dnfdragora/progress_ui.py:222
 #, python-format
 msgid "Downloading:  %(d)s"
-msgstr ""
+msgstr "Descărcare: %(d)s"
 
 #: dnfdragora/progress_ui.py:243
 #, python-format
 msgid "Verifying %(n)d packages"
-msgstr ""
+msgstr "Verificarea %(n)d pachetelor"
 
 #: dnfdragora/progress_ui.py:244
 msgid "Verifying packages"
-msgstr ""
+msgstr "Verificarea pachetelor"
 
 #: dnfdragora/progress_ui.py:258
 #, python-format
 msgid "Preparing transaction: %(n)d packages"
-msgstr ""
+msgstr "Pregătirea tranzacției: %(n)d pachete"
 
 #: dnfdragora/progress_ui.py:259
 msgid "Preparing transaction"
-msgstr ""
+msgstr "Pregătirea tranzacției"
 
 #: dnfdragora/progress_ui.py:273
 #, python-format
 msgid "Processing: %(n)s"
-msgstr ""
+msgstr "Procesare: %(n)s"
 
 #: dnfdragora/progress_ui.py:298
 #, python-format
 msgid "Scriptlet: %(n)s  [%(t)s]"
-msgstr ""
+msgstr "Scriptlet: %(n)s  [%(t)s]"
 
 #: dnfdragora/progress_ui.py:333
 msgid "Transaction in progress…"
-msgstr ""
+msgstr "Tranzacție în curs…"
 
 #: dnfdragora/progress_ui.py:338
 msgid "Packages:"
-msgstr ""
+msgstr "Pachete:"
 
 #: dnfdragora/progress_ui.py:346
 msgid "Current:"
-msgstr ""
+msgstr "Curent:"
 
 #: dnfdragora/progress_ui.py:354
 msgid "Transaction log"
-msgstr ""
+msgstr "Jurnalul de tranzacții"
 
 #: dnfdragora/progress_ui.py:362 dnfdragora/progress_ui.py:397
 msgid "Running…"
-msgstr ""
+msgstr "Rulează..."
 
 #: dnfdragora/progress_ui.py:365
 msgid "&Save log…"
-msgstr ""
+msgstr "&Salvați jurnalul…"
 
 #: dnfdragora/progress_ui.py:394
 msgid "Completed ✓"
-msgstr ""
+msgstr "Finalizat ✓"
 
 #: dnfdragora/progress_ui.py:395
 msgid "Completed with errors"
-msgstr ""
+msgstr "Finalizat cu erori"
 
 #: dnfdragora/progress_ui.py:440
 msgid "Save transaction log"
-msgstr ""
+msgstr "Salvați jurnalul de tranzacții"
 
 #: dnfdragora/ui.py:221
 msgid "No transaction found"
@@ -1873,11 +1918,11 @@ msgstr "Grupuri"
 
 #: dnfdragora/ui.py:517
 msgid "Grouping packages"
-msgstr ""
+msgstr "Gruparea pachetelor"
 
 #: dnfdragora/ui.py:552
 msgid "Filtering packages"
-msgstr ""
+msgstr "Filtrarea pachetelor"
 
 #: dnfdragora/ui.py:571
 msgid "in names"
@@ -1905,7 +1950,7 @@ msgstr "Ca&ută"
 
 #: dnfdragora/ui.py:600
 msgid "Search packages"
-msgstr ""
+msgstr "Căutați pachete"
 
 #: dnfdragora/ui.py:603
 msgid "&Clear search"
@@ -1913,7 +1958,7 @@ msgstr "&Curăță căutarea"
 
 #: dnfdragora/ui.py:604
 msgid "Clear search field"
-msgstr ""
+msgstr "Goliți câmpul de căutare"
 
 #: dnfdragora/ui.py:619
 msgid "Sel&ect all"
@@ -1921,7 +1966,7 @@ msgstr "&Selectați tot"
 
 #: dnfdragora/ui.py:621
 msgid "Select all the packages"
-msgstr ""
+msgstr "Selectați toate pachetele"
 
 #: dnfdragora/ui.py:626 dnfdragora/ui.py:645 dnfdragora/ui.py:710
 msgid "&Quit"
@@ -1929,7 +1974,7 @@ msgstr "&Terminare"
 
 #: dnfdragora/ui.py:628
 msgid "Quit the application"
-msgstr ""
+msgstr "Închideți aplicația"
 
 #: dnfdragora/ui.py:638 dnfdragora/ui.py:706
 msgid "&File"
@@ -2022,13 +2067,15 @@ msgstr "Pachet protejat  a fost selectat"
 
 #: dnfdragora/ui.py:1962
 msgid "Backend busy"
-msgstr ""
+msgstr "Backend-ul este ocupat"
 
 #: dnfdragora/ui.py:1963
 msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
 msgstr ""
+"Backend-ul este ocupat cu procesarea tranzacției. Operațiunea va continua, "
+"iar evenimentele de progres vor fi în continuare urmărite."
 
 #: dnfdragora/ui.py:1999
 #, python-format
@@ -2172,7 +2219,7 @@ msgstr "dnfdragora"
 
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:9
 msgid "ManaTools"
-msgstr ""
+msgstr "ManaTools"
 
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:11
 msgid "A frontend for DNF using libyui UI abstraction library"
@@ -2196,214 +2243,13 @@ msgid ""
 "interfaces. It provides a frontend for the DNF package manager, using DNF 5 "
 "daemon, that can be used in any kind of system environment."
 msgstr ""
+"dnfdragora este scris în Python 3 și folosește manatools AUI, biblioteca de "
+"abstractizare a widget-urilor scrisă pentru aplicațiile manatools bazată pe "
+"experiența libYUI, astfel încât să poată fi rulat folosind interfețele Qt 6 "
+"(pySide), GTK 4 sau ncurses. Acesta oferă un frontend pentru managerul de "
+"pachete DNF, folosind daemonul DNF 5, care poate fi utilizat în orice tip de "
+"mediu de sistem."
 
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
-msgstr ""
-
-#~ msgid "&No"
-#~ msgstr "&Nu"
-
-#~ msgid "&Yes"
-#~ msgstr "&Da"
-
-#~ msgid ""
-#~ "<br><i>Note that this function is currently broken because of dnf API "
-#~ "change</i><br>"
-#~ msgstr ""
-#~ "<br><i>Rețineți că această funcție este în prezent defectă din cauza "
-#~ "modificării API-ului dnf.</i><br>"
-
-#~ msgid ""
-#~ "<i>Note</i> that if regular expressions are used to search by names full "
-#~ "package filename with version is used."
-#~ msgstr ""
-#~ "<i>Rețineți</i> că, dacă se utilizează expresii regulate pentru a căuta "
-#~ "după nume, se utilizează numele complet al fișierului pachetului cu "
-#~ "versiunea."
-
-#~ msgid ""
-#~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
-#~ "ul>"
-#~ msgstr ""
-#~ "<li><b>Nivel de depanare</b>: dacă este bifat, înregistrarea detaliată "
-#~ "este activată."
-
-#~ msgid ""
-#~ "<li><b>Interval to check for updates</b>: the given number represents "
-#~ "when dnfdragora needs to check for updates, value is expressed in "
-#~ "minutes</li>"
-#~ msgstr ""
-#~ "<li><b>Interval de verificare a actualizărilor</b>: numărul dat "
-#~ "reprezintă momentul în care dnfdragora trebuie să verifice actualizările, "
-#~ "valoarea este exprimată în minute.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Change directory</b>: this option allows to set logging "
-#~ "directory, directory must exist and needs write permission.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Schimbare director</b>: această opțiune permite setarea "
-#~ "directorului de înregistrare, directorul trebuie să existe și necesită "
-#~ "permisiuni de scriere.</li>"
-
-#~ msgid "Bugfix"
-#~ msgstr "Corecție de erori"
-
-#~ msgid "Build transaction"
-#~ msgstr "Construiți tranzacția"
-
-#~ msgid "Changes applied"
-#~ msgstr "Modificări aplicate"
-
-#~ msgid "Checking package signatures"
-#~ msgstr "Verificarea semnăturilor pachetelor"
-
-#, python-format
-#~ msgid "Downloading :  %(files)d files,  %(size)d bytes"
-#~ msgstr "Descărcare: %(files)d fișiere, %(size)d octeți"
-
-#~ msgid "Downloading packages"
-#~ msgstr "Descărcarea pachetelor"
-
-#~ msgid "Enhancement"
-#~ msgstr "Îmbunătățire"
-
-#~ msgid ""
-#~ "Filter combobox allows to filter packages shown into package panel by:"
-#~ msgstr ""
-#~ "Caseta combinată Filtru permite filtrarea pachetelor afișate în panoul de "
-#~ "pachete după:"
-
-#~ msgid ""
-#~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
-#~ "selected group panel shows a tree view containing groups, while selecting "
-#~ "a group shows related packages into package panel."
-#~ msgstr ""
-#~ "Prima casetă combinată permite afișarea pachetelor pe grupuri. Dacă este "
-#~ "selectat <i>Grupuri</i>, panoul de grup afișează o vizualizare "
-#~ "arborescentă care conține grupuri, iar la selectarea unui grup, pachetele "
-#~ "corelate sunt afișate în panoul de pachete."
-
-#~ msgid "If <i>All</i> is selected, package panel contains all the packages."
-#~ msgstr ""
-#~ "Dacă este selectată opțiunea <i>Toate</i>, panoul de pachete conține "
-#~ "toate pachetele."
-
-#~ msgid "Info"
-#~ msgstr "Informații"
-
-#~ msgid "New Package"
-#~ msgstr "Pachet nou"
-
-#~ msgid "OK"
-#~ msgstr "Bine"
-
-#, python-format
-#~ msgid "Progress files (%(downloaded)d/%(total)d)"
-#~ msgstr "Progresul fișierelor (%(downloaded)d/%(total)d)"
-
-#~ msgid ""
-#~ "Search is performed by pressing <i>Search</i> button if text field is "
-#~ "filled. Search combobox allows to search given text into package "
-#~ "<i>names</i>, <i>summaries</i>, <i>descriptions</i> or <i>files</i>."
-#~ msgstr ""
-#~ "Căutarea se efectuează apăsând butonul <i>Căutare</i> dacă câmpul text "
-#~ "este completat. Caseta combinată Căutare permite căutarea unui text dat "
-#~ "în <i>nume</i> de pachete, <i>rezumate</i>, <i>descrieri</i> sau "
-#~ "<i>fișiere</i>."
-
-#~ msgid "Start transaction"
-#~ msgstr "Începeți tranzacția"
-
-#, python-format
-#~ msgid "Starting to download : %s "
-#~ msgstr "Se pornește descărcarea: %s"
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows to enable or disable repositories. "
-#~ "Any changes are valid for the time dnfdragora is running and it is not "
-#~ "permanent.<br>"
-#~ msgstr ""
-#~ "Acest meniu deschide o casetă de dialog care permite activarea sau "
-#~ "dezactivarea repozitoriilor. Orice modificare este valabilă pe durata "
-#~ "rulării dnfdragora și nu este permanentă.<br>"
-
-#~ msgid ""
-#~ "This menu removes any flags on packages, if any packages have been "
-#~ "selected for installation or removal they will be back to previous status."
-#~ "<br>"
-#~ msgstr ""
-#~ "Acest meniu elimină orice steaguri de pe pachete; dacă au fost selectate "
-#~ "pachete pentru instalare sau eliminare, acestea vor reveni la starea "
-#~ "anterioară.<br>"
-
-#~ msgid ""
-#~ "This menu send a request to dnfdaemon to force a refresh of all the meta "
-#~ "data. This action is asynchronous and requires to rebuild package "
-#~ "information cache.<br>"
-#~ msgstr ""
-#~ "Acest meniu trimite o cerere către dnfdaemon pentru a forța o "
-#~ "reîmprospătare a tuturor metadatelor. Această acțiune este asincronă și "
-#~ "necesită reconstruirea memoriei cache cu informații despre pachet.<br>"
-
-#~ msgid ""
-#~ "This panel shows all the filtered packages with they basic information "
-#~ "such as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
-#~ "<i>architecture</i>, <i>size</i>, and <i>status</i>."
-#~ msgstr ""
-#~ "Acest panou afișează toate pachetele filtrate cu informațiile lor de "
-#~ "bază, cum ar fi <i>numele</i>, <i>rezumatul</i>, <i>versiunea</i>, "
-#~ "<i>lansarea</i>, <i>arhitectura</i>, </i>dimensiunea</i> și <i>starea</i>."
-
-#~ msgid ""
-#~ "This panel shows all the groups to be used to filter packages by group, "
-#~ "if view groups is selected. Special group <i>Search</i> is added if a "
-#~ "search is performed."
-#~ msgstr ""
-#~ "Acest panou afișează toate grupurile care vor fi utilizate pentru "
-#~ "filtrarea pachetelor după grup, dacă este selectată opțiunea Vizualizare "
-#~ "grupuri. Opțiunea specială <i>Căutare</i> este adăugată dacă se "
-#~ "efectuează o căutare."
-
-#, python-format
-#~ msgid "Unmanaged event %d"
-#~ msgstr "Eveniment negestionat %d"
-
-#~ msgid "Unmanaged widget"
-#~ msgstr "Miniaplicație negestionată"
-
-#~ msgid "Verify changes on the system"
-#~ msgstr "Verificați modificările din sistem"
-
-#, python-format
-#~ msgid "dnfdaemon client failure [%s]"
-#~ msgstr "eșec client dnfdaemon [%s]"
-
-#~ msgid ""
-#~ "dnfdragora is basically a package manager user interface that allows to "
-#~ "install, update, remove, search packages and more.<br><br>"
-#~ msgstr ""
-#~ "dnfdragora este practic o interfață utilizator pentru managerul de "
-#~ "pachete care permite instalarea, actualizarea, eliminarea, căutarea de "
-#~ "pachete și multe altele."
-
-#~ msgid ""
-#~ "dnfdragora is part of manatools and it is based on libyui so that it can "
-#~ "work using Gtk, Qt or ncurses, i.e. both graphical and textual user "
-#~ "interfaces.<br><br>"
-#~ msgstr ""
-#~ "dnfdragora face parte din manatools și se bazează pe libyui, astfel încât "
-#~ "poate funcționa folosind Gtk, Qt sau ncurses, adică atât interfețe "
-#~ "grafice, cât și textuale."
-
-#~ msgid ""
-#~ "dnfdragora is written in Python 3 and uses libYui, the widget abstraction "
-#~ "library written by SUSE, so that it can be run using Qt 5, GTK+ 3, or "
-#~ "ncurses interfaces. It provides a frontend for the DNF package manager "
-#~ "that can be used in any kind of system environment."
-#~ msgstr ""
-#~ "dnfdragora este scris în Python 3 și folosește libYui, biblioteca de "
-#~ "abstractizare a widget-urilor scrisă de SUSE, astfel încât poate fi rulat "
-#~ "folosind interfețe Qt 5, GTK+ 3 sau ncurses. Acesta oferă o interfață "
-#~ "pentru managerul de pachete DNF care poate fi utilizată în orice tip de "
-#~ "mediu de sistem."
+msgstr "Fereastra principală"
