@@ -103,4 +103,12 @@ install(FILES ${CMAKE_SOURCE_DIR}/share/images/64x64/dnfdragora-logo.png DESTINA
 install(FILES ${CMAKE_SOURCE_DIR}/share/images/128x128/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/128x128/apps RENAME dnfdragora.png)
 install(FILES ${CMAKE_SOURCE_DIR}/share/images/256x256/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/256x256/apps RENAME dnfdragora.png)
 install(FILES ${CMAKE_SOURCE_DIR}/share/images/dnfdragora.svg DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/scalable/apps RENAME dnfdragora.svg)
+# Reverse-DNS icon names: GNOME Shell / compositor resolves icons by app_id first
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/16x16/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/16x16/apps RENAME org.mageia.dnfdragora.png)
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/32x32/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/32x32/apps RENAME org.mageia.dnfdragora.png)
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/48x48/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/48x48/apps RENAME org.mageia.dnfdragora.png)
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/64x64/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/64x64/apps RENAME org.mageia.dnfdragora.png)
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/128x128/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/128x128/apps RENAME org.mageia.dnfdragora.png)
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/256x256/dnfdragora-logo.png DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/256x256/apps RENAME org.mageia.dnfdragora.png)
+install(FILES ${CMAKE_SOURCE_DIR}/share/images/dnfdragora.svg DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/icons/hicolor/scalable/apps RENAME org.mageia.dnfdragora.svg)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/images DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/dnfdragora)
