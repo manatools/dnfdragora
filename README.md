@@ -34,18 +34,6 @@ Example with ncurses:
 ### dbus-python
 * Required for D-Bus communication with dnf5daemon.
 
-### pystray >= 0.17.3 *(updater only)*
-* https://github.com/moses-palmer/pystray
-* Required only for `dnfdragora-updater` (the system-tray update notifier).
-
-### Pillow *(updater only)*
-* https://python-pillow.org
-* Required by `dnfdragora-updater` for tray icon handling.
-
-### cairosvg *(updater only, optional)*
-* https://cairosvg.org
-* Used by `dnfdragora-updater` to render SVG icons. Not required if only PNG icons are available.
-
 ## INSTALLATION
 
 ### Distribution packages:
