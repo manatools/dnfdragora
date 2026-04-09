@@ -1698,6 +1698,9 @@ msgid ""
 "view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
+"Das Panel zeigt alle verfügbaren Gruppen an, nach denen Pakete gefiltert "
+"werden können, wenn die Gruppenansicht ausgewählt wurde. Die spezielle "
+"Gruppe <i>Suche</i> wird angezeigt, sobald eine Suche ausgeführt wurde."
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
