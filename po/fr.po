@@ -13,9 +13,9 @@
 # K. R., 2020
 # Aurelien <aoudelet@outlook.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2021
-# Yves Brungard, 2024
 # stroibe974 <sebsweb@gmail.com>, 2024
 # Philippe DIDIER, 2026
+# Yves Brungard, 2026
 #
 #, fuzzy
 msgid ""
@@ -24,7 +24,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-06 17:26+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Philippe DIDIER, 2026\n"
+"Last-Translator: Yves Brungard, 2026\n"
 "Language-Team: French (https://app.transifex.com/MageiaLinux/teams/9361/"
 "fr/)\n"
 "Language: fr\n"
@@ -1447,7 +1447,7 @@ msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
-"<br><b>Remarque importante</b> : la suppression de paquetages sera acceptée "
+"<br><b>Remarque importante</b> : la suppression de paquets sera acceptée "
 "afin de satisfaire les dépendances.</li>"
 
 #: dnfdragora/helpinfo.py:123
@@ -1505,7 +1505,7 @@ msgid ""
 msgstr ""
 "<ul><li><b>Montrer les mises à jour</b> : si coché, dnfdragora commence avec "
 "le filtre de <i>mises à jour</i> actif, c'est-à-dire ne montrant que les "
-"paquetages disponibles pour les mises à jour, le cas échéant."
+"paquets disponibles pour les mises à jour, le cas échéant."
 
 #: dnfdragora/helpinfo.py:130
 msgid ""
@@ -1544,7 +1544,7 @@ msgstr ""
 "<li><b>Recherche approximative (méthode classique)</b>: si cela est coché, "
 "une recherche sans l'utilisation d'expression usuelle se fera par l'ajout de "
 "\"*\" aux mots inscrits, restaurant le comportement qu'avait dnfdragora en "
-"utilisant dnfdaemont 4.</li></ul> "
+"utilisant dnfdaemon 4.</li></ul> "
 
 #: dnfdragora/helpinfo.py:135
 msgid "<h2>Logging options</h2>"
@@ -1731,8 +1731,8 @@ msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
-"Une case à cocher est disponible pour ajouter les dépendances au paquetage à "
-"la transaction à installer, mettre à jour ou supprimer."
+"Une case à cocher est disponible pour ajouter les dépendances au paquet à la "
+"transaction à installer, mettre à jour ou supprimer."
 
 #: dnfdragora/helpinfo.py:206
 msgid ""
@@ -1740,7 +1740,7 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
-"Ce panneau affiche toutes les informations du paquetage telles que la "
+"Ce panneau affiche toutes les informations du paquet telles que la "
 "<i>description</i>, l'<i>URL</i>, le <i>dépôt</i>, les <i>exigences</i>, la "
 "<i>liste des fichiers</i> et le <i>journal des modifications</i>."
 
@@ -1979,7 +1979,7 @@ msgstr "Effa&cer la recherche"
 
 #: dnfdragora/ui.py:604
 msgid "Clear search field"
-msgstr "Efface le champ de recherche"
+msgstr "Effacer le champ de recherche"
 
 #: dnfdragora/ui.py:619
 msgid "Sel&ect all"
@@ -1995,7 +1995,7 @@ msgstr "&Quitter"
 
 #: dnfdragora/ui.py:628
 msgid "Quit the application"
-msgstr "Quitte l'application"
+msgstr "Quitter l'application"
 
 #: dnfdragora/ui.py:638 dnfdragora/ui.py:706
 msgid "&File"
@@ -2003,7 +2003,7 @@ msgstr "&Fichier"
 
 #: dnfdragora/ui.py:641 dnfdragora/ui.py:707
 msgid "Reset the selection"
-msgstr "_Remettre à zéro la sélection"
+msgstr "Remettre à zéro la sélection"
 
 #: dnfdragora/ui.py:642 dnfdragora/ui.py:708
 msgid "Refresh Metadata"
@@ -2095,6 +2095,8 @@ msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
 msgstr ""
+"La transaction est traitée en arrière-plan. L'opération continuera et les "
+"évènements de progression seront suivis."
 
 #: dnfdragora/ui.py:1999
 #, python-format
@@ -2151,15 +2153,15 @@ msgstr "Mise en mémoire cache des mises à jour"
 
 #: dnfdragora/ui.py:2498
 msgid "Caching installed"
-msgstr "Mise en mémoire cache des paquetages installés"
+msgstr "Mise en mémoire cache des paquets installés"
 
 #: dnfdragora/ui.py:2502
 msgid "Caching available"
-msgstr "Mise en mémoire cache des paquetages disponibles"
+msgstr "Mise en mémoire cache des paquets disponibles"
 
 #: dnfdragora/ui.py:2552
 msgid "Creating packages cache"
-msgstr "Création de la mémoire cache des paquetages"
+msgstr "Création de la mémoire cache des paquets"
 
 #: dnfdragora/ui.py:2572
 msgid "Transaction with warnings"
@@ -2171,11 +2173,11 @@ msgstr "Erreur lors de la construction de la transaction"
 
 #: dnfdragora/ui.py:2659
 msgid "Packages installed:"
-msgstr "Paquets installés"
+msgstr "Paquets installés :"
 
 #: dnfdragora/ui.py:2662
 msgid "Packages removed:"
-msgstr "Paquets retirés"
+msgstr "Paquets retirés :"
 
 #: dnfdragora/ui.py:2664
 msgid "Error occured:"
@@ -2263,6 +2265,12 @@ msgid ""
 "interfaces. It provides a frontend for the DNF package manager, using DNF 5 "
 "daemon, that can be used in any kind of system environment."
 msgstr ""
+"dnfdragora est écrit en Python et utilise une bibliothèque d'abstraction "
+"d'interface manatools AUI, écrite pour les outils manatools. Cette "
+"bibliothèque est basée sur l'expérience de libYUI et peut utiliser des "
+"interfaces en Qt6 (PySide6), GTK 4 ou ncurses. Il fournit une interface pour "
+"le gestionnaire de paquets DNF, en utilisant un démon DNF5, qui peut être "
+"utilisé dans différents environnements de systèmes."
 
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
