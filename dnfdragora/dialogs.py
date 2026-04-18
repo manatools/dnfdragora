@@ -1477,7 +1477,7 @@ class SearchDialog(basedialog.BaseDialog):
     what_frame.setNotify(True)
     self.eventManager.addWidgetEvent(what_frame, self._onWhatFrameToggled, True)
     self._what_frame = what_frame
-
+    what_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
     hbox_what = self.factory.createHBox(what_frame)
     self.factory.createLabel(hbox_what, _('Find packages that:'))
     self._what_items = {}
@@ -1501,6 +1501,7 @@ class SearchDialog(basedialog.BaseDialog):
     if self._repos:
       frame = self.factory.createCheckBoxFrame(layout, _("Limit to repositories"), bool(self.search_repos))
       frame.setNotify(True)
+      frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
       self.eventManager.addWidgetEvent(frame, self._onRepoFrameToggled, True)
       self._repo_frame = frame
 
@@ -1524,6 +1525,7 @@ class SearchDialog(basedialog.BaseDialog):
     if self._arches:
       arch_frame = self.factory.createCheckBoxFrame(layout, _("Limit to architectures"), bool(self.search_arches))
       arch_frame.setNotify(True)
+      arch_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
       self.eventManager.addWidgetEvent(arch_frame, self._onArchFrameToggled, True)
       self._arch_frame = arch_frame
 
