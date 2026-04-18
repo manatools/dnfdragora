@@ -930,7 +930,6 @@ class OptionDialog(basedialog.BaseDialog):
     self.option_items = {
       "system" : None,
       "layout" : None,
-      "search" : None,
       "logging" : None,
       }
     self.selected_option = None
@@ -944,10 +943,6 @@ class OptionDialog(basedialog.BaseDialog):
     item = MUI.YTreeItem(_("Layout"))
     itemVect.append(item)
     self.option_items ["layout"] = item
-
-    item = MUI.YTreeItem(_("Search"))
-    itemVect.append(item)
-    self.option_items ["search"] = item
 
     item = MUI.YTreeItem(_("Logging"))
     itemVect.append(item)
@@ -994,8 +989,6 @@ class OptionDialog(basedialog.BaseDialog):
               self._openSystemOptions()
             elif  k == "layout":
               self._openLayoutOptions()
-            elif k == "search":
-              self._openSearchOptions()
             elif k == "logging":
               self._openLoggingOptions()
 
@@ -1124,37 +1117,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.config_tab.showChild()
 
   def _openSearchOptions(self):
-    '''
-    show search configuration options
-    '''
-    if self.config_tab.hasChildren():
-      self.config_tab.deleteChildren()
-
-    hbox = self.factory.createHBox(self.config_tab)
-    self.factory.createHSpacing(hbox)
-    vbox = self.factory.createVBox(hbox)
-    self.factory.createHSpacing(hbox)
-
-    # Title
-    heading=self.factory.createHeading( vbox, _("Search options") )
-    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
-    heading.setAutoWrap()
-
-    fuzzy_search = self.parent.fuzzy_search
-    newest_only = self.parent.newest_only
-
-    self.newest_only = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show newest packages only"), newest_only )
-    self.newest_only.setNotify(True)
-    self.eventManager.addWidgetEvent(self.newest_only, self.onNewestOnly, True)
-    self.widget_callbacks.append( { 'widget': self.newest_only, 'handler': self.onNewestOnly} )
-
-    self.fuzzy_search   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Fuzzy search (legacy mode)"), fuzzy_search )
-    self.fuzzy_search.setNotify(True)
-    self.eventManager.addWidgetEvent(self.fuzzy_search, self.onFuzzySearch, True)
-    self.widget_callbacks.append( { 'widget': self.fuzzy_search, 'handler': self.onFuzzySearch} )
-
-    self.factory.createVStretch(vbox)
-    self.config_tab.showChild()
+    pass  # Search options moved to SearchDialog
 
   def _openLoggingOptions(self):
     '''
@@ -1251,24 +1214,10 @@ class OptionDialog(basedialog.BaseDialog):
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onFuzzySearch(self, obj):
-    '''
-    Fuzzy Search Changing
-    '''
-    if obj.widgetClass() == "YCheckBox":
-      self._ensure_settings().setdefault('search', {})['fuzzy_search'] = obj.isChecked()
-      self.parent.fuzzy_search = obj.isChecked()
-    else:
-      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+    pass  # Search options moved to SearchDialog
 
   def onNewestOnly(self, obj):
-    '''
-    Newest Only Changing
-    '''
-    if obj.widgetClass() == "YCheckBox":
-      self._ensure_settings().setdefault('search', {})['newest_only'] = obj.isChecked()
-      self.parent.newest_only = obj.isChecked()
-    else:
-      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+    pass  # Search options moved to SearchDialog
 
   def onLevelDebugChange(self, obj):
     '''
@@ -1348,14 +1297,6 @@ class OptionDialog(basedialog.BaseDialog):
       s['show updates at startup'] = False
       s['do not show groups at startup'] = False
       self._openLayoutOptions()
-    elif k == "search":
-      self._ensure_settings()['search'] = {
-        'fuzzy_search': False,
-        'newest_only': False,
-      }
-      self.parent.fuzzy_search = False
-      self.parent.newest_only = False
-      self._openSearchOptions()
     elif k == "logging":
       self._ensure_settings()['log'] = {
         'enabled': False,
@@ -1410,10 +1351,8 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_repos      = list(parent._search_repos)
     self.search_arches     = list(parent._search_arches)
     self.search_icase      = parent._search_icase
-    # Per-search latest-only override: None means «follow global newest_only».
-    # Pre-populate: if a per-search override is set use it, otherwise use global.
-    _per = parent._search_latest_only
-    self.search_latest_only = _per if _per is not None else parent.newest_only
+    self.search_newest_only = parent.newest_only
+    self.search_fuzzy      = parent.fuzzy_search
     self.action = None   # 'search' | 'clear' | 'cancel'
     # Fetch repo and arch lists once from the parent's lazy caches
     self._repos  = parent._get_available_repos()
@@ -1453,7 +1392,9 @@ class SearchDialog(basedialog.BaseDialog):
 
     self.factory.createHStretch(hbox_opts)
     self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
-    self._latest_only_check.setChecked(self.search_latest_only)
+    self._latest_only_check.setChecked(self.search_newest_only)
+    self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("&Fuzzy search"))
+    self._fuzzy_check.setChecked(self.search_fuzzy)
     self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
     self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
     self._icase_check.setNotify(True)
@@ -1613,7 +1554,8 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_repos      = self._selectedRepos()
     self.search_arches     = self._selectedArches()
     self.search_icase      = not self._icase_check.isChecked()
-    self.search_latest_only = self._latest_only_check.isChecked()
+    self.search_newest_only = self._latest_only_check.isChecked()
+    self.search_fuzzy      = self._fuzzy_check.isChecked()
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
       try:

@@ -248,7 +248,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_arches  = []       # list of arch strings to restrict search; [] = all
         self._available_arches = None  # lazy-loaded sorted list of arch strings
         self._search_icase   = True   # icase option: True = case-insensitive (daemon default)
-        self._search_latest_only = None  # None = follow global newest_only; True/False = per-search override
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -1421,7 +1420,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             "patterns": strings
           }
 
-          if self.newest_only or self._search_latest_only:
+          if self.newest_only:
             options['latest-limit'] = 1
 
           if self._search_repos:
@@ -1768,7 +1767,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_repos      = []
         self._search_arches     = []
         self._search_icase      = True
-        self._search_latest_only = None
         rebuild_package_list = True
         self._fillGroupTree()
       elif widget == self.find_button:
@@ -1781,7 +1779,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_repos      = dlg.search_repos
           self._search_arches     = dlg.search_arches
           self._search_icase      = dlg.search_icase
-          self._search_latest_only = dlg.search_latest_only
+          self.newest_only        = dlg.search_newest_only
+          self.fuzzy_search       = dlg.search_fuzzy
+          # Persist search preferences immediately so they survive a crash.
+          try:
+              self.saveUserPreference()
+          except Exception:
+              pass
           if not self._searchPackages():
             rebuild_package_list = True
             self._fillGroupTree()
@@ -1792,7 +1796,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_repos      = []
           self._search_arches     = []
           self._search_icase      = True
-          self._search_latest_only = None
           rebuild_package_list = True
           self._fillGroupTree()
       elif widget == self.checkAllButton:
