@@ -248,6 +248,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_arches  = []       # list of arch strings to restrict search; [] = all
         self._available_arches = None  # lazy-loaded sorted list of arch strings
         self._search_icase   = True   # icase option: True = case-insensitive (daemon default)
+        self._search_scope   = None   # None = use current filter_box; str = scope key
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -580,6 +581,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # Visual separator: push search buttons to the right
         self.factory.createHStretch(hbox_top)
+
+        # Search-result indicator: hidden (empty text) when not in search mode.
+        self._search_info_label = self.factory.createLabel(hbox_top, "")
 
         self.find_button = self.factory.createIconButton(hbox_top, 'edit-find', _("&Search"))
         self.find_button.setHelpText(_("Open search dialog"))
@@ -998,6 +1002,50 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return filter
 
+    def _updateSearchState(self):
+        """Reflect the current search state in the main UI:
+
+        - Disable filter_box while a search is active (scope is owned by SearchDialog).
+        - Re-enable filter_box when search is cleared.
+        - Update the search-info label so the user knows they are viewing search results.
+        """
+        is_searching = bool(self._search_text)
+        try:
+            if not self.update_only:
+                self.filter_box.setEnabled(not is_searching)
+        except Exception:
+            pass
+        try:
+            if is_searching:
+                self._search_info_label.setLabel(
+                    _("[Search results: '%s']") % (self._search_text))
+            else:
+                self._search_info_label.setLabel("")
+        except Exception:
+            pass
+
+    def _selectFilterItem(self, scope_key: str):
+        """Programmatically select a filter_box item given a daemon scope key.
+
+        Maps daemon scope strings ('all','installed','available','upgrades','upgradable')
+        back to the internal filter_box key, then selects the corresponding YItem.
+        Falls back silently if the key is not present in the current filter set.
+        """
+        _scope_to_filter = {
+            'all'        : 'all',
+            'installed'  : 'installed',
+            'available'  : 'not_installed',
+            'upgrades'   : 'to_update',
+            'upgradable' : 'to_update',
+        }
+        filter_key = _scope_to_filter.get(scope_key, 'all')
+        try:
+            item = self.filters.get(filter_key, {}).get('item')
+            if item is not None:
+                self.filter_box.selectItem(item, True)
+        except Exception:
+            pass
+
     def _groupNameFromItem(self, group, treeItem) :
         '''
         return the group name to be used for a search by group
@@ -1378,14 +1426,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if not search_string:
           return False
 
-        filters = {
-            'installed'     : 'installed',
-            'not_installed' : 'available',
-            'to_update'     : 'upgrades',
-            'all'           : 'all',
-            'skip_other'    : 'all',
-        }
-        filter = filters[self._filterNameSelected()]
+        # Resolve scope: if the user explicitly chose one in SearchDialog, use it
+        # directly (it is already a valid dnf5daemon scope string).
+        # Otherwise map the main filter_box selection to the equivalent scope value.
+        if self._search_scope:
+            filter = self._search_scope
+        else:
+            _filter_to_scope = {
+                'installed'     : 'installed',
+                'not_installed' : 'available',
+                'to_update'     : 'upgrades',
+                'all'           : 'all',
+                'skip_other'    : 'all',
+            }
+            filter = _filter_to_scope.get(self._filterNameSelected(), 'all')
         if use_regexp and field in ('name', 'summary'):
           # Validate regex before sending to the backend.
           # An invalid pattern would cause __search_loop to fail repeatedly
@@ -1767,11 +1821,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_repos      = []
         self._search_arches     = []
         self._search_icase      = True
+        self._search_scope      = None
         rebuild_package_list = True
         self._fillGroupTree()
+        self._updateSearchState()
       elif widget == self.find_button:
+        # Disable the main dialog while SearchDialog is running to prevent
+        # the user from queuing widget events in the background.
+        try:
+            self.dialog.setEnabled(False)
+        except Exception:
+            pass
         dlg = dialogs.SearchDialog(self)
         dlg.run()
+        try:
+            self.dialog.setEnabled(True)
+        except Exception:
+            pass
         if dlg.action == 'search':
           self._search_field      = dlg.search_field
           self._search_text       = dlg.search_text
@@ -1781,11 +1847,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_icase      = dlg.search_icase
           self.newest_only        = dlg.search_newest_only
           self.fuzzy_search       = dlg.search_fuzzy
+          self._search_scope      = dlg.search_scope
+          # Sync the main filter_box to reflect the scope chosen in the search dialog.
+          self._selectFilterItem(self._search_scope)
           # Persist search preferences immediately so they survive a crash.
           try:
               self.saveUserPreference()
           except Exception:
               pass
+          self._updateSearchState()
           if not self._searchPackages():
             rebuild_package_list = True
             self._fillGroupTree()
@@ -1796,8 +1866,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_repos      = []
           self._search_arches     = []
           self._search_icase      = True
+          self._search_scope      = None
           rebuild_package_list = True
           self._fillGroupTree()
+          self._updateSearchState()
       elif widget == self.checkAllButton:
         for it in self.itemList:
           pkg = self.itemList[it]['pkg']
@@ -1813,11 +1885,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         filter = self._filterNameSelected()
         self.checkAllButton.setEnabled(filter == 'to_update')
         rebuild_package_list = True
-        self._search_text = ''
+        self._search_text  = ''
+        self._search_scope = None
         self._fillGroupTree()
+        self._updateSearchState()
       elif widget == self.tree:
         rebuild_package_list = True
-        self._search_text = ''
+        self._search_text  = ''
+        self._updateSearchState()
       elif widget == self.filter_box:
         filter = self._filterNameSelected()
         self._fillGroupTree()

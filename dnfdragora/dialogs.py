@@ -1334,6 +1334,7 @@ class SearchDialog(basedialog.BaseDialog):
     .search_use_regexp : bool
     .search_repos      : list of repo IDs to restrict to ([] = all repos)
     .search_arches     : list of arch strings to restrict to ([] = all arches)
+    .search_scope      : one of 'all','installed','not_installed','to_update','skip_other'
   """
 
   _SEARCH_TYPE_ORDER = ['name', 'summary', 'description', 'file']
@@ -1353,6 +1354,8 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_icase      = parent._search_icase
     self.search_newest_only = parent.newest_only
     self.search_fuzzy      = parent.fuzzy_search
+    # search_scope is set in UIlayout() where _SCOPE_ORDER/_scope_labels are defined.
+    self.search_scope      = 'all'
     self.action = None   # 'search' | 'clear' | 'cancel'
     # Fetch repo and arch lists once from the parent's lazy caches
     self._repos  = parent._get_available_repos()
@@ -1365,6 +1368,26 @@ class SearchDialog(basedialog.BaseDialog):
       'description': _("in descriptions"),
       'file'       : _("in file names"),
     }
+    # Scope keys → daemon scope value and display label.
+    # Values are the exact strings accepted by dnf5daemon Search(scope=…).
+    self._SCOPE_ORDER = ['all', 'installed', 'available', 'upgrades', 'upgradable']
+    self._scope_labels = {
+      'all'        : _("All"),
+      'installed'  : _("Installed"),
+      'available'  : _("Available"),
+      'upgrades'   : _("Upgrades"),
+      'upgradable' : _("Upgradable"),
+    }
+    # Map the current filter_box selection (filter-box keys) to a daemon scope value
+    # so the combobox is pre-populated to match the current view.
+    _filter_to_scope = {
+      'all'          : 'all',
+      'installed'    : 'installed',
+      'not_installed': 'available',
+      'to_update'    : 'upgrades',
+      'skip_other'   : 'all',
+    }
+    self.search_scope = _filter_to_scope.get(self.parent._filterNameSelected(), 'all')
 
     # ── Row 1: "Find:" label + input field ──────────────────────────────────
     hbox_find = self.factory.createHBox(layout)
@@ -1374,7 +1397,7 @@ class SearchDialog(basedialog.BaseDialog):
     self._find_entry.setValue(self.search_text or "")
     self._find_entry.setNotify(False)
 
-    # ── Row 2: "Look in:" combobox + regexp checkbox ─────────────────────────
+    # ── Row 2: "Look in:" combobox  ·  "Scope:" combobox ────────────────────
     hbox_opts = self.factory.createHBox(layout)
     self.factory.createLabel(hbox_opts, _("Look in:"))
     self._search_type_items = {}
@@ -1390,15 +1413,29 @@ class SearchDialog(basedialog.BaseDialog):
     self._search_list.setNotify(True)
     self.eventManager.addWidgetEvent(self._search_list, self._onSearchTypeChanged)
 
-    self.factory.createHStretch(hbox_opts)
-    self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
+    self.factory.createHSpacing(hbox_opts, 1)
+    self.factory.createLabel(hbox_opts, _("Scope:"))
+    self._scope_items = {}
+    scope_coll = []
+    for key in self._SCOPE_ORDER:
+      item = MUI.YItem(self._scope_labels[key])
+      if key == self.search_scope:
+        item.setSelected(True)
+      self._scope_items[key] = item
+      scope_coll.append(item)
+    self._scope_list = self.factory.createComboBox(hbox_opts, "")
+    self._scope_list.addItems(scope_coll)
+
+    # ── Row 3: search-modifier checkboxes ────────────────────────────────────
+    hbox_checks = self.factory.createHBox(layout)
+    self._latest_only_check = self.factory.createCheckBox(hbox_checks, _("&Latest only"))
     self._latest_only_check.setChecked(self.search_newest_only)
-    self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("&Fuzzy search"))
+    self._fuzzy_check = self.factory.createCheckBox(hbox_checks, _("&Fuzzy search"))
     self._fuzzy_check.setChecked(self.search_fuzzy)
-    self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
+    self._icase_check = self.factory.createCheckBox(hbox_checks, _("Case &sensitive"))
     self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
     self._icase_check.setNotify(True)
-    self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use &regexp"))
+    self._use_regexp = self.factory.createCheckBox(hbox_checks, _("Use &regexp"))
     self._use_regexp.setChecked(self.search_use_regexp)
     self._use_regexp.setNotify(True)
     self.eventManager.addWidgetEvent(self._use_regexp, self._updateRegexpState)
@@ -1489,6 +1526,13 @@ class SearchDialog(basedialog.BaseDialog):
         return key
     return 'name'
 
+  def _currentScope(self):
+    sel = self._scope_list.selectedItem()
+    for key, item in self._scope_items.items():
+      if item == sel:
+        return key
+    return 'all'
+
   def _updateRegexpState(self):
     field = self._currentField()
     use_re = field in ('name', 'summary')
@@ -1556,6 +1600,7 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_icase      = not self._icase_check.isChecked()
     self.search_newest_only = self._latest_only_check.isChecked()
     self.search_fuzzy      = self._fuzzy_check.isChecked()
+    self.search_scope      = self._currentScope()
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
       try:
