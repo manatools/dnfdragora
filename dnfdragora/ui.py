@@ -1369,6 +1369,22 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         }
         filter = filters[self._filterNameSelected()]
         if use_regexp and field in ('name', 'summary'):
+          # Validate regex before sending to the backend.
+          # An invalid pattern would cause __search_loop to fail repeatedly
+          # every time _rebuildPackageListWithSearchGroup is called.
+          try:
+            re.compile(search_string)
+          except re.error as exc:
+            logger.error("Invalid regular expression '%s': %s", search_string, exc)
+            dialogs.warningMsgBox({
+              'title': _("Invalid regular expression"),
+              'text': str(exc),
+              'richtext': False,
+            })
+            # Clear the search text so the loop cannot re-trigger itself.
+            self._search_text = ''
+            self._search_use_regexp = False
+            return False
           # fixing attribute names
           if field == 'name':
             field = 'fullname'

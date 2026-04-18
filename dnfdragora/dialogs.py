@@ -22,6 +22,7 @@ from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
 
+import re
 import gettext
 import logging
 logger = logging.getLogger('dnfdragora.dialogs')
@@ -1535,6 +1536,17 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_use_regexp = (self._use_regexp.isEnabled()
                               and self._use_regexp.isChecked())
     self.search_repos      = self._selectedRepos()
+    # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
+    if self.search_use_regexp and self.search_text:
+      try:
+        re.compile(self.search_text)
+      except re.error as exc:
+        warningMsgBox({
+          'title': _('Invalid regular expression'),
+          'text':  str(exc),
+          'richtext': False,
+        })
+        return   # stay in the dialog so the user can fix the pattern
     self.action = 'search'
     self.ExitLoop()
 
