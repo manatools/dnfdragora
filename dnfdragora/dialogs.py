@@ -1410,6 +1410,10 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_repos      = list(parent._search_repos)
     self.search_arches     = list(parent._search_arches)
     self.search_icase      = parent._search_icase
+    # Per-search latest-only override: None means «follow global newest_only».
+    # Pre-populate: if a per-search override is set use it, otherwise use global.
+    _per = parent._search_latest_only
+    self.search_latest_only = _per if _per is not None else parent.newest_only
     self.action = None   # 'search' | 'clear' | 'cancel'
     # Fetch repo and arch lists once from the parent's lazy caches
     self._repos  = parent._get_available_repos()
@@ -1448,6 +1452,8 @@ class SearchDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self._search_list, self._onSearchTypeChanged)
 
     self.factory.createHStretch(hbox_opts)
+    self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
+    self._latest_only_check.setChecked(self.search_latest_only)
     self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
     self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
     self._icase_check.setNotify(True)
@@ -1607,6 +1613,7 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_repos      = self._selectedRepos()
     self.search_arches     = self._selectedArches()
     self.search_icase      = not self._icase_check.isChecked()
+    self.search_latest_only = self._latest_only_check.isChecked()
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
       try:
