@@ -1394,11 +1394,17 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_scope = _filter_to_scope.get(self.parent._filterNameSelected(), 'all')
 
     # ── Row 1: "Find:" label + input field ──────────────────────────────────
+    # The Find field is dual-purpose:
+    #   - text search mode: pattern string(s) for Search(patterns=[...])
+    #   - dependency query mode: capability string(s) for Search(whatXXX=[...])
+    _what_active = bool(self.search_what_type)
     hbox_find = self.factory.createHBox(layout)
     self.factory.createLabel(hbox_find, _("Find:"))
     self._find_entry = self.factory.createInputField(hbox_find, "")
     self._find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-    self._find_entry.setValue(self.search_text or "")
+    # Pre-populate with capability or text depending on current mode.
+    self._find_entry.setValue(
+        (self.search_what_value or "") if _what_active else (self.search_text or ""))
     self._find_entry.setNotify(False)
 
     # ── Row 2: "Search in:" checkboxes ──────────────────────────────────────
@@ -1447,11 +1453,9 @@ class SearchDialog(basedialog.BaseDialog):
     self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
     self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
     self._icase_check.setNotify(True)
-    self._updateRegexpState()
-
     # ── Row 3b: Dependency / what-query (CheckBoxFrame) ─────────────────────
-    # Provides capability-based dependency searches via GetPackages(whatXXX=[...]).
-    # Mutually exclusive with the text pattern search at runtime.
+    # When active, the Find field is used as the capability string.
+    # Search-in checkboxes, regexp, fuzzy and icase are disabled in this mode.
     self._WHAT_ORDER = [
       '', 'whatprovides', 'whatrequires', 'whatdepends', 'whatrecommends',
       'whatenhances', 'whatsuggests', 'whatsupplements', 'whatobsoletes', 'whatconflicts',
@@ -1468,7 +1472,6 @@ class SearchDialog(basedialog.BaseDialog):
       'whatobsoletes' : _('obsolete'),
       'whatconflicts' : _('conflict with'),
     }
-    _what_active = bool(self.search_what_type)
     what_frame = self.factory.createCheckBoxFrame(
       layout, _('Dependency query'), _what_active)
     what_frame.setNotify(True)
@@ -1489,10 +1492,10 @@ class SearchDialog(basedialog.BaseDialog):
       what_item_list.append(item)
     self._what_combo = self.factory.createComboBox(hbox_what, '')
     self._what_combo.addItems(what_item_list)
-    self.factory.createLabel(hbox_what, _('this capability:'))
-    self._what_caps_entry = self.factory.createInputField(hbox_what, '')
-    self._what_caps_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-    self._what_caps_entry.setValue(self.search_what_value or '')
+    self.factory.createLabel(hbox_what, _('the capability in "Find" field'))
+
+    self._updateRegexpState()
+    self._updateWhatState()
 
     # ── Row 4: Repository filter (multi-selection) ───────────────────────────
     if self._repos:
@@ -1573,6 +1576,8 @@ class SearchDialog(basedialog.BaseDialog):
       self._arch_frame.showContent(bool(self.search_arches))
     if self._what_frame is not None:
       self._what_frame.showContent(bool(self.search_what_type))
+    # Apply initial enable/disable state for what-mode compatibility
+    self._updateWhatState()
 
   def _currentScope(self):
     sel = self._scope_list.selectedItem()
@@ -1588,6 +1593,34 @@ class SearchDialog(basedialog.BaseDialog):
       if item == sel:
         return key
     return ''
+
+  def _updateWhatState(self):
+    """Enable/disable widgets based on whether dependency-query mode is active.
+
+    When the Dependency query frame is checked:
+      - Find field is used as capability string → search-in checkboxes, regexp,
+        fuzzy and icase are disabled (they only apply to text search).
+    When the frame is unchecked:
+      - All text-search options are re-enabled and regexp state is restored.
+    """
+    is_what = bool(self._what_frame is not None and self._what_frame.value())
+    # Search-in checkboxes: only valid for text search
+    for cb in (self._nevra_check, self._provides_check, self._filenames_check,
+               self._binaries_check, self._src_check, self._summary_check):
+      try:
+        cb.setEnabled(not is_what)
+      except Exception:
+        pass
+    # Regexp, fuzzy, icase: only valid for text search
+    for cb in (self._use_regexp, self._fuzzy_check, self._icase_check):
+      try:
+        cb.setEnabled(not is_what)
+        if is_what:
+          cb.setChecked(False)
+      except Exception:
+        pass
+    if not is_what:
+      self._updateRegexpState()
 
   def _updateRegexpState(self):
     field = self._currentField()
@@ -1685,6 +1718,7 @@ class SearchDialog(basedialog.BaseDialog):
     """Expand or collapse the what-query when the CheckBoxFrame is toggled."""
     if self._what_frame is not None:
       self._what_frame.showContent(obj.value())
+    self._updateWhatState()
 
   def _onSearch(self):
     # Read boolean "search in" flags; non-regexp ones are invalid when regexp is active.
@@ -1704,16 +1738,17 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_fuzzy      = self._fuzzy_check.isChecked()
     self.search_scope      = self._currentScope()
     # Read dependency/what-query state.
+    # Capability string comes from the same Find field as the text search.
     self.search_what_type  = None
     self.search_what_value = ''
     if self._what_frame is not None and self._what_frame.value():
       wtype = self._currentWhatType()
-      wval  = self._what_caps_entry.value().strip()
+      wval  = self.search_text   # already stripped above from _find_entry
       if wtype and wval:
         self.search_what_type  = wtype
         self.search_what_value = wval
         # Dependency query is exclusive: clear text so the main UI shows the
-        # right label and doesn't also run a text search.
+        # right label and doesn't trigger a text search.
         self.search_text = ''
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
