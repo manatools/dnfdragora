@@ -1409,6 +1409,7 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_use_regexp = parent._search_use_regexp
     self.search_repos      = list(parent._search_repos)
     self.search_arches     = list(parent._search_arches)
+    self.search_icase      = parent._search_icase
     self.action = None   # 'search' | 'clear' | 'cancel'
     # Fetch repo and arch lists once from the parent's lazy caches
     self._repos  = parent._get_available_repos()
@@ -1447,9 +1448,13 @@ class SearchDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self._search_list, self._onSearchTypeChanged)
 
     self.factory.createHStretch(hbox_opts)
-    self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use regexp"))
+    self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
+    self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
+    self._icase_check.setNotify(True)
+    self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use &regexp"))
     self._use_regexp.setChecked(self.search_use_regexp)
     self._use_regexp.setNotify(True)
+    self.eventManager.addWidgetEvent(self._use_regexp, self._updateRegexpState)
     self._updateRegexpState()
 
     # ── Row 3: Repository filter (multi-selection) ───────────────────────────
@@ -1469,7 +1474,7 @@ class SearchDialog(basedialog.BaseDialog):
         self._repo_items[repo['id']] = item
         repo_items.append(item)
       self._repo_box.addItems(repo_items)
-      self._repo_box.setEnabled(bool(self.search_repos))
+      # box starts visible only if there are pre-existing selections (visibility set in _initVisibility)
     else:
       self._repo_frame = None
       self._repo_box   = None
@@ -1492,7 +1497,7 @@ class SearchDialog(basedialog.BaseDialog):
         self._arch_items[arch] = item
         arch_items.append(item)
       self._arch_box.addItems(arch_items)
-      self._arch_box.setEnabled(bool(self.search_arches))
+      # box starts visible only if there are pre-existing selections (visibility set in _initVisibility)
     else:
       self._arch_frame = None
       self._arch_box   = None
@@ -1515,6 +1520,21 @@ class SearchDialog(basedialog.BaseDialog):
 
   # ── helpers ──────────────────────────────────────────────────────────────
 
+  def _setupUI(self):
+    """Build the widget tree then force GTK backend creation so we can set
+    initial visibility before the event loop starts."""
+    super()._setupUI()
+    # open() creates all GTK backend widgets; must happen before _initVisibility
+    self.dialog.open()
+    self._initVisibility()
+
+  def _initVisibility(self):
+    """Collapse the content area of filter frames when no items are pre-selected."""
+    if self._repo_frame is not None:
+      self._repo_frame.showContent(bool(self.search_repos))
+    if self._arch_frame is not None:
+      self._arch_frame.showContent(bool(self.search_arches))
+
   def _currentField(self):
     sel = self._search_list.selectedItem()
     for key, item in self._search_type_items.items():
@@ -1524,11 +1544,13 @@ class SearchDialog(basedialog.BaseDialog):
 
   def _updateRegexpState(self):
     field = self._currentField()
-    if field in ('name', 'summary'):
-      self._use_regexp.setEnabled(True)
-    else:
+    use_re = field in ('name', 'summary')
+    self._use_regexp.setEnabled(use_re)
+    if not use_re:
       self._use_regexp.setChecked(False)
-      self._use_regexp.setEnabled(False)
+    # icase / case-sensitive: meaningful only when regexp is off
+    is_regexp_active = use_re and self._use_regexp.isChecked()
+    self._icase_check.setEnabled(not is_regexp_active)
 
   def _selectedRepos(self):
     """Return list of repo IDs currently selected in the multi-selection box."""
@@ -1568,14 +1590,14 @@ class SearchDialog(basedialog.BaseDialog):
     self._updateRegexpState()
 
   def _onRepoFrameToggled(self, obj):
-    """Enable/disable the repo list when the CheckBoxFrame is toggled."""
-    if self._repo_box is not None:
-      self._repo_box.setEnabled(obj.value())
+    """Expand or collapse the repo list when the CheckBoxFrame is toggled."""
+    if self._repo_frame is not None:
+      self._repo_frame.showContent(obj.value())
 
   def _onArchFrameToggled(self, obj):
-    """Enable/disable the arch list when the CheckBoxFrame is toggled."""
-    if self._arch_box is not None:
-      self._arch_box.setEnabled(obj.value())
+    """Expand or collapse the arch list when the CheckBoxFrame is toggled."""
+    if self._arch_frame is not None:
+      self._arch_frame.showContent(obj.value())
 
   def _onSearch(self):
     self.search_field      = self._currentField()
@@ -1584,6 +1606,7 @@ class SearchDialog(basedialog.BaseDialog):
                               and self._use_regexp.isChecked())
     self.search_repos      = self._selectedRepos()
     self.search_arches     = self._selectedArches()
+    self.search_icase      = not self._icase_check.isChecked()
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
       try:

@@ -247,6 +247,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._available_repos = None  # lazy-loaded list of {'id':…,'name':…} dicts
         self._search_arches  = []       # list of arch strings to restrict search; [] = all
         self._available_arches = None  # lazy-loaded sorted list of arch strings
+        self._search_icase   = True   # icase option: True = case-insensitive (daemon default)
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -1428,6 +1429,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if self._search_arches:
             options['arch'] = self._search_arches
 
+          if not self._search_icase:
+            options['icase'] = False
+
           self.backend.Search(options)
 
         self._enableAction(False)
@@ -1762,6 +1766,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_use_regexp = False
         self._search_repos      = []
         self._search_arches     = []
+        self._search_icase      = True
         rebuild_package_list = True
         self._fillGroupTree()
       elif widget == self.find_button:
@@ -1773,6 +1778,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_use_regexp = dlg.search_use_regexp
           self._search_repos      = dlg.search_repos
           self._search_arches     = dlg.search_arches
+          self._search_icase      = dlg.search_icase
           if not self._searchPackages():
             rebuild_package_list = True
             self._fillGroupTree()
@@ -1782,6 +1788,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_use_regexp = False
           self._search_repos      = []
           self._search_arches     = []
+          self._search_icase      = True
           rebuild_package_list = True
           self._fillGroupTree()
       elif widget == self.checkAllButton:
