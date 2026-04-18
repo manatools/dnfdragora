@@ -1392,6 +1392,7 @@ class SearchDialog(basedialog.BaseDialog):
     .search_text       : stripped search string
     .search_use_regexp : bool
     .search_repos      : list of repo IDs to restrict to ([] = all repos)
+    .search_arches     : list of arch strings to restrict to ([] = all arches)
   """
 
   _SEARCH_TYPE_ORDER = ['name', 'summary', 'description', 'file']
@@ -1407,9 +1408,11 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_text       = parent._search_text
     self.search_use_regexp = parent._search_use_regexp
     self.search_repos      = list(parent._search_repos)
+    self.search_arches     = list(parent._search_arches)
     self.action = None   # 'search' | 'clear' | 'cancel'
-    # Fetch repo list once from the parent's lazy cache
-    self._repos = parent._get_available_repos()
+    # Fetch repo and arch lists once from the parent's lazy caches
+    self._repos  = parent._get_available_repos()
+    self._arches = parent._get_available_arches()
 
   def UIlayout(self, layout):
     _labels = {
@@ -1472,7 +1475,30 @@ class SearchDialog(basedialog.BaseDialog):
       self._repo_box   = None
       self._repo_items = {}
 
-    # ── Row 4: action buttons ─────────────────────────────────────────────────
+    # ── Row 4: Architecture filter (multi-selection) ──────────────────────────
+    if self._arches:
+      arch_frame = self.factory.createCheckBoxFrame(layout, _("Limit to architectures"), bool(self.search_arches))
+      arch_frame.setNotify(True)
+      self.eventManager.addWidgetEvent(arch_frame, self._onArchFrameToggled, True)
+      self._arch_frame = arch_frame
+
+      self._arch_box = self.factory.createMultiSelectionBox(arch_frame, "")
+      arch_items = []
+      self._arch_items = {}   # arch string → YItem
+      for arch in self._arches:
+        item = MUI.YItem(arch)
+        if arch in self.search_arches:
+          item.setSelected(True)
+        self._arch_items[arch] = item
+        arch_items.append(item)
+      self._arch_box.addItems(arch_items)
+      self._arch_box.setEnabled(bool(self.search_arches))
+    else:
+      self._arch_frame = None
+      self._arch_box   = None
+      self._arch_items = {}
+
+    # ── Row 5: action buttons ─────────────────────────────────────────────────
     hbox_btns = self.factory.createHBox(layout)
     self.factory.createHStretch(hbox_btns)
     self._search_button = self.factory.createIconButton(
@@ -1520,6 +1546,22 @@ class SearchDialog(basedialog.BaseDialog):
         selected.append(repo_id)
     return selected
 
+  def _selectedArches(self):
+    """Return list of arch strings currently selected in the arch multi-selection box."""
+    if self._arch_box is None or self._arch_frame is None:
+      return []
+    if not self._arch_frame.value():
+      return []
+    selected = []
+    try:
+      sel_items = self._arch_box.selectedItems()
+    except Exception:
+      sel_items = []
+    for arch, item in self._arch_items.items():
+      if item in sel_items:
+        selected.append(arch)
+    return selected
+
   # ── event handlers ───────────────────────────────────────────────────────
 
   def _onSearchTypeChanged(self):
@@ -1530,12 +1572,18 @@ class SearchDialog(basedialog.BaseDialog):
     if self._repo_box is not None:
       self._repo_box.setEnabled(obj.value())
 
+  def _onArchFrameToggled(self, obj):
+    """Enable/disable the arch list when the CheckBoxFrame is toggled."""
+    if self._arch_box is not None:
+      self._arch_box.setEnabled(obj.value())
+
   def _onSearch(self):
     self.search_field      = self._currentField()
     self.search_text       = self._find_entry.value().strip()
     self.search_use_regexp = (self._use_regexp.isEnabled()
                               and self._use_regexp.isChecked())
     self.search_repos      = self._selectedRepos()
+    self.search_arches     = self._selectedArches()
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
       try:

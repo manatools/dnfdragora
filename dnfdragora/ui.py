@@ -243,8 +243,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_field = 'name'
         self._search_text = ''
         self._search_use_regexp = False
-        self._search_repos = []       # list of repo IDs to restrict search; [] = all
+        self._search_repos  = []       # list of repo IDs to restrict search; [] = all
         self._available_repos = None  # lazy-loaded list of {'id':…,'name':…} dicts
+        self._search_arches  = []       # list of arch strings to restrict search; [] = all
+        self._available_arches = None  # lazy-loaded sorted list of arch strings
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -1346,6 +1348,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._available_repos = []
         return self._available_repos
 
+    def _get_available_arches(self):
+        """Return sorted list of architecture strings found in the package cache.
+
+        Collected by scanning the already-cached packages so no extra backend call
+        is needed. The result is cached in self._available_arches.
+        """
+        if self._available_arches is None:
+            try:
+                pkgs = self.backend.get_packages('all')
+                self._available_arches = sorted({p.arch for p in pkgs if p.arch})
+            except Exception:
+                logger.exception("Could not collect architecture list for search dialog")
+                self._available_arches = []
+        return self._available_arches
+
     def _searchPackages(self):
         '''
         Uses stored search state (_search_field, _search_text, _search_use_regexp)
@@ -1407,6 +1424,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
           if self._search_repos:
             options['repo'] = self._search_repos
+
+          if self._search_arches:
+            options['arch'] = self._search_arches
 
           self.backend.Search(options)
 
@@ -1741,6 +1761,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_field      = 'name'
         self._search_use_regexp = False
         self._search_repos      = []
+        self._search_arches     = []
         rebuild_package_list = True
         self._fillGroupTree()
       elif widget == self.find_button:
@@ -1751,6 +1772,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_text       = dlg.search_text
           self._search_use_regexp = dlg.search_use_regexp
           self._search_repos      = dlg.search_repos
+          self._search_arches     = dlg.search_arches
           if not self._searchPackages():
             rebuild_package_list = True
             self._fillGroupTree()
@@ -1759,6 +1781,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_text       = ''
           self._search_use_regexp = False
           self._search_repos      = []
+          self._search_arches     = []
           rebuild_package_list = True
           self._fillGroupTree()
       elif widget == self.checkAllButton:
