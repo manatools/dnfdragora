@@ -18,7 +18,13 @@ jobs:
       image: ${{ matrix.container }}
 
     steps:
+      - name: Refresh dnf metadata (Mageia only)
+        if: startsWith(matrix.container, 'docker.io/library/mageia:')
+        run: |
+          dnf clean all
+          dnf --refresh -y makecache
       - run: dnf --assumeyes install
+              --refresh
               /usr/bin/cmake
               /usr/bin/msgmerge
               /usr/bin/msgfmt
