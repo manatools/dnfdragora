@@ -254,6 +254,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._available_arches = None  # lazy-loaded sorted list of arch strings
         self._search_icase   = True   # icase option: True = case-insensitive (daemon default)
         self._search_scope   = None   # None = use current filter_box; str = scope key
+        self._search_what_type  = None  # daemon option name, e.g. 'whatprovides'; None = text search
+        self._search_what_value = ''    # capability string for the what-search
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -1014,7 +1016,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         - Re-enable filter_box when search is cleared.
         - Update the search-info label so the user knows they are viewing search results.
         """
-        is_searching = bool(self._search_text)
+        is_searching = bool(self._search_text) or bool(self._search_what_value)
         try:
             if not self.update_only:
                 self.filter_box.setEnabled(not is_searching)
@@ -1022,16 +1024,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pass
         try:
             if is_searching:
-                _parts = []
-                if self._search_nevra:     _parts.append(_("names"))
-                if self._search_provides:  _parts.append(_("provides"))
-                if self._search_filenames: _parts.append(_("files"))
-                if self._search_binaries:  _parts.append(_("binaries"))
-                if self._search_src:       _parts.append(_("sources"))
-                if self._search_summary:   _parts.append(_("summary"))
-                _in = "/".join(_parts) if _parts else _("names")
                 self._search_info_label.setLabel(
-                    _("[Search: '%s' in %s]") % (self._search_text, _in))
+                    _("[ Search: %s ]") % self._search_text
+                    if self._search_text
+                    else _("[ Dependency search: %s ]") % self._search_what_value)
             else:
                 self._search_info_label.setLabel("")
         except Exception:
@@ -1137,7 +1133,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''
       rebuild_package_list = False
       search_string = self._search_text
-      if search_string:
+      if search_string or (self._search_what_type and self._search_what_value):
         # Search is active and tree is hidden; re-run the search.
         rebuild_package_list = not self._searchPackages()
       else:
@@ -1430,11 +1426,43 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         Uses stored search-field flags, _search_text and _search_use_regexp
         to perform a package search and fill the package list widget.
 
-        Returns False if the search string is empty.
+        Returns False if no search is active (empty text and no what-query).
         '''
         search_string = self._search_text
         use_regexp    = self._search_use_regexp
 
+        # --- Dependency / what-search path ---
+        if self._search_what_type and self._search_what_value:
+            # Resolve scope same as text-search path.
+            if self._search_scope:
+                filter = self._search_scope
+            else:
+                _filter_to_scope = {
+                    'installed'     : 'installed',
+                    'not_installed' : 'available',
+                    'to_update'     : 'upgrades',
+                    'all'           : 'all',
+                    'skip_other'    : 'all',
+                }
+                filter = _filter_to_scope.get(self._filterNameSelected(), 'all')
+
+            caps = [c.strip() for c in self._search_what_value.split(',') if c.strip()]
+            options = {
+                'scope': filter,
+                self._search_what_type: caps,
+            }
+            if self.newest_only:
+                options['latest-limit'] = 1
+            if self._search_repos:
+                options['repo'] = self._search_repos
+            if self._search_arches:
+                options['arch'] = self._search_arches
+            self._set_tree_visible(False)
+            self.backend.Search(options)
+            self._enableAction(False)
+            return True
+
+        # --- Text / pattern search path ---
         if not search_string:
           return False
 
@@ -1840,6 +1868,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_arches     = []
         self._search_icase      = True
         self._search_scope      = None
+        self._search_what_type  = None
+        self._search_what_value = ''
         rebuild_package_list = True
         self._fillGroupTree()
         self._updateSearchState()
@@ -1871,6 +1901,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.newest_only        = dlg.search_newest_only
           self.fuzzy_search       = dlg.search_fuzzy
           self._search_scope      = dlg.search_scope
+          self._search_what_type  = dlg.search_what_type
+          self._search_what_value = dlg.search_what_value
           # Sync the main filter_box to reflect the scope chosen in the search dialog.
           self._selectFilterItem(self._search_scope)
           # Persist search preferences immediately so they survive a crash.
@@ -1895,6 +1927,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_arches     = []
           self._search_icase      = True
           self._search_scope      = None
+          self._search_what_type  = None
+          self._search_what_value = ''
           rebuild_package_list = True
           self._fillGroupTree()
           self._updateSearchState()
@@ -1915,11 +1949,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         rebuild_package_list = True
         self._search_text  = ''
         self._search_scope = None
+        self._search_what_type  = None
+        self._search_what_value = ''
         self._fillGroupTree()
         self._updateSearchState()
       elif widget == self.tree:
         rebuild_package_list = True
-        self._search_text  = ''
+        self._search_text        = ''
+        self._search_what_type   = None
+        self._search_what_value  = ''
         self._updateSearchState()
       elif widget == self.filter_box:
         filter = self._filterNameSelected()

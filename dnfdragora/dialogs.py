@@ -1340,6 +1340,8 @@ class SearchDialog(basedialog.BaseDialog):
     .search_repos      : list of repo IDs to restrict to ([] = all repos)
     .search_arches     : list of arch strings to restrict to ([] = all arches)
     .search_scope      : daemon scope string ('all','installed','available','upgrades','upgradable')
+    .search_what_type  : str — daemon option name ('whatprovides',…) or None
+    .search_what_value : str — capability string(s) for the what-query, comma-separated
   """
 
   def __init__(self, parent):
@@ -1364,6 +1366,8 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_fuzzy      = parent.fuzzy_search
     # search_scope is set in UIlayout() where _SCOPE_ORDER/_scope_labels are defined.
     self.search_scope      = 'all'
+    self.search_what_type  = parent._search_what_type   # None or daemon option name
+    self.search_what_value = parent._search_what_value  # capability string(s)
     self.action = None   # 'search' | 'clear' | 'cancel'
     # Fetch repo and arch lists once from the parent's lazy caches
     self._repos  = parent._get_available_repos()
@@ -1445,7 +1449,52 @@ class SearchDialog(basedialog.BaseDialog):
     self._icase_check.setNotify(True)
     self._updateRegexpState()
 
-    # ── Row 3: Repository filter (multi-selection) ───────────────────────────
+    # ── Row 3b: Dependency / what-query (CheckBoxFrame) ─────────────────────
+    # Provides capability-based dependency searches via GetPackages(whatXXX=[...]).
+    # Mutually exclusive with the text pattern search at runtime.
+    self._WHAT_ORDER = [
+      '', 'whatprovides', 'whatrequires', 'whatdepends', 'whatrecommends',
+      'whatenhances', 'whatsuggests', 'whatsupplements', 'whatobsoletes', 'whatconflicts',
+    ]
+    self._what_labels = {
+      ''              : _('(none)'),
+      'whatprovides'  : _('provide'),
+      'whatrequires'  : _('require'),
+      'whatdepends'   : _('depend on'),
+      'whatrecommends': _('recommend'),
+      'whatenhances'  : _('enhance'),
+      'whatsuggests'  : _('suggest'),
+      'whatsupplements': _('supplement'),
+      'whatobsoletes' : _('obsolete'),
+      'whatconflicts' : _('conflict with'),
+    }
+    _what_active = bool(self.search_what_type)
+    what_frame = self.factory.createCheckBoxFrame(
+      layout, _('Dependency query'), _what_active)
+    what_frame.setNotify(True)
+    self.eventManager.addWidgetEvent(what_frame, self._onWhatFrameToggled, True)
+    self._what_frame = what_frame
+
+    hbox_what = self.factory.createHBox(what_frame)
+    self.factory.createLabel(hbox_what, _('Find packages that:'))
+    self._what_items = {}
+    what_item_list = []
+    for key in self._WHAT_ORDER:
+      if not key:
+        continue   # skip '(none)' — not needed inside the frame
+      item = MUI.YItem(self._what_labels[key])
+      if key == (self.search_what_type or 'whatprovides'):
+        item.setSelected(True)
+      self._what_items[key] = item
+      what_item_list.append(item)
+    self._what_combo = self.factory.createComboBox(hbox_what, '')
+    self._what_combo.addItems(what_item_list)
+    self.factory.createLabel(hbox_what, _('this capability:'))
+    self._what_caps_entry = self.factory.createInputField(hbox_what, '')
+    self._what_caps_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    self._what_caps_entry.setValue(self.search_what_value or '')
+
+    # ── Row 4: Repository filter (multi-selection) ───────────────────────────
     if self._repos:
       frame = self.factory.createCheckBoxFrame(layout, _("Limit to repositories"), bool(self.search_repos))
       frame.setNotify(True)
@@ -1522,6 +1571,8 @@ class SearchDialog(basedialog.BaseDialog):
       self._repo_frame.showContent(bool(self.search_repos))
     if self._arch_frame is not None:
       self._arch_frame.showContent(bool(self.search_arches))
+    if self._what_frame is not None:
+      self._what_frame.showContent(bool(self.search_what_type))
 
   def _currentScope(self):
     sel = self._scope_list.selectedItem()
@@ -1529,6 +1580,14 @@ class SearchDialog(basedialog.BaseDialog):
       if item == sel:
         return key
     return 'all'
+
+  def _currentWhatType(self):
+    """Return the daemon option name currently selected in the what-combo, or ''."""
+    sel = self._what_combo.selectedItem()
+    for key, item in self._what_items.items():
+      if item == sel:
+        return key
+    return ''
 
   def _updateRegexpState(self):
     field = self._currentField()
@@ -1622,6 +1681,11 @@ class SearchDialog(basedialog.BaseDialog):
     if self._arch_frame is not None:
       self._arch_frame.showContent(obj.value())
 
+  def _onWhatFrameToggled(self, obj):
+    """Expand or collapse the what-query when the CheckBoxFrame is toggled."""
+    if self._what_frame is not None:
+      self._what_frame.showContent(obj.value())
+
   def _onSearch(self):
     # Read boolean "search in" flags; non-regexp ones are invalid when regexp is active.
     is_regexp = self._use_regexp.isChecked()
@@ -1639,6 +1703,18 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_newest_only = self._latest_only_check.isChecked()
     self.search_fuzzy      = self._fuzzy_check.isChecked()
     self.search_scope      = self._currentScope()
+    # Read dependency/what-query state.
+    self.search_what_type  = None
+    self.search_what_value = ''
+    if self._what_frame is not None and self._what_frame.value():
+      wtype = self._currentWhatType()
+      wval  = self._what_caps_entry.value().strip()
+      if wtype and wval:
+        self.search_what_type  = wtype
+        self.search_what_value = wval
+        # Dependency query is exclusive: clear text so the main UI shows the
+        # right label and doesn't also run a text search.
+        self.search_text = ''
     # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
     if self.search_use_regexp and self.search_text:
       try:
