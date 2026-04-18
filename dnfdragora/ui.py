@@ -240,6 +240,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.always_yes = False
         self.fuzzy_search = False
         self.newest_only = False
+        self._search_field = 'name'
+        self._search_text = ''
+        self._search_use_regexp = False
+        self._search_repos = []       # list of repo IDs to restrict search; [] = all
+        self._available_repos = None  # lazy-loaded list of {'id':…,'name':…} dicts
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -570,41 +575,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.filter_box.setNotify(True)
         self.filter_box.setEnabled(not self.update_only)
 
-        self.local_search_types = {
-            'name'       : {'title' : _("in names")       },
-            'description': {'title' : _("in descriptions")},
-            'summary'    : {'title' : _("in summaries")   },
-            'file'       : {'title' : _("in file names")  }
-        }
-        search_types = ['name', 'summary', 'description', 'file' ]
-
-        self.search_list = self.factory.createComboBox(hbox_top,"")
-        itemColl.clear()
-        for s in search_types:
-            item = MUI.YItem(self.local_search_types[s]['title'])
-            if s == search_types[0] :
-                item.setSelected(True)
-            # adding item to local_search_types to find the item selected
-            self.local_search_types[s]['item'] = item
-            itemColl.append(item)
-
-        self.search_list.addItems(itemColl)
-        self.search_list.setNotify(True)
-
-        self.find_entry = self.factory.createInputField(hbox_top, "")
-        self.find_entry.setWeight(MUI.YUIDimension.YD_HORIZ, 50)
-        self.find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-        self.find_entry.setNotify(False)
-
-        self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
-        self.use_regexp.setNotify(True)
+        # Visual separator: push search buttons to the right
+        self.factory.createHStretch(hbox_top)
 
         self.find_button = self.factory.createIconButton(hbox_top, 'edit-find', _("&Search"))
-        self.find_button.setHelpText(_("Search packages"))
-        #TODO self.find_button.setDefaultButton(True)
+        self.find_button.setHelpText(_("Open search dialog"))
 
         self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
-        self.reset_search_button.setHelpText(_("Clear search field"))
+        self.reset_search_button.setHelpText(_("Clear current search"))
 
         self.info = self.factory.createRichText(hbox_bottom,"")
         # Give the description area a larger share of the bottom pane so
@@ -1094,7 +1072,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       the case of an active search result
       '''
       rebuild_package_list = False
-      search_string = self.find_entry.value() if hasattr(self, 'find_entry') else ''
+      search_string = self._search_text
       if search_string:
         # Search is active and tree is hidden; re-run the search.
         rebuild_package_list = not self._searchPackages()
@@ -1353,31 +1331,33 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._enableAction(True)
 
 
-    def _searchPackages(self) :
+    def _get_available_repos(self):
+        """Return sorted list of {'id':…,'name':…} for all enabled repos.
+
+        The result is cached in self._available_repos after the first call so
+        subsequent SearchDialog openings are instant.
+        """
+        if self._available_repos is None:
+            try:
+                repos = self.backend.get_repositories()
+                self._available_repos = [{'id': r['id'], 'name': r['name']} for r in repos]
+            except Exception:
+                logger.exception("Could not fetch repository list for search dialog")
+                self._available_repos = []
+        return self._available_repos
+
+    def _searchPackages(self):
         '''
-        retrieves the info from search input field and from the search type list
-        to perform a package research and to fill the package list widget
+        Uses stored search state (_search_field, _search_text, _search_use_regexp)
+        to perform a package search and fill the package list widget.
 
-        return False if an empty string used
+        Returns False if the search string is empty.
         '''
+        field         = self._search_field
+        search_string = self._search_text
+        use_regexp    = self._search_use_regexp
 
-        type_item = self.search_list.selectedItem()
-        #fields = []
-        #for field in self.local_search_types.keys():
-            #if self.local_search_types[field]['item'] == type_item:
-                #fields.append(field)
-                #break
-        fields = [ field for field in self.local_search_types.keys() if self.local_search_types[field]['item'] == type_item ]
-        field = fields[0] if fields else None
-
-        if field == 'name' or field == 'summary':
-          self.use_regexp.setEnabled()
-        else:
-          self.use_regexp.setChecked(False)
-          self.use_regexp.setEnabled(False)
-
-        search_string = self.find_entry.value().strip()
-        if not search_string :
+        if not search_string:
           return False
 
         filters = {
@@ -1388,33 +1368,33 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'skip_other'    : 'all',
         }
         filter = filters[self._filterNameSelected()]
-        if self.use_regexp.isEnabled() and self.use_regexp.isChecked() :
+        if use_regexp and field in ('name', 'summary'):
           # fixing attribute names
-          if field == 'name' :
+          if field == 'name':
             field = 'fullname'
           self.backend.search(filter, field, search_string)
         else:
-          strings = [s for s in re.split('[ ,|:;]',search_string) if s]
+          strings = [s for s in re.split('[ ,|:;]', search_string) if s]
           if self.fuzzy_search:
-             strings = [s.join(["*","*"]) for s in strings]
+            strings = [s.join(["*", "*"]) for s in strings]
 
           options = {
             "scope": filter,
-            "with_binaries": field == 'file',
+            "with_binaries":  field == 'file',
             "with_filenames": field == 'file',
-            "with_nevra" : field == 'name',
-            #"with_provides" : False,
-            #"with_src" : False,
+            "with_nevra":     field == 'name',
             "patterns": strings
           }
 
           if self.newest_only:
-              options['latest-limit'] = 1
+            options['latest-limit'] = 1
+
+          if self._search_repos:
+            options['repo'] = self._search_repos
 
           self.backend.Search(options)
 
         self._enableAction(False)
-
         return True
 
     def _populate_transaction(self) :
@@ -1741,11 +1721,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
           logger.debug("Package list selected, but no items changed")
       elif widget == self.reset_search_button:
+        self._search_text       = ''
+        self._search_field      = 'name'
+        self._search_use_regexp = False
+        self._search_repos      = []
         rebuild_package_list = True
-        self.find_entry.setValue("")
         self._fillGroupTree()
-      elif widget == self.find_button or widget == self.search_list or widget == self.use_regexp:
-        if not self._searchPackages():
+      elif widget == self.find_button:
+        dlg = dialogs.SearchDialog(self)
+        dlg.run()
+        if dlg.action == 'search':
+          self._search_field      = dlg.search_field
+          self._search_text       = dlg.search_text
+          self._search_use_regexp = dlg.search_use_regexp
+          self._search_repos      = dlg.search_repos
+          if not self._searchPackages():
+            rebuild_package_list = True
+            self._fillGroupTree()
+        elif dlg.action == 'clear':
+          self._search_field      = 'name'
+          self._search_text       = ''
+          self._search_use_regexp = False
+          self._search_repos      = []
           rebuild_package_list = True
           self._fillGroupTree()
       elif widget == self.checkAllButton:
@@ -1763,11 +1760,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         filter = self._filterNameSelected()
         self.checkAllButton.setEnabled(filter == 'to_update')
         rebuild_package_list = True
-        self.find_entry.setValue("")
+        self._search_text = ''
         self._fillGroupTree()
       elif widget == self.tree:
         rebuild_package_list = True
-        self.find_entry.setValue("")
+        self._search_text = ''
       elif widget == self.filter_box:
         filter = self._filterNameSelected()
         self._fillGroupTree()
@@ -1782,7 +1779,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       """Refresh package list and info panel after a single event is processed."""
       if rebuild_package_list:
         filter = self._filterNameSelected()
-        search_string = self.find_entry.value()
+        search_string = self._search_text
         if not search_string:
           view = self._viewNameSelected()
           if view == 'all':

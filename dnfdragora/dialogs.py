@@ -1380,6 +1380,173 @@ class OptionDialog(basedialog.BaseDialog):
     self.ExitLoop()
 
 
+class SearchDialog(basedialog.BaseDialog):
+  """
+  Dedicated search popup for dnfdragora.
+
+  Opens as a modal popup pre-populated with the parent's last search state.
+  After run() returns, inspect:
+    .action            : 'search' | 'clear' | 'cancel'
+    .search_field      : key: 'name' | 'summary' | 'description' | 'file'
+    .search_text       : stripped search string
+    .search_use_regexp : bool
+    .search_repos      : list of repo IDs to restrict to ([] = all repos)
+  """
+
+  _SEARCH_TYPE_ORDER = ['name', 'summary', 'description', 'file']
+
+  def __init__(self, parent):
+    basedialog.BaseDialog.__init__(
+      self, _("Find packages"), "dnfdragora",
+      basedialog.DialogType.POPUP, 520, -1
+    )
+    self.parent = parent
+    # Pre-populate from the parent's stored search state
+    self.search_field      = parent._search_field
+    self.search_text       = parent._search_text
+    self.search_use_regexp = parent._search_use_regexp
+    self.search_repos      = list(parent._search_repos)
+    self.action = None   # 'search' | 'clear' | 'cancel'
+    # Fetch repo list once from the parent's lazy cache
+    self._repos = parent._get_available_repos()
+
+  def UIlayout(self, layout):
+    _labels = {
+      'name'       : _("in names"),
+      'summary'    : _("in summaries"),
+      'description': _("in descriptions"),
+      'file'       : _("in file names"),
+    }
+
+    # ── Row 1: "Find:" label + input field ──────────────────────────────────
+    hbox_find = self.factory.createHBox(layout)
+    self.factory.createLabel(hbox_find, _("Find:"))
+    self._find_entry = self.factory.createInputField(hbox_find, "")
+    self._find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    self._find_entry.setValue(self.search_text or "")
+    self._find_entry.setNotify(False)
+
+    # ── Row 2: "Look in:" combobox + regexp checkbox ─────────────────────────
+    hbox_opts = self.factory.createHBox(layout)
+    self.factory.createLabel(hbox_opts, _("Look in:"))
+    self._search_type_items = {}
+    itemColl = []
+    for key in self._SEARCH_TYPE_ORDER:
+      item = MUI.YItem(_labels[key])
+      if key == self.search_field:
+        item.setSelected(True)
+      self._search_type_items[key] = item
+      itemColl.append(item)
+    self._search_list = self.factory.createComboBox(hbox_opts, "")
+    self._search_list.addItems(itemColl)
+    self._search_list.setNotify(True)
+    self.eventManager.addWidgetEvent(self._search_list, self._onSearchTypeChanged)
+
+    self.factory.createHStretch(hbox_opts)
+    self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use regexp"))
+    self._use_regexp.setChecked(self.search_use_regexp)
+    self._use_regexp.setNotify(True)
+    self._updateRegexpState()
+
+    # ── Row 3: Repository filter (multi-selection) ───────────────────────────
+    if self._repos:
+      frame = self.factory.createCheckBoxFrame(layout, _("Limit to repositories"), bool(self.search_repos))
+      frame.setNotify(True)
+      self.eventManager.addWidgetEvent(frame, self._onRepoFrameToggled, True)
+      self._repo_frame = frame
+
+      self._repo_box = self.factory.createMultiSelectionBox(frame, "")
+      repo_items = []
+      self._repo_items = {}   # repo_id → YItem
+      for repo in self._repos:
+        item = MUI.YItem(repo['name'] if repo['name'] else repo['id'])
+        if repo['id'] in self.search_repos:
+          item.setSelected(True)
+        self._repo_items[repo['id']] = item
+        repo_items.append(item)
+      self._repo_box.addItems(repo_items)
+      self._repo_box.setEnabled(bool(self.search_repos))
+    else:
+      self._repo_frame = None
+      self._repo_box   = None
+      self._repo_items = {}
+
+    # ── Row 4: action buttons ─────────────────────────────────────────────────
+    hbox_btns = self.factory.createHBox(layout)
+    self.factory.createHStretch(hbox_btns)
+    self._search_button = self.factory.createIconButton(
+      hbox_btns, 'edit-find', _("&Search"))
+    self._clear_button = self.factory.createIconButton(
+      hbox_btns, 'edit-clear', _("&Clear"))
+    self._close_button = self.factory.createIconButton(
+      hbox_btns, 'window-close', _("C&lose"))
+
+    self.eventManager.addWidgetEvent(self._search_button, self._onSearch)
+    self.eventManager.addWidgetEvent(self._clear_button,  self._onClear)
+    self.eventManager.addWidgetEvent(self._close_button,  self._onClose)
+    self.eventManager.addCancelEvent(self._onClose)
+
+  # ── helpers ──────────────────────────────────────────────────────────────
+
+  def _currentField(self):
+    sel = self._search_list.selectedItem()
+    for key, item in self._search_type_items.items():
+      if item == sel:
+        return key
+    return 'name'
+
+  def _updateRegexpState(self):
+    field = self._currentField()
+    if field in ('name', 'summary'):
+      self._use_regexp.setEnabled(True)
+    else:
+      self._use_regexp.setChecked(False)
+      self._use_regexp.setEnabled(False)
+
+  def _selectedRepos(self):
+    """Return list of repo IDs currently selected in the multi-selection box."""
+    if self._repo_box is None or self._repo_frame is None:
+      return []
+    if not self._repo_frame.value():
+      return []
+    selected = []
+    try:
+      sel_items = self._repo_box.selectedItems()
+    except Exception:
+      sel_items = []
+    for repo_id, item in self._repo_items.items():
+      if item in sel_items:
+        selected.append(repo_id)
+    return selected
+
+  # ── event handlers ───────────────────────────────────────────────────────
+
+  def _onSearchTypeChanged(self):
+    self._updateRegexpState()
+
+  def _onRepoFrameToggled(self, obj):
+    """Enable/disable the repo list when the CheckBoxFrame is toggled."""
+    if self._repo_box is not None:
+      self._repo_box.setEnabled(obj.value())
+
+  def _onSearch(self):
+    self.search_field      = self._currentField()
+    self.search_text       = self._find_entry.value().strip()
+    self.search_use_regexp = (self._use_regexp.isEnabled()
+                              and self._use_regexp.isChecked())
+    self.search_repos      = self._selectedRepos()
+    self.action = 'search'
+    self.ExitLoop()
+
+  def _onClear(self):
+    self.action = 'clear'
+    self.ExitLoop()
+
+  def _onClose(self):
+    self.action = 'cancel'
+    self.ExitLoop()
+
+
 def warningMsgBox (info) :
     '''
     This function creates an Warning dialog and show the message
