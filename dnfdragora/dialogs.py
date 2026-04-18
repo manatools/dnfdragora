@@ -1329,15 +1329,18 @@ class SearchDialog(basedialog.BaseDialog):
   Opens as a modal popup pre-populated with the parent's last search state.
   After run() returns, inspect:
     .action            : 'search' | 'clear' | 'cancel'
-    .search_field      : key: 'name' | 'summary' | 'description' | 'file'
+    .search_nevra      : bool — search in package names/NEVRA  (with_nevra)
+    .search_provides   : bool — search in provides             (with_provides)
+    .search_filenames  : bool — search in all file paths       (with_filenames)
+    .search_binaries   : bool — search in binary paths only    (with_binaries)
+    .search_src        : bool — include source RPMs            (with_src)
+    .search_summary    : bool — search in summary, regexp only
     .search_text       : stripped search string
     .search_use_regexp : bool
     .search_repos      : list of repo IDs to restrict to ([] = all repos)
     .search_arches     : list of arch strings to restrict to ([] = all arches)
-    .search_scope      : one of 'all','installed','not_installed','to_update','skip_other'
+    .search_scope      : daemon scope string ('all','installed','available','upgrades','upgradable')
   """
-
-  _SEARCH_TYPE_ORDER = ['name', 'summary', 'description', 'file']
 
   def __init__(self, parent):
     basedialog.BaseDialog.__init__(
@@ -1345,8 +1348,13 @@ class SearchDialog(basedialog.BaseDialog):
       basedialog.DialogType.POPUP, 520, -1
     )
     self.parent = parent
-    # Pre-populate from the parent's stored search state
-    self.search_field      = parent._search_field
+    # Pre-populate boolean "search in" flags from the parent's stored state
+    self.search_nevra      = parent._search_nevra
+    self.search_provides   = parent._search_provides
+    self.search_filenames  = parent._search_filenames
+    self.search_binaries   = parent._search_binaries
+    self.search_src        = parent._search_src
+    self.search_summary    = parent._search_summary
     self.search_text       = parent._search_text
     self.search_use_regexp = parent._search_use_regexp
     self.search_repos      = list(parent._search_repos)
@@ -1362,14 +1370,7 @@ class SearchDialog(basedialog.BaseDialog):
     self._arches = parent._get_available_arches()
 
   def UIlayout(self, layout):
-    _labels = {
-      'name'       : _("in names"),
-      'summary'    : _("in summaries"),
-      'description': _("in descriptions"),
-      'file'       : _("in file names"),
-    }
-    # Scope keys → daemon scope value and display label.
-    # Values are the exact strings accepted by dnf5daemon Search(scope=…).
+    # Scope keys → exact daemon scope strings accepted by Search(scope=…).
     self._SCOPE_ORDER = ['all', 'installed', 'available', 'upgrades', 'upgradable']
     self._scope_labels = {
       'all'        : _("All"),
@@ -1378,8 +1379,7 @@ class SearchDialog(basedialog.BaseDialog):
       'upgrades'   : _("Upgrades"),
       'upgradable' : _("Upgradable"),
     }
-    # Map the current filter_box selection (filter-box keys) to a daemon scope value
-    # so the combobox is pre-populated to match the current view.
+    # Pre-select scope combobox to match the current filter_box in the main UI.
     _filter_to_scope = {
       'all'          : 'all',
       'installed'    : 'installed',
@@ -1397,23 +1397,29 @@ class SearchDialog(basedialog.BaseDialog):
     self._find_entry.setValue(self.search_text or "")
     self._find_entry.setNotify(False)
 
-    # ── Row 2: "Look in:" combobox  ·  "Scope:" combobox ────────────────────
-    hbox_opts = self.factory.createHBox(layout)
-    self.factory.createLabel(hbox_opts, _("Look in:"))
-    self._search_type_items = {}
-    itemColl = []
-    for key in self._SEARCH_TYPE_ORDER:
-      item = MUI.YItem(_labels[key])
-      if key == self.search_field:
-        item.setSelected(True)
-      self._search_type_items[key] = item
-      itemColl.append(item)
-    self._search_list = self.factory.createComboBox(hbox_opts, "")
-    self._search_list.addItems(itemColl)
-    self._search_list.setNotify(True)
-    self.eventManager.addWidgetEvent(self._search_list, self._onSearchTypeChanged)
+    # ── Row 2: "Search in:" checkboxes ──────────────────────────────────────
+    # Each checkbox maps directly to a dnf5daemon Search() boolean flag.
+    # "Summary" is regexp-only and is enabled/disabled by _updateRegexpState().
+    hbox_fields = self.factory.createHBox(layout)
+    self.factory.createLabel(hbox_fields, _("Search in:"))
+    self._nevra_check = self.factory.createCheckBox(hbox_fields, _("N&ames"))
+    self._nevra_check.setChecked(self.search_nevra)
+    self._provides_check = self.factory.createCheckBox(hbox_fields, _("&Provides"))
+    self._provides_check.setChecked(self.search_provides)
+    self._filenames_check = self.factory.createCheckBox(hbox_fields, _("&Files"))
+    self._filenames_check.setChecked(self.search_filenames)
+    self._filenames_check.setNotify(True)
+    self.eventManager.addWidgetEvent(self._filenames_check, self._onFilenamesChanged)
+    self._binaries_check = self.factory.createCheckBox(hbox_fields, _("&Binaries"))
+    self._binaries_check.setChecked(self.search_binaries)
+    self._src_check = self.factory.createCheckBox(hbox_fields, _("S&ources"))
+    self._src_check.setChecked(self.search_src)
+    self.factory.createHSpacing(hbox_fields, 1)
+    self._summary_check = self.factory.createCheckBox(hbox_fields, _("Su&mmary"))
+    self._summary_check.setChecked(self.search_summary)
 
-    self.factory.createHSpacing(hbox_opts, 1)
+    # ── Row 3: Scope combobox + search-modifier checkboxes ───────────────────
+    hbox_opts = self.factory.createHBox(layout)
     self.factory.createLabel(hbox_opts, _("Scope:"))
     self._scope_items = {}
     scope_coll = []
@@ -1425,20 +1431,18 @@ class SearchDialog(basedialog.BaseDialog):
       scope_coll.append(item)
     self._scope_list = self.factory.createComboBox(hbox_opts, "")
     self._scope_list.addItems(scope_coll)
-
-    # ── Row 3: search-modifier checkboxes ────────────────────────────────────
-    hbox_checks = self.factory.createHBox(layout)
-    self._latest_only_check = self.factory.createCheckBox(hbox_checks, _("&Latest only"))
-    self._latest_only_check.setChecked(self.search_newest_only)
-    self._fuzzy_check = self.factory.createCheckBox(hbox_checks, _("&Fuzzy search"))
-    self._fuzzy_check.setChecked(self.search_fuzzy)
-    self._icase_check = self.factory.createCheckBox(hbox_checks, _("Case &sensitive"))
-    self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
-    self._icase_check.setNotify(True)
-    self._use_regexp = self.factory.createCheckBox(hbox_checks, _("Use &regexp"))
+    self.factory.createHStretch(hbox_opts)
+    self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use &regexp"))
     self._use_regexp.setChecked(self.search_use_regexp)
     self._use_regexp.setNotify(True)
     self.eventManager.addWidgetEvent(self._use_regexp, self._updateRegexpState)
+    self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
+    self._latest_only_check.setChecked(self.search_newest_only)
+    self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("&Fuzzy search"))
+    self._fuzzy_check.setChecked(self.search_fuzzy)
+    self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
+    self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
+    self._icase_check.setNotify(True)
     self._updateRegexpState()
 
     # ── Row 3: Repository filter (multi-selection) ───────────────────────────
@@ -1519,13 +1523,6 @@ class SearchDialog(basedialog.BaseDialog):
     if self._arch_frame is not None:
       self._arch_frame.showContent(bool(self.search_arches))
 
-  def _currentField(self):
-    sel = self._search_list.selectedItem()
-    for key, item in self._search_type_items.items():
-      if item == sel:
-        return key
-    return 'name'
-
   def _currentScope(self):
     sel = self._scope_list.selectedItem()
     for key, item in self._scope_items.items():
@@ -1577,8 +1574,43 @@ class SearchDialog(basedialog.BaseDialog):
 
   # ── event handlers ───────────────────────────────────────────────────────
 
-  def _onSearchTypeChanged(self):
-    self._updateRegexpState()
+  def _onFilenamesChanged(self):
+    """Uncheck Binaries if Files is unchecked (binaries are a subset of files)."""
+    if not self._filenames_check.isChecked():
+      try:
+        self._binaries_check.setChecked(False)
+      except Exception:
+        pass
+
+  def _updateRegexpState(self):
+    """Enable/disable checkboxes based on regexp mode.
+
+    Non-regexp (Search() API): with_nevra, with_provides, with_filenames,
+    with_binaries, with_src are valid; Summary must be disabled.
+    Regexp (search() API): only a single text field (summary or names) is used;
+    the Search()-only flags are disabled. icase is also disabled (regexp carries
+    its own case flags).
+    """
+    is_regexp = self._use_regexp.isChecked()
+    # Checkboxes valid only in non-regexp Search() mode.
+    for cb in (self._provides_check, self._filenames_check,
+               self._binaries_check, self._src_check):
+      try:
+        cb.setEnabled(not is_regexp)
+      except Exception:
+        pass
+    # Summary is valid only in regexp mode (backend.search() field).
+    try:
+      self._summary_check.setEnabled(is_regexp)
+      if not is_regexp:
+        self._summary_check.setChecked(False)
+    except Exception:
+      pass
+    # icase / case-sensitive: only meaningful in non-regexp mode.
+    try:
+      self._icase_check.setEnabled(not is_regexp)
+    except Exception:
+      pass
 
   def _onRepoFrameToggled(self, obj):
     """Expand or collapse the repo list when the CheckBoxFrame is toggled."""
@@ -1591,10 +1623,16 @@ class SearchDialog(basedialog.BaseDialog):
       self._arch_frame.showContent(obj.value())
 
   def _onSearch(self):
-    self.search_field      = self._currentField()
+    # Read boolean "search in" flags; non-regexp ones are invalid when regexp is active.
+    is_regexp = self._use_regexp.isChecked()
+    self.search_nevra      = self._nevra_check.isChecked()
+    self.search_provides   = (not is_regexp) and self._provides_check.isChecked()
+    self.search_filenames  = (not is_regexp) and self._filenames_check.isChecked()
+    self.search_binaries   = (not is_regexp) and self._binaries_check.isChecked()
+    self.search_src        = (not is_regexp) and self._src_check.isChecked()
+    self.search_summary    = is_regexp and self._summary_check.isChecked()
     self.search_text       = self._find_entry.value().strip()
-    self.search_use_regexp = (self._use_regexp.isEnabled()
-                              and self._use_regexp.isChecked())
+    self.search_use_regexp = is_regexp
     self.search_repos      = self._selectedRepos()
     self.search_arches     = self._selectedArches()
     self.search_icase      = not self._icase_check.isChecked()

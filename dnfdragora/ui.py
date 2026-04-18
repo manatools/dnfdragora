@@ -240,7 +240,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.always_yes = False
         self.fuzzy_search = False
         self.newest_only = False
-        self._search_field = 'name'
+        self._search_nevra    = True   # search in package names/NEVRA   (with_nevra)
+        self._search_provides = False  # search in provides               (with_provides)
+        self._search_filenames= False  # search in all file paths         (with_filenames)
+        self._search_binaries = False  # search in binary paths           (with_binaries)
+        self._search_src      = False  # include source RPMs              (with_src)
+        self._search_summary  = False  # search in summary, regexp only
         self._search_text = ''
         self._search_use_regexp = False
         self._search_repos  = []       # list of repo IDs to restrict search; [] = all
@@ -1017,8 +1022,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             pass
         try:
             if is_searching:
+                _parts = []
+                if self._search_nevra:     _parts.append(_("names"))
+                if self._search_provides:  _parts.append(_("provides"))
+                if self._search_filenames: _parts.append(_("files"))
+                if self._search_binaries:  _parts.append(_("binaries"))
+                if self._search_src:       _parts.append(_("sources"))
+                if self._search_summary:   _parts.append(_("summary"))
+                _in = "/".join(_parts) if _parts else _("names")
                 self._search_info_label.setLabel(
-                    _("[Search results: '%s']") % (self._search_text))
+                    _("[Search: '%s' in %s]") % (self._search_text, _in))
             else:
                 self._search_info_label.setLabel("")
         except Exception:
@@ -1414,12 +1427,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
     def _searchPackages(self):
         '''
-        Uses stored search state (_search_field, _search_text, _search_use_regexp)
+        Uses stored search-field flags, _search_text and _search_use_regexp
         to perform a package search and fill the package list widget.
 
         Returns False if the search string is empty.
         '''
-        field         = self._search_field
         search_string = self._search_text
         use_regexp    = self._search_use_regexp
 
@@ -1440,10 +1452,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'skip_other'    : 'all',
             }
             filter = _filter_to_scope.get(self._filterNameSelected(), 'all')
-        if use_regexp and field in ('name', 'summary'):
-          # Validate regex before sending to the backend.
-          # An invalid pattern would cause __search_loop to fail repeatedly
-          # every time _rebuildPackageListWithSearchGroup is called.
+        if use_regexp:
+          # Regexp mode: single-field search via backend.search().
+          # Field priority: summary (if checked) > names (fullname).
+          regexp_field = 'summary' if self._search_summary else 'fullname'
           try:
             re.compile(search_string)
           except re.error as exc:
@@ -1457,22 +1469,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._search_text = ''
             self._search_use_regexp = False
             return False
-          # fixing attribute names
-          if field == 'name':
-            field = 'fullname'
-          self.backend.search(filter, field, search_string)
+          self.backend.search(filter, regexp_field, search_string)
         else:
           strings = [s for s in re.split('[ ,|:;]', search_string) if s]
           if self.fuzzy_search:
             strings = [s.join(["*", "*"]) for s in strings]
 
           options = {
-            "scope": filter,
-            "with_binaries":  field == 'file',
-            "with_filenames": field == 'file',
-            "with_nevra":     field == 'name',
-            "patterns": strings
+            "scope":          filter,
+            "with_nevra":     self._search_nevra,
+            "with_provides":  self._search_provides,
+            "with_filenames": self._search_filenames,
+            "with_binaries":  self._search_binaries,
+            "patterns":       strings
           }
+
+          if self._search_src:
+            options['with_src'] = True
 
           if self.newest_only:
             options['latest-limit'] = 1
@@ -1816,7 +1829,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           logger.debug("Package list selected, but no items changed")
       elif widget == self.reset_search_button:
         self._search_text       = ''
-        self._search_field      = 'name'
+        self._search_nevra      = True
+        self._search_provides   = False
+        self._search_filenames  = False
+        self._search_binaries   = False
+        self._search_src        = False
+        self._search_summary    = False
         self._search_use_regexp = False
         self._search_repos      = []
         self._search_arches     = []
@@ -1839,7 +1857,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         except Exception:
             pass
         if dlg.action == 'search':
-          self._search_field      = dlg.search_field
+          self._search_nevra      = dlg.search_nevra
+          self._search_provides   = dlg.search_provides
+          self._search_filenames  = dlg.search_filenames
+          self._search_binaries   = dlg.search_binaries
+          self._search_src        = dlg.search_src
+          self._search_summary    = dlg.search_summary
           self._search_text       = dlg.search_text
           self._search_use_regexp = dlg.search_use_regexp
           self._search_repos      = dlg.search_repos
@@ -1860,7 +1883,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             rebuild_package_list = True
             self._fillGroupTree()
         elif dlg.action == 'clear':
-          self._search_field      = 'name'
+          self._search_nevra      = True
+          self._search_provides   = False
+          self._search_filenames  = False
+          self._search_binaries   = False
+          self._search_src        = False
+          self._search_summary    = False
           self._search_text       = ''
           self._search_use_regexp = False
           self._search_repos      = []
