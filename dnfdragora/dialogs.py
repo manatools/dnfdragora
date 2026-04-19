@@ -1368,6 +1368,8 @@ class SearchDialog(basedialog.BaseDialog):
     self.search_scope      = 'all'
     self.search_what_type  = parent._search_what_type   # None or daemon option name
     self.search_what_value = parent._search_what_value  # capability string(s)
+    # Keep last-used scope; fall back to filter_box only if no search has been done yet.
+    self._last_scope       = parent._search_scope   # None = first time
     self.action = None   # 'search' | 'clear' | 'cancel'
     # Fetch repo and arch lists once from the parent's lazy caches
     self._repos  = parent._get_available_repos()
@@ -1383,7 +1385,7 @@ class SearchDialog(basedialog.BaseDialog):
       'upgrades'   : _("Upgrades"),
       'upgradable' : _("Upgradable"),
     }
-    # Pre-select scope combobox to match the current filter_box in the main UI.
+    # Scope: restore last used scope; use filter_box mapping only on first open.
     _filter_to_scope = {
       'all'          : 'all',
       'installed'    : 'installed',
@@ -1391,7 +1393,10 @@ class SearchDialog(basedialog.BaseDialog):
       'to_update'    : 'upgrades',
       'skip_other'   : 'all',
     }
-    self.search_scope = _filter_to_scope.get(self.parent._filterNameSelected(), 'all')
+    if self._last_scope:
+      self.search_scope = self._last_scope
+    else:
+      self.search_scope = _filter_to_scope.get(self.parent._filterNameSelected(), 'all')
 
     # ── Row 1: "Find:" label + input field ──────────────────────────────────
     # The Find field is dual-purpose:
@@ -1406,6 +1411,9 @@ class SearchDialog(basedialog.BaseDialog):
     self._find_entry.setValue(
         (self.search_what_value or "") if _what_active else (self.search_text or ""))
     self._find_entry.setNotify(False)
+    self._find_entry.setHelpText(_(
+        "Enter the search pattern. In text mode: words separated by spaces or commas. "
+        "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/python3')."))
 
     # ── Row 2: "Search in:" checkboxes ──────────────────────────────────────
     # Each checkbox maps directly to a dnf5daemon Search() boolean flag.
@@ -1414,19 +1422,25 @@ class SearchDialog(basedialog.BaseDialog):
     self.factory.createLabel(hbox_fields, _("Search in:"))
     self._nevra_check = self.factory.createCheckBox(hbox_fields, _("N&ames"))
     self._nevra_check.setChecked(self.search_nevra)
+    self._nevra_check.setHelpText(_("Search in package names and NEVRA (name-epoch:version-release.arch)."))
     self._provides_check = self.factory.createCheckBox(hbox_fields, _("&Provides"))
     self._provides_check.setChecked(self.search_provides)
+    self._provides_check.setHelpText(_("Also match packages whose Provides: tags include the search pattern."))
     self._filenames_check = self.factory.createCheckBox(hbox_fields, _("&Files"))
     self._filenames_check.setChecked(self.search_filenames)
+    self._filenames_check.setHelpText(_("Match packages that own files whose path matches the pattern."))
     self._filenames_check.setNotify(True)
     self.eventManager.addWidgetEvent(self._filenames_check, self._onFilenamesChanged)
     self._binaries_check = self.factory.createCheckBox(hbox_fields, _("&Binaries"))
     self._binaries_check.setChecked(self.search_binaries)
+    self._binaries_check.setHelpText(_("Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."))
     self._src_check = self.factory.createCheckBox(hbox_fields, _("S&ources"))
     self._src_check.setChecked(self.search_src)
+    self._src_check.setHelpText(_("Include source RPMs (*.src.rpm) in the results."))
     self.factory.createHSpacing(hbox_fields, 1)
     self._summary_check = self.factory.createCheckBox(hbox_fields, _("Su&mmary"))
     self._summary_check.setChecked(self.search_summary)
+    self._summary_check.setHelpText(_("Search in package summaries. Only available in regexp mode."))
 
     # ── Row 3: Scope combobox + search-modifier checkboxes ───────────────────
     hbox_opts = self.factory.createHBox(layout)
@@ -1441,18 +1455,23 @@ class SearchDialog(basedialog.BaseDialog):
       scope_coll.append(item)
     self._scope_list = self.factory.createComboBox(hbox_opts, "")
     self._scope_list.addItems(scope_coll)
+    self._scope_list.setHelpText(_("Limit the search to a subset of packages: all, installed, available to install, upgrades or upgradable."))
     self.factory.createHStretch(hbox_opts)
     self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use &regexp"))
     self._use_regexp.setChecked(self.search_use_regexp)
     self._use_regexp.setNotify(True)
+    self._use_regexp.setHelpText(_("Treat the Find field as a regular expression (Python re syntax). Disables multi-field search."))
     self.eventManager.addWidgetEvent(self._use_regexp, self._updateRegexpState)
     self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
     self._latest_only_check.setChecked(self.search_newest_only)
+    self._latest_only_check.setHelpText(_("Show only the latest version of each package name."))
     self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("&Fuzzy search"))
     self._fuzzy_check.setChecked(self.search_fuzzy)
+    self._fuzzy_check.setHelpText(_("Automatically add wildcards around each search token (e.g. 'gtk' becomes '*gtk*'). Disabled in regexp mode."))
     self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
     self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
     self._icase_check.setNotify(True)
+    self._icase_check.setHelpText(_("When checked, the search is case-sensitive. By default search is case-insensitive."))
     # ── Row 3b: Dependency / what-query (CheckBoxFrame) ─────────────────────
     # When active, the Find field is used as the capability string.
     # Search-in checkboxes, regexp, fuzzy and icase are disabled in this mode.
@@ -1475,6 +1494,7 @@ class SearchDialog(basedialog.BaseDialog):
     what_frame = self.factory.createCheckBoxFrame(
       layout, _('Dependency query'), _what_active)
     what_frame.setNotify(True)
+    what_frame.setHelpText(_("When checked, the Find field is used as a capability name and packages are searched by dependency relation instead of text pattern."))
     self.eventManager.addWidgetEvent(what_frame, self._onWhatFrameToggled, True)
     self._what_frame = what_frame
     what_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
@@ -1492,6 +1512,7 @@ class SearchDialog(basedialog.BaseDialog):
       what_item_list.append(item)
     self._what_combo = self.factory.createComboBox(hbox_what, '')
     self._what_combo.addItems(what_item_list)
+    self._what_combo.setHelpText(_("Choose the dependency relation to search: provide, require, depend on, recommend, etc."))
     self.factory.createLabel(hbox_what, _('the capability in "Find" field'))
 
     self._updateRegexpState()
@@ -1501,6 +1522,7 @@ class SearchDialog(basedialog.BaseDialog):
     if self._repos:
       frame = self.factory.createCheckBoxFrame(layout, _("Limit to repositories"), bool(self.search_repos))
       frame.setNotify(True)
+      frame.setHelpText(_("When checked, the search is restricted to the selected repositories."))
       frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
       self.eventManager.addWidgetEvent(frame, self._onRepoFrameToggled, True)
       self._repo_frame = frame
@@ -1525,6 +1547,7 @@ class SearchDialog(basedialog.BaseDialog):
     if self._arches:
       arch_frame = self.factory.createCheckBoxFrame(layout, _("Limit to architectures"), bool(self.search_arches))
       arch_frame.setNotify(True)
+      arch_frame.setHelpText(_("When checked, the search is restricted to the selected CPU architectures."))
       arch_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
       self.eventManager.addWidgetEvent(arch_frame, self._onArchFrameToggled, True)
       self._arch_frame = arch_frame
@@ -1550,10 +1573,13 @@ class SearchDialog(basedialog.BaseDialog):
     self.factory.createHStretch(hbox_btns)
     self._search_button = self.factory.createIconButton(
       hbox_btns, 'edit-find', _("&Search"))
+    self._search_button.setHelpText(_("Run the search and show matching packages."))
     self._clear_button = self.factory.createIconButton(
       hbox_btns, 'edit-clear', _("&Clear"))
+    self._clear_button.setHelpText(_("Clear the Find field and reset the dependency query frame."))
     self._close_button = self.factory.createIconButton(
       hbox_btns, 'window-close', _("C&lose"))
+    self._close_button.setHelpText(_("Close this dialog without running a new search."))
 
     self.eventManager.addWidgetEvent(self._search_button, self._onSearch)
     self.eventManager.addWidgetEvent(self._clear_button,  self._onClear)
@@ -1700,6 +1726,13 @@ class SearchDialog(basedialog.BaseDialog):
         self._summary_check.setChecked(False)
     except Exception:
       pass
+    # Fuzzy search is incompatible with regexp (would wrap the whole pattern in *…*).
+    try:
+      self._fuzzy_check.setEnabled(not is_regexp)
+      if is_regexp:
+        self._fuzzy_check.setChecked(False)
+    except Exception:
+      pass
     # icase / case-sensitive: only meaningful in non-regexp mode.
     try:
       self._icase_check.setEnabled(not is_regexp)
@@ -1767,8 +1800,18 @@ class SearchDialog(basedialog.BaseDialog):
     self.ExitLoop()
 
   def _onClear(self):
-    self.action = 'clear'
-    self.ExitLoop()
+    """Clear the Find field and reset the dependency query frame. Stay in dialog."""
+    try:
+      self._find_entry.setValue('')
+    except Exception:
+      pass
+    if self._what_frame is not None:
+      try:
+        self._what_frame.setValue(False)
+        self._what_frame.showContent(False)
+      except Exception:
+        pass
+      self._updateWhatState()
 
   def _onClose(self):
     self.action = 'cancel'

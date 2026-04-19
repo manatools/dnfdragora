@@ -1399,8 +1399,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         """
         if self._available_repos is None:
             try:
-                repos = self.backend.get_repositories()
-                self._available_repos = [{'id': r['id'], 'name': r['name']} for r in repos]
+                repos = self.backend.GetRepositories(enable_disable='enabled', sync=True)
+                repos = [r for r in repos
+                         if not r['id'].endswith('-source')
+                         and not r['id'].endswith('-debuginfo')]
+                repos = sorted(repos, key=lambda r: (r.get('name', ''), r['id']))
+                self._available_repos = [{'id': r['id'], 'name': r.get('name', r['id'])} for r in repos]
             except Exception:
                 logger.exception("Could not fetch repository list for search dialog")
                 self._available_repos = []
