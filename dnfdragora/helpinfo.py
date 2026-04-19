@@ -27,14 +27,15 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
 
     ### Main index
     menu_line_lnk     = '<b>%s</b>'%self._formatLink(_("Menu line"), 'menus')
-    filters_lnk       = '<b>%s</b>'%self._formatLink(_("Filters and search line"), 'filters')
+    filters_lnk       = '<b>%s</b>'%self._formatLink(_("Views, filters and search"), 'filters')
     group_panel_lnk   = '<b>%s</b>'%self._formatLink(_("Group panel"), 'group_panel')
     package_panel_lnk = '<b>%s</b>'%self._formatLink(_("Package panel"), 'package_panel')
     info_panel_lnk    = '<b>%s</b>'%self._formatLink(_("Information panel"), 'info_panel')
     pbar_line_lnk     = '<b>%s</b>'%self._formatLink(_("Progress bar line"), 'pbar_panel')
     buttons_line_lnk  = '<b>%s</b>'%self._formatLink(_("Button line"), 'button_panel')
+    search_dlg_lnk    = '<b>%s</b>'%self._formatLink(_("Search dialog"), 'search_dlg')
 
-    index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
+    index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
       menu_line_lnk,
       filters_lnk,
       group_panel_lnk,
@@ -42,6 +43,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       info_panel_lnk,
       pbar_line_lnk,
       buttons_line_lnk,
+      search_dlg_lnk,
       )
 
     ### Menu bar index
@@ -129,9 +131,6 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, i.e. showing only package available for updates if any.</li>') + \
           _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
           _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
-        _('<h2>Search options</h2>') + \
-          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newest packages on search.</li>') + \
-          _('<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using regular expressions will add "*" to the given words, restoring the behavior dnfdragora had using dnfdaemon 4.</li></ul>') + \
         _('<h2>Logging options</h2>') + \
           _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \
           _('<ul><li><b>Change directory</b>: this option allows you to set the logging directory; the directory must exist and needs write permission.</li>') + \
@@ -156,7 +155,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
 
       'filters':   '<h1>%s</h1>%s<br>%s'%(
         # title
-        _('Views and search'),
+        _('Views, filters and search'),
         # help
         _('<h2>Views</h2>') +\
           _('The first combobox allows you to show packages by groups. If <i>Groups</i> is selected, the group panel shows a tree view containing groups, and selecting a group shows related packages in the package panel.') + \
@@ -169,10 +168,11 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
             _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
             _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li></ul>') + \
         _('<h2>Search</h2>') +\
-          _('Search is performed by pressing the <i>Search</i> button when the text field is not empty. The Search combobox allows you to search the given text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>.') + \
-          _('A special checkbox <i>Use regexp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
-          _('<i>Note</i>: when regular expressions are used to search by name, the full package filename including the version is used.') + \
-          _('The <i>Clear search</i> button resets search text field.') + \
+          _('Pressing the <b>Search</b> button (magnifier icon) opens the %s '% self._formatLink(_('Search dialog'), 'search_dlg')) + \
+          _('that provides full-featured package search. When a search is active the filter combobox is disabled ') + \
+          _('and an info label shows the active search text or dependency query. ') + \
+          _('The <b>Clear search</b> button (eraser icon) next to the Search button resets all search state ') + \
+          _('and re-enables the filter combobox.<br>') + \
         '<br>',
         # back home
         home_lnk,
