@@ -158,15 +158,17 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Views, filters and search'),
         # help
         _('<h2>Views</h2>') +\
-          _('The first combobox allows you to show packages by groups. If <i>Groups</i> is selected, the group panel shows a tree view containing groups, and selecting a group shows related packages in the package panel.') + \
-          _('If <i>All</i> is selected, the package panel contains all the packages.') + \
+          _('The first combobox allows you to show packages by groups. If <i>Groups</i> is selected, the group panel shows a tree view containing groups, and selecting a group shows related packages in the package panel.<br>') + \
+          _('If <i>All</i> is selected, the package panel contains all the packages.<br>') + \
         _('<h2>Filters</h2>') +\
           _('The Filter combobox allows you to filter the packages shown in the package panel by:') + \
-            _('<ul><li><b>Installed</b>: shows installed packages only.</li>') + \
+          '<ul>' + \
+            _('<li><b>Installed</b>: shows installed packages only.</li>') + \
             _('<li><b>Not installed</b>: shows available packages only.</li>') + \
             _('<li><b>To update</b>: shows packages that are available for updates only.</li>') + \
             _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
-            _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li></ul>') + \
+            _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li>') + \
+          '</ul>' + \
         _('<h2>Search</h2>') +\
           _('Pressing the <b>Search</b> button (magnifier icon) opens the %s '% self._formatLink(_('Search dialog'), 'search_dlg')) + \
           _('that provides full-featured package search. When a search is active the filter combobox is disabled ') + \
