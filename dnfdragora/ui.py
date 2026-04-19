@@ -1346,7 +1346,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if createTreeItem:
           self._set_tree_visible(False)
 
-      filter = self._filterNameSelected()
       self.itemList = {}
       # {
       #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}

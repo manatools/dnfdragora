@@ -1378,6 +1378,11 @@ class SearchDialog(basedialog.BaseDialog):
   def UIlayout(self, layout):
     # Scope keys → exact daemon scope strings accepted by Search(scope=…).
     self._SCOPE_ORDER = ['all', 'installed', 'available', 'upgrades', 'upgradable']
+    # Pre-initialise frame references so _updateRegexpState() can safely iterate
+    # them even when called before all rows have been built.
+    self._what_frame = None
+    self._repo_frame = None
+    self._arch_frame = None
     self._scope_labels = {
       'all'        : _("All"),
       'installed'  : _("Installed"),
@@ -1650,16 +1655,6 @@ class SearchDialog(basedialog.BaseDialog):
     if not is_what:
       self._updateRegexpState()
 
-  def _updateRegexpState(self):
-    field = self._currentField()
-    use_re = field in ('name', 'summary')
-    self._use_regexp.setEnabled(use_re)
-    if not use_re:
-      self._use_regexp.setChecked(False)
-    # icase / case-sensitive: meaningful only when regexp is off
-    is_regexp_active = use_re and self._use_regexp.isChecked()
-    self._icase_check.setEnabled(not is_regexp_active)
-
   def _selectedRepos(self):
     """Return list of repo IDs currently selected in the multi-selection box."""
     if self._repo_box is None or self._repo_frame is None:
@@ -1708,8 +1703,9 @@ class SearchDialog(basedialog.BaseDialog):
     Non-regexp (Search() API): with_nevra, with_provides, with_filenames,
     with_binaries, with_src are valid; Summary must be disabled.
     Regexp (search() API): only a single text field (summary or names) is used;
-    the Search()-only flags are disabled. icase is also disabled (regexp carries
-    its own case flags).
+    the Search()-only flags are disabled. icase, fuzzy, dependency-query,
+    repository and architecture filters are also disabled (they only apply to
+    the multi-field Search() path).
     """
     is_regexp = self._use_regexp.isChecked()
     # Checkboxes valid only in non-regexp Search() mode.
@@ -1738,6 +1734,18 @@ class SearchDialog(basedialog.BaseDialog):
       self._icase_check.setEnabled(not is_regexp)
     except Exception:
       pass
+    # Dependency query, repo filter and arch filter are incompatible with regexp:
+    # backend.search() does not support them.
+    for frame in (self._what_frame, self._repo_frame, self._arch_frame):
+      if frame is None:
+        continue
+      try:
+        frame.setEnabled(not is_regexp)
+        if is_regexp:
+          frame.setValue(False)
+          frame.showContent(False)
+      except Exception:
+        pass
 
   def _onRepoFrameToggled(self, obj):
     """Expand or collapse the repo list when the CheckBoxFrame is toggled."""
