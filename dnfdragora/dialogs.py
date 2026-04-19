@@ -1470,7 +1470,7 @@ class SearchDialog(basedialog.BaseDialog):
     self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
     self._latest_only_check.setChecked(self.search_newest_only)
     self._latest_only_check.setHelpText(_("Show only the latest version of each package name."))
-    self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("&Fuzzy search"))
+    self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("Fu&zzy search"))
     self._fuzzy_check.setChecked(self.search_fuzzy)
     self._fuzzy_check.setHelpText(_("Automatically add wildcards around each search token (e.g. 'gtk' becomes '*gtk*'). Disabled in regexp mode."))
     self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
@@ -1497,7 +1497,7 @@ class SearchDialog(basedialog.BaseDialog):
       'whatconflicts' : _('conflict with'),
     }
     what_frame = self.factory.createCheckBoxFrame(
-      layout, _('Dependency query'), _what_active)
+      layout, _('&Dependency query'), _what_active)
     what_frame.setNotify(True)
     what_frame.setHelpText(_("When checked, the Find field is used as a capability name and packages are searched by dependency relation instead of text pattern."))
     self.eventManager.addWidgetEvent(what_frame, self._onWhatFrameToggled, True)
