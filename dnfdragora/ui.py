@@ -1039,6 +1039,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         Maps daemon scope strings ('all','installed','available','upgrades','upgradable')
         back to the internal filter_box key, then selects the corresponding YItem.
         Falls back silently if the key is not present in the current filter set.
+
         """
         _scope_to_filter = {
             'all'        : 'all',
@@ -1051,7 +1052,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         try:
             item = self.filters.get(filter_key, {}).get('item')
             if item is not None:
-                self.filter_box.selectItem(item, True)
+                self.filter_box.setNotify(False)
+                try:
+                    self.filter_box.selectItem(item, True)
+                finally:
+                    self.filter_box.setNotify(True)
         except Exception:
             pass
 
@@ -1349,26 +1354,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
       for pkg in packages:
-        if (filter == 'all' or (filter == 'to_update' and pkg.is_update ) or (filter == 'installed' and pkg.installed) or
-            (filter == 'not_installed' and not pkg.installed) or
-            (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
-            item = self._createCBItem(self.packageQueue.checked(pkg),
-                                           pkg.name,
-                                           pkg.summary,
-                                           pkg.version,
-                                           pkg.release,
-                                           pkg.arch,
-                                           pkg.sizeM)
-            pkg_name = pkg.fullname
-            if sel_pkg :
-                if sel_pkg.fullname == pkg_name :
-                    item.setSelected(True)
-            self.itemList[pkg_name] = {
-                'pkg' : pkg, 'item' : item
-                }
-            if not self.update_only:
-                item.addCell(" ")
-                self._setStatusToItem(pkg,item)
+        item = self._createCBItem(self.packageQueue.checked(pkg),
+                                        pkg.name,
+                                        pkg.summary,
+                                        pkg.version,
+                                        pkg.release,
+                                        pkg.arch,
+                                        pkg.sizeM)
+        pkg_name = pkg.fullname
+        if sel_pkg :
+            if sel_pkg.fullname == pkg_name :
+                item.setSelected(True)
+        self.itemList[pkg_name] = {
+            'pkg' : pkg, 'item' : item
+            }
+        if not self.update_only:
+            item.addCell(" ")
+            self._setStatusToItem(pkg,item)
 
       keylist = sorted(self.itemList.keys())
       v = []
