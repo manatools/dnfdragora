@@ -1797,8 +1797,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         elif item == self.fileMenu['reload']:
           self.backend.CleanCache()
         elif item == self.fileMenu['repos']:
+          try:
+            self.dialog.setEnabled(False)
+          except Exception:
+            pass
           rd = dialogs.RepoDialog(self)
           rd.run()
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
         elif item == self.fileMenu['quit']:
           request_exit = True
         elif item == self.optionsMenu['user_prefs']:
