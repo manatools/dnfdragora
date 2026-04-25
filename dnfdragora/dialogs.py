@@ -706,7 +706,8 @@ class RepoDialog(basedialog.BaseDialog):
             }
             self._itemToRepoId[item] = r['id']
 
-        v = [self.itemList[k]['item'] for k in sorted(self.itemList.keys())]
+        by_name = sorted(self.itemList.keys(), key=lambda k: self.itemList[k]['name'].casefold())
+        v = [self.itemList[k]['item'] for k in by_name]
         self.repoList.deleteAllItems()
         self.repoList.addItems(v)
 
@@ -716,7 +717,7 @@ class RepoDialog(basedialog.BaseDialog):
                 self.repoList.selectItem(v[0], True)
             except Exception:
                 pass
-            first_id = next(iter(sorted(self.itemList.keys())), None)
+            first_id = by_name[0] if by_name else None
             if first_id:
                 self._addAttributeInfo(first_id)
 
