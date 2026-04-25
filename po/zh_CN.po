@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 17:26+0200\n"
+"POT-Creation-Date: 2026-04-25 23:40+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/MageiaLinux/"
@@ -155,8 +155,8 @@ msgstr "基础系统"
 msgid "Content"
 msgstr "内容"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/groupicons.py:17 dnfdragora/ui.py:497
-#: dnfdragora/ui.py:511
+#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:1507
+#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:516 dnfdragora/ui.py:530
 msgid "All"
 msgstr "全部"
 
@@ -315,344 +315,585 @@ msgstr "准备处理事务：%s"
 msgid "Post-transaction script: %s"
 msgstr "事务后续处理脚本：%s"
 
-#: dnfdragora/dialogs.py:192 dnfdragora/ui.py:1473
+#: dnfdragora/dialogs.py:193 dnfdragora/ui.py:1596
 msgid "Undo transaction"
 msgstr "撤销事务"
 
-#: dnfdragora/dialogs.py:217 dnfdragora/ui.py:1498
+#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:1621
 msgid "Error checking package signatures"
 msgstr "检查软件包签名时出错"
 
-#: dnfdragora/dialogs.py:221 dnfdragora/ui.py:1502
+#: dnfdragora/dialogs.py:222 dnfdragora/ui.py:1625
 msgid "Downloading error"
 msgid_plural "Downloading errors"
 msgstr[0] "下载出错"
 
-#: dnfdragora/dialogs.py:226 dnfdragora/ui.py:1507
+#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1630
 msgid "Error in transaction"
 msgid_plural "Errors in transaction"
 msgstr[0] "处理事务时出错"
 
-#: dnfdragora/dialogs.py:238 dnfdragora/ui.py:1519
+#: dnfdragora/dialogs.py:239 dnfdragora/ui.py:1642
 msgid "Build transaction failure"
 msgstr "构建事务失败"
 
-#: dnfdragora/dialogs.py:282
+#: dnfdragora/dialogs.py:283
 msgid "History"
 msgstr "历史"
 
-#: dnfdragora/dialogs.py:289
+#: dnfdragora/dialogs.py:290
 msgid "History (Date/Time)"
 msgstr "历史（日期/时间）"
 
-#: dnfdragora/dialogs.py:291
+#: dnfdragora/dialogs.py:292
 msgid "Transaction History"
 msgstr "事务历史"
 
-#: dnfdragora/dialogs.py:295
+#: dnfdragora/dialogs.py:296
 msgid "&Undo"
 msgstr "撤销(&U)"
 
-#: dnfdragora/dialogs.py:297 dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:298 dnfdragora/dialogs.py:1085
 #: dnfdragora/progress_ui.py:367
 msgid "&Close"
 msgstr "关闭(&C)"
 
-#: dnfdragora/dialogs.py:359
+#: dnfdragora/dialogs.py:360
 msgid "Action on selected packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:372
+#: dnfdragora/dialogs.py:373
 msgid "Normal (Install/Upgrade/Remove)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:373
+#: dnfdragora/dialogs.py:374
 msgid "Reinstall"
 msgstr ""
 
-#: dnfdragora/dialogs.py:376
+#: dnfdragora/dialogs.py:377
 msgid "Downgrade"
 msgstr ""
 
-#: dnfdragora/dialogs.py:379
+#: dnfdragora/dialogs.py:380
 msgid "Distro Sync"
 msgstr ""
 
-#: dnfdragora/dialogs.py:383 dnfdragora/dialogs.py:461
+#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:462
 msgid "&Ok"
 msgstr "确定(&O)"
 
-#: dnfdragora/dialogs.py:384 dnfdragora/dialogs.py:462
-#: dnfdragora/dialogs.py:685
+#: dnfdragora/dialogs.py:385 dnfdragora/dialogs.py:463
+#: dnfdragora/dialogs.py:696
 msgid "&Cancel"
 msgstr "取消(&C)"
 
-#: dnfdragora/dialogs.py:443
+#: dnfdragora/dialogs.py:444
 msgid "Transaction result"
 msgstr "事务处理结果"
 
-#: dnfdragora/dialogs.py:452
+#: dnfdragora/dialogs.py:453
 msgid "Transaction dependency"
 msgstr "事务依赖"
 
-#: dnfdragora/dialogs.py:485
+#: dnfdragora/dialogs.py:486
 msgid "replacing "
 msgstr "替换 "
 
-#: dnfdragora/dialogs.py:490
+#: dnfdragora/dialogs.py:491
 msgid "Total size "
 msgstr "总大小 "
 
-#: dnfdragora/dialogs.py:553
+#: dnfdragora/dialogs.py:554
 msgid "Developers"
 msgstr "开发者"
 
-#: dnfdragora/dialogs.py:557
+#: dnfdragora/dialogs.py:558
 msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
 msgstr "dnfdragora 是使用 GTK、ncurses 和 QT 编写的 DNF 控制前端"
 
-#: dnfdragora/dialogs.py:598
-msgid "Identifier"
-msgstr ""
-
-#: dnfdragora/dialogs.py:599 dnfdragora/dialogs.py:666 dnfdragora/ui.py:478
-msgid "Name"
-msgstr "名称"
-
-#: dnfdragora/dialogs.py:600 dnfdragora/ui.py:1229
-msgid "Type"
-msgstr "类型"
-
-#: dnfdragora/dialogs.py:601
-msgid "Enabled"
-msgstr "已启用"
-
-#: dnfdragora/dialogs.py:602
-msgid "Priority"
-msgstr "优先级"
-
-#: dnfdragora/dialogs.py:603
-msgid "Cost"
-msgstr "占用"
-
-#: dnfdragora/dialogs.py:604
-msgid "Base URL"
-msgstr "主链接"
-
-#: dnfdragora/dialogs.py:605
-msgid "Meta link"
-msgstr "跳转链接"
-
-#: dnfdragora/dialogs.py:606
-msgid "Mirror list"
-msgstr "镜像列表"
-
-#: dnfdragora/dialogs.py:607
-msgid "Metadata expire"
-msgstr "元数据有效期"
-
-#: dnfdragora/dialogs.py:608
-msgid "Cache Updated"
-msgstr ""
-
-#: dnfdragora/dialogs.py:609
-msgid "Exclude packages"
-msgstr "要排除的软件包"
-
-#: dnfdragora/dialogs.py:610
-msgid "Include packages"
-msgstr "要包含的软件包"
-
-#: dnfdragora/dialogs.py:611
-msgid "Skip if unavailable"
-msgstr "如果不可用则跳过"
-
-#: dnfdragora/dialogs.py:613
-msgid "GPG key"
-msgstr "GPG密钥"
-
-#: dnfdragora/dialogs.py:614
-msgid "GPG check"
-msgstr "GPG检查"
-
-#: dnfdragora/dialogs.py:615
-msgid "Repo GPG check"
-msgstr "仓库GPG检查"
-
-#: dnfdragora/dialogs.py:617
-msgid "Proxy"
-msgstr "代理"
-
-#: dnfdragora/dialogs.py:618
-msgid "Proxy username"
-msgstr "代理用户名"
-
-#: dnfdragora/dialogs.py:619
-msgid "Proxy password"
-msgstr "代理密码"
-
-#: dnfdragora/dialogs.py:621
-msgid "Repo file"
-msgstr ""
-
-#: dnfdragora/dialogs.py:622
-msgid "Revision"
-msgstr ""
-
-#: dnfdragora/dialogs.py:623
-msgid "Content tags"
-msgstr ""
-
-#: dnfdragora/dialogs.py:624
-msgid "Distro tags "
-msgstr ""
-
-#: dnfdragora/dialogs.py:625
-msgid "Updated"
-msgstr ""
-
-#: dnfdragora/dialogs.py:626 dnfdragora/ui.py:478
-msgid "Size"
-msgstr "大小"
-
-#: dnfdragora/dialogs.py:627
-msgid "Packages"
-msgstr "软件包"
-
-#: dnfdragora/dialogs.py:628
-msgid "Available packages"
-msgstr ""
-
-#: dnfdragora/dialogs.py:629
-msgid "Mirrors"
-msgstr ""
-
-#: dnfdragora/dialogs.py:640 dnfdragora/dialogs.py:653
+#: dnfdragora/dialogs.py:595
 msgid "Repository Management"
 msgstr "仓库管理"
 
-#: dnfdragora/dialogs.py:667
+#: dnfdragora/dialogs.py:619
+msgid "Identifier"
+msgstr ""
+
+#: dnfdragora/dialogs.py:620 dnfdragora/dialogs.py:676 dnfdragora/ui.py:497
+msgid "Name"
+msgstr "名称"
+
+#: dnfdragora/dialogs.py:621 dnfdragora/ui.py:1275
+msgid "Type"
+msgstr "类型"
+
+#: dnfdragora/dialogs.py:622
+msgid "Enabled"
+msgstr "已启用"
+
+#: dnfdragora/dialogs.py:623
+msgid "Priority"
+msgstr "优先级"
+
+#: dnfdragora/dialogs.py:624
+msgid "Cost"
+msgstr "占用"
+
+#: dnfdragora/dialogs.py:625
+msgid "Base URL"
+msgstr "主链接"
+
+#: dnfdragora/dialogs.py:626
+msgid "Meta link"
+msgstr "跳转链接"
+
+#: dnfdragora/dialogs.py:627
+msgid "Mirror list"
+msgstr "镜像列表"
+
+#: dnfdragora/dialogs.py:628
+msgid "Metadata expire"
+msgstr "元数据有效期"
+
+#: dnfdragora/dialogs.py:629
+msgid "Cache Updated"
+msgstr ""
+
+#: dnfdragora/dialogs.py:630
+msgid "Exclude packages"
+msgstr "要排除的软件包"
+
+#: dnfdragora/dialogs.py:631
+msgid "Include packages"
+msgstr "要包含的软件包"
+
+#: dnfdragora/dialogs.py:632
+msgid "Skip if unavailable"
+msgstr "如果不可用则跳过"
+
+#: dnfdragora/dialogs.py:634
+msgid "GPG key"
+msgstr "GPG密钥"
+
+#: dnfdragora/dialogs.py:635
+msgid "GPG check"
+msgstr "GPG检查"
+
+#: dnfdragora/dialogs.py:636
+msgid "Repo GPG check"
+msgstr "仓库GPG检查"
+
+#: dnfdragora/dialogs.py:638
+msgid "Proxy"
+msgstr "代理"
+
+#: dnfdragora/dialogs.py:639
+msgid "Proxy username"
+msgstr "代理用户名"
+
+#: dnfdragora/dialogs.py:642
+msgid "Repo file"
+msgstr ""
+
+#: dnfdragora/dialogs.py:643
+msgid "Revision"
+msgstr ""
+
+#: dnfdragora/dialogs.py:644
+msgid "Content tags"
+msgstr ""
+
+#: dnfdragora/dialogs.py:645
+msgid "Distro tags "
+msgstr ""
+
+#: dnfdragora/dialogs.py:646
+msgid "Updated"
+msgstr ""
+
+#: dnfdragora/dialogs.py:647 dnfdragora/ui.py:497
+msgid "Size"
+msgstr "大小"
+
+#: dnfdragora/dialogs.py:648
+msgid "Packages"
+msgstr "软件包"
+
+#: dnfdragora/dialogs.py:649
+msgid "Available packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:650
+msgid "Mirrors"
+msgstr ""
+
+#: dnfdragora/dialogs.py:658
+msgid "Ad&vanced repository types"
+msgstr ""
+
+#: dnfdragora/dialogs.py:662
+msgid "&Debug information"
+msgstr ""
+
+#: dnfdragora/dialogs.py:664
+msgid "&Source"
+msgstr ""
+
+#: dnfdragora/dialogs.py:666
+msgid "&Testing"
+msgstr ""
+
+#: dnfdragora/dialogs.py:677
 msgid "Id"
 msgstr ""
 
-#: dnfdragora/dialogs.py:673
+#: dnfdragora/dialogs.py:686
 msgid "Information"
 msgstr "信息"
 
-#: dnfdragora/dialogs.py:673
+#: dnfdragora/dialogs.py:686
 msgid "Value"
 msgstr "值"
 
-#: dnfdragora/dialogs.py:682 dnfdragora/ui.py:615 dnfdragora/ui.py:1598
+#: dnfdragora/dialogs.py:694 dnfdragora/ui.py:610 dnfdragora/ui.py:1721
 msgid "&Apply"
 msgstr "应用(&A)"
 
-#: dnfdragora/dialogs.py:749
-msgid "Never"
-msgstr "从不"
-
-#: dnfdragora/dialogs.py:751
+#: dnfdragora/dialogs.py:909
 #, python-format
 msgid "%s second(s)"
 msgstr "%s 秒"
 
-#: dnfdragora/dialogs.py:757
+#: dnfdragora/dialogs.py:909
+msgid "Never"
+msgstr "从不"
+
+#: dnfdragora/dialogs.py:914
 msgid "Now"
 msgstr "现在"
 
-#: dnfdragora/dialogs.py:863 dnfdragora/helpinfo.py:117
+#: dnfdragora/dialogs.py:984 dnfdragora/helpinfo.py:129
 msgid "dnfdragora options"
 msgstr "dnfdragora 选项"
 
-#: dnfdragora/dialogs.py:939 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:1059 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "系统"
 
-#: dnfdragora/dialogs.py:943
+#: dnfdragora/dialogs.py:1063
 msgid "Layout"
 msgstr "布局"
 
-#: dnfdragora/dialogs.py:947
-msgid "Search"
-msgstr "查找"
-
-#: dnfdragora/dialogs.py:951
+#: dnfdragora/dialogs.py:1067
 msgid "Logging"
 msgstr "日志记录"
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:1080
 msgid "Restore &default"
 msgstr "恢复默认值"
 
-#: dnfdragora/dialogs.py:1026
+#: dnfdragora/dialogs.py:1140
 msgid "System options"
 msgstr "系统选项"
 
-#: dnfdragora/dialogs.py:1033
+#: dnfdragora/dialogs.py:1147
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr "无需确认即可自动在包裹上运行交易"
 
-#: dnfdragora/dialogs.py:1038
+#: dnfdragora/dialogs.py:1152
 msgid "Consider packages to upgrade as updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1046
+#: dnfdragora/dialogs.py:1160
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr "如果没有更新，则隐藏 dnfdragora-update 菜单"
 
-#: dnfdragora/dialogs.py:1069
+#: dnfdragora/dialogs.py:1183
 msgid "Interval to check for updates (minutes)"
 msgstr "检查更新的时间间隔（分钟）"
 
-#: dnfdragora/dialogs.py:1077
+#: dnfdragora/dialogs.py:1191
 msgid "Metadata expire time (hours)"
 msgstr "元数据过期时间（小时）"
 
-#: dnfdragora/dialogs.py:1101
+#: dnfdragora/dialogs.py:1215
 msgid "Layout options (active at next startup)"
 msgstr "布局选项（下次启动时激活）"
 
-#: dnfdragora/dialogs.py:1112
+#: dnfdragora/dialogs.py:1226
 msgid "Show updates"
 msgstr "显示更新"
 
-#: dnfdragora/dialogs.py:1117
+#: dnfdragora/dialogs.py:1231
 msgid "Do not show groups view"
 msgstr "不显示组视图"
 
-#: dnfdragora/dialogs.py:1138
-msgid "Search options"
-msgstr "搜索选项"
-
-#: dnfdragora/dialogs.py:1145
-msgid "Show newest packages only"
-msgstr "只显示最新的软件包"
-
-#: dnfdragora/dialogs.py:1150
-msgid "Fuzzy search (legacy mode)"
-msgstr ""
-
-#: dnfdragora/dialogs.py:1171
+#: dnfdragora/dialogs.py:1255
 msgid "Logging options (active at next startup)"
 msgstr "日志选项（下次启动时激活）"
 
-#: dnfdragora/dialogs.py:1188
+#: dnfdragora/dialogs.py:1272
 msgid "Enable logging"
 msgstr "启用日志记录"
 
-#: dnfdragora/dialogs.py:1197
+#: dnfdragora/dialogs.py:1281
 msgid "Change &directory"
 msgstr "更改目录"
 
-#: dnfdragora/dialogs.py:1202
+#: dnfdragora/dialogs.py:1286
 msgid "Debug level"
 msgstr "调试级别"
 
-#: dnfdragora/dialogs.py:1229
+#: dnfdragora/dialogs.py:1313
 msgid "Choose log destination directory"
 msgstr "选择日志目标目录"
 
-#: dnfdragora/dialogs.py:1479
+#: dnfdragora/dialogs.py:1469
+msgid "Find packages"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
+msgid "Installed"
+msgstr "已安装"
+
+#: dnfdragora/dialogs.py:1509
+msgid "Available"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1510
+msgid "Upgrades"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1511
+msgid "Upgradable"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1532
+msgid "Find:"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1540
+msgid ""
+"Enter the search pattern. In text mode: words separated by spaces or commas. "
+"In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
+"python3')."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1547
+msgid "Search in:"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1548
+msgid "N&ames"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1550
+msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1551
+msgid "&Provides"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1553
+msgid "Also match packages whose Provides: tags include the search pattern."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1554
+msgid "&Files"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1556
+msgid "Match packages that own files whose path matches the pattern."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1559
+msgid "&Binaries"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1561
+msgid ""
+"Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1562
+msgid "S&ources"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1564
+msgid "Include source RPMs (*.src.rpm) in the results."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1566
+msgid "Su&mmary"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1568
+msgid "Search in package summaries. Only available in regexp mode."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1572
+msgid "Scope:"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1583
+msgid ""
+"Limit the search to a subset of packages: all, installed, available to "
+"install, upgrades or upgradable."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1585
+msgid "Use &regexp"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1588
+msgid ""
+"Treat the Find field as a regular expression (Python re syntax). Disables "
+"multi-field search."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1590
+msgid "&Latest only"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1592
+msgid "Show only the latest version of each package name."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1593
+msgid "Fu&zzy search"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1595
+msgid ""
+"Automatically add wildcards around each search token (e.g. 'gtk' becomes "
+"'*gtk*'). Disabled in regexp mode."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1596
+msgid "Case &sensitive"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1599
+msgid ""
+"When checked, the search is case-sensitive. By default search is case-"
+"insensitive."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1608
+msgid "(none)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1609
+msgid "provide"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1610
+msgid "require"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1611
+msgid "depend on"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1612
+msgid "recommend"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1613
+msgid "enhance"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1614
+msgid "suggest"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1615
+msgid "supplement"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1616
+msgid "obsolete"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1617
+msgid "conflict with"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1620
+msgid "&Dependency query"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1622
+msgid ""
+"When checked, the Find field is used as a capability name and packages are "
+"searched by dependency relation instead of text pattern."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1627
+msgid "Find packages that:"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1640
+msgid ""
+"Choose the dependency relation to search: provide, require, depend on, "
+"recommend, etc."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1641
+msgid "the capability in \"Find\" field"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1648
+msgid "Limit to repositories"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1650
+msgid "When checked, the search is restricted to the selected repositories."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1673
+msgid "Limit to architectures"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1675
+msgid ""
+"When checked, the search is restricted to the selected CPU architectures."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1700 dnfdragora/ui.py:595
+msgid "&Search"
+msgstr "搜索(&S)"
+
+#: dnfdragora/dialogs.py:1701
+msgid "Run the search and show matching packages."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1703
+msgid "&Clear"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1704
+msgid "Clear the Find field and reset the dependency query frame."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1706
+msgid "C&lose"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1707
+msgid "Close this dialog without running a new search."
+msgstr ""
+
+#: dnfdragora/dialogs.py:1922 dnfdragora/ui.py:1497
+msgid "Invalid regular expression"
+msgstr ""
+
+#: dnfdragora/dialogs.py:2058
+msgid "(embedded in repository metadata)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:2067
 #, python-format
 msgid ""
 "Do you want to import this GPG key?<br><br>Key        : 0x%(id)s:"
@@ -661,11 +902,11 @@ msgid ""
 "%(file)s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1491
+#: dnfdragora/dialogs.py:2079
 msgid "GPG key missed"
 msgstr "缺少 GPG 密钥"
 
-#: dnfdragora/dnf_backend.py:408
+#: dnfdragora/dnf_backend.py:407
 #, python-format
 msgid "package has not any %s attributes"
 msgstr "该包不包含 %s 属性"
@@ -1211,19 +1452,19 @@ msgstr "转到索引"
 msgid "Menu line"
 msgstr "菜单行"
 
-#: dnfdragora/helpinfo.py:30
-msgid "Filters and search line"
-msgstr "过滤器和搜索行"
+#: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:168
+msgid "Views, filters and search"
+msgstr ""
 
-#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:183
+#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:195
 msgid "Group panel"
 msgstr "群组面板"
 
-#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:193
+#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:205
 msgid "Package panel"
 msgstr "包装面板"
 
-#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:204
+#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:216
 msgid "Information panel"
 msgstr "信息面板"
 
@@ -1235,23 +1476,27 @@ msgstr "进度条线"
 msgid "Button line"
 msgstr "纽扣线"
 
-#: dnfdragora/helpinfo.py:48
+#: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:183
+msgid "Search dialog"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:50
 msgid "File menu"
 msgstr "文件菜单"
 
-#: dnfdragora/helpinfo.py:49
+#: dnfdragora/helpinfo.py:51
 msgid "Information menu"
 msgstr "信息菜单"
 
-#: dnfdragora/helpinfo.py:50
+#: dnfdragora/helpinfo.py:52
 msgid "Options menu"
 msgstr "选项菜单"
 
-#: dnfdragora/helpinfo.py:51
+#: dnfdragora/helpinfo.py:53
 msgid "Help menu"
 msgstr "帮助菜单"
 
-#: dnfdragora/helpinfo.py:63
+#: dnfdragora/helpinfo.py:65
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
@@ -1259,84 +1504,136 @@ msgstr ""
 "dnfdragora 是一个 DNF 前端，基于 Mageia rpmdragora 布局和 Fedora yumex-dnf "
 "与 dnfdaemon 的交互。<br><br>"
 
-#: dnfdragora/helpinfo.py:64
+#: dnfdragora/helpinfo.py:66
 msgid ""
 "dnfdragora is basically a package manager user interface that allows you to "
 "install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:65
+#: dnfdragora/helpinfo.py:67
 msgid ""
 "dnfdragora is part of manatools and it is based on manatools.aui so that it "
 "can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
 "textual user interfaces.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:66
+#: dnfdragora/helpinfo.py:68
 msgid "dnfdragora window is comprised of:"
 msgstr "dnfdragora 窗口包括："
 
-#: dnfdragora/helpinfo.py:71
+#: dnfdragora/helpinfo.py:73
 msgid "Menu bar content"
 msgstr "菜单栏内容"
 
-#: dnfdragora/helpinfo.py:73
+#: dnfdragora/helpinfo.py:75
 msgid "Menu bar contains dnfdragora drop down menus:"
 msgstr "菜单栏包含 dnfdragora 下拉菜单："
 
-#: dnfdragora/helpinfo.py:81
+#: dnfdragora/helpinfo.py:83
 msgid "File Menu"
 msgstr "文件菜单"
 
-#: dnfdragora/helpinfo.py:83
+#: dnfdragora/helpinfo.py:85
 msgid "<h2>Reset selection</h2>"
 msgstr "<h2>重置选择</h2>"
 
-#: dnfdragora/helpinfo.py:84
+#: dnfdragora/helpinfo.py:86
 msgid ""
 "This menu removes any flags on packages; if any packages have been selected "
 "for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:85
+#: dnfdragora/helpinfo.py:87
 msgid "<h2>Refresh metadata</h2>"
 msgstr "<h2>刷新元数据</h2>"
 
-#: dnfdragora/helpinfo.py:86
+#: dnfdragora/helpinfo.py:88
 msgid ""
 "This menu sends a request to dnfdaemon to force a refresh of all the "
 "metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:87
+#: dnfdragora/helpinfo.py:89
 msgid "<h2>Repositories</h2>"
 msgstr "<h2>存储库</h2>"
 
-#: dnfdragora/helpinfo.py:88
-msgid ""
-"This menu opens a dialog that allows you to enable or disable repositories. "
-"Any changes are valid only while dnfdragora is running and are not permanent."
-"<br>"
+#: dnfdragora/helpinfo.py:90
+msgid "This menu opens the Repository Management dialog.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:89
+#: dnfdragora/helpinfo.py:91
+msgid ""
+"The dialog lists all configured repositories sorted by name. You can enable "
+"or disable each repository using its checkbox. Changes take effect "
+"immediately for the current session but are not permanent.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:92
+msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:93
+msgid ""
+"By default the list hides debug-information, source, and testing "
+"repositories. Expand the filter frame by checking its title to show three "
+"additional checkboxes:<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:94
+msgid "<ul>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:95
+msgid ""
+"<li><b>Debug information</b>: show repositories whose id ends with <i>-"
+"debuginfo</i>.</li>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:96
+msgid ""
+"<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:97
+msgid ""
+"<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:98
+msgid "</ul>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:99
+msgid ""
+"If any repository of those types is currently <b>enabled</b> in DNF, the "
+"corresponding checkbox is automatically turned on and the frame is expanded, "
+"ensuring an active repository is never hidden.<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:100
+msgid ""
+"The filter selections are saved in the user configuration file and restored "
+"at the next launch.<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:101
 msgid "<h2>Quit</h2>"
 msgstr "<h2>退出</h2>"
 
-#: dnfdragora/helpinfo.py:90
+#: dnfdragora/helpinfo.py:102
 msgid "This menu exits from dnfdragora.<br>"
 msgstr "此菜单从 dnfdragora 退出。<br>"
 
-#: dnfdragora/helpinfo.py:97
+#: dnfdragora/helpinfo.py:109
 msgid "Information Menu"
 msgstr "信息菜单"
 
-#: dnfdragora/helpinfo.py:99
+#: dnfdragora/helpinfo.py:111
 msgid "<h2>History</h2>"
 msgstr "<h2>历史</h2>"
 
-#: dnfdragora/helpinfo.py:100
+#: dnfdragora/helpinfo.py:112
 msgid ""
 "This menu runs a dialog containing transaction history shown in a tree "
 "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
@@ -1345,32 +1642,32 @@ msgstr ""
 "此菜单运行一个对话框，其中包含按日期排序的树中显示的交易历史记录。 选择的历史"
 "可以通过按撤消 <b>撤消</b> 钮。<br>"
 
-#: dnfdragora/helpinfo.py:101
+#: dnfdragora/helpinfo.py:113
 msgid ""
 "<br><i>Note that this function is currently broken because of a DNF API "
 "change</i><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:108
+#: dnfdragora/helpinfo.py:120
 msgid "Option Menu"
 msgstr "选项菜单"
 
-#: dnfdragora/helpinfo.py:110
+#: dnfdragora/helpinfo.py:122
 msgid "<h2>User preferences</h2>"
 msgstr "<h2>用户偏好</h2>"
 
-#: dnfdragora/helpinfo.py:111
+#: dnfdragora/helpinfo.py:123
 #, python-format
 msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr "此菜单打开一个 %s 其中包含自定义 dnfdragora 行为的用户设置。<br>"
 
-#: dnfdragora/helpinfo.py:111
+#: dnfdragora/helpinfo.py:123
 msgid "dialog"
 msgstr "对话"
 
-#: dnfdragora/helpinfo.py:119
+#: dnfdragora/helpinfo.py:131
 msgid ""
 "This dialog allows to customize dnfdragora behavior by changing options. "
 "Some changes are available after closing the dialog, others need a "
@@ -1379,11 +1676,11 @@ msgstr ""
 "此对话框允许通过更改选项来自定义 dnfdragora 行为。 关闭对话框后可以进行一些更"
 "改，其他更改需要重新启动 dnfdragora。<br><br>"
 
-#: dnfdragora/helpinfo.py:120
+#: dnfdragora/helpinfo.py:132
 msgid "<h2>System options</h2>"
 msgstr "<h2>系统选项</h2>"
 
-#: dnfdragora/helpinfo.py:121
+#: dnfdragora/helpinfo.py:133
 msgid ""
 "<ul><li><b>Run transactions on packages automatically without confirmation "
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
@@ -1392,48 +1689,48 @@ msgstr ""
 "<ul><li><b>无需确认即可自动在包裹上运行交易</b>: 如果检查的交易不需要确认，"
 "dnfdragora 总是作为回答 <i>是的</i>."
 
-#: dnfdragora/helpinfo.py:122
+#: dnfdragora/helpinfo.py:134
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr "<br><b>注</b> 此选项意味着也默默地接受删除包</li>"
 
-#: dnfdragora/helpinfo.py:123
+#: dnfdragora/helpinfo.py:135
 msgid ""
 "<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are "
 "added to updates and filtered as updates.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:124
+#: dnfdragora/helpinfo.py:136
 msgid ""
 "<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked "
 "dnfdragora update is hidden if there are no updates."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:125
+#: dnfdragora/helpinfo.py:137
 msgid ""
 "<br><b>NOTE</b> that this option is experimental, not all desktops manage it "
 "as expected</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:126
+#: dnfdragora/helpinfo.py:138
 msgid ""
 "<li><b>Interval to check for updates</b>: the given number represents how "
 "often dnfdragora checks for updates; the value is expressed in minutes</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:127
+#: dnfdragora/helpinfo.py:139
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
 "<li><b>元数据过期时间</b>: 强制元数据过期的时间，值以小时表示</li></ul>"
 
-#: dnfdragora/helpinfo.py:128
+#: dnfdragora/helpinfo.py:140
 msgid "<h2>Layout options</h2>"
 msgstr "<h2>布局选项</h2>"
 
-#: dnfdragora/helpinfo.py:129
+#: dnfdragora/helpinfo.py:141
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
 "i> filter active, i.e. showing only package available for updates if any.</"
@@ -1442,7 +1739,7 @@ msgstr ""
 "<ul><li><b>显示更新</b>: 如果选中 dnfdragora 以 <i>更新</i> 过滤器处于活动状"
 "态，即仅显示可用于更新的包（如果有）。</li>"
 
-#: dnfdragora/helpinfo.py:130
+#: dnfdragora/helpinfo.py:142
 msgid ""
 "<li><b>Do not show groups view</b>: filtering by groups could require CPU if "
 "using comps, if this option is checked dnfdragora starts showing all "
@@ -1451,112 +1748,92 @@ msgstr ""
 "<li><b>不显示组视图</b>: 使用 comps 时，按组过滤会消耗 CPU，如果选中此选项，"
 "则 dnfdragora 将开始显示所有数据包。</li></ul>"
 
-#: dnfdragora/helpinfo.py:131
+#: dnfdragora/helpinfo.py:143
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr "<b>注</b> 上述选项需要重新启动 dnfdragora。"
 
-#: dnfdragora/helpinfo.py:132
-msgid "<h2>Search options</h2>"
-msgstr "<h2>搜索选项</h2>"
-
-#: dnfdragora/helpinfo.py:133
-msgid ""
-"<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only "
-"newest packages on search.</li>"
-msgstr ""
-
-#: dnfdragora/helpinfo.py:134
-msgid ""
-"<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-"regular expressions will add \"*\" to the given words, restoring the "
-"behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-msgstr ""
-
-#: dnfdragora/helpinfo.py:135
+#: dnfdragora/helpinfo.py:144
 msgid "<h2>Logging options</h2>"
 msgstr "<h2>记录选项</h2>"
 
-#: dnfdragora/helpinfo.py:136
+#: dnfdragora/helpinfo.py:145
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr "启用这些选项让 dnfdragora 登录名为 <i>dnfdragora.log</i>."
 
-#: dnfdragora/helpinfo.py:137
+#: dnfdragora/helpinfo.py:146
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows you to set the logging "
 "directory; the directory must exist and needs write permission.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:138
+#: dnfdragora/helpinfo.py:147
 msgid ""
 "<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:146
+#: dnfdragora/helpinfo.py:155
 msgid "Help Menu"
 msgstr "帮助菜单"
 
-#: dnfdragora/helpinfo.py:148
+#: dnfdragora/helpinfo.py:157
 msgid "<h2>Manual</h2>"
 msgstr "<h2>手册</h2>"
 
-#: dnfdragora/helpinfo.py:149
+#: dnfdragora/helpinfo.py:158
 msgid "This menu opens dnfdragora help dialog."
 msgstr "此菜单打开 dnfdragora 帮助对话框。"
 
-#: dnfdragora/helpinfo.py:150
+#: dnfdragora/helpinfo.py:159
 msgid "<h2>About</h2>"
 msgstr "<h2>关于</h2>"
 
-#: dnfdragora/helpinfo.py:151
+#: dnfdragora/helpinfo.py:160
 msgid "This menu opens dnfdragora about dialog."
 msgstr "此菜单打开 dnfdragora 关于对话框。"
 
-#: dnfdragora/helpinfo.py:159
-msgid "Views and search"
-msgstr "查看和搜索"
-
-#: dnfdragora/helpinfo.py:161
+#: dnfdragora/helpinfo.py:170
 msgid "<h2>Views</h2>"
 msgstr "<h2>观看次数</h2>"
 
-#: dnfdragora/helpinfo.py:162
+#: dnfdragora/helpinfo.py:171
 msgid ""
 "The first combobox allows you to show packages by groups. If <i>Groups</i> "
 "is selected, the group panel shows a tree view containing groups, and "
-"selecting a group shows related packages in the package panel."
+"selecting a group shows related packages in the package panel.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:163
-msgid "If <i>All</i> is selected, the package panel contains all the packages."
+#: dnfdragora/helpinfo.py:172
+msgid ""
+"If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:164
+#: dnfdragora/helpinfo.py:173
 msgid "<h2>Filters</h2>"
 msgstr "<h2>过滤器</h2>"
 
-#: dnfdragora/helpinfo.py:165
+#: dnfdragora/helpinfo.py:174
 msgid ""
 "The Filter combobox allows you to filter the packages shown in the package "
 "panel by:"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:166
-msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-msgstr "<ul><li><b>已安装</b>: 仅显示已安装的软件包。</li>"
+#: dnfdragora/helpinfo.py:176
+msgid "<li><b>Installed</b>: shows installed packages only.</li>"
+msgstr ""
 
-#: dnfdragora/helpinfo.py:167
+#: dnfdragora/helpinfo.py:177
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
 msgstr "<li><b>未安装</b>: 仅显示可用包。</li>"
 
-#: dnfdragora/helpinfo.py:168
+#: dnfdragora/helpinfo.py:178
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr "<li><b>刷新</b>: 显示仅可用于更新的包。</li>"
 
-#: dnfdragora/helpinfo.py:169
+#: dnfdragora/helpinfo.py:179
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
@@ -1564,90 +1841,89 @@ msgstr ""
 "<li><b>仅显示 x86_64 和 noarch</b>: 如果 dnfdragora 在 x86_64 架构上运行，它"
 "会隐藏 i686 包。</li>"
 
-#: dnfdragora/helpinfo.py:170
+#: dnfdragora/helpinfo.py:180
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-"installed.</li></ul>"
-msgstr "<li><b>全部</b>: 显示所有软件包，即可用、更新和已安装。</li></ul>"
+"installed.</li>"
+msgstr ""
 
-#: dnfdragora/helpinfo.py:171
+#: dnfdragora/helpinfo.py:182
 msgid "<h2>Search</h2>"
 msgstr "<h2>搜索</h2>"
 
-#: dnfdragora/helpinfo.py:172
-msgid ""
-"Search is performed by pressing the <i>Search</i> button when the text field "
-"is not empty. The Search combobox allows you to search the given text in "
-"package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>."
+#: dnfdragora/helpinfo.py:183
+#, python-format
+msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:173
+#: dnfdragora/helpinfo.py:184
 msgid ""
-"A special checkbox <i>Use regexp</i> is used to look for packages by python "
-"language regular expressions. This search is performed on cached package "
-"information such as for the <b>only names and summaries</b>."
+"that provides full-featured package search. When a search is active the "
+"filter combobox is disabled "
 msgstr ""
-"一个特殊的复选框 <i>使用正则表达式</i> 用于通过python 语言正则表达式查找包。 "
-"此搜索是对缓存的包信息执行的，例如 <b>只有名字和摘要</b>."
-
-#: dnfdragora/helpinfo.py:174
-msgid ""
-"<i>Note</i>: when regular expressions are used to search by name, the full "
-"package filename including the version is used."
-msgstr ""
-
-#: dnfdragora/helpinfo.py:175
-msgid "The <i>Clear search</i> button resets search text field."
-msgstr "该 <i>清除搜索</i> 按钮重置搜索文本字段。"
 
 #: dnfdragora/helpinfo.py:185
+msgid "and an info label shows the active search text or dependency query. "
+msgstr ""
+
+#: dnfdragora/helpinfo.py:186
+msgid ""
+"The <b>Clear search</b> button (eraser icon) next to the Search button "
+"resets all search state "
+msgstr ""
+
+#: dnfdragora/helpinfo.py:187
+msgid "and re-enables the filter combobox.<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:197
 msgid ""
 "This panel shows all the groups available to filter packages, if the Groups "
 "view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:195
+#: dnfdragora/helpinfo.py:207
 msgid ""
 "This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:196
+#: dnfdragora/helpinfo.py:208
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr "任何包的复选框都可用于将相关包添加到事务以进行安装、更新或删除。"
 
-#: dnfdragora/helpinfo.py:206
+#: dnfdragora/helpinfo.py:218
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr "此面板显示所有包裹信息，例如 <i>描述</i>, <i>URL</i>, <i>存储库</i>."
 
-#: dnfdragora/helpinfo.py:207
+#: dnfdragora/helpinfo.py:219
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr "<br><br><i>请注意，目前 dnfdaemon 不提供更改日志。</i>"
 
-#: dnfdragora/helpinfo.py:215
+#: dnfdragora/helpinfo.py:227
 msgid "Progress bar"
 msgstr "进度条"
 
-#: dnfdragora/helpinfo.py:217
+#: dnfdragora/helpinfo.py:229
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr "进度条显示 dnfdragora 操作进度，例如事务和缓存数据。"
 
-#: dnfdragora/helpinfo.py:225
+#: dnfdragora/helpinfo.py:237
 msgid "Buttons line"
 msgstr "纽扣线"
 
-#: dnfdragora/helpinfo.py:227
+#: dnfdragora/helpinfo.py:239
 msgid ""
 "<ul><li><b>Apply</b>: when some packages are selected for installing or "
 "updating or deselected for uninstalling this button runs the transaction to "
@@ -1656,7 +1932,7 @@ msgstr ""
 "<ul><li><b>申请</b>: 选择某些软件包以安装或更新或取消选择卸载此按钮运行要执行"
 "的事务。</li>"
 
-#: dnfdragora/helpinfo.py:228
+#: dnfdragora/helpinfo.py:240
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
@@ -1664,7 +1940,7 @@ msgstr ""
 "<li><b>全选</b>: 如果包被过滤以进行更新，则仅此按钮允许一次性选择所有包。</"
 "li>"
 
-#: dnfdragora/helpinfo.py:229
+#: dnfdragora/helpinfo.py:241
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
 msgstr "<li><b>退出</b>: 从 dnfdragora 退出。</li></ul>"
 
@@ -1769,303 +2045,285 @@ msgstr "变更日志"
 msgid "Requirements"
 msgstr "安装需求"
 
-#: dnfdragora/ui.py:408
+#: dnfdragora/ui.py:424
 msgid "Software Management - dnfdragora"
 msgstr "软件管理 - dnfdragora"
 
-#: dnfdragora/ui.py:478
+#: dnfdragora/ui.py:497
 msgid "Arch"
 msgstr "架构"
 
-#: dnfdragora/ui.py:478
+#: dnfdragora/ui.py:497
 msgid "Release"
 msgstr "发行"
 
-#: dnfdragora/ui.py:478
+#: dnfdragora/ui.py:497
 msgid "Summary"
 msgstr "概要"
 
-#: dnfdragora/ui.py:478
+#: dnfdragora/ui.py:497
 msgid "Version"
 msgstr "版本"
 
-#: dnfdragora/ui.py:486
+#: dnfdragora/ui.py:505
 msgid "Status"
 msgstr "状态"
 
-#: dnfdragora/ui.py:498
-msgid "Installed"
-msgstr "已安装"
-
-#: dnfdragora/ui.py:499
+#: dnfdragora/ui.py:518
 msgid "Not installed"
 msgstr "未安装"
 
-#: dnfdragora/ui.py:500
+#: dnfdragora/ui.py:519
 msgid "To update"
 msgstr "升级"
 
-#: dnfdragora/ui.py:506
+#: dnfdragora/ui.py:525
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "仅显示 %s 和任意架构的软件"
 
-#: dnfdragora/ui.py:512
+#: dnfdragora/ui.py:531
 msgid "Groups"
 msgstr "组"
 
-#: dnfdragora/ui.py:517
+#: dnfdragora/ui.py:536
 msgid "Grouping packages"
 msgstr ""
 
-#: dnfdragora/ui.py:552
+#: dnfdragora/ui.py:571
 msgid "Filtering packages"
 msgstr ""
 
-#: dnfdragora/ui.py:571
-msgid "in names"
-msgstr "在名称中"
-
-#: dnfdragora/ui.py:572
-msgid "in descriptions"
-msgstr "在描述中"
-
-#: dnfdragora/ui.py:573
-msgid "in summaries"
-msgstr "在概要中"
-
-#: dnfdragora/ui.py:574
-msgid "in file names"
-msgstr "在文件名中"
-
 #: dnfdragora/ui.py:596
-msgid "Use regexp"
-msgstr "使用正则表达式"
-
-#: dnfdragora/ui.py:599
-msgid "&Search"
-msgstr "搜索(&S)"
-
-#: dnfdragora/ui.py:600
-msgid "Search packages"
+msgid "Open search dialog"
 msgstr ""
 
-#: dnfdragora/ui.py:603
+#: dnfdragora/ui.py:598
 msgid "&Clear search"
 msgstr "清除搜索结果(&C)"
 
-#: dnfdragora/ui.py:604
-msgid "Clear search field"
+#: dnfdragora/ui.py:599
+msgid "Clear current search"
 msgstr ""
 
-#: dnfdragora/ui.py:619
+#: dnfdragora/ui.py:614
 msgid "Sel&ect all"
 msgstr "全选"
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:616
 msgid "Select all the packages"
 msgstr ""
 
-#: dnfdragora/ui.py:626 dnfdragora/ui.py:645 dnfdragora/ui.py:710
+#: dnfdragora/ui.py:621 dnfdragora/ui.py:640 dnfdragora/ui.py:705
 msgid "&Quit"
 msgstr "退出(&Q)"
 
-#: dnfdragora/ui.py:628
+#: dnfdragora/ui.py:623
 msgid "Quit the application"
 msgstr ""
 
-#: dnfdragora/ui.py:638 dnfdragora/ui.py:706
+#: dnfdragora/ui.py:633 dnfdragora/ui.py:701
 msgid "&File"
 msgstr "文件(&F)"
 
-#: dnfdragora/ui.py:641 dnfdragora/ui.py:707
+#: dnfdragora/ui.py:636 dnfdragora/ui.py:702
 msgid "Reset the selection"
 msgstr "重置所选项"
 
-#: dnfdragora/ui.py:642 dnfdragora/ui.py:708
+#: dnfdragora/ui.py:637 dnfdragora/ui.py:703
 msgid "Refresh Metadata"
 msgstr "更新元数据"
 
-#: dnfdragora/ui.py:643 dnfdragora/ui.py:709
+#: dnfdragora/ui.py:638 dnfdragora/ui.py:704
 msgid "Repositories"
 msgstr "仓库"
 
-#: dnfdragora/ui.py:652
+#: dnfdragora/ui.py:647
 msgid "&Actions"
 msgstr ""
 
-#: dnfdragora/ui.py:655
+#: dnfdragora/ui.py:650
 msgid "&Action on packages"
 msgstr ""
 
-#: dnfdragora/ui.py:672 dnfdragora/ui.py:732
+#: dnfdragora/ui.py:667 dnfdragora/ui.py:727
 msgid "&Options"
 msgstr "选项(&O)"
 
-#: dnfdragora/ui.py:675 dnfdragora/ui.py:733
+#: dnfdragora/ui.py:670 dnfdragora/ui.py:728
 msgid "User preferences"
 msgstr "首选项"
 
-#: dnfdragora/ui.py:682 dnfdragora/ui.py:744
+#: dnfdragora/ui.py:677 dnfdragora/ui.py:739
 msgid "&Help"
 msgstr "帮助(&H)"
 
-#: dnfdragora/ui.py:685 dnfdragora/ui.py:745
+#: dnfdragora/ui.py:680 dnfdragora/ui.py:740
 msgid "Manual"
 msgstr "手动"
 
-#: dnfdragora/ui.py:687 dnfdragora/ui.py:746
+#: dnfdragora/ui.py:682 dnfdragora/ui.py:741
 msgid "&About"
 msgstr "关于(&A)"
 
-#: dnfdragora/ui.py:782
+#: dnfdragora/ui.py:777
 msgid "update"
 msgstr "升级"
 
-#: dnfdragora/ui.py:785
+#: dnfdragora/ui.py:780
 msgid "locked"
 msgstr "已锁定"
 
-#: dnfdragora/ui.py:788
+#: dnfdragora/ui.py:783
 msgid "installed"
 msgstr "已安装"
 
-#: dnfdragora/ui.py:1212
+#: dnfdragora/ui.py:1028
+#, python-format
+msgid "[ Search: %s ]"
+msgstr ""
+
+#: dnfdragora/ui.py:1030
+#, python-format
+msgid "[ Dependency search: %s ]"
+msgstr ""
+
+#: dnfdragora/ui.py:1258
 msgid "Missing information"
 msgstr "缺少信息"
 
-#: dnfdragora/ui.py:1229
+#: dnfdragora/ui.py:1275
 msgid "Severity"
 msgstr ""
 
-#: dnfdragora/ui.py:1238
+#: dnfdragora/ui.py:1284
 msgid "Repository"
 msgstr "仓库"
 
-#: dnfdragora/ui.py:1610
+#: dnfdragora/ui.py:1733
 msgid "&Downgrade"
 msgstr ""
 
-#: dnfdragora/ui.py:1613
+#: dnfdragora/ui.py:1736
 msgid "&Reinstall"
 msgstr ""
 
-#: dnfdragora/ui.py:1616
+#: dnfdragora/ui.py:1739
 msgid "&Distro Sync"
 msgstr ""
 
-#: dnfdragora/ui.py:1727
+#: dnfdragora/ui.py:1858
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "无法移除软件包 %s"
 
-#: dnfdragora/ui.py:1727
+#: dnfdragora/ui.py:1858
 msgid "Protected package selected"
 msgstr "选中了受保护的软件包"
 
-#: dnfdragora/ui.py:1962
+#: dnfdragora/ui.py:2169
 msgid "Backend busy"
 msgstr ""
 
-#: dnfdragora/ui.py:1963
+#: dnfdragora/ui.py:2170
 msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
 msgstr ""
 
-#: dnfdragora/ui.py:1999
+#: dnfdragora/ui.py:2206
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Unknown action %(action)s on %(name)s"
 
-#: dnfdragora/ui.py:2031
+#: dnfdragora/ui.py:2238
 msgid "Transaction verification"
 msgstr ""
 
-#: dnfdragora/ui.py:2087
+#: dnfdragora/ui.py:2294
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr ""
 
-#: dnfdragora/ui.py:2107
+#: dnfdragora/ui.py:2313
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr ""
 
-#: dnfdragora/ui.py:2146
+#: dnfdragora/ui.py:2352
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr ""
 
-#: dnfdragora/ui.py:2165 dnfdragora/ui.py:2186
+#: dnfdragora/ui.py:2371 dnfdragora/ui.py:2392
 msgid "Preparation of transaction"
 msgstr ""
 
-#: dnfdragora/ui.py:2248
+#: dnfdragora/ui.py:2454
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr ""
 
-#: dnfdragora/ui.py:2337
+#: dnfdragora/ui.py:2543
 msgid "Unknown"
 msgstr ""
 
-#: dnfdragora/ui.py:2369
+#: dnfdragora/ui.py:2575
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 
-#: dnfdragora/ui.py:2406
+#: dnfdragora/ui.py:2612
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr ""
 
-#: dnfdragora/ui.py:2495
+#: dnfdragora/ui.py:2701
 msgid "Caching updates"
 msgstr "缓存更新"
 
-#: dnfdragora/ui.py:2498
+#: dnfdragora/ui.py:2704
 msgid "Caching installed"
 msgstr "缓存已安装"
 
-#: dnfdragora/ui.py:2502
+#: dnfdragora/ui.py:2708
 msgid "Caching available"
 msgstr "缓存可用"
 
-#: dnfdragora/ui.py:2552
+#: dnfdragora/ui.py:2758
 msgid "Creating packages cache"
 msgstr "创建包缓存"
 
-#: dnfdragora/ui.py:2572
+#: dnfdragora/ui.py:2778
 msgid "Transaction with warnings"
 msgstr ""
 
-#: dnfdragora/ui.py:2616 dnfdragora/ui.py:2673
+#: dnfdragora/ui.py:2822 dnfdragora/ui.py:2879
 msgid "Build Transaction error"
 msgstr "构建事务错误"
 
-#: dnfdragora/ui.py:2659
+#: dnfdragora/ui.py:2865
 msgid "Packages installed:"
 msgstr ""
 
-#: dnfdragora/ui.py:2662
+#: dnfdragora/ui.py:2868
 msgid "Packages removed:"
 msgstr ""
 
-#: dnfdragora/ui.py:2664
+#: dnfdragora/ui.py:2870
 msgid "Error occured:"
 msgstr ""
 
-#: dnfdragora/ui.py:2667
+#: dnfdragora/ui.py:2873
 msgid "Applying changes to the system"
 msgstr "应用所作更改"
 
-#: dnfdragora/ui.py:2703
+#: dnfdragora/ui.py:2909
 #, python-format
 msgid "Error in status %(status)s on %(event)s"
 msgstr ""
 
-#: dnfdragora/ui.py:2836
+#: dnfdragora/ui.py:3042
 msgid "Search error using regular expression"
 msgstr "使用正则表达式搜索错误"
 
@@ -2157,11 +2415,19 @@ msgstr ""
 #~ "change</i><br>"
 #~ msgstr "<br><i>请注意，由于 dnf API 更改，此功能目前已损坏</i><br>"
 
+#~ msgid "<h2>Search options</h2>"
+#~ msgstr "<h2>搜索选项</h2>"
+
 #~ msgid ""
 #~ "<i>Note</i> that if regular expressions are used to search by names full "
 #~ "package filename with version is used."
 #~ msgstr ""
 #~ "<i>注</i> 如果使用正则表达式按名称搜索，则使用带有版本的完整包文件名。"
+
+#~ msgid ""
+#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
+#~ "installed.</li></ul>"
+#~ msgstr "<li><b>全部</b>: 显示所有软件包，即可用、更新和已安装。</li></ul>"
 
 #~ msgid ""
 #~ "<li><b>Debug level</b>: if checked log verbose logging is enabled.</li></"
@@ -2190,6 +2456,9 @@ msgstr ""
 #~ "<ul><li><b>更改目录</b>: 这个选项允许设置日志目录，目录必须存在并且需要写"
 #~ "权限。</li>"
 
+#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
+#~ msgstr "<ul><li><b>已安装</b>: 仅显示已安装的软件包。</li>"
+
 #~ msgid ""
 #~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
 #~ "only newest packages on search. <i>Note that is valid if searches are not "
@@ -2197,6 +2466,14 @@ msgstr ""
 #~ msgstr ""
 #~ "<ul><li><b>只显示最新的包</b>: 如果选中 dnfdragora，则仅在搜索中显示最新的"
 #~ "软件包。 <i>请注意，如果不使用正则表达式执行搜索，则有效</i></li>"
+
+#~ msgid ""
+#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
+#~ "python language regular expressions. This search is performed on cached "
+#~ "package information such as for the <b>only names and summaries</b>."
+#~ msgstr ""
+#~ "一个特殊的复选框 <i>使用正则表达式</i> 用于通过python 语言正则表达式查找"
+#~ "包。 此搜索是对缓存的包信息执行的，例如 <b>只有名字和摘要</b>."
 
 #~ msgid "Bandwidth"
 #~ msgstr "带宽"
@@ -2267,6 +2544,9 @@ msgstr ""
 #~ "Filter combobox allows to filter packages shown into package panel by:"
 #~ msgstr "过滤器组合框允许通过以下方式过滤显示在包面板中的包："
 
+#~ msgid "Filters and search line"
+#~ msgstr "过滤器和搜索行"
+
 #~ msgid ""
 #~ "First combobox allows to show packages by groups. If <i>Groups</i> is "
 #~ "selected group panel shows a tree view containing groups, while selecting "
@@ -2309,6 +2589,9 @@ msgstr ""
 #~ msgid "Protected packages"
 #~ msgstr "要保护的软件包"
 
+#~ msgid "Proxy password"
+#~ msgstr "代理密码"
+
 #~ msgid "Refreshing Repository Metadata"
 #~ msgstr "刷新仓库的元数据"
 
@@ -2327,6 +2610,9 @@ msgstr ""
 #~ msgid "SSL verify"
 #~ msgstr "SSL 检查"
 
+#~ msgid "Search"
+#~ msgstr "查找"
+
 #~ msgid ""
 #~ "Search is performed by pressing <i>Search</i> button if text field is "
 #~ "filled. Search combobox allows to search given text into package "
@@ -2335,12 +2621,21 @@ msgstr ""
 #~ "通过按执行搜索 <i>搜索</i> 按钮（如果文本字段已填充）。 搜索组合框允许将给"
 #~ "定的文本搜索到包中 <i>名字</i>, <i>总结</i>, <i>说明</i> 或 <i>文件</i>."
 
+#~ msgid "Search options"
+#~ msgstr "搜索选项"
+
+#~ msgid "Show newest packages only"
+#~ msgstr "只显示最新的软件包"
+
 #~ msgid "Start transaction"
 #~ msgstr "开始处理事务"
 
 #, python-format
 #~ msgid "Starting to download : %s "
 #~ msgstr "开始下载：%s "
+
+#~ msgid "The <i>Clear search</i> button resets search text field."
+#~ msgstr "该 <i>清除搜索</i> 按钮重置搜索文本字段。"
 
 #~ msgid ""
 #~ "This menu opens a dialog that allows to enable or disable repositories. "
@@ -2398,11 +2693,17 @@ msgstr ""
 #~ msgid "Unmanaged widget"
 #~ msgstr "组件未被管理"
 
+#~ msgid "Use regexp"
+#~ msgstr "使用正则表达式"
+
 #~ msgid "Username"
 #~ msgstr "用户名"
 
 #~ msgid "Verify changes on the system"
 #~ msgstr "校验系统更改"
+
+#~ msgid "Views and search"
+#~ msgstr "查看和搜索"
 
 #, python-format
 #~ msgid ""
@@ -2461,3 +2762,15 @@ msgstr ""
 #~ "dnfdragora 使用 Python 3 编写，并使用了来自 SUSE 的 libYui 抽象库以便兼容 "
 #~ "Qt5、GTK+ 3 或 ncurses 接口。它为 DNF 软件包管理器提供了图形化前端，以便在"
 #~ "多种系统环境中使用 DNF。"
+
+#~ msgid "in descriptions"
+#~ msgstr "在描述中"
+
+#~ msgid "in file names"
+#~ msgstr "在文件名中"
+
+#~ msgid "in names"
+#~ msgstr "在名称中"
+
+#~ msgid "in summaries"
+#~ msgstr "在概要中"
