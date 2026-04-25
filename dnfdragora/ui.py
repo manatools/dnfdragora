@@ -2299,7 +2299,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionActionProgress: Different session path received")
             return
-        #TODO bar with processed??? if not always 0 self.infobar.set_progress(0.0)
         if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
             self._trans_dialog.on_action_progress(nevra, processed, total)
         else:
