@@ -603,6 +603,11 @@ class RepoDialog(basedialog.BaseDialog):
         self.enabledRepos = []
         self.disabledRepos = []
         self._refresh_data = False
+        # Reverse map: YTableItem → repo_id for O(1) lookup in _selectedRepository()
+        self._itemToRepoId = {}
+        # Last repo_id whose attributes were loaded; avoids redundant dbus calls
+        # when the same row is still selected (e.g. checkbox toggle on same row).
+        self._last_info_repo_id = None
         self.infoKeys = {
           'id'                  : _('Identifier'),
           'name'                : _('Name'),
@@ -625,7 +630,7 @@ class RepoDialog(basedialog.BaseDialog):
           #
           'proxy'               : _('Proxy'),
           'proxy_username'      : _('Proxy username'),
-          'proxy_password'      : _('Proxy password'),
+          #'proxy_password'      : _('Proxy password'), TODO re-enable when it works
           #
           'repofile'            : _('Repo file'),
           'revision'            : _('Revision'),
@@ -689,6 +694,8 @@ class RepoDialog(basedialog.BaseDialog):
                               if not r['id'].endswith('-source') and not r['id'].endswith('-debuginfo')]
 
         self.itemList = {}
+        self._itemToRepoId = {}
+        self._last_info_repo_id = None
         for r in self.backend.get_repositories():
             item = MUI.YTableItem()
             item.addCell(bool(r['enabled']))
@@ -697,32 +704,40 @@ class RepoDialog(basedialog.BaseDialog):
             self.itemList[r['id']] = {
                 'item': item, 'name': r['name'], 'id': r['id'], 'enabled': r['enabled'],
             }
+            self._itemToRepoId[item] = r['id']
 
         v = [self.itemList[k]['item'] for k in sorted(self.itemList.keys())]
         self.repoList.deleteAllItems()
         self.repoList.addItems(v)
 
-        # Populate attribute panel for whatever row the table pre-selects
-        repo_id = self._selectedRepository()
-        if repo_id:
-            self._addAttributeInfo(repo_id)
+        # Explicitly select the first row so attributes are shown immediately.
+        if v:
+            try:
+                self.repoList.selectItem(v[0], True)
+            except Exception:
+                pass
+            first_id = next(iter(sorted(self.itemList.keys())), None)
+            if first_id:
+                self._addAttributeInfo(first_id)
 
     def _selectedRepository(self):
-        '''Return the repo id of the currently selected table row, or None.'''
+        '''Return the repo id of the currently selected table row, or None.
+        O(1) via the reverse-lookup dict built in _populateRepoList().
+        '''
         sel = self.repoList.selectedItem()
         if sel:
-            for key in self.itemList.keys():
-                if self.itemList[key]['item'] == sel:
-                    return self.itemList[key]['id']
+            return self._itemToRepoId.get(sel)
         return None
 
     def _addAttributeInfo(self, repo_id):
-        '''Fill the attribute table for repo_id.'''
+        '''Fill the attribute table for repo_id.
+        Updates self._last_info_repo_id so callers can skip redundant fetches.
+        '''
         if not repo_id:
             return
         v = []
         try:
-            repo_attrs = [a for a in self.infoKeys.keys() if a != "proxy_password"]  # TODO re-enable when it works
+            repo_attrs = [a for a in self.infoKeys.keys()]
             ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
             logger.debug(ri)
             if len(ri) > 1:
@@ -760,6 +775,7 @@ class RepoDialog(basedialog.BaseDialog):
 
         self.info.deleteAllItems()
         self.info.addItems(v)
+        self._last_info_repo_id = repo_id
 
     # ── event handlers ──────────────────────────────────────────────────────
 
@@ -767,7 +783,10 @@ class RepoDialog(basedialog.BaseDialog):
         '''Handle any event from the repo table.
 
         ValueChanged  → checkbox was toggled: update the in-memory enabled state.
-        Any reason    → refresh the attribute panel for the now-selected row.
+        Any reason    → refresh the attribute panel for the now-selected row,
+                        but only when the selection actually changed (avoids a
+                        redundant synchronous dbus call on every checkbox click
+                        that lands on the already-selected row).
         '''
         if yui_event.reason() == MUI.YEventReason.ValueChanged:
             changedItem = self.repoList.changedItem()
@@ -776,13 +795,12 @@ class RepoDialog(basedialog.BaseDialog):
                     new_state = bool(changedItem.cell(0).checked())
                 except Exception:
                     new_state = False
-                for it in self.itemList:
-                    if self.itemList[it]['item'] == changedItem:
-                        self.itemList[it]['enabled'] = new_state
-                        break
+                repo_key = self._itemToRepoId.get(changedItem)
+                if repo_key is not None:
+                    self.itemList[repo_key]['enabled'] = new_state
 
         repo_id = self._selectedRepository()
-        if repo_id:
+        if repo_id and repo_id != self._last_info_repo_id:
             MUI.YUI.app().busyCursor()
             self._addAttributeInfo(repo_id)
             MUI.YUI.app().normalCursor()
