@@ -581,20 +581,28 @@ class AboutDialog:
         }
         common.AboutDialog(info)
 
-class RepoDialog:
+class RepoDialog(basedialog.BaseDialog):
     '''
-    Create a dialog to manage repository enabling and disabling
+    Dialog to manage repository enabling and disabling.
+    Inherits from BaseDialog; uses eventManager for all widget events.
+    Selecting any row (click or keyboard navigation) immediately populates
+    the attribute panel at the bottom.
     '''
 
     def __init__(self, parent):
-        '''
-        Constructor
-        @param parent: main parent dialog
-        '''
+        basedialog.BaseDialog.__init__(
+            self,
+            _("Repository Management"),
+            "",
+            basedialog.DialogType.POPUP,
+            700, 500,
+        )
         self.parent = parent
-        self.factory = self.parent.factory
         self.backend = self.parent.backend
         self.itemList = {}
+        self.enabledRepos = []
+        self.disabledRepos = []
+        self._refresh_data = False
         self.infoKeys = {
           'id'                  : _('Identifier'),
           'name'                : _('Name'),
@@ -630,234 +638,175 @@ class RepoDialog:
           'mirrors'             : _('Mirrors'),
         }
 
-    def _setupUI(self):
-        '''
-        setup the dialog layout
-        '''
-        self.appTitle = MUI.YUI.app().applicationTitle()
-
-        self.dialog = self.factory.createPopupDialog()
-        ## set new title to get it in dialog
-        MUI.YUI.app().setApplicationTitle(_("Repository Management") )
-
-        vbox = self.factory.createVBox(self.dialog)
-        minSize = self.factory.createMinSize( vbox, 700, 500 )  # pixels
-        vbox = self.factory.createVBox(minSize)
-
-        #Line for logo and title
-        hbox_iconbar  = self.factory.createHBox(vbox)
-        head_align_left  = self.factory.createLeft(hbox_iconbar)
-        hbox_iconbar     = self.factory.createHBox(head_align_left)
-        #TODO fix icon with one that recall repository management
-        self.factory.createImage(hbox_iconbar, self.parent.icon)
-
-        self.factory.createHeading(hbox_iconbar, _("Repository Management"))
-
-        hbox_middle = self.factory.createHBox(vbox)
-        hbox_bottom = self.factory.createHBox(vbox)
-        hbox_footbar = self.factory.createHBox(vbox)
-
-        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT,50)
-        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT,30)
-        hbox_footbar.setWeight(MUI.YUIDimension.YD_VERT,10)
+    def UIlayout(self, layout):
+        '''Build the dialog widget tree.'''
+        # Repo list (upper area)
+        hbox_repos = self.factory.createHBox(layout)
+        hbox_repos.setWeight(MUI.YUIDimension.YD_VERT, 55)
 
         checkboxed = True
         repoList_header = MUI.YTableHeader()
         repoList_header.addColumn("", checkboxed, alignment=MUI.YAlignmentType.YAlignCenter)
         repoList_header.addColumn(_('Name'))
         repoList_header.addColumn(_('Id'))
+        self.repoList = self.factory.createTable(hbox_repos, repoList_header)
+        self.repoList.setNotify(True)
 
-
-        self.repoList = self.factory.createTable(hbox_middle, repoList_header)
+        # Attribute panel (lower area)
+        hbox_info = self.factory.createHBox(layout)
+        hbox_info.setWeight(MUI.YUIDimension.YD_VERT, 35)
 
         info_header = MUI.YTableHeader()
-        columns = [_('Information'), _('Value') ]
-        for col in (columns):
+        for col in [_('Information'), _('Value')]:
             info_header.addColumn(col)
-        self.info = self.factory.createTable(hbox_bottom, info_header)
+        self.info = self.factory.createTable(hbox_info, info_header)
 
-        #self.info = self.factory.createRichText(hbox_bottom,"")
-        #self.info.setWeight(0,40)
-        #self.info.setWeight(1,40)
+        # Button bar
+        hbox_buttons = self.factory.createHBox(layout)
+        hbox_buttons.setWeight(MUI.YUIDimension.YD_VERT, 10)
 
-        self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
-        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
+        self.applyButton = self.factory.createPushButton(hbox_buttons, _("&Apply"))
+        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ, 3)
+        self.quitButton = self.factory.createPushButton(hbox_buttons, _("&Cancel"))
+        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ, 3)
 
-        self.quitButton = self.factory.createPushButton(hbox_footbar, _("&Cancel"))
-        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
-        #self.dialog.setDefaultButton(self.quitButton)
+        # Wire events
+        self.eventManager.addWidgetEvent(self.repoList, self._onRepoListEvent)
+        self.eventManager.addWidgetEvent(self.applyButton, self._onApply)
+        self.eventManager.addWidgetEvent(self.quitButton, self._onCancel)
+        self.eventManager.addCancelEvent(self._onCancel)
+
+        # Populate the list
+        self._populateRepoList()
+
+    def _populateRepoList(self):
+        '''Load repositories into the table and show attributes of the first row.'''
+        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
+        self.enabledRepos = [r['id'] for r in repos
+                             if not r['id'].endswith('-source') and not r['id'].endswith('-debuginfo')]
+        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
+        self.disabledRepos = [r['id'] for r in repos
+                              if not r['id'].endswith('-source') and not r['id'].endswith('-debuginfo')]
 
         self.itemList = {}
-        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
-        self.enabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
-        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
-        self.disabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
-
-        repos = self.backend.get_repositories()
-
-        for r in repos:
+        for r in self.backend.get_repositories():
             item = MUI.YTableItem()
             item.addCell(bool(r['enabled']))
             item.addCell(str(r['name']))
             item.addCell(str(r['id']))
-
             self.itemList[r['id']] = {
-                'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
+                'item': item, 'name': r['name'], 'id': r['id'], 'enabled': r['enabled'],
             }
 
-        keylist = sorted(self.itemList.keys())
-        v = []
-        for key in keylist :
-            item = self.itemList[key]['item']
-            v.append(item)
-
-        itemCollection = v
-
-        # cleanup old changed items since we are removing all of them
+        v = [self.itemList[k]['item'] for k in sorted(self.itemList.keys())]
         self.repoList.deleteAllItems()
-        self.repoList.addItems(itemCollection)
-        repo_id = self._selectedRepository()
-        self._addAttributeInfo(repo_id)
+        self.repoList.addItems(v)
 
+        # Populate attribute panel for whatever row the table pre-selects
+        repo_id = self._selectedRepository()
+        if repo_id:
+            self._addAttributeInfo(repo_id)
+
+    def _selectedRepository(self):
+        '''Return the repo id of the currently selected table row, or None.'''
+        sel = self.repoList.selectedItem()
+        if sel:
+            for key in self.itemList.keys():
+                if self.itemList[key]['item'] == sel:
+                    return self.itemList[key]['id']
+        return None
 
     def _addAttributeInfo(self, repo_id):
-      '''
-        fill attribute information of the given repo_id
-      '''
-      if not repo_id:
-        return
-      v=[]
-      try:
-          repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr != "proxy_password" ] # TODO add it backs when it works
+        '''Fill the attribute table for repo_id.'''
+        if not repo_id:
+            return
+        v = []
+        try:
+            repo_attrs = [a for a in self.infoKeys.keys() if a != "proxy_password"]  # TODO re-enable when it works
+            ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
+            logger.debug(ri)
+            if len(ri) > 1:
+                logger.warning("Got %d elements expected 1", len(ri))
+            ri = ri[0]
+            for k in sorted(ri.keys()):
+                if k in ("enabled", "name", "id"):
+                    continue
+                key = None
+                value = ""
+                if ri[k]:
+                    key = self.infoKeys.get(k, k)
+                    if k == 'size':
+                        value = misc.format_number(ri[k])
+                    elif k == 'metadata_expire':
+                        value = _('Never') if ri[k] <= -1 else _("%s second(s)" % ri[k])
+                    else:
+                        value = "%s" % (ri[k],)
+                elif k == 'metadata_expire':
+                    key = self.infoKeys[k]
+                    value = _('Now')
+                if key:
+                    item = MUI.YTableItem()
+                    item.addCell(str(key))
+                    item.addCell(str(value))
+                    v.append(item)
+        except NameError as e:
+            logger.error("dnfdaemon NameError: %s", e)
+        except AttributeError as e:
+            logger.error("dnfdaemon AttributeError: %s", e)
+        except GLib.Error as err:
+            logger.error("dnfdaemon client failure [%s]", err)
+        except Exception:
+            logger.error("Unexpected error: %s", sys.exc_info()[0])
 
-          ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
-          logger.debug(ri)
-          if len(ri) > 1:
-            logger.warn("Got %d elements expected 1", len(ri))
-          ri = ri[0] # first element
-          for k in sorted(ri.keys()):
-            if k == "enabled" or k=="name" or k=="id":
-              # skipping data that are already shown into the listbox
-              continue
-            key = None
-            value = ""
-            if ri[k]:
-              key = self.infoKeys[k] if k in self.infoKeys.keys() else k
-              if k == 'size':
-                value = misc.format_number(ri[k])
-              elif k == 'metadata_expire':
-                if ri[k] <= -1:
-                  value = _('Never')
-                else:
-                  value = _("%s second(s)"%(ri[k]))
-              else:
-                value = "%s"%(ri[k])
-            else:
-              if k == 'metadata_expire':
-                key = self.infoKeys[k]
-                value = _('Now')
-            if key:
-              item = MUI.YTableItem(key, value)
-              v.append(item)
+        self.info.deleteAllItems()
+        self.info.addItems(v)
 
-      except NameError as e:
-          logger.error("dnfdaemon NameError: %s ", e)
-      except AttributeError as e:
-          logger.error("dnfdaemon AttributeError: %s ", e)
-      except GLib.Error as err:
-          logger.error("dnfdaemon client failure [%s]", err)
-      except:
-          logger.error("Unexpected error: %s ", sys.exc_info()[0])
+    # ── event handlers ──────────────────────────────────────────────────────
 
-      itemCollection = v
+    def _onRepoListEvent(self, yui_event):
+        '''Handle any event from the repo table.
 
-      # cleanup old changed items since we are removing all of them
-      self.info.deleteAllItems()
-      self.info.addItems(itemCollection)
-
-    def _selectedRepository(self) :
+        ValueChanged  → checkbox was toggled: update the in-memory enabled state.
+        Any reason    → refresh the attribute panel for the now-selected row.
         '''
-        gets the selected repository id from repo list, if any selected
-        '''
-        selected_repo = None
-        sel = self.repoList.selectedItem()
-        if sel :
-            for repo_id in self.itemList:
-                if (self.itemList[repo_id]['item'] == sel) :
-                    selected_repo = repo_id
-                    break
+        if yui_event.reason() == MUI.YEventReason.ValueChanged:
+            changedItem = self.repoList.changedItem()
+            if changedItem:
+                try:
+                    new_state = bool(changedItem.cell(0).checked())
+                except Exception:
+                    new_state = False
+                for it in self.itemList:
+                    if self.itemList[it]['item'] == changedItem:
+                        self.itemList[it]['enabled'] = new_state
+                        break
 
-        return selected_repo
+        repo_id = self._selectedRepository()
+        if repo_id:
+            MUI.YUI.app().busyCursor()
+            self._addAttributeInfo(repo_id)
+            MUI.YUI.app().normalCursor()
 
-    def _handleEvents(self):
-        '''
-        manages dialog events and returns if sack should be filled again for new enabled/disabled repositories
-        '''
-        while True:
-            event = self.dialog.waitForEvent()
+    def _onApply(self):
+        enabled_repos  = [k for k in self.itemList if self.itemList[k]['enabled'] and k in self.disabledRepos]
+        disabled_repos = [k for k in self.itemList if not self.itemList[k]['enabled'] and k in self.enabledRepos]
+        logger.info("Enabling repos: %s", " ".join(enabled_repos))
+        # NOTE: only one async call can be in flight at a time; these are quick
+        # but main window must know repos changed, so keep at least one async.
+        if enabled_repos:
+            self.backend.SetEnabledRepos(enabled_repos)
+        if disabled_repos:
+            self.backend.SetDisabledRepos(disabled_repos, sync=(bool(enabled_repos) and bool(disabled_repos)))
+        self._refresh_data = True
+        self.ExitLoop()
 
-            eventType = event.eventType()
-
-            rebuild_package_list = False
-            group = None
-            #event type checking
-            if (eventType == MUI.YEventType.CancelEvent) :
-                break
-            elif (eventType == MUI.YEventType.WidgetEvent) :
-                # widget selected
-                widget  = event.widget()
-                if (widget == self.quitButton) :
-                    #### QUIT
-                    break
-                elif (widget == self.applyButton) :
-
-                    enabled_repos = [k for k in self.itemList.keys() if self.itemList[k]['enabled'] and k in self.disabledRepos]
-                    disabled_repos = [k for k in self.itemList.keys() if not self.itemList[k]['enabled'] and k in self.enabledRepos]
-
-                    logger.info("Enabling repos %s "%" ".join(enabled_repos))
-                    # NOTE we can manage one async call at the time atm, TODO fix in the future,
-                    # these call are quick though, but main window must know that repos are changed,
-                    # so let's at least one be async
-                    if enabled_repos:
-                      self.backend.SetEnabledRepos(enabled_repos)
-                    if disabled_repos:
-                      self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
-                    return True
-                elif (widget == self.repoList) :
-                  if (event.reason() == MUI.YEventReason.ValueChanged) :
-                    changedItem = self.repoList.changedItem()
-                    if changedItem :
-                      # first column is the checkbox
-                      new_state = False
-                      try:
-                        new_state = bool(changedItem.cell(0).checked())
-                      except Exception:
-                        pass
-                      for it in self.itemList:
-                        if (self.itemList[it]['item'] == changedItem) :
-                          self.itemList[it]['enabled'] = new_state
-                          break
-
-                    repo_id = self._selectedRepository()
-                    MUI.YUI.app().busyCursor()
-                    self._addAttributeInfo(repo_id)
-                    MUI.YUI.app().normalCursor()
-
-        return False
+    def _onCancel(self):
+        self.ExitLoop()
 
     def run(self):
-        '''
-        show and run the dialog
-        '''
-        self._setupUI()
-        refresh_data=self._handleEvents()
-
-        #restore old application title
-        MUI.YUI.app().setApplicationTitle(self.appTitle)
-
-        self.dialog.destroy()
-        self.dialog = None
-        return refresh_data
+        '''Run the dialog and return True if repos were changed.'''
+        super().run()
+        return self._refresh_data
 
 class OptionDialog(basedialog.BaseDialog):
   def __init__(self, parent):
