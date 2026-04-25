@@ -608,6 +608,11 @@ class RepoDialog(basedialog.BaseDialog):
         # Last repo_id whose attributes were loaded; avoids redundant dbus calls
         # when the same row is still selected (e.g. checkbox toggle on same row).
         self._last_info_repo_id = None
+        # Filter states — read from config, written back on every checkbox change.
+        self._show_debuginfo = False
+        self._show_source = False
+        self._show_testing = False
+        self._read_filter_prefs()
         self.infoKeys = {
           'id'                  : _('Identifier'),
           'name'                : _('Name'),
@@ -645,9 +650,20 @@ class RepoDialog(basedialog.BaseDialog):
 
     def UIlayout(self, layout):
         '''Build the dialog widget tree.'''
+        # Filter checkboxes — control which repo categories are shown
+        hbox_filters = self.factory.createHBox(layout)
+        hbox_filters.setWeight(MUI.YUIDimension.YD_VERT, 5)
+        self._cb_debuginfo = self.factory.createCheckBox(
+            hbox_filters, _("&Debug information"), self._show_debuginfo)
+        self._cb_source = self.factory.createCheckBox(
+            hbox_filters, _("&Source"), self._show_source)
+        self._cb_testing = self.factory.createCheckBox(
+            hbox_filters, _("&Testing"), self._show_testing)
+        self.factory.createHStretch(hbox_filters)
+
         # Repo list (upper area)
         hbox_repos = self.factory.createHBox(layout)
-        hbox_repos.setWeight(MUI.YUIDimension.YD_VERT, 55)
+        hbox_repos.setWeight(MUI.YUIDimension.YD_VERT, 50)
 
         checkboxed = True
         repoList_header = MUI.YTableHeader()
@@ -677,6 +693,9 @@ class RepoDialog(basedialog.BaseDialog):
 
         # Wire events
         self.eventManager.addWidgetEvent(self.repoList, self._onRepoListEvent)
+        self.eventManager.addWidgetEvent(self._cb_debuginfo, self._onFilterChange)
+        self.eventManager.addWidgetEvent(self._cb_source, self._onFilterChange)
+        self.eventManager.addWidgetEvent(self._cb_testing, self._onFilterChange)
         self.eventManager.addWidgetEvent(self.applyButton, self._onApply)
         self.eventManager.addWidgetEvent(self.quitButton, self._onCancel)
         self.eventManager.addCancelEvent(self._onCancel)
@@ -684,19 +703,64 @@ class RepoDialog(basedialog.BaseDialog):
         # Populate the list
         self._populateRepoList()
 
+    def _read_filter_prefs(self):
+        '''Load filter checkbox states from userPreferences (defaults: all False).'''
+        config = getattr(self.parent, 'config', None)
+        prefs = getattr(config, 'userPreferences', None) or {}
+        filters = (prefs.get('settings') or {}).get('repo_filters') or {}
+        self._show_debuginfo = bool(filters.get('show_debuginfo', False))
+        self._show_source    = bool(filters.get('show_source',    False))
+        self._show_testing   = bool(filters.get('show_testing',   False))
+
+    def _save_filter_prefs(self):
+        '''Persist current filter states to userPreferences and flush to disk.'''
+        config = getattr(self.parent, 'config', None)
+        if config is None:
+            return
+        prefs = config.userPreferences  # property triggers lazy _load()
+        settings = prefs.setdefault('settings', {})
+        if settings is None:
+            settings = {}
+            prefs['settings'] = settings
+        settings['repo_filters'] = {
+            'show_debuginfo': self._show_debuginfo,
+            'show_source':    self._show_source,
+            'show_testing':   self._show_testing,
+        }
+        try:
+            config.saveUserPreferences()
+        except Exception:
+            logger.warning("RepoDialog: could not save filter preferences")
+
+    def _onFilterChange(self):
+        '''Called when any filter checkbox is toggled; refreshes the repo list.'''
+        self._show_debuginfo = bool(self._cb_debuginfo.value())
+        self._show_source    = bool(self._cb_source.value())
+        self._show_testing   = bool(self._cb_testing.value())
+        self._save_filter_prefs()
+        self._populateRepoList()
+
     def _populateRepoList(self):
-        '''Load repositories into the table and show attributes of the first row.'''
+        '''Load repositories into the table and show attributes of the first row.
+        Only repos passing the current filter checkboxes are shown.
+        '''
         repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
-        self.enabledRepos = [r['id'] for r in repos
-                             if not r['id'].endswith('-source') and not r['id'].endswith('-debuginfo')]
+        self.enabledRepos = [r['id'] for r in repos]
         repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
-        self.disabledRepos = [r['id'] for r in repos
-                              if not r['id'].endswith('-source') and not r['id'].endswith('-debuginfo')]
+        self.disabledRepos = [r['id'] for r in repos]
 
         self.itemList = {}
         self._itemToRepoId = {}
         self._last_info_repo_id = None
         for r in self.backend.get_repositories():
+            rid = r['id']
+            # Apply visibility filters based on checkbox state
+            if not self._show_debuginfo and rid.endswith('-debuginfo'):
+                continue
+            if not self._show_source and rid.endswith('-source'):
+                continue
+            if not self._show_testing and 'testing' in rid:
+                continue
             item = MUI.YTableItem()
             item.addCell(bool(r['enabled']))
             item.addCell(str(r['name']))
