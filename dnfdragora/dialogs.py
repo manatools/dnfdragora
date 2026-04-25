@@ -608,6 +608,8 @@ class RepoDialog(basedialog.BaseDialog):
         # Last repo_id whose attributes were loaded; avoids redundant dbus calls
         # when the same row is still selected (e.g. checkbox toggle on same row).
         self._last_info_repo_id = None
+        # Reference to the filter CheckBoxFrame widget (set in UIlayout).
+        self._filter_frame = None
         # Filter states — read from config, written back on every checkbox change.
         self._show_debuginfo = False
         self._show_source = False
@@ -650,9 +652,12 @@ class RepoDialog(basedialog.BaseDialog):
 
     def UIlayout(self, layout):
         '''Build the dialog widget tree.'''
-        # Filter checkboxes — control which repo categories are shown
-        hbox_filters = self.factory.createHBox(layout)
-        hbox_filters.setWeight(MUI.YUIDimension.YD_VERT, 5)
+        # Filter frame — collapsed by default; reveals additional repo-type checkboxes
+        any_active = self._show_debuginfo or self._show_source or self._show_testing
+        self._filter_frame = self.factory.createCheckBoxFrame(
+            layout, _("Ad&vanced repository types"), any_active)
+        self._filter_frame.setNotify(True)
+        hbox_filters = self.factory.createHBox(self._filter_frame)
         self._cb_debuginfo = self.factory.createCheckBox(
             hbox_filters, _("&Debug information"), self._show_debuginfo)
         self._cb_source = self.factory.createCheckBox(
@@ -693,6 +698,7 @@ class RepoDialog(basedialog.BaseDialog):
 
         # Wire events
         self.eventManager.addWidgetEvent(self.repoList, self._onRepoListEvent)
+        self.eventManager.addWidgetEvent(self._filter_frame, self._onFilterFrameToggled, True)
         self.eventManager.addWidgetEvent(self._cb_debuginfo, self._onFilterChange)
         self.eventManager.addWidgetEvent(self._cb_source, self._onFilterChange)
         self.eventManager.addWidgetEvent(self._cb_testing, self._onFilterChange)
@@ -702,6 +708,30 @@ class RepoDialog(basedialog.BaseDialog):
 
         # Populate the list
         self._populateRepoList()
+
+    def _setupUI(self):
+        '''Build widget tree then force GTK backend creation for initial visibility.
+        Mirrors the SearchDialog pattern: super()._setupUI() builds widgets,
+        then dialog.open() materialises GTK objects, then _initVisibility()
+        calls showContent so the frame is collapsed before the event loop starts.
+        '''
+        super()._setupUI()
+        try:
+            self.dialog.open()
+        except Exception:
+            pass
+        self._initVisibility()
+
+    def _initVisibility(self):
+        '''Sync frame checked state and content visibility after dialog.open().
+        Must be called after dialog.open() for the GTK backend to honour showContent.
+        _show_* flags may have been updated by auto-detection in _populateRepoList.
+        '''
+        any_active = self._show_debuginfo or self._show_source or self._show_testing
+        self._filter_frame.setNotify(False)  # avoid triggering _onFilterFrameToggled
+        self._filter_frame.setValue(any_active)
+        self._filter_frame.showContent(any_active)
+        self._filter_frame.setNotify(True)  # re-enable notifications
 
     def _read_filter_prefs(self):
         '''Load filter checkbox states from userPreferences (defaults: all False).'''
@@ -732,29 +762,87 @@ class RepoDialog(basedialog.BaseDialog):
         except Exception:
             logger.warning("RepoDialog: could not save filter preferences")
 
+    def _onFilterFrameToggled(self, obj):
+        '''Frame checkbox toggled — expand or collapse the inner checkboxes.
+
+        Checking the frame expands the content immediately.
+        Unchecking resets all filter flags to False; auto-detection in
+        _populateRepoList may re-enable some (and re-open the frame) if
+        currently-enabled repos of those types exist.
+        '''
+        checked = bool(obj.value())
+        if checked:
+            # Expand now; inner checkboxes keep their last saved values.
+            self._filter_frame.showContent(True)
+        else:
+            any_active = self._show_debuginfo or self._show_source or self._show_testing
+            self._filter_frame.setNotify(False)  # avoid triggering _onFilterFrameToggled
+            if any_active:
+                self._filter_frame.setValue(any_active)
+            else:
+                self._filter_frame.showContent(any_active)
+            self._filter_frame.setNotify(True)  # re-enable notifications
+
     def _onFilterChange(self):
-        '''Called when any filter checkbox is toggled; refreshes the repo list.'''
+        '''Called when any inner filter checkbox is toggled; refreshes the repo list.'''
         self._show_debuginfo = bool(self._cb_debuginfo.value())
         self._show_source    = bool(self._cb_source.value())
         self._show_testing   = bool(self._cb_testing.value())
         self._save_filter_prefs()
+        #populateRepoList will restore checkboxes to True if currently enabled repos 
+        # of those types would be hidden by the new filter settings.
         self._populateRepoList()
+        # Auto-detect in populate may have forced some flags back True;
+        # sync frame to the actual state.
+        any_active = self._show_debuginfo or self._show_source or self._show_testing
+        if not any_active:
+          self._filter_frame.setNotify(False)  # avoid triggering _onFilterFrameToggled
+          self._filter_frame.setValue(any_active)
+          self._filter_frame.showContent(any_active)
+          self._filter_frame.setNotify(True)  # re-enable notifications
 
     def _populateRepoList(self):
         '''Load repositories into the table and show attributes of the first row.
         Only repos passing the current filter checkboxes are shown.
         '''
-        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
-        self.enabledRepos = [r['id'] for r in repos]
-        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
-        self.disabledRepos = [r['id'] for r in repos]
+        # Single backend call — replaces 3 separate dbus calls
+        all_repos = list(self.backend.get_repositories())
+        self.enabledRepos  = [r['id'] for r in all_repos if r.get('enabled')]
+        self.disabledRepos = [r['id'] for r in all_repos if not r.get('enabled')]
 
         self.itemList = {}
         self._itemToRepoId = {}
         self._last_info_repo_id = None
-        for r in self.backend.get_repositories():
+
+        # Auto-detect: if any ENABLED repo belongs to a filtered category,
+        # force the corresponding flag on so enabled repos are never hidden.
+        # We only OR into existing flags — never clear them here.
+        for r in all_repos:
             rid = r['id']
-            # Apply visibility filters based on checkbox state
+            if r.get('enabled'):
+                if rid.endswith('-debuginfo'):
+                    self._show_debuginfo = True
+                if rid.endswith('-source'):
+                    self._show_source = True
+                if 'testing' in rid:
+                    self._show_testing = True
+
+        # Sync inner checkbox values to reflect auto-detected state.
+        # Wrapped in try/except because widgets may not yet exist on first call
+        # (UIlayout builds checkboxes, then calls _populateRepoList).
+        self._cb_debuginfo.setNotify(False)
+        self._cb_source.setNotify(False)
+        self._cb_testing.setNotify(False)
+        self._cb_debuginfo.setValue(self._show_debuginfo)
+        self._cb_source.setValue(self._show_source)
+        self._cb_testing.setValue(self._show_testing)
+        self._cb_debuginfo.setNotify(True)
+        self._cb_source.setNotify(True)
+        self._cb_testing.setNotify(True)
+
+        # Build the filtered display list
+        for r in all_repos:
+            rid = r['id']
             if not self._show_debuginfo and rid.endswith('-debuginfo'):
                 continue
             if not self._show_source and rid.endswith('-source'):
