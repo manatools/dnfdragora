@@ -87,7 +87,17 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>Refresh metadata</h2>') +\
           _('This menu sends a request to dnfdaemon to force a refresh of all the metadata. This action is asynchronous and requires rebuilding the package information cache.<br>') +\
         _('<h2>Repositories</h2>') +\
-          _('This menu opens a dialog that allows you to enable or disable repositories. Any changes are valid only while dnfdragora is running and are not permanent.<br>')+\
+          _('This menu opens the Repository Management dialog.<br>') +\
+          _('The dialog lists all configured repositories sorted by name. You can enable or disable each repository using its checkbox. Changes take effect immediately for the current session but are not permanent.<br><br>') +\
+          _('<b>Filter frame \u2014 Show additional repository types</b><br>') +\
+          _('By default the list hides debug-information, source, and testing repositories. Expand the filter frame by checking its title to show three additional checkboxes:<br>') +\
+          _('<ul>') +\
+          _('<li><b>Debug information</b>: show repositories whose id ends with <i>-debuginfo</i>.</li>') +\
+          _('<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>') +\
+          _('<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>') +\
+          _('</ul>') +\
+          _('If any repository of those types is currently <b>enabled</b> in DNF, the corresponding checkbox is automatically turned on and the frame is expanded, ensuring an active repository is never hidden.<br>') +\
+          _('The filter selections are saved in the user configuration file and restored at the next launch.<br>')+\
         _('<h2>Quit</h2>') +\
           _('This menu exits from dnfdragora.<br>'),
         # back home

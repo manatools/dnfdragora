@@ -3,6 +3,7 @@
 - New search dialog with dnfdaemon available options 
 - Use manatools.ui.BaseDialog for RepoDialog
 - Added back repo information content
+- Added checkboxes to enable/disable source, debuginfo and testing repositories
 - Update manual page #264
 
 2026-04-12 v. 2.99.2
