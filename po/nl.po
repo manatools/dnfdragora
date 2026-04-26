@@ -543,19 +543,19 @@ msgstr "Spiegelservers"
 
 #: dnfdragora/dialogs.py:658
 msgid "Ad&vanced repository types"
-msgstr ""
+msgstr "&Geavanceerde typen pakketdepots"
 
 #: dnfdragora/dialogs.py:662
 msgid "&Debug information"
-msgstr ""
+msgstr "&Debug-informatie"
 
 #: dnfdragora/dialogs.py:664
 msgid "&Source"
-msgstr ""
+msgstr "B&ron"
 
 #: dnfdragora/dialogs.py:666
 msgid "&Testing"
-msgstr ""
+msgstr "&Testing"
 
 #: dnfdragora/dialogs.py:677
 msgid "Id"
@@ -665,7 +665,7 @@ msgstr "Kies de map bestemd voor logboeken"
 
 #: dnfdragora/dialogs.py:1469
 msgid "Find packages"
-msgstr ""
+msgstr "Zoek pakketten"
 
 #: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
 msgid "Installed"
@@ -673,19 +673,19 @@ msgstr "Geïnstalleerd"
 
 #: dnfdragora/dialogs.py:1509
 msgid "Available"
-msgstr ""
+msgstr "Beschikbaar"
 
 #: dnfdragora/dialogs.py:1510
 msgid "Upgrades"
-msgstr ""
+msgstr "Opwaarderingen"
 
 #: dnfdragora/dialogs.py:1511
 msgid "Upgradable"
-msgstr ""
+msgstr "Opwaardeerbaar"
 
 #: dnfdragora/dialogs.py:1532
 msgid "Find:"
-msgstr ""
+msgstr "Zoeken:"
 
 #: dnfdragora/dialogs.py:1540
 msgid ""
@@ -693,188 +693,213 @@ msgid ""
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
+"Tik het zoekpatroom in. In tekst-modus: woorden gescheiden door spaties of "
+"komma's. In afhankelijkheids-zoekmodus: mogelijkheidsnaam (bijvoorbeeld "
+"'python3\", '/usr/bin/python3')."
 
 #: dnfdragora/dialogs.py:1547
 msgid "Search in:"
-msgstr ""
+msgstr "Zoek in:"
 
 #: dnfdragora/dialogs.py:1548
 msgid "N&ames"
-msgstr ""
+msgstr "&Namen"
 
 #: dnfdragora/dialogs.py:1550
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
-msgstr ""
+msgstr "Zoek in pakketnamen en NEVRA (name-epoch:version-release.arch)."
 
 #: dnfdragora/dialogs.py:1551
 msgid "&Provides"
-msgstr ""
+msgstr "&Voorziet"
 
 #: dnfdragora/dialogs.py:1553
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr ""
+"Zoek ook naar pakketten waarvan de 'Provides:'-tags het zoekpatroon bevatten."
 
 #: dnfdragora/dialogs.py:1554
 msgid "&Files"
-msgstr ""
+msgstr "&Files"
 
 #: dnfdragora/dialogs.py:1556
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
+"Zoek naar pakketten die bestanden bevatten waarvan het pad overeenkomt met "
+"het patroon."
 
 #: dnfdragora/dialogs.py:1559
 msgid "&Binaries"
-msgstr ""
+msgstr "&Binaire bestanden"
 
 #: dnfdragora/dialogs.py:1561
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
+"Beperk de bestandsovereenkomsten tot alleen /usr/bin en /usr/sbin (een "
+"subset van Files)."
 
 #: dnfdragora/dialogs.py:1562
 msgid "S&ources"
-msgstr ""
+msgstr "B&ronnen"
 
 #: dnfdragora/dialogs.py:1564
 msgid "Include source RPMs (*.src.rpm) in the results."
-msgstr ""
+msgstr "Neem de bron-RPM's (*.src.rpm) op in de resultaten."
 
 #: dnfdragora/dialogs.py:1566
 msgid "Su&mmary"
-msgstr ""
+msgstr "&Samenvatting"
 
 #: dnfdragora/dialogs.py:1568
 msgid "Search in package summaries. Only available in regexp mode."
-msgstr ""
+msgstr "Zoeken in pakketoverzichten. Alleen beschikbaar in de regexp-modus."
 
 #: dnfdragora/dialogs.py:1572
 msgid "Scope:"
-msgstr ""
+msgstr "Domein:"
 
 #: dnfdragora/dialogs.py:1583
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
+"Beperk de zoekopdracht tot een subset van pakketten: alle, geïnstalleerde, "
+"beschikbaar voor installatie, upgrades of upgradebare pakketten."
 
 #: dnfdragora/dialogs.py:1585
 msgid "Use &regexp"
-msgstr ""
+msgstr "gebruik &regexp"
 
 #: dnfdragora/dialogs.py:1588
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
+"Behandel het zoekveld als een reguliere expressie (Python re-syntaxis). "
+"Schakelt zoeken in meerdere velden uit."
 
 #: dnfdragora/dialogs.py:1590
 msgid "&Latest only"
-msgstr ""
+msgstr "Alleen de &nieuwste"
 
 #: dnfdragora/dialogs.py:1592
 msgid "Show only the latest version of each package name."
-msgstr ""
+msgstr "Toon alleen de meest recente versie van elke pakketnaam."
 
 #: dnfdragora/dialogs.py:1593
 msgid "Fu&zzy search"
-msgstr ""
+msgstr "Vaa&g zoeken"
 
 #: dnfdragora/dialogs.py:1595
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
+"Voeg automatisch jokertekens toe rond elk zoektoken (bijv. 'gtk' wordt "
+"'*gtk*'). Uitgeschakeld in de reguliere expressiemodus."
 
 #: dnfdragora/dialogs.py:1596
 msgid "Case &sensitive"
-msgstr ""
+msgstr "&Hoofdlettergevoelig"
 
 #: dnfdragora/dialogs.py:1599
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
+"Indien aangevinkt, is de zoekopdracht hoofdlettergevoelig. Standaard is de "
+"zoekopdracht niet hoofdlettergevoelig."
 
 #: dnfdragora/dialogs.py:1608
 msgid "(none)"
-msgstr ""
+msgstr "(geen)"
 
 #: dnfdragora/dialogs.py:1609
 msgid "provide"
-msgstr ""
+msgstr "voorzien"
 
 #: dnfdragora/dialogs.py:1610
 msgid "require"
-msgstr ""
+msgstr "vereisen"
 
 #: dnfdragora/dialogs.py:1611
 msgid "depend on"
-msgstr ""
+msgstr "afhankelijk zijn van"
 
 #: dnfdragora/dialogs.py:1612
 msgid "recommend"
-msgstr ""
+msgstr "aanbevolen"
 
 #: dnfdragora/dialogs.py:1613
 msgid "enhance"
-msgstr ""
+msgstr "verbeteren"
 
 #: dnfdragora/dialogs.py:1614
 msgid "suggest"
-msgstr ""
+msgstr "suggereren"
 
 #: dnfdragora/dialogs.py:1615
 msgid "supplement"
-msgstr ""
+msgstr "supplement"
 
 #: dnfdragora/dialogs.py:1616
 msgid "obsolete"
-msgstr ""
+msgstr "Verouderd"
 
 #: dnfdragora/dialogs.py:1617
 msgid "conflict with"
-msgstr ""
+msgstr "conflicteert met"
 
 #: dnfdragora/dialogs.py:1620
 msgid "&Dependency query"
-msgstr ""
+msgstr "&Zoek naar afhankelijkheden"
 
 #: dnfdragora/dialogs.py:1622
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
+"Indien aangevinkt, wordt het veld 'Zoeken' gebruikt als een "
+"functionaliteitsnaam en worden pakketten gezocht op basis van "
+"afhankelijkheidsrelaties in plaats van tekstpatronen."
 
 #: dnfdragora/dialogs.py:1627
 msgid "Find packages that:"
-msgstr ""
+msgstr "Zoek pakketten die:"
 
 #: dnfdragora/dialogs.py:1640
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
+"Selecteer de afhankelijkheidsrelatie waarnaar u wilt zoeken: leveren, "
+"vereisen, afhankelijk zijn van, aanbevelen, enz."
 
 #: dnfdragora/dialogs.py:1641
 msgid "the capability in \"Find\" field"
-msgstr ""
+msgstr "de mogelijkheid in het veld \"Zoeken\""
 
 #: dnfdragora/dialogs.py:1648
 msgid "Limit to repositories"
-msgstr ""
+msgstr "Beperk tot pakkettendepots"
 
 #: dnfdragora/dialogs.py:1650
 msgid "When checked, the search is restricted to the selected repositories."
 msgstr ""
+"Indien aangevinkt, wordt de zoekopdracht beperkt tot de geselecteerde "
+"pakkettendepots."
 
 #: dnfdragora/dialogs.py:1673
 msgid "Limit to architectures"
-msgstr ""
+msgstr "Beperken tot architecturen"
 
 #: dnfdragora/dialogs.py:1675
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
+"Indien aangevinkt, wordt de zoekopdracht beperkt tot de geselecteerde CPU-"
+"architecturen."
 
 #: dnfdragora/dialogs.py:1700 dnfdragora/ui.py:595
 msgid "&Search"
@@ -882,31 +907,31 @@ msgstr "&Zoeken"
 
 #: dnfdragora/dialogs.py:1701
 msgid "Run the search and show matching packages."
-msgstr ""
+msgstr "Voer de zoekopdracht uit en toon de overeenkomende pakketten."
 
 #: dnfdragora/dialogs.py:1703
 msgid "&Clear"
-msgstr ""
+msgstr "&Wissen"
 
 #: dnfdragora/dialogs.py:1704
 msgid "Clear the Find field and reset the dependency query frame."
-msgstr ""
+msgstr "Wis het zoekveld en reset het vraagkader voor afhankelijkheden."
 
 #: dnfdragora/dialogs.py:1706
 msgid "C&lose"
-msgstr ""
+msgstr "&Sluiten"
 
 #: dnfdragora/dialogs.py:1707
 msgid "Close this dialog without running a new search."
-msgstr ""
+msgstr "Sluit dit dialoogvenster zonder een nieuwe zoekopdracht uit te voeren."
 
 #: dnfdragora/dialogs.py:1922 dnfdragora/ui.py:1497
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Ongeldige reguliere expressie"
 
 #: dnfdragora/dialogs.py:2058
 msgid "(embedded in repository metadata)"
-msgstr ""
+msgstr "(ingebed in de metadata van het pakkettendepot)"
 
 #: dnfdragora/dialogs.py:2067
 #, python-format
@@ -1473,7 +1498,7 @@ msgstr "Menuregel"
 
 #: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:168
 msgid "Views, filters and search"
-msgstr ""
+msgstr "Weergaven, filters en zoeken"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:195
 msgid "Group panel"
@@ -1497,7 +1522,7 @@ msgstr "Knoplijn"
 
 #: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:183
 msgid "Search dialog"
-msgstr ""
+msgstr "Zoek-dialoog"
 
 #: dnfdragora/helpinfo.py:50
 msgid "File menu"
@@ -1593,6 +1618,8 @@ msgstr "<h2>Pakkettendepots</h2>"
 #: dnfdragora/helpinfo.py:90
 msgid "This menu opens the Repository Management dialog.<br>"
 msgstr ""
+"Dit menu opent het dialoogvenster voor het beheren van het pakkettendepot."
+"<br>"
 
 #: dnfdragora/helpinfo.py:91
 msgid ""
@@ -1600,10 +1627,14 @@ msgid ""
 "or disable each repository using its checkbox. Changes take effect "
 "immediately for the current session but are not permanent.<br><br>"
 msgstr ""
+"In het dialoogvenster worden alle geconfigureerde pakkettendepots op naam "
+"weergegeven. U kunt elk pakketdepot in- of uitschakelen via het "
+"selectievakje. Wijzigingen worden direct van kracht voor de huidige sessie, "
+"maar zijn niet permanent.<br><br>"
 
 #: dnfdragora/helpinfo.py:92
 msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-msgstr ""
+msgstr "<b>Filter kader \\u2014 - Toon aanvullende opslagtypen</b><br>"
 
 #: dnfdragora/helpinfo.py:93
 msgid ""
@@ -1611,30 +1642,39 @@ msgid ""
 "repositories. Expand the filter frame by checking its title to show three "
 "additional checkboxes:<br>"
 msgstr ""
+"Standaard verbergt de lijst debug-informatie-, broncode- en test-"
+"pakketdepots. Vouw het filterkader uit door op de titel te klikken, om drie "
+"extra selectievakjes weer te geven:<br>"
 
 #: dnfdragora/helpinfo.py:94
 msgid "<ul>"
-msgstr ""
+msgstr "<ul>"
 
 #: dnfdragora/helpinfo.py:95
 msgid ""
 "<li><b>Debug information</b>: show repositories whose id ends with <i>-"
 "debuginfo</i>.</li>"
 msgstr ""
+"<li><b>Debug informatie</b>: toon pakkettendepots waarvan het id eindigt op "
+"<i>-debuginfo</i>.</li>"
 
 #: dnfdragora/helpinfo.py:96
 msgid ""
 "<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
 msgstr ""
+"<li><b>Bron</b>: toon pakkettendepots waarvan het id eindigt op <i>-bron</i>."
+"</li>"
 
 #: dnfdragora/helpinfo.py:97
 msgid ""
 "<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
 msgstr ""
+"<li><b>Testing</b>: toon pakkettendepots waarvan het id bevat <i>testing</i>."
+"</li>"
 
 #: dnfdragora/helpinfo.py:98
 msgid "</ul>"
-msgstr ""
+msgstr "</ul>"
 
 #: dnfdragora/helpinfo.py:99
 msgid ""
@@ -1642,12 +1682,17 @@ msgid ""
 "corresponding checkbox is automatically turned on and the frame is expanded, "
 "ensuring an active repository is never hidden.<br>"
 msgstr ""
+"Als een van deze pakketdepots momenteel is <b>ingeschakeld</b> in DNF, wordt "
+"het bijhorende selectievakje automatisch aangevinkt, en vouwt het kader uit, "
+"zodat een actief pakketdepot nooit verborgen blijft.<br>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
 "The filter selections are saved in the user configuration file and restored "
 "at the next launch.<br>"
 msgstr ""
+"De filterselecties worden opgeslagen in het gebruikers-configuratiebestand. "
+"Bij  de volgende keer opstarten worden zij hersteld.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid "<h2>Quit</h2>"
@@ -1865,11 +1910,15 @@ msgid ""
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
+"Met de eerste keuzelijst kunt u pakketten per groep weergeven. Als "
+"<i>Groups</i> is geselecteerd, toont het groepspaneel een boomstructuur met "
+"groepen. Het selecteren van een groep toont de bijbehorende pakketten in het "
+"pakketpaneel.<br>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
-msgstr ""
+msgstr "Kiest u <i>All</i> dan toont het pakkettenpaneel alle pakketten.<br>"
 
 #: dnfdragora/helpinfo.py:173
 msgid "<h2>Filters</h2>"
@@ -1885,7 +1934,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:176
 msgid "<li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<li><b>Geïnstalleerd</b>: Toont enkel geïnstalleerde pakketten.</li>"
 
 #: dnfdragora/helpinfo.py:177
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
@@ -1912,6 +1961,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
 msgstr ""
+"<li><b>Alle</b>: toont alle pakketten, oftewel beschikbaar, herzieningen en "
+"geïnstalleerd.</li></ul>"
 
 #: dnfdragora/helpinfo.py:182
 msgid "<h2>Search</h2>"
@@ -1920,27 +1971,31 @@ msgstr "<h2>Zoeken</h2>"
 #: dnfdragora/helpinfo.py:183
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
-msgstr ""
+msgstr "Het aanklikken van de <b>Zoek</b> knop (vergrootglas) opent de %s "
 
 #: dnfdragora/helpinfo.py:184
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
 msgstr ""
+"wat een uitgebreide pakketzoekfunctie biedt. Wanneer een zoekopdracht actief "
+"is, is het filterkeuzemenu uitgeschakeld."
 
 #: dnfdragora/helpinfo.py:185
 msgid "and an info label shows the active search text or dependency query. "
-msgstr ""
+msgstr "en een infolabel toont de actieve zoektekst of afhankelijkheidsvraag. "
 
 #: dnfdragora/helpinfo.py:186
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
 msgstr ""
+"De knop <b>Zoekopdracht wissen</b> (gummmetje)  naast de Zoek-knop reset  "
+"alle zoek-status "
 
 #: dnfdragora/helpinfo.py:187
 msgid "and re-enables the filter combobox.<br>"
-msgstr ""
+msgstr "en schakelt de filterkeuzelijst opnieuw in.<br>"
 
 #: dnfdragora/helpinfo.py:197
 msgid ""
@@ -2179,7 +2234,7 @@ msgstr "Pakketten filteren"
 
 #: dnfdragora/ui.py:596
 msgid "Open search dialog"
-msgstr ""
+msgstr "Open zoek-dialoogvenster"
 
 #: dnfdragora/ui.py:598
 msgid "&Clear search"
@@ -2187,7 +2242,7 @@ msgstr "&Wis zoeken"
 
 #: dnfdragora/ui.py:599
 msgid "Clear current search"
-msgstr ""
+msgstr "Wis huidige zoekopdracht"
 
 #: dnfdragora/ui.py:614
 msgid "Sel&ect all"
@@ -2264,12 +2319,12 @@ msgstr "geïnstalleerd"
 #: dnfdragora/ui.py:1028
 #, python-format
 msgid "[ Search: %s ]"
-msgstr ""
+msgstr "[ Zoek: %s ]"
 
 #: dnfdragora/ui.py:1030
 #, python-format
 msgid "[ Dependency search: %s ]"
-msgstr ""
+msgstr "[ Zoek afhankelijkheden: %s ]"
 
 #: dnfdragora/ui.py:1258
 msgid "Missing information"
@@ -2491,132 +2546,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hoofdvenster"
-
-#~ msgid "<h2>Search options</h2>"
-#~ msgstr "<h2>Zoekopties</h2>"
-
-#~ msgid ""
-#~ "<i>Note</i>: when regular expressions are used to search by name, the "
-#~ "full package filename including the version is used."
-#~ msgstr ""
-#~ "<i>Opmerking</i>: Wanneer u reguliere expressies gebruikt om te zoeken op "
-#~ "pakketnaam, wordt de volledige pakketnaam inclusief versienummer gebruikt."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Alle</b>: toont alle pakketten, oftewel beschikbaar, herzieningen "
-#~ "en geïnstalleerd.</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-#~ "regular expressions will add \"*\" to the given words, restoring the "
-#~ "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Fuzzy zoeken (oorspronkelijke modus)</b>:indien aangevinkt worden "
-#~ "er geen reguliere uitdrukkingen gebruikt, maar wordt  \"*\" aan de "
-#~ "zoekwoorden toegevoegd, zoals toen dnfdragora gebruik maakte van "
-#~ "dnfdaemon 4.</li></ul>"
-
-#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Geïnstalleerd</b>: Toont enkel geïnstalleerde pakketten.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
-#~ "only newest packages on search.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Toon alleen de nieuwste pakketten</b>: indien ingeschakeld "
-#~ "laat dnfdragora alleen de nieuwste pakketten zien in de zoekresultaten.</"
-#~ "li>"
-
-#~ msgid ""
-#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
-#~ "python language regular expressions. This search is performed on cached "
-#~ "package information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "Een extra aanvinkvakje <i>Gebruik regex</i> kan worden gebruikt om te "
-#~ "zoeken op pakketten m.b.v. reguliere expressies gebaseerd op de python "
-#~ "programmeertaal. Deze zoekopdracht wordt uitgevoerd op de "
-#~ "pakketinformatie in de cache zoals die op <b>pakketnamen en "
-#~ "samenvattingen</b>."
-
-#~ msgid "Clear search field"
-#~ msgstr "Zoekveld leegmaken"
-
-#~ msgid "Filters and search line"
-#~ msgstr "Filters en zoekregel"
-
-#~ msgid "Fuzzy search (legacy mode)"
-#~ msgstr "Fuzzy zoeken (oorspronkelijke modus)"
-
-#~ msgid ""
-#~ "If <i>All</i> is selected, the package panel contains all the packages."
-#~ msgstr "Kiest u <i>Alle</i> dan toont het pakkettenpaneel alle pakketten."
-
-#~ msgid "Proxy password"
-#~ msgstr "Proxy-wachtwoord"
-
-#~ msgid "Search"
-#~ msgstr "Zoeken"
-
-#~ msgid ""
-#~ "Search is performed by pressing the <i>Search</i> button when the text "
-#~ "field is not empty. The Search combobox allows you to search the given "
-#~ "text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or "
-#~ "<i>files</i>."
-#~ msgstr ""
-#~ "Zoekopdracht wordt uitgevoerd wanneer de <i>Zoeken</i>-knop wordt "
-#~ "ingedrukt en het invoerveld niet leeg is. De zoeken-combobox biedt de "
-#~ "optie om tekst te zoeken op <i>pakketnamen</i>, <i>samenvattingen</i>, "
-#~ "<i>omschrijvingen</i> of <i>bestandsnamen</i>."
-
-#~ msgid "Search options"
-#~ msgstr "Zoekopties"
-
-#~ msgid "Search packages"
-#~ msgstr "Pakketten zoeken"
-
-#~ msgid "Show newest packages only"
-#~ msgstr "Toon alleen de nieuwste pakketten"
-
-#~ msgid "The <i>Clear search</i> button resets search text field."
-#~ msgstr "De <i>Wis zoeken</i>-knop wist het invoerveld voor zoekopdrachten."
-
-#~ msgid ""
-#~ "The first combobox allows you to show packages by groups. If <i>Groups</"
-#~ "i> is selected, the group panel shows a tree view containing groups, and "
-#~ "selecting a group shows related packages in the package panel."
-#~ msgstr ""
-#~ "In de eerste combobox kunt u pakketten weergeven op groep. Als u "
-#~ "<i>Groepen</i> selecteert toont het groepenpaneel een boomweergave van "
-#~ "groepen. Het selecteren van een groep toont de pakketten in die groep in "
-#~ "het pakkettenpaneel."
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows you to enable or disable "
-#~ "repositories. Any changes are valid only while dnfdragora is running and "
-#~ "are not permanent.<br>"
-#~ msgstr ""
-#~ "Dit menu opent een dialoogvenster waarmee u pakketdepots kunt in- of "
-#~ "uitschakelen. Wijzigingen zijn alleen geldig zolang dnfdragora actief is "
-#~ "en zijn niet permanent.<br>"
-
-#~ msgid "Use regexp"
-#~ msgstr "Gebruik regex"
-
-#~ msgid "Views and search"
-#~ msgstr "Weergaves en zoekregel"
-
-#~ msgid "in descriptions"
-#~ msgstr "in omschrijvingen"
-
-#~ msgid "in file names"
-#~ msgstr "in bestandsnamen"
-
-#~ msgid "in names"
-#~ msgstr "in namen"
-
-#~ msgid "in summaries"
-#~ msgstr "in samenvattingen"
