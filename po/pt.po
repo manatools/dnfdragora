@@ -550,19 +550,19 @@ msgstr "Espelhos"
 
 #: dnfdragora/dialogs.py:658
 msgid "Ad&vanced repository types"
-msgstr ""
+msgstr "Tipos de repositório a&vançados"
 
 #: dnfdragora/dialogs.py:662
 msgid "&Debug information"
-msgstr ""
+msgstr "&nformações de depuração"
 
 #: dnfdragora/dialogs.py:664
 msgid "&Source"
-msgstr ""
+msgstr "&Fonte"
 
 #: dnfdragora/dialogs.py:666
 msgid "&Testing"
-msgstr ""
+msgstr "&Testes"
 
 #: dnfdragora/dialogs.py:677
 msgid "Id"
@@ -672,7 +672,7 @@ msgstr "Escolha diretório de destino do registo"
 
 #: dnfdragora/dialogs.py:1469
 msgid "Find packages"
-msgstr ""
+msgstr "Encontrar pacotes"
 
 #: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
 msgid "Installed"
@@ -680,19 +680,19 @@ msgstr "Instalado"
 
 #: dnfdragora/dialogs.py:1509
 msgid "Available"
-msgstr ""
+msgstr "Disponível"
 
 #: dnfdragora/dialogs.py:1510
 msgid "Upgrades"
-msgstr ""
+msgstr "Atualizações"
 
 #: dnfdragora/dialogs.py:1511
 msgid "Upgradable"
-msgstr ""
+msgstr "Atualizável"
 
 #: dnfdragora/dialogs.py:1532
 msgid "Find:"
-msgstr ""
+msgstr "Encontrar:"
 
 #: dnfdragora/dialogs.py:1540
 msgid ""
@@ -700,188 +700,213 @@ msgid ""
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
+"Insira o padrão de pesquisa. No modo de texto: palavras separadas por "
+"espaços ou vírgulas. No modo de consulta de dependência: nome da capacidade "
+"(por exemplo, 'python3', '/usr/bin/python3')."
 
 #: dnfdragora/dialogs.py:1547
 msgid "Search in:"
-msgstr ""
+msgstr "Pesquisar em:"
 
 #: dnfdragora/dialogs.py:1548
 msgid "N&ames"
-msgstr ""
+msgstr "N&omes"
 
 #: dnfdragora/dialogs.py:1550
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
 msgstr ""
+"Pesquisar em nomes de pacotes e NEVRA (nome-época:versão-lançamento."
+"arquitetura)."
 
 #: dnfdragora/dialogs.py:1551
 msgid "&Provides"
-msgstr ""
+msgstr "&Fornecedores"
 
 #: dnfdragora/dialogs.py:1553
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr ""
+"Também incluir pacotes cujas tags Fornecedores: incluam o padrão de pesquisa."
 
 #: dnfdragora/dialogs.py:1554
 msgid "&Files"
-msgstr ""
+msgstr "&Arquivos"
 
 #: dnfdragora/dialogs.py:1556
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
+"Identificar pacotes que possuam arquivos cujo caminho corresponda ao padrão."
 
 #: dnfdragora/dialogs.py:1559
 msgid "&Binaries"
-msgstr ""
+msgstr "&Binários"
 
 #: dnfdragora/dialogs.py:1561
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
+"Restringir a correspondência de arquivos apenas a /usr/bin e /usr/sbin "
+"(subconjunto de arquivos)."
 
 #: dnfdragora/dialogs.py:1562
 msgid "S&ources"
-msgstr ""
+msgstr "F&ontes"
 
 #: dnfdragora/dialogs.py:1564
 msgid "Include source RPMs (*.src.rpm) in the results."
-msgstr ""
+msgstr "Incluir os RPMs fontes (*.src.rpm) nos resultados."
 
 #: dnfdragora/dialogs.py:1566
 msgid "Su&mmary"
-msgstr ""
+msgstr "Re&sumo"
 
 #: dnfdragora/dialogs.py:1568
 msgid "Search in package summaries. Only available in regexp mode."
 msgstr ""
+"Pesquisar em resumos de pacotes. Disponível apenas no modo de expressão "
+"regular."
 
 #: dnfdragora/dialogs.py:1572
 msgid "Scope:"
-msgstr ""
+msgstr "Escopo:"
 
 #: dnfdragora/dialogs.py:1583
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
+"Limitar a pesquisa a um subconjunto de pacotes: todos, instalados, "
+"disponíveis para instalação, atualizações ou atualizáveis."
 
 #: dnfdragora/dialogs.py:1585
 msgid "Use &regexp"
-msgstr ""
+msgstr "Usar &expressões regulares"
 
 #: dnfdragora/dialogs.py:1588
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
+"Tratar o campo \"Localizar\" como uma expressão regular (sintaxe `re` do "
+"Python). Desativa a busca em múltiplos campos."
 
 #: dnfdragora/dialogs.py:1590
 msgid "&Latest only"
-msgstr ""
+msgstr "&Somente as versões mais recentes"
 
 #: dnfdragora/dialogs.py:1592
 msgid "Show only the latest version of each package name."
-msgstr ""
+msgstr "Exibir apenas a versão mais recente de cada pacote."
 
 #: dnfdragora/dialogs.py:1593
 msgid "Fu&zzy search"
-msgstr ""
+msgstr "Bus&ca aproximada"
 
 #: dnfdragora/dialogs.py:1595
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
+"Adiciona automaticamente caracteres curinga em torno de cada token de "
+"pesquisa (por exemplo, 'gtk' torna-se '*gtk*'). Desativado no modo de "
+"expressão regular."
 
 #: dnfdragora/dialogs.py:1596
 msgid "Case &sensitive"
-msgstr ""
+msgstr "Maiúsculas e &minúsculas"
 
 #: dnfdragora/dialogs.py:1599
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
+"Quando selecionada, a pesquisa diferencia maiúsculas de minúsculas. Por "
+"padrão, a pesquisa não diferencia maiúsculas de minúsculas."
 
 #: dnfdragora/dialogs.py:1608
 msgid "(none)"
-msgstr ""
+msgstr "(nenhum)"
 
 #: dnfdragora/dialogs.py:1609
 msgid "provide"
-msgstr ""
+msgstr "fornece"
 
 #: dnfdragora/dialogs.py:1610
 msgid "require"
-msgstr ""
+msgstr "requer"
 
 #: dnfdragora/dialogs.py:1611
 msgid "depend on"
-msgstr ""
+msgstr "depende de"
 
 #: dnfdragora/dialogs.py:1612
 msgid "recommend"
-msgstr ""
+msgstr "recomendado"
 
 #: dnfdragora/dialogs.py:1613
 msgid "enhance"
-msgstr ""
+msgstr "melhora"
 
 #: dnfdragora/dialogs.py:1614
 msgid "suggest"
-msgstr ""
+msgstr "sugere"
 
 #: dnfdragora/dialogs.py:1615
 msgid "supplement"
-msgstr ""
+msgstr "suplemento"
 
 #: dnfdragora/dialogs.py:1616
 msgid "obsolete"
-msgstr ""
+msgstr "obsoleto"
 
 #: dnfdragora/dialogs.py:1617
 msgid "conflict with"
-msgstr ""
+msgstr "conflita com"
 
 #: dnfdragora/dialogs.py:1620
 msgid "&Dependency query"
-msgstr ""
+msgstr "&Consulta de dependência"
 
 #: dnfdragora/dialogs.py:1622
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
+"Quando selecionado, o campo \"Localizar\" é usado como nome de recurso e os "
+"pacotes são pesquisados ​​por relação de dependência em vez de padrão de texto."
 
 #: dnfdragora/dialogs.py:1627
 msgid "Find packages that:"
-msgstr ""
+msgstr "Encontrar pacotes que:"
 
 #: dnfdragora/dialogs.py:1640
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
+"Escolha a relação de dependência para pesquisar: fornece, requer, depende, "
+"recomenda, etc."
 
 #: dnfdragora/dialogs.py:1641
 msgid "the capability in \"Find\" field"
-msgstr ""
+msgstr "a capacidade no campo \"Localizar\""
 
 #: dnfdragora/dialogs.py:1648
 msgid "Limit to repositories"
-msgstr ""
+msgstr "Limite aos repositórios"
 
 #: dnfdragora/dialogs.py:1650
 msgid "When checked, the search is restricted to the selected repositories."
-msgstr ""
+msgstr "Quando marcada, a pesquisa é restrita aos repositórios selecionados."
 
 #: dnfdragora/dialogs.py:1673
 msgid "Limit to architectures"
-msgstr ""
+msgstr "Limite às arquiteturas"
 
 #: dnfdragora/dialogs.py:1675
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
+"Quando marcada, a pesquisa é restrita às arquiteturas de CPU selecionadas."
 
 #: dnfdragora/dialogs.py:1700 dnfdragora/ui.py:595
 msgid "&Search"
@@ -889,31 +914,32 @@ msgstr "Pe&squisar"
 
 #: dnfdragora/dialogs.py:1701
 msgid "Run the search and show matching packages."
-msgstr ""
+msgstr "Executa a pesquisa e mostra pacotes correspondentes."
 
 #: dnfdragora/dialogs.py:1703
 msgid "&Clear"
-msgstr ""
+msgstr "&Limpar"
 
 #: dnfdragora/dialogs.py:1704
 msgid "Clear the Find field and reset the dependency query frame."
 msgstr ""
+"Limpa o campo Localizar e redefine o quadro de consulta de dependência."
 
 #: dnfdragora/dialogs.py:1706
 msgid "C&lose"
-msgstr ""
+msgstr "F&echar"
 
 #: dnfdragora/dialogs.py:1707
 msgid "Close this dialog without running a new search."
-msgstr ""
+msgstr "Feche esta caixa de diálogo sem executar uma nova pesquisa."
 
 #: dnfdragora/dialogs.py:1922 dnfdragora/ui.py:1497
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Expressão regular inválida"
 
 #: dnfdragora/dialogs.py:2058
 msgid "(embedded in repository metadata)"
-msgstr ""
+msgstr "(embutido em metadados do repositório)"
 
 #: dnfdragora/dialogs.py:2067
 #, python-format
@@ -1480,7 +1506,7 @@ msgstr "Linha do menu"
 
 #: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:168
 msgid "Views, filters and search"
-msgstr ""
+msgstr "Visualizações, filtros e pesquisa"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:195
 msgid "Group panel"
@@ -1504,7 +1530,7 @@ msgstr "Linha de botão"
 
 #: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:183
 msgid "Search dialog"
-msgstr ""
+msgstr "Diálogo de pesquisa"
 
 #: dnfdragora/helpinfo.py:50
 msgid "File menu"
@@ -1598,7 +1624,7 @@ msgstr "<h2>Repositórios</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu opens the Repository Management dialog.<br>"
-msgstr ""
+msgstr "Este menu abre a caixa de diálogo Gerenciamento do repositório.<br>"
 
 #: dnfdragora/helpinfo.py:91
 msgid ""
@@ -1606,10 +1632,15 @@ msgid ""
 "or disable each repository using its checkbox. Changes take effect "
 "immediately for the current session but are not permanent.<br><br>"
 msgstr ""
+"A caixa de diálogo lista todos os repositórios configurados classificados "
+"por nome. Você pode ativar ou desativar cada repositório usando sua caixa de "
+"seleção. As alterações entram em vigor imediatamente para a sessão atual, "
+"mas não são permanentes.<br><br>"
 
 #: dnfdragora/helpinfo.py:92
 msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
 msgstr ""
+"<b>Filtrar quadros \\u2014 Mostrar tipos de repositório adicionais</b><br>"
 
 #: dnfdragora/helpinfo.py:93
 msgid ""
@@ -1617,30 +1648,38 @@ msgid ""
 "repositories. Expand the filter frame by checking its title to show three "
 "additional checkboxes:<br>"
 msgstr ""
+"Por padrão, a lista oculta informações de depuração, código-fonte e "
+"repositórios de teste. Expanda o filtro marcando a caixa de seleção no "
+"título para exibir três caixas de seleção adicionais:<br>"
 
 #: dnfdragora/helpinfo.py:94
 msgid "<ul>"
-msgstr ""
+msgstr "<ul>"
 
 #: dnfdragora/helpinfo.py:95
 msgid ""
 "<li><b>Debug information</b>: show repositories whose id ends with <i>-"
 "debuginfo</i>.</li>"
 msgstr ""
+"<li><b>Informações de depuração</b>: mostra os repositórios cujo ID termina "
+"com <i>-debuginfo</i>.</li>"
 
 #: dnfdragora/helpinfo.py:96
 msgid ""
 "<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
 msgstr ""
+"<li><b>Fonte</b>: mostra os repositórios cujo ID termina com <i>-source</i>."
+"</li>"
 
 #: dnfdragora/helpinfo.py:97
 msgid ""
 "<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
 msgstr ""
+"<li><b>Testando</b>: mostrar repositórios cujo ID contém <i>testing</i>.</li>"
 
 #: dnfdragora/helpinfo.py:98
 msgid "</ul>"
-msgstr ""
+msgstr "</ul>"
 
 #: dnfdragora/helpinfo.py:99
 msgid ""
@@ -1648,12 +1687,18 @@ msgid ""
 "corresponding checkbox is automatically turned on and the frame is expanded, "
 "ensuring an active repository is never hidden.<br>"
 msgstr ""
+"Se algum repositório desses tipos estiver atualmente <b>habilitado</b> no "
+"DNF, a caixa de seleção correspondente será ativada automaticamente e o "
+"quadro será expandido, garantindo que um repositório ativo nunca seja "
+"ocultado."
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
 "The filter selections are saved in the user configuration file and restored "
 "at the next launch.<br>"
 msgstr ""
+"As seleções de filtro são salvas no arquivo de configuração do usuário e "
+"restauradas na próxima inicialização."
 
 #: dnfdragora/helpinfo.py:101
 msgid "<h2>Quit</h2>"
@@ -1871,11 +1916,17 @@ msgid ""
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
+"A primeira caixa de combinação permite exibir pacotes por grupos. Se "
+"<i>Grupos</i> estiver selecionado, o painel de grupos exibirá uma "
+"visualização em árvore contendo os grupos e, ao selecionar um grupo, os "
+"pacotes relacionados serão exibidos no painel de pacotes.<br>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr ""
+"Se a opção <i>Todos</i> estiver selecionada, o painel de pacotes conterá "
+"todos os pacotes."
 
 #: dnfdragora/helpinfo.py:173
 msgid "<h2>Filters</h2>"
@@ -1891,7 +1942,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:176
 msgid "<li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<li><b>Instalados</b>: mostra apenas os pacotes instalados.</li>"
 
 #: dnfdragora/helpinfo.py:177
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
@@ -1918,6 +1969,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
 msgstr ""
+"<li><b>Todos</b>: mostra todos os pacotes, ou seja, disponíveis, "
+"atualizações e instalados.</li>"
 
 #: dnfdragora/helpinfo.py:182
 msgid "<h2>Search</h2>"
@@ -1926,27 +1979,33 @@ msgstr "<h2>Busca</h2>"
 #: dnfdragora/helpinfo.py:183
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
-msgstr ""
+msgstr "Ao pressionar o botão <b>Pesquisar</b> (ícone de lupa), o %s é aberto"
 
 #: dnfdragora/helpinfo.py:184
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
 msgstr ""
+"que oferece busca completa de pacotes. Quando uma busca está ativa, a caixa "
+"de combinação de filtros é desativada."
 
 #: dnfdragora/helpinfo.py:185
 msgid "and an info label shows the active search text or dependency query. "
 msgstr ""
+"e um rótulo informativo mostra o texto de pesquisa ativo ou a consulta de "
+"dependência."
 
 #: dnfdragora/helpinfo.py:186
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
 msgstr ""
+"O botão <b>Limpar pesquisa</b> (ícone de borracha) ao lado do botão "
+"Pesquisar redefine todo o estado da pesquisa."
 
 #: dnfdragora/helpinfo.py:187
 msgid "and re-enables the filter combobox.<br>"
-msgstr ""
+msgstr "e reativa a caixa de combinação do filtro.<br>"
 
 #: dnfdragora/helpinfo.py:197
 msgid ""
@@ -2184,7 +2243,7 @@ msgstr "Filtrando pacotes"
 
 #: dnfdragora/ui.py:596
 msgid "Open search dialog"
-msgstr ""
+msgstr "Abrir o diálogo de pesquisa"
 
 #: dnfdragora/ui.py:598
 msgid "&Clear search"
@@ -2192,7 +2251,7 @@ msgstr "&Limpar pesquisa"
 
 #: dnfdragora/ui.py:599
 msgid "Clear current search"
-msgstr ""
+msgstr "Limpar pesquisa atual"
 
 #: dnfdragora/ui.py:614
 msgid "Sel&ect all"
@@ -2269,12 +2328,12 @@ msgstr "instalado"
 #: dnfdragora/ui.py:1028
 #, python-format
 msgid "[ Search: %s ]"
-msgstr ""
+msgstr "[ Pesquisar: %s ]"
 
 #: dnfdragora/ui.py:1030
 #, python-format
 msgid "[ Dependency search: %s ]"
-msgstr ""
+msgstr "[ Buscar dependência: %s ]"
 
 #: dnfdragora/ui.py:1258
 msgid "Missing information"
@@ -2496,132 +2555,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Janela principal"
-
-#~ msgid "<h2>Search options</h2>"
-#~ msgstr "<h2>Opções de pesquisa</h2>"
-
-#~ msgid ""
-#~ "<i>Note</i>: when regular expressions are used to search by name, the "
-#~ "full package filename including the version is used."
-#~ msgstr ""
-#~ "<i>Nota</i>: quando expressões regulares são usadas para pesquisar por "
-#~ "nome, o nome completo do arquivo do pacote, incluindo a versão, é "
-#~ "utilizado."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Todos</b>: mostra todos os pacotes, ou seja, disponíveis, "
-#~ "atualizações e instalados.</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-#~ "regular expressions will add \"*\" to the given words, restoring the "
-#~ "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Busca aproximada (modo legado)</b>: se marcada, uma pesquisa sem "
-#~ "usar expressões regulares adicionará \"*\" às palavras fornecidas, "
-#~ "restaurando o comportamento que dnfdragora teve usando dnfdaemon 4.</li></"
-#~ "ul>"
-
-#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-#~ msgstr "<ul><li><b>Instalado</b> mostra apenas pacotes instalados.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
-#~ "only newest packages on search.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Mostrar apenas os pacotes mais recentes</b>: se marcado, o "
-#~ "dnfdragora mostra apenas os pacotes mais recentes na pesquisa.</li>"
-
-#~ msgid ""
-#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
-#~ "python language regular expressions. This search is performed on cached "
-#~ "package information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "Uma caixa de seleção especial <i>Use regexp</i> é usada para procurar "
-#~ "pacotes por expressões regulares da linguagem python. Essa pesquisa é "
-#~ "realizada em informações de pacotes em cache, <b>como apenas nomes e "
-#~ "resumos</b>."
-
-#~ msgid "Clear search field"
-#~ msgstr "Limpar campo de pesquisa"
-
-#~ msgid "Filters and search line"
-#~ msgstr "Linha de filtros e buscas"
-
-#~ msgid "Fuzzy search (legacy mode)"
-#~ msgstr "Pesquisa fuzzy (modo legado)"
-
-#~ msgid ""
-#~ "If <i>All</i> is selected, the package panel contains all the packages."
-#~ msgstr ""
-#~ "Se a opção <i>Todos</i> estiver selecionada, o painel de pacotes conterá "
-#~ "todos os pacotes."
-
-#~ msgid "Proxy password"
-#~ msgstr "Palavra-passe do proxy"
-
-#~ msgid "Search"
-#~ msgstr "Pesquisa"
-
-#~ msgid ""
-#~ "Search is performed by pressing the <i>Search</i> button when the text "
-#~ "field is not empty. The Search combobox allows you to search the given "
-#~ "text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or "
-#~ "<i>files</i>."
-#~ msgstr ""
-#~ "A pesquisa é realizada pressionando o botão <i>Pesquisar</i> quando o "
-#~ "campo de texto não estiver vazio. A caixa de combinação de pesquisa "
-#~ "permite pesquisar o texto fornecido em <i>nomes</i> de pacotes, "
-#~ "<i>resumos</i>, <i>descrições</i> ou <i>arquivos</i>."
-
-#~ msgid "Search options"
-#~ msgstr "Opções de pesquisa"
-
-#~ msgid "Search packages"
-#~ msgstr "Pesquisar pacotes"
-
-#~ msgid "Show newest packages only"
-#~ msgstr "Mostrar apenas os pacotes mais recentes"
-
-#~ msgid "The <i>Clear search</i> button resets search text field."
-#~ msgstr "O botão <i>Limpar busca</i> apaga o conteúdo do campo de texto."
-
-#~ msgid ""
-#~ "The first combobox allows you to show packages by groups. If <i>Groups</"
-#~ "i> is selected, the group panel shows a tree view containing groups, and "
-#~ "selecting a group shows related packages in the package panel."
-#~ msgstr ""
-#~ "A primeira caixa de combinação permite exibir pacotes por grupos. Se "
-#~ "<i>Grupos</i> estiver selecionado, o painel de grupos exibirá uma "
-#~ "visualização em árvore contendo os grupos e, ao selecionar um grupo, os "
-#~ "pacotes relacionados serão exibidos no painel de pacotes."
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows you to enable or disable "
-#~ "repositories. Any changes are valid only while dnfdragora is running and "
-#~ "are not permanent.<br>"
-#~ msgstr ""
-#~ "Este menu abre uma caixa de diálogo que permite ativar ou desativar "
-#~ "repositórios. Quaisquer alterações são válidas apenas enquanto o "
-#~ "dnfdragora estiver em execução e não são permanentes."
-
-#~ msgid "Use regexp"
-#~ msgstr "Usar expressões regulares"
-
-#~ msgid "Views and search"
-#~ msgstr "Visualizações e pesquisa"
-
-#~ msgid "in descriptions"
-#~ msgstr "nas descrições"
-
-#~ msgid "in file names"
-#~ msgstr "nos nomes de ficheiro"
-
-#~ msgid "in names"
-#~ msgstr "nos nomes"
-
-#~ msgid "in summaries"
-#~ msgstr "nos resumos"
