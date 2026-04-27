@@ -1,4 +1,4 @@
-2026-XX-ZZ v. 2.99.3/3.0.0
+2026-04-26 v. 2.99.3
 --------------------
 - New search dialog with dnfdaemon available options 
 - Use manatools.ui.BaseDialog for RepoDialog
