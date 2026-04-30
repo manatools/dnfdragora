@@ -1,29 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2026
 #
-#, fuzzy
+# Yuri Chornoivan <yurchor@ukr.net>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-25 23:40+0200\n"
-"PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2026\n"
-"Language-Team: Ukrainian (https://app.transifex.com/MageiaLinux/teams/9361/"
-"uk/)\n"
+"PO-Revision-Date: 2026-04-30 08:50+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11"
+" ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100"
+" > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n %"
+" 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: bin/dnfdragora:25 bin/dnfdragora-updater:22
 #, python-format
@@ -542,19 +539,19 @@ msgstr "Дзеркала"
 
 #: dnfdragora/dialogs.py:658
 msgid "Ad&vanced repository types"
-msgstr ""
+msgstr "Д&додаткові типи сховищ"
 
 #: dnfdragora/dialogs.py:662
 msgid "&Debug information"
-msgstr ""
+msgstr "Д&іагностична інформація"
 
 #: dnfdragora/dialogs.py:664
 msgid "&Source"
-msgstr ""
+msgstr "Д&жерело"
 
 #: dnfdragora/dialogs.py:666
 msgid "&Testing"
-msgstr ""
+msgstr "&Тестування"
 
 #: dnfdragora/dialogs.py:677
 msgid "Id"
@@ -663,7 +660,7 @@ msgstr "Вибрати каталог призначення для журнал
 
 #: dnfdragora/dialogs.py:1469
 msgid "Find packages"
-msgstr ""
+msgstr "Пошук пакунків"
 
 #: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
 msgid "Installed"
@@ -671,19 +668,19 @@ msgstr "Встановлено"
 
 #: dnfdragora/dialogs.py:1509
 msgid "Available"
-msgstr ""
+msgstr "Доступно"
 
 #: dnfdragora/dialogs.py:1510
 msgid "Upgrades"
-msgstr ""
+msgstr "Оновлення"
 
 #: dnfdragora/dialogs.py:1511
 msgid "Upgradable"
-msgstr ""
+msgstr "Можна оновити"
 
 #: dnfdragora/dialogs.py:1532
 msgid "Find:"
-msgstr ""
+msgstr "Знайти:"
 
 #: dnfdragora/dialogs.py:1540
 msgid ""
@@ -691,188 +688,209 @@ msgid ""
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
+"Введіть взірець для пошуку. У текстовому режимі: слова, відокремлені"
+" пробілами або комами. У режимі запиту щодо залежностей: назва можливості"
+" (наприклад, 'python3', '/usr/bin/python3')."
 
 #: dnfdragora/dialogs.py:1547
 msgid "Search in:"
-msgstr ""
+msgstr "Шукати у:"
 
 #: dnfdragora/dialogs.py:1548
 msgid "N&ames"
-msgstr ""
+msgstr "Н&азви"
 
 #: dnfdragora/dialogs.py:1550
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
 msgstr ""
+"Пошук за назвами пакунків та NEVRA (назва-епоха:версія-випуск.архітектура)."
 
 #: dnfdragora/dialogs.py:1551
 msgid "&Provides"
-msgstr ""
+msgstr "&Надає"
 
 #: dnfdragora/dialogs.py:1553
 msgid "Also match packages whose Provides: tags include the search pattern."
-msgstr ""
+msgstr "Знайти пакунки, мітки Provides: яких містять взірець пошуку."
 
 #: dnfdragora/dialogs.py:1554
 msgid "&Files"
-msgstr ""
+msgstr "&Файли"
 
 #: dnfdragora/dialogs.py:1556
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
+"Знайти пакунки, у яких містяться файли, шлях до яких відповідає взірцю."
 
 #: dnfdragora/dialogs.py:1559
 msgid "&Binaries"
-msgstr ""
+msgstr "Дві&йкові файли"
 
 #: dnfdragora/dialogs.py:1561
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
+"Обмежити пошук лише файлами у /usr/bin і /usr/sbin (підмножина «Файлів»)."
 
 #: dnfdragora/dialogs.py:1562
 msgid "S&ources"
-msgstr ""
+msgstr "Дж&ерела"
 
 #: dnfdragora/dialogs.py:1564
 msgid "Include source RPMs (*.src.rpm) in the results."
-msgstr ""
+msgstr "Включити до пошуку RPM з початковими кодами (*.src.rpm)."
 
 #: dnfdragora/dialogs.py:1566
 msgid "Su&mmary"
-msgstr ""
+msgstr "&Резюме"
 
 #: dnfdragora/dialogs.py:1568
 msgid "Search in package summaries. Only available in regexp mode."
 msgstr ""
+"Шукати у резюме пакунків. Можна скористатися лише у режимі формальних"
+" виразів."
 
 #: dnfdragora/dialogs.py:1572
 msgid "Scope:"
-msgstr ""
+msgstr "Область:"
 
 #: dnfdragora/dialogs.py:1583
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
+"Обмежити пошук підмножиною пакунків: усі, встановлені, доступні до"
+" встановлення, оновлення або придатні до оновлення."
 
 #: dnfdragora/dialogs.py:1585
 msgid "Use &regexp"
-msgstr ""
+msgstr "&Формальний вираз"
 
 #: dnfdragora/dialogs.py:1588
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
+"Вважати вміст поля «Знайти» формальним виразом (у сенсі формальних виразів"
+" Python). Вимикає пошук за декількома полями."
 
 #: dnfdragora/dialogs.py:1590
 msgid "&Latest only"
-msgstr ""
+msgstr "&Лише найсвіжіші"
 
 #: dnfdragora/dialogs.py:1592
 msgid "Show only the latest version of each package name."
-msgstr ""
+msgstr "Показати лише найсвіжішу версію для кожної назви пакунка."
 
 #: dnfdragora/dialogs.py:1593
 msgid "Fu&zzy search"
-msgstr ""
+msgstr "Не&чіткий пошук"
 
 #: dnfdragora/dialogs.py:1595
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
+"Автоматично додавати універсальні замінники навколо кожного рядка для пошуку"
+" (наприклад, робити з «gtk» «*gtk*»). Вимкнено у режимі формальних виразів."
 
 #: dnfdragora/dialogs.py:1596
 msgid "Case &sensitive"
-msgstr ""
+msgstr "З &урахуванням регістру"
 
 #: dnfdragora/dialogs.py:1599
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
+"Якщо позначено, пошук відбуватиметься з врахуванням регістру символів."
+" Типово, пошук відбувається без врахування регістру."
 
 #: dnfdragora/dialogs.py:1608
 msgid "(none)"
-msgstr ""
+msgstr "(немає)"
 
 #: dnfdragora/dialogs.py:1609
 msgid "provide"
-msgstr ""
+msgstr "надає"
 
 #: dnfdragora/dialogs.py:1610
 msgid "require"
-msgstr ""
+msgstr "потребує"
 
 #: dnfdragora/dialogs.py:1611
 msgid "depend on"
-msgstr ""
+msgstr "залежить від"
 
 #: dnfdragora/dialogs.py:1612
 msgid "recommend"
-msgstr ""
+msgstr "рекомендація"
 
 #: dnfdragora/dialogs.py:1613
 msgid "enhance"
-msgstr ""
+msgstr "покращення"
 
 #: dnfdragora/dialogs.py:1614
 msgid "suggest"
-msgstr ""
+msgstr "пропозиція"
 
 #: dnfdragora/dialogs.py:1615
 msgid "supplement"
-msgstr ""
+msgstr "доповнення"
 
 #: dnfdragora/dialogs.py:1616
 msgid "obsolete"
-msgstr ""
+msgstr "робить застарілим"
 
 #: dnfdragora/dialogs.py:1617
 msgid "conflict with"
-msgstr ""
+msgstr "конфліктує з"
 
 #: dnfdragora/dialogs.py:1620
 msgid "&Dependency query"
-msgstr ""
+msgstr "З&апит щодо залежностей"
 
 #: dnfdragora/dialogs.py:1622
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
+"Якщо позначено, вміст поля «Знайти» буде використано як назву можливості, а"
+" пошук пакунків відбуватиметься за відношенням залежності, а не за текстовим"
+" взірцем."
 
 #: dnfdragora/dialogs.py:1627
 msgid "Find packages that:"
-msgstr ""
+msgstr "Знайти пакунки за критерієм:"
 
 #: dnfdragora/dialogs.py:1640
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
+"Шукати взаємозв'язки: надає, потребує, залежить від, рекомендація тощо."
 
 #: dnfdragora/dialogs.py:1641
 msgid "the capability in \"Find\" field"
-msgstr ""
+msgstr "можливість у полі «Знайти»"
 
 #: dnfdragora/dialogs.py:1648
 msgid "Limit to repositories"
-msgstr ""
+msgstr "Обмежити сховищами"
 
 #: dnfdragora/dialogs.py:1650
 msgid "When checked, the search is restricted to the selected repositories."
-msgstr ""
+msgstr "Якщо позначено, пошук буде обмежено вибраними сховищами."
 
 #: dnfdragora/dialogs.py:1673
 msgid "Limit to architectures"
-msgstr ""
+msgstr "Обмежити архітектурами"
 
 #: dnfdragora/dialogs.py:1675
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
+"Якщо позначено, пошук буде обмежено вибраними архітектурами процесорів."
 
 #: dnfdragora/dialogs.py:1700 dnfdragora/ui.py:595
 msgid "&Search"
@@ -880,31 +898,31 @@ msgstr "&Шукати"
 
 #: dnfdragora/dialogs.py:1701
 msgid "Run the search and show matching packages."
-msgstr ""
+msgstr "Виконати пошук і показати відповідні пакунки."
 
 #: dnfdragora/dialogs.py:1703
 msgid "&Clear"
-msgstr ""
+msgstr "Сп&орожнити"
 
 #: dnfdragora/dialogs.py:1704
 msgid "Clear the Find field and reset the dependency query frame."
-msgstr ""
+msgstr "Спорожнити поле «Знайти» і відновити шаблон пошуку за залежностями."
 
 #: dnfdragora/dialogs.py:1706
 msgid "C&lose"
-msgstr ""
+msgstr "За&крити"
 
 #: dnfdragora/dialogs.py:1707
 msgid "Close this dialog without running a new search."
-msgstr ""
+msgstr "Закрити це вікно без виконання нового пошуку."
 
 #: dnfdragora/dialogs.py:1922 dnfdragora/ui.py:1497
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Некоректний формальний вираз"
 
 #: dnfdragora/dialogs.py:2058
 msgid "(embedded in repository metadata)"
-msgstr ""
+msgstr "(вбудовано до метаданих сховища)"
 
 #: dnfdragora/dialogs.py:2067
 #, python-format
@@ -1470,7 +1488,7 @@ msgstr "Рядок меню"
 
 #: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:168
 msgid "Views, filters and search"
-msgstr ""
+msgstr "Перегляд, фільтри і пошук"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:195
 msgid "Group panel"
@@ -1494,7 +1512,7 @@ msgstr "Рядок кнопок"
 
 #: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:183
 msgid "Search dialog"
-msgstr ""
+msgstr "Діалогове вікно пошуку"
 
 #: dnfdragora/helpinfo.py:50
 msgid "File menu"
@@ -1588,7 +1606,7 @@ msgstr "<h2>Сховища</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu opens the Repository Management dialog.<br>"
-msgstr ""
+msgstr "Цей пункт меню відкриває вікно керування записами сховищ.<br>"
 
 #: dnfdragora/helpinfo.py:91
 msgid ""
@@ -1596,10 +1614,14 @@ msgid ""
 "or disable each repository using its checkbox. Changes take effect "
 "immediately for the current session but are not permanent.<br><br>"
 msgstr ""
+"У цьому вікні перелічено всі налаштовані сховища, упорядковані за назвою. Ви"
+" можете увімкнути або вимкнути кожне сховище за допомогою поля для позначки."
+" Зміни набувають чинності негайно для поточного сеансу, але не є сталими.<br"
+"><br>"
 
 #: dnfdragora/helpinfo.py:92
 msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-msgstr ""
+msgstr "<b>Фільтрування — показати додаткові типи сховищ</b><br>"
 
 #: dnfdragora/helpinfo.py:93
 msgid ""
@@ -1607,30 +1629,40 @@ msgid ""
 "repositories. Expand the filter frame by checking its title to show three "
 "additional checkboxes:<br>"
 msgstr ""
+"Типово у списку буде приховано сховища із діагностичними даними, початковими"
+" програмними кодами та сховища тестових пакунків. Розгорніть фільтрування,"
+" позначивши його назву, щоб було показано три додаткові пункти:<br>"
 
 #: dnfdragora/helpinfo.py:94
 msgid "<ul>"
-msgstr ""
+msgstr "<ul>"
 
 #: dnfdragora/helpinfo.py:95
 msgid ""
 "<li><b>Debug information</b>: show repositories whose id ends with <i>-"
 "debuginfo</i>.</li>"
 msgstr ""
+"<li><b>Діагностичні дані</b>: показати сховища, ідентифікатор яких"
+" завершується на <i>-"
+"debuginfo</i>.</li>"
 
 #: dnfdragora/helpinfo.py:96
 msgid ""
 "<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
 msgstr ""
+"<li><b>Джерело</b>: показати сховища, ідентифікатор яких завершується на <i"
+">-source</i>.</li>"
 
 #: dnfdragora/helpinfo.py:97
 msgid ""
 "<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
 msgstr ""
+"<li><b>Тестування</b>: показати сховища, ідентифікатор яких містить <i"
+">testing</i>.</li>"
 
 #: dnfdragora/helpinfo.py:98
 msgid "</ul>"
-msgstr ""
+msgstr "</ul>"
 
 #: dnfdragora/helpinfo.py:99
 msgid ""
@@ -1638,12 +1670,17 @@ msgid ""
 "corresponding checkbox is automatically turned on and the frame is expanded, "
 "ensuring an active repository is never hidden.<br>"
 msgstr ""
+"Якщо сховища будь-якого з цих типів <b>увімкнено</b> у DNF, відповідний"
+" прапорець буде позначено автоматично, а список буде розгорнуто, що"
+" гарантує, що активне сховище ніколи не буде приховано.<br>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
 "The filter selections are saved in the user configuration file and restored "
 "at the next launch.<br>"
 msgstr ""
+"Вибрані фільтри буде збережено у файлі налаштувань користувача і відновлено"
+" під час наступного запуску.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid "<h2>Quit</h2>"
@@ -1864,11 +1901,17 @@ msgid ""
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
+"За допомогою першого спадного списку можна переглянути пакунки за групами. "
+"Якщо позначено пункт <i>Групи</i>, на панелі груп буде показано ієрархічний"
+" список груп, а позначення групи призведе до показу пов'язаних пакунків на"
+" панелі пакунків.<br>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr ""
+"Якщо позначено пункт <i>Усі</i>, на панелі пакунків буде показано усі "
+"пакунки.<br>"
 
 #: dnfdragora/helpinfo.py:173
 msgid "<h2>Filters</h2>"
@@ -1884,7 +1927,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:176
 msgid "<li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<li><b>Встановлено</b>: показати лише встановлені пакунки.</li>"
 
 #: dnfdragora/helpinfo.py:177
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
@@ -1910,6 +1953,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
 msgstr ""
+"<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і "
+"встановлені пакунки</li>"
 
 #: dnfdragora/helpinfo.py:182
 msgid "<h2>Search</h2>"
@@ -1919,26 +1964,32 @@ msgstr "<h2>Шукати</h2>"
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
 msgstr ""
+"Натискання кнопки <b>Шукати</b> (кнопка зі збільшувальним склом) відкриває "
+"%s "
 
 #: dnfdragora/helpinfo.py:184
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
 msgstr ""
+"у якому передбачено усі можливості з пошуку. У режимі пошуку спадний список"
+" фільтрування буде вимкнено, "
 
 #: dnfdragora/helpinfo.py:185
 msgid "and an info label shows the active search text or dependency query. "
-msgstr ""
+msgstr "а мітка даних показуватиме текст пошуку або запиту щодо залежностей. "
 
 #: dnfdragora/helpinfo.py:186
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
 msgstr ""
+"За допомогою кнопки <b>Спорожнити поле пошуку</b> (кнопки з гумкою) поряд із"
+" кнопкою пошуку можна скинути усі стани пошуку "
 
 #: dnfdragora/helpinfo.py:187
 msgid "and re-enables the filter combobox.<br>"
-msgstr ""
+msgstr "і знову увімкнути спадний список фільтрування.<br>"
 
 #: dnfdragora/helpinfo.py:197
 msgid ""
@@ -2177,7 +2228,7 @@ msgstr "Фільтрування пакунків"
 
 #: dnfdragora/ui.py:596
 msgid "Open search dialog"
-msgstr ""
+msgstr "Відкрити вікно пошуку"
 
 #: dnfdragora/ui.py:598
 msgid "&Clear search"
@@ -2185,7 +2236,7 @@ msgstr "Споро&жнити поле пошуку"
 
 #: dnfdragora/ui.py:599
 msgid "Clear current search"
-msgstr ""
+msgstr "Спорожнити поле пошуку"
 
 #: dnfdragora/ui.py:614
 msgid "Sel&ect all"
@@ -2262,12 +2313,12 @@ msgstr "встановлено"
 #: dnfdragora/ui.py:1028
 #, python-format
 msgid "[ Search: %s ]"
-msgstr ""
+msgstr "[ Пошук: %s ]"
 
 #: dnfdragora/ui.py:1030
 #, python-format
 msgid "[ Dependency search: %s ]"
-msgstr ""
+msgstr "[ Пошук за залежностями: %s ]"
 
 #: dnfdragora/ui.py:1258
 msgid "Missing information"
@@ -2353,7 +2404,8 @@ msgstr "Невідомий"
 
 #: dnfdragora/ui.py:2575
 #, python-format
-msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
+msgid ""
+"Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 "Розпочато отримання [%(count_files)d] - файл %(id)s - %(description)s ..."
 

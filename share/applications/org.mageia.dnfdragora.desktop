@@ -157,6 +157,7 @@ Comment[wa]=Ene eterface grafike po-z astaler, oister et mete a djoû les pacaed
 Comment[zh_CN]=安装、删除和更新软件包的图形化工具
 Comment[zh_TW]=安裝、移除與更新軟體套件
 Keywords=package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;
+Keywords[uk]=package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;пакунок;програма;програмне забезпечення;програми;додатки;крамниця;сховище;додати;встановити;вилучити;видалити;
 Terminal=false
 Type=Application
 Categories=System;Settings;PackageManager;
