@@ -1,20 +1,21 @@
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2018
-# Antoine DUMONDEL <antoine.dumondel@gmail.com>, 2018
-# Yves Brungard <yves.brungard_mageia@gadz.org>, 2018
+# Antoine DUMONDEL, 2018
+# Yves Brungard, 2026
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-12 11:50+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Yves Brungard <yves.brungard_mageia@gadz.org>, 2018\n"
-"Language-Team: French (https://www.transifex.com/MageiaLinux/teams/9361/fr/)\n"
+"POT-Creation-Date: 2026-04-30 08:12+0300\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: Yves Brungard, 2026\n"
+"Language-Team: French (https://app.transifex.com/MageiaLinux/teams/9361/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
@@ -32,6 +33,14 @@ msgid "A graphical front end for installing, removing and updating packages"
 msgstr ""
 "Une interface graphique pour installer, supprimer et mettre à jour les "
 "paquetages"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""
+"paquet;paquetage;programme;application;magasin;dépôt;installer;ajouter;désinstaller;effacer;mettre"
+" à jour;mettre à niveau;"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
@@ -62,9 +71,3 @@ msgstr "Gestionnaire de paquetages RPM"
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "Installer des paquetages locaux sur le système"
-
-#: ./share/applications/org.mageia.dnfdragora.desktop
-msgctxt "Keywords"
-msgid ""
-"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
-msgstr ""
