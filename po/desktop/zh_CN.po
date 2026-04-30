@@ -60,3 +60,9 @@ msgstr "RPM软件包安装器"
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "将本地软件包安装到系统"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""
