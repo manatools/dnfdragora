@@ -160,6 +160,7 @@ Keywords=package;program;software;apps;applications;store;repository;add;install
 Keywords[ca]=paquet;programa;programari;aplicacions;emmagatzematge;repositori;afegir;instal·lar;desinstal·lar;eliminar;suprimir;actualitzar;millorar;
 Keywords[fr]=paquet;paquetage;programme;application;magasin;dépôt;installer;ajouter;désinstaller;effacer;mettre à jour;mettre à niveau;
 Keywords[nl]=pakket;programma;software;apps;applicaties;opslaan;pakketdepot;toevoegen;installeren;de-installeren;verwijderen;wissen;herziening;opwaardering;
+Keywords[ro]=pachet; program; aplicație; aplicații; aplicații; magazin; repozitoriu; adăugare; instalare; dezinstalare; eliminare; înlăturare; actualizare; upgrade;
 Keywords[uk]=package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;пакунок;програма;програмне забезпечення;програми;додатки;крамниця;сховище;додати;встановити;вилучити;видалити;
 Terminal=false
 Type=Application

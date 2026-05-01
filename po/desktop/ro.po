@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2025-05-28 22:48+0300\n"
+"POT-Creation-Date: 2026-04-30 08:12+0300\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
 "Last-Translator: Aurelian R, 2026\n"
 "Language-Team: Romanian (https://app.transifex.com/MageiaLinux/teams/9361/ro/)\n"
@@ -32,6 +32,15 @@ msgid "A graphical front end for installing, removing and updating packages"
 msgstr ""
 "O interfață grafică pentru instalarea, înlăturarea și actualizarea "
 "pachetelor"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""
+"pachet; program; aplicație; aplicații; aplicații; magazin; repozitoriu; "
+"adăugare; instalare; dezinstalare; eliminare; înlăturare; actualizare; "
+"upgrade;"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
@@ -61,10 +70,4 @@ msgstr "Gestionar de pachete RPM"
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
-msgstr "Instalează pachete locale în sistem"
-
-#: ./share/applications/org.mageia.dnfdragora.desktop
-msgctxt "Keywords"
-msgid ""
-"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
-msgstr ""
+msgstr "Instalați pachete locale în sistem"

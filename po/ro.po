@@ -539,19 +539,19 @@ msgstr "Servere în oglindă"
 
 #: dnfdragora/dialogs.py:658
 msgid "Ad&vanced repository types"
-msgstr ""
+msgstr "&Tipuri avansate de repozitorii"
 
 #: dnfdragora/dialogs.py:662
 msgid "&Debug information"
-msgstr ""
+msgstr "&Informații de depanare"
 
 #: dnfdragora/dialogs.py:664
 msgid "&Source"
-msgstr ""
+msgstr "&Sursă"
 
 #: dnfdragora/dialogs.py:666
 msgid "&Testing"
-msgstr ""
+msgstr "&Testare"
 
 #: dnfdragora/dialogs.py:677
 msgid "Id"
@@ -660,7 +660,7 @@ msgstr "Alegeți directorul de destinație al jurnalului"
 
 #: dnfdragora/dialogs.py:1469
 msgid "Find packages"
-msgstr ""
+msgstr "Găsește pachete"
 
 #: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
 msgid "Installed"
@@ -668,19 +668,19 @@ msgstr "Instalate"
 
 #: dnfdragora/dialogs.py:1509
 msgid "Available"
-msgstr ""
+msgstr "Disponibil"
 
 #: dnfdragora/dialogs.py:1510
 msgid "Upgrades"
-msgstr ""
+msgstr "Actualizări"
 
 #: dnfdragora/dialogs.py:1511
 msgid "Upgradable"
-msgstr ""
+msgstr "Actualizabile"
 
 #: dnfdragora/dialogs.py:1532
 msgid "Find:"
-msgstr ""
+msgstr "Căutare:"
 
 #: dnfdragora/dialogs.py:1540
 msgid ""
@@ -688,188 +688,212 @@ msgid ""
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
+"Introduceți modelul de căutare. În modul text: cuvinte separate prin spații "
+"sau virgule. În modul de interogare a dependenței: numele capacității (de "
+"exemplu, „python3”, „/usr/bin/python3”)."
 
 #: dnfdragora/dialogs.py:1547
 msgid "Search in:"
-msgstr ""
+msgstr "Caută în:"
 
 #: dnfdragora/dialogs.py:1548
 msgid "N&ames"
-msgstr ""
+msgstr "&Denumire"
 
 #: dnfdragora/dialogs.py:1550
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
 msgstr ""
+"Căutați în numele pachetelor și în NEVRA (name-epoch:version-release.arch)."
 
 #: dnfdragora/dialogs.py:1551
 msgid "&Provides"
-msgstr ""
+msgstr "&Oferă"
 
 #: dnfdragora/dialogs.py:1553
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr ""
+"De asemenea, potrivește pachetele ale căror etichete Oferă: includ modelul "
+"de căutare."
 
 #: dnfdragora/dialogs.py:1554
 msgid "&Files"
-msgstr ""
+msgstr "&Fișiere"
 
 #: dnfdragora/dialogs.py:1556
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
+"Potrivește pachetele care dețin fișiere a căror cale corespunde modelului."
 
 #: dnfdragora/dialogs.py:1559
 msgid "&Binaries"
-msgstr ""
+msgstr "&Binare"
 
 #: dnfdragora/dialogs.py:1561
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
+"Restricționează potrivirea fișierelor doar la /usr/bin și /usr/sbin (subset "
+"de Fișiere)."
 
 #: dnfdragora/dialogs.py:1562
 msgid "S&ources"
-msgstr ""
+msgstr "&Surse"
 
 #: dnfdragora/dialogs.py:1564
 msgid "Include source RPMs (*.src.rpm) in the results."
-msgstr ""
+msgstr "Includeți RPM-urile sursă (*.src.rpm) în rezultate."
 
 #: dnfdragora/dialogs.py:1566
 msgid "Su&mmary"
-msgstr ""
+msgstr "&Rezumat"
 
 #: dnfdragora/dialogs.py:1568
 msgid "Search in package summaries. Only available in regexp mode."
-msgstr ""
+msgstr "Căutare în rezumatele pachetelor. Disponibil doar în modul regexp."
 
 #: dnfdragora/dialogs.py:1572
 msgid "Scope:"
-msgstr ""
+msgstr "Scop:"
 
 #: dnfdragora/dialogs.py:1583
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
+"Limitați căutarea la un subset de pachete: toate, instalate, disponibile "
+"pentru instalare, actualizări sau actualizabile."
 
 #: dnfdragora/dialogs.py:1585
 msgid "Use &regexp"
-msgstr ""
+msgstr "Folosiți &regexp"
 
 #: dnfdragora/dialogs.py:1588
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
+"Tratați câmpul Căutare ca o expresie regulată (sintaxa Python). Dezactivează "
+"căutarea în câmpuri multiple."
 
 #: dnfdragora/dialogs.py:1590
 msgid "&Latest only"
-msgstr ""
+msgstr "&Numai cele mai recente"
 
 #: dnfdragora/dialogs.py:1592
 msgid "Show only the latest version of each package name."
-msgstr ""
+msgstr "Afișează doar cea mai recentă versiune a fiecărui nume de pachet."
 
 #: dnfdragora/dialogs.py:1593
 msgid "Fu&zzy search"
-msgstr ""
+msgstr "&Căutare vagă"
 
 #: dnfdragora/dialogs.py:1595
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
+"Adăugați automat caractere wildcard în jurul fiecărui cuvânt de căutare (de "
+"exemplu, 'gtk' devine '*gtk*'). Dezactivat în modul regexp."
 
 #: dnfdragora/dialogs.py:1596
 msgid "Case &sensitive"
-msgstr ""
+msgstr "Caz &sensibil"
 
 #: dnfdragora/dialogs.py:1599
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
+"Când este bifată, căutarea este sensibilă la majuscule/minuscule. În mod "
+"implicit, căutarea nu este sensibilă la majuscule/minuscule."
 
 #: dnfdragora/dialogs.py:1608
 msgid "(none)"
-msgstr ""
+msgstr "(nimic)"
 
 #: dnfdragora/dialogs.py:1609
 msgid "provide"
-msgstr ""
+msgstr "oferă"
 
 #: dnfdragora/dialogs.py:1610
 msgid "require"
-msgstr ""
+msgstr "necesită"
 
 #: dnfdragora/dialogs.py:1611
 msgid "depend on"
-msgstr ""
+msgstr "depinde de"
 
 #: dnfdragora/dialogs.py:1612
 msgid "recommend"
-msgstr ""
+msgstr "recomandă"
 
 #: dnfdragora/dialogs.py:1613
 msgid "enhance"
-msgstr ""
+msgstr "îmbunătățește"
 
 #: dnfdragora/dialogs.py:1614
 msgid "suggest"
-msgstr ""
+msgstr "sugerează"
 
 #: dnfdragora/dialogs.py:1615
 msgid "supplement"
-msgstr ""
+msgstr "suplimentare"
 
 #: dnfdragora/dialogs.py:1616
 msgid "obsolete"
-msgstr ""
+msgstr "anacronic"
 
 #: dnfdragora/dialogs.py:1617
 msgid "conflict with"
-msgstr ""
+msgstr "în conflict cu"
 
 #: dnfdragora/dialogs.py:1620
 msgid "&Dependency query"
-msgstr ""
+msgstr "&Interogare de dependență"
 
 #: dnfdragora/dialogs.py:1622
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
+"Când este bifat, câmpul Căutare este utilizat ca nume de capacitate, iar "
+"pachetele sunt căutate după relația de dependență în loc de modelul de text."
 
 #: dnfdragora/dialogs.py:1627
 msgid "Find packages that:"
-msgstr ""
+msgstr "Găsiți pachete care:"
 
 #: dnfdragora/dialogs.py:1640
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
+"Alegeți relația de dependență pentru căutare: oferă, necesită, depinde de, "
+"recomandă etc."
 
 #: dnfdragora/dialogs.py:1641
 msgid "the capability in \"Find\" field"
-msgstr ""
+msgstr "capacitatea din câmpul „Căutare”"
 
 #: dnfdragora/dialogs.py:1648
 msgid "Limit to repositories"
-msgstr ""
+msgstr "Limitează la reposotoriile"
 
 #: dnfdragora/dialogs.py:1650
 msgid "When checked, the search is restricted to the selected repositories."
 msgstr ""
+"Când este bifată, căutarea este restricționată la repozitoriile selectate."
 
 #: dnfdragora/dialogs.py:1673
 msgid "Limit to architectures"
-msgstr ""
+msgstr "Limitează la tipul de arhitectură"
 
 #: dnfdragora/dialogs.py:1675
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
+"Când este bifată, căutarea este restricționată la arhitecturile de CPU "
+"selectate."
 
 #: dnfdragora/dialogs.py:1700 dnfdragora/ui.py:595
 msgid "&Search"
@@ -877,31 +901,32 @@ msgstr "Ca&ută"
 
 #: dnfdragora/dialogs.py:1701
 msgid "Run the search and show matching packages."
-msgstr ""
+msgstr "Rulați căutarea și afișați pachetele potrivite."
 
 #: dnfdragora/dialogs.py:1703
 msgid "&Clear"
-msgstr ""
+msgstr "&Golește"
 
 #: dnfdragora/dialogs.py:1704
 msgid "Clear the Find field and reset the dependency query frame."
 msgstr ""
+"Ștergeți câmpul Căutare și resetați cadrul de interogare a dependenței."
 
 #: dnfdragora/dialogs.py:1706
 msgid "C&lose"
-msgstr ""
+msgstr "&Închide"
 
 #: dnfdragora/dialogs.py:1707
 msgid "Close this dialog without running a new search."
-msgstr ""
+msgstr "Închideți această casetă de dialog fără a rula o nouă căutare."
 
 #: dnfdragora/dialogs.py:1922 dnfdragora/ui.py:1497
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Expresie regulată incorectă"
 
 #: dnfdragora/dialogs.py:2058
 msgid "(embedded in repository metadata)"
-msgstr ""
+msgstr "(încorporat în metadatele repozitoriului)"
 
 #: dnfdragora/dialogs.py:2067
 #, python-format
@@ -1467,7 +1492,7 @@ msgstr "Linie de meniu"
 
 #: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:168
 msgid "Views, filters and search"
-msgstr ""
+msgstr "Vizualizări, filtre și căutare"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:195
 msgid "Group panel"
@@ -1491,7 +1516,7 @@ msgstr "Linie de butoane"
 
 #: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:183
 msgid "Search dialog"
-msgstr ""
+msgstr "Caseta de dialog de căutare"
 
 #: dnfdragora/helpinfo.py:50
 msgid "File menu"
@@ -1585,7 +1610,7 @@ msgstr "<h2>Repozitorii</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu opens the Repository Management dialog.<br>"
-msgstr ""
+msgstr "Acest meniu deschide caseta de dialog Gestionare de repozitoriu.<br>"
 
 #: dnfdragora/helpinfo.py:91
 msgid ""
@@ -1593,10 +1618,16 @@ msgid ""
 "or disable each repository using its checkbox. Changes take effect "
 "immediately for the current session but are not permanent.<br><br>"
 msgstr ""
+"Caseta de dialog listează toate repozitoriile configurate, sortate după "
+"nume. Puteți activa sau dezactiva fiecare repozitoriu folosind caseta de "
+"selectare aferentă. Modificările au efect imediat pentru sesiunea curentă, "
+"dar nu sunt permanente.<br><br>"
 
 #: dnfdragora/helpinfo.py:92
 msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
 msgstr ""
+"<b>Cadru de filtru \\u2014 Afișează tipuri suplimentare de repozitorii</"
+"b><br>"
 
 #: dnfdragora/helpinfo.py:93
 msgid ""
@@ -1604,30 +1635,39 @@ msgid ""
 "repositories. Expand the filter frame by checking its title to show three "
 "additional checkboxes:<br>"
 msgstr ""
+"În mod implicit, lista ascunde repozitoriile de informații de depanare, "
+"sursă și testare. Extindeți cadrul filtrului bifând titlul acestuia pentru a "
+"afișa trei casete de selectare suplimentare:<br>"
 
 #: dnfdragora/helpinfo.py:94
 msgid "<ul>"
-msgstr ""
+msgstr "<ul>"
 
 #: dnfdragora/helpinfo.py:95
 msgid ""
 "<li><b>Debug information</b>: show repositories whose id ends with <i>-"
 "debuginfo</i>.</li>"
 msgstr ""
+"<li><b>Informații de depanare</b>: afișează repozitoriile al căror ID se "
+"termină cu <i>-debuginfo</i>.</li>"
 
 #: dnfdragora/helpinfo.py:96
 msgid ""
 "<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
 msgstr ""
+"<li><b>Sursă</b>: afișează repozitoriile al căror id se termină cu <i>-"
+"source</i>.</li>"
 
 #: dnfdragora/helpinfo.py:97
 msgid ""
 "<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
 msgstr ""
+"<li><b>Testare</b>: afișează repozitoriile al căror id conține <i>testing</"
+"i>.</li>"
 
 #: dnfdragora/helpinfo.py:98
 msgid "</ul>"
-msgstr ""
+msgstr "</ul>"
 
 #: dnfdragora/helpinfo.py:99
 msgid ""
@@ -1635,12 +1675,18 @@ msgid ""
 "corresponding checkbox is automatically turned on and the frame is expanded, "
 "ensuring an active repository is never hidden.<br>"
 msgstr ""
+"Dacă vreun repozitoriu de aceste tipuri este <b>activat</b> în prezent în "
+"DNF, caseta de selectare corespunzătoare este bifată automat, iar cadrul "
+"este extins, asigurându-se că un repozitoriu activ nu este niciodată "
+"neafișat.<br>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
 "The filter selections are saved in the user configuration file and restored "
 "at the next launch.<br>"
 msgstr ""
+"Selecțiile filtrului sunt salvate în fișierul de configurare al "
+"utilizatorului și restaurate la următoarea lansare.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid "<h2>Quit</h2>"
@@ -1859,11 +1905,17 @@ msgid ""
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
+"Prima casetă combinată vă permite să afișați pachetele pe grupuri. Dacă este "
+"selectată opțiunea <i>Grupuri</i>, panoul de grupuri afișează o vizualizare "
+"arborescentă care conține grupuri, iar selectarea unui grup afișează "
+"pachetele corelate în panoul de pachete.<br>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr ""
+"Dacă este selectată opțiunea <i>Toate</i>, panoul de pachete conține toate "
+"pachetele.<br>"
 
 #: dnfdragora/helpinfo.py:173
 msgid "<h2>Filters</h2>"
@@ -1879,7 +1931,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:176
 msgid "<li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<li><b>Instalat</b>: afișează doar pachetele instalate.</li>"
 
 #: dnfdragora/helpinfo.py:177
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
@@ -1906,6 +1958,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
 msgstr ""
+"<li><b>Toate</b>: afișează toate pachetele, adică disponibile, actualizări "
+"și instalate.</li>"
 
 #: dnfdragora/helpinfo.py:182
 msgid "<h2>Search</h2>"
@@ -1914,27 +1968,33 @@ msgstr "<h2>Căutare</h2>"
 #: dnfdragora/helpinfo.py:183
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
-msgstr ""
+msgstr "Apăsarea butonului <b>Căutare</b> (pictograma lupă) deschide %s"
 
 #: dnfdragora/helpinfo.py:184
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
 msgstr ""
+"care oferă o căutare completă a pachetelor. Când o căutare este activă, "
+"caseta combinată de filtrare este dezactivată"
 
 #: dnfdragora/helpinfo.py:185
 msgid "and an info label shows the active search text or dependency query. "
 msgstr ""
+"și o etichetă informativă arată textul de căutare activ sau interogarea de "
+"dependență."
 
 #: dnfdragora/helpinfo.py:186
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
 msgstr ""
+"Butonul <b>Golire căutare</b> (pictograma radieră) de lângă butonul Căutare "
+"resetează toate stările de căutare"
 
 #: dnfdragora/helpinfo.py:187
 msgid "and re-enables the filter combobox.<br>"
-msgstr ""
+msgstr "și reactivează caseta combinată de filtre.<br>"
 
 #: dnfdragora/helpinfo.py:197
 msgid ""
@@ -2174,7 +2234,7 @@ msgstr "Filtrarea pachetelor"
 
 #: dnfdragora/ui.py:596
 msgid "Open search dialog"
-msgstr ""
+msgstr "Deschideți caseta de dialog de căutare"
 
 #: dnfdragora/ui.py:598
 msgid "&Clear search"
@@ -2182,7 +2242,7 @@ msgstr "&Curăță căutarea"
 
 #: dnfdragora/ui.py:599
 msgid "Clear current search"
-msgstr ""
+msgstr "Șterge căutarea curentă"
 
 #: dnfdragora/ui.py:614
 msgid "Sel&ect all"
@@ -2259,12 +2319,12 @@ msgstr "instalat"
 #: dnfdragora/ui.py:1028
 #, python-format
 msgid "[ Search: %s ]"
-msgstr ""
+msgstr "[ Căutare: %s ]"
 
 #: dnfdragora/ui.py:1030
 #, python-format
 msgid "[ Dependency search: %s ]"
-msgstr ""
+msgstr "[ Căutare dependențe: %s ]"
 
 #: dnfdragora/ui.py:1258
 msgid "Missing information"
@@ -2487,131 +2547,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Fereastra principală"
-
-#~ msgid "<h2>Search options</h2>"
-#~ msgstr "<h2>Opțiuni de căutare</h2>"
-
-#~ msgid ""
-#~ "<i>Note</i>: when regular expressions are used to search by name, the "
-#~ "full package filename including the version is used."
-#~ msgstr ""
-#~ "<i>Notă</i>: când se utilizează expresii regulate pentru a căuta după "
-#~ "nume, se utilizează numele complet al fișierului pachetului, inclusiv "
-#~ "versiunea."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Toate</b>: afișează toate pachetele, adică disponibile, "
-#~ "actualizări și instalate.</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-#~ "regular expressions will add \"*\" to the given words, restoring the "
-#~ "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Căutare fuzzy (mod vechi)</b>: dacă este bifată, o căutare fără a "
-#~ "utiliza expresii regulate va adăuga „*” cuvintelor date, restabilind "
-#~ "comportamentul pe care dnfdragora îl avea folosind dnfdaemon 4.</li></ul>"
-
-#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-#~ msgstr "<ul><li><b>Instalat</b>: afișează doar pachetele instalate.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
-#~ "only newest packages on search.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Afișează doar cele mai noi pachete</b>: dacă este bifat, "
-#~ "dnfdragora afișează doar cele mai noi pachete la căutare.</li>"
-
-#~ msgid ""
-#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
-#~ "python language regular expressions. This search is performed on cached "
-#~ "package information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "O casetă specială de selectare <i>Utilizează expresii regulate</i> este "
-#~ "utilizată pentru a căuta pachete după expresiile regulate din limbajul "
-#~ "Python. Această căutare se efectuează pe informațiile despre pachete din "
-#~ "cache, cum ar fi doar numele și rezumatele."
-
-#~ msgid "Clear search field"
-#~ msgstr "Goliți câmpul de căutare"
-
-#~ msgid "Filters and search line"
-#~ msgstr "Filtre și linie de căutare"
-
-#~ msgid "Fuzzy search (legacy mode)"
-#~ msgstr "Căutare fuzzy (modul vechi)"
-
-#~ msgid ""
-#~ "If <i>All</i> is selected, the package panel contains all the packages."
-#~ msgstr ""
-#~ "Dacă este selectată opțiunea <i>Toate</i>, panoul de pachete conține "
-#~ "toate pachetele."
-
-#~ msgid "Proxy password"
-#~ msgstr "Parolă proxy"
-
-#~ msgid "Search"
-#~ msgstr "Caută"
-
-#~ msgid ""
-#~ "Search is performed by pressing the <i>Search</i> button when the text "
-#~ "field is not empty. The Search combobox allows you to search the given "
-#~ "text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or "
-#~ "<i>files</i>."
-#~ msgstr ""
-#~ "Căutarea se efectuează apăsând butonul <i>Căutare</i> atunci când câmpul "
-#~ "de text nu este gol. Caseta combinată Căutare vă permite să căutați "
-#~ "textul dat în <i>nume</i> de pachete, <i>rezumate</i>, <i>descrieri</i> "
-#~ "sau <i>fișiere</i>."
-
-#~ msgid "Search options"
-#~ msgstr "Opțiuni de căutare"
-
-#~ msgid "Search packages"
-#~ msgstr "Căutați pachete"
-
-#~ msgid "Show newest packages only"
-#~ msgstr "Afișează doar cele mai noi pachete"
-
-#~ msgid "The <i>Clear search</i> button resets search text field."
-#~ msgstr "Butonul <i>Șterge căutarea</i> resetează câmpul de căutare."
-
-#~ msgid ""
-#~ "The first combobox allows you to show packages by groups. If <i>Groups</"
-#~ "i> is selected, the group panel shows a tree view containing groups, and "
-#~ "selecting a group shows related packages in the package panel."
-#~ msgstr ""
-#~ "Prima casetă combinată vă permite să afișați pachetele pe grupuri. Dacă "
-#~ "este selectată opțiunea <i>Grupuri</i>, panoul de grupuri afișează o "
-#~ "vizualizare arborescentă care conține grupuri, iar selectarea unui grup "
-#~ "afișează pachetele corelate în panoul de pachete."
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows you to enable or disable "
-#~ "repositories. Any changes are valid only while dnfdragora is running and "
-#~ "are not permanent.<br>"
-#~ msgstr ""
-#~ "Acest meniu deschide o casetă de dialog care vă permite să activați sau "
-#~ "să dezactivați repozitoriile. Orice modificări sunt valabile atât timp "
-#~ "cât dnfdragora rulează și nu sunt permanente.<br>"
-
-#~ msgid "Use regexp"
-#~ msgstr "Folosește expresie regulată"
-
-#~ msgid "Views and search"
-#~ msgstr "Vizualizări și căutare"
-
-#~ msgid "in descriptions"
-#~ msgstr "în descrieri"
-
-#~ msgid "in file names"
-#~ msgstr "în denumirile fișierelor"
-
-#~ msgid "in names"
-#~ msgstr "în denumiri"
-
-#~ msgid "in summaries"
-#~ msgstr "în rezumate"
