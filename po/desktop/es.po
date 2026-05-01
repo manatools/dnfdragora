@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2019-05-12 19:55+0300\n"
+"POT-Creation-Date: 2026-04-30 08:12+0300\n"
 "PO-Revision-Date: 2018-01-03 12:59+0000\n"
 "Last-Translator: José Alberto Valle Cid <j.alberto.vc@gmail.com>, 2019\n"
-"Language-Team: Spanish (https://www.transifex.com/MageiaLinux/teams/9361/es/)\n"
+"Language-Team: Spanish (https://app.transifex.com/MageiaLinux/teams/9361/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: ./share/applications/org.mageia.dnfdragora.desktop
 msgctxt "Name"
@@ -32,6 +32,12 @@ msgstr "Instalar y quitar aplicaciones"
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
 msgstr "Una interfaz gráfica para instalar, desinstalar y actualizar paquetes"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
@@ -62,9 +68,3 @@ msgstr "Instalador de paquetes RPM"
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "Instalar paquetes locales"
-
-#: ./share/applications/org.mageia.dnfdragora.desktop
-msgctxt "Keywords"
-msgid ""
-"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
-msgstr ""
