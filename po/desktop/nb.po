@@ -1,15 +1,16 @@
 # Translators:
 # Yuri Chornoivan <yurchor@ukr.net>, 2018
-# Rémi Verschelde <akien@mageia.org>, 2018
-# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2018
+# kekePower <smelror@gmail.com>, 2018
+# Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2026
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora desktop files translation\n"
 "Report-Msgid-Bugs-To: i18n-discuss@ml.mageia.org\n"
-"POT-Creation-Date: 2018-01-03 16:16+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2018\n"
-"Language-Team: Norwegian Bokmål (https://www.transifex.com/MageiaLinux/teams/9361/nb/)\n"
+"POT-Creation-Date: 2026-04-30 08:12+0300\n"
+"PO-Revision-Date: 2018-01-03 12:59+0000\n"
+"Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2026\n"
+"Language-Team: Norwegian Bokmål (https://app.transifex.com/MageiaLinux/teams/9361/nb/)\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,14 @@ msgstr "Installer og fjern programvare"
 msgctxt "Comment"
 msgid "A graphical front end for installing, removing and updating packages"
 msgstr ""
-"Grafisk grensesnitt for installering, fjerning og oppdatering av pakker."
+"Grafisk grensesnitt for installering, fjerning og oppdatering av pakker"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
 
 #: ./share/applications/org.mageia.dnfdragora-updater.desktop
 msgctxt "Name"
@@ -55,15 +63,9 @@ msgstr "dnfdragora installerer"
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "GenericName"
 msgid "RPM Package Installer"
-msgstr "RPM pakke installerer"
+msgstr "RPM pakkeinstallerer"
 
 #: ./share/applications/org.mageia.dnfdragora-localinstall.desktop
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "Installer lokal pakke på systemet"
-
-#: ./share/applications/org.mageia.dnfdragora.desktop
-msgctxt "Keywords"
-msgid ""
-"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
-msgstr ""

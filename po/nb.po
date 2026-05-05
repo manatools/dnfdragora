@@ -533,19 +533,19 @@ msgstr "Speil"
 
 #: dnfdragora/dialogs.py:658
 msgid "Ad&vanced repository types"
-msgstr ""
+msgstr "A&vanserte depottyper"
 
 #: dnfdragora/dialogs.py:662
 msgid "&Debug information"
-msgstr ""
+msgstr "&Debug informasjon"
 
 #: dnfdragora/dialogs.py:664
 msgid "&Source"
-msgstr ""
+msgstr "&Kilde"
 
 #: dnfdragora/dialogs.py:666
 msgid "&Testing"
-msgstr ""
+msgstr "&Testing"
 
 #: dnfdragora/dialogs.py:677
 msgid "Id"
@@ -655,7 +655,7 @@ msgstr "Velg destinasjonskatalog for logg"
 
 #: dnfdragora/dialogs.py:1469
 msgid "Find packages"
-msgstr ""
+msgstr "Finn pakker"
 
 #: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
 msgid "Installed"
@@ -663,19 +663,19 @@ msgstr "Installert"
 
 #: dnfdragora/dialogs.py:1509
 msgid "Available"
-msgstr ""
+msgstr "Tilgjengelig"
 
 #: dnfdragora/dialogs.py:1510
 msgid "Upgrades"
-msgstr ""
+msgstr "Oppgraderinger"
 
 #: dnfdragora/dialogs.py:1511
 msgid "Upgradable"
-msgstr ""
+msgstr "Oppgraderbar"
 
 #: dnfdragora/dialogs.py:1532
 msgid "Find:"
-msgstr ""
+msgstr "Finn:"
 
 #: dnfdragora/dialogs.py:1540
 msgid ""
@@ -683,188 +683,205 @@ msgid ""
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
+"Skriv inn søkemønsteret. I tekstmodus: ord atskilt med mellomrom eller "
+"komma. I avhengighetsspørringsmodus: funksjonsnavn (f.eks. 'python3', '/usr/"
+"bin/python3')."
 
 #: dnfdragora/dialogs.py:1547
 msgid "Search in:"
-msgstr ""
+msgstr "Søk i:"
 
 #: dnfdragora/dialogs.py:1548
 msgid "N&ames"
-msgstr ""
+msgstr "N&avn"
 
 #: dnfdragora/dialogs.py:1550
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
-msgstr ""
+msgstr "Søk i pakkenavn og NEVRA (name-epoch:version-release.arch)."
 
 #: dnfdragora/dialogs.py:1551
 msgid "&Provides"
-msgstr ""
+msgstr "&Gir"
 
 #: dnfdragora/dialogs.py:1553
 msgid "Also match packages whose Provides: tags include the search pattern."
-msgstr ""
+msgstr "Finn også pakker der Provides:-taggene inneholder søkemønsteret."
 
 #: dnfdragora/dialogs.py:1554
 msgid "&Files"
-msgstr ""
+msgstr "&Filer"
 
 #: dnfdragora/dialogs.py:1556
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
+"Samsvarer med pakker som eier filer med en sti som samsvarer med mønsteret."
 
 #: dnfdragora/dialogs.py:1559
 msgid "&Binaries"
-msgstr ""
+msgstr "&Binærfiler"
 
 #: dnfdragora/dialogs.py:1561
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
-msgstr ""
+msgstr "Begrens filmatching til kun /usr/bin og /usr/sbin (delsett av Filer)."
 
 #: dnfdragora/dialogs.py:1562
 msgid "S&ources"
-msgstr ""
+msgstr "K&ilder"
 
 #: dnfdragora/dialogs.py:1564
 msgid "Include source RPMs (*.src.rpm) in the results."
-msgstr ""
+msgstr "Inkluder kilde-RPM-er (*.src.rpm) i resultatene"
 
 #: dnfdragora/dialogs.py:1566
 msgid "Su&mmary"
-msgstr ""
+msgstr "S&ammendrag"
 
 #: dnfdragora/dialogs.py:1568
 msgid "Search in package summaries. Only available in regexp mode."
-msgstr ""
+msgstr "Søk i pakkesammendrag. Kun tilgjengelig i regexp-modus."
 
 #: dnfdragora/dialogs.py:1572
 msgid "Scope:"
-msgstr ""
+msgstr "Omfang:"
 
 #: dnfdragora/dialogs.py:1583
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
+"Begrens søket til et delsett av pakker: alle, installert, tilgjengelig for "
+"installasjon, oppgraderinger eller oppgraderbar."
 
 #: dnfdragora/dialogs.py:1585
 msgid "Use &regexp"
-msgstr ""
+msgstr "Bruk &regexp"
 
 #: dnfdragora/dialogs.py:1588
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
+"Behandle Søk-feltet som et regulært uttrykk (Python angående syntaks). "
+"Deaktiverer søk i flere felt."
 
 #: dnfdragora/dialogs.py:1590
 msgid "&Latest only"
-msgstr ""
+msgstr "&Kun nyeste"
 
 #: dnfdragora/dialogs.py:1592
 msgid "Show only the latest version of each package name."
-msgstr ""
+msgstr "Vis bare den nyeste versjonen av hvert pakkenavn."
 
 #: dnfdragora/dialogs.py:1593
 msgid "Fu&zzy search"
-msgstr ""
+msgstr "U&klart søk"
 
 #: dnfdragora/dialogs.py:1595
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
+"Legg automatisk til jokertegn rundt hvert søketoken (f.eks. blir 'gtk' til "
+"'*gtk*'). Deaktivert i regexp-modus."
 
 #: dnfdragora/dialogs.py:1596
 msgid "Case &sensitive"
-msgstr ""
+msgstr "&Følsom for store og små bokstaver"
 
 #: dnfdragora/dialogs.py:1599
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
+"Når det er avmerket, skiller søket mellom store og små bokstaver. Som "
+"standard skiller søket ikke mellom store og små bokstaver."
 
 #: dnfdragora/dialogs.py:1608
 msgid "(none)"
-msgstr ""
+msgstr "(ingen)"
 
 #: dnfdragora/dialogs.py:1609
 msgid "provide"
-msgstr ""
+msgstr "skaffe"
 
 #: dnfdragora/dialogs.py:1610
 msgid "require"
-msgstr ""
+msgstr "krevr"
 
 #: dnfdragora/dialogs.py:1611
 msgid "depend on"
-msgstr ""
+msgstr "avhengig av"
 
 #: dnfdragora/dialogs.py:1612
 msgid "recommend"
-msgstr ""
+msgstr "anbefalt"
 
 #: dnfdragora/dialogs.py:1613
 msgid "enhance"
-msgstr ""
+msgstr "forbedre"
 
 #: dnfdragora/dialogs.py:1614
 msgid "suggest"
-msgstr ""
+msgstr "foreslå"
 
 #: dnfdragora/dialogs.py:1615
 msgid "supplement"
-msgstr ""
+msgstr "tillegg"
 
 #: dnfdragora/dialogs.py:1616
 msgid "obsolete"
-msgstr ""
+msgstr "udtatert"
 
 #: dnfdragora/dialogs.py:1617
 msgid "conflict with"
-msgstr ""
+msgstr "i konflikt med"
 
 #: dnfdragora/dialogs.py:1620
 msgid "&Dependency query"
-msgstr ""
+msgstr "&Avhengighetsspørring"
 
 #: dnfdragora/dialogs.py:1622
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
+"Når det er avmerket, brukes Søk-feltet som et funksjonsnavn, og pakker søkes "
+"etter avhengighetsrelasjon i stedet for tekstmønster."
 
 #: dnfdragora/dialogs.py:1627
 msgid "Find packages that:"
-msgstr ""
+msgstr "Finnpakker som:"
 
 #: dnfdragora/dialogs.py:1640
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
+"Velg avhengighetsrelasjonen for søket: tilby, kreve, stole på, anbefale osv."
 
 #: dnfdragora/dialogs.py:1641
 msgid "the capability in \"Find\" field"
-msgstr ""
+msgstr "muligheten i «Finn»-feltet"
 
 #: dnfdragora/dialogs.py:1648
 msgid "Limit to repositories"
-msgstr ""
+msgstr "Begrens til arkiver"
 
 #: dnfdragora/dialogs.py:1650
 msgid "When checked, the search is restricted to the selected repositories."
-msgstr ""
+msgstr "Når det er avkrysset, er søket begrenset til de valgte arkivene."
 
 #: dnfdragora/dialogs.py:1673
 msgid "Limit to architectures"
-msgstr ""
+msgstr "Begrens til arkitekturer"
 
 #: dnfdragora/dialogs.py:1675
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
+"Når dette alternativet er avkrysset, er søket begrenset til de valgte CPU-"
+"arkitekturene."
 
 #: dnfdragora/dialogs.py:1700 dnfdragora/ui.py:595
 msgid "&Search"
@@ -872,31 +889,31 @@ msgstr "&Søk"
 
 #: dnfdragora/dialogs.py:1701
 msgid "Run the search and show matching packages."
-msgstr ""
+msgstr "Kjør søket og vis samsvarende pakker."
 
 #: dnfdragora/dialogs.py:1703
 msgid "&Clear"
-msgstr ""
+msgstr "&Fjern"
 
 #: dnfdragora/dialogs.py:1704
 msgid "Clear the Find field and reset the dependency query frame."
-msgstr ""
+msgstr "Fjern Søke-feltet og tilbakestill avhengighetsspørringsrammen."
 
 #: dnfdragora/dialogs.py:1706
 msgid "C&lose"
-msgstr ""
+msgstr "S&teng"
 
 #: dnfdragora/dialogs.py:1707
 msgid "Close this dialog without running a new search."
-msgstr ""
+msgstr "Lukk denne dialogboksen uten å kjøre et nytt søk."
 
 #: dnfdragora/dialogs.py:1922 dnfdragora/ui.py:1497
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Ugyldig regulært uttrykk"
 
 #: dnfdragora/dialogs.py:2058
 msgid "(embedded in repository metadata)"
-msgstr ""
+msgstr "(innebygd i metadata for arkivet)"
 
 #: dnfdragora/dialogs.py:2067
 #, python-format
@@ -1463,7 +1480,7 @@ msgstr "Menylinje"
 
 #: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:168
 msgid "Views, filters and search"
-msgstr ""
+msgstr "Visninger, filtre og søk"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:195
 msgid "Group panel"
@@ -1487,7 +1504,7 @@ msgstr "Knappelinje"
 
 #: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:183
 msgid "Search dialog"
-msgstr ""
+msgstr "Søkedialog"
 
 #: dnfdragora/helpinfo.py:50
 msgid "File menu"
@@ -1580,7 +1597,7 @@ msgstr "<h2>Programvarebrønner</h2>"
 
 #: dnfdragora/helpinfo.py:90
 msgid "This menu opens the Repository Management dialog.<br>"
-msgstr ""
+msgstr "Denne menyen åpner dialogboksen for administrasjon av arkiv.<br>"
 
 #: dnfdragora/helpinfo.py:91
 msgid ""
@@ -1588,10 +1605,14 @@ msgid ""
 "or disable each repository using its checkbox. Changes take effect "
 "immediately for the current session but are not permanent.<br><br>"
 msgstr ""
+"Dialogboksen viser alle konfigurerte arkiver sortert etter navn. Du kan "
+"aktivere eller deaktivere hvert arkiv ved å bruke avmerkingsboksen. "
+"Endringer trer i kraft umiddelbart for gjeldende økt, men er ikke permanente."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:92
 msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-msgstr ""
+msgstr "<b>Filterramme \\u2014 Vis flere depottyper1</b><br>"
 
 #: dnfdragora/helpinfo.py:93
 msgid ""
@@ -1599,30 +1620,37 @@ msgid ""
 "repositories. Expand the filter frame by checking its title to show three "
 "additional checkboxes:<br>"
 msgstr ""
+"Som standard skjuler listen feilsøkingsinformasjon, kilde og testlagre. "
+"Utvid filterrammen ved å merke av i tittelen for å vise tre ekstra "
+"avmerkingsbokser:<br>"
 
 #: dnfdragora/helpinfo.py:94
 msgid "<ul>"
-msgstr ""
+msgstr "<ul>"
 
 #: dnfdragora/helpinfo.py:95
 msgid ""
 "<li><b>Debug information</b>: show repositories whose id ends with <i>-"
 "debuginfo</i>.</li>"
 msgstr ""
+"<li><b>Debug informasjon</b>: vis arkiver med ID som slutter med<i>-"
+"debuginfo</i>.</li>"
 
 #: dnfdragora/helpinfo.py:96
 msgid ""
 "<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
 msgstr ""
+"<li><b>Kilde</b>: vis arkiver med ID som slutter med<i>-kilde</i>.</li>"
 
 #: dnfdragora/helpinfo.py:97
 msgid ""
 "<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
 msgstr ""
+"<li><b>Testing</b>: vis arkiver hvis ID inneholder <i>testing</i>.</li>"
 
 #: dnfdragora/helpinfo.py:98
 msgid "</ul>"
-msgstr ""
+msgstr "</ul>"
 
 #: dnfdragora/helpinfo.py:99
 msgid ""
@@ -1630,12 +1658,17 @@ msgid ""
 "corresponding checkbox is automatically turned on and the frame is expanded, "
 "ensuring an active repository is never hidden.<br>"
 msgstr ""
+"Hvis det finnes et arkiv av disse typene som for øyeblikket <b>er aktivert</"
+"b> i DNF, Den tilhørende avmerkingsboksen slås automatisk på og rammen "
+"utvides, noe som sikrer at et aktivt arkiv aldri skjules.<br>"
 
 #: dnfdragora/helpinfo.py:100
 msgid ""
 "The filter selections are saved in the user configuration file and restored "
 "at the next launch.<br>"
 msgstr ""
+"Filtervalgene lagres i brukerkonfigurasjonsfilen og gjenopprettes ved neste "
+"oppstart.<br>"
 
 #: dnfdragora/helpinfo.py:101
 msgid "<h2>Quit</h2>"
@@ -1854,11 +1887,15 @@ msgid ""
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
+"Den første kombinasjonsboksen lar deg vise pakker etter grupper. Hvis "
+"<i>Grupper</i> iNår det er valgt, viser gruppepanelet en trevisning som "
+"inneholder grupper, og når du velger en gruppe, vises relaterte pakker i "
+"pakkepanelet.<br>"
 
 #: dnfdragora/helpinfo.py:172
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
-msgstr ""
+msgstr "Hvis <i>Alle</i> er valgt, inneholder pakkepanelet alle pakkene.<br>"
 
 #: dnfdragora/helpinfo.py:173
 msgid "<h2>Filters</h2>"
@@ -1874,7 +1911,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:176
 msgid "<li><b>Installed</b>: shows installed packages only.</li>"
-msgstr ""
+msgstr "<li><b>Installedrt</b>: viser bare installerte pakker.</li>"
 
 #: dnfdragora/helpinfo.py:177
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
@@ -1901,6 +1938,8 @@ msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
 msgstr ""
+"<li><b>Alel</b>:viser alle pakkene, dvs. tilgjengelige, oppdateringer og "
+"installerte.</li>"
 
 #: dnfdragora/helpinfo.py:182
 msgid "<h2>Search</h2>"
@@ -1909,27 +1948,32 @@ msgstr "<h2>Søk</h2>"
 #: dnfdragora/helpinfo.py:183
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
-msgstr ""
+msgstr "Klikk på <b>Søk</b> knappen (forstørrelsesglassikonet) åpner%s "
 
 #: dnfdragora/helpinfo.py:184
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
 msgstr ""
+"som tilbyr fullfunksjons pakkesøk. Når et søk er aktivt, er "
+"filterkombinasjonsboksen deaktivert"
 
 #: dnfdragora/helpinfo.py:185
 msgid "and an info label shows the active search text or dependency query. "
 msgstr ""
+"og en infoetikett viser den aktive søketeksten eller avhengighetsspørringen"
 
 #: dnfdragora/helpinfo.py:186
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
 msgstr ""
+"<b>1Fjern søk</b>-knappen (viskelærikonet) ved siden av søkeknappen "
+"tilbakestiller all søkestatus"
 
 #: dnfdragora/helpinfo.py:187
 msgid "and re-enables the filter combobox.<br>"
-msgstr ""
+msgstr "og aktiverer filterkombinasjonsboksen på nytt.<br>"
 
 #: dnfdragora/helpinfo.py:197
 msgid ""
@@ -2166,7 +2210,7 @@ msgstr "Filtrering av pakker"
 
 #: dnfdragora/ui.py:596
 msgid "Open search dialog"
-msgstr ""
+msgstr "Åpne søkedialogboksen"
 
 #: dnfdragora/ui.py:598
 msgid "&Clear search"
@@ -2174,7 +2218,7 @@ msgstr "&Tøm søk"
 
 #: dnfdragora/ui.py:599
 msgid "Clear current search"
-msgstr ""
+msgstr "Fjern gjeldende søk"
 
 #: dnfdragora/ui.py:614
 msgid "Sel&ect all"
@@ -2251,12 +2295,12 @@ msgstr "installert"
 #: dnfdragora/ui.py:1028
 #, python-format
 msgid "[ Search: %s ]"
-msgstr ""
+msgstr "[ Søk: %s ]"
 
 #: dnfdragora/ui.py:1030
 #, python-format
 msgid "[ Dependency search: %s ]"
-msgstr ""
+msgstr "[ Avhengighetssøk: %s ]"
 
 #: dnfdragora/ui.py:1258
 msgid "Missing information"
@@ -2475,127 +2519,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hovedvindu"
-
-#~ msgid "<h2>Search options</h2>"
-#~ msgstr "<h2>Søkealternativer</h2>"
-
-#~ msgid ""
-#~ "<i>Note</i>: when regular expressions are used to search by name, the "
-#~ "full package filename including the version is used."
-#~ msgstr ""
-#~ "<i>Noter</i>: Når regulære uttrykk brukes til å søke etter navn, brukes "
-#~ "hele pakkefilnavnet inkludert versjonen."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Alle</b>: viser alle pakkene, dvs. tilgjengelige, oppdateringer og "
-#~ "installerte.</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-#~ "regular expressions will add \"*\" to the given words, restoring the "
-#~ "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Fuzzy-søk (eldre modus)</b>: Hvis dette er avkrysset, vil et søk "
-#~ "uten bruk av regulære uttrykk legge til \"*\" til de oppgitte ordene, og "
-#~ "dermed gjenopprette virkemåten dnfdragora hadde med dnfdaemon 4.</li></ul>"
-
-#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-#~ msgstr "<ul><li><b>Installert</b>: viser bare alle installerte pakker.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
-#~ "only newest packages on search.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Vis kun de nyeste pakkene</b>:hvis avmerket viser dnfdragora "
-#~ "kun de nyeste pakkene ved søk.</li>"
-
-#~ msgid ""
-#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
-#~ "python language regular expressions. This search is performed on cached "
-#~ "package information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "En spesiell avkrysningsboks<i>Bruk regulære uttrykk</i> brukes til å lete "
-#~ "etter pakker basert på regulære uttrykk for pythonspråk. Dette søket "
-#~ "utføres på hurtigbufret pakkeinformasjon, for eksempel for <b>kun navn og "
-#~ "sammenfattninger</b>."
-
-#~ msgid "Clear search field"
-#~ msgstr "Tøm søkefeltet"
-
-#~ msgid "Filters and search line"
-#~ msgstr "Filter og søkelinje"
-
-#~ msgid "Fuzzy search (legacy mode)"
-#~ msgstr "Fuzzy søk (eldre modus)"
-
-#~ msgid ""
-#~ "If <i>All</i> is selected, the package panel contains all the packages."
-#~ msgstr "Hvis <i>Alle</i>er valgt, inneholder pakkepanelet alle pakkene."
-
-#~ msgid "Proxy password"
-#~ msgstr "Proxy passord"
-
-#~ msgid "Search"
-#~ msgstr "Søk"
-
-#~ msgid ""
-#~ "Search is performed by pressing the <i>Search</i> button when the text "
-#~ "field is not empty. The Search combobox allows you to search the given "
-#~ "text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or "
-#~ "<i>files</i>."
-#~ msgstr ""
-#~ "Søket utføres ved å trykke på<i>Søk</i> knappen når tekstfeltet ikke er "
-#~ "tomt. Søk-kombinasjonsboksen lar deg søke i den gitte teksten i pakken "
-#~ "<i>navn</i>, <i>sammendrag</i>, <i>beskrivelser</i>, eller <i>filer</i>."
-
-#~ msgid "Search options"
-#~ msgstr "Søkealternativer"
-
-#~ msgid "Search packages"
-#~ msgstr "Søk pakker"
-
-#~ msgid "Show newest packages only"
-#~ msgstr "Vis bare de nyeste pakkene"
-
-#~ msgid "The <i>Clear search</i> button resets search text field."
-#~ msgstr "<i> Rens søk</i> knapsentilbakestiller søkefeltet."
-
-#~ msgid ""
-#~ "The first combobox allows you to show packages by groups. If <i>Groups</"
-#~ "i> is selected, the group panel shows a tree view containing groups, and "
-#~ "selecting a group shows related packages in the package panel."
-#~ msgstr ""
-#~ "Den første kombinasjonsboksen lar deg vise pakker etter grupper. "
-#~ "Hvis<i>Grupper</i> er valgt, viser gruppepanelet en trevisning som "
-#~ "inneholder grupper, og når du velger en gruppe, vises relaterte pakker i "
-#~ "pakkepanelet."
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows you to enable or disable "
-#~ "repositories. Any changes are valid only while dnfdragora is running and "
-#~ "are not permanent.<br>"
-#~ msgstr ""
-#~ "Denne menyen åpner en dialogboks som lar deg aktivere eller deaktivere "
-#~ "arkiver. Eventuelle endringer er bare gyldige mens dnfdragora kjører og "
-#~ "er ikke permanente..<br>"
-
-#~ msgid "Use regexp"
-#~ msgstr "Bruk regulære uttrykk"
-
-#~ msgid "Views and search"
-#~ msgstr "Visning og søk"
-
-#~ msgid "in descriptions"
-#~ msgstr "i beskrivelser"
-
-#~ msgid "in file names"
-#~ msgstr "i filnavn"
-
-#~ msgid "in names"
-#~ msgstr "i navn"
-
-#~ msgid "in summaries"
-#~ msgstr "i sammendrag"
