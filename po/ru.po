@@ -10,7 +10,6 @@
 # algri14 <aliger14@mail.ru>, 2022
 # Victor, 2023
 # Alex Malykh <a2m-dev@yandex.ru>, 2023
-# lifeslice <root@lifeslice.ru>, 2025
 # AlexL <loginov.alex.valer@gmail.com>, 2026
 #
 #, fuzzy
@@ -547,19 +546,19 @@ msgstr "Зеркала"
 
 #: dnfdragora/dialogs.py:658
 msgid "Ad&vanced repository types"
-msgstr ""
+msgstr "Рас&ширенные типы репозиториев"
 
 #: dnfdragora/dialogs.py:662
 msgid "&Debug information"
-msgstr ""
+msgstr "&Отладочная информация"
 
 #: dnfdragora/dialogs.py:664
 msgid "&Source"
-msgstr ""
+msgstr "&Источник"
 
 #: dnfdragora/dialogs.py:666
 msgid "&Testing"
-msgstr ""
+msgstr "&Тестирование"
 
 #: dnfdragora/dialogs.py:677
 msgid "Id"
@@ -668,7 +667,7 @@ msgstr "Выбрать каталог назначения для журнала
 
 #: dnfdragora/dialogs.py:1469
 msgid "Find packages"
-msgstr ""
+msgstr "Найти пакеты"
 
 #: dnfdragora/dialogs.py:1508 dnfdragora/ui.py:517
 msgid "Installed"
@@ -676,19 +675,19 @@ msgstr "Установлено"
 
 #: dnfdragora/dialogs.py:1509
 msgid "Available"
-msgstr ""
+msgstr "Доступно"
 
 #: dnfdragora/dialogs.py:1510
 msgid "Upgrades"
-msgstr ""
+msgstr "Обновления"
 
 #: dnfdragora/dialogs.py:1511
 msgid "Upgradable"
-msgstr ""
+msgstr "Можно обновить"
 
 #: dnfdragora/dialogs.py:1532
 msgid "Find:"
-msgstr ""
+msgstr "Найти:"
 
 #: dnfdragora/dialogs.py:1540
 msgid ""
@@ -696,161 +695,183 @@ msgid ""
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
+"Введите шаблон поиска. В текстовом режиме: слова, разделённые пробелами или "
+"запятыми. В режиме запроса зависимостей: имя возможности (например, "
+"'python3', '/usr/bin/python3')."
 
 #: dnfdragora/dialogs.py:1547
 msgid "Search in:"
-msgstr ""
+msgstr "Поиск в:"
 
 #: dnfdragora/dialogs.py:1548
 msgid "N&ames"
-msgstr ""
+msgstr "&Имена"
 
 #: dnfdragora/dialogs.py:1550
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
-msgstr ""
+msgstr "Поиск в именах пакетов и NEVRA (имя-эпоха:версия-релиз.архитектура)."
 
 #: dnfdragora/dialogs.py:1551
 msgid "&Provides"
-msgstr ""
+msgstr "&Предоставления"
 
 #: dnfdragora/dialogs.py:1553
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr ""
+"Также следует искать пакеты, у которых теги Provides(Предоставления): "
+"содержат шаблон поиска."
 
 #: dnfdragora/dialogs.py:1554
 msgid "&Files"
-msgstr ""
+msgstr "&Файлы"
 
 #: dnfdragora/dialogs.py:1556
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
+"Найдите пакеты, которым принадлежат файлы, путь к которым соответствует "
+"заданному шаблону."
 
 #: dnfdragora/dialogs.py:1559
 msgid "&Binaries"
-msgstr ""
+msgstr "&Бинарные файлы"
 
 #: dnfdragora/dialogs.py:1561
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
+"Ограничить поиск файлов только папками /usr/bin и /usr/sbin (подмножество "
+"файлов)."
 
 #: dnfdragora/dialogs.py:1562
 msgid "S&ources"
-msgstr ""
+msgstr "И&сточники"
 
 #: dnfdragora/dialogs.py:1564
 msgid "Include source RPMs (*.src.rpm) in the results."
-msgstr ""
+msgstr "Включить RPM-пакеты исходников (*.src.rpm) в результаты."
 
 #: dnfdragora/dialogs.py:1566
 msgid "Su&mmary"
-msgstr ""
+msgstr "Св&одка "
 
 #: dnfdragora/dialogs.py:1568
 msgid "Search in package summaries. Only available in regexp mode."
 msgstr ""
+"Поиск в сводках пакетов. Доступно только в режиме регулярных выражений."
 
 #: dnfdragora/dialogs.py:1572
 msgid "Scope:"
-msgstr ""
+msgstr "Объём:"
 
 #: dnfdragora/dialogs.py:1583
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
+"Ограничить поиск подмножеством пакетов: все, установленные, доступные для "
+"установки, обновления или пакеты, подлежащие обновлению."
 
 #: dnfdragora/dialogs.py:1585
 msgid "Use &regexp"
-msgstr ""
+msgstr "Использовать &регулярное выражение"
 
 #: dnfdragora/dialogs.py:1588
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
+"Рассмотреть поле «Найти» как регулярное выражение (синтаксис Python re). "
+"Отключает поиск по нескольким полям."
 
 #: dnfdragora/dialogs.py:1590
 msgid "&Latest only"
-msgstr ""
+msgstr "&Только последний"
 
 #: dnfdragora/dialogs.py:1592
 msgid "Show only the latest version of each package name."
-msgstr ""
+msgstr "Отобразить только последнюю версию каждого пакета."
 
 #: dnfdragora/dialogs.py:1593
 msgid "Fu&zzy search"
-msgstr ""
+msgstr "Не&чёткий поиск"
 
 #: dnfdragora/dialogs.py:1595
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
+"Автоматически добавлять подстановочные знаки вокруг каждого поискового "
+"токена (например, 'gtk' становится '*gtk*'). Отключено в режиме регулярных "
+"выражений."
 
 #: dnfdragora/dialogs.py:1596
 msgid "Case &sensitive"
-msgstr ""
+msgstr "С &учётом регистра"
 
 #: dnfdragora/dialogs.py:1599
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
+"Если этот параметр включен, поиск чувствителен к регистру. По умолчанию "
+"поиск нечувствителен к регистру."
 
 #: dnfdragora/dialogs.py:1608
 msgid "(none)"
-msgstr ""
+msgstr "(нет)"
 
 #: dnfdragora/dialogs.py:1609
 msgid "provide"
-msgstr ""
+msgstr "предоставляет"
 
 #: dnfdragora/dialogs.py:1610
 msgid "require"
-msgstr ""
+msgstr "требует"
 
 #: dnfdragora/dialogs.py:1611
 msgid "depend on"
-msgstr ""
+msgstr "зависит от"
 
 #: dnfdragora/dialogs.py:1612
 msgid "recommend"
-msgstr ""
+msgstr "рекомендует"
 
 #: dnfdragora/dialogs.py:1613
 msgid "enhance"
-msgstr ""
+msgstr "увеличивает"
 
 #: dnfdragora/dialogs.py:1614
 msgid "suggest"
-msgstr ""
+msgstr "предлагает"
 
 #: dnfdragora/dialogs.py:1615
 msgid "supplement"
-msgstr ""
+msgstr "добавляет"
 
 #: dnfdragora/dialogs.py:1616
 msgid "obsolete"
-msgstr ""
+msgstr "устаревает"
 
 #: dnfdragora/dialogs.py:1617
 msgid "conflict with"
-msgstr ""
+msgstr "конфликтует с"
 
 #: dnfdragora/dialogs.py:1620
 msgid "&Dependency query"
-msgstr ""
+msgstr "&Запрос зависимостей"
 
 #: dnfdragora/dialogs.py:1622
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
+"Если этот флажок установлен, поле «Найти» используется в качестве имени "
+"возможности, и поиск пакетов осуществляется по отношению зависимостей, а не "
+"по текстовому шаблону."
 
 #: dnfdragora/dialogs.py:1627
 msgid "Find packages that:"
-msgstr ""
+msgstr "Найдите пакеты, которые:"
 
 #: dnfdragora/dialogs.py:1640
 msgid ""
@@ -2492,132 +2513,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Главное окно"
-
-#~ msgid "<h2>Search options</h2>"
-#~ msgstr "<h2>Параметры поиска</h2>"
-
-#~ msgid ""
-#~ "<i>Note</i>: when regular expressions are used to search by name, the "
-#~ "full package filename including the version is used."
-#~ msgstr ""
-#~ "<i>Примечание</i>: при использовании регулярных выражений для поиска по "
-#~ "имени используется полное имя файла пакета, включая версию."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Все:</b> показать все пакеты, включая доступные, обновления и "
-#~ "установленные пакеты.</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-#~ "regular expressions will add \"*\" to the given words, restoring the "
-#~ "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Нечёткий поиск (режим совместимости)</b>: если он выбран, при "
-#~ "поиске без регулярных выражений ко всем словам будет добавляться \"*\", "
-#~ "как было у dnfdragora с dnffdaemon 4.</li></ul>"
-
-#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Установлено:</b> показать только установленные пакеты.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
-#~ "only newest packages on search.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Показывать только новейшие пакеты</b>: если отмечено, "
-#~ "dnfdragora показывает при поиске только новейшие пакеты</li>"
-
-#~ msgid ""
-#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
-#~ "python language regular expressions. This search is performed on cached "
-#~ "package information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "С помощью специального поля для отметки <i>Регулярное выражение</i> можно "
-#~ "приказать программе выполнить поиск по регулярному выражению языка "
-#~ "Python. Этот поиск выполняется в кэшированных данных пакетов, в том числе "
-#~ "<b>только в именах и резюме</b> пакетов."
-
-#~ msgid "Clear search field"
-#~ msgstr "Очистить поле поиска"
-
-#~ msgid "Filters and search line"
-#~ msgstr "Строка фильтров и поиска"
-
-#~ msgid "Fuzzy search (legacy mode)"
-#~ msgstr "Нечёткий поиск (режим совместимости)"
-
-#~ msgid ""
-#~ "If <i>All</i> is selected, the package panel contains all the packages."
-#~ msgstr ""
-#~ "Если выбран пункт <i>Все</i>, на панели пакетов будут показаны все пакеты."
-
-#~ msgid "Proxy password"
-#~ msgstr "Пароль к прокси"
-
-#~ msgid "Search"
-#~ msgstr "Поиск"
-
-#~ msgid ""
-#~ "Search is performed by pressing the <i>Search</i> button when the text "
-#~ "field is not empty. The Search combobox allows you to search the given "
-#~ "text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or "
-#~ "<i>files</i>."
-#~ msgstr ""
-#~ "Поиск выполняется нажатием кнопки <i>Поиск</i>, когда текстовое поле не "
-#~ "пустое. Выпадающий список «Поиск» позволяет искать заданный текст в "
-#~ "<i>именах</i> , <i>аннотациях</i>, <i>описаниях</i> или <i>файлах</i> "
-#~ "пакетов."
-
-#~ msgid "Search options"
-#~ msgstr "Параметры поиска"
-
-#~ msgid "Search packages"
-#~ msgstr "Поиск пакетов"
-
-#~ msgid "Show newest packages only"
-#~ msgstr "Показывать только новейшие пакеты"
-
-#~ msgid "The <i>Clear search</i> button resets search text field."
-#~ msgstr ""
-#~ "Кнопка <i>Очистить поле поиска</i> удаляет все данные из текстового поля "
-#~ "поиска."
-
-#~ msgid ""
-#~ "The first combobox allows you to show packages by groups. If <i>Groups</"
-#~ "i> is selected, the group panel shows a tree view containing groups, and "
-#~ "selecting a group shows related packages in the package panel."
-#~ msgstr ""
-#~ "Первый выпадающий список позволяет отображать пакеты по группам. Если "
-#~ "выбран пункт <i>Группы</i>, на панели групп отображается древовидное "
-#~ "представление, содержащее группы, а выбор группы отображает связанные "
-#~ "пакеты на панели пакетов."
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows you to enable or disable "
-#~ "repositories. Any changes are valid only while dnfdragora is running and "
-#~ "are not permanent.<br>"
-#~ msgstr ""
-#~ "Это меню открывает диалоговое окно, позволяющее включить или отключить "
-#~ "репозитории. Любые изменения действительны только во время работы "
-#~ "dnfdragora и не являются постоянными.<br>"
-
-#~ msgid "Use regexp"
-#~ msgstr "Использовать регулярное выражение"
-
-#~ msgid "Views and search"
-#~ msgstr "Отображения и поиск"
-
-#~ msgid "in descriptions"
-#~ msgstr "в описаниях"
-
-#~ msgid "in file names"
-#~ msgstr "в именах файлов"
-
-#~ msgid "in names"
-#~ msgstr "в именах"
-
-#~ msgid "in summaries"
-#~ msgstr "в сводках"

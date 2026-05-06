@@ -164,6 +164,7 @@ Keywords[nl]=pakket;programma;software;apps;applicaties;opslaan;pakketdepot;toev
 Keywords[pt]=pacote;programa;software;aplicativos;loja;repositório;adicionar;instalar;desinstalar;remover;excluir;atualizar;fazer upgrade;
 Keywords[pt_BR]=pacote;programa;software;aplicativos;loja;repositório;adicionar;instalar;desinstalar;remover;excluir;atualizar;fazer upgrade;
 Keywords[ro]=pachet; program; aplicație; aplicații; aplicații; magazin; repozitoriu; adăugare; instalare; dezinstalare; eliminare; înlăturare; actualizare; upgrade;
+Keywords[ru]=пакет;программа;софт;приложения;ПО;магазин;репозиторий;добавить;установить;деинсталлировать;удалить;обновить;апгрейдить;
 Keywords[uk]=package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;пакунок;програма;програмне забезпечення;програми;додатки;крамниця;сховище;додати;встановити;вилучити;видалити;
 Terminal=false
 Type=Application
