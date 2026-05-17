@@ -183,10 +183,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
   asynchronous backend (dnfdaemon) notifications to widgets.
     """
 
-    def __init__(self, options={}):
+    def __init__(self, options=None):
         '''
         constructor
         '''
+        if options is None:
+            options = {}
 
         self._status = DNFDragoraStatus.STARTUP
         self._beforeLockAgain = 20 # 20 x 500 ms = 10 sec
@@ -376,6 +378,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 #### MetaData
                 if 'metadata' in user_settings.keys():
                   metadata = user_settings['metadata']
+                  if not isinstance(metadata, dict):
+                    metadata = {}
+                    user_settings['metadata'] = metadata
                   if 'update_interval' in metadata.keys():
                     self.md_update_interval = metadata['update_interval']
                   else:
@@ -383,7 +388,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   if 'last_update' in metadata.keys():
                     self.md_last_refresh_date =  metadata['last_update']
                 else:
-                  self.config.userPreferences['settings']['metadata'] ={
+                  user_settings['metadata'] = {
                     'update_interval': self.md_update_interval, # 48 Default
                     'last_update': ''
                   }
@@ -408,11 +413,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if 'level_debug' in log.keys() :
                         self.level_debug = log['level_debug']
 
-        # metadata settings is needed adding it to update old configuration files
-        if not 'settings' in self.config.userPreferences.keys() :
-          self.config.userPreferences['settings'] = {}
-        if not 'metadata' in self.config.userPreferences['settings'].keys():
-          self.config.userPreferences['settings']['metadata'] = {
+        # Ensure settings/metadata always exist in userPreferences so that
+        # callers never need to guard against missing or None sub-dicts.
+        user_prefs = self.config.userPreferences
+        if not isinstance(user_prefs.get('settings'), dict):
+          user_prefs['settings'] = {}
+        if not isinstance(user_prefs['settings'].get('metadata'), dict):
+          user_prefs['settings']['metadata'] = {
             'update_interval': self.md_update_interval, # 48 Default
             'last_update': ''
           }
@@ -539,10 +546,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         view = {}
         settings = {}
         if self.config.userPreferences:
-            if 'settings' in self.config.userPreferences.keys() :
-                settings = self.config.userPreferences['settings']
-            if 'view' in self.config.userPreferences.keys() :
-                view = self.config.userPreferences['view']
+            settings = self.config.userPreferences.get('settings') or {}
+            view = self.config.userPreferences.get('view') or {}
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
                     view['filter'] = 'to_update'
