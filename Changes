@@ -1,3 +1,17 @@
+ [X] **Qt/XCB crash (SIGSEGV in QScreen::virtualSiblings) after transaction dialog closes**
+  - Root cause: the transaction progress dialog was backed by a standalone `QMainWindow`.
+    Destroying any top-level `QMainWindow` on XCB/XWayland can flush the platform screen-sibling
+    list, leaving `virtualSiblings()` in an inconsistent state for other windows.  Any subsequent
+    Qt operation that queries screen geometry (tooltip positioning, font-DPI) then crashes.
+  - Fix (python-manatools backend): `dialogqt.py` now creates popup dialogs as `QDialog` parented
+    to the current main window.  `QDialog` is mapped as an XCB transient-for child, not a
+    standalone top-level, so its destruction does not trigger a screen-topology flush.
+- [X] **filter_box (combo "Filtering packages") remains disabled after downgrade action**
+  - Root cause: `_updateActionView()` was not explicitly re-enabling the combo box when restoring
+    the NORMAL action after a transaction.
+  - Fix (`ui.py`): added `self.filter_box.setEnabled(not self.update_only)` inside the
+    `if newAction == const.Actions.NORMAL:` block.
+
 2026-04-26 v. 2.99.3
 --------------------
 - New search dialog with dnfdaemon available options 

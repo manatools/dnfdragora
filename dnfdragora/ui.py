@@ -1727,6 +1727,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
                 if platform.machine() == "x86_64" :
                     ordered_filters.append('skip_other')
+                self.filter_box.setEnabled(not self.update_only)
             elif newAction == const.Actions.DOWNGRADE:
                 ordered_filters = [ 'not_installed' ]
                 filter_item = 'not_installed'
@@ -2128,7 +2129,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self._trans_dialog is not None:
             self._trans_dialog.close()
             self._trans_dialog = None
-        # Reset progress bar now that the main window is visible again
         self.infobar.reset_all()
         self.pbar_layout.setEnabled(True)
 
