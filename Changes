@@ -2,7 +2,7 @@
 --------------------
 - Re-enabled filter combobox after a downgrade action performed
 - Improved Load Configuration (user settings)
-- Fixed a crash when caching packages if pakcage list was empty for a group
+- Fixed a crash when caching packages if package list was empty for a group
 
 2026-04-26 v. 2.99.3
 --------------------
