@@ -268,15 +268,20 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # settings from configuration file first
         self._configFileRead()
 
+        self._log_missing_dir_warning = None
         if self.log_enabled:
           if self.log_directory:
-            log_filename = os.path.join(self.log_directory, "dnfdragora.log")
-            if self.level_debug:
-              misc.logger_setup(log_filename, loglvl=logging.DEBUG)
+            if not os.path.isdir(self.log_directory):
+              print("WARNING: log directory '%s' does not exist; logging disabled" % self.log_directory)
+              self._log_missing_dir_warning = self.log_directory
             else:
-              misc.logger_setup(log_filename)
-            print("Logging into %s, debug mode is %s"%(self.log_directory, ("enabled" if self.level_debug else "disabled")))
-            logger.info("dnfdragora started")
+              log_filename = os.path.join(self.log_directory, "dnfdragora.log")
+              if self.level_debug:
+                misc.logger_setup(log_filename, loglvl=logging.DEBUG)
+              else:
+                misc.logger_setup(log_filename)
+              print("Logging into %s, debug mode is %s"%(self.log_directory, ("enabled" if self.level_debug else "disabled")))
+              logger.info("dnfdragora started")
         else:
            print("Logging disabled")
 
@@ -309,6 +314,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self._enableAction(False)
         self.pbar_layout.setEnabled(True)
+
+        if self._log_missing_dir_warning:
+            dialogs.warningMsgBox({
+                'title': _("Logging directory not found"),
+                'text': _("The configured log directory <b>%s</b> does not exist.<br>"
+                          "Logging is disabled for this session.<br>"
+                          "Please update the log directory in "
+                          "<i>Options &rarr; User preferences</i>.") % self._log_missing_dir_warning,
+                'richtext': True,
+            })
 
         self.backend
         #self.dialog.pollEvent()
@@ -410,6 +425,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   if self.log_enabled:
                     if 'directory' in log.keys() :
                         self.log_directory = log['directory']
+                    else:
+                        # No directory configured: fall back to home dir and
+                        # persist it so the dialog and next startup reflect it.
+                        self.log_directory = os.path.expanduser("~")
+                        log['directory'] = self.log_directory
                     if 'level_debug' in log.keys() :
                         self.level_debug = log['level_debug']
 

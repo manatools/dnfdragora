@@ -1,8 +1,9 @@
-2026-05-XX v. 2.99.4
+2026-05-31 v. 2.99.4
 --------------------
 - Re-enabled filter combobox after a downgrade action performed
 - Improved Load Configuration (user settings)
 - Fixed a crash when caching packages if package list was empty for a group
+- Fixed log enabling when default directory wasn't changed, logging wasn't really working
 
 2026-04-26 v. 2.99.3
 --------------------

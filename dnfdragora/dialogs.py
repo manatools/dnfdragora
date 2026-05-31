@@ -1299,7 +1299,13 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     if obj.widgetClass() == "YCheckBoxFrame":
       self.log_vbox.setEnabled(obj.value())
-      self._ensure_settings().setdefault('log', {})['enabled'] = obj.value()
+      log_prefs = self._ensure_settings().setdefault('log', {})
+      log_prefs['enabled'] = obj.value()
+      # When enabling for the first time, persist the currently displayed
+      # directory (default: home) so that _configFileRead can use it on the
+      # next startup even if the user never clicked "Change directory".
+      if obj.value() and 'directory' not in log_prefs:
+          log_prefs['directory'] = self.log_directory.text()
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
