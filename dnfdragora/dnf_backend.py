@@ -457,7 +457,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                 for line in content_file:
                     if line.strip() :
                         pkg_lst.append(line.strip())
-
+        if not pkg_lst:
+            return
         options = {
           "scope": "installed",
           "patterns": pkg_lst
