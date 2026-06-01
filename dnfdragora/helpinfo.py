@@ -34,8 +34,9 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
     pbar_line_lnk     = '<b>%s</b>'%self._formatLink(_("Progress bar line"), 'pbar_panel')
     buttons_line_lnk  = '<b>%s</b>'%self._formatLink(_("Button line"), 'button_panel')
     search_dlg_lnk    = '<b>%s</b>'%self._formatLink(_("Search dialog"), 'search_dlg')
+    history_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('History dialog'), 'history_dlg')
 
-    index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
+    index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
       menu_line_lnk,
       filters_lnk,
       group_panel_lnk,
@@ -44,6 +45,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       pbar_line_lnk,
       buttons_line_lnk,
       search_dlg_lnk,
+      history_dlg_lnk,
       )
 
     ### Menu bar index
@@ -109,8 +111,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Information Menu'),
         # help
         _('<h2>History</h2>') +\
-          _('This menu runs a dialog containing transaction history shown in a tree ordered by date. Selected history can be undone by pressing <b>Undo</b> button.<br>') + \
-          _('<br><i>Note that this function is currently broken because of a DNF API change</i><br>'),
+          _('This menu opens the %s, which shows packages recently changed on the system.'%self._formatLink(_('History dialog'), 'history_dlg')),
         # back home
         home_lnk,
       ),
@@ -240,6 +241,57 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<li><b>Select all</b>: if packages are filtered for updates only this button allows to select all the packages in one shot.</li>') + \
         _('<li><b>Quit</b>: exits from dnfdragora.</li></ul>') + \
         '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'history_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('History dialog'),
+        # help
+        _('The History dialog shows packages that have been recently changed on the system by querying the dnf5daemon History API.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → History</b>.<br>') +
+        _('The main dnfdragora window is disabled while the dialog is open to prevent unintended interactions.<br><br>') +
+        _('<h2>Filters</h2>') +
+        _('The <b>Filters</b> section at the top of the dialog lets you narrow the results:<br>') +
+        _('<ul>') +
+        _('<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on or after that date. ') +
+        _('Leave empty to retrieve all available history. ') +
+        _('The date is converted to a Unix timestamp before being sent to the daemon.</li>') +
+        _('</ul>') +
+        _('<h2>Change type checkboxes</h2>') +
+        _('Four checkboxes let you choose which kinds of package changes to include in the results:<br>') +
+        _('<ul>') +
+        _('<li><b>Installed</b>: packages that were newly installed.</li>') +
+        _('<li><b>Removed</b>: packages that were removed from the system.</li>') +
+        _('<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>') +
+        _('<li><b>Downgraded</b>: packages that were downgraded to an older version.</li>') +
+        _('</ul>') +
+        _('Uncheck any type you are not interested in to reduce the number of rows shown.<br><br>') +
+        _('<h2>Advisory options</h2>') +
+        _('<ul>') +
+        _('<li><b>Include advisories</b>: when checked, advisory information (security, bugfix, enhancement) is included where available.</li>') +
+        _('<li><b>All advisories</b>: when checked together with <i>Include advisories</i>, all advisory types are returned rather than only the most relevant one per package. ') +
+        _('This option is automatically disabled when <i>Include advisories</i> is unchecked.</li>') +
+        _('</ul>') +
+        _('<h2>Results table</h2>') +
+        _('The table shows one row per changed package with the following columns:<br>') +
+        _('<ul>') +
+        _('<li><b>Name</b>: the package name.</li>') +
+        _('<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>') +
+        _('<li><b>Arch</b>: the package architecture.</li>') +
+        _('<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, or <i>downgraded</i>.</li>') +
+        _('<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</li>') +
+        _('<li><b>Summary</b>: a short description of the package.</li>') +
+        _('</ul>') +
+        _('If no packages match the current filters a <i>No results</i> row is shown.<br>') +
+        _('If the daemon call fails the error message is displayed in the table so you can diagnose the problem.<br><br>') +
+        _('<h2>Refresh button</h2>') +
+        _('Press <b>Refresh</b> to re-query the daemon with the current filter settings. ') +
+        _('The dialog also queries automatically when it first opens.<br><br>') +
+        _('<h2>Close button</h2>') +
+        _('Press <b>Close</b> (or the window close button) to dismiss the dialog and return to the main window.<br>'),
         # back home
         home_lnk,
       ),
