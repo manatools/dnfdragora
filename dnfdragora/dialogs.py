@@ -337,6 +337,339 @@ class HistoryView:
         return performedUndo
 
 
+class HistoryDialog(basedialog.BaseDialog):
+    """History dialog for dnfdragora.
+
+    Provides two views of the dnf5 transaction history:
+      • Recent Changes  — org.rpm.dnf.v0.History.recent_changes()
+        Shows packages changed since a given date, grouped by action
+        (installed / removed / upgraded / downgraded).
+      • Transactions    — org.rpm.dnf.v0.History.list()
+        Shows a list of complete transactions with their packages.
+
+    Filters available in both modes:
+      - "Since" date (YYYY-MM-DD) converted to a Unix timestamp.
+    Additional filters:
+      - Recent Changes: checkboxes for each change type, advisories toggle.
+      - Transactions:   limit spinner, "contains package" text field.
+    """
+
+    # ── column indices in the result table ──────────────────────────────────
+    _COL_NAME    = 0
+    _COL_EVR     = 1
+    _COL_ARCH    = 2
+    _COL_ACTION  = 3
+    _COL_DATE    = 4
+    _COL_SUMMARY = 5
+
+    _COL_TXN_ID    = 0
+    _COL_TXN_DATE  = 1
+    _COL_TXN_USER  = 2
+    _COL_TXN_DESC  = 3
+    _COL_TXN_STATUS= 4
+
+    def __init__(self, parent):
+        basedialog.BaseDialog.__init__(
+            self,
+            _("History"),
+            "history",
+            basedialog.DialogType.POPUP,
+            900, 600,
+        )
+        self.parent  = parent
+        self._mode   = 'recent'   # 'recent' | 'transactions'
+        self._result_items = []   # cached last result rows
+
+    # ── UI layout ────────────────────────────────────────────────────────────
+
+    def UIlayout(self, layout):
+        """Build the dialog widgets."""
+        factory = self.factory
+
+        # ── mode selector ───────────────────────────────────────────────────
+        # NOTE: The Transactions mode uses org.rpm.dnf.v0.History.list which is
+        # not yet in an official dnf5daemon release — the radio button is kept
+        # in the code but hidden so it can be enabled once the API ships.
+        mode_hbox = factory.createHBox(layout)
+        self._rb_recent = factory.createRadioButton(
+            mode_hbox, _("&Recent Changes"), True)
+        self._rb_recent.setNotify(True)
+        self._rb_txn = factory.createRadioButton(
+            mode_hbox, _("&Transactions"), False)
+        self._rb_txn.setNotify(True)
+        self._rb_txn.setEnabled(False)   # not yet available upstream
+        self.eventManager.addWidgetEvent(self._rb_recent, self._onModeChange)
+        self.eventManager.addWidgetEvent(self._rb_txn,    self._onModeChange)
+        mode_hbox.setVisible(False)       # hide whole row until both modes work
+
+        # ── common filter: Since date ────────────────────────────────────────
+        filter_frame = factory.createFrame(layout, _("Filters"))
+        filter_vbox  = factory.createVBox(filter_frame)
+        since_hbox   = factory.createHBox(filter_vbox)
+        factory.createLabel(since_hbox, _("Since (YYYY-MM-DD):"))
+        self._since_field = factory.createInputField(since_hbox, "")
+        self._since_field.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+        # ── recent-changes-specific filters ─────────────────────────────────
+        self._rc_frame = factory.createFrame(filter_vbox, _("Change types"))
+        rc_inner_vbox = factory.createVBox(self._rc_frame)
+        cb_hbox = factory.createHBox(rc_inner_vbox)
+        self._cb_installed  = factory.createCheckBox(cb_hbox, _("&Installed"),   True)
+        self._cb_removed    = factory.createCheckBox(cb_hbox, _("&Removed"),     True)
+        self._cb_upgraded   = factory.createCheckBox(cb_hbox, _("&Upgraded"),    True)
+        self._cb_downgraded = factory.createCheckBox(cb_hbox, _("&Downgraded"),  True)
+        adv_hbox = factory.createHBox(rc_inner_vbox)
+        self._cb_advisory   = factory.createCheckBox(adv_hbox, _("Include &advisories"), True)
+        self._cb_all_adv    = factory.createCheckBox(adv_hbox, _("All advisories"),       False)
+        self.eventManager.addWidgetEvent(self._cb_advisory, self._onAdvisoryToggle)
+
+        # ── transactions-specific filters ────────────────────────────────────
+        self._txn_frame = factory.createFrame(filter_vbox, _("Transaction filters"))
+        txn_hbox1 = factory.createHBox(self._txn_frame)
+        factory.createLabel(txn_hbox1, _("Limit:"))
+        self._limit_field = factory.createIntField(txn_hbox1, "", 1, 9999, 50)
+        factory.createLabel(txn_hbox1, _("  Contains package:"))
+        self._pkg_field = factory.createInputField(txn_hbox1, "")
+        self._pkg_field.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self._txn_frame.setEnabled(False)
+        self._txn_frame.setVisible(False)   # hidden until History.list ships officially
+
+        # ── results area ─────────────────────────────────────────────────────
+        # Recent-changes table
+        rc_header = MUI.YTableHeader()
+        rc_header.addColumn(_("Name"),    False)
+        rc_header.addColumn(_("EVR"),     False)
+        rc_header.addColumn(_("Arch"),    False)
+        rc_header.addColumn(_("Action"),  False)
+        rc_header.addColumn(_("Date"),    False)
+        rc_header.addColumn(_("Summary"), False)
+        self._rc_table = factory.createTable(layout, rc_header)
+        self._rc_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self._rc_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+        # Transactions tree — hidden until History.list ships officially
+        self._txn_tree = factory.createTree(layout, _("Transactions"))
+        self._txn_tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self._txn_tree.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self._txn_tree.setVisible(False)
+
+        # ── bottom buttons ───────────────────────────────────────────────────
+        btn_align = factory.createRight(layout)
+        btn_hbox  = factory.createHBox(btn_align)
+        self._refresh_btn = factory.createPushButton(btn_hbox, _("&Refresh"))
+        self._close_btn   = factory.createPushButton(btn_hbox, _("&Close"))
+        self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
+        self.eventManager.addWidgetEvent(self._close_btn,   self.onQuitEvent)
+        self.eventManager.addCancelEvent(self.onCancelEvent)
+
+        # populate on open
+        self._onRefresh()
+
+    # ── helpers ──────────────────────────────────────────────────────────────
+
+    def _parse_since(self):
+        """Return a Unix timestamp from the Since field, or None if empty/invalid."""
+        text = self._since_field.value().strip()
+        if not text:
+            return None
+        for fmt in ('%Y-%m-%d %H:%M', '%Y-%m-%d'):
+            try:
+                dt = datetime.datetime.strptime(text, fmt)
+                return int(dt.timestamp())
+            except ValueError:
+                pass
+        return None
+
+    def _fmt_ts(self, ts):
+        """Format a Unix timestamp int as a locale date-time string."""
+        try:
+            return datetime.datetime.fromtimestamp(int(ts)).strftime('%Y-%m-%d %H:%M')
+        except Exception:
+            return str(ts)
+
+    # ── event handlers ───────────────────────────────────────────────────────
+
+    def _onModeChange(self, obj=None):
+        """Switch between Recent Changes and Transactions mode."""
+        if self._rb_recent.value():
+            self._mode = 'recent'
+            self._rc_frame.setEnabled(True)
+            self._txn_frame.setEnabled(False)
+            self._rc_table.setVisible(True)
+            self._txn_tree.setVisible(False)
+        else:
+            self._mode = 'transactions'
+            self._rc_frame.setEnabled(False)
+            self._txn_frame.setEnabled(True)
+            self._rc_table.setVisible(False)
+            self._txn_tree.setVisible(True)
+        self._onRefresh()
+
+    def _onAdvisoryToggle(self, obj=None):
+        """Enable/disable 'All advisories' depending on 'Include advisories'."""
+        self._cb_all_adv.setEnabled(self._cb_advisory.value())
+
+    def _onRefresh(self, obj=None):
+        """Fetch history data from the backend and refresh the results view."""
+        MUI.YUI.app().busyCursor()
+        try:
+            since = self._parse_since()
+            if self._mode == 'recent':
+                self._refreshRecentChanges(since)
+            else:
+                self._refreshTransactions(since)
+        except Exception as exc:
+            logger.exception("HistoryDialog: refresh failed: %s", exc)
+        finally:
+            MUI.YUI.app().normalCursor()
+
+    def _refreshRecentChanges(self, since):
+        """Call History.recent_changes and populate the table."""
+        options = {
+            'installed_packages':  self._cb_installed.value(),
+            'removed_packages':    self._cb_removed.value(),
+            'upgraded_packages':   self._cb_upgraded.value(),
+            'downgraded_packages': self._cb_downgraded.value(),
+            'include_advisory':    self._cb_advisory.value(),
+            'all_advisories':      self._cb_all_adv.value(),
+            'package_attrs':       ['name', 'evr', 'arch', 'summary'],
+        }
+        if since is not None:
+            options['since'] = since
+
+        try:
+            changeset = self.parent.backend.HistoryRecentChanges(options)
+        except Exception as exc:
+            logger.error("HistoryRecentChanges D-Bus call failed: %s", exc)
+            self._rc_table.deleteAllItems()
+            err_item = MUI.YTableItem()
+            err_item.addCell(_("Error: %s") % str(exc))
+            err_item.addCell('')
+            err_item.addCell('')
+            err_item.addCell('')
+            err_item.addCell('')
+            err_item.addCell('')
+            self._rc_table.addItems([err_item])
+            return
+
+        # Action labels for display
+        action_labels = {
+            'installed':  _('installed'),
+            'removed':    _('removed'),
+            'upgraded':   _('upgraded'),
+            'downgraded': _('downgraded'),
+        }
+
+        items = []
+        for change_type, pkgs in (changeset or {}).items():
+            label = action_labels.get(change_type, change_type)
+            for pkg in (pkgs or []):
+                name    = pkg.get('name', '')
+                evr     = pkg.get('evr', '')
+                arch    = pkg.get('arch', '')
+                summary = pkg.get('summary', '')
+                ts      = pkg.get('transaction_time', '')
+                date    = self._fmt_ts(ts) if ts else ''
+                item = MUI.YTableItem()
+                item.addCell(name)
+                item.addCell(evr)
+                item.addCell(arch)
+                item.addCell(label)
+                item.addCell(date)
+                item.addCell(summary)
+                items.append(item)
+
+        self._rc_table.deleteAllItems()
+        if items:
+            self._rc_table.addItems(items)
+        else:
+            empty_item = MUI.YTableItem()
+            empty_item.addCell(_("No results"))
+            empty_item.addCell('')
+            empty_item.addCell('')
+            empty_item.addCell('')
+            empty_item.addCell('')
+            empty_item.addCell('')
+            self._rc_table.addItems([empty_item])
+
+    def _refreshTransactions(self, since):
+        """Call History.list and populate the transaction tree."""
+        options = {
+            'transaction_attrs': ['id', 'start', 'end', 'user_id', 'description', 'status'],
+            'package_attrs':     ['name', 'arch', 'evr', 'action'],
+            'include_packages':  True,
+            'reverse':           False,
+        }
+        limit_val = self._limit_field.value()
+        if limit_val > 0:
+            options['limit'] = limit_val
+        if since is not None:
+            options['since'] = since
+        pkg_filter = self._pkg_field.value().strip()
+        if pkg_filter:
+            options['contains_pkgs'] = [p.strip() for p in pkg_filter.split(',') if p.strip()]
+
+        try:
+            transactions = self.parent.backend.HistoryList(options)
+        except Exception as exc:
+            logger.error("HistoryList D-Bus call failed: %s", exc)
+            self._txn_tree.deleteAllItems()
+            err_item = MUI.YTreeItem(label=_("Error: %s") % str(exc), is_open=False)
+            self._txn_tree.addItems([err_item])
+            return
+
+        action_labels = {
+            'Install':   _('install'),
+            'Remove':    _('remove'),
+            'Upgrade':   _('upgrade'),
+            'Downgrade': _('downgrade'),
+            'Reinstall': _('reinstall'),
+        }
+
+        tree_items = []
+        for txn in (transactions or []):
+            tid    = txn.get('id', '?')
+            start  = txn.get('start', None)
+            date   = self._fmt_ts(start) if start else '?'
+            user   = txn.get('user_id', '')
+            desc   = txn.get('description', '')
+            status = txn.get('status', '')
+            label  = f"#{tid}  {date}  {user}  {status}"
+            if desc:
+                label += f"  [{desc}]"
+            root = MUI.YTreeItem(label=label, is_open=False)
+
+            for action_key in ('installed', 'removed', 'upgraded', 'downgraded', 'reinstalled'):
+                pkgs = txn.get(action_key, [])
+                if not pkgs:
+                    continue
+                act_label = action_labels.get(action_key.rstrip('d'), action_key)
+                cat = MUI.YTreeItem(parent=root,
+                                    label=f"{act_label} ({len(pkgs)})",
+                                    is_open=True)
+                for pkg in pkgs:
+                    name = pkg.get('name', '')
+                    evr  = pkg.get('evr', '')
+                    arch = pkg.get('arch', '')
+                    MUI.YTreeItem(parent=cat, label=f"{name}-{evr}.{arch}", is_open=False)
+            tree_items.append(root)
+
+        self._txn_tree.deleteAllItems()
+        if tree_items:
+            self._txn_tree.addItems(tree_items)
+        else:
+            empty_item = MUI.YTreeItem(label=_("No results"), is_open=False)
+            self._txn_tree.addItems([empty_item])
+
+    # ── base class callbacks ─────────────────────────────────────────────────
+
+    def onQuitEvent(self, obj=None):
+        self.ExitLoop()
+
+    def onCancelEvent(self, obj=None):
+        self.ExitLoop()
+
+
 class PackageActionDialog:
     '''
       PackageActionDialog is a dialog that allows to select the action 

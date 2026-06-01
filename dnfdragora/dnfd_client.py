@@ -124,6 +124,7 @@ IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
 IFACE_GOAL = '{}.Goal'.format(DNFDAEMON_BUS_NAME)
 IFACE_ADVISORY = '{}.Advisory'.format(DNFDAEMON_BUS_NAME)
+IFACE_HISTORY = '{}.History'.format(DNFDAEMON_BUS_NAME)
 
 
 def unpack_dbus(data):
@@ -231,6 +232,10 @@ class Client:
 
           'Advisories'          : 'list',
 
+          ##History
+          'HistoryRecentChanges': 'recent_changes',
+          'HistoryList'         : 'list',
+
           ##Goal
           'BuildTransaction'    : 'resolve',
           'RunTransaction'      : 'do_transaction',
@@ -273,6 +278,9 @@ class Client:
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_ADVISORY)
 
+            self.iface_history = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_HISTORY)
 
             # Managing dnf5daemon signals
             self.iface_base_signalhandler_maches = [
@@ -1364,6 +1372,8 @@ class Client:
             return  self.iface_repo
         elif cmd == 'Advisories':
             return self.iface_advisory
+        elif cmd == 'HistoryRecentChanges' or cmd == 'HistoryList':
+            return self.iface_history
         elif cmd == 'ReloadMetadata' or cmd == 'CleanCache' or cmd == 'ResetSession':
             return self.iface_base
         elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
@@ -2093,6 +2103,82 @@ class Client:
         else:
           result = self._run_dbus_sync('HistoryUndo', '(i)', tid)
           return json.loads(result)
+
+    @staticmethod
+    def _to_history_dbus_options(options):
+        """Convert a plain Python dict to a dbus.Dictionary typed as a{sv}.
+
+        dbus-python with signature=None cannot auto-detect the variant subtype
+        for a dict whose values include bool, int, or list.  We must:
+          - wrap each value with the correct dbus scalar/array type, AND
+          - wrap the whole dict as dbus.Dictionary(signature='sv') so that
+            dbus-python knows the container signature is a{sv} and stops
+            trying to iterate the values to guess it.
+        """
+        typed = {}
+        for k, v in options.items():
+            if isinstance(v, bool):
+                typed[k] = dbus.Boolean(v)
+            elif isinstance(v, int):
+                typed[k] = dbus.Int64(v)
+            elif isinstance(v, list):
+                typed[k] = dbus.Array([dbus.String(s) for s in v], signature='s')
+            else:
+                typed[k] = v
+        return dbus.Dictionary(typed, signature='sv')
+
+    def HistoryRecentChanges(self, options=None, sync=True):
+        """Get recently changed packages via org.rpm.dnf.v0.History.recent_changes.
+
+        Args:
+            options (dict): D-Bus options, all optional:
+                since              (int)  Unix timestamp — return changes after this date.
+                installed_packages (bool) include installed packages (default True).
+                removed_packages   (bool) include removed packages (default True).
+                upgraded_packages  (bool) include upgraded packages (default True).
+                downgraded_packages(bool) include downgraded packages (default True).
+                include_advisory   (bool) include advisory info for upgrades (default True).
+                all_advisories     (bool) include all advisories (default False).
+                package_attrs      (list) package attributes to return
+                                   (default ["name","summary","evr","arch"]).
+                interactive        (bool) allow polkit prompts (default False).
+            sync (bool): always True — History is a synchronous popup dialog.
+
+        Returns:
+            dict  {"installed": [...], "removed": [...], "upgraded": [...], "downgraded": [...]}
+            Each value is a list of dicts with the requested package attributes.
+        """
+        if options is None:
+            options = {}
+        result = self._run_dbus_sync('HistoryRecentChanges',
+                                     self._to_history_dbus_options(options))
+        return unpack_dbus(result)
+
+    def HistoryList(self, options=None, sync=True):
+        """Get the list of dnf5 transactions via org.rpm.dnf.v0.History.list.
+
+        Args:
+            options (dict): D-Bus options, all optional:
+                limit              (int)  max number of transactions to return.
+                since              (int)  Unix timestamp — return transactions after this date.
+                reverse            (bool) oldest first (default False = newest first).
+                contains_pkgs      (list) filter to transactions containing these package names.
+                transaction_attrs  (list) transaction attributes to include
+                                   (default ["id","start","end","user_id","description","status"]).
+                package_attrs      (list) package attributes to include
+                                   (default ["name","arch","evr"]).
+                include_packages   (bool) include package lists (default True).
+            sync (bool): always True — History is a synchronous popup dialog.
+
+        Returns:
+            list of transaction dicts with the requested attributes.
+        """
+        if options is None:
+            options = {}
+        result = self._run_dbus_sync('HistoryList',
+                                     self._to_history_dbus_options(options))
+        return unpack_dbus(result)
+
 
 
 

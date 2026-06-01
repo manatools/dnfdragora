@@ -673,6 +673,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.ActionMenu = {
                  'menu_name' : mItem,
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
+                 'history'   : self.menubar.addItem(mItem, _("&History")),
             }
             #Items must be "disowned"
             #for k in self.ActionMenu.keys():
@@ -747,7 +748,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #    self.infoMenu['widget'].addItem(self.infoMenu[l])
         #self.infoMenu['widget'].rebuildMenuTree();
 
-        # build Options menu
+        # build Actions menu button (fallback for old libyui without createMenuBar)
+        self.actionMenu = {
+            'widget'    : self.factory.createMenuButton(headbar, _("&Actions")),
+            'actions'   : MUI.YMenuItem(_("Action on packages")),
+            'history'   : MUI.YMenuItem(_("History")),
+        }
+        ordered_menu_lines = ['actions', 'history']
+        for l in ordered_menu_lines:
+            self.actionMenu['widget'].addItem(self.actionMenu[l])
+        self.actionMenu['widget'].rebuildMenuTree()
+
         self.optionsMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
             'user_prefs' : MUI.YMenuItem(_("User preferences")),
@@ -1842,6 +1853,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
           newAction = actDlg.run()
           rebuild_package_list = self._updateActionView(newAction)
+        elif item == self.ActionMenu['history'] or (
+             hasattr(self, 'actionMenu') and item == self.actionMenu.get('history')):
+          try:
+              self.dialog.setEnabled(False)
+          except Exception:
+              pass
+          hd = dialogs.HistoryDialog(self)
+          hd.run()
+          try:
+              self.dialog.setEnabled(True)
+          except Exception:
+              pass
         elif item == self.helpMenu['help']:
           info = helpinfo.DNFDragoraHelpInfo()
           hd = helpdialog.HelpDialog(info)
