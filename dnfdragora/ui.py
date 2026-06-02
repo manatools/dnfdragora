@@ -664,9 +664,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'sep0'      : mItem.addSeparator(),
                 'quit'      : self.menubar.addItem(mItem, _("&Quit"), "application-exit"),
             }
-            #Items must be "disowned"
-            #for k in self.fileMenu.keys():
-            #    self.fileMenu[k].this.own(False)
 
             # building Actions menu
             mItem = self.menubar.addMenu(_("&Actions"))
@@ -675,9 +672,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
             }
-            #Items must be "disowned"
-            #for k in self.ActionMenu.keys():
-            #    self.ActionMenu[k].this.own(False)
 
             # # building Information menu
             # mItem = self.menubar.addMenu(_("&Information"))
@@ -685,9 +679,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             #     'menu_name' : mItem,
             #     'history'   : MUI.YMenuItem(mItem, _("&History")),
             # }
-            # #Items must be "disowned"
-            # for k in self.infoMenu.keys():
-            #     self.infoMenu[k].this.own(False)
 
             # building Options menu
             mItem = self.menubar.addMenu(_("&Options"))
@@ -695,9 +686,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'menu_name'  : mItem,
                 'user_prefs' : self.menubar.addItem(mItem, _("User preferences")),
             }
-            #Items must be "disowned"
-            #for k in self.optionsMenu.keys():
-            #    self.optionsMenu[k].this.own(False)
 
             # build Help menu
             mItem = self.menubar.addMenu(_("&Help"))
@@ -707,11 +695,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'sep0'     : mItem.addSeparator(),
                 'about'    : self.menubar.addItem(mItem, _("&About"), 'dnfdragora'),
             }
-            #Items must be "disowned"
-            #for k in self.helpMenu.keys():
-            #    self.helpMenu[k].this.own(False)
-
-            #TODO self.menubar.resolveShortcutConflicts()
+            
             self.menubar.rebuildMenus()
         else:
             logger.info("System has not createMenuBar, using old menu buttons")
@@ -1614,82 +1598,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug('Distro Sync %s' %(pkgs))
             self.backend.DistroSync(pkgs, sync=True)
 
-    def _undo_transaction(self):
-        '''
-        Run the undo transaction
-        '''
-        locked = False
-        performedUndo = False
-        sync = True
-
-        try:
-            rc, result = self.backend.GetTransaction(sync)
-            if rc :
-                transaction_result_dlg = dialogs.TransactionResult(self)
-                ok = transaction_result_dlg.run(result)
-
-                if ok:  # Ok pressed
-                    self.infobar.info(_('Undo transaction'))
-                    rc, result = self.backend.RunTransaction(sync)
-                    # This can happen more than once (more gpg keys to be
-                    # imported)
-                    while rc == 1:
-                        logger.debug('GPG key missing: %s' % repr(result))
-                        # get info about gpgkey to be confirmed
-                        values = self._gpg_confirm
-                        if values:  # There is a gpgkey to be verified
-                            (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
-                            logger.debug('GPGKey : %s' % repr(values))
-                            resp = dialogs.ask_for_gpg_import(values)
-                            self.backend.ConfirmGPGImport(key_id, resp, sync)
-                            # tell the backend that the gpg key is confirmed
-                            # rerun the transaction
-                            # FIXME: It should not be needed to populate
-                            # the transaction again
-                            if resp:
-                                rc, result = self.backend.GetTransaction(sync)
-                                rc, result = self.backend.RunTransaction(sync)
-                            else:
-                                # NOTE TODO answer no is the only way to exit, since it seems not
-                                # to install the key :(
-                                break
-                        else:  # error in signature verification
-                            dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
-                                                'text' : '<br>'.join(result), 'richtext' : True })
-                            break
-                    if rc == 4:  # Download errors
-                        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
-                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-                        logger.error('Download error')
-                        logger.error(result)
-                    elif rc != 0:  # other transaction errors
-                        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
-                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-                        logger.error('RunTransaction failure')
-                        logger.error(result)
-
-                    self.release_root_backend()
-                    self.backend.reload()
-                    performedUndo = (rc == 0)
-            else:
-                logger.error('BuildTransaction failure')
-                logger.error(result)
-                s = "%s"%result
-                dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": s, "richtext":True})
-        #except dnfdaemon.client.AccessDeniedError as e:
-        #    logger.error("dnfdaemon client AccessDeniedError: %s ", e)
-        #    dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
-        except Exception as err:
-          exc, msg = misc.parse_dbus_error()
-          if 'AccessDeniedError' in exc:
-            logger.warning("User pressed cancel button in policykit window")
-            logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
-          else:
-            logger.exception("Unexpected error while undoing transaction: %s", err)
-
-        return performedUndo
-
-
     def saveUserPreference(self):
         '''
         Save user preferences on exit and view layout if needed.
@@ -1722,17 +1630,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         except Exception:
             logger.exception("saveUserPreference: could not collect view/search state; settings will still be saved")
         self.config.saveUserPreferences()
-
-    def _load_history(self, transactions):
-        '''
-        Load history and populate view.
-        Args:
-            list of (transaction is, date-time) pairs
-        '''
-        hw = dialogs.HistoryView(self)
-        undo = hw.run(transactions)
-        hw = None
-        return undo
 
     def _updateActionView(self, newAction):
         '''
@@ -2466,28 +2363,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             @nevra: full NEVRA of the package script belongs to
             @scriptlet_type: scriptlet type that started (pre, post,...)
         '''
-        '''
-        TODO scriptlet type to show in the progress bar
-            class LIBDNF_API TransactionCallbacks {
-            public:
-                enum class ScriptType {
-                    UNKNOWN,
-                    PRE_INSTALL,            // "%pre"
-                    POST_INSTALL,           // "%post"
-                    PRE_UNINSTALL,          // "%preun"
-                    POST_UNINSTALL,         // "%postun"
-                    PRE_TRANSACTION,        // "%pretrans"
-                    POST_TRANSACTION,       // "%posttrans"
-                    TRIGGER_PRE_INSTALL,    // "%triggerprein"
-                    TRIGGER_INSTALL,        // "%triggerin"
-                    TRIGGER_UNINSTALL,      // "%triggerun"
-                    TRIGGER_POST_UNINSTALL  // "%triggerpostun"
-                };
-
-                /// @param type  scriptlet type
-                /// @return  string representation of the scriptlet type
-                static const char * script_type_to_string(ScriptType type) noexcept;
-        '''
         scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type)
         values = (session_object_path,nevra, scriptlet_type, scriptletType)
         logger.debug('OnTransactionScriptStart: %s', repr(values))
@@ -2890,33 +2765,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         elif ok !=0:
           logger.error("Build transaction error %d", ok) #TODO read errors from dnf daemon
 
-        #TODO
-        TODO=True
-        if not TODO:
-          self.started_transaction = ''
-          try:
-              installed_packages = []
-              removed_packages = []
-              for action_list in resolve:
-                  if action_list and action_list[0] == 'install':
-                      if len(action_list) > 1:
-                          for program in action_list[1]:
-                              program_info = program[0].split(',')
-                              installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-                  if action_list and action_list[0] == 'remove':
-                      if len(action_list) > 1:
-                          for program in action_list[1]:
-                              program_info = program[0].split(',')
-                              removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-              if installed_packages:
-                  installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
-                  self.started_transaction += _('Packages installed:') + f' {installed_packages}'
-              if removed_packages:
-                  removed_packages = '\n' + "\n".join(removed_packages)
-                  self.started_transaction += _('Packages removed:') + f' {removed_packages}'
-          except Exception as e:
-              self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
-
         if ok:
           self.infobar.info(_('Applying changes to the system'))
           self._show_trans_dialog()
@@ -3151,26 +2999,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'OnErrorMessage'):
             logger.warning(info)
             self._OnErrorMessage(info['session_object_path'], info['download_id'], info['error'], info['url'], info['metadata'])
-          elif (event == 'GetHistoryByDays'):
-            if not info['error']:
-              transaction_list = info['result']
-              self._load_history(transaction_list)
-              #### TODO fix history undo transaction
-              # TODO if performedUNDO:
-              # TODO   sel = self.tree.selectedItem()
-              # TODO   if sel :
-              # TODO       group = self._groupNameFromItem(self.groupList, sel)
-              # TODO       filter = self._filterNameSelected()
-              # TODO       if (group == "Search"):
-              # TODO           # force tree rebuilding to show new package status
-              # TODO           if not self._searchPackages(filter, True) :
-              # TODO               rebuild_package_list = True
-              # TODO       else:
-              # TODO           if filter == "to_update":
-              # TODO               self._fillGroupTree()
-              # TODO           rebuild_package_list = True
-          elif (event == 'HistoryUndo'):
-            self._undo_transaction()
           elif (event == 'SetEnabledRepos') or (event == 'SetDisabledRepos'):
             logger.debug("%s - %s", event, info['result'])
             self.backend.clear_cache(also_groups=True)
