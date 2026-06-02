@@ -364,59 +364,59 @@ msgstr "Lukk"
 
 #: dnfdragora/dialogs.py:395
 msgid "&Recent Changes"
-msgstr ""
+msgstr "&Nylige endringer"
 
 #: dnfdragora/dialogs.py:398
 msgid "&Transactions"
-msgstr ""
+msgstr "&Transaksjoner"
 
 #: dnfdragora/dialogs.py:406
 msgid "Filters"
-msgstr ""
+msgstr "Filtre"
 
 #: dnfdragora/dialogs.py:409
 msgid "Since (YYYY-MM-DD):"
-msgstr ""
+msgstr "Siden (ÅÅÅÅ-MM-DD):"
 
 #: dnfdragora/dialogs.py:414
 msgid "Change types"
-msgstr ""
+msgstr "Endringstyper"
 
 #: dnfdragora/dialogs.py:417
 msgid "&Installed"
-msgstr ""
+msgstr "&Installert"
 
 #: dnfdragora/dialogs.py:418
 msgid "&Removed"
-msgstr ""
+msgstr "&Fjernet"
 
 #: dnfdragora/dialogs.py:419
 msgid "&Upgraded"
-msgstr ""
+msgstr "&Oppgradert"
 
 #: dnfdragora/dialogs.py:420
 msgid "&Downgraded"
-msgstr ""
+msgstr "&Nedgradert"
 
 #: dnfdragora/dialogs.py:422
 msgid "Include &advisories"
-msgstr ""
+msgstr "Inkluder &råd"
 
 #: dnfdragora/dialogs.py:423
 msgid "All advisories"
-msgstr ""
+msgstr "Alle råd"
 
 #: dnfdragora/dialogs.py:427
 msgid "Transaction filters"
-msgstr ""
+msgstr "Transaksjonsfiltre"
 
 #: dnfdragora/dialogs.py:429
 msgid "Limit:"
-msgstr ""
+msgstr "Grense:"
 
 #: dnfdragora/dialogs.py:431
 msgid "  Contains package:"
-msgstr ""
+msgstr "Inneholder pakke:"
 
 #: dnfdragora/dialogs.py:440 dnfdragora/dialogs.py:953
 #: dnfdragora/dialogs.py:1009 dnfdragora/ui.py:524
@@ -425,7 +425,7 @@ msgstr "Navn"
 
 #: dnfdragora/dialogs.py:441
 msgid "EVR"
-msgstr ""
+msgstr "EVR"
 
 #: dnfdragora/dialogs.py:442 dnfdragora/ui.py:524
 msgid "Arch"
@@ -433,11 +433,11 @@ msgstr "Arkitektur"
 
 #: dnfdragora/dialogs.py:443
 msgid "Action"
-msgstr ""
+msgstr "Handling"
 
 #: dnfdragora/dialogs.py:444
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: dnfdragora/dialogs.py:445 dnfdragora/ui.py:524
 msgid "Summary"
@@ -445,16 +445,16 @@ msgstr "Oppsummering"
 
 #: dnfdragora/dialogs.py:451
 msgid "Transactions"
-msgstr ""
+msgstr "Transaksjoner"
 
 #: dnfdragora/dialogs.py:459
 msgid "&Refresh"
-msgstr ""
+msgstr "&Oppdater"
 
 #: dnfdragora/dialogs.py:546 dnfdragora/dialogs.py:617
 #, python-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Feil: %s"
 
 #: dnfdragora/dialogs.py:557 dnfdragora/ui.py:819
 msgid "installed"
@@ -462,39 +462,39 @@ msgstr "installert"
 
 #: dnfdragora/dialogs.py:558
 msgid "removed"
-msgstr ""
+msgstr "fjernet"
 
 #: dnfdragora/dialogs.py:559
 msgid "upgraded"
-msgstr ""
+msgstr "oppgradert"
 
 #: dnfdragora/dialogs.py:560
 msgid "downgraded"
-msgstr ""
+msgstr "nedgradert"
 
 #: dnfdragora/dialogs.py:587 dnfdragora/dialogs.py:661
 msgid "No results"
-msgstr ""
+msgstr "Ingen resultater"
 
 #: dnfdragora/dialogs.py:622
 msgid "install"
-msgstr ""
+msgstr "installer"
 
 #: dnfdragora/dialogs.py:623
 msgid "remove"
-msgstr ""
+msgstr "fjern"
 
 #: dnfdragora/dialogs.py:624
 msgid "upgrade"
-msgstr ""
+msgstr "oppgrader"
 
 #: dnfdragora/dialogs.py:625
 msgid "downgrade"
-msgstr ""
+msgstr "nedgrader"
 
 #: dnfdragora/dialogs.py:626
 msgid "reinstall"
-msgstr ""
+msgstr "ominstaller"
 
 #: dnfdragora/dialogs.py:693
 msgid "Action on selected packages"
@@ -1639,7 +1639,7 @@ msgstr "Søkedialog"
 #: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:114
 #: dnfdragora/helpinfo.py:250
 msgid "History dialog"
-msgstr ""
+msgstr "Historiedialog"
 
 #: dnfdragora/helpinfo.py:52
 msgid "File menu"
@@ -1830,6 +1830,7 @@ msgstr "<h2>Historikk</h2>"
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
 msgstr ""
+"Denne menyen åpner %s , som viser pakker som nylig er endret på systemet."
 
 #: dnfdragora/helpinfo.py:121
 msgid "Option Menu"
@@ -2190,87 +2191,105 @@ msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
 msgstr ""
+"Historikk-dialogboksen viser pakker som nylig har blitt endret på systemet "
+"ved å spørre dnf5daemon History API.<br><br>"
 
 #: dnfdragora/helpinfo.py:253
 msgid "<h2>Opening the dialog</h2>"
-msgstr ""
+msgstr "Åpner dialogen</h2>"
 
 #: dnfdragora/helpinfo.py:254
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
-msgstr ""
+msgstr "Åpne dialogboksen fra menylinjen: <b>Handlinger → Historie</b>.<br>"
 
 #: dnfdragora/helpinfo.py:255
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
 msgstr ""
+"Hovedvinduet i dnfdragora er deaktivert mens dialogboksen er åpen for å "
+"forhindre utilsiktede interaksjoner.<br><br>"
 
 #: dnfdragora/helpinfo.py:257
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
 msgstr ""
+" I<b>Filter</b> seksjonen øverst i dialogboksen kan du begrense resultatene:"
+"<br>"
 
 #: dnfdragora/helpinfo.py:259
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
 msgstr ""
+"Siden (ÅÅÅÅ-MM-DD)</b>:skriv inn en dato for å bare vise pakker som er "
+"endret, på eller etter den datoen. "
 
 #: dnfdragora/helpinfo.py:260
 msgid "Leave empty to retrieve all available history. "
-msgstr ""
+msgstr "La stå tomt for å hente all tilgjengelig historikk."
 
 #: dnfdragora/helpinfo.py:261
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
+"Datoen konverteres til et Unix-tidsstempel før den sendes til daemonen..</li>"
 
 #: dnfdragora/helpinfo.py:263
 msgid "<h2>Change type checkboxes</h2>"
-msgstr ""
+msgstr "<h2>Endre type avmerkingsbokser</h2>"
 
 #: dnfdragora/helpinfo.py:264
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
 msgstr ""
+"Fire avmerkingsbokser lar deg velge hvilke typer pakkeendringer som skal "
+"inkluderes i resultatene:<br>"
 
 #: dnfdragora/helpinfo.py:266
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
-msgstr ""
+msgstr "<li><b>Installert</b>: pakker som nylig ble installert.</li>"
 
 #: dnfdragora/helpinfo.py:267
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
-msgstr ""
+msgstr "<li><b>Fjernet</b>: pakker som ble fjernet fra systemet.</li>"
 
 #: dnfdragora/helpinfo.py:268
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
+"<li><b>Oppgradert</b>: pakker som ble oppgradert til en nyere versjon.</li>"
 
 #: dnfdragora/helpinfo.py:269
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
+"<li><b>Nedgradert</b>: pakker som ble nedgradert til en eldre versjon.</li>"
 
 #: dnfdragora/helpinfo.py:271
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
 msgstr ""
+"Fjern avmerkingen for alle typer du ikke er interessert i for å redusere "
+"antall rader som vises.<br><br>"
 
 #: dnfdragora/helpinfo.py:272
 msgid "<h2>Advisory options</h2>"
-msgstr ""
+msgstr "<h2>Rådgivende alternativer</h2>"
 
 #: dnfdragora/helpinfo.py:274
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
 msgstr ""
+"<li><b>Inkluder råd</b>: Når det er avmerket, inkluderes rådgivende "
+"informasjon (sikkerhet, feilretting, forbedring) der det er tilgjengelig.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:275
 msgid ""
@@ -2278,86 +2297,105 @@ msgid ""
 "i>, all advisory types are returned rather than only the most relevant one "
 "per package. "
 msgstr ""
+"<li><b>Alle råd</b>: Når det er merket av sammen med <i>Inkluder råd</i>, "
+"returneres alle rådtyper i stedet for bare den mest relevante per pakke."
 
 #: dnfdragora/helpinfo.py:276
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
 msgstr ""
+"Dette alternativet deaktiveres automatisk når det ikke er merket av for "
+"<i>Inkluder råd</i></li>."
 
 #: dnfdragora/helpinfo.py:278
 msgid "<h2>Results table</h2>"
-msgstr ""
+msgstr "<h2>Resultattabell</h2>"
 
 #: dnfdragora/helpinfo.py:279
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
-msgstr ""
+msgstr "Tabellen viser én rad per endret pakke med følgende kolonner:<br>"
 
 #: dnfdragora/helpinfo.py:281
 msgid "<li><b>Name</b>: the package name.</li>"
-msgstr ""
+msgstr "<li><b>Navn</b>: pakkenavnet</li>"
 
 #: dnfdragora/helpinfo.py:282
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
 msgstr ""
+"<li><b>EVR</b>: epoch:versjonsutgivelse av den nye (installerte) versjonen.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:283
 msgid "<li><b>Arch</b>: the package architecture.</li>"
-msgstr ""
+msgstr "<li><b>Arch</b>: pakkearkitekturen.</li>"
 
 #: dnfdragora/helpinfo.py:284
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
 msgstr ""
+"<li><b>Handling</b>: én av <i>installert,</i> <i>jernet</i>, <i>oppgradert</"
+"i> eller </i>nedgradert</i>.</li>"
 
 #: dnfdragora/helpinfo.py:285
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
 msgstr ""
+"<li><b>Dato</b>: dato og klokkeslett for transaksjonen (ÅÅÅÅ-MM-DD TT:MM)</"
+"li>"
 
 #: dnfdragora/helpinfo.py:286
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
-msgstr ""
+msgstr "<li><b>Sammendrag</b>: en kort beskrivelse av pakken.</li>"
 
 #: dnfdragora/helpinfo.py:288
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
 msgstr ""
+"Hvis ingen pakker samsvarer med de gjeldende filtrene, vises raden <i>Ingen "
+"resultater</i><br>"
 
 #: dnfdragora/helpinfo.py:289
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
 msgstr ""
+"Hvis daemon-kallet mislykkes, vises feilmeldingen i tabellen, slik at du kan "
+"diagnostisere problemet.<br><br>"
 
 #: dnfdragora/helpinfo.py:290
 msgid "<h2>Refresh button</h2>"
-msgstr ""
+msgstr "<h2>Oppdater-knapp</h2>"
 
 #: dnfdragora/helpinfo.py:291
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
+"Trykk på <b>Oppdater</b> for å spørre daemonen på nytt med gjeldende "
+"filterinnstillinger."
 
 #: dnfdragora/helpinfo.py:292
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
+"Dialogboksen spør også automatisk når den åpnes for første gang.<br><br>"
 
 #: dnfdragora/helpinfo.py:293
 msgid "<h2>Close button</h2>"
-msgstr ""
+msgstr "<h2>Lukk-knapp</h2>"
 
 #: dnfdragora/helpinfo.py:294
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
 msgstr ""
+"Trykk <b>Lukk</b> (eller knappen for å lukke vinduet) for å lukke "
+"dialogboksen og gå tilbake til hovedvinduet.<br>"
 
 #: dnfdragora/progress_ui.py:191
 msgid "Transaction completed successfully"
@@ -2462,7 +2500,7 @@ msgstr "Krav"
 
 #: dnfdragora/ui.py:320
 msgid "Logging directory not found"
-msgstr ""
+msgstr "Loggkatalogen ble ikke funnet"
 
 #: dnfdragora/ui.py:321
 #, python-format
@@ -2471,6 +2509,9 @@ msgid ""
 "disabled for this session.<br>Please update the log directory in <i>Options "
 "&rarr; User preferences</i>."
 msgstr ""
+"Den konfigurerte loggkatalogen<b>%s</b> finnes ikke.<br> Logging er "
+"deaktivert for denne økten. <br>Oppdater loggkatalogen i <i>Alternativer > "
+"Brukerinnstillinger.</i>"
 
 #: dnfdragora/ui.py:451
 msgid "Software Management - dnfdragora"
@@ -2563,11 +2604,11 @@ msgstr "&&Handling"
 
 #: dnfdragora/ui.py:675
 msgid "&Action on packages"
-msgstr "&&Handling på pakker"
+msgstr "&Handling på pakker"
 
 #: dnfdragora/ui.py:676
 msgid "&History"
-msgstr ""
+msgstr "&Historikk"
 
 #: dnfdragora/ui.py:693 dnfdragora/ui.py:763
 msgid "&Options"
@@ -2591,7 +2632,7 @@ msgstr "&Om"
 
 #: dnfdragora/ui.py:754
 msgid "Action on packages"
-msgstr ""
+msgstr "Handling på pakker"
 
 #: dnfdragora/ui.py:813
 msgid "update"
@@ -2828,19 +2869,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hovedvindu"
-
-#~ msgid ""
-#~ "<br><i>Note that this function is currently broken because of a DNF API "
-#~ "change</i><br>"
-#~ msgstr ""
-#~ "<br><i>Merk at denne funksjonen for øyeblikket er ødelagt på grunn av en "
-#~ "endring i DNF API</i><br>"
-
-#~ msgid ""
-#~ "This menu runs a dialog containing transaction history shown in a tree "
-#~ "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
-#~ "button.<br>"
-#~ msgstr ""
-#~ "Denne menyen kjører en dialogboks som inneholder transaksjonshistorikk "
-#~ "vist i et tre sortert etter dato. Valgt historie kan angres ved å trykke "
-#~ "på <b>Angre</b> knappen.<br>"
