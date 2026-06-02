@@ -367,59 +367,59 @@ msgstr "Tan&ca"
 
 #: dnfdragora/dialogs.py:395
 msgid "&Recent Changes"
-msgstr ""
+msgstr "Canvis &recents"
 
 #: dnfdragora/dialogs.py:398
 msgid "&Transactions"
-msgstr ""
+msgstr "&Transaccions"
 
 #: dnfdragora/dialogs.py:406
 msgid "Filters"
-msgstr ""
+msgstr "Filtres"
 
 #: dnfdragora/dialogs.py:409
 msgid "Since (YYYY-MM-DD):"
-msgstr ""
+msgstr "Des de (AAAA-MM-DD):"
 
 #: dnfdragora/dialogs.py:414
 msgid "Change types"
-msgstr ""
+msgstr "Canvia'n el tipus"
 
 #: dnfdragora/dialogs.py:417
 msgid "&Installed"
-msgstr ""
+msgstr "&Installat"
 
 #: dnfdragora/dialogs.py:418
 msgid "&Removed"
-msgstr ""
+msgstr "Sup&rimit"
 
 #: dnfdragora/dialogs.py:419
 msgid "&Upgraded"
-msgstr ""
+msgstr "Act&ualitzat"
 
 #: dnfdragora/dialogs.py:420
 msgid "&Downgraded"
-msgstr ""
+msgstr "&Degradat"
 
 #: dnfdragora/dialogs.py:422
 msgid "Include &advisories"
-msgstr ""
+msgstr "Inclou &avisos"
 
 #: dnfdragora/dialogs.py:423
 msgid "All advisories"
-msgstr ""
+msgstr "Tots els avisos"
 
 #: dnfdragora/dialogs.py:427
 msgid "Transaction filters"
-msgstr ""
+msgstr "Filtres de transaccions"
 
 #: dnfdragora/dialogs.py:429
 msgid "Limit:"
-msgstr ""
+msgstr "Límit:"
 
 #: dnfdragora/dialogs.py:431
 msgid "  Contains package:"
-msgstr ""
+msgstr "  Conté el paquet:"
 
 #: dnfdragora/dialogs.py:440 dnfdragora/dialogs.py:953
 #: dnfdragora/dialogs.py:1009 dnfdragora/ui.py:524
@@ -428,7 +428,7 @@ msgstr "Nom"
 
 #: dnfdragora/dialogs.py:441
 msgid "EVR"
-msgstr ""
+msgstr "EVR"
 
 #: dnfdragora/dialogs.py:442 dnfdragora/ui.py:524
 msgid "Arch"
@@ -436,11 +436,11 @@ msgstr "Arquitectura"
 
 #: dnfdragora/dialogs.py:443
 msgid "Action"
-msgstr ""
+msgstr "Acció"
 
 #: dnfdragora/dialogs.py:444
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: dnfdragora/dialogs.py:445 dnfdragora/ui.py:524
 msgid "Summary"
@@ -448,16 +448,16 @@ msgstr "Resum"
 
 #: dnfdragora/dialogs.py:451
 msgid "Transactions"
-msgstr ""
+msgstr "Transaccions"
 
 #: dnfdragora/dialogs.py:459
 msgid "&Refresh"
-msgstr ""
+msgstr "&Refresca"
 
 #: dnfdragora/dialogs.py:546 dnfdragora/dialogs.py:617
 #, python-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Error: %s"
 
 #: dnfdragora/dialogs.py:557 dnfdragora/ui.py:819
 msgid "installed"
@@ -465,39 +465,39 @@ msgstr "instal·lat"
 
 #: dnfdragora/dialogs.py:558
 msgid "removed"
-msgstr ""
+msgstr "suprimit"
 
 #: dnfdragora/dialogs.py:559
 msgid "upgraded"
-msgstr ""
+msgstr "actualitzat"
 
 #: dnfdragora/dialogs.py:560
 msgid "downgraded"
-msgstr ""
+msgstr "degradat"
 
 #: dnfdragora/dialogs.py:587 dnfdragora/dialogs.py:661
 msgid "No results"
-msgstr ""
+msgstr "Sense resultats"
 
 #: dnfdragora/dialogs.py:622
 msgid "install"
-msgstr ""
+msgstr "instal·la"
 
 #: dnfdragora/dialogs.py:623
 msgid "remove"
-msgstr ""
+msgstr "suprimeix"
 
 #: dnfdragora/dialogs.py:624
 msgid "upgrade"
-msgstr ""
+msgstr "actualitza"
 
 #: dnfdragora/dialogs.py:625
 msgid "downgrade"
-msgstr ""
+msgstr "degrada"
 
 #: dnfdragora/dialogs.py:626
 msgid "reinstall"
-msgstr ""
+msgstr "reinstal·la"
 
 #: dnfdragora/dialogs.py:693
 msgid "Action on selected packages"
@@ -1626,15 +1626,15 @@ msgstr "Vistes, filtres i cerca"
 
 #: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:196
 msgid "Group panel"
-msgstr "Plafó del grup"
+msgstr "Panell del grup"
 
 #: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:206
 msgid "Package panel"
-msgstr "Plafó del paquet"
+msgstr "Panell del paquet"
 
 #: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:217
 msgid "Information panel"
-msgstr "Plafó d'informació"
+msgstr "Panell d'informació"
 
 #: dnfdragora/helpinfo.py:34
 msgid "Progress bar line"
@@ -1651,7 +1651,7 @@ msgstr "Diàleg de cerca"
 #: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:114
 #: dnfdragora/helpinfo.py:250
 msgid "History dialog"
-msgstr ""
+msgstr "Diàleg de l'historial"
 
 #: dnfdragora/helpinfo.py:52
 msgid "File menu"
@@ -1846,6 +1846,8 @@ msgstr "<h2>Historial</h2>"
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
 msgstr ""
+"Aquest menú obre l'aìcació %s, que mostra els paquets modificats recentment "
+"al sistema."
 
 #: dnfdragora/helpinfo.py:121
 msgid "Option Menu"
@@ -2030,15 +2032,15 @@ msgid ""
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
 "El primer quadre combinat permet mostrar els paquets per grups. Si se "
-"selecciona <i>Grups</i>, el plafó de grups mostra una vista en arbre que "
+"selecciona <i>Grups</i>, el panell de grups mostra una vista en arbre que "
 "conté grups i, en seleccionar-ne un, es mostren els paquets relacionats al "
-"plafó de paquets.<br>"
+"panell de paquets.<br>"
 
 #: dnfdragora/helpinfo.py:173
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr ""
-"Si se selecciona <i>Tot</i>, el plafó de paquets conté tots els paquets.<br>"
+"Si se selecciona <i>Tot</i>, el panell de paquets conté tots els paquets.<br>"
 
 #: dnfdragora/helpinfo.py:174 dnfdragora/helpinfo.py:256
 msgid "<h2>Filters</h2>"
@@ -2049,7 +2051,7 @@ msgid ""
 "The Filter combobox allows you to filter the packages shown in the package "
 "panel by:"
 msgstr ""
-"El quadre de filtre permet filtrar els paquets que es mostren al plafó de "
+"El quadre de filtre permet filtrar els paquets que es mostren al panell de "
 "paquets per:"
 
 #: dnfdragora/helpinfo.py:177
@@ -2126,7 +2128,7 @@ msgid ""
 "view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
-"Aquest plafó mostra tots els grups disponibles per filtrar paquets, si la "
+"Aquest panell mostra tots els grups disponibles per filtrar paquets, si la "
 "vista de grups està seleccionada. El grup especial de <i>Cerca</i> s'afegeix "
 "després de fer-ne una."
 
@@ -2136,7 +2138,7 @@ msgid ""
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
-"Aquest plafó mostra tots els paquets filtrats amb la informació bàsica, com "
+"Aquest panell mostra tots els paquets filtrats amb la informació bàsica, com "
 "ara el <i>nom</i>, el <i>resum</i>, la <i>versió</i>, l'<i>edició</i>, "
 "l'<i>arquitectura</i>, la <i>mida</i> i l'<i>estat</i>."
 
@@ -2154,9 +2156,9 @@ msgid ""
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
-"Aquest plafó mostra tota la informació del paquet com ara <i>descripció</i>, "
-"<i>URL</i>, <i>dipòsit</i>, <i>requeriments</i>, <i>llista de fitxers</i> i "
-"<i>registre de canvis</i>."
+"Aquest panell mostra tota la informació del paquet com ara <i>descripció</"
+"i>, <i>URL</i>, <i>dipòsit</i>, <i>requeriments</i>, <i>llista de fitxers</"
+"i> i <i>registre de canvis</i>."
 
 #: dnfdragora/helpinfo.py:220
 msgid ""
@@ -2210,87 +2212,107 @@ msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
 msgstr ""
+"El diàleg de l'historial mostra els paquets que s'han modificat recentment "
+"al sistema consultant l'API Historial del dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:253
 msgid "<h2>Opening the dialog</h2>"
-msgstr ""
+msgstr "<h2>Obertura del diàleg</h2>"
 
 #: dnfdragora/helpinfo.py:254
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
 msgstr ""
+"Obriu el diàleg des de la barra de menús: <b>Accions → Historial</b>.<br>"
 
 #: dnfdragora/helpinfo.py:255
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
 msgstr ""
+"La finestra principal del dnfdragora està desactivada mentre el diàleg està "
+"obert per evitar interaccions no desitjades.<br><br>"
 
 #: dnfdragora/helpinfo.py:257
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
 msgstr ""
+"La secció <b>Filtres</b> a la part superior del diàleg us permet restringir-"
+"ne els resultats:<br>"
 
 #: dnfdragora/helpinfo.py:259
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
 msgstr ""
+"<li><b>Des de (AAAA-MM-DD)</b>: introduïu-hi una data per mostrar només els "
+"paquets modificats en aquesta data o posteriorment."
 
 #: dnfdragora/helpinfo.py:260
 msgid "Leave empty to retrieve all available history. "
-msgstr ""
+msgstr "Deixeu-ho en blanc per recuperar tot l'historial disponible."
 
 #: dnfdragora/helpinfo.py:261
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
+"La data es converteix a una marca de temps d'Unix abans de ser enviada al "
+"dimoni.</li>"
 
 #: dnfdragora/helpinfo.py:263
 msgid "<h2>Change type checkboxes</h2>"
-msgstr ""
+msgstr "<h2>Caselles de selecció del canvi de tipus</h2>"
 
 #: dnfdragora/helpinfo.py:264
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
 msgstr ""
+"Quatre caselles de selecció us permeten triar quins tipus de canvis de "
+"paquet voleu incloure als resultats:<br>"
 
 #: dnfdragora/helpinfo.py:266
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
-msgstr ""
+msgstr "<li><b>Instal·lat</b>: paquets que s'han instal·lat recentment.</li>"
 
 #: dnfdragora/helpinfo.py:267
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
-msgstr ""
+msgstr "<li><b>Suprimit</b>: paquets que s'han eliminat del sistema.</li>"
 
 #: dnfdragora/helpinfo.py:268
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
+"<li><b>Actualitzat</b>: paquets que s'han actualitzat a una versió més "
+"recent.</li>"
 
 #: dnfdragora/helpinfo.py:269
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
+"<li><b>Degradat</b>: paquets que s'han rebaixat a una versió anterior.</li>"
 
 #: dnfdragora/helpinfo.py:271
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
 msgstr ""
+"Desmarqueu qualsevol tipus que no us interessi per reduir el nombre de files "
+"que es mostren.<br><br>"
 
 #: dnfdragora/helpinfo.py:272
 msgid "<h2>Advisory options</h2>"
-msgstr ""
+msgstr "<h2>Opcions d'assessorament</h2>"
 
 #: dnfdragora/helpinfo.py:274
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
 msgstr ""
+"<li><b>Inclou avisos</b>: quan es marca, s'inclou informació d'assessorament "
+"(seguretat, correcció d'errors, millora) on estigui disponible.</li>"
 
 #: dnfdragora/helpinfo.py:275
 msgid ""
@@ -2298,86 +2320,107 @@ msgid ""
 "i>, all advisory types are returned rather than only the most relevant one "
 "per package. "
 msgstr ""
+"<li><b>Tots els avisos</b>: quan es marca juntament amb <i>Inclou avisos</"
+"i>, es mostren tots els tipus d'avisos en lloc de només el més rellevant per "
+"paquet."
 
 #: dnfdragora/helpinfo.py:276
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
 msgstr ""
+"Aquesta opció es desactiva automàticament quan <i>Inclou avisos</i> no està "
+"marcada.</li>"
 
 #: dnfdragora/helpinfo.py:278
 msgid "<h2>Results table</h2>"
-msgstr ""
+msgstr "<h2>Taula de resultats</h2>"
 
 #: dnfdragora/helpinfo.py:279
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr ""
+"La taula mostra una fila per paquet modificat amb les columnes següents:<br>"
 
 #: dnfdragora/helpinfo.py:281
 msgid "<li><b>Name</b>: the package name.</li>"
-msgstr ""
+msgstr "<li><b>Nom</b>: el nom del paquet.</li>"
 
 #: dnfdragora/helpinfo.py:282
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
 msgstr ""
+"<li><b>EVR</b>: època, versió i publicació de la nova versió (instal·lada).</"
+"li>"
 
 #: dnfdragora/helpinfo.py:283
 msgid "<li><b>Arch</b>: the package architecture.</li>"
-msgstr ""
+msgstr "<li><b>Arquitectura</b>: l'arquitectura del paquet.</li>"
 
 #: dnfdragora/helpinfo.py:284
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
 msgstr ""
+"<li><b>Accció</b>: <i>instal·lat</i>, <i>suprimit</i>, <i>actualitzat</i>, o "
+"<i>degradat</i>.</li>"
 
 #: dnfdragora/helpinfo.py:285
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
 msgstr ""
+"<li><b>Data</b>: la data i l'hora de la transacció (AAAA-MM-DD HH:MM).</li>"
 
 #: dnfdragora/helpinfo.py:286
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
-msgstr ""
+msgstr "<li><b>Resum</b>: una descripció breu del paquet.</li>"
 
 #: dnfdragora/helpinfo.py:288
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
 msgstr ""
+"Si no hi ha paquets que coincideixin amb els filtres actuals, es mostrarà "
+"una fila amb el text <i>Sense resultats</i>.<br>"
 
 #: dnfdragora/helpinfo.py:289
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
 msgstr ""
+"Si la crida al dimoni falla, el missatge d'error es mostra a la taula perquè "
+"pugueu diagnosticar el problema.<br><br>"
 
 #: dnfdragora/helpinfo.py:290
 msgid "<h2>Refresh button</h2>"
-msgstr ""
+msgstr "<h2>Botó de refresc</h2>"
 
 #: dnfdragora/helpinfo.py:291
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
+"Premeu <b>Refresca</b> per tornar a consultar el dimoni amb la configuració "
+"del filtre actual."
 
 #: dnfdragora/helpinfo.py:292
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
+"El diàleg també fa una consulta automàticament quan s'obre per primera "
+"vegada.<br><br>"
 
 #: dnfdragora/helpinfo.py:293
 msgid "<h2>Close button</h2>"
-msgstr ""
+msgstr "<h2>Botó de tancament</h2>"
 
 #: dnfdragora/helpinfo.py:294
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
 msgstr ""
+"Premeu <b>Tanca</b> (o el botó de tancament de la finestra) per tancar el "
+"diàleg i tornar a la finestra principal.<br>"
 
 #: dnfdragora/progress_ui.py:191
 msgid "Transaction completed successfully"
@@ -2482,7 +2525,7 @@ msgstr "Requisits"
 
 #: dnfdragora/ui.py:320
 msgid "Logging directory not found"
-msgstr ""
+msgstr "No s'ha trobat el directori de registre."
 
 #: dnfdragora/ui.py:321
 #, python-format
@@ -2491,6 +2534,9 @@ msgid ""
 "disabled for this session.<br>Please update the log directory in <i>Options "
 "&rarr; User preferences</i>."
 msgstr ""
+"El directori de registre configurat <b>%s</b> no existeix.<br> El registre "
+"està desactivat per a aquesta sessió.<br>Actualitzeu el directori de "
+"registre a </i> Opcions i preferències de l'usuari.</i>."
 
 #: dnfdragora/ui.py:451
 msgid "Software Management - dnfdragora"
@@ -2587,7 +2633,7 @@ msgstr "&Acció per als paquets"
 
 #: dnfdragora/ui.py:676
 msgid "&History"
-msgstr ""
+msgstr "&Historial"
 
 #: dnfdragora/ui.py:693 dnfdragora/ui.py:763
 msgid "&Options"
@@ -2611,7 +2657,7 @@ msgstr "&Quant a"
 
 #: dnfdragora/ui.py:754
 msgid "Action on packages"
-msgstr ""
+msgstr "Acció sobre paquets"
 
 #: dnfdragora/ui.py:813
 msgid "update"
@@ -2852,19 +2898,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Finestra principal"
-
-#~ msgid ""
-#~ "<br><i>Note that this function is currently broken because of a DNF API "
-#~ "change</i><br>"
-#~ msgstr ""
-#~ "<br><i>Tingueu en compte que aquesta funció actualment no funciona "
-#~ "correctament a causa d'un canvi a l'API del DNF.</i><br>"
-
-#~ msgid ""
-#~ "This menu runs a dialog containing transaction history shown in a tree "
-#~ "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
-#~ "button.<br>"
-#~ msgstr ""
-#~ "Aquest menú executa un diàleg que conté l’historial de transaccions "
-#~ "mostrat en un arbre ordenat per data. L'historial seleccionat es pot "
-#~ "desfer en prémer el botó <b>Desfés</b>.<br>"
