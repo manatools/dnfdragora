@@ -1,6 +1,7 @@
 2026-XX-YY v. 2.99.5
 --------------------
 - Added History recent_changes view
+- Fixed dnfdragora --install command line for both local and from repo packages
 
 2026-05-31 v. 2.99.4
 --------------------

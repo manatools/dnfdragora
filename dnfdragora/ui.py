@@ -2888,9 +2888,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._populateCache('available', po_list)
                 self._status = DNFDragoraStatus.RUNNING
 
-                #TODO check --install option how it works using dnf5daemon and fix eventually
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
-                  pkgs = " ".join(i.replace(" ", "\\ ") for i in self.options['install'])
+                  # Convert relative RPM file paths to absolute paths
+                  pkgs = []
+                  for item in self.options['install']:
+                    if item.endswith('.rpm') and not os.path.isabs(item):
+                      # It's a relative RPM file path, convert to absolute
+                      pkgs.append(os.path.abspath(item))
+                    else:
+                      # It's either a package name or already an absolute path
+                      pkgs.append(item)
+
                   self.backend.Install(pkgs, sync=True)
                   self.backend.BuildTransaction()
                   self._runtime_option_managed = True
