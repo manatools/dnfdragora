@@ -1,5 +1,6 @@
 2026-XX-YY v. 2.99.5
 --------------------
+- Fixed no updates found during caching
 - Select all updates also in group view
 - Removed legacy about dialog and used python-manatools one with app metadata
 - Added History recent_changes view
