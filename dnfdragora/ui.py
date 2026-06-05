@@ -678,10 +678,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.applyButton.setEnabled(False)
 
-        self.checkAllButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
-        self.checkAllButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
-        self.checkAllButton.setHelpText(_("Select all the packages"))
-        self.checkAllButton.setEnabled(False)
+        self.checkAllUpdateButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
+        self.checkAllUpdateButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.checkAllUpdateButton.setHelpText(_("Select all the update packages"))
+        self.checkAllUpdateButton.setEnabled(False)
         spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
@@ -1745,7 +1745,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.applyButton.setLabel(apply_button_text)
             self.applyButton.setEnabled(enable_apply_button)
             #disable "select all" to avoid mistakes
-            self.checkAllButton.setEnabled(enable_select_all)
+            self.checkAllUpdateButton.setEnabled(enable_select_all)
 
 
         return rebuild_package_list
@@ -1933,11 +1933,18 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           rebuild_package_list = True
           self._fillGroupTree()
           self._updateSearchState()
-      elif widget == self.checkAllButton:
-        for it in self.itemList:
-          pkg = self.itemList[it]['pkg']
-          self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+      elif widget == self.checkAllUpdateButton:
+        # Select ALL upgradable packages, regardless of the current view
+        MUI.YUI.app().busyCursor()
+        try:
+            updates = self.backend.get_packages('updates')
+            for pkg in updates:
+                self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+        except Exception as e:
+            self.exception_handler(e)
+        finally:
+            MUI.YUI.app().normalCursor()
+        rebuild_package_list = True
       elif widget == self.applyButton:
         # Disable actions while creating and running transaction.
         self._enableAction(False)
@@ -1946,7 +1953,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.backend.BuildTransaction()
       elif widget == self.view_box:
         filter = self._filterNameSelected()
-        self.checkAllButton.setEnabled(filter == 'to_update')
+        self.checkAllUpdateButton.setEnabled(filter == 'to_update')
         rebuild_package_list = True
         self._search_text  = ''
         self._search_scope = None
@@ -1963,7 +1970,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       elif widget == self.filter_box:
         filter = self._filterNameSelected()
         self._fillGroupTree()
-        self.checkAllButton.setEnabled(filter == 'to_update')
+        self.checkAllUpdateButton.setEnabled(filter == 'to_update')
         rebuild_package_list = not self._searchPackages()
       else:
         logger.warning("Unmanaged widget event received")
@@ -2948,7 +2955,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 self._enableAction(True)
                 filter = self._filterNameSelected()
-                self.checkAllButton.setEnabled(filter == 'to_update')
+                self.checkAllUpdateButton.setEnabled(filter == 'to_update')
 
                 sel = self.tree.selectedItem()
                 if sel :
