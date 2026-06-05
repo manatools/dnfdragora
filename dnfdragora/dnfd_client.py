@@ -213,8 +213,8 @@ class Client:
           'ResetSession'        : 'reset',
           'ReloadMetadata'      : 'read_all_repos',
 
-          'GetPackages'         : 'list_fd',
-          #'GetPackages'         : 'list', WARNING list often hangs for big data through dbus, use list_fd
+          'GetPackages_fd'      : 'list_fd',
+          'GetPackages'         : 'list', #WARNING list often hangs for big data through dbus, use list_fd
           'GetAttribute'        : 'list',
           'Search'              : 'list',
           'Install'             : 'install',
@@ -545,6 +545,7 @@ class Client:
             self._return_handler(err, data)
             return
         method_name = self.proxyMethod.get(cmd)
+        logger.debug("run_dbus_async %s ==> %s", cmd, method_name)
         if method_name is None:
             err = DaemonError(f"No proxyMethod configured for command {cmd}")
             self._return_handler(err, data)
@@ -651,66 +652,19 @@ class Client:
                     except Exception:
                         pass
 
-                # 3. D-Bus call queued and local pipe_w closed; start reader.
-                #    Use GLib.io_add_watch (the proper PyGObject API for FD monitoring).
-                #    GLib.unix_fd_add does NOT exist in PyGObject — it is a C-only GLib macro;
-                #    the Python binding exposes g_io_add_watch via GLib.io_add_watch instead.
-                #    Thread reference is stored so waitForLastAsyncRequestTermination() can join it.
-                channel = GLib.IOChannel.unix_new(pipe_r)
-                channel.set_encoding(None)   # binary / no character conversion
-                channel.set_buffered(False)  # direct reads, no internal buffering
-
-                def _fd_cb(channel, cond):
-                    try:
-                        if cond & GLib.IOCondition.HUP:
-                            _finish_with(state['items'])
-                            try:
-                                os.close(pipe_r)
-                            except Exception:
-                                pass
-                            return False
-                        if cond & GLib.IOCondition.IN:
-                            chunk = os.read(pipe_r, 65536)
-                            if not chunk:
-                                _finish_with(state['items'])
-                                try:
-                                    os.close(pipe_r)
-                                except Exception:
-                                    pass
-                                return False
-                            buffer = chunk.decode(errors='ignore')
-                            if buffer:
-                                state['buf'] += buffer
-                                while state['buf']:
-                                    try:
-                                        obj, end = parser.raw_decode(state['buf'])
-                                        state['items'].append(obj)
-                                        state['buf'] = state['buf'][end:].lstrip()
-                                    except json.decoder.JSONDecodeError:
-                                        break
-                    except Exception as ex:
-                        logging.getLogger("dnfdaemon.client").exception("list_fd io_add_watch error: %s", ex)
-                        _finish_with(ex)
-                        try:
-                            os.close(pipe_r)
-                        except Exception:
-                            pass
-                        return False
-                    return True
-
-                try:
-                    GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT,
-                                      GLib.IOCondition.IN | GLib.IOCondition.HUP, _fd_cb)
-                    logger.debug("list_fd: using GLib.io_add_watch for pipe_r=%d", pipe_r)
-                except Exception as e:
-                    logger.warning("GLib.io_add_watch failed; using thread reader for list_fd: %s", e)
-                    self.__async_thread = threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True)
-                    self.__async_thread.start()
+                # 3. D-Bus call queued and local pipe_w closed; start reader thread.
+                #    Always use thread reader for list_fd to ensure reliability.
+                #    GLib.io_add_watch requires an active GLib.MainLoop, which may not
+                #    be running in GUI mode (QT/GTK). The thread-based reader with
+                #    select.poll() works reliably in all scenarios.
+                logger.debug("list_fd: using thread reader for pipe_r=%d", pipe_r)
+                self.__async_thread = threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True)
+                self.__async_thread.start()
 
             else:
                 # Regular async method with return value
                 def on_success(*result):
-                    logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result))
+                    logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result) if method_name != 'list' else "")
                     if len(result) == 0:
                         # Method has no output args (e.g. Repo.enable / Repo.disable):
                         # call _return_handler with True so the event is queued and
@@ -1365,7 +1319,7 @@ class Client:
 #
     def Proxy(self, cmd) :
         ''' return the proxy interface that manages the given command '''
-        if cmd == 'GetPackages' or cmd == 'GetAttribute' or \
+        if cmd == 'GetPackages' or cmd == 'GetPackages_fd' or cmd == 'GetAttribute' or \
            cmd == 'Search' or cmd == 'Install' or cmd == 'Remove' or cmd == 'Update' or \
            cmd == 'Reinstall' or cmd == 'Downgrade' or cmd == 'DistroSync':
           return self.iface_rpm
@@ -1389,7 +1343,7 @@ class Client:
 # API Methods
 #
 
-    def GetPackages(self, options, sync=False):
+    def GetPackages(self, options, sync=False, piped=True):
         '''
           Get a list of pkg list for a given option
 
@@ -1439,12 +1393,13 @@ class Client:
                 whatconflicts: list of strings
                     limit the resulting set only to packages that conflict with any of given capabilities
         '''
+        method_name = 'GetPackages_fd' if piped else 'GetPackages'
         if not sync:
           self._run_dbus_async(
-              'GetPackages', True, options)
+              method_name, True, options)
         else:
           result = self._run_dbus_sync(
-              'GetPackages', options)
+              method_name, options)
           return unpack_dbus(result)
 
     def GetAttribute(self, full_nevra, attr, sync=False):

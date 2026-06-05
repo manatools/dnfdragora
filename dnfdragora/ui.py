@@ -1,4 +1,3 @@
-
 '''
 dnfdragora is a graphical frontend based on rpmdragora implementation
 that uses dnf as rpm backend, due to libyui python bindings dnfdragora
@@ -209,6 +208,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           'in_progress' : 0,
           'downloads' : {}
         } # obsoletes _files_to_download and _files_downloaded
+        # Track caching requests to avoid race conditions
+        self._caching_filter_pending = None  # Which filter (installed, updates, available) is currently being requested
+        self._caching_sequence = []          # Expected sequence of caching operations
 
         self.packageActionValue = const.Actions.NORMAL
         # TODO... _package_name, _gpg_confirm imported from old event management
@@ -2626,6 +2628,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       @params pkg_flt (available, installed, updates)
       “all”, “installed”, “available”, “upgrades”, “upgradable”
       '''
+      # Prevent race conditions: wait for pending request to complete
+      if self._caching_filter_pending is not None:
+        logger.warning('Caching request for %s ignored: pending request for %s still in progress',
+                       pkg_flt, self._caching_filter_pending)
+        return
+
       logger.debug('Start caching %s', pkg_flt)
       filter = pkg_flt
       #TODO manage upgrades/upgradable correctly
@@ -2669,6 +2677,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         "group",
         ],
         "scope": filter }
+      
+      # Mark this filter as pending BEFORE changing status and making the async call
+      self._caching_filter_pending = pkg_flt
+      
       if pkg_flt == 'updates' or pkg_flt == 'updates_all':
         self.infobar.info_sub(_("Caching updates"))
         self._status = DNFDragoraStatus.CACHING_UPDATE
@@ -2682,7 +2694,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #self.backend.reloadDaemon()
       else:
         logger.error("Wrong package filter %s", pkg_flt)
+        self._caching_filter_pending = None
         return
+      
+      logger.info('Requesting GetPackages for filter=%s (pkg_flt=%s), status=%s',
+                  filter, pkg_flt, self._status)
       self.backend.GetPackages(options)
 
     def _populateCache(self, pkg_flt, po_list) :
@@ -2727,7 +2743,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''
       self.infobar.reset_all()
       self.backend.cache.reset()
+      # Reset caching tracking
+      self._caching_filter_pending = None
+      self._caching_sequence = []
       self.infobar.info(_('Creating packages cache'))
+      logger.info('Starting caching sequence: installed -> updates -> available')
       self._cachingRequest('installed')
 
     def _OnBuildTransaction(self, info):
@@ -2909,23 +2929,41 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._enableAction(False)
             # CleanCache has been invoked let's refresh data => ReloadMetadata
             self.backend.ReloadMetadata()            
-          elif (event == 'GetPackages'):
+          elif (event == 'GetPackages') or (event == 'GetPackages_fd'):
+            logger.debug('%s event received: status=%s, pending_filter=%s, has_error=%s',
+                        event, self._status, self._caching_filter_pending, bool(info.get('error')))
+            
             if not info['error']:
-              if self._status == DNFDragoraStatus.CACHING_INSTALLED:
+              # Verify this response matches the expected pending filter
+              current_pending = self._caching_filter_pending
+              
+              if current_pending is None:
+                logger.warning('GetPackages response received but no pending request tracked. Status=%s', self._status)
+                # Try to continue based on status for backward compatibility
+                current_pending = 'installed' if self._status == DNFDragoraStatus.CACHING_INSTALLED else \
+                                  'updates' if self._status == DNFDragoraStatus.CACHING_UPDATE else \
+                                  'available' if self._status == DNFDragoraStatus.CACHING_AVAILABLE else None
+              
+              if current_pending == 'installed':
                 po_list = info['result']
+                logger.info('Received %d installed packages', len(po_list))
                 # we requested installed for caching
                 self._populateCache('installed', po_list)
                 self.infobar.set_progress(0.33)
+                self._caching_filter_pending = None  # Clear pending before next request
                 cache_update = 'updates_all' if self.upgrades_as_updates else 'updates'
                 self._cachingRequest(cache_update)
-              elif self._status == DNFDragoraStatus.CACHING_UPDATE:
+              elif current_pending in ('updates', 'updates_all'):
                 po_list = info['result']
+                logger.info('Received %d update packages', len(po_list))
                 # we requested updates for caching
                 self._populateCache('updates', po_list)
                 self.infobar.set_progress(0.66)
+                self._caching_filter_pending = None  # Clear pending before next request
                 self._cachingRequest('available')
-              elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
+              elif current_pending == 'available':
                 po_list = info['result']
+                logger.info('Received %d available packages', len(po_list))
                 rpm_groups = None
                 if self.use_comps :
                   # let's show the dialog with a poll event
@@ -2935,6 +2973,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 # we requested available for caching
                 self.infobar.set_progress(1.0)
                 self._populateCache('available', po_list)
+                self._caching_filter_pending = None  # Clear pending
                 self._status = DNFDragoraStatus.RUNNING
 
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
@@ -2963,8 +3002,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 else:
                   rebuild_package_list = True
                 self.infobar.reset_all()
+              else:
+                logger.error('GetPackages response for unexpected filter: %s (status=%s)',
+                            current_pending, self._status)
+                self._caching_filter_pending = None
             else:
-              logger.error("GetPackages error: %s", info['error'])
+              logger.error("GetPackages error for filter=%s: %s", self._caching_filter_pending, info['error'])
+              self._caching_filter_pending = None  # Clear pending on error
               raise UIError(str(info['error']))
 
           elif (event == 'RESearch'):
