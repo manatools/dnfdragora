@@ -2,6 +2,7 @@
 --------------------
 - Added History recent_changes view
 - Fixed dnfdragora --install command line for both local and from repo packages
+- Removed legacy about dialog and used python-manatools one with app metadata
 
 2026-05-31 v. 2.99.4
 --------------------

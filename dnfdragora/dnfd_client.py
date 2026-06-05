@@ -561,7 +561,10 @@ class Client:
         def on_error(error):
             logger.error("run_dbus_async error for command %s: %s", cmd, error)
             # Route via _return_handler so _sent is cleared and UI notified (when applicable)
-            self._return_handler(error, data)
+            if isinstance(error, Exception):
+                self._return_handler(error, data)
+            else:
+                self._return_handler(Exception(str(error)), data)
 
         if return_value:
             # Methods that return values

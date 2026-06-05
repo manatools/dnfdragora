@@ -547,63 +547,6 @@ class TransactionResult:
 
         return accepting
 
-class AboutDialog:
-    '''
-    Create an about dialog
-    '''
-
-    def __init__(self, parent):
-        '''
-        Constructor
-        @param parent: main parent dialog
-
-        '''
-        self.parent = parent
-        self.factory = MUI.YUI.widgetFactory()
-        # name        => the application name
-        # version     =>  the application version
-        # license     =>  the application license, the short length one (e.g. GPLv2, GPLv3, LGPLv2+, etc)
-        # authors     =>  the string providing the list of authors; it could be html-formatted
-        # description =>  the string providing a brief description of the application
-        # logo        => the string providing the file path for the application logo (high-res image)
-        # icon        => the string providing the file path for the application icon (low-res image)
-        # credits     => the application credits, they can be html-formatted
-        # information => other extra information, it can be html-formatted
-        # dialog_mode => 1: classic style dialog, any other as tabbed style dialog
-        self.name    = parent.appname
-        self.version = const.VERSION
-        self.license = "GPLv3"
-        self.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li><li>%s</li></ul>"%(
-                            _("Developers"),
-                            "Angelo Naselli &lt;anaselli@linux.it&gt;",
-                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;",
-                            "Björn  Esser   &lt;besser82@fedoraproject.org&gt;")
-        self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
-        # dialog mode retained for compatibility; common.AboutDialog handles layout
-        # self.dialog_mode = common.AboutDialogMode.TABBED
-        # TODO
-        self.logo = parent.images_path + "dnfdragora-logo.png"
-        self.icon = parent.icon
-        self.credits = ""
-        self.information = ""
-
-    def run (self) :
-        '''
-        shows the about dialog
-        '''
-        info = {
-          'name': self.name,
-          'version': self.version,
-          'license': self.license,
-          'authors': self.authors,
-          'description': self.description,
-          'logo': self.logo,
-          'icon': self.icon,
-          'credits': self.credits,
-          'information': self.information,
-        }
-        common.AboutDialog(info)
-
 class RepoDialog(basedialog.BaseDialog):
     '''
     Dialog to manage repository enabling and disabling.

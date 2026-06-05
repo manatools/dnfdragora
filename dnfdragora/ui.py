@@ -301,10 +301,54 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
+        app = MUI.YUI.app()
         if MUI.YUI.app().isTextMode():
           self.glib_loop = GLib.MainLoop()
           self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
           self.glib_thread.start()
+
+        # Set application metadata for about dialog and desktop integration
+        app.application_name = self.appname
+        app.version = const.VERSION
+        app.license = 'GPLv3'
+        app.description = _("dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT")
+        app.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li></ul>"%(
+                            _("Developers"),
+                            "Angelo Naselli &lt;anaselli@linux.it&gt;",
+                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;")
+        app.logo =  self.images_path + "dnfdragora-logo.png"
+        
+        # Credits with HTML formatting from AUTHORS file
+        app.credits = "<h3>%s</h3>" % _("Current developers and maintainers") + \
+                      "<ul>" \
+                      "<li>Angelo Naselli &lt;anaselli@linux.it&gt;</li>" \
+                      "<li>Neal Gompa &lt;ngompa13@gmail.com&gt;</li>" \
+                      "<li>Matteo Pasotti &lt;matteo.pasotti@gmail.com&gt;</li>" \
+                      "</ul>" + \
+                      "<h3>%s</h3>" % _("Translations") + \
+                      "<ul>" \
+                      "<li>Yuri Chornoivan &lt;yurchor@ukr.net&gt;</li>" \
+                      "</ul>" + \
+                      "<h3>%s</h3>" % _("Contributors") + \
+                      "<ul>" \
+                      "<li>Corey Farrell &lt;git@cfware.com&gt;</li>" \
+                      "<li>Petr Leliaev &lt;petrleliaev@gmail.com&gt;</li>" \
+                      "<li>Daniel Rusek &lt;mail@asciiwolf.com&gt;</li>" \
+                      "<li>Björn Esser &lt;besser82@fedoraproject.org&gt;</li>" \
+                      "</ul>"
+
+        # GitHub links for repository and issue reporting
+        app.information = "<h3>%s</h3>" % _("Project Links") + \
+                          "<ul>" \
+                          "<li><b>dnfdragora:</b> <a href='https://github.com/manatools/dnfdragora'>https://github.com/manatools/dnfdragora</a></li>" \
+                          "<li><b>python-manatools (AUI):</b> <a href='https://github.com/manatools/python-manatools'>https://github.com/manatools/python-manatools</a></li>" \
+                          "</ul>" + \
+                          "<h3>%s</h3>" % _("Report Issues or Improvements") + \
+                          "<ul>" \
+                          "<li><b>dnfdragora:</b> <a href='https://github.com/manatools/dnfdragora/issues'>https://github.com/manatools/dnfdragora/issues</a></li>" \
+                          "<li><b>python-manatools:</b> <a href='https://github.com/manatools/python-manatools/issues'>https://github.com/manatools/python-manatools/issues</a></li>" \
+                          "</ul>"                
+
 #
 
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
@@ -451,15 +495,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         MUI.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
         self.icon = "dnfdragora" #self.images_path + "dnfdragora.png"
-        self.logo = self.images_path + "dnfdragora-logo.png"
         MUI.YUI.app().setApplicationIcon(self.icon)
         # Wayland/Plasma: tell the compositor which .desktop file represents this
         # window so the task manager shows the correct icon and application name.
         MUI.YUI.app().desktop_file_name = "org.mageia.dnfdragora"
 
-        self.factory = MUI.YUI.widgetFactory()
         
-        self.AboutDialog = dialogs.AboutDialog(self)
+        self.factory = MUI.YUI.widgetFactory()
 
         ### MAIN DIALOG ###
         self.dialog = self.factory.createMainDialog()
@@ -1767,7 +1809,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           hd = helpdialog.HelpDialog(info)
           hd.run()
         elif item == self.helpMenu['about']:
-          self.AboutDialog.run()
+          common.AboutDialog(dialog_mode=common.AboutDialogMode.TABBED, size=(320, 240))
       else:
         # AUI menu events expose id() directly on the event for rich text links.
         url = getattr(event, 'id', lambda: None)()
