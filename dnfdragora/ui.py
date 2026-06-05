@@ -714,6 +714,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.ActionMenu = {
                  'menu_name' : mItem,
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
+                 'update_all' : self.menubar.addItem(mItem, _("Update &All"), enabled=False),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
             }
 
@@ -780,9 +781,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.actionMenu = {
             'widget'    : self.factory.createMenuButton(headbar, _("&Actions")),
             'actions'   : MUI.YMenuItem(_("Action on packages")),
+            'update_all' : MUI.YMenuItem(_("Update All")),
             'history'   : MUI.YMenuItem(_("History")),
         }
-        ordered_menu_lines = ['actions', 'history']
+        # Set update_all disabled by default
+        self.actionMenu['update_all'].setEnabled(False)
+        ordered_menu_lines = ['actions', 'update_all', 'history']
         for l in ordered_menu_lines:
             self.actionMenu['widget'].addItem(self.actionMenu[l])
         self.actionMenu['widget'].rebuildMenuTree()
@@ -1794,6 +1798,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
           newAction = actDlg.run()
           rebuild_package_list = self._updateActionView(newAction)
+        elif item == self.ActionMenu.get('update_all') or (
+             hasattr(self, 'actionMenu') and item == self.actionMenu.get('update_all')):
+          # Update All: select all updates + apply transaction
+          if self._selectAllUpdates():
+              rebuild_package_list = True
+              # Apply immediately after selecting all updates
+              self._applyTransaction()
         elif item == self.ActionMenu['history'] or (
              hasattr(self, 'actionMenu') and item == self.actionMenu.get('history')):
           try:
@@ -1936,23 +1947,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._fillGroupTree()
           self._updateSearchState()
       elif widget == self.checkAllUpdateButton:
-        # Select ALL upgradable packages, regardless of the current view
-        MUI.YUI.app().busyCursor()
-        try:
-            updates = self.backend.get_packages('updates')
-            for pkg in updates:
-                self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-        except Exception as e:
-            self.exception_handler(e)
-        finally:
-            MUI.YUI.app().normalCursor()
-        rebuild_package_list = True
+        # Select ALL upgradable packages using helper method
+        if self._selectAllUpdates():
+            rebuild_package_list = True
       elif widget == self.applyButton:
-        # Disable actions while creating and running transaction.
-        self._enableAction(False)
-        self.pbar_layout.setEnabled(True)
-        self._populate_transaction()
-        self.backend.BuildTransaction()
+        # Apply transaction using helper method
+        self._applyTransaction()
       elif widget == self.view_box:
         filter = self._filterNameSelected()
         self.checkAllUpdateButton.setEnabled(filter == 'to_update')
@@ -2007,6 +2007,34 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._selPkg = sel_pkg
       else:
         self.info.setValue("")
+
+    def _selectAllUpdates(self):
+      """Select ALL upgradable packages from backend, regardless of current view.
+      
+      Returns:
+        bool: True if any packages were selected, False otherwise.
+      """
+      MUI.YUI.app().busyCursor()
+      try:
+          updates = self.backend.get_packages('updates')
+          if updates:
+              for pkg in updates:
+                  self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+              return True
+          return False
+      except Exception as e:
+          self.exception_handler(e)
+          return False
+      finally:
+          MUI.YUI.app().normalCursor()
+
+    def _applyTransaction(self):
+      """Prepare and build transaction from current package queue."""
+      # Disable actions while creating and running transaction.
+      self._enableAction(False)
+      self.pbar_layout.setEnabled(True)
+      self._populate_transaction()
+      self.backend.BuildTransaction()
 
     def _sync_apply_button_state(self):
       """Keep Apply button enabled state consistent with queue and action mode."""
@@ -2959,6 +2987,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 # we requested updates for caching
                 self._populateCache('updates', po_list)
                 self.infobar.set_progress(0.66)
+                
+                # Enable/disable "Update All" menu item based on updates availability
+                has_updates = len(po_list) > 0
+                try:
+                    if hasattr(self, 'ActionMenu') and 'update_all' in self.ActionMenu:
+                        self.menubar.setItemEnabled(self.ActionMenu['update_all'], has_updates)
+                except Exception:
+                    pass                
+                
                 self._caching_filter_pending = None  # Clear pending before next request
                 self._cachingRequest('available')
               elif current_pending == 'available':
