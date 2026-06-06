@@ -1,17 +1,21 @@
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2026.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-06 18:38+0200\n"
-"PO-Revision-Date: 2026-04-30 08:50+0300\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2026\n"
+"Language-Team: Ukrainian (https://app.transifex.com/MageiaLinux/teams/9361/"
+"uk/)\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +24,6 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-"X-Generator: Lokalize 23.04.3\n"
 
 #: bin/dnfdragora:25 bin/dnfdragora-updater:22
 #, python-format
@@ -323,59 +326,59 @@ msgstr "Журнал"
 
 #: dnfdragora/dialogs.py:85
 msgid "&Recent Changes"
-msgstr ""
+msgstr "&Нещодавні зміни"
 
 #: dnfdragora/dialogs.py:88
 msgid "&Transactions"
-msgstr ""
+msgstr "&Дії"
 
 #: dnfdragora/dialogs.py:96
 msgid "Filters"
-msgstr ""
+msgstr "Фільтри"
 
 #: dnfdragora/dialogs.py:99
 msgid "Since (YYYY-MM-DD):"
-msgstr ""
+msgstr "З дати (РРРР-ММ-ДД):"
 
 #: dnfdragora/dialogs.py:104
 msgid "Change types"
-msgstr ""
+msgstr "Змінити типи"
 
 #: dnfdragora/dialogs.py:107
 msgid "&Installed"
-msgstr ""
+msgstr "&Встановлені"
 
 #: dnfdragora/dialogs.py:108
 msgid "&Removed"
-msgstr ""
+msgstr "Ви&лучені"
 
 #: dnfdragora/dialogs.py:109
 msgid "&Upgraded"
-msgstr ""
+msgstr "&Оновлені"
 
 #: dnfdragora/dialogs.py:110
 msgid "&Downgraded"
-msgstr ""
+msgstr "З&нижено версію"
 
 #: dnfdragora/dialogs.py:112
 msgid "Include &advisories"
-msgstr ""
+msgstr "Включити &рекомендації"
 
 #: dnfdragora/dialogs.py:113
 msgid "All advisories"
-msgstr ""
+msgstr "Усі рекомендації"
 
 #: dnfdragora/dialogs.py:117
 msgid "Transaction filters"
-msgstr ""
+msgstr "Фільти дій"
 
 #: dnfdragora/dialogs.py:119
 msgid "Limit:"
-msgstr ""
+msgstr "Обмеження:"
 
 #: dnfdragora/dialogs.py:121
 msgid "  Contains package:"
-msgstr ""
+msgstr "Містить пакунок:"
 
 #: dnfdragora/dialogs.py:130 dnfdragora/dialogs.py:600
 #: dnfdragora/dialogs.py:656 dnfdragora/ui.py:568
@@ -384,7 +387,7 @@ msgstr "Назва"
 
 #: dnfdragora/dialogs.py:131
 msgid "EVR"
-msgstr ""
+msgstr "ЕВВ"
 
 #: dnfdragora/dialogs.py:132 dnfdragora/ui.py:568
 msgid "Arch"
@@ -392,11 +395,11 @@ msgstr "Архітектура"
 
 #: dnfdragora/dialogs.py:133
 msgid "Action"
-msgstr ""
+msgstr "Дія"
 
 #: dnfdragora/dialogs.py:134
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: dnfdragora/dialogs.py:135 dnfdragora/ui.py:568
 msgid "Summary"
@@ -404,11 +407,11 @@ msgstr "Резюме"
 
 #: dnfdragora/dialogs.py:141
 msgid "Transactions"
-msgstr ""
+msgstr "Дії"
 
 #: dnfdragora/dialogs.py:149
 msgid "&Refresh"
-msgstr ""
+msgstr "&Освіжити"
 
 #: dnfdragora/dialogs.py:150 dnfdragora/dialogs.py:1065
 #: dnfdragora/progress_ui.py:201
@@ -418,7 +421,7 @@ msgstr "За&крити"
 #: dnfdragora/dialogs.py:236 dnfdragora/dialogs.py:307
 #, python-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Помилка: %s"
 
 #: dnfdragora/dialogs.py:247 dnfdragora/ui.py:774
 msgid "installed"
@@ -426,39 +429,39 @@ msgstr "встановлено"
 
 #: dnfdragora/dialogs.py:248
 msgid "removed"
-msgstr ""
+msgstr "вилучено"
 
 #: dnfdragora/dialogs.py:249
 msgid "upgraded"
-msgstr ""
+msgstr "оновлено"
 
 #: dnfdragora/dialogs.py:250
 msgid "downgraded"
-msgstr ""
+msgstr "знижено версію"
 
 #: dnfdragora/dialogs.py:277 dnfdragora/dialogs.py:351
 msgid "No results"
-msgstr ""
+msgstr "Нічого не знайдено"
 
 #: dnfdragora/dialogs.py:312
 msgid "install"
-msgstr ""
+msgstr "встановити"
 
 #: dnfdragora/dialogs.py:313
 msgid "remove"
-msgstr ""
+msgstr "вилучити"
 
 #: dnfdragora/dialogs.py:314
 msgid "upgrade"
-msgstr ""
+msgstr "оновити"
 
 #: dnfdragora/dialogs.py:315
 msgid "downgrade"
-msgstr ""
+msgstr "знизити версію"
 
 #: dnfdragora/dialogs.py:316
 msgid "reinstall"
-msgstr ""
+msgstr "повторно встановити"
 
 #: dnfdragora/dialogs.py:383
 msgid "Action on selected packages"
@@ -506,8 +509,9 @@ msgid "Total size "
 msgstr "Загальний розмір "
 
 #: dnfdragora/dialogs.py:532
+#, fuzzy
 msgid "Reset transaction failed"
-msgstr ""
+msgstr "Помилка під час побудови операції"
 
 #: dnfdragora/dialogs.py:575
 msgid "Repository Management"
@@ -1601,7 +1605,7 @@ msgstr "Діалогове вікно пошуку"
 #: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:114
 #: dnfdragora/helpinfo.py:251
 msgid "History dialog"
-msgstr ""
+msgstr "Вікно журналу"
 
 #: dnfdragora/helpinfo.py:52
 msgid "File menu"
@@ -1794,7 +1798,7 @@ msgstr "<h2>Журнал</h2>"
 #, python-format
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
-msgstr ""
+msgstr "Це меню відкриває %s, де показано нещодавно змінені у системі."
 
 #: dnfdragora/helpinfo.py:121
 msgid "Option Menu"
@@ -2020,10 +2024,12 @@ msgstr ""
 "<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</li>"
 
 #: dnfdragora/helpinfo.py:180
+#, fuzzy
 msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
+"<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</li>"
 
 #: dnfdragora/helpinfo.py:181
 msgid ""
@@ -2166,87 +2172,107 @@ msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
 msgstr ""
+"У вікні журналу буде показано пакунки, які нещодавно було змінено у системі, "
+"шляхом опитування програмного інтерфейсу журналу dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:254
 msgid "<h2>Opening the dialog</h2>"
-msgstr ""
+msgstr "<h2>Відкриття вікна</h2>"
 
 #: dnfdragora/helpinfo.py:255
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
-msgstr ""
+msgstr "Відкрити вікно з панелі меню: <b>Дії → Журнал</b>.<br>"
 
 #: dnfdragora/helpinfo.py:256
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
 msgstr ""
+"Поки вікно буде відкрито, основне вікно dnfdragora буде вимкнено, щоб "
+"запобігти небажаній взаємодії.<br><br>"
 
 #: dnfdragora/helpinfo.py:258
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
 msgstr ""
+"Розділ <b>Фільтри</b> у верхній частині вікна надає вам змогу звузити "
+"перелік результатів:<br>"
 
 #: dnfdragora/helpinfo.py:260
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
 msgstr ""
+"<li><b>З дати (РРРР-ММ-ДД)</b>: введіть дату, щоб програма показала лише "
+"пакунки, які було змінено у певну дату і після неї. "
 
 #: dnfdragora/helpinfo.py:261
 msgid "Leave empty to retrieve all available history. "
-msgstr ""
+msgstr "Не заповнюйте, щоб отримати увесь доступний журнал."
 
 #: dnfdragora/helpinfo.py:262
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
+"Перш ніж дані буде надіслано до фонової служби, дату буде перетворено на "
+"часову позначку Unix.</li>"
 
 #: dnfdragora/helpinfo.py:264
 msgid "<h2>Change type checkboxes</h2>"
-msgstr ""
+msgstr "<h2>Зміна позначок типу</h2>"
 
 #: dnfdragora/helpinfo.py:265
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
 msgstr ""
+"За допомогою чотирьох пунктів для позначок ви можете вибрати типи змін "
+"пакунків, які слід включити до результатів:<br>"
 
 #: dnfdragora/helpinfo.py:267
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
-msgstr ""
+msgstr "<li><b>Встановлені</b>: пакунки, які було наново встановити.</li>"
 
 #: dnfdragora/helpinfo.py:268
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
-msgstr ""
+msgstr "<li><b>Вилучені</b>: пакунки, які було вилучено з системи.</li>"
 
 #: dnfdragora/helpinfo.py:269
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
+"<li><b>Оновлені</b>: пакунки, які було оновлено до новішої версії.</li>"
 
 #: dnfdragora/helpinfo.py:270
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
+"<li><b>Знижено версію</b>: пакунки, які було повернуто до старішої версії.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:272
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
 msgstr ""
+"Зніміть позначки з типів пакунків, які вам не цікаві, щоб знизити кількість "
+"показаних рядків.<br><br>"
 
 #: dnfdragora/helpinfo.py:273
 msgid "<h2>Advisory options</h2>"
-msgstr ""
+msgstr "<h2>Параметри рекомендацій</h2>"
 
 #: dnfdragora/helpinfo.py:275
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
 msgstr ""
+"<li><b>Включити рекомендації</b>: якщо позначено, буде включено дані щодо "
+"рекомендацій (захист, виправлення вад, удосконалення), якщо вони доступні.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:276
 msgid ""
@@ -2254,86 +2280,106 @@ msgid ""
 "i>, all advisory types are returned rather than only the most relevant one "
 "per package. "
 msgstr ""
+"<li><b>Усі рекомендації</b>: якщо позначено разом із пунктом <i>Включити "
+"рекомендації</i>, буде повернуто усі типи рекомендацій, а не лише одну "
+"найвідповіднішу для кожного пакунка. "
 
 #: dnfdragora/helpinfo.py:277
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
 msgstr ""
+"Цей пункт буде автоматично вимкнено, якщо не позначено <i>Включити "
+"рекомендації</i>.</li>"
 
 #: dnfdragora/helpinfo.py:279
 msgid "<h2>Results table</h2>"
-msgstr ""
+msgstr "<h2>Таблиця результатів</h2>"
 
 #: dnfdragora/helpinfo.py:280
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr ""
+"У таблиці буде показано по одному рядку на кожен змінений пакунок з таким "
+"стовпчиками:<br>"
 
 #: dnfdragora/helpinfo.py:282
 msgid "<li><b>Name</b>: the package name.</li>"
-msgstr ""
+msgstr "<li><b>Назва</b>: назва пакунка.</li>"
 
 #: dnfdragora/helpinfo.py:283
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
-msgstr ""
+msgstr "<li><b>ЕВВ</b>: епоха:версія-випуск нової (встановленої) версії.</li>"
 
 #: dnfdragora/helpinfo.py:284
 msgid "<li><b>Arch</b>: the package architecture.</li>"
-msgstr ""
+msgstr "<li><b>Архітектура</b>: архітектура пакунка.</li>"
 
 #: dnfdragora/helpinfo.py:285
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
 msgstr ""
+"<li><b>Дія</b>: одне з таких значень: <i>встановлено</i>, <i>вилучено</i>, "
+"<i>оновлено</i> або <i>знижено версію</i>.</li>"
 
 #: dnfdragora/helpinfo.py:286
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
-msgstr ""
+msgstr "<li><b>Дата</b>: дата і час дії (РРРР-ММ-ДД ГГ:ХХ).</li>"
 
 #: dnfdragora/helpinfo.py:287
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
-msgstr ""
+msgstr "<li><b>Резюме</b>: короткий опис пакунка.</li>"
 
 #: dnfdragora/helpinfo.py:289
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
 msgstr ""
+"Якщо критеріям пошуку не відповідатиме жоден пакунок, програма покаже рядок "
+"<i>Нічого не знайдено</i>.<br>"
 
 #: dnfdragora/helpinfo.py:290
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
 msgstr ""
+"Якщо фонову службу не вдасться викликати, у таблиці буде показано "
+"повідомлення про помилку, щоб полегшити вам діагностування причин проблеми."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:291
 msgid "<h2>Refresh button</h2>"
-msgstr ""
+msgstr "<h2>Кнопка «Освіжити»</h2>"
 
 #: dnfdragora/helpinfo.py:292
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
+"Натисніть кнопку <b>Освіжити</b>, щоб надіслати повторний запит до фонової "
+"служби з поточними параметрами фільтрування. "
 
 #: dnfdragora/helpinfo.py:293
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
+"Запит також буде надіслано автоматично під час першого відкриття вікна."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:294
 msgid "<h2>Close button</h2>"
-msgstr ""
+msgstr "<h2>Кнопка «Закрити»</h2>"
 
 #: dnfdragora/helpinfo.py:295
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
 msgstr ""
+"Натисніть кнопку <b>Закрити</b> (або кнопку закриття вікна), щоб закрити "
+"вікно і повернутися до головного вікна програми.<br>"
 
 #: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
@@ -2361,8 +2407,9 @@ msgid "Cancellation requested; waiting for transaction to stop"
 msgstr ""
 
 #: dnfdragora/progress_ui.py:247
+#, fuzzy
 msgid "Cancelling transaction..."
-msgstr ""
+msgstr "Приготування дії"
 
 #: dnfdragora/progress_ui.py:248
 msgid "Waiting for backend to stop transaction"
@@ -2467,9 +2514,12 @@ msgid "Requirements"
 msgstr "Вимоги"
 
 #: dnfdragora/ui.py:316
+#, fuzzy
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora — оболонка DNF, яка працює за допомогою інтерфейсів GTK, ncurses "
+"та Qt"
 
 #: dnfdragora/ui.py:318
 msgid "Developers"
@@ -2480,8 +2530,9 @@ msgid "Current developers and maintainers"
 msgstr ""
 
 #: dnfdragora/ui.py:330
+#, fuzzy
 msgid "Translations"
-msgstr ""
+msgstr "Дії"
 
 #: dnfdragora/ui.py:334
 msgid "Contributors"
@@ -2497,7 +2548,7 @@ msgstr ""
 
 #: dnfdragora/ui.py:366
 msgid "Logging directory not found"
-msgstr ""
+msgstr "Не знайдено каталогу з журналом"
 
 #: dnfdragora/ui.py:367
 #, python-format
@@ -2506,6 +2557,9 @@ msgid ""
 "disabled for this session.<br>Please update the log directory in <i>Options "
 "&rarr; User preferences</i>."
 msgstr ""
+"Налаштовано каталогу журналу <b>%s</b> не існує.<br>У цьому сеансі ведення "
+"журналу вимкнено.<br>Будь ласка, оновіть каталог журналу на сторінці "
+"<i>Параметри &rarr; Налаштування користувача</i>."
 
 #: dnfdragora/ui.py:497
 msgid "Software Management - dnfdragora"
@@ -2532,8 +2586,9 @@ msgid "To update"
 msgstr "Оновлення"
 
 #: dnfdragora/ui.py:591
+#, fuzzy
 msgid "Desktop Applications"
-msgstr ""
+msgstr "Програми"
 
 #: dnfdragora/ui.py:597
 #, python-format
@@ -2569,8 +2624,9 @@ msgid "Sel&ect all"
 msgstr "Поз&начити усі"
 
 #: dnfdragora/ui.py:686
+#, fuzzy
 msgid "Select all the update packages"
-msgstr ""
+msgstr "Позначити усі пакунки"
 
 #: dnfdragora/ui.py:691 dnfdragora/ui.py:710
 msgid "&Quit"
@@ -2605,12 +2661,13 @@ msgid "&Action on packages"
 msgstr "Д&ія над пакунками"
 
 #: dnfdragora/ui.py:718
+#, fuzzy
 msgid "&Update All"
-msgstr ""
+msgstr "Оновлення"
 
 #: dnfdragora/ui.py:719
 msgid "&History"
-msgstr ""
+msgstr "&Журнал"
 
 #: dnfdragora/ui.py:723
 msgid "&Options"
@@ -2860,69 +2917,11 @@ msgstr ""
 msgid "Main window"
 msgstr "Головне вікно"
 
-#~ msgid "&Undo"
-#~ msgstr "&Вернути"
+#~ msgid "Undo transaction"
+#~ msgstr "Скасувати дію"
 
-#~ msgid ""
-#~ "<br><i>Note that this function is currently broken because of a DNF API "
-#~ "change</i><br>"
-#~ msgstr ""
-#~ "<br><i>Зауважте, що у поточній версії цей пункт не працює через зміни у "
-#~ "програмному інтерфейсі DNF</i><br>"
-
-#~ msgid "<h2>Search options</h2>"
-#~ msgstr "<h2>Параметри пошуку</h2>"
-
-#~ msgid ""
-#~ "<i>Note</i>: when regular expressions are used to search by name, the "
-#~ "full package filename including the version is used."
-#~ msgstr ""
-#~ "<i>Зауваження</i>: якщо використано формальні вирази для пошуку назв "
-#~ "пакунків, використовуватимуться повні назви файлів пакунків."
-
-#~ msgid ""
-#~ "<li><b>All</b>: shows all the packages, i.e. available, updates and "
-#~ "installed.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Усі</b>: показати усі пакунки, зокрема доступні, оновлення і "
-#~ "встановлені пакунки</li></ul>"
-
-#~ msgid ""
-#~ "<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using "
-#~ "regular expressions will add \"*\" to the given words, restoring the "
-#~ "behavior dnfdragora had using dnfdaemon 4.</li></ul>"
-#~ msgstr ""
-#~ "<li><b>Нечіткий пошук (застарілий режим)</b>: якщо позначено, пошук без "
-#~ "використання формальних виразів виконуватиметься з додаванням «*» до "
-#~ "вказаних слів, з відтворенням поведінки, яку використовувала dnfdragora з "
-#~ "dnfdaemon 4.</li></ul>"
-
-#~ msgid "<ul><li><b>Installed</b>: shows installed packages only.</li>"
-#~ msgstr "<ul><li><b>Встановлено</b>: показати лише встановлені пакунки.</li>"
-
-#~ msgid ""
-#~ "<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows "
-#~ "only newest packages on search.</li>"
-#~ msgstr ""
-#~ "<ul><li><b>Показувати лише найновіші пакунки</b>: якщо позначено цей "
-#~ "пункт, dnfdragora показуватиме у результатах пошуку лише найновіші "
-#~ "пакунки.</li>"
-
-#~ msgid ""
-#~ "A special checkbox <i>Use regexp</i> is used to look for packages by "
-#~ "python language regular expressions. This search is performed on cached "
-#~ "package information such as for the <b>only names and summaries</b>."
-#~ msgstr ""
-#~ "За допомогою спеціального поля для позначки <i>Формальний вираз</i> можна "
-#~ "наказати програмі виконати пошук за формальним виразом мови Python. Цей "
-#~ "пошук виконується у кешованих даних пакунків, зокрема <b>лише у назвах і "
-#~ "резюме</b> пакунків."
-
-#~ msgid "Build transaction failure"
-#~ msgstr "Помилка під час побудови операції"
-
-#~ msgid "Clear search field"
-#~ msgstr "Спорожнити поле пошуку"
+#~ msgid "Error checking package signatures"
+#~ msgstr "Помилка під час спроби перевірити підписи пакунків"
 
 #~ msgid "Downloading error"
 #~ msgid_plural "Downloading errors"
@@ -2931,9 +2930,6 @@ msgstr "Головне вікно"
 #~ msgstr[2] "Помилки отримання даних"
 #~ msgstr[3] "Помилка отримання даних"
 
-#~ msgid "Error checking package signatures"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків"
-
 #~ msgid "Error in transaction"
 #~ msgid_plural "Errors in transaction"
 #~ msgstr[0] "Помилки під час дії"
@@ -2941,23 +2937,17 @@ msgstr "Головне вікно"
 #~ msgstr[2] "Помилки під час дії"
 #~ msgstr[3] "Помилка під час дії"
 
-#~ msgid "Error occured:"
-#~ msgstr "Сталася помилка:"
-
-#~ msgid "Filters and search line"
-#~ msgstr "Рядок фільтрування та пошуку"
-
-#~ msgid "Fuzzy search (legacy mode)"
-#~ msgstr "Нечіткий пошук (застарілий режим)"
-
 #~ msgid "History (Date/Time)"
 #~ msgstr "Журнал (Дата/Час)"
 
-#~ msgid ""
-#~ "If <i>All</i> is selected, the package panel contains all the packages."
-#~ msgstr ""
-#~ "Якщо позначено пункт <i>Усі</i>, на панелі пакунків буде показано усі "
-#~ "пакунки."
+#~ msgid "Transaction History"
+#~ msgstr "Журнал операцій"
+
+#~ msgid "&Undo"
+#~ msgstr "&Вернути"
+
+#~ msgid "Action on packages"
+#~ msgstr "Дії з пакунками"
 
 #~ msgid "Packages installed:"
 #~ msgstr "Встановлено пакунків:"
@@ -2965,93 +2955,5 @@ msgstr "Головне вікно"
 #~ msgid "Packages removed:"
 #~ msgstr "Вилучено пакунків:"
 
-#~ msgid "Proxy password"
-#~ msgstr "Пароль до проксі"
-
-#~ msgid "Search"
-#~ msgstr "Пошук"
-
-#~ msgid ""
-#~ "Search is performed by pressing the <i>Search</i> button when the text "
-#~ "field is not empty. The Search combobox allows you to search the given "
-#~ "text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or "
-#~ "<i>files</i>."
-#~ msgstr ""
-#~ "Пошук буде розпочато у відповідь на натискання кнопки <i>Шукати</i>, якщо "
-#~ "у текстовому полі є якийсь критерій пошуку/ За допомогою спадного списку "
-#~ "пошуку можна виконувати пошук вказаного тексту у <i>назвах</i>, "
-#~ "<i>резюме</i>, <i>описах</i> та <i>файлах</i> пакунків."
-
-#~ msgid "Search options"
-#~ msgstr "Параметри пошуку"
-
-#~ msgid "Search packages"
-#~ msgstr "Шукати пакунки"
-
-#~ msgid "Select all the packages"
-#~ msgstr "Позначити усі пакунки"
-
-#~ msgid "Show newest packages only"
-#~ msgstr "Показувати лише найновіші пакунки"
-
-#~ msgid "The <i>Clear search</i> button resets search text field."
-#~ msgstr ""
-#~ "Кнопка Спорожнити поле пошуку вилучає усі дані з текстового поля пошуку."
-
-#~ msgid ""
-#~ "The first combobox allows you to show packages by groups. If <i>Groups</"
-#~ "i> is selected, the group panel shows a tree view containing groups, and "
-#~ "selecting a group shows related packages in the package panel."
-#~ msgstr ""
-#~ "За допомогою першого спадного списку можна переглянути пакунки за "
-#~ "групами. Якщо позначено пункт <i>Групи</i> is selected group panel shows "
-#~ "a tree view containing groups, while selecting a group shows related "
-#~ "packages into package panel."
-
-#~ msgid ""
-#~ "This menu opens a dialog that allows you to enable or disable "
-#~ "repositories. Any changes are valid only while dnfdragora is running and "
-#~ "are not permanent.<br>"
-#~ msgstr ""
-#~ "Це меню відкриває діалогове вікно, за допомогою якого можна вмикати або "
-#~ "вимикати сховища. Усі зміни працюють лише на час роботи dnfdragora і не є "
-#~ "остаточними.<br>"
-
-#~ msgid ""
-#~ "This menu runs a dialog containing transaction history shown in a tree "
-#~ "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
-#~ "button.<br>"
-#~ msgstr ""
-#~ "За допомогою цього пункту меню можна відкрити діалогове вікно, у якому "
-#~ "міститиметься журнал дій у форматі ієрархічної структури, упорядкованої "
-#~ "за датою. Позначений пункт у журналі можна скасувати натисканням кнопки "
-#~ "<b>Вернути</b>.<br>"
-
-#~ msgid "Transaction History"
-#~ msgstr "Журнал операцій"
-
-#~ msgid "Undo transaction"
-#~ msgstr "Скасувати дію"
-
-#~ msgid "Use regexp"
-#~ msgstr "Формальний вираз"
-
-#~ msgid "Views and search"
-#~ msgstr "Перегляди і пошук"
-
-#~ msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-#~ msgstr ""
-#~ "dnfdragora — оболонка DNF, яка працює за допомогою інтерфейсів GTK, "
-#~ "ncurses та Qt"
-
-#~ msgid "in descriptions"
-#~ msgstr "в описах"
-
-#~ msgid "in file names"
-#~ msgstr "у назвах файлів"
-
-#~ msgid "in names"
-#~ msgstr "у назвах"
-
-#~ msgid "in summaries"
-#~ msgstr "у резюме"
+#~ msgid "Error occured:"
+#~ msgstr "Сталася помилка:"
