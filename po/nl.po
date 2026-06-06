@@ -6,11 +6,11 @@
 # Translators:
 # Yves Brungard, 2017
 # Geiger David <david.david@mageialinux-online.org>, 2020
-# dragnadh, 2020
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2021
 # Marcel Pol <marcel@timelord.nl>, 2024
 # Marja van Waes, 2025
+# dragnadh, 2026
 # Marc Laan, 2026
 #
 #, fuzzy
@@ -373,59 +373,59 @@ msgstr "S&luiten"
 
 #: dnfdragora/dialogs.py:395
 msgid "&Recent Changes"
-msgstr ""
+msgstr "&Recente Veranderingen"
 
 #: dnfdragora/dialogs.py:398
 msgid "&Transactions"
-msgstr ""
+msgstr "&Transacties"
 
 #: dnfdragora/dialogs.py:406
 msgid "Filters"
-msgstr ""
+msgstr "Filters"
 
 #: dnfdragora/dialogs.py:409
 msgid "Since (YYYY-MM-DD):"
-msgstr ""
+msgstr "Sinds (JJJJ-MM-DD):"
 
 #: dnfdragora/dialogs.py:414
 msgid "Change types"
-msgstr ""
+msgstr "Types veranderen"
 
 #: dnfdragora/dialogs.py:417
 msgid "&Installed"
-msgstr ""
+msgstr "&Geïnstalleerd"
 
 #: dnfdragora/dialogs.py:418
 msgid "&Removed"
-msgstr ""
+msgstr "&Verwijderd"
 
 #: dnfdragora/dialogs.py:419
 msgid "&Upgraded"
-msgstr ""
+msgstr "&Opgewaardeerd"
 
 #: dnfdragora/dialogs.py:420
 msgid "&Downgraded"
-msgstr ""
+msgstr "&Downgraded"
 
 #: dnfdragora/dialogs.py:422
 msgid "Include &advisories"
-msgstr ""
+msgstr "Inclusief &veiligheidsadviezen"
 
 #: dnfdragora/dialogs.py:423
 msgid "All advisories"
-msgstr ""
+msgstr "Alle veiligheidsadviezen"
 
 #: dnfdragora/dialogs.py:427
 msgid "Transaction filters"
-msgstr ""
+msgstr "Transactie-filters"
 
 #: dnfdragora/dialogs.py:429
 msgid "Limit:"
-msgstr ""
+msgstr "Beperken:"
 
 #: dnfdragora/dialogs.py:431
 msgid "  Contains package:"
-msgstr ""
+msgstr "  Bevat pakket:"
 
 #: dnfdragora/dialogs.py:440 dnfdragora/dialogs.py:953
 #: dnfdragora/dialogs.py:1009 dnfdragora/ui.py:524
@@ -434,7 +434,7 @@ msgstr "Naam"
 
 #: dnfdragora/dialogs.py:441
 msgid "EVR"
-msgstr ""
+msgstr "EVR"
 
 #: dnfdragora/dialogs.py:442 dnfdragora/ui.py:524
 msgid "Arch"
@@ -442,11 +442,11 @@ msgstr "Arch"
 
 #: dnfdragora/dialogs.py:443
 msgid "Action"
-msgstr ""
+msgstr "Actie"
 
 #: dnfdragora/dialogs.py:444
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: dnfdragora/dialogs.py:445 dnfdragora/ui.py:524
 msgid "Summary"
@@ -454,16 +454,16 @@ msgstr "Samenvatting"
 
 #: dnfdragora/dialogs.py:451
 msgid "Transactions"
-msgstr ""
+msgstr "Transacties"
 
 #: dnfdragora/dialogs.py:459
 msgid "&Refresh"
-msgstr ""
+msgstr "&Verversen"
 
 #: dnfdragora/dialogs.py:546 dnfdragora/dialogs.py:617
 #, python-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Fout: %s"
 
 #: dnfdragora/dialogs.py:557 dnfdragora/ui.py:819
 msgid "installed"
@@ -471,39 +471,39 @@ msgstr "geïnstalleerd"
 
 #: dnfdragora/dialogs.py:558
 msgid "removed"
-msgstr ""
+msgstr "verwijderd"
 
 #: dnfdragora/dialogs.py:559
 msgid "upgraded"
-msgstr ""
+msgstr "opgewaardeerd"
 
 #: dnfdragora/dialogs.py:560
 msgid "downgraded"
-msgstr ""
+msgstr "downgraded"
 
 #: dnfdragora/dialogs.py:587 dnfdragora/dialogs.py:661
 msgid "No results"
-msgstr ""
+msgstr "Geen resultaten"
 
 #: dnfdragora/dialogs.py:622
 msgid "install"
-msgstr ""
+msgstr "installeren"
 
 #: dnfdragora/dialogs.py:623
 msgid "remove"
-msgstr ""
+msgstr "verwijderen"
 
 #: dnfdragora/dialogs.py:624
 msgid "upgrade"
-msgstr ""
+msgstr "opwaarderen"
 
 #: dnfdragora/dialogs.py:625
 msgid "downgrade"
-msgstr ""
+msgstr "Downgraden"
 
 #: dnfdragora/dialogs.py:626
 msgid "reinstall"
-msgstr ""
+msgstr "Herinstalleren"
 
 #: dnfdragora/dialogs.py:693
 msgid "Action on selected packages"
@@ -1657,7 +1657,7 @@ msgstr "Zoek-dialoog"
 #: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:114
 #: dnfdragora/helpinfo.py:250
 msgid "History dialog"
-msgstr ""
+msgstr "Geschiedenis-dialoogvenster"
 
 #: dnfdragora/helpinfo.py:52
 msgid "File menu"
@@ -1854,6 +1854,8 @@ msgstr "<h2>Geschiedenis</h2>"
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
 msgstr ""
+"Dit menu opent de %s, dit toont pakketten die onlangs in het systeem zijn "
+"gewijzigd."
 
 #: dnfdragora/helpinfo.py:121
 msgid "Option Menu"
@@ -2214,87 +2216,110 @@ msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
 msgstr ""
+"Het Historie-dialoogvenster toont pakketten die onlangs in het systeem zijn "
+"gewijzigd, door te zoeken in de dnf5daemon History API.<br><br>"
 
 #: dnfdragora/helpinfo.py:253
 msgid "<h2>Opening the dialog</h2>"
-msgstr ""
+msgstr "<h2>Het dialoog-venster wordt geopend</h2>"
 
 #: dnfdragora/helpinfo.py:254
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
 msgstr ""
+"Open het dialoogvenster vanuit de menu-balk: <b>Acties → Geschiedenis</b>."
+"<br>"
 
 #: dnfdragora/helpinfo.py:255
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
 msgstr ""
+"Het hoofd-dnfdragora venster is uitgeschakeld zolang het dialoogvenster open "
+"staat, om onbedoelde interacties te voorkomen.<br><br>"
 
 #: dnfdragora/helpinfo.py:257
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
 msgstr ""
+"In het gedeelte <b>Filters</b> bovenaan het dialoogvenster kunt u de "
+"resultaten verfijnen:<br>"
 
 #: dnfdragora/helpinfo.py:259
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
 msgstr ""
+"<li><b>Sinds (JJJJ-MM-DD)</b>: voer een datum in om alleen pakketten weer te "
+"geven die op of na die datum zijn gewijzigd. "
 
 #: dnfdragora/helpinfo.py:260
 msgid "Leave empty to retrieve all available history. "
-msgstr ""
+msgstr "Laat dit veld leeg om alle beschikbare geschiedenis op te halen."
 
 #: dnfdragora/helpinfo.py:261
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
+"De datum wordt omgezet naar een Unix-tijdstempel voordat deze naar de daemon "
+"wordt verzonden.</li>"
 
 #: dnfdragora/helpinfo.py:263
 msgid "<h2>Change type checkboxes</h2>"
-msgstr ""
+msgstr "<h2>Selectievakjes voor het wijzigen van het type</h2>"
 
 #: dnfdragora/helpinfo.py:264
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
 msgstr ""
+"Met vier selectievakjes kiest u welke soorten pakketwijzigingen u wilt zien:"
+"<br>"
 
 #: dnfdragora/helpinfo.py:266
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
 msgstr ""
+"<li><b>Geïnstalleerd</b>: pakketten die onlangs werden geïnstalleerd.</li>"
 
 #: dnfdragora/helpinfo.py:267
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
-msgstr ""
+msgstr "<li><b>Verwijderd</b>: pakketten die uit uw systeem werden verwijderd."
 
 #: dnfdragora/helpinfo.py:268
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
+"<li><b>Opgewaardeerd</b>: pakketten die zijn opgewaardeerd naar een nieuwere "
+"versie.</li>"
 
 #: dnfdragora/helpinfo.py:269
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
+"<li><b>Gedowngraded</b>: pakketten die werden gedowngraded naar een oudere "
+"versie.</li>"
 
 #: dnfdragora/helpinfo.py:271
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
 msgstr ""
+"Schakel een 'Type' uit waarin u niet geïnteresseerd bent, om het aantal "
+"getoonde rijen te verminderen..<br><br>"
 
 #: dnfdragora/helpinfo.py:272
 msgid "<h2>Advisory options</h2>"
-msgstr ""
+msgstr "<h2>Opties voor beveiligingsadviezen</h2>"
 
 #: dnfdragora/helpinfo.py:274
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
 msgstr ""
+"<li><b>Inclusief adviezen</b>: indien aangevinkt, ziet u informatie over "
+"adviezen (beveiliging, bugfixes, verbeteringen) indien beschikbaar.</li>"
 
 #: dnfdragora/helpinfo.py:275
 msgid ""
@@ -2302,86 +2327,107 @@ msgid ""
 "i>, all advisory types are returned rather than only the most relevant one "
 "per package. "
 msgstr ""
+"<li><b>Alle adviezen</b>: indien aangevinkt samen met <i>Inclusief adviezen</"
+"i>, ziet u alle soorten adviezen, in plaats van alleen het meest relevante "
+"advies per pakket. "
 
 #: dnfdragora/helpinfo.py:276
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
 msgstr ""
+"Deze optie is automatisch uitgeschakeld wanneer <i>Inclusief adviezen</i> "
+"niet is aangevinkt.</li>"
 
 #: dnfdragora/helpinfo.py:278
 msgid "<h2>Results table</h2>"
-msgstr ""
+msgstr "<h2>Resultaten-tabel</h2>"
 
 #: dnfdragora/helpinfo.py:279
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr ""
+"De tabel toont één rij per gewijzigd pakket met de volgende kolommen:<br>"
 
 #: dnfdragora/helpinfo.py:281
 msgid "<li><b>Name</b>: the package name.</li>"
-msgstr ""
+msgstr "<li><b>Naam</b>: de naam van het pakket.</li>"
 
 #: dnfdragora/helpinfo.py:282
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
 msgstr ""
+"<li><b>EVR</b>: epoch:versie-release van de nieuwe (geïnstalleerde) versie.</"
+"li>"
 
 #: dnfdragora/helpinfo.py:283
 msgid "<li><b>Arch</b>: the package architecture.</li>"
-msgstr ""
+msgstr "<li><b>Arch</b>: de pakket-architectuur.</li>"
 
 #: dnfdragora/helpinfo.py:284
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
 msgstr ""
+"<li><b>Actie</b>: één van deze <i>geïnstalleerd</i>, <i>verwijderd</i>, "
+"<i>opgewaardeerd</i>, of <i>gedowngraded</i>.</li>"
 
 #: dnfdragora/helpinfo.py:285
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
 msgstr ""
+"<li><b>Datum</b>: de datum en tijd van de transactie (JJJJ-MM-DD HH:MM).</li>"
 
 #: dnfdragora/helpinfo.py:286
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
-msgstr ""
+msgstr "<li><b>Samenvatting</b>: korte omschrijving van het pakket.</li>"
 
 #: dnfdragora/helpinfo.py:288
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
 msgstr ""
+"Als geen enkel pakket overeenkomt met de huidige filters, ziet u een <i>No "
+"results</i> rij.<br>"
 
 #: dnfdragora/helpinfo.py:289
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
 msgstr ""
+"Als de daemon-aanroep mislukt, ziet u het fout-bericht in the tabel, zodat u "
+"het probleem kunt onderzoeken.<br><br>"
 
 #: dnfdragora/helpinfo.py:290
 msgid "<h2>Refresh button</h2>"
-msgstr ""
+msgstr "<h2>Vernieuwen-knop</h2>"
 
 #: dnfdragora/helpinfo.py:291
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
+"Druk op <b>Vernieuwen</b> om de daemon opnieuw te bevragen met de huidige "
+"filter-instellingen. "
 
 #: dnfdragora/helpinfo.py:292
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
+"Het dialoog-venster voert ook automatisch een onderzoek uit wanneer het voor "
+"het eerst wordt geopend.<br><br>"
 
 #: dnfdragora/helpinfo.py:293
 msgid "<h2>Close button</h2>"
-msgstr ""
+msgstr "<h2>Sluit-knop</h2>"
 
 #: dnfdragora/helpinfo.py:294
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
 msgstr ""
+"Druk op <b>Sluiten</b> (of het venster-sluitknopje) om het dialoogvenster te "
+"sluiten, en terug te keren naar het hoofdvenster.<br>"
 
 #: dnfdragora/progress_ui.py:191
 msgid "Transaction completed successfully"
@@ -2486,7 +2532,7 @@ msgstr "Vereisten"
 
 #: dnfdragora/ui.py:320
 msgid "Logging directory not found"
-msgstr ""
+msgstr "Log-map niet gevonden"
 
 #: dnfdragora/ui.py:321
 #, python-format
@@ -2495,6 +2541,9 @@ msgid ""
 "disabled for this session.<br>Please update the log directory in <i>Options "
 "&rarr; User preferences</i>."
 msgstr ""
+"De opgegeven log-map <b>%s</b> bestaat niet.<br>Het loggen is uitgeschakeld "
+"voor deze sessie.<br>Verbeter de naam van de log-map in <i>Opties &rarr; "
+"Gebruikers-voorkeuren</i>."
 
 #: dnfdragora/ui.py:451
 msgid "Software Management - dnfdragora"
@@ -2591,7 +2640,7 @@ msgstr "&Actie met betrekking tot pakketten"
 
 #: dnfdragora/ui.py:676
 msgid "&History"
-msgstr ""
+msgstr "&Geschiedenis"
 
 #: dnfdragora/ui.py:693 dnfdragora/ui.py:763
 msgid "&Options"
@@ -2615,7 +2664,7 @@ msgstr "&Over"
 
 #: dnfdragora/ui.py:754
 msgid "Action on packages"
-msgstr ""
+msgstr "Actie voor pakketten"
 
 #: dnfdragora/ui.py:813
 msgid "update"
@@ -2855,19 +2904,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hoofdvenster"
-
-#~ msgid ""
-#~ "<br><i>Note that this function is currently broken because of a DNF API "
-#~ "change</i><br>"
-#~ msgstr ""
-#~ "<br><i>Let op: deze functie werkt momenteel niet vanwege een API-"
-#~ "wijziging in dnf</i><br>"
-
-#~ msgid ""
-#~ "This menu runs a dialog containing transaction history shown in a tree "
-#~ "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
-#~ "button.<br>"
-#~ msgstr ""
-#~ "Dit menu-item opent een dialoogvenster met de transactiegeschiedenis in "
-#~ "boomvorm gesorteerd op datum. U kunt transacties selecteren en met de "
-#~ "<b>Ongedaan maken</b>-knop terugdraaien.<br>"
