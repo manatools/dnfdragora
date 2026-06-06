@@ -587,9 +587,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'all' : {'title' : _("All")},
             'installed' : {'title' : _("Installed")},
             'not_installed' : {'title' : _("Not installed")},
-            'to_update' : {'title' : _("To update")}
+            'to_update' : {'title' : _("To update")},
+            'GUI': {'title': _("Desktop Applications")},
         }
-        ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
+        ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed', 'GUI' ]
         if platform.machine() == "x86_64" :
             # NOTE this should work on other architectures too, but maybe it
             #      is a nonsense, at least for i586
@@ -829,7 +830,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         and checks installed packages.
         Special value for groupName 'All' means all packages
         Available filters are:
-        all, installed, not_installed, to_update and skip_other
+        all, installed, not_installed, to_update, GUI and skip_other
         '''
         sel_pkg = self._selectedPackage()
         # reset info view
@@ -850,6 +851,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 logger.exception("Failed to load package names for comps group '%s': %s", groupName, error)
 
         machine_arch = platform.machine()
+
+        gui_packages = []
+        if filter == 'GUI':
+          gui_packages = self._getGUIPackages()
 
         def _is_package_in_selected_group(pkg):
             """Return True when package belongs to selected group or no group filter is active."""
@@ -954,6 +959,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                         if not self.update_only:
                             item.addCell(" ")
                             self._setStatusToItem(pkg,item)
+
+        if filter == 'GUI':
+          for pkg in gui_packages:
+            insert_items = _is_package_in_selected_group(pkg)
+            if insert_items:
+              item = self._createCBItem(self.packageQueue.checked(pkg),
+                          pkg.name,
+                          pkg.summary,
+                          pkg.version,
+                          pkg.release,
+                          pkg.arch,
+                          pkg.sizeM)
+              pkg_name = pkg.fullname
+              if sel_pkg:
+                if sel_pkg.fullname == pkg_name:
+                  item.setSelected(True)
+              self.itemList[pkg_name] = {
+                'pkg': pkg, 'item': item
+                }
+              if not self.update_only:
+                item.addCell(" ")
+                self._setStatusToItem(pkg, item)
 
         keylist = sorted(self.itemList.keys())
         v = []
@@ -1069,6 +1096,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
+    def _getGUIPackages(self):
+        """Return packages providing application() for the GUI filter."""
+        try:
+            gui_options = {
+                'scope': 'all',
+                'whatprovides': ['application()'],
+            }
+            gui_pkg_ids = self.backend.Search(gui_options, sync=True)
+            return self.backend.make_pkg_object_with_attr(gui_pkg_ids)
+        except Exception as error:
+            logger.exception("Failed to fetch GUI packages (Provides: application()): %s", error)
+            return []
+
     def _collect_groups_for_tree(self, view_name, filter_name):
         """Return normalized group names for the left tree according to view and filter."""
         if view_name == 'all':
@@ -1083,6 +1123,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         elif filter_name == 'not_installed':
             logger.debug("Collecting groups from available packages")
             package_scope = 'available'
+        elif filter_name == 'GUI':
+            logger.debug("Collecting groups from GUI packages")
+            package_scope = 'GUI'
         else:
             logger.debug("Collecting all groups from backend cache")
             try:
@@ -1091,11 +1134,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 logger.exception("Cannot read group cache from backend: %s", error)
                 return []
 
-        try:
-            packages = self.backend.get_packages(package_scope)
-        except Exception as error:
-            logger.exception("Cannot load packages for scope '%s': %s", package_scope, error)
-            return []
+        packages = []
+        if filter_name == 'GUI':
+            packages = self._getGUIPackages()
+        else:
+            try:
+                packages = self.backend.get_packages(package_scope)
+            except Exception as error:
+                logger.exception("Cannot load packages for scope '%s': %s", package_scope, error)
+                return []
 
         if self.use_comps:
             pkg_names = [pkg.name for pkg in packages if getattr(pkg, 'name', None)]
@@ -1436,6 +1483,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     'installed'     : 'installed',
                     'not_installed' : 'available',
                     'to_update'     : 'upgrades',
+                    'GUI'           : 'all',
                     'all'           : 'all',
                     'skip_other'    : 'all',
                 }
@@ -1471,6 +1519,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'installed'     : 'installed',
                 'not_installed' : 'available',
                 'to_update'     : 'upgrades',
+                'GUI'           : 'all',
                 'all'           : 'all',
                 'skip_other'    : 'all',
             }
@@ -1627,7 +1676,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 disable_select_all = True
                 #let's get back the last saved filter for NORMAL actions
                 filter_item = self.config.userPreferences['view']['filter']
-                ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
+                ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed', 'GUI' ]
                 if platform.machine() == "x86_64" :
                     ordered_filters.append('skip_other')
                 self.filter_box.setEnabled(not self.update_only)
