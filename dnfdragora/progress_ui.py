@@ -407,7 +407,10 @@ class TransactionProgressDialog:
         self._close_button = self.factory.createIconButton(
             bottom_hbox, 'window-close', _("&Cancel"))
         # Must be active during download/running to let user request Goal.cancel.
-        self._close_button.setEnabled(True)
+        # Cancel a transaction is only possible when downloading packages, 
+        # so at the very beginning of the running transaction, let's disable the Close button 
+        # to avoid problems (for instance, PCLinuxOS hangs running a sync cancel).
+        self._close_button.setEnabled(False)
         MUI.YUI.app().setApplicationIcon(self._icon)
 
     def _ts(self):
