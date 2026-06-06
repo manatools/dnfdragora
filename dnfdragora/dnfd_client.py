@@ -1722,7 +1722,7 @@ class Client:
     def Reinstall(self, specs, options={}, sync=False):
         '''
             Mark packages specified by @specs for reinstall.
-            aRGS:
+            Args:
                 @specs: an array of package specifications to be reinstalled on the system
                 @options: an array of key/value pairs to modify reinstall behavior
 
@@ -1769,7 +1769,6 @@ class Client:
         '''
             Resolve the transaction.
             Args:
-:
                 @options: an array of key/value pairs to modify dependency resolving
             Return:
                 @transaction_items: array

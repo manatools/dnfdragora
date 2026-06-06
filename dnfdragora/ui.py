@@ -714,16 +714,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.ActionMenu = {
                  'menu_name' : mItem,
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
-                 'update_all' : self.menubar.addItem(mItem, _("Update &All"), enabled=False),
+                 'update_all' : self.menubar.addItem(mItem, _("&Update All"), enabled=False),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
             }
-
-            # # building Information menu
-            # mItem = self.menubar.addMenu(_("&Information"))
-            # self.infoMenu = {
-            #     'menu_name' : mItem,
-            #     'history'   : MUI.YMenuItem(mItem, _("&History")),
-            # }
 
             # building Options menu
             mItem = self.menubar.addMenu(_("&Options"))
@@ -742,78 +735,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             }
             
             self.menubar.rebuildMenus()
-        else:
-            logger.info("System has not createMenuBar, using old menu buttons")
-            self._createMenuButtons(self.factory.createHBox(self.factory.createLeft(hbox_menubar)))
         ### END Menus #########################
-
-    def _createMenuButtons(self, headbar):
-        ''' create obsolete menu buttons to allow using dnfdragora if manubar 
-            is not implemented, in the case libyui-mga is old
-        '''
-        # build File menu
-        self.fileMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&File")),
-            'reset_sel' : MUI.YMenuItem(_("Reset the selection")),
-            'reload'    : MUI.YMenuItem(_("Refresh Metadata")),
-            'repos'     : MUI.YMenuItem(_("Repositories")),
-            'quit'      : MUI.YMenuItem(_("&Quit"), "application-exit"),
-        }
-
-        ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
-        for l in ordered_menu_lines :
-            self.fileMenu['widget'].addItem(self.fileMenu[l])
-        self.fileMenu['widget'].rebuildMenuTree();
-
-        # build Options menu
-        #self.infoMenu = {
-        #    'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
-        #    'history' : MUI.YMenuItem(_("History")),
-        #}
-
-        #NOTE following the same behavior to simplfy further menu entry addtion
-        #ordered_menu_lines = ['history']
-        #for l in ordered_menu_lines :
-        #    self.infoMenu['widget'].addItem(self.infoMenu[l])
-        #self.infoMenu['widget'].rebuildMenuTree();
-
-        # build Actions menu button (fallback for old libyui without createMenuBar)
-        self.actionMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&Actions")),
-            'actions'   : MUI.YMenuItem(_("Action on packages")),
-            'update_all' : MUI.YMenuItem(_("Update All")),
-            'history'   : MUI.YMenuItem(_("History")),
-        }
-        # Set update_all disabled by default
-        self.actionMenu['update_all'].setEnabled(False)
-        ordered_menu_lines = ['actions', 'update_all', 'history']
-        for l in ordered_menu_lines:
-            self.actionMenu['widget'].addItem(self.actionMenu[l])
-        self.actionMenu['widget'].rebuildMenuTree()
-
-        self.optionsMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
-            'user_prefs' : MUI.YMenuItem(_("User preferences")),
-        }
-
-        #NOTE following the same behavior to simplfy further menu entry addtion
-        ordered_menu_lines = ['user_prefs']
-        for l in ordered_menu_lines :
-            self.optionsMenu['widget'].addItem(self.optionsMenu[l])
-        self.optionsMenu['widget'].rebuildMenuTree();
-
-        # build help menu
-        self.helpMenu = {
-            'widget': self.factory.createMenuButton(headbar, _("&Help")),
-            'help'  : MUI.YMenuItem(_("Manual")),
-            'about' : MUI.YMenuItem(_("&About"), 'dnfdragora'),
-        }
-        ordered_menu_lines = ['help', 'about']
-        for l in ordered_menu_lines :
-            self.helpMenu['widget'].addItem(self.helpMenu[l])
-
-        self.helpMenu['widget'].rebuildMenuTree()
-
     
     def _enableAction(self, value=True):
       '''
