@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-01 18:40+0200\n"
+"POT-Creation-Date: 2026-06-06 18:38+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2026\n"
 "Language-Team: Norwegian Bokmål (https://app.transifex.com/MageiaLinux/"
@@ -157,8 +157,8 @@ msgstr "Basissystem"
 msgid "Content"
 msgstr "Innhold"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:1846
-#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:543 dnfdragora/ui.py:557
+#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:1493
+#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:587 dnfdragora/ui.py:602
 msgid "All"
 msgstr "Alle"
 
@@ -317,497 +317,457 @@ msgstr "Forbereder transaksjon: %s"
 msgid "Post-transaction script: %s"
 msgstr "Post-transaksjonsskript: %s"
 
-#: dnfdragora/dialogs.py:193 dnfdragora/ui.py:1632
-msgid "Undo transaction"
-msgstr "Angre transaksjon"
-
-#: dnfdragora/dialogs.py:218 dnfdragora/ui.py:1657
-msgid "Error checking package signatures"
-msgstr "Feil ved sjekking av pakkesignaturer"
-
-#: dnfdragora/dialogs.py:222 dnfdragora/ui.py:1661
-msgid "Downloading error"
-msgid_plural "Downloading errors"
-msgstr[0] "Nedlastingsfeil"
-msgstr[1] "Nedlastingsfeil"
-
-#: dnfdragora/dialogs.py:227 dnfdragora/ui.py:1666
-msgid "Error in transaction"
-msgid_plural "Errors in transaction"
-msgstr[0] "Feil"
-msgstr[1] "Feil i transaksjonen"
-
-#: dnfdragora/dialogs.py:239 dnfdragora/ui.py:1678
-msgid "Build transaction failure"
-msgstr "Transaksjonsfeil ved bygging"
-
-#: dnfdragora/dialogs.py:283 dnfdragora/dialogs.py:374 dnfdragora/ui.py:755
+#: dnfdragora/dialogs.py:64
 msgid "History"
 msgstr "Historie"
 
-#: dnfdragora/dialogs.py:290
-msgid "History (Date/Time)"
-msgstr "Historie (Dato/Tid)"
-
-#: dnfdragora/dialogs.py:292
-msgid "Transaction History"
-msgstr "Transaksjonshistorikk"
-
-#: dnfdragora/dialogs.py:296
-msgid "&Undo"
-msgstr "&Angre"
-
-#: dnfdragora/dialogs.py:298 dnfdragora/dialogs.py:460
-#: dnfdragora/dialogs.py:1418 dnfdragora/progress_ui.py:367
-msgid "&Close"
-msgstr "Lukk"
-
-#: dnfdragora/dialogs.py:395
+#: dnfdragora/dialogs.py:85
 msgid "&Recent Changes"
 msgstr "&Nylige endringer"
 
-#: dnfdragora/dialogs.py:398
+#: dnfdragora/dialogs.py:88
 msgid "&Transactions"
 msgstr "&Transaksjoner"
 
-#: dnfdragora/dialogs.py:406
+#: dnfdragora/dialogs.py:96
 msgid "Filters"
 msgstr "Filtre"
 
-#: dnfdragora/dialogs.py:409
+#: dnfdragora/dialogs.py:99
 msgid "Since (YYYY-MM-DD):"
 msgstr "Siden (ÅÅÅÅ-MM-DD):"
 
-#: dnfdragora/dialogs.py:414
+#: dnfdragora/dialogs.py:104
 msgid "Change types"
 msgstr "Endringstyper"
 
-#: dnfdragora/dialogs.py:417
+#: dnfdragora/dialogs.py:107
 msgid "&Installed"
 msgstr "&Installert"
 
-#: dnfdragora/dialogs.py:418
+#: dnfdragora/dialogs.py:108
 msgid "&Removed"
 msgstr "&Fjernet"
 
-#: dnfdragora/dialogs.py:419
+#: dnfdragora/dialogs.py:109
 msgid "&Upgraded"
 msgstr "&Oppgradert"
 
-#: dnfdragora/dialogs.py:420
+#: dnfdragora/dialogs.py:110
 msgid "&Downgraded"
 msgstr "&Nedgradert"
 
-#: dnfdragora/dialogs.py:422
+#: dnfdragora/dialogs.py:112
 msgid "Include &advisories"
 msgstr "Inkluder &råd"
 
-#: dnfdragora/dialogs.py:423
+#: dnfdragora/dialogs.py:113
 msgid "All advisories"
 msgstr "Alle råd"
 
-#: dnfdragora/dialogs.py:427
+#: dnfdragora/dialogs.py:117
 msgid "Transaction filters"
 msgstr "Transaksjonsfiltre"
 
-#: dnfdragora/dialogs.py:429
+#: dnfdragora/dialogs.py:119
 msgid "Limit:"
 msgstr "Grense:"
 
-#: dnfdragora/dialogs.py:431
+#: dnfdragora/dialogs.py:121
 msgid "  Contains package:"
 msgstr "Inneholder pakke:"
 
-#: dnfdragora/dialogs.py:440 dnfdragora/dialogs.py:953
-#: dnfdragora/dialogs.py:1009 dnfdragora/ui.py:524
+#: dnfdragora/dialogs.py:130 dnfdragora/dialogs.py:600
+#: dnfdragora/dialogs.py:656 dnfdragora/ui.py:568
 msgid "Name"
 msgstr "Navn"
 
-#: dnfdragora/dialogs.py:441
+#: dnfdragora/dialogs.py:131
 msgid "EVR"
 msgstr "EVR"
 
-#: dnfdragora/dialogs.py:442 dnfdragora/ui.py:524
+#: dnfdragora/dialogs.py:132 dnfdragora/ui.py:568
 msgid "Arch"
 msgstr "Arkitektur"
 
-#: dnfdragora/dialogs.py:443
+#: dnfdragora/dialogs.py:133
 msgid "Action"
 msgstr "Handling"
 
-#: dnfdragora/dialogs.py:444
+#: dnfdragora/dialogs.py:134
 msgid "Date"
 msgstr "Dato"
 
-#: dnfdragora/dialogs.py:445 dnfdragora/ui.py:524
+#: dnfdragora/dialogs.py:135 dnfdragora/ui.py:568
 msgid "Summary"
 msgstr "Oppsummering"
 
-#: dnfdragora/dialogs.py:451
+#: dnfdragora/dialogs.py:141
 msgid "Transactions"
 msgstr "Transaksjoner"
 
-#: dnfdragora/dialogs.py:459
+#: dnfdragora/dialogs.py:149
 msgid "&Refresh"
 msgstr "&Oppdater"
 
-#: dnfdragora/dialogs.py:546 dnfdragora/dialogs.py:617
+#: dnfdragora/dialogs.py:150 dnfdragora/dialogs.py:1065
+#: dnfdragora/progress_ui.py:201
+msgid "&Close"
+msgstr "Lukk"
+
+#: dnfdragora/dialogs.py:236 dnfdragora/dialogs.py:307
 #, python-format
 msgid "Error: %s"
 msgstr "Feil: %s"
 
-#: dnfdragora/dialogs.py:557 dnfdragora/ui.py:819
+#: dnfdragora/dialogs.py:247 dnfdragora/ui.py:774
 msgid "installed"
 msgstr "installert"
 
-#: dnfdragora/dialogs.py:558
+#: dnfdragora/dialogs.py:248
 msgid "removed"
 msgstr "fjernet"
 
-#: dnfdragora/dialogs.py:559
+#: dnfdragora/dialogs.py:249
 msgid "upgraded"
 msgstr "oppgradert"
 
-#: dnfdragora/dialogs.py:560
+#: dnfdragora/dialogs.py:250
 msgid "downgraded"
 msgstr "nedgradert"
 
-#: dnfdragora/dialogs.py:587 dnfdragora/dialogs.py:661
+#: dnfdragora/dialogs.py:277 dnfdragora/dialogs.py:351
 msgid "No results"
 msgstr "Ingen resultater"
 
-#: dnfdragora/dialogs.py:622
+#: dnfdragora/dialogs.py:312
 msgid "install"
 msgstr "installer"
 
-#: dnfdragora/dialogs.py:623
+#: dnfdragora/dialogs.py:313
 msgid "remove"
 msgstr "fjern"
 
-#: dnfdragora/dialogs.py:624
+#: dnfdragora/dialogs.py:314
 msgid "upgrade"
 msgstr "oppgrader"
 
-#: dnfdragora/dialogs.py:625
+#: dnfdragora/dialogs.py:315
 msgid "downgrade"
 msgstr "nedgrader"
 
-#: dnfdragora/dialogs.py:626
+#: dnfdragora/dialogs.py:316
 msgid "reinstall"
 msgstr "ominstaller"
 
-#: dnfdragora/dialogs.py:693
+#: dnfdragora/dialogs.py:383
 msgid "Action on selected packages"
 msgstr "Handling på utvalgte pakker"
 
-#: dnfdragora/dialogs.py:706
+#: dnfdragora/dialogs.py:396
 msgid "Normal (Install/Upgrade/Remove)"
 msgstr "Normal (Installer/Oppgrader/Fjern)"
 
-#: dnfdragora/dialogs.py:707
+#: dnfdragora/dialogs.py:397
 msgid "Reinstall"
 msgstr "Ominstaller"
 
-#: dnfdragora/dialogs.py:710
+#: dnfdragora/dialogs.py:400
 msgid "Downgrade"
 msgstr "Nedgrader"
 
-#: dnfdragora/dialogs.py:713
+#: dnfdragora/dialogs.py:403
 msgid "Distro Sync"
 msgstr "Distro Synk"
 
-#: dnfdragora/dialogs.py:717 dnfdragora/dialogs.py:795
+#: dnfdragora/dialogs.py:407 dnfdragora/dialogs.py:485
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:718 dnfdragora/dialogs.py:796
-#: dnfdragora/dialogs.py:1029
+#: dnfdragora/dialogs.py:408 dnfdragora/dialogs.py:486
+#: dnfdragora/dialogs.py:676 dnfdragora/progress_ui.py:408
 msgid "&Cancel"
 msgstr "&Avbryt"
 
-#: dnfdragora/dialogs.py:777
+#: dnfdragora/dialogs.py:467
 msgid "Transaction result"
 msgstr "Transaksjonsresultat"
 
-#: dnfdragora/dialogs.py:786
+#: dnfdragora/dialogs.py:476
 msgid "Transaction dependency"
 msgstr "Transaksjonsavhengighet"
 
-#: dnfdragora/dialogs.py:819
+#: dnfdragora/dialogs.py:509
 msgid "replacing "
 msgstr "erstatter"
 
-#: dnfdragora/dialogs.py:824
+#: dnfdragora/dialogs.py:514
 msgid "Total size "
 msgstr "Total størrelse"
 
-#: dnfdragora/dialogs.py:887
-msgid "Developers"
-msgstr "Utviklere"
+#: dnfdragora/dialogs.py:532
+msgid "Reset transaction failed"
+msgstr ""
 
-#: dnfdragora/dialogs.py:891
-msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-msgstr "dnfdragora er en DNF forside som fungerer og bruker GTK, ncurses og QT"
-
-#: dnfdragora/dialogs.py:928
+#: dnfdragora/dialogs.py:575
 msgid "Repository Management"
 msgstr "Håndetring av lagringssted"
 
-#: dnfdragora/dialogs.py:952
+#: dnfdragora/dialogs.py:599
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: dnfdragora/dialogs.py:954 dnfdragora/ui.py:1311
+#: dnfdragora/dialogs.py:601 dnfdragora/ui.py:1312
 msgid "Type"
 msgstr "Type"
 
-#: dnfdragora/dialogs.py:955
+#: dnfdragora/dialogs.py:602
 msgid "Enabled"
 msgstr "I bruk"
 
-#: dnfdragora/dialogs.py:956
+#: dnfdragora/dialogs.py:603
 msgid "Priority"
 msgstr "Prioritet"
 
-#: dnfdragora/dialogs.py:957
+#: dnfdragora/dialogs.py:604
 msgid "Cost"
 msgstr "Kostnad"
 
-#: dnfdragora/dialogs.py:958
+#: dnfdragora/dialogs.py:605
 msgid "Base URL"
 msgstr "Base URL"
 
-#: dnfdragora/dialogs.py:959
+#: dnfdragora/dialogs.py:606
 msgid "Meta link"
 msgstr "Meta lenke"
 
-#: dnfdragora/dialogs.py:960
+#: dnfdragora/dialogs.py:607
 msgid "Mirror list"
 msgstr "Nettarkiver"
 
-#: dnfdragora/dialogs.py:961
+#: dnfdragora/dialogs.py:608
 msgid "Metadata expire"
 msgstr "Metadata utløpsdato"
 
-#: dnfdragora/dialogs.py:962
+#: dnfdragora/dialogs.py:609
 msgid "Cache Updated"
 msgstr "Mellomlagring oppdatert"
 
-#: dnfdragora/dialogs.py:963
+#: dnfdragora/dialogs.py:610
 msgid "Exclude packages"
 msgstr "Ekskluder pakker"
 
-#: dnfdragora/dialogs.py:964
+#: dnfdragora/dialogs.py:611
 msgid "Include packages"
 msgstr "Inkluder pakker"
 
-#: dnfdragora/dialogs.py:965
+#: dnfdragora/dialogs.py:612
 msgid "Skip if unavailable"
 msgstr "Hopp over hvis utilgjengelig"
 
-#: dnfdragora/dialogs.py:967
+#: dnfdragora/dialogs.py:614
 msgid "GPG key"
 msgstr "GPG nøkkel"
 
-#: dnfdragora/dialogs.py:968
+#: dnfdragora/dialogs.py:615
 msgid "GPG check"
 msgstr "GPG sjekk"
 
-#: dnfdragora/dialogs.py:969
+#: dnfdragora/dialogs.py:616
 msgid "Repo GPG check"
 msgstr "Repo GPG sjekk"
 
-#: dnfdragora/dialogs.py:971
+#: dnfdragora/dialogs.py:618
 msgid "Proxy"
 msgstr "Proxyserver"
 
-#: dnfdragora/dialogs.py:972
+#: dnfdragora/dialogs.py:619
 msgid "Proxy username"
 msgstr "Proxy brukernavn"
 
-#: dnfdragora/dialogs.py:975
+#: dnfdragora/dialogs.py:622
 msgid "Repo file"
 msgstr "Repo fil"
 
-#: dnfdragora/dialogs.py:976
+#: dnfdragora/dialogs.py:623
 msgid "Revision"
 msgstr "Revisjon"
 
-#: dnfdragora/dialogs.py:977
+#: dnfdragora/dialogs.py:624
 msgid "Content tags"
 msgstr "Innholdstagger"
 
-#: dnfdragora/dialogs.py:978
+#: dnfdragora/dialogs.py:625
 msgid "Distro tags "
 msgstr "Distrotagger"
 
-#: dnfdragora/dialogs.py:979
+#: dnfdragora/dialogs.py:626
 msgid "Updated"
 msgstr "Oppdatert"
 
-#: dnfdragora/dialogs.py:980 dnfdragora/ui.py:524
+#: dnfdragora/dialogs.py:627 dnfdragora/ui.py:568
 msgid "Size"
 msgstr "Størrelse"
 
-#: dnfdragora/dialogs.py:981
+#: dnfdragora/dialogs.py:628
 msgid "Packages"
 msgstr "Pakker"
 
-#: dnfdragora/dialogs.py:982
+#: dnfdragora/dialogs.py:629
 msgid "Available packages"
 msgstr "Tilgjengelige pakker"
 
-#: dnfdragora/dialogs.py:983
+#: dnfdragora/dialogs.py:630
 msgid "Mirrors"
 msgstr "Speil"
 
-#: dnfdragora/dialogs.py:991
+#: dnfdragora/dialogs.py:638
 msgid "Ad&vanced repository types"
 msgstr "A&vanserte depottyper"
 
-#: dnfdragora/dialogs.py:995
+#: dnfdragora/dialogs.py:642
 msgid "&Debug information"
 msgstr "&Debug informasjon"
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:644
 msgid "&Source"
 msgstr "&Kilde"
 
-#: dnfdragora/dialogs.py:999
+#: dnfdragora/dialogs.py:646
 msgid "&Testing"
 msgstr "&Testing"
 
-#: dnfdragora/dialogs.py:1010
+#: dnfdragora/dialogs.py:657
 msgid "Id"
 msgstr "Id"
 
-#: dnfdragora/dialogs.py:1019
+#: dnfdragora/dialogs.py:666
 msgid "Information"
 msgstr "Informasjon"
 
-#: dnfdragora/dialogs.py:1019
+#: dnfdragora/dialogs.py:666
 msgid "Value"
 msgstr "Verdi"
 
-#: dnfdragora/dialogs.py:1027 dnfdragora/ui.py:635 dnfdragora/ui.py:1757
+#: dnfdragora/dialogs.py:674 dnfdragora/ui.py:680 dnfdragora/ui.py:1673
 msgid "&Apply"
 msgstr "&Bruk"
 
-#: dnfdragora/dialogs.py:1242
+#: dnfdragora/dialogs.py:889
 #, python-format
 msgid "%s second(s)"
 msgstr "%s sekund(er)"
 
-#: dnfdragora/dialogs.py:1242
+#: dnfdragora/dialogs.py:889
 msgid "Never"
 msgstr "Aldri"
 
-#: dnfdragora/dialogs.py:1247
+#: dnfdragora/dialogs.py:894
 msgid "Now"
 msgstr "Nå"
 
-#: dnfdragora/dialogs.py:1317 dnfdragora/helpinfo.py:130
+#: dnfdragora/dialogs.py:964 dnfdragora/helpinfo.py:130
 msgid "dnfdragora options"
 msgstr "dnfdragora alternativer"
 
-#: dnfdragora/dialogs.py:1392 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:1039 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "System"
 
-#: dnfdragora/dialogs.py:1396
+#: dnfdragora/dialogs.py:1043
 msgid "Layout"
 msgstr "Layout"
 
-#: dnfdragora/dialogs.py:1400
+#: dnfdragora/dialogs.py:1047
 msgid "Logging"
 msgstr "Logging"
 
-#: dnfdragora/dialogs.py:1413
+#: dnfdragora/dialogs.py:1060
 msgid "Restore &default"
 msgstr "Gjenopprette &standard"
 
-#: dnfdragora/dialogs.py:1473
+#: dnfdragora/dialogs.py:1120
 msgid "System options"
 msgstr "Systemalternativ"
 
-#: dnfdragora/dialogs.py:1480
+#: dnfdragora/dialogs.py:1127
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr "Kjør transaksjoner på pakker automatisk uten bekreftelse"
 
-#: dnfdragora/dialogs.py:1485
+#: dnfdragora/dialogs.py:1132
 msgid "Consider packages to upgrade as updates"
 msgstr "Vurder pakker som skal oppgraderes som oppdateringer"
 
-#: dnfdragora/dialogs.py:1493
+#: dnfdragora/dialogs.py:1140
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
 "Skjul dnfdragora-oppdateringsmenyen hvis det ikke er noen oppdateringer"
 
-#: dnfdragora/dialogs.py:1516
+#: dnfdragora/dialogs.py:1163
 msgid "Interval to check for updates (minutes)"
 msgstr "Intervall for sjekking etter oppdateringer (minutter)"
 
-#: dnfdragora/dialogs.py:1524
+#: dnfdragora/dialogs.py:1171
 msgid "Metadata expire time (hours)"
 msgstr "Metadata utløpstid (timer)"
 
-#: dnfdragora/dialogs.py:1548
+#: dnfdragora/dialogs.py:1195
 msgid "Layout options (active at next startup)"
 msgstr "Layout-alternativer (aktiveres ved neste oppstart)"
 
-#: dnfdragora/dialogs.py:1559
+#: dnfdragora/dialogs.py:1206
 msgid "Show updates"
 msgstr "Vis oppdateringer"
 
-#: dnfdragora/dialogs.py:1564
+#: dnfdragora/dialogs.py:1211
 msgid "Do not show groups view"
 msgstr "Ikke vis gruppevisning"
 
-#: dnfdragora/dialogs.py:1588
+#: dnfdragora/dialogs.py:1235
 msgid "Logging options (active at next startup)"
 msgstr "Loggealternativer (aktiveres ved neste oppstart)"
 
-#: dnfdragora/dialogs.py:1605
+#: dnfdragora/dialogs.py:1252
 msgid "Enable logging"
 msgstr "Aktiver logging"
 
-#: dnfdragora/dialogs.py:1614
+#: dnfdragora/dialogs.py:1261
 msgid "Change &directory"
 msgstr "Endre &plassering"
 
-#: dnfdragora/dialogs.py:1619
+#: dnfdragora/dialogs.py:1266
 msgid "Debug level"
 msgstr "Feilsøkingsnivå"
 
-#: dnfdragora/dialogs.py:1652
+#: dnfdragora/dialogs.py:1299
 msgid "Choose log destination directory"
 msgstr "Velg destinasjonskatalog for logg"
 
-#: dnfdragora/dialogs.py:1808
+#: dnfdragora/dialogs.py:1455
 msgid "Find packages"
 msgstr "Finn pakker"
 
-#: dnfdragora/dialogs.py:1847 dnfdragora/ui.py:544
+#: dnfdragora/dialogs.py:1494 dnfdragora/ui.py:588
 msgid "Installed"
 msgstr "Installert"
 
-#: dnfdragora/dialogs.py:1848
+#: dnfdragora/dialogs.py:1495
 msgid "Available"
 msgstr "Tilgjengelig"
 
-#: dnfdragora/dialogs.py:1849
+#: dnfdragora/dialogs.py:1496
 msgid "Upgrades"
 msgstr "Oppgraderinger"
 
-#: dnfdragora/dialogs.py:1850
+#: dnfdragora/dialogs.py:1497
 msgid "Upgradable"
 msgstr "Oppgraderbar"
 
-#: dnfdragora/dialogs.py:1871
+#: dnfdragora/dialogs.py:1518
 msgid "Find:"
 msgstr "Finn:"
 
-#: dnfdragora/dialogs.py:1879
+#: dnfdragora/dialogs.py:1526
 msgid ""
 "Enter the search pattern. In text mode: words separated by spaces or commas. "
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
@@ -817,65 +777,65 @@ msgstr ""
 "komma. I avhengighetsspørringsmodus: funksjonsnavn (f.eks. 'python3', '/usr/"
 "bin/python3')."
 
-#: dnfdragora/dialogs.py:1886
+#: dnfdragora/dialogs.py:1533
 msgid "Search in:"
 msgstr "Søk i:"
 
-#: dnfdragora/dialogs.py:1887
+#: dnfdragora/dialogs.py:1534
 msgid "N&ames"
 msgstr "N&avn"
 
-#: dnfdragora/dialogs.py:1889
+#: dnfdragora/dialogs.py:1536
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
 msgstr "Søk i pakkenavn og NEVRA (name-epoch:version-release.arch)."
 
-#: dnfdragora/dialogs.py:1890
+#: dnfdragora/dialogs.py:1537
 msgid "&Provides"
 msgstr "&Gir"
 
-#: dnfdragora/dialogs.py:1892
+#: dnfdragora/dialogs.py:1539
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr "Finn også pakker der Provides:-taggene inneholder søkemønsteret."
 
-#: dnfdragora/dialogs.py:1893
+#: dnfdragora/dialogs.py:1540
 msgid "&Files"
 msgstr "&Filer"
 
-#: dnfdragora/dialogs.py:1895
+#: dnfdragora/dialogs.py:1542
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
 "Samsvarer med pakker som eier filer med en sti som samsvarer med mønsteret."
 
-#: dnfdragora/dialogs.py:1898
+#: dnfdragora/dialogs.py:1545
 msgid "&Binaries"
 msgstr "&Binærfiler"
 
-#: dnfdragora/dialogs.py:1900
+#: dnfdragora/dialogs.py:1547
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr "Begrens filmatching til kun /usr/bin og /usr/sbin (delsett av Filer)."
 
-#: dnfdragora/dialogs.py:1901
+#: dnfdragora/dialogs.py:1548
 msgid "S&ources"
 msgstr "K&ilder"
 
-#: dnfdragora/dialogs.py:1903
+#: dnfdragora/dialogs.py:1550
 msgid "Include source RPMs (*.src.rpm) in the results."
 msgstr "Inkluder kilde-RPM-er (*.src.rpm) i resultatene"
 
-#: dnfdragora/dialogs.py:1905
+#: dnfdragora/dialogs.py:1552
 msgid "Su&mmary"
 msgstr "S&ammendrag"
 
-#: dnfdragora/dialogs.py:1907
+#: dnfdragora/dialogs.py:1554
 msgid "Search in package summaries. Only available in regexp mode."
 msgstr "Søk i pakkesammendrag. Kun tilgjengelig i regexp-modus."
 
-#: dnfdragora/dialogs.py:1911
+#: dnfdragora/dialogs.py:1558
 msgid "Scope:"
 msgstr "Omfang:"
 
-#: dnfdragora/dialogs.py:1922
+#: dnfdragora/dialogs.py:1569
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
@@ -883,11 +843,11 @@ msgstr ""
 "Begrens søket til et delsett av pakker: alle, installert, tilgjengelig for "
 "installasjon, oppgraderinger eller oppgraderbar."
 
-#: dnfdragora/dialogs.py:1924
+#: dnfdragora/dialogs.py:1571
 msgid "Use &regexp"
 msgstr "Bruk &regexp"
 
-#: dnfdragora/dialogs.py:1927
+#: dnfdragora/dialogs.py:1574
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
@@ -895,19 +855,19 @@ msgstr ""
 "Behandle Søk-feltet som et regulært uttrykk (Python angående syntaks). "
 "Deaktiverer søk i flere felt."
 
-#: dnfdragora/dialogs.py:1929
+#: dnfdragora/dialogs.py:1576
 msgid "&Latest only"
 msgstr "&Kun nyeste"
 
-#: dnfdragora/dialogs.py:1931
+#: dnfdragora/dialogs.py:1578
 msgid "Show only the latest version of each package name."
 msgstr "Vis bare den nyeste versjonen av hvert pakkenavn."
 
-#: dnfdragora/dialogs.py:1932
+#: dnfdragora/dialogs.py:1579
 msgid "Fu&zzy search"
 msgstr "U&klart søk"
 
-#: dnfdragora/dialogs.py:1934
+#: dnfdragora/dialogs.py:1581
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
@@ -915,11 +875,11 @@ msgstr ""
 "Legg automatisk til jokertegn rundt hvert søketoken (f.eks. blir 'gtk' til "
 "'*gtk*'). Deaktivert i regexp-modus."
 
-#: dnfdragora/dialogs.py:1935
+#: dnfdragora/dialogs.py:1582
 msgid "Case &sensitive"
 msgstr "&Følsom for store og små bokstaver"
 
-#: dnfdragora/dialogs.py:1938
+#: dnfdragora/dialogs.py:1585
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
@@ -927,51 +887,51 @@ msgstr ""
 "Når det er avmerket, skiller søket mellom store og små bokstaver. Som "
 "standard skiller søket ikke mellom store og små bokstaver."
 
-#: dnfdragora/dialogs.py:1947
+#: dnfdragora/dialogs.py:1594
 msgid "(none)"
 msgstr "(ingen)"
 
-#: dnfdragora/dialogs.py:1948
+#: dnfdragora/dialogs.py:1595
 msgid "provide"
 msgstr "skaffe"
 
-#: dnfdragora/dialogs.py:1949
+#: dnfdragora/dialogs.py:1596
 msgid "require"
 msgstr "krevr"
 
-#: dnfdragora/dialogs.py:1950
+#: dnfdragora/dialogs.py:1597
 msgid "depend on"
 msgstr "avhengig av"
 
-#: dnfdragora/dialogs.py:1951
+#: dnfdragora/dialogs.py:1598
 msgid "recommend"
 msgstr "anbefalt"
 
-#: dnfdragora/dialogs.py:1952
+#: dnfdragora/dialogs.py:1599
 msgid "enhance"
 msgstr "forbedre"
 
-#: dnfdragora/dialogs.py:1953
+#: dnfdragora/dialogs.py:1600
 msgid "suggest"
 msgstr "foreslå"
 
-#: dnfdragora/dialogs.py:1954
+#: dnfdragora/dialogs.py:1601
 msgid "supplement"
 msgstr "tillegg"
 
-#: dnfdragora/dialogs.py:1955
+#: dnfdragora/dialogs.py:1602
 msgid "obsolete"
 msgstr "udtatert"
 
-#: dnfdragora/dialogs.py:1956
+#: dnfdragora/dialogs.py:1603
 msgid "conflict with"
 msgstr "i konflikt med"
 
-#: dnfdragora/dialogs.py:1959
+#: dnfdragora/dialogs.py:1606
 msgid "&Dependency query"
 msgstr "&Avhengighetsspørring"
 
-#: dnfdragora/dialogs.py:1961
+#: dnfdragora/dialogs.py:1608
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
@@ -979,73 +939,73 @@ msgstr ""
 "Når det er avmerket, brukes Søk-feltet som et funksjonsnavn, og pakker søkes "
 "etter avhengighetsrelasjon i stedet for tekstmønster."
 
-#: dnfdragora/dialogs.py:1966
+#: dnfdragora/dialogs.py:1613
 msgid "Find packages that:"
 msgstr "Finnpakker som:"
 
-#: dnfdragora/dialogs.py:1979
+#: dnfdragora/dialogs.py:1626
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
 "Velg avhengighetsrelasjonen for søket: tilby, kreve, stole på, anbefale osv."
 
-#: dnfdragora/dialogs.py:1980
+#: dnfdragora/dialogs.py:1627
 msgid "the capability in \"Find\" field"
 msgstr "muligheten i «Finn»-feltet"
 
-#: dnfdragora/dialogs.py:1987
+#: dnfdragora/dialogs.py:1634
 msgid "Limit to repositories"
 msgstr "Begrens til arkiver"
 
-#: dnfdragora/dialogs.py:1989
+#: dnfdragora/dialogs.py:1636
 msgid "When checked, the search is restricted to the selected repositories."
 msgstr "Når det er avkrysset, er søket begrenset til de valgte arkivene."
 
-#: dnfdragora/dialogs.py:2012
+#: dnfdragora/dialogs.py:1659
 msgid "Limit to architectures"
 msgstr "Begrens til arkitekturer"
 
-#: dnfdragora/dialogs.py:2014
+#: dnfdragora/dialogs.py:1661
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
 "Når dette alternativet er avkrysset, er søket begrenset til de valgte CPU-"
 "arkitekturene."
 
-#: dnfdragora/dialogs.py:2039 dnfdragora/ui.py:620
+#: dnfdragora/dialogs.py:1686 dnfdragora/ui.py:665
 msgid "&Search"
 msgstr "&Søk"
 
-#: dnfdragora/dialogs.py:2040
+#: dnfdragora/dialogs.py:1687
 msgid "Run the search and show matching packages."
 msgstr "Kjør søket og vis samsvarende pakker."
 
-#: dnfdragora/dialogs.py:2042
+#: dnfdragora/dialogs.py:1689
 msgid "&Clear"
 msgstr "&Fjern"
 
-#: dnfdragora/dialogs.py:2043
+#: dnfdragora/dialogs.py:1690
 msgid "Clear the Find field and reset the dependency query frame."
 msgstr "Fjern Søke-feltet og tilbakestill avhengighetsspørringsrammen."
 
-#: dnfdragora/dialogs.py:2045
+#: dnfdragora/dialogs.py:1692
 msgid "C&lose"
 msgstr "S&teng"
 
-#: dnfdragora/dialogs.py:2046
+#: dnfdragora/dialogs.py:1693
 msgid "Close this dialog without running a new search."
 msgstr "Lukk denne dialogboksen uten å kjøre et nytt søk."
 
-#: dnfdragora/dialogs.py:2261 dnfdragora/ui.py:1533
+#: dnfdragora/dialogs.py:1908 dnfdragora/ui.py:1536
 msgid "Invalid regular expression"
 msgstr "Ugyldig regulært uttrykk"
 
-#: dnfdragora/dialogs.py:2397
+#: dnfdragora/dialogs.py:2044
 msgid "(embedded in repository metadata)"
 msgstr "(innebygd i metadata for arkivet)"
 
-#: dnfdragora/dialogs.py:2406
+#: dnfdragora/dialogs.py:2053
 #, python-format
 msgid ""
 "Do you want to import this GPG key?<br><br>Key        : 0x%(id)s:"
@@ -1058,7 +1018,7 @@ msgstr ""
 "\"%(fingerprint)s\"<br>Tidsstempel  : \"%(timestamp)s\"<br>Fra       : "
 "%(file)s"
 
-#: dnfdragora/dialogs.py:2418
+#: dnfdragora/dialogs.py:2065
 msgid "GPG key missed"
 msgstr "GPG nøkkel mangler"
 
@@ -1067,7 +1027,7 @@ msgstr "GPG nøkkel mangler"
 msgid "package has not any %s attributes"
 msgstr "Pakken har ikke noen %s attributter"
 
-#: dnfdragora/dnfd_client.py:531
+#: dnfdragora/dnfd_client.py:533
 msgid "Command in progress"
 msgstr "Kommando kjører"
 
@@ -1612,15 +1572,15 @@ msgstr "Menylinje"
 msgid "Views, filters and search"
 msgstr "Visninger, filtre og søk"
 
-#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:196
+#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:197
 msgid "Group panel"
 msgstr "Guppepanel"
 
-#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:206
+#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:207
 msgid "Package panel"
 msgstr "Pakkepanel"
 
-#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:217
+#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:218
 msgid "Information panel"
 msgstr "Informasjonspanel"
 
@@ -1632,12 +1592,12 @@ msgstr "Fremdriftslinje"
 msgid "Button line"
 msgstr "Knappelinje"
 
-#: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:184
+#: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:185
 msgid "Search dialog"
 msgstr "Søkedialog"
 
 #: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:114
-#: dnfdragora/helpinfo.py:250
+#: dnfdragora/helpinfo.py:251
 msgid "History dialog"
 msgstr "Historiedialog"
 
@@ -1759,9 +1719,9 @@ msgstr ""
 "Utvid filterrammen ved å merke av i tittelen for å vise tre ekstra "
 "avmerkingsbokser:<br>"
 
-#: dnfdragora/helpinfo.py:96 dnfdragora/helpinfo.py:258
-#: dnfdragora/helpinfo.py:265 dnfdragora/helpinfo.py:273
-#: dnfdragora/helpinfo.py:280
+#: dnfdragora/helpinfo.py:96 dnfdragora/helpinfo.py:259
+#: dnfdragora/helpinfo.py:266 dnfdragora/helpinfo.py:274
+#: dnfdragora/helpinfo.py:281
 msgid "<ul>"
 msgstr "<ul>"
 
@@ -1785,9 +1745,9 @@ msgid ""
 msgstr ""
 "<li><b>Testing</b>: vis arkiver hvis ID inneholder <i>testing</i>.</li>"
 
-#: dnfdragora/helpinfo.py:100 dnfdragora/helpinfo.py:262
-#: dnfdragora/helpinfo.py:270 dnfdragora/helpinfo.py:277
-#: dnfdragora/helpinfo.py:287
+#: dnfdragora/helpinfo.py:100 dnfdragora/helpinfo.py:263
+#: dnfdragora/helpinfo.py:271 dnfdragora/helpinfo.py:278
+#: dnfdragora/helpinfo.py:288
 msgid "</ul>"
 msgstr "</ul>"
 
@@ -2025,7 +1985,7 @@ msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr "Hvis <i>Alle</i> er valgt, inneholder pakkepanelet alle pakkene.<br>"
 
-#: dnfdragora/helpinfo.py:174 dnfdragora/helpinfo.py:256
+#: dnfdragora/helpinfo.py:174 dnfdragora/helpinfo.py:257
 msgid "<h2>Filters</h2>"
 msgstr "<h2>Filtre</h2>"
 
@@ -2055,13 +2015,19 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:180
 msgid ""
+"<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
+"applications.</li>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:181
+msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
 "<li><b>Vis kun x86_64 og noarch</b>: Hvis dnfdragora kjører på x86_64-"
 "arkitektur, skjules i686-pakker.</li>"
 
-#: dnfdragora/helpinfo.py:181
+#: dnfdragora/helpinfo.py:182
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
@@ -2069,16 +2035,16 @@ msgstr ""
 "<li><b>Alel</b>:viser alle pakkene, dvs. tilgjengelige, oppdateringer og "
 "installerte.</li>"
 
-#: dnfdragora/helpinfo.py:183
+#: dnfdragora/helpinfo.py:184
 msgid "<h2>Search</h2>"
 msgstr "<h2>Søk</h2>"
 
-#: dnfdragora/helpinfo.py:184
+#: dnfdragora/helpinfo.py:185
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
 msgstr "Klikk på <b>Søk</b> knappen (forstørrelsesglassikonet) åpner%s "
 
-#: dnfdragora/helpinfo.py:185
+#: dnfdragora/helpinfo.py:186
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
@@ -2086,12 +2052,12 @@ msgstr ""
 "som tilbyr fullfunksjons pakkesøk. Når et søk er aktivt, er "
 "filterkombinasjonsboksen deaktivert"
 
-#: dnfdragora/helpinfo.py:186
+#: dnfdragora/helpinfo.py:187
 msgid "and an info label shows the active search text or dependency query. "
 msgstr ""
 "og en infoetikett viser den aktive søketeksten eller avhengighetsspørringen"
 
-#: dnfdragora/helpinfo.py:187
+#: dnfdragora/helpinfo.py:188
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
@@ -2099,11 +2065,11 @@ msgstr ""
 "<b>1Fjern søk</b>-knappen (viskelærikonet) ved siden av søkeknappen "
 "tilbakestiller all søkestatus"
 
-#: dnfdragora/helpinfo.py:188
+#: dnfdragora/helpinfo.py:189
 msgid "and re-enables the filter combobox.<br>"
 msgstr "og aktiverer filterkombinasjonsboksen på nytt.<br>"
 
-#: dnfdragora/helpinfo.py:198
+#: dnfdragora/helpinfo.py:199
 msgid ""
 "This panel shows all the groups available to filter packages, if the Groups "
 "view is selected. The special group <i>Search</i> is added after a search is "
@@ -2113,7 +2079,7 @@ msgstr ""
 "pakker, hvis Grupper-visningen er valgt. Den spesielle gruppen<i>Søk</i> "
 "legges til etter at et søk er utført."
 
-#: dnfdragora/helpinfo.py:208
+#: dnfdragora/helpinfo.py:209
 msgid ""
 "This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
@@ -2123,7 +2089,7 @@ msgstr ""
 "for eksempel<i>navn</i>, <i>sammendrag</i>, <i>versjon</i>, <i>utgivelse</"
 "i>, <i>arkitektur</i>, <i>størrelse</i>, og <i>status</i>."
 
-#: dnfdragora/helpinfo.py:209
+#: dnfdragora/helpinfo.py:210
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
@@ -2131,7 +2097,7 @@ msgstr ""
 "En avkrysningsrute for pakker er kan brukes for å legge en relatert pakke "
 "for installasjon, oppdatering eller fjerning."
 
-#: dnfdragora/helpinfo.py:219
+#: dnfdragora/helpinfo.py:220
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
@@ -2141,17 +2107,17 @@ msgstr ""
 "<i>URL</i>, <i>lager</i>, <i>krav</i>, <i>fil liste</i>, og <i>endringslogg</"
 "i>."
 
-#: dnfdragora/helpinfo.py:220
+#: dnfdragora/helpinfo.py:221
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr "<br><br><i>Noter at endringslogg ikke finnes for dnfdaemon nå.</i>"
 
-#: dnfdragora/helpinfo.py:228
+#: dnfdragora/helpinfo.py:229
 msgid "Progress bar"
 msgstr "Framdriftslinje"
 
-#: dnfdragora/helpinfo.py:230
+#: dnfdragora/helpinfo.py:231
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
@@ -2159,11 +2125,11 @@ msgstr ""
 "Fremdriftslinje viser progresjon av dnfdragora-operasjoner som transaksjoner "
 "og mellomlagrings-data."
 
-#: dnfdragora/helpinfo.py:238
+#: dnfdragora/helpinfo.py:239
 msgid "Buttons line"
 msgstr "Knappe linje"
 
-#: dnfdragora/helpinfo.py:240
+#: dnfdragora/helpinfo.py:241
 msgid ""
 "<ul><li><b>Apply</b>: when some packages are selected for installing or "
 "updating or deselected for uninstalling this button runs the transaction to "
@@ -2173,7 +2139,7 @@ msgstr ""
 "oppdateres, eller fjerne valg for å avinstallering aktiverer denne knappen "
 "transaksjonen som skal kjøres.</li>"
 
-#: dnfdragora/helpinfo.py:241
+#: dnfdragora/helpinfo.py:242
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
@@ -2182,11 +2148,11 @@ msgstr ""
 "bare denne knappen som gjør det mulig å velge alle pakkene på samme gang.</"
 "li>"
 
-#: dnfdragora/helpinfo.py:242
+#: dnfdragora/helpinfo.py:243
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
 msgstr "<li><b>Avslutt </b>: går ut av dnfdragora.</li></ul>"
 
-#: dnfdragora/helpinfo.py:252
+#: dnfdragora/helpinfo.py:253
 msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
@@ -2194,15 +2160,15 @@ msgstr ""
 "Historikk-dialogboksen viser pakker som nylig har blitt endret på systemet "
 "ved å spørre dnf5daemon History API.<br><br>"
 
-#: dnfdragora/helpinfo.py:253
+#: dnfdragora/helpinfo.py:254
 msgid "<h2>Opening the dialog</h2>"
 msgstr "Åpner dialogen</h2>"
 
-#: dnfdragora/helpinfo.py:254
+#: dnfdragora/helpinfo.py:255
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
 msgstr "Åpne dialogboksen fra menylinjen: <b>Handlinger → Historie</b>.<br>"
 
-#: dnfdragora/helpinfo.py:255
+#: dnfdragora/helpinfo.py:256
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
@@ -2210,7 +2176,7 @@ msgstr ""
 "Hovedvinduet i dnfdragora er deaktivert mens dialogboksen er åpen for å "
 "forhindre utilsiktede interaksjoner.<br><br>"
 
-#: dnfdragora/helpinfo.py:257
+#: dnfdragora/helpinfo.py:258
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
@@ -2218,7 +2184,7 @@ msgstr ""
 " I<b>Filter</b> seksjonen øverst i dialogboksen kan du begrense resultatene:"
 "<br>"
 
-#: dnfdragora/helpinfo.py:259
+#: dnfdragora/helpinfo.py:260
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
@@ -2226,22 +2192,22 @@ msgstr ""
 "Siden (ÅÅÅÅ-MM-DD)</b>:skriv inn en dato for å bare vise pakker som er "
 "endret, på eller etter den datoen. "
 
-#: dnfdragora/helpinfo.py:260
+#: dnfdragora/helpinfo.py:261
 msgid "Leave empty to retrieve all available history. "
 msgstr "La stå tomt for å hente all tilgjengelig historikk."
 
-#: dnfdragora/helpinfo.py:261
+#: dnfdragora/helpinfo.py:262
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
 "Datoen konverteres til et Unix-tidsstempel før den sendes til daemonen..</li>"
 
-#: dnfdragora/helpinfo.py:263
+#: dnfdragora/helpinfo.py:264
 msgid "<h2>Change type checkboxes</h2>"
 msgstr "<h2>Endre type avmerkingsbokser</h2>"
 
-#: dnfdragora/helpinfo.py:264
+#: dnfdragora/helpinfo.py:265
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
@@ -2249,28 +2215,28 @@ msgstr ""
 "Fire avmerkingsbokser lar deg velge hvilke typer pakkeendringer som skal "
 "inkluderes i resultatene:<br>"
 
-#: dnfdragora/helpinfo.py:266
+#: dnfdragora/helpinfo.py:267
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
 msgstr "<li><b>Installert</b>: pakker som nylig ble installert.</li>"
 
-#: dnfdragora/helpinfo.py:267
+#: dnfdragora/helpinfo.py:268
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
 msgstr "<li><b>Fjernet</b>: pakker som ble fjernet fra systemet.</li>"
 
-#: dnfdragora/helpinfo.py:268
+#: dnfdragora/helpinfo.py:269
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
 "<li><b>Oppgradert</b>: pakker som ble oppgradert til en nyere versjon.</li>"
 
-#: dnfdragora/helpinfo.py:269
+#: dnfdragora/helpinfo.py:270
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
 "<li><b>Nedgradert</b>: pakker som ble nedgradert til en eldre versjon.</li>"
 
-#: dnfdragora/helpinfo.py:271
+#: dnfdragora/helpinfo.py:272
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
@@ -2278,11 +2244,11 @@ msgstr ""
 "Fjern avmerkingen for alle typer du ikke er interessert i for å redusere "
 "antall rader som vises.<br><br>"
 
-#: dnfdragora/helpinfo.py:272
+#: dnfdragora/helpinfo.py:273
 msgid "<h2>Advisory options</h2>"
 msgstr "<h2>Rådgivende alternativer</h2>"
 
-#: dnfdragora/helpinfo.py:274
+#: dnfdragora/helpinfo.py:275
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
@@ -2291,7 +2257,7 @@ msgstr ""
 "informasjon (sikkerhet, feilretting, forbedring) der det er tilgjengelig.</"
 "li>"
 
-#: dnfdragora/helpinfo.py:275
+#: dnfdragora/helpinfo.py:276
 msgid ""
 "<li><b>All advisories</b>: when checked together with <i>Include advisories</"
 "i>, all advisory types are returned rather than only the most relevant one "
@@ -2300,7 +2266,7 @@ msgstr ""
 "<li><b>Alle råd</b>: Når det er merket av sammen med <i>Inkluder råd</i>, "
 "returneres alle rådtyper i stedet for bare den mest relevante per pakke."
 
-#: dnfdragora/helpinfo.py:276
+#: dnfdragora/helpinfo.py:277
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
@@ -2308,31 +2274,31 @@ msgstr ""
 "Dette alternativet deaktiveres automatisk når det ikke er merket av for "
 "<i>Inkluder råd</i></li>."
 
-#: dnfdragora/helpinfo.py:278
+#: dnfdragora/helpinfo.py:279
 msgid "<h2>Results table</h2>"
 msgstr "<h2>Resultattabell</h2>"
 
-#: dnfdragora/helpinfo.py:279
+#: dnfdragora/helpinfo.py:280
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr "Tabellen viser én rad per endret pakke med følgende kolonner:<br>"
 
-#: dnfdragora/helpinfo.py:281
+#: dnfdragora/helpinfo.py:282
 msgid "<li><b>Name</b>: the package name.</li>"
 msgstr "<li><b>Navn</b>: pakkenavnet</li>"
 
-#: dnfdragora/helpinfo.py:282
+#: dnfdragora/helpinfo.py:283
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
 msgstr ""
 "<li><b>EVR</b>: epoch:versjonsutgivelse av den nye (installerte) versjonen.</"
 "li>"
 
-#: dnfdragora/helpinfo.py:283
+#: dnfdragora/helpinfo.py:284
 msgid "<li><b>Arch</b>: the package architecture.</li>"
 msgstr "<li><b>Arch</b>: pakkearkitekturen.</li>"
 
-#: dnfdragora/helpinfo.py:284
+#: dnfdragora/helpinfo.py:285
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
@@ -2340,7 +2306,7 @@ msgstr ""
 "<li><b>Handling</b>: én av <i>installert,</i> <i>jernet</i>, <i>oppgradert</"
 "i> eller </i>nedgradert</i>.</li>"
 
-#: dnfdragora/helpinfo.py:285
+#: dnfdragora/helpinfo.py:286
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
@@ -2348,11 +2314,11 @@ msgstr ""
 "<li><b>Dato</b>: dato og klokkeslett for transaksjonen (ÅÅÅÅ-MM-DD TT:MM)</"
 "li>"
 
-#: dnfdragora/helpinfo.py:286
+#: dnfdragora/helpinfo.py:287
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
 msgstr "<li><b>Sammendrag</b>: en kort beskrivelse av pakken.</li>"
 
-#: dnfdragora/helpinfo.py:288
+#: dnfdragora/helpinfo.py:289
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
@@ -2360,7 +2326,7 @@ msgstr ""
 "Hvis ingen pakker samsvarer med de gjeldende filtrene, vises raden <i>Ingen "
 "resultater</i><br>"
 
-#: dnfdragora/helpinfo.py:289
+#: dnfdragora/helpinfo.py:290
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
@@ -2368,11 +2334,11 @@ msgstr ""
 "Hvis daemon-kallet mislykkes, vises feilmeldingen i tabellen, slik at du kan "
 "diagnostisere problemet.<br><br>"
 
-#: dnfdragora/helpinfo.py:290
+#: dnfdragora/helpinfo.py:291
 msgid "<h2>Refresh button</h2>"
 msgstr "<h2>Oppdater-knapp</h2>"
 
-#: dnfdragora/helpinfo.py:291
+#: dnfdragora/helpinfo.py:292
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
@@ -2380,16 +2346,16 @@ msgstr ""
 "Trykk på <b>Oppdater</b> for å spørre daemonen på nytt med gjeldende "
 "filterinnstillinger."
 
-#: dnfdragora/helpinfo.py:292
+#: dnfdragora/helpinfo.py:293
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
 "Dialogboksen spør også automatisk når den åpnes for første gang.<br><br>"
 
-#: dnfdragora/helpinfo.py:293
+#: dnfdragora/helpinfo.py:294
 msgid "<h2>Close button</h2>"
 msgstr "<h2>Lukk-knapp</h2>"
 
-#: dnfdragora/helpinfo.py:294
+#: dnfdragora/helpinfo.py:295
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
@@ -2397,112 +2363,171 @@ msgstr ""
 "Trykk <b>Lukk</b> (eller knappen for å lukke vinduet) for å lukke "
 "dialogboksen og gå tilbake til hovedvinduet.<br>"
 
-#: dnfdragora/progress_ui.py:191
+#: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
 msgstr "Transaksjonen er fullført"
 
-#: dnfdragora/progress_ui.py:192
+#: dnfdragora/progress_ui.py:194
 msgid "Transaction completed with errors"
 msgstr "Transaksjonen er fullført, men med feil"
 
-#: dnfdragora/progress_ui.py:195
+#: dnfdragora/progress_ui.py:197
 msgid "Transaction completed"
 msgstr "Transaksjonen er fullført"
 
-#: dnfdragora/progress_ui.py:222
+#: dnfdragora/progress_ui.py:231
+msgid "Cancellation already requested; waiting..."
+msgstr ""
+
+#: dnfdragora/progress_ui.py:239
+#, python-format
+msgid "Cancellation request failed: %(err)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:246
+msgid "Cancellation requested; waiting for transaction to stop"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:247
+msgid "Cancelling transaction..."
+msgstr ""
+
+#: dnfdragora/progress_ui.py:248
+msgid "Waiting for backend to stop transaction"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:252
+msgid "Cancellation refused by backend"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:254
+#, python-format
+msgid "Cancellation refused: %(msg)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:263
 #, python-format
 msgid "Downloading:  %(d)s"
 msgstr "Nedlasting:  %(d)s"
 
-#: dnfdragora/progress_ui.py:243
+#: dnfdragora/progress_ui.py:284
 #, python-format
 msgid "Verifying %(n)d packages"
 msgstr "Verifiserer %(n)d pakker"
 
-#: dnfdragora/progress_ui.py:244
+#: dnfdragora/progress_ui.py:285
 msgid "Verifying packages"
 msgstr "Verifiserer pakker"
 
-#: dnfdragora/progress_ui.py:258
+#: dnfdragora/progress_ui.py:299
 #, python-format
 msgid "Preparing transaction: %(n)d packages"
 msgstr "Forbereder transaksjon%(n)dpakker"
 
-#: dnfdragora/progress_ui.py:259
+#: dnfdragora/progress_ui.py:300
 msgid "Preparing transaction"
 msgstr "Forbereder transaksjonen"
 
-#: dnfdragora/progress_ui.py:273
+#: dnfdragora/progress_ui.py:314
 #, python-format
 msgid "Processing: %(n)s"
 msgstr "Prosesserer: %(n)s"
 
-#: dnfdragora/progress_ui.py:298
+#: dnfdragora/progress_ui.py:339
 #, python-format
 msgid "Scriptlet: %(n)s  [%(t)s]"
 msgstr "Lite skript%(n)s[%(t)s]"
 
-#: dnfdragora/progress_ui.py:333
+#: dnfdragora/progress_ui.py:374
 msgid "Transaction in progress…"
 msgstr "Transaksjon pågår…"
 
-#: dnfdragora/progress_ui.py:338
+#: dnfdragora/progress_ui.py:379
 msgid "Packages:"
 msgstr "Pakker"
 
-#: dnfdragora/progress_ui.py:346
+#: dnfdragora/progress_ui.py:387
 msgid "Current:"
 msgstr "Nåværende:"
 
-#: dnfdragora/progress_ui.py:354
+#: dnfdragora/progress_ui.py:395
 msgid "Transaction log"
 msgstr "Transaksjonslogg"
 
-#: dnfdragora/progress_ui.py:362 dnfdragora/progress_ui.py:397
+#: dnfdragora/progress_ui.py:403 dnfdragora/progress_ui.py:442
 msgid "Running…"
 msgstr "Kjører"
 
-#: dnfdragora/progress_ui.py:365
+#: dnfdragora/progress_ui.py:406
 msgid "&Save log…"
 msgstr "&Lagringslog…"
 
-#: dnfdragora/progress_ui.py:394
+#: dnfdragora/progress_ui.py:439
 msgid "Completed ✓"
 msgstr "Ferdig"
 
-#: dnfdragora/progress_ui.py:395
+#: dnfdragora/progress_ui.py:440
 msgid "Completed with errors"
 msgstr "Ferdig, men med feil"
 
-#: dnfdragora/progress_ui.py:440
+#: dnfdragora/progress_ui.py:484
 msgid "Save transaction log"
 msgstr "Lagre transaksjonslog"
 
-#: dnfdragora/ui.py:223
+#: dnfdragora/ui.py:225
 msgid "No transaction found"
 msgstr "Ingen transaksjon funnet"
 
-#: dnfdragora/ui.py:233
+#: dnfdragora/ui.py:235
 msgid "Update information"
 msgstr "Oppdateringsinformasjon"
 
-#: dnfdragora/ui.py:234
+#: dnfdragora/ui.py:236
 msgid "File list"
 msgstr "Filliste"
 
-#: dnfdragora/ui.py:235
+#: dnfdragora/ui.py:237
 msgid "Changelog"
 msgstr "Endringslogg"
 
-#: dnfdragora/ui.py:236
+#: dnfdragora/ui.py:238
 msgid "Requirements"
 msgstr "Krav"
 
-#: dnfdragora/ui.py:320
+#: dnfdragora/ui.py:316
+msgid ""
+"dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
+msgstr ""
+
+#: dnfdragora/ui.py:318
+msgid "Developers"
+msgstr "Utviklere"
+
+#: dnfdragora/ui.py:324
+msgid "Current developers and maintainers"
+msgstr ""
+
+#: dnfdragora/ui.py:330
+msgid "Translations"
+msgstr ""
+
+#: dnfdragora/ui.py:334
+msgid "Contributors"
+msgstr ""
+
+#: dnfdragora/ui.py:343
+msgid "Project Links"
+msgstr ""
+
+#: dnfdragora/ui.py:348
+msgid "Report Issues or Improvements"
+msgstr ""
+
+#: dnfdragora/ui.py:366
 msgid "Logging directory not found"
 msgstr "Loggkatalogen ble ikke funnet"
 
-#: dnfdragora/ui.py:321
+#: dnfdragora/ui.py:367
 #, python-format
 msgid ""
 "The configured log directory <b>%s</b> does not exist.<br>Logging is "
@@ -2513,183 +2538,187 @@ msgstr ""
 "deaktivert for denne økten. <br>Oppdater loggkatalogen i <i>Alternativer > "
 "Brukerinnstillinger.</i>"
 
-#: dnfdragora/ui.py:451
+#: dnfdragora/ui.py:497
 msgid "Software Management - dnfdragora"
 msgstr "Programvarehåndtering - dnfdragora"
 
-#: dnfdragora/ui.py:524
+#: dnfdragora/ui.py:568
 msgid "Release"
 msgstr "Utgivelse"
 
-#: dnfdragora/ui.py:524
+#: dnfdragora/ui.py:568
 msgid "Version"
 msgstr "Versjon"
 
-#: dnfdragora/ui.py:532
+#: dnfdragora/ui.py:576
 msgid "Status"
 msgstr "Status"
 
-#: dnfdragora/ui.py:545
+#: dnfdragora/ui.py:589
 msgid "Not installed"
 msgstr "Ikke installert"
 
-#: dnfdragora/ui.py:546
+#: dnfdragora/ui.py:590
 msgid "To update"
 msgstr "Skal oppdateres"
 
-#: dnfdragora/ui.py:552
+#: dnfdragora/ui.py:591
+msgid "Desktop Applications"
+msgstr ""
+
+#: dnfdragora/ui.py:597
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Vis %s og bare noarch "
 
-#: dnfdragora/ui.py:558
+#: dnfdragora/ui.py:603
 msgid "Groups"
 msgstr "Grupper"
 
-#: dnfdragora/ui.py:563
+#: dnfdragora/ui.py:608
 msgid "Grouping packages"
 msgstr "Gruppering av pakker"
 
-#: dnfdragora/ui.py:596
+#: dnfdragora/ui.py:641
 msgid "Filtering packages"
 msgstr "Filtrering av pakker"
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:666
 msgid "Open search dialog"
 msgstr "Åpne søkedialogboksen"
 
-#: dnfdragora/ui.py:623
+#: dnfdragora/ui.py:668
 msgid "&Clear search"
 msgstr "&Tøm søk"
 
-#: dnfdragora/ui.py:624
+#: dnfdragora/ui.py:669
 msgid "Clear current search"
 msgstr "Fjern gjeldende søk"
 
-#: dnfdragora/ui.py:639
+#: dnfdragora/ui.py:684
 msgid "Sel&ect all"
 msgstr "Velg alt"
 
-#: dnfdragora/ui.py:641
-msgid "Select all the packages"
-msgstr "Velg alle pakkene"
+#: dnfdragora/ui.py:686
+msgid "Select all the update packages"
+msgstr ""
 
-#: dnfdragora/ui.py:646 dnfdragora/ui.py:665 dnfdragora/ui.py:731
+#: dnfdragora/ui.py:691 dnfdragora/ui.py:710
 msgid "&Quit"
 msgstr "&Avslutt"
 
-#: dnfdragora/ui.py:648
+#: dnfdragora/ui.py:693
 msgid "Quit the application"
 msgstr "Avslutt applikasjonen"
 
-#: dnfdragora/ui.py:658 dnfdragora/ui.py:727
+#: dnfdragora/ui.py:703
 msgid "&File"
 msgstr "&Fil"
 
-#: dnfdragora/ui.py:661 dnfdragora/ui.py:728
+#: dnfdragora/ui.py:706
 msgid "Reset the selection"
 msgstr "Tilbakestill valg"
 
-#: dnfdragora/ui.py:662 dnfdragora/ui.py:729
+#: dnfdragora/ui.py:707
 msgid "Refresh Metadata"
 msgstr "Oppfrisk Metadata"
 
-#: dnfdragora/ui.py:663 dnfdragora/ui.py:730
+#: dnfdragora/ui.py:708
 msgid "Repositories"
 msgstr "Lagringssted"
 
-#: dnfdragora/ui.py:672 dnfdragora/ui.py:753
+#: dnfdragora/ui.py:714
 msgid "&Actions"
 msgstr "&&Handling"
 
-#: dnfdragora/ui.py:675
+#: dnfdragora/ui.py:717
 msgid "&Action on packages"
 msgstr "&Handling på pakker"
 
-#: dnfdragora/ui.py:676
+#: dnfdragora/ui.py:718
+msgid "&Update All"
+msgstr ""
+
+#: dnfdragora/ui.py:719
 msgid "&History"
 msgstr "&Historikk"
 
-#: dnfdragora/ui.py:693 dnfdragora/ui.py:763
+#: dnfdragora/ui.py:723
 msgid "&Options"
 msgstr "&Alternativer"
 
-#: dnfdragora/ui.py:696 dnfdragora/ui.py:764
+#: dnfdragora/ui.py:726
 msgid "User preferences"
 msgstr "Brukerpreferanser"
 
-#: dnfdragora/ui.py:703 dnfdragora/ui.py:775
+#: dnfdragora/ui.py:730
 msgid "&Help"
 msgstr "&Hjelp"
 
-#: dnfdragora/ui.py:706 dnfdragora/ui.py:776
+#: dnfdragora/ui.py:733
 msgid "Manual"
 msgstr "Manuell"
 
-#: dnfdragora/ui.py:708 dnfdragora/ui.py:777
+#: dnfdragora/ui.py:735
 msgid "&About"
 msgstr "&Om"
 
-#: dnfdragora/ui.py:754
-msgid "Action on packages"
-msgstr "Handling på pakker"
-
-#: dnfdragora/ui.py:813
+#: dnfdragora/ui.py:768
 msgid "update"
 msgstr "oppdater"
 
-#: dnfdragora/ui.py:816
+#: dnfdragora/ui.py:771
 msgid "locked"
 msgstr "låst"
 
-#: dnfdragora/ui.py:1064
+#: dnfdragora/ui.py:1045
 #, python-format
 msgid "[ Search: %s ]"
 msgstr "[ Søk: %s ]"
 
-#: dnfdragora/ui.py:1066
+#: dnfdragora/ui.py:1047
 #, python-format
 msgid "[ Dependency search: %s ]"
 msgstr "[ Avhengighetssøk: %s ]"
 
-#: dnfdragora/ui.py:1294
+#: dnfdragora/ui.py:1295
 msgid "Missing information"
 msgstr "Mangler informasjon"
 
-#: dnfdragora/ui.py:1311
+#: dnfdragora/ui.py:1312
 msgid "Severity"
 msgstr "Alvorlighet"
 
-#: dnfdragora/ui.py:1320
+#: dnfdragora/ui.py:1321
 msgid "Repository"
 msgstr "Pakkebrønn"
 
-#: dnfdragora/ui.py:1770
+#: dnfdragora/ui.py:1686
 msgid "&Downgrade"
 msgstr "&Nedgrader"
 
-#: dnfdragora/ui.py:1773
+#: dnfdragora/ui.py:1689
 msgid "&Reinstall"
 msgstr "&Ominstaller"
 
-#: dnfdragora/ui.py:1776
+#: dnfdragora/ui.py:1692
 msgid "&Distro Sync"
 msgstr "&Distrosynk"
 
-#: dnfdragora/ui.py:1907
+#: dnfdragora/ui.py:1830
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Pakke%s kan ikke fjernes"
 
-#: dnfdragora/ui.py:1907
+#: dnfdragora/ui.py:1830
 msgid "Protected package selected"
 msgstr "Beskyttet pakke er valgt"
 
-#: dnfdragora/ui.py:2217
+#: dnfdragora/ui.py:2170
 msgid "Backend busy"
 msgstr "Backend opptatt"
 
-#: dnfdragora/ui.py:2218
+#: dnfdragora/ui.py:2171
 msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
@@ -2697,100 +2726,88 @@ msgstr ""
 "Backend-systemet er opptatt med å behandle transaksjonen. Operasjonen vil "
 "fortsette, og fremdriftshendelser vil fortsatt spores."
 
-#: dnfdragora/ui.py:2254
+#: dnfdragora/ui.py:2207
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Ukjent handling %(action)s på %(name)s"
 
-#: dnfdragora/ui.py:2286
+#: dnfdragora/ui.py:2239
 msgid "Transaction verification"
 msgstr "Transaksjonsverifikasjon"
 
-#: dnfdragora/ui.py:2342
+#: dnfdragora/ui.py:2295
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr "Transaksjon for pakke <%(nevra)s> startet"
 
-#: dnfdragora/ui.py:2361
+#: dnfdragora/ui.py:2314
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr "Transaksjon for pakke  <%(nevra)s> pågår"
 
-#: dnfdragora/ui.py:2400
+#: dnfdragora/ui.py:2353
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr "Transaksjon pågår: <%(nevra)s> starter"
 
-#: dnfdragora/ui.py:2419 dnfdragora/ui.py:2440
+#: dnfdragora/ui.py:2372 dnfdragora/ui.py:2393
 msgid "Preparation of transaction"
 msgstr "Forberedelse av transaksjon"
 
-#: dnfdragora/ui.py:2502
+#: dnfdragora/ui.py:2433
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr "Skriptlet <%(nevra)s> startet"
 
-#: dnfdragora/ui.py:2591
+#: dnfdragora/ui.py:2522
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: dnfdragora/ui.py:2623
+#: dnfdragora/ui.py:2554
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 "Start nedlasting av [%(count_files)d] - fil %(id)s - %(description)s ..."
 
-#: dnfdragora/ui.py:2660
+#: dnfdragora/ui.py:2591
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr "Nedlasting av fil %(id)s - %(description)s pågår"
 
-#: dnfdragora/ui.py:2749
+#: dnfdragora/ui.py:2690
 msgid "Caching updates"
 msgstr "Mellomlagre oppdateringer"
 
-#: dnfdragora/ui.py:2752
+#: dnfdragora/ui.py:2693
 msgid "Caching installed"
 msgstr "Mellomlagring installert"
 
-#: dnfdragora/ui.py:2756
+#: dnfdragora/ui.py:2697
 msgid "Caching available"
 msgstr "Mellomlagring finns tilgjengelig"
 
-#: dnfdragora/ui.py:2806
+#: dnfdragora/ui.py:2754
 msgid "Creating packages cache"
 msgstr "Opprette pakkemellomlager"
 
-#: dnfdragora/ui.py:2826
+#: dnfdragora/ui.py:2775
 msgid "Transaction with warnings"
 msgstr "Transaksjon med advarsler"
 
-#: dnfdragora/ui.py:2870 dnfdragora/ui.py:2927
+#: dnfdragora/ui.py:2819 dnfdragora/ui.py:2849
 msgid "Build Transaction error"
 msgstr "Transaksjonsfeil under bygging"
 
-#: dnfdragora/ui.py:2913
-msgid "Packages installed:"
-msgstr "Pakker som er installert"
-
-#: dnfdragora/ui.py:2916
-msgid "Packages removed:"
-msgstr "Pakker som er fjernet"
-
-#: dnfdragora/ui.py:2918
-msgid "Error occured:"
-msgstr "En feil oppstod:"
-
-#: dnfdragora/ui.py:2921
+#: dnfdragora/ui.py:2843
 msgid "Applying changes to the system"
 msgstr "Utfører systemendringer"
 
-#: dnfdragora/ui.py:2957
+#: dnfdragora/ui.py:2879
 #, python-format
 msgid "Error in status %(status)s on %(event)s"
 msgstr "Feil i status %(status)s på %(event)s"
 
-#: dnfdragora/ui.py:3090
+#: dnfdragora/ui.py:3053
 msgid "Search error using regular expression"
 msgstr "Søkefeil ved bruk av regulære uttrykk"
 
@@ -2869,3 +2886,50 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hovedvindu"
+
+#~ msgid "&Undo"
+#~ msgstr "&Angre"
+
+#~ msgid "Action on packages"
+#~ msgstr "Handling på pakker"
+
+#~ msgid "Build transaction failure"
+#~ msgstr "Transaksjonsfeil ved bygging"
+
+#~ msgid "Downloading error"
+#~ msgid_plural "Downloading errors"
+#~ msgstr[0] "Nedlastingsfeil"
+#~ msgstr[1] "Nedlastingsfeil"
+
+#~ msgid "Error checking package signatures"
+#~ msgstr "Feil ved sjekking av pakkesignaturer"
+
+#~ msgid "Error in transaction"
+#~ msgid_plural "Errors in transaction"
+#~ msgstr[0] "Feil"
+#~ msgstr[1] "Feil i transaksjonen"
+
+#~ msgid "Error occured:"
+#~ msgstr "En feil oppstod:"
+
+#~ msgid "History (Date/Time)"
+#~ msgstr "Historie (Dato/Tid)"
+
+#~ msgid "Packages installed:"
+#~ msgstr "Pakker som er installert"
+
+#~ msgid "Packages removed:"
+#~ msgstr "Pakker som er fjernet"
+
+#~ msgid "Select all the packages"
+#~ msgstr "Velg alle pakkene"
+
+#~ msgid "Transaction History"
+#~ msgstr "Transaksjonshistorikk"
+
+#~ msgid "Undo transaction"
+#~ msgstr "Angre transaksjon"
+
+#~ msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
+#~ msgstr ""
+#~ "dnfdragora er en DNF forside som fungerer og bruker GTK, ncurses og QT"
