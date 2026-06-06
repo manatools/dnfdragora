@@ -509,9 +509,8 @@ msgid "Total size "
 msgstr "Загальний розмір "
 
 #: dnfdragora/dialogs.py:532
-#, fuzzy
 msgid "Reset transaction failed"
-msgstr "Помилка під час побудови операції"
+msgstr "Не вдалося скинути дію"
 
 #: dnfdragora/dialogs.py:575
 msgid "Repository Management"
@@ -2024,12 +2023,12 @@ msgstr ""
 "<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</li>"
 
 #: dnfdragora/helpinfo.py:180
-#, fuzzy
 msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
-"<li><b>Оновлення: показати лише пакунки, які доступні для оновлення.</li>"
+"<li><b>Стільничні програми</b>: показує пакунки із програмами з графічним "
+"інтерфейсом.</li>"
 
 #: dnfdragora/helpinfo.py:181
 msgid ""
@@ -2395,34 +2394,33 @@ msgstr "Дію завершено"
 
 #: dnfdragora/progress_ui.py:231
 msgid "Cancellation already requested; waiting..."
-msgstr ""
+msgstr "Запит щодо скасування вже надіслано; очікуємо на результати…"
 
 #: dnfdragora/progress_ui.py:239
 #, python-format
 msgid "Cancellation request failed: %(err)s"
-msgstr ""
+msgstr "Не вдалося виконати запит щодо скасування: %(err)s"
 
 #: dnfdragora/progress_ui.py:246
 msgid "Cancellation requested; waiting for transaction to stop"
-msgstr ""
+msgstr "Надіслано запит щодо скасування; очікуємо на припинення виконання дії"
 
 #: dnfdragora/progress_ui.py:247
-#, fuzzy
 msgid "Cancelling transaction..."
-msgstr "Приготування дії"
+msgstr "Скасовуємо дію…"
 
 #: dnfdragora/progress_ui.py:248
 msgid "Waiting for backend to stop transaction"
-msgstr ""
+msgstr "Очікуємо на припинення виконання дії модулем обробки"
 
 #: dnfdragora/progress_ui.py:252
 msgid "Cancellation refused by backend"
-msgstr ""
+msgstr "Модулем обробки відмовлено у скасуванні"
 
 #: dnfdragora/progress_ui.py:254
 #, python-format
 msgid "Cancellation refused: %(msg)s"
-msgstr ""
+msgstr "Відмовлено у скасуванні: %(msg)s"
 
 #: dnfdragora/progress_ui.py:263
 #, python-format
@@ -2514,12 +2512,11 @@ msgid "Requirements"
 msgstr "Вимоги"
 
 #: dnfdragora/ui.py:316
-#, fuzzy
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
-"dnfdragora — оболонка DNF, яка працює за допомогою інтерфейсів GTK, ncurses "
-"та Qt"
+"dnfdragora — оболонка фонової служби DNF5, яка працює за допомогою "
+"інтерфейсів GTK, ncurses та Qt"
 
 #: dnfdragora/ui.py:318
 msgid "Developers"
@@ -2527,24 +2524,23 @@ msgstr "Розробники"
 
 #: dnfdragora/ui.py:324
 msgid "Current developers and maintainers"
-msgstr ""
+msgstr "Поточні розробники і супровідники"
 
 #: dnfdragora/ui.py:330
-#, fuzzy
 msgid "Translations"
-msgstr "Дії"
+msgstr "Переклади"
 
 #: dnfdragora/ui.py:334
 msgid "Contributors"
-msgstr ""
+msgstr "Учасники розробки"
 
 #: dnfdragora/ui.py:343
 msgid "Project Links"
-msgstr ""
+msgstr "Посилання на проєкт"
 
 #: dnfdragora/ui.py:348
 msgid "Report Issues or Improvements"
-msgstr ""
+msgstr "Звітування про вади та прохання щодо удосконалення"
 
 #: dnfdragora/ui.py:366
 msgid "Logging directory not found"
@@ -2586,9 +2582,8 @@ msgid "To update"
 msgstr "Оновлення"
 
 #: dnfdragora/ui.py:591
-#, fuzzy
 msgid "Desktop Applications"
-msgstr "Програми"
+msgstr "Стільничні програми"
 
 #: dnfdragora/ui.py:597
 #, python-format
@@ -2624,9 +2619,8 @@ msgid "Sel&ect all"
 msgstr "Поз&начити усі"
 
 #: dnfdragora/ui.py:686
-#, fuzzy
 msgid "Select all the update packages"
-msgstr "Позначити усі пакунки"
+msgstr "Вибрати усі оновлення пакунків"
 
 #: dnfdragora/ui.py:691 dnfdragora/ui.py:710
 msgid "&Quit"
@@ -2661,9 +2655,8 @@ msgid "&Action on packages"
 msgstr "Д&ія над пакунками"
 
 #: dnfdragora/ui.py:718
-#, fuzzy
 msgid "&Update All"
-msgstr "Оновлення"
+msgstr "&Оновити усі"
 
 #: dnfdragora/ui.py:719
 msgid "&History"
@@ -2916,44 +2909,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Головне вікно"
-
-#~ msgid "Undo transaction"
-#~ msgstr "Скасувати дію"
-
-#~ msgid "Error checking package signatures"
-#~ msgstr "Помилка під час спроби перевірити підписи пакунків"
-
-#~ msgid "Downloading error"
-#~ msgid_plural "Downloading errors"
-#~ msgstr[0] "Помилки отримання даних"
-#~ msgstr[1] "Помилки отримання даних"
-#~ msgstr[2] "Помилки отримання даних"
-#~ msgstr[3] "Помилка отримання даних"
-
-#~ msgid "Error in transaction"
-#~ msgid_plural "Errors in transaction"
-#~ msgstr[0] "Помилки під час дії"
-#~ msgstr[1] "Помилки під час дії"
-#~ msgstr[2] "Помилки під час дії"
-#~ msgstr[3] "Помилка під час дії"
-
-#~ msgid "History (Date/Time)"
-#~ msgstr "Журнал (Дата/Час)"
-
-#~ msgid "Transaction History"
-#~ msgstr "Журнал операцій"
-
-#~ msgid "&Undo"
-#~ msgstr "&Вернути"
-
-#~ msgid "Action on packages"
-#~ msgstr "Дії з пакунками"
-
-#~ msgid "Packages installed:"
-#~ msgstr "Встановлено пакунків:"
-
-#~ msgid "Packages removed:"
-#~ msgstr "Вилучено пакунків:"
-
-#~ msgid "Error occured:"
-#~ msgstr "Сталася помилка:"
