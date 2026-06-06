@@ -177,6 +177,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
             _('<li><b>Installed</b>: shows installed packages only.</li>') + \
             _('<li><b>Not installed</b>: shows available packages only.</li>') + \
             _('<li><b>To update</b>: shows packages that are available for updates only.</li>') + \
+            _('<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI applications.</li>') + \
             _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
             _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li>') + \
           '</ul>' + \
