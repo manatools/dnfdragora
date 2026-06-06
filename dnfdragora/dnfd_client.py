@@ -1478,10 +1478,6 @@ class Client:
           pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
           return pkg_ids
 
-# TODO old Search remind some parameters not present in dnf5daemon
-#      def Search(self, fields, keys, attrs, match_all, newest_only, tags):
-#        pass
-
     def GetRepositories(self, patterns=["*"], repo_attrs=["id", "name", "enabled"], enable_disable="all", sync=False):
         '''Get a list of repository where id matches with any of the given patterns
 
