@@ -1982,6 +1982,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         if eventType == MUI.YEventType.CancelEvent:
           if self._trans_dialog is not None:
+            # NOTE: cancel event cannot be reverted, so we try to cancel the tranaction and reset the session
+            if self._trans_dialog.request_close():
+              logger.debug("User cancelled transaction dialog and the transaction has been cancelled")
+            else:
+              logger.warning("User cancelled transaction dialog; attempting to cancel transaction and reset session")
+
             self._close_trans_dialog()
             # Clean up download and transaction data
             self.__resetDownloads()

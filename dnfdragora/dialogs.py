@@ -522,23 +522,37 @@ class TransactionResult:
 
         #dlg.setDefaultButton(okButton)
 
+        def _reset_built_transaction():
+          """Reset prepared goal when user cancels before RunTransaction."""
+          try:
+            self.parent.backend.ResetTransaction(sync=True)
+          except Exception as err:
+            logger.exception("ResetTransaction failed after TransactionResult cancel: %s", err)
+            warningMsgBox({
+              'title': _('Reset transaction failed'),
+              'text': str(err),
+              'richtext': True,
+            })
+
 
         accepting = False
         while (True) :
-            event = dlg.waitForEvent()
-            eventType = event.eventType()
-            #event type checking
-            if (eventType == MUI.YEventType.CancelEvent) :
-                break
-            elif (eventType == MUI.YEventType.WidgetEvent) :
-                # widget selected
-                widget = event.widget()
+          event = dlg.waitForEvent()
+          eventType = event.eventType()
+          #event type checking
+          if (eventType == MUI.YEventType.CancelEvent) :
+            _reset_built_transaction()
+            break
+          elif (eventType == MUI.YEventType.WidgetEvent) :
+            # widget selected
+            widget = event.widget()
 
-                if (widget == cancelButton) :
-                    break
-                elif (widget == okButton) :
-                    accepting = True
-                    break
+            if (widget == cancelButton) :
+              _reset_built_transaction()
+              break
+            elif (widget == okButton) :
+              accepting = True
+              break
 
         dlg.destroy()
 

@@ -1,5 +1,6 @@
 2026-XX-YY v. 2.99.5
 --------------------
+- Added from Goal interface transaction reset and cancel and managed
 - Added Action menu Update All available when updates are present
 - Fixed no updates found during caching
 - Select all updates also in group view

@@ -238,7 +238,9 @@ class Client:
 
           ##Goal
           'BuildTransaction'    : 'resolve',
+          'ResetTransaction'    : 'reset',
           'RunTransaction'      : 'do_transaction',
+          'CancelTransaction'   : 'cancel',
           'TransactionProblems' : 'get_transaction_problems_string',
 
           }
@@ -1333,7 +1335,8 @@ class Client:
             return self.iface_history
         elif cmd == 'ReloadMetadata' or cmd == 'CleanCache' or cmd == 'ResetSession':
             return self.iface_base
-        elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
+        elif cmd == 'BuildTransaction' or cmd == 'ResetTransaction' or cmd == 'RunTransaction' or \
+             cmd == 'CancelTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
 
         return None
@@ -1786,6 +1789,15 @@ class Client:
           resolved, result = self._run_dbus_sync('BuildTransaction', options)
           return (unpack_dbus(result), unpack_dbus(resolved))
 
+    def ResetTransaction(self, sync=False):
+        '''    
+            Reset the prepared rpm transaction. After this call the session is ready to perform another rpm transaction.
+        '''
+        if not sync:
+          self._run_dbus_async('ResetTransaction', False)
+        else:
+          return self._run_dbus_sync('ResetTransaction')
+
     def RunTransaction(self, options={}, sync=False):
         '''
             Perform the resolved transaction.
@@ -1806,6 +1818,20 @@ class Client:
         else:
           self._run_dbus_sync('RunTransaction', options)
 
+    def CancelTransaction(self, sync=False):
+        '''
+            Cancel the transaction that was initiated by `do_transaction()`. 
+            The transaction can only be canceled during the package download phase. 
+            Once the RPM transaction has begun, cancellation is no longer permitted.
+            Return:
+                @success: true if the cancellation was successfully requested
+                @error_msg: error message if the cancellation was refused
+        '''
+        if not sync:
+          self._run_dbus_async('CancelTransaction', True)
+        else:
+          success, error_msg = self._run_dbus_sync('CancelTransaction')
+          return (unpack_dbus(success), unpack_dbus(error_msg))
 
     def TransactionProblems(self, sync=False):
         '''
