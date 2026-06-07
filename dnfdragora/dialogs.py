@@ -962,7 +962,7 @@ class RepoDialog(basedialog.BaseDialog):
 
 class OptionDialog(basedialog.BaseDialog):
   def __init__(self, parent):
-    basedialog.BaseDialog.__init__(self, _("dnfdragora options"), "dnfdragora", basedialog.DialogType.POPUP, 640, 480)
+    basedialog.BaseDialog.__init__(self, _("dnfdragora options"), "dnfdragora", basedialog.DialogType.POPUP, 700, 300)
     self.parent = parent
     self.log_vbox = None
     self.widget_callbacks = []
@@ -1013,8 +1013,7 @@ class OptionDialog(basedialog.BaseDialog):
     dnfdragora options layout implementation
     '''
 
-    hbox_config = self.factory.createHBox(layout)
-    self.factory.createVStretch(layout)
+    hbox_config = self.factory.createPaned(layout, MUI.YUIDimension.YD_HORIZ)
     hbox_bottom = self.factory.createHBox(layout)
     # Wrap the tree in MinSize to guarantee a minimum column width regardless
     # of the ReplacePoint content on the right (long labels in System options
