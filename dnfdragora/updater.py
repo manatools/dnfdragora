@@ -14,7 +14,8 @@ Former author:  Björn Esser <besser82@fedoraproject.org>
 
 import gettext, sched, sys, threading, time, os
 
-from dnfdragora import config, misc, dialogs, ui, dnfd_client
+from dnfdragora import config, misc, ui, dnfd_client
+import manatools.ui.common as common
 
 from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from PySide6.QtGui     import QIcon
@@ -543,7 +544,8 @@ class Updater:
             self.__main_gui = ui.mainGui(args)
         except Exception as e:
             logger.error("Exception launching dnfdragora (args=%s): %s", args, e)
-            dialogs.warningMsgBox({'title': _("Running dnfdragora failure"),
+            common.warningMsgBox({'title': _("Running dnfdragora failure"),
+                                  'size': (400, 200),
                                    "text": str(e), "richtext": True})
             self.__main_gui = None
             self.__reopen_backend()

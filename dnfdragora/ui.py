@@ -362,8 +362,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.pbar_layout.setEnabled(True)
 
         if self._log_missing_dir_warning:
-            dialogs.warningMsgBox({
+            common.warningMsgBox({
                 'title': _("Logging directory not found"),
+                'size': (400, 200),
                 'text': _("The configured log directory <b>%s</b> does not exist.<br>"
                           "Logging is disabled for this session.<br>"
                           "Please update the log directory in "
@@ -1369,7 +1370,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       Shows an error dialog box and continue to work, it supposes error is not critical
       (i.e. a wrong search for instance)
       '''
-      dialogs.warningMsgBox({'title' : title, "text": error, "richtext":True})
+      common.warningMsgBox({'title' : title, "size": (400, 200), "text": error, "richtext":True})
       self._enableAction(True)
 
     def _showSearchResult(self, packages, createTreeItem=False):
@@ -1532,8 +1533,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             re.compile(search_string)
           except re.error as exc:
             logger.error("Invalid regular expression '%s': %s", search_string, exc)
-            dialogs.warningMsgBox({
+            common.warningMsgBox({
               'title': _("Invalid regular expression"),
+              'size': (400, 200),
               'text': str(exc),
               'richtext': False,
             })
@@ -1827,7 +1829,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               if self.itemList[it]['item'] == changedItem:
                 pkg = self.itemList[it]['pkg']
                 if pkg.installed and self.backend.protected(pkg):
-                  dialogs.warningMsgBox({'title': _("Protected package selected"), "text": _("Package %s cannot be removed") % pkg.name, "richtext": True})
+                  common.warningMsgBox({'title': _("Protected package selected"), "size": (400, 200), "text": _("Package %s cannot be removed") % pkg.name, "richtext": True})
                   rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                 else:
                   # Checkbox is first column (0).
@@ -2166,8 +2168,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if not self._transaction_noreply_warned:
           logger.warning("Transient DBus NoReply during RUN_TRANSACTION; keeping transaction alive")
           # TODO remove later
-          dialogs.warningMsgBox({
+          common.warningMsgBox({
             'title': _("Backend busy"),
+            'size': (400, 200),
             'text': _("The backend is busy processing the transaction. The operation will continue and progress events will still be tracked."),
             'richtext': False
           })
@@ -2772,7 +2775,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if result == 1: #Transaction WARNING
           errors = self.backend.TransactionProblems(sync=True)
           err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
-          dialogs.warningMsgBox({'title'  : _('Transaction with warnings',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          common.warningMsgBox({'title'  : _('Transaction with warnings',), 'size': (400, 200), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction with warnings: %s", repr(errors))
 
         ok = result == 0 # Avoid to die "or result == 1" TODO manage Warning
@@ -2816,7 +2819,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
           errors = self.backend.TransactionProblems(sync=True)
           err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
-          dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          common.infoMsgBox({'title'  : _('Build Transaction error',), 'size': (400, 200), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(errors))
 
           # TODO Transaction has errors we should clean it up reload all by now
@@ -2846,7 +2849,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
           err =  "".join(resolve) if isinstance(resolve, list) else resolve if type(resolve) is str else repr(resolve);
-          dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          common.infoMsgBox({'title'  : _('Build Transaction error',), 'size': (400, 200), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)
 
@@ -2877,7 +2880,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 #got an Exception into trhead loop
                 logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
                 title = _("Error in status %(status)s on %(event)s")%({'status':self._status, 'event':(event if event else "---")})
-                dialogs.warningMsgBox({'title' : title, "text": str(info['error']), "richtext":True})
+                common.warningMsgBox({'title' : title, "size": (400, 200), "text": str(info['error']), "richtext":True})
                 # Force return on STARTUP on error
                 try:
                   self.backend.reloadDaemon()

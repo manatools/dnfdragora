@@ -528,8 +528,9 @@ class TransactionResult:
             self.parent.backend.ResetTransaction(sync=True)
           except Exception as err:
             logger.exception("ResetTransaction failed after TransactionResult cancel: %s", err)
-            warningMsgBox({
+            common.warningMsgBox({
               'title': _('Reset transaction failed'),
+              'size': (400, 200),
               'text': str(err),
               'richtext': True,
             })
@@ -1904,8 +1905,9 @@ class SearchDialog(basedialog.BaseDialog):
       try:
         re.compile(self.search_text)
       except re.error as exc:
-        warningMsgBox({
+        common.warningMsgBox({
           'title': _('Invalid regular expression'),
+          'size': (400, 200),
           'text':  str(exc),
           'richtext': False,
         })
@@ -1930,95 +1932,6 @@ class SearchDialog(basedialog.BaseDialog):
   def _onClose(self):
     self.action = 'cancel'
     self.ExitLoop()
-
-
-def warningMsgBox (info) :
-    '''
-    This function creates an Warning dialog and show the message
-    passed as input.
-
-    @param info: dictionary, information to be passed to the dialog.
-            title     =>     dialog title
-            text      =>     string to be swhon into the dialog
-            richtext  =>     True if using rich text
-    '''
-    if (not info) :
-        return 0
-
-    return common.warningMsgBox(info)
-
-
-def infoMsgBox (info) :
-    '''
-    This function creates an Info dialog and show the message
-    passed as input.
-
-    @param info: dictionary, information to be passed to the dialog.
-            title     =>     dialog title
-            text      =>     string to be swhon into the dialog
-            richtext  =>     True if using rich text
-    '''
-    if (not info) :
-        return 0
-
-    return common.infoMsgBox(info)
-
-def msgBox (info) :
-    '''
-    This function creates a dialog and show the message passed as input.
-
-    @param info: dictionary, information to be passed to the dialog.
-            title     =>     dialog title
-            text      =>     string to be swhon into the dialog
-            richtext  =>     True if using rich text
-    '''
-    if (not info) :
-        return 0
-
-    return common.msgBox(info)
-
-
-def askOkCancel (info) :
-    '''
-    This function create an OK-Cancel dialog with a <<title>> and a
-    <<text>> passed as parameters.
-
-    @param info: dictionary, information to be passed to the dialog.
-        title     =>     dialog title
-        text      =>     string to be swhon into the dialog
-        richtext  =>     True if using rich text
-        default_button => optional default button [1 => Ok - any other values => Cancel]
-
-    @output:
-        False: Cancel button has been pressed
-        True:  Ok button has been pressed
-    '''
-    if (not info) :
-        return False
-
-    return common.askOkCancel(info)
-
-def askYesOrNo (info) :
-    '''
-    This function create an Yes-No dialog with a <<title>> and a
-    <<text>> passed as parameters.
-
-    @param info: dictionary, information to be passed to the dialog.
-        title     =>     dialog title
-        text      =>     string to be swhon into the dialog
-        richtext  =>     True if using rich text
-        default_button => optional default button [1 => Yes - any other values => No]
-        size => [row, coulmn]
-
-    @output:
-        False: No button has been pressed
-        True:  Yes button has been pressed
-    '''
-    if (not info) :
-        return False
-
-    return common.askYesOrNo(info)
-
 
 def ask_for_gpg_import (values):
     '''
@@ -2062,8 +1975,8 @@ def ask_for_gpg_import (values):
             'timestamp': display_timestamp,
             'file': display_url})
 
-    return askYesOrNo({'title' : _("GPG key missed"),
+    return common.askYesOrNo({'title' : _("GPG key missed"),
                        'text': msg,
                        'default_button' : 1,
                        'richtext' : True,
-                       'size' : [60, 10]})
+                       'size' : (400, 200)})

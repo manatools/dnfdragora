@@ -1,5 +1,7 @@
 2026-XX-YY v. 2.99.5
 --------------------
+- Added warning and info message minimum size (400x200) bug #269
+- Removed custom implementation of warning and info messages and used manatools.common one
 - Added Desktop Application filter fixes #258 and Mageia bug https://bugs.mageia.org/show_bug.cgi?id=34657
 - Added from Goal interface transaction reset and cancel and managed
 - Added Action menu Update All available when updates are present
