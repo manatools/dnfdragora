@@ -514,7 +514,7 @@ msgstr "Totale grootte"
 
 #: dnfdragora/dialogs.py:532
 msgid "Reset transaction failed"
-msgstr ""
+msgstr "De reset-transactie is mislukt."
 
 #: dnfdragora/dialogs.py:575
 msgid "Repository Management"
@@ -2039,6 +2039,8 @@ msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
+"<li><b>Desktop Programma's</b>: toont pakketten die desktop-/GUI-programma's "
+"leveren."
 
 #: dnfdragora/helpinfo.py:181
 msgid ""
@@ -2406,33 +2408,33 @@ msgstr "Transactie afgerond"
 
 #: dnfdragora/progress_ui.py:231
 msgid "Cancellation already requested; waiting..."
-msgstr ""
+msgstr "Annulering is al aangevraagd; in afwachting..."
 
 #: dnfdragora/progress_ui.py:239
 #, python-format
 msgid "Cancellation request failed: %(err)s"
-msgstr ""
+msgstr "Aanvraag annulering is mislukt: %(err)s"
 
 #: dnfdragora/progress_ui.py:246
 msgid "Cancellation requested; waiting for transaction to stop"
-msgstr ""
+msgstr "Annulering aangevraagd; wachten tot de transactie is voltooid"
 
 #: dnfdragora/progress_ui.py:247
 msgid "Cancelling transaction..."
-msgstr ""
+msgstr "Transactie annuleren..."
 
 #: dnfdragora/progress_ui.py:248
 msgid "Waiting for backend to stop transaction"
-msgstr ""
+msgstr "Wachten tot backend de transactie heeft afgerond."
 
 #: dnfdragora/progress_ui.py:252
 msgid "Cancellation refused by backend"
-msgstr ""
+msgstr "Annulering geweigerd door backend"
 
 #: dnfdragora/progress_ui.py:254
 #, python-format
 msgid "Cancellation refused: %(msg)s"
-msgstr ""
+msgstr "Annulering geweigerd: %(msg)s"
 
 #: dnfdragora/progress_ui.py:263
 #, python-format
@@ -2527,6 +2529,8 @@ msgstr "Vereisten"
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora is een DNF5 daemon-frontend dat werkt met behulp van GTK, ncurses "
+"en QT"
 
 #: dnfdragora/ui.py:318
 msgid "Developers"
@@ -2534,23 +2538,23 @@ msgstr "Ontwikkelaars"
 
 #: dnfdragora/ui.py:324
 msgid "Current developers and maintainers"
-msgstr ""
+msgstr "Huidige ontwikkelaars en beheerders"
 
 #: dnfdragora/ui.py:330
 msgid "Translations"
-msgstr ""
+msgstr "Vertalingen"
 
 #: dnfdragora/ui.py:334
 msgid "Contributors"
-msgstr ""
+msgstr "Bijdragers"
 
 #: dnfdragora/ui.py:343
 msgid "Project Links"
-msgstr ""
+msgstr "Project-links"
 
 #: dnfdragora/ui.py:348
 msgid "Report Issues or Improvements"
-msgstr ""
+msgstr "Meldt problemen of verbeteringen"
 
 #: dnfdragora/ui.py:366
 msgid "Logging directory not found"
@@ -2593,7 +2597,7 @@ msgstr "Moet bijgewerkt worden"
 
 #: dnfdragora/ui.py:591
 msgid "Desktop Applications"
-msgstr ""
+msgstr "Desktop-programma's"
 
 #: dnfdragora/ui.py:597
 #, python-format
@@ -2630,7 +2634,7 @@ msgstr "&Alles selecteren"
 
 #: dnfdragora/ui.py:686
 msgid "Select all the update packages"
-msgstr ""
+msgstr "Selecteer alle updatepakketten"
 
 #: dnfdragora/ui.py:691 dnfdragora/ui.py:710
 msgid "&Quit"
@@ -2666,7 +2670,7 @@ msgstr "&Actie met betrekking tot pakketten"
 
 #: dnfdragora/ui.py:718
 msgid "&Update All"
-msgstr ""
+msgstr "&Alles bijwerken"
 
 #: dnfdragora/ui.py:719
 msgid "&History"
@@ -2918,52 +2922,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hoofdvenster"
-
-#~ msgid "&Undo"
-#~ msgstr "&Ongedaan maken"
-
-#~ msgid "Action on packages"
-#~ msgstr "Actie voor pakketten"
-
-#~ msgid "Build transaction failure"
-#~ msgstr "Fout in het voorbereiden van de transactie"
-
-#~ msgid "Downloading error"
-#~ msgid_plural "Downloading errors"
-#~ msgstr[0] "Fout tijdens het downloaden"
-#~ msgstr[1] "Fouten tijdens het downloaden"
-
-#~ msgid "Error checking package signatures"
-#~ msgstr ""
-#~ "Er is een fout opgetreden tijdens het controleren van de "
-#~ "pakketondertekeningen..."
-
-#~ msgid "Error in transaction"
-#~ msgid_plural "Errors in transaction"
-#~ msgstr[0] "Fout in de transactie"
-#~ msgstr[1] "Fouten in de transactie"
-
-#~ msgid "Error occured:"
-#~ msgstr "Er is een fout opgetreden:"
-
-#~ msgid "History (Date/Time)"
-#~ msgstr "Geschiedenis (Datum/Tijd)"
-
-#~ msgid "Packages installed:"
-#~ msgstr "Geïnstalleerde pakketten:"
-
-#~ msgid "Packages removed:"
-#~ msgstr "Verwijderde pakketten:"
-
-#~ msgid "Select all the packages"
-#~ msgstr "Selecteer alle pakketten"
-
-#~ msgid "Transaction History"
-#~ msgstr "Transactiegeschiedenis"
-
-#~ msgid "Undo transaction"
-#~ msgstr "Transactie ongedaan maken"
-
-#~ msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-#~ msgstr ""
-#~ "dnfdragora is een DNF-frontend dat werkt met behulp van GTK, ncurses en QT"
