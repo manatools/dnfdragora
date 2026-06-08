@@ -510,7 +510,7 @@ msgstr "Mida total "
 
 #: dnfdragora/dialogs.py:532
 msgid "Reset transaction failed"
-msgstr ""
+msgstr "Ha fallat restablir la transacció."
 
 #: dnfdragora/dialogs.py:575
 msgid "Repository Management"
@@ -2035,6 +2035,8 @@ msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
+"<li><b>Aplicacions d'escriptori</b>: mostra paquets que proporcionen "
+"aplicacions d'escriptori / IGU.</li>"
 
 #: dnfdragora/helpinfo.py:181
 msgid ""
@@ -2401,33 +2403,33 @@ msgstr "Transacció completada"
 
 #: dnfdragora/progress_ui.py:231
 msgid "Cancellation already requested; waiting..."
-msgstr ""
+msgstr "Cancel·lació ja sol·licitada; en espera..."
 
 #: dnfdragora/progress_ui.py:239
 #, python-format
 msgid "Cancellation request failed: %(err)s"
-msgstr ""
+msgstr "La sol·licitud de cancel·lació ha fallat: %(err)s"
 
 #: dnfdragora/progress_ui.py:246
 msgid "Cancellation requested; waiting for transaction to stop"
-msgstr ""
+msgstr "Cancel·lació sol·licitada; s'espera que la transacció s'aturi."
 
 #: dnfdragora/progress_ui.py:247
 msgid "Cancelling transaction..."
-msgstr ""
+msgstr "Es cancel·la la transacció..."
 
 #: dnfdragora/progress_ui.py:248
 msgid "Waiting for backend to stop transaction"
-msgstr ""
+msgstr "S'espera que l'aplicació de fons aturi la transacció."
 
 #: dnfdragora/progress_ui.py:252
 msgid "Cancellation refused by backend"
-msgstr ""
+msgstr "Cancel·lació rebutjada per l'aplicació de fons"
 
 #: dnfdragora/progress_ui.py:254
 #, python-format
 msgid "Cancellation refused: %(msg)s"
-msgstr ""
+msgstr "Cancel·lació rebutjada: %(msg)s"
 
 #: dnfdragora/progress_ui.py:263
 #, python-format
@@ -2522,6 +2524,8 @@ msgstr "Requisits"
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
+"La dnfdragora és una aplicació frontal del dimoni de DNF5 que funciona amb "
+"GTK, ncurses i QT."
 
 #: dnfdragora/ui.py:318
 msgid "Developers"
@@ -2529,23 +2533,23 @@ msgstr "Desenvolupadors"
 
 #: dnfdragora/ui.py:324
 msgid "Current developers and maintainers"
-msgstr ""
+msgstr "Desenvolupadors i mantenidors actuals"
 
 #: dnfdragora/ui.py:330
 msgid "Translations"
-msgstr ""
+msgstr "Traduccions"
 
 #: dnfdragora/ui.py:334
 msgid "Contributors"
-msgstr ""
+msgstr "Col·laboradors"
 
 #: dnfdragora/ui.py:343
 msgid "Project Links"
-msgstr ""
+msgstr "Enllaços de projectes"
 
 #: dnfdragora/ui.py:348
 msgid "Report Issues or Improvements"
-msgstr ""
+msgstr "Informar de problemes o millores"
 
 #: dnfdragora/ui.py:366
 msgid "Logging directory not found"
@@ -2588,7 +2592,7 @@ msgstr "Per actualitzar"
 
 #: dnfdragora/ui.py:591
 msgid "Desktop Applications"
-msgstr ""
+msgstr "Aplicacions d'escriptori"
 
 #: dnfdragora/ui.py:597
 #, python-format
@@ -2625,7 +2629,7 @@ msgstr "Sel&ecciona-ho tot"
 
 #: dnfdragora/ui.py:686
 msgid "Select all the update packages"
-msgstr ""
+msgstr "Seleccioneu tots els paquets d'actualització"
 
 #: dnfdragora/ui.py:691 dnfdragora/ui.py:710
 msgid "&Quit"
@@ -2661,7 +2665,7 @@ msgstr "&Acció per als paquets"
 
 #: dnfdragora/ui.py:718
 msgid "&Update All"
-msgstr ""
+msgstr "&Actualitza-ho tot"
 
 #: dnfdragora/ui.py:719
 msgid "&History"
@@ -2914,50 +2918,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Finestra principal"
-
-#~ msgid "&Undo"
-#~ msgstr "&Desfés"
-
-#~ msgid "Action on packages"
-#~ msgstr "Acció sobre paquets"
-
-#~ msgid "Build transaction failure"
-#~ msgstr "Fallada de la transacció de construcció"
-
-#~ msgid "Downloading error"
-#~ msgid_plural "Downloading errors"
-#~ msgstr[0] "Error en la baixada"
-#~ msgstr[1] "Errors en la baixada"
-
-#~ msgid "Error checking package signatures"
-#~ msgstr "Error en la verificació de les signatures dels paquets"
-
-#~ msgid "Error in transaction"
-#~ msgid_plural "Errors in transaction"
-#~ msgstr[0] "Error en la transacció"
-#~ msgstr[1] "Errors en la transacció"
-
-#~ msgid "Error occured:"
-#~ msgstr "Hi ha hagut un error:"
-
-#~ msgid "History (Date/Time)"
-#~ msgstr "Historial (data / hora)"
-
-#~ msgid "Packages installed:"
-#~ msgstr "Paquets instal·lats:"
-
-#~ msgid "Packages removed:"
-#~ msgstr "Paquets suprimits:"
-
-#~ msgid "Select all the packages"
-#~ msgstr "Selecciona tots els paquets"
-
-#~ msgid "Transaction History"
-#~ msgstr "Historial de transaccions"
-
-#~ msgid "Undo transaction"
-#~ msgstr "Desfés la transacció"
-
-#~ msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-#~ msgstr ""
-#~ "dnfdragora és un frontal de DNF que funciona mitjançant GTK, ncurses i QT"
