@@ -507,7 +507,7 @@ msgstr "Total størrelse"
 
 #: dnfdragora/dialogs.py:532
 msgid "Reset transaction failed"
-msgstr ""
+msgstr "Tilbakestilling av transaksjonen mislyktes"
 
 #: dnfdragora/dialogs.py:575
 msgid "Repository Management"
@@ -2018,6 +2018,8 @@ msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
+"<li><b>Skrivebordsapplikasjoner</b>:viser pakker som tilbyr skrivebords-/GUI-"
+"applikasjoner.</li>"
 
 #: dnfdragora/helpinfo.py:181
 msgid ""
@@ -2377,33 +2379,33 @@ msgstr "Transaksjonen er fullført"
 
 #: dnfdragora/progress_ui.py:231
 msgid "Cancellation already requested; waiting..."
-msgstr ""
+msgstr "Avbrytelse er allerede forespurt; venter ..."
 
 #: dnfdragora/progress_ui.py:239
 #, python-format
 msgid "Cancellation request failed: %(err)s"
-msgstr ""
+msgstr "Avbrytingsforespørsel mislyktes: %(err)s"
 
 #: dnfdragora/progress_ui.py:246
 msgid "Cancellation requested; waiting for transaction to stop"
-msgstr ""
+msgstr "Avbrytning forespurt; venter på at transaksjonen skal stoppe"
 
 #: dnfdragora/progress_ui.py:247
 msgid "Cancelling transaction..."
-msgstr ""
+msgstr "Avbryter transaksjonen ..."
 
 #: dnfdragora/progress_ui.py:248
 msgid "Waiting for backend to stop transaction"
-msgstr ""
+msgstr "Venter på at backend skal stoppe transaksjonen"
 
 #: dnfdragora/progress_ui.py:252
 msgid "Cancellation refused by backend"
-msgstr ""
+msgstr "Avbryting avvist av backend"
 
 #: dnfdragora/progress_ui.py:254
 #, python-format
 msgid "Cancellation refused: %(msg)s"
-msgstr ""
+msgstr "Avbrytelse avvist %(msg)s"
 
 #: dnfdragora/progress_ui.py:263
 #, python-format
@@ -2498,6 +2500,7 @@ msgstr "Krav"
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora er et DNF5-daemon-grensesnitt som fungerer med GTK, ncurses og QT"
 
 #: dnfdragora/ui.py:318
 msgid "Developers"
@@ -2505,23 +2508,23 @@ msgstr "Utviklere"
 
 #: dnfdragora/ui.py:324
 msgid "Current developers and maintainers"
-msgstr ""
+msgstr "Nåværende utviklere og vedlikeholdere"
 
 #: dnfdragora/ui.py:330
 msgid "Translations"
-msgstr ""
+msgstr "Oversettelser"
 
 #: dnfdragora/ui.py:334
 msgid "Contributors"
-msgstr ""
+msgstr "Bidragsytere"
 
 #: dnfdragora/ui.py:343
 msgid "Project Links"
-msgstr ""
+msgstr "Prosjektlenker"
 
 #: dnfdragora/ui.py:348
 msgid "Report Issues or Improvements"
-msgstr ""
+msgstr "Rapporter problemer eller forbedringer"
 
 #: dnfdragora/ui.py:366
 msgid "Logging directory not found"
@@ -2564,7 +2567,7 @@ msgstr "Skal oppdateres"
 
 #: dnfdragora/ui.py:591
 msgid "Desktop Applications"
-msgstr ""
+msgstr "Skrivebordsapplikasjoner"
 
 #: dnfdragora/ui.py:597
 #, python-format
@@ -2601,7 +2604,7 @@ msgstr "Velg alt"
 
 #: dnfdragora/ui.py:686
 msgid "Select all the update packages"
-msgstr ""
+msgstr "Velg alle oppdateringspakkene"
 
 #: dnfdragora/ui.py:691 dnfdragora/ui.py:710
 msgid "&Quit"
@@ -2637,7 +2640,7 @@ msgstr "&Handling på pakker"
 
 #: dnfdragora/ui.py:718
 msgid "&Update All"
-msgstr ""
+msgstr "&Oppdater alle"
 
 #: dnfdragora/ui.py:719
 msgid "&History"
@@ -2886,50 +2889,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hovedvindu"
-
-#~ msgid "&Undo"
-#~ msgstr "&Angre"
-
-#~ msgid "Action on packages"
-#~ msgstr "Handling på pakker"
-
-#~ msgid "Build transaction failure"
-#~ msgstr "Transaksjonsfeil ved bygging"
-
-#~ msgid "Downloading error"
-#~ msgid_plural "Downloading errors"
-#~ msgstr[0] "Nedlastingsfeil"
-#~ msgstr[1] "Nedlastingsfeil"
-
-#~ msgid "Error checking package signatures"
-#~ msgstr "Feil ved sjekking av pakkesignaturer"
-
-#~ msgid "Error in transaction"
-#~ msgid_plural "Errors in transaction"
-#~ msgstr[0] "Feil"
-#~ msgstr[1] "Feil i transaksjonen"
-
-#~ msgid "Error occured:"
-#~ msgstr "En feil oppstod:"
-
-#~ msgid "History (Date/Time)"
-#~ msgstr "Historie (Dato/Tid)"
-
-#~ msgid "Packages installed:"
-#~ msgstr "Pakker som er installert"
-
-#~ msgid "Packages removed:"
-#~ msgstr "Pakker som er fjernet"
-
-#~ msgid "Select all the packages"
-#~ msgstr "Velg alle pakkene"
-
-#~ msgid "Transaction History"
-#~ msgstr "Transaksjonshistorikk"
-
-#~ msgid "Undo transaction"
-#~ msgstr "Angre transaksjon"
-
-#~ msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-#~ msgstr ""
-#~ "dnfdragora er en DNF forside som fungerer og bruker GTK, ncurses og QT"
