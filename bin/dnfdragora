@@ -36,6 +36,7 @@ if __name__ == "__main__":
     parser.add_argument('--locales-dir', nargs='?', help=_('directory containing localization strings (developer only)'))
 
     parser.add_argument('--install',     nargs='+', help=_('install packages'))
+    parser.add_argument('--show',        nargs=1,   help=_('search for and show a package by name'))
     parser.add_argument('--update-only', help=_('show updates only dialog'), action='store_true')
     parser.add_argument('--version',     help=_('show application version and exit'), action='store_true')
     parser.add_argument('--exit',        help=_('force dnfdaemon dbus services used by dnfdragora to exit'), action='store_true')
@@ -70,6 +71,8 @@ if __name__ == "__main__":
         options['images_path'] = args.images_path
     if args.install:
         options['install'] = args.install
+    if args.show:
+        options['show'] = args.show[0]
     if args.exit :
         misc.dbus_dnfsystem('Exit')
     elif args.version:

@@ -3009,6 +3009,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   self._runtime_option_managed = True
                   return
 
+                if not self._runtime_option_managed and 'show' in self.options.keys() :
+                  self._search_text = self.options['show']
+                  self._search_nevra = True
+                  self._search_scope = 'all'
+                  self._runtime_option_managed = True
+                  self._updateSearchState()
+                  self._searchPackages()
+
                 self._enableAction(True)
                 filter = self._filterNameSelected()
                 self.checkAllUpdateButton.setEnabled(filter == 'to_update')
