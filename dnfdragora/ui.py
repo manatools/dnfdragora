@@ -3018,6 +3018,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   self._updateSearchState()
                   self._searchPackages()
 
+                if not self._runtime_option_managed and 'remove' in self.options.keys() :
+                  pkgs = " ".join(self.options['remove'])
+                  self.backend.Remove(pkgs, sync=True)
+                  self.backend.BuildTransaction()
+                  self._runtime_option_managed = True
+                  return
+
                 self._enableAction(True)
                 filter = self._filterNameSelected()
                 self.checkAllUpdateButton.setEnabled(filter == 'to_update')
