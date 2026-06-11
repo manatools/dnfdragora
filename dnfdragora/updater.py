@@ -709,7 +709,7 @@ class Updater:
                     if event == 'OnRepoMetaDataProgress':
                         self.__OnRepoMetaDataProgress(info['name'], info['frac'])
 
-                    elif event == 'GetPackages':
+                    elif event == 'GetPackages_fd' or event == 'GetPackages':
                         # Capture the generation number at read-time (update
                         # thread).  If __get_updates fires again and increments
                         # __check_gen before the main thread drains the queue,

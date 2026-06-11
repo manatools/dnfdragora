@@ -669,7 +669,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
         self.reset_search_button.setHelpText(_("Clear current search"))
 
-        self.info = self.factory.createRichText(hbox_bottom,"")
+        frame=self.factory.createCheckBoxFrame(hbox_bottom, _("Show Packages information"), False)
+        self.info = self.factory.createRichText(frame,"")
         # Give the description area a larger share of the bottom pane so
         # multi-line package descriptions are readable without scrolling.
         self.info.setWeight(MUI.YUIDimension.YD_VERT, 100)
