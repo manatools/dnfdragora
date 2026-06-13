@@ -511,8 +511,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         # Enforce a comfortable minimum size so the window opens with enough
         # space for the group tree, the full package table, and the description
-        # pane.  Units are PIXELS: 900×680 is comfortable on a 1080p display.
-        min_size = self.factory.createMinSize(self.dialog, 900, 680)
+        # pane.  Units are PIXELS: 900×600 is comfortable on a 1080p display.
+        min_size = self.factory.createMinSize(self.dialog, 900, 600)
         vbox = self.factory.createVBox(min_size)
 
         hbox_menubar = self.factory.createHBox(vbox)
@@ -669,8 +669,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
         self.reset_search_button.setHelpText(_("Clear current search"))
 
-        frame=self.factory.createCheckBoxFrame(hbox_bottom, _("Show Packages information"), False)
-        self.info = self.factory.createRichText(frame,"")
+        self.info = self.factory.createRichText(hbox_bottom,"")
         # Give the description area a larger share of the bottom pane so
         # multi-line package descriptions are readable without scrolling.
         self.info.setWeight(MUI.YUIDimension.YD_VERT, 100)

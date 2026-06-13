@@ -1,5 +1,7 @@
 2026-XX-YY v. 2.99.5
 --------------------
+- Reduced minimum dialog size to 900×600 in the hope to stay in limted high size monitors
+- Added --show and --remove parameters (thanks Ramil Nurmanov PR #270 and #271)
 - Used YPaned into OptionDialog and changed the minimum size to 700x300 (#235)
 - Added warning and info message minimum size (400x200) bug #269
 - Removed custom implementation of warning and info messages and used manatools.common one
