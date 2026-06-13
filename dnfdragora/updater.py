@@ -107,12 +107,6 @@ class Updater:
         # ── Icons ─────────────────────────────────────────────────────────────
         icon_dir = options.get('icon-path')
         self._icon        = self.__load_qicon('dnfdragora',               icon_dir)
-        # Prefer the standard FreeDesktop theme icon; fall back to the
-        # application-specific one if the theme does not provide it.
-        self._icon_update = self.__load_qicon('software-update-available', icon_dir)
-        if self._icon_update.isNull():
-            logger.debug("Falling back to application-specific update icon")
-            self._icon_update = self.__load_qicon('dnfdragora-update', icon_dir)
 
         # ── System tray ───────────────────────────────────────────────────────
         self._tray = QSystemTrayIcon(self._icon, self._app)
@@ -304,11 +298,10 @@ class Updater:
 
     # ── Tray state helpers (main-thread only) ────────────────────────────────
 
-    def __set_tray_icon(self, icon, reason=''):
+    def __set_tray_icon(self, icon_name, reason=''):
         '''Set the tray icon and log every change.'''
-        name = 'update' if icon is self._icon_update else 'normal'
-        logger.info("Tray icon → %s%s", name, ' [%s]' % reason if reason else '')
-        self._tray.setIcon(icon)
+        logger.info("Tray icon → %s%s", icon_name, ' [%s]' % reason if reason else '')
+        self._tray.setIcon(self.__load_qicon(icon_name))
 
     def __set_tray_visible(self, visible, reason=''):
         '''Show or hide the tray icon.  Log every change; skip no-op calls.'''
@@ -348,8 +341,6 @@ class Updater:
         logger.info("updates_found: %d update(s) [gen=%s current_gen=%d]",
                     n, gen, self.__check_gen)
         self.__has_updates = True
-        self.__set_tray_icon(self._icon_update, 'updates found')
-        self.__set_tray_visible(True, 'updates found')
         if QSystemTrayIcon.supportsMessages():
             self._tray.showMessage(
                 'dnfdragora-update',
@@ -357,6 +348,9 @@ class Updater:
                 QSystemTrayIcon.MessageIcon.Information,
                 7000,
             )
+        self.__set_tray_icon('system-software-update', 'updates found')
+        self.__set_tray_visible(True, 'updates found')
+        self._tray.setToolTip(_('%s - %d updates available.') % ('dnfdragora-updater', n))
         self.__getUpdatesRequested = False
 
     def __on_no_updates(self, gen=None):
@@ -372,7 +366,7 @@ class Updater:
                     gen, self.__check_gen,
                     self.__has_updates, self.__getUpdatesRequested)
         self.__has_updates = False
-        self.__set_tray_icon(self._icon, 'no updates')
+        self.__set_tray_icon('dnfdragora', 'no updates')
         if self.__getUpdatesRequested and QSystemTrayIcon.supportsMessages():
             self._tray.showMessage(
                 'dnfdragora-update',
@@ -380,6 +374,7 @@ class Updater:
                 QSystemTrayIcon.MessageIcon.Information,
                 7000,
             )
+        self._tray.setToolTip('dnfdragora-updater')
         self.__getUpdatesRequested = False
         if self.__hide_menu:
             self.__set_tray_visible(False, 'no updates, hide_menu')
@@ -676,7 +671,7 @@ class Updater:
                     logger.error("reloadDaemon did not restore session; "
                                  "skipping GetPackages")
                     return
-            self.__backend.GetPackages(options)
+            self.__backend.GetPackages(options, piped=False)
             logger.debug("Getting update packages")
         except Exception as e:
             logger.error(_('Exception caught: [%s]') % str(e))
