@@ -68,11 +68,11 @@ msgstr "installer pakker"
 
 #: bin/dnfdragora:39
 msgid "search for and show a package by name"
-msgstr ""
+msgstr "søk etter og vis en pakke etter navn"
 
 #: bin/dnfdragora:40
 msgid "remove packages"
-msgstr ""
+msgstr "fjern pakker"
 
 #: bin/dnfdragora:41
 msgid "show updates only dialog"
@@ -2851,7 +2851,7 @@ msgstr "%d oppdateringer er tilgjengelige"
 #: dnfdragora/updater.py:353
 #, python-format
 msgid "%s - %d updates available."
-msgstr ""
+msgstr "%s - %d oppdateringer er tilgjengelige."
 
 #: dnfdragora/updater.py:373
 msgid "No updates available"
