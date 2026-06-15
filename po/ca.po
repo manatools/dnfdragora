@@ -70,11 +70,11 @@ msgstr "instal·la els paquets"
 
 #: bin/dnfdragora:39
 msgid "search for and show a package by name"
-msgstr ""
+msgstr "cerca i mostra un paquet pel nom"
 
 #: bin/dnfdragora:40
 msgid "remove packages"
-msgstr ""
+msgstr "suprimeix paquets"
 
 #: bin/dnfdragora:41
 msgid "show updates only dialog"
@@ -2876,7 +2876,7 @@ msgstr "%d actualitzacions disponibles."
 #: dnfdragora/updater.py:353
 #, python-format
 msgid "%s - %d updates available."
-msgstr ""
+msgstr "%s - %d actualitzacions disponibles."
 
 #: dnfdragora/updater.py:373
 msgid "No updates available"
