@@ -1029,6 +1029,7 @@ class OptionDialog(basedialog.BaseDialog):
     itemVect = []
     self.option_items = {
       "system" : None,
+      "updater" : None,
       "layout" : None,
       "logging" : None,
       }
@@ -1043,6 +1044,10 @@ class OptionDialog(basedialog.BaseDialog):
     item = MUI.YTreeItem(_("Layout"))
     itemVect.append(item)
     self.option_items ["layout"] = item
+
+    item = MUI.YTreeItem(_("dnfdragora-updater"))
+    itemVect.append(item)
+    self.option_items ["updater"] = item
 
     item = MUI.YTreeItem(_("Logging"))
     itemVect.append(item)
@@ -1087,6 +1092,8 @@ class OptionDialog(basedialog.BaseDialog):
             self._cleanCallbacks()
             if k == "system":
               self._openSystemOptions()
+            elif k == "updater":
+              self._openUpdaterOptions()
             elif  k == "layout":
               self._openLayoutOptions()
             elif k == "logging":
@@ -1129,38 +1136,11 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
 
-    hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
-                                               default=False)
-
-    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu_val )
-    self.hide_update_menu.setNotify(True)
-    self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
-    self.widget_callbacks.append( { 'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu} )
-
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
-
-    # Determine update interval with fallbacks and robust parsing
-    updateInterval = 180
-    try:
-      val = self._safe_cfg_get(self._user_prefs(), 'settings', 'interval for checking updates')
-      if val is not None:
-        updateInterval = int(val)
-      else:
-        val = self._safe_cfg_get(self._system_settings(), 'settings', 'update_interval')
-        if val is not None:
-          updateInterval = int(val)
-    except (TypeError, ValueError):
-      updateInterval = 180
 
     hbox = self.factory.createHBox(vbox)
     col1 = self.factory.createVBox(hbox)
     col2 = self.factory.createVBox(hbox)
-    label = self.factory.createLabel(self.factory.createLeft(col1), _("Interval to check for updates (minutes)"))
-    self.factory.createHSpacing(hbox)
-    self.updateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 30, 1440, updateInterval )
-    self.updateInterval.setNotify(True)
-    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
-    self.widget_callbacks.append( { 'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange} )
 
 
     label = self.factory.createLabel(self.factory.createLeft(col1), _("Metadata expire time (hours)"))
@@ -1172,6 +1152,69 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
 
+    self.config_tab.showChild()
+
+  def _openUpdaterOptions(self):
+    '''
+    show updater configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox)
+
+    heading = self.factory.createHeading(vbox, _("dnfdragora-updater options"))
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
+    heading.setAutoWrap()
+
+    hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
+                                               default=False)
+    self.hide_update_menu = self.factory.createCheckBox(
+      self.factory.createLeft(vbox),
+      _("Hide dnfdragora-update menu if there are no updates"),
+      hide_update_menu_val
+    )
+    self.hide_update_menu.setNotify(True)
+    self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
+    self.widget_callbacks.append({'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu})
+
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
+
+    # Determine update interval with fallbacks and robust parsing.
+    # Valid range for updater checks: 10 minutes .. 7 days (10080 minutes).
+    update_interval = 180
+    try:
+      val = self._safe_cfg_get(self._user_prefs(), 'settings', 'interval for checking updates')
+      if val is not None:
+        update_interval = int(val)
+      else:
+        val = self._safe_cfg_get(self._system_settings(), 'settings', 'update_interval')
+        if val is not None:
+          update_interval = int(val)
+    except (TypeError, ValueError):
+      update_interval = 180
+
+    update_interval = max(10, min(10080, update_interval))
+
+    hbox = self.factory.createHBox(vbox)
+    col1 = self.factory.createVBox(hbox)
+    col2 = self.factory.createVBox(hbox)
+    self.factory.createLabel(
+      self.factory.createLeft(col1),
+      _("Interval to check for updates (minutes)")
+    )
+    self.factory.createHSpacing(hbox)
+    self.updateInterval = self.factory.createIntField(
+      self.factory.createRight(col2), "", 10, 10080, update_interval
+    )
+    self.updateInterval.setNotify(True)
+    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
+    self.widget_callbacks.append({'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange})
+
+    self.factory.createVStretch(vbox)
     self.config_tab.showChild()
 
   def _openLayoutOptions(self):
@@ -1377,10 +1420,14 @@ class OptionDialog(basedialog.BaseDialog):
       s = self._ensure_settings()
       s['always_yes'] = False
       self.parent.always_yes = False
-      s['interval for checking updates'] = 180
       s['metadata'] = {'update_interval': 48}
       self.parent.md_update_interval = 48
       self._openSystemOptions()
+    elif k == "updater":
+      s = self._ensure_settings()
+      s['hide_update_menu'] = False
+      s['interval for checking updates'] = 180
+      self._openUpdaterOptions()
     elif  k == "layout":
       s = self._ensure_settings()
       s['show updates at startup'] = False
