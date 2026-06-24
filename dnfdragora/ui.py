@@ -264,7 +264,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.log_enabled = False
         self.log_directory = None
         self.level_debug = False
-        self.upgrades_as_updates = True # NOTE consider package to upgrade as update
         self.config = dnfdragora.config.AppConfig(self.appname)
 
         # settings from configuration file first
@@ -454,8 +453,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     'update_interval': self.md_update_interval, # 48 Default
                     'last_update': ''
                   }
-                if 'upgrades as updates' in user_settings.keys():
-                  self.upgrades_as_updates = user_settings['upgrades as updates']
 
                 #### Search
                 if 'search' in user_settings.keys():
@@ -2647,8 +2644,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       #TODO manage upgrades/upgradable correctly
       if pkg_flt == "updates":
         filter = "upgrades"
-      elif pkg_flt == "updates_all":
-        filter = "upgrades"
 
       options = {"package_attrs": [
         #"name",
@@ -2689,7 +2684,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       # Mark this filter as pending BEFORE changing status and making the async call
       self._caching_filter_pending = pkg_flt
       
-      if pkg_flt == 'updates' or pkg_flt == 'updates_all':
+      if pkg_flt == 'updates':
         self.infobar.info_sub(_("Caching updates"))
         self._status = DNFDragoraStatus.CACHING_UPDATE
       elif pkg_flt == 'installed':
@@ -2710,8 +2705,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self.backend.GetPackages(options)
 
     def _populateCache(self, pkg_flt, po_list) :
-      if pkg_flt == 'updates_all':
-        pkg_flt = 'updates'
       # is this type of packages is already cached ?
       if not self.backend.cache.is_populated(pkg_flt):
         pkgs = self.backend.make_pkg_object(po_list, pkg_flt)
@@ -2959,9 +2952,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 self._populateCache('installed', po_list)
                 self.infobar.set_progress(0.33)
                 self._caching_filter_pending = None  # Clear pending before next request
-                cache_update = 'updates_all' if self.upgrades_as_updates else 'updates'
-                self._cachingRequest(cache_update)
-              elif current_pending in ('updates', 'updates_all'):
+                self._cachingRequest('updates')
+              elif current_pending == 'updates':
                 po_list = info['result']
                 logger.info('Received %d update packages', len(po_list))
                 # we requested updates for caching

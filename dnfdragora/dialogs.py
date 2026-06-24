@@ -1129,11 +1129,6 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
 
-    self.upgrades_as_updates  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Consider packages to upgrade as updates"), self.parent.upgrades_as_updates )
-    self.upgrades_as_updates.setNotify(True)
-    self.eventManager.addWidgetEvent(self.upgrades_as_updates, self.onUpgradesAsUpdates, True)
-    self.widget_callbacks.append( { 'widget': self.upgrades_as_updates, 'handler': self.onUpgradesAsUpdates} )
-
     hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
                                                default=False)
 
@@ -1362,18 +1357,6 @@ class OptionDialog(basedialog.BaseDialog):
       self._ensure_settings()['always_yes'] = obj.isChecked()
       self.parent.always_yes = obj.isChecked()
       logger.debug("always_yes %d", obj.isChecked())
-    else:
-      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
-
-  def onUpgradesAsUpdates (self, obj):
-    '''
-    Consider Upgrades as Updates
-    '''
-    if obj.widgetClass() == "YCheckBox":
-      s = self._ensure_settings()
-      s['upgrades as updates'] = obj.isChecked()
-      logger.debug("onUpgradesAsUpdates %d", obj.isChecked())
-      self.parent.upgrades_as_updates = s['upgrades as updates']
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
