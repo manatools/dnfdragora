@@ -1136,6 +1136,17 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
 
+    force_dist_sync_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'force_dist_sync',
+                                             default=self.parent.force_dist_sync)
+    self.force_dist_sync = self.factory.createCheckBox(
+      self.factory.createLeft(vbox),
+      _("Force distsync as upgrade"),
+      force_dist_sync_val
+    )
+    self.force_dist_sync.setNotify(True)
+    self.eventManager.addWidgetEvent(self.force_dist_sync, self.onForceDistSyncChange, True)
+    self.widget_callbacks.append({'widget': self.force_dist_sync, 'handler': self.onForceDistSyncChange})
+
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
 
     hbox = self.factory.createHBox(vbox)
@@ -1403,6 +1414,17 @@ class OptionDialog(basedialog.BaseDialog):
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
+  def onForceDistSyncChange(self, obj):
+    '''
+    Force distsync as upgrade changing
+    '''
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings()['force_dist_sync'] = obj.isChecked()
+      self.parent.force_dist_sync = obj.isChecked()
+      logger.debug("force_dist_sync %d", obj.isChecked())
+    else:
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+
   def onHideUpdateMenu(self, obj):
     '''
     Hide update menu changing
@@ -1420,6 +1442,8 @@ class OptionDialog(basedialog.BaseDialog):
       s = self._ensure_settings()
       s['always_yes'] = False
       self.parent.always_yes = False
+      s['force_dist_sync'] = False
+      self.parent.force_dist_sync = False
       s['metadata'] = {'update_interval': 48}
       self.parent.md_update_interval = 48
       self._openSystemOptions()

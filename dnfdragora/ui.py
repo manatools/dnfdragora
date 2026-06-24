@@ -242,6 +242,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
+        self.force_dist_sync = False
         self.fuzzy_search = False
         self.newest_only = False
         self._search_nevra    = True   # search in package names/NEVRA   (with_nevra)
@@ -399,6 +400,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'always_yes' in settings.keys() :
                 self.always_yes = settings['always_yes']
 
+            if 'force_dist_sync' in settings.keys() :
+              self.force_dist_sync = settings['force_dist_sync']
+
             if 'log_directory' in settings.keys() :
               print("Warning logging must be set in user preferences, discarded")
 
@@ -453,6 +457,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     'update_interval': self.md_update_interval, # 48 Default
                     'last_update': ''
                   }
+
+                if 'force_dist_sync' in user_settings.keys():
+                  self.force_dist_sync = user_settings['force_dist_sync']
 
                 #### Search
                 if 'search' in user_settings.keys():
@@ -1588,6 +1595,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if action == 'i':
                         self.backend.Install(pkgs, sync=True)
                     elif action == 'u':
+                      if self.force_dist_sync:
+                        # Force upgrade requests through DistroSync before resolve/do_transaction.
+                        distsync_specs = [dnfdragora.misc.to_pkg_tuple(pkg_id)[0] for pkg_id in pkg_ids]
+                        logger.debug('Force DistroSync for upgrades: %s', distsync_specs)
+                        self.backend.DistroSync(distsync_specs, sync=True)
+                      else:
                         self.backend.Update(pkgs, sync=True)
                     elif action == 'r':
                         self.backend.Remove(pkgs, sync=True)
