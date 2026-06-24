@@ -287,6 +287,22 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
         (n, e, v, r, a, repo_id) = str(pkg_id).split(',')
         return (n, e, v, r, a, repo_id)
 
+    def OfflineGetStatus(self, sync=False):
+        """Forward offline status query from frontend to daemon client."""
+        return super().OfflineGetStatus(sync=sync)
+
+    def OfflineCancel(self, sync=False):
+        """Forward offline cancellation from frontend to daemon client."""
+        return super().OfflineCancel(sync=sync)
+
+    def OfflineClean(self, options=None, sync=False):
+        """Forward offline cleanup from frontend to daemon client."""
+        return super().OfflineClean(options=options, sync=sync)
+
+    def OfflineSetFinishAction(self, action, sync=False):
+        """Forward offline finish action selection from frontend to daemon client."""
+        return super().OfflineSetFinishAction(action, sync=sync)
+
     def make_pkg_object(self, pkgs, flt):
         """Get a list Package objects from a list of pkg_ids & attrs.
 

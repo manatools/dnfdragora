@@ -222,6 +222,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._transaction_tries = 0
         self._transaction_noreply_warned = False
         self._trans_dialog = None  # TransactionProgressDialog, active during RUN_TRANSACTION
+        self._offline_finish_action_pending = None
+        self._offline_finish_action_retries = 0
+        self._offline_finish_action_retry_max = 30
         self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -1642,7 +1645,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if self.allow_erasing:
         options['allow_erasing'] = True
         logger.debug('Allow erasing option enabled')
-      self.backend.BuildTransaction(options)
+      self.backend.BuildTransaction(options=options)
 
     def saveUserPreference(self):
         '''
@@ -2184,6 +2187,88 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._trans_dialog.mark_complete(event == 'OnTransactionAfterComplete')
         else:
             logger.warning("Transaction complete event received, but transaction dialog is not open")
+
+    def _try_finalize_offline_finish_action(self):
+      '''
+      Apply pending offline finish action when the async RunTransaction command
+      has fully released and an offline transaction is confirmed as pending.
+      '''
+      if self._offline_finish_action_pending is None:
+        return
+
+      if self.backend._sent:
+        return
+
+      if not hasattr(self.backend, 'OfflineGetStatus') or not hasattr(self.backend, 'OfflineSetFinishAction'):
+        logger.error("Offline API missing in backend; cannot set offline finish action")
+        common.warningMsgBox({
+          'title': _('Offline transaction warning'),
+          'size': (400, 200),
+          'text': _('Offline transaction was requested, but backend Offline APIs are not available.'),
+          'richtext': True,
+        })
+        self._offline_finish_action_pending = None
+        self._offline_finish_action_retries = 0
+        return
+
+      try:
+        pending, _status = self.backend.OfflineGetStatus(sync=True)
+      except Exception as err:
+        self._offline_finish_action_retries += 1
+        logger.debug("OfflineGetStatus retry %d/%d failed: %s",
+                     self._offline_finish_action_retries,
+                     self._offline_finish_action_retry_max,
+                     err)
+        if self._offline_finish_action_retries >= self._offline_finish_action_retry_max:
+          logger.exception("Failed to get offline status after retries: %s", err)
+          common.warningMsgBox({
+            'title': _('Offline transaction warning'),
+            'size': (400, 200),
+            'text': _('Offline transaction was requested, but status verification failed: %s') % str(err),
+            'richtext': True,
+          })
+          self._offline_finish_action_pending = None
+          self._offline_finish_action_retries = 0
+        return
+
+      if not pending:
+        self._offline_finish_action_retries += 1
+        if self._offline_finish_action_retries >= self._offline_finish_action_retry_max:
+          logger.warning("Offline transaction not pending after %d retries; skipping finish action",
+                         self._offline_finish_action_retry_max)
+          common.warningMsgBox({
+            'title': _('Offline transaction warning'),
+            'size': (400, 200),
+            'text': _('Offline transaction was requested, but no pending offline transaction was detected.'),
+            'richtext': True,
+          })
+          self._offline_finish_action_pending = None
+          self._offline_finish_action_retries = 0
+        return
+
+      try:
+        success, error_msg = self.backend.OfflineSetFinishAction(self._offline_finish_action_pending, sync=True)
+        if not success:
+          logger.warning("Failed to set offline finish action '%s': %s",
+                         self._offline_finish_action_pending, error_msg)
+          common.warningMsgBox({
+            'title': _('Offline transaction warning'),
+            'size': (400, 200),
+            'text': _('Offline transaction was created, but setting finish action failed: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("Failed to set offline finish action '%s': %s",
+                         self._offline_finish_action_pending, err)
+        common.warningMsgBox({
+          'title': _('Offline transaction warning'),
+          'size': (400, 200),
+          'text': _('Offline transaction was created, but setting finish action failed: %s') % str(err),
+          'richtext': True,
+        })
+      finally:
+        self._offline_finish_action_pending = None
+        self._offline_finish_action_retries = 0
 
     def exception_handler(self, e):
       """Handle frontend exceptions; keep transaction alive on transient DBus NoReply."""
@@ -2850,6 +2935,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._status = DNFDragoraStatus.STARTUP
           self._enableAction(False)
           return
+        offline_requested = False
+        offline_finish_action = 'reboot'
+
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
         #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
@@ -2860,13 +2948,25 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if not ok:
                     self._enableAction(True)
                     return
+                offline_requested = transaction_result_dlg.offline_requested
+                offline_finish_action = transaction_result_dlg.offline_finish_action
         elif ok !=0:
           logger.error("Build transaction error %d", ok) #TODO read errors from dnf daemon
 
         if ok:
+          run_options = {}
+          if offline_requested:
+            run_options['offline'] = True
+            self._offline_finish_action_pending = offline_finish_action
+            self._offline_finish_action_retries = 0
+          else:
+            self._offline_finish_action_pending = None
+            self._offline_finish_action_retries = 0
+
           self.infobar.info(_('Applying changes to the system'))
           self._show_trans_dialog()
-          self.backend.RunTransaction()
+          self.backend.RunTransaction(run_options)
+
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
           err =  "".join(resolve) if isinstance(resolve, list) else resolve if type(resolve) is str else repr(resolve);
@@ -3163,6 +3263,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
       except Empty:
+          self._try_finalize_offline_finish_action()
           if self._status == DNFDragoraStatus.STARTUP:
             self._status = DNFDragoraStatus.RUNNING
             self._start_caching_packages()

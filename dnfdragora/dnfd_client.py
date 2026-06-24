@@ -123,6 +123,7 @@ IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
 IFACE_GOAL = '{}.Goal'.format(DNFDAEMON_BUS_NAME)
+IFACE_OFFLINE = '{}.Offline'.format(DNFDAEMON_BUS_NAME)
 IFACE_ADVISORY = '{}.Advisory'.format(DNFDAEMON_BUS_NAME)
 IFACE_HISTORY = '{}.History'.format(DNFDAEMON_BUS_NAME)
 
@@ -183,6 +184,7 @@ class Client:
         self.iface_repo = None
         self.iface_rpm = None
         self.iface_goal = None
+        self.iface_offline = None
 
         self.iface_base_signalhandler_maches = None
         self.iface_rpm_signalhandler_maches = None
@@ -243,6 +245,12 @@ class Client:
           'CancelTransaction'   : 'cancel',
           'TransactionProblems' : 'get_transaction_problems_string',
 
+          ##Offline
+          'OfflineGetStatus'       : 'get_status',
+          'OfflineCancel'          : 'cancel',
+          'OfflineClean'           : 'clean',
+          'OfflineSetFinishAction' : 'set_finish_action',
+
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
@@ -275,6 +283,10 @@ class Client:
             self.iface_goal = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_GOAL)
+
+            self.iface_offline = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_OFFLINE)
 
             self.iface_advisory = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
@@ -1338,6 +1350,9 @@ class Client:
         elif cmd == 'BuildTransaction' or cmd == 'ResetTransaction' or cmd == 'RunTransaction' or \
              cmd == 'CancelTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
+        elif cmd == 'OfflineGetStatus' or cmd == 'OfflineCancel' or cmd == 'OfflineClean' or \
+             cmd == 'OfflineSetFinishAction':
+            return self.iface_offline
 
         return None
 
@@ -1832,6 +1847,64 @@ class Client:
         else:
           success, error_msg = self._run_dbus_sync('CancelTransaction')
           return (unpack_dbus(success), unpack_dbus(error_msg))
+
+        def OfflineGetStatus(self, sync=False):
+                '''
+                        Return current offline-transaction status.
+                        Return:
+                                @pending: true if an offline transaction is currently scheduled.
+                                @transaction_status: map with the offline transaction status details.
+                '''
+                if not sync:
+                    self._run_dbus_async('OfflineGetStatus', True)
+                else:
+                    pending, transaction_status = self._run_dbus_sync('OfflineGetStatus')
+                    return (unpack_dbus(pending), unpack_dbus(transaction_status))
+
+        def OfflineCancel(self, sync=False):
+                '''
+                        Cancel any scheduled offline transaction.
+                        Return:
+                                @success: true if cancellation succeeded (or no offline transaction was scheduled).
+                                @error_msg: error message when cancellation fails.
+                '''
+                if not sync:
+                    self._run_dbus_async('OfflineCancel', True)
+                else:
+                    success, error_msg = self._run_dbus_sync('OfflineCancel')
+                    return (unpack_dbus(success), unpack_dbus(error_msg))
+
+        def OfflineClean(self, options=None, sync=False):
+                '''
+                        Cancel and clean scheduled offline transaction data.
+                        Args:
+                                @options: optional behavior modifiers (for interfaces exposing clean(options)).
+                        Return:
+                                @success: true if cleanup succeeded.
+                                @error_msg: error message when cleanup fails.
+                '''
+                if options is None:
+                    options = {}
+                if not sync:
+                    self._run_dbus_async('OfflineClean', True, options)
+                else:
+                    success, error_msg = self._run_dbus_sync('OfflineClean', options)
+                    return (unpack_dbus(success), unpack_dbus(error_msg))
+
+        def OfflineSetFinishAction(self, action, sync=False):
+                '''
+                        Set the action to perform after applying offline transaction.
+                        Args:
+                                @action: one of 'reboot' or 'poweroff'.
+                        Return:
+                                @success: true if finish action was successfully set.
+                                @error_msg: error message when setting fails.
+                '''
+                if not sync:
+                    self._run_dbus_async('OfflineSetFinishAction', True, action)
+                else:
+                    success, error_msg = self._run_dbus_sync('OfflineSetFinishAction', action)
+                    return (unpack_dbus(success), unpack_dbus(error_msg))
 
     def TransactionProblems(self, sync=False):
         '''
