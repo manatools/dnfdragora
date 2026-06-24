@@ -225,6 +225,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._offline_finish_action_pending = None
         self._offline_finish_action_retries = 0
         self._offline_finish_action_retry_max = 30
+        self._offline_transaction_running = False
+        self._offline_transaction_prepared = False
         self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -2061,30 +2063,29 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         if eventType == MUI.YEventType.CancelEvent:
           if self._trans_dialog is not None:
-            # NOTE: cancel event cannot be reverted, so we try to cancel the tranaction and reset the session
+            # Respect the dialog close policy: only close when request_close allows it.
             if self._trans_dialog.request_close():
-              logger.debug("User cancelled transaction dialog and the transaction has been cancelled")
+              logger.debug("User closed transaction dialog")
+              self._close_trans_dialog()
+              # Clean up download and transaction data
+              self.__resetDownloads()
+              #restore actions to Normal
+              self._updateActionView(const.Actions.NORMAL)
+              # TODO change UI and manage this better afer a transaction report
+              self.backend.clear_cache(also_groups=True)
+              self.packageQueue.clear()
+              self._status = DNFDragoraStatus.RESET_SESSION
+              self._transaction_noreply_warned = False
+              self._enableAction(False)
+              # NOTE: do NOT call backend.ResetSession() here.
+              # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+              # RunTransaction D-Bus method reply, so _sent is still True at this
+              # point. ResetSession would be rejected with "Command in progress".
+              # The RunTransaction event handler below waits for the reply (which
+              # clears _sent) and then issues ResetSession safely.
+              rebuild_package_list = True
             else:
-              logger.warning("User cancelled transaction dialog; attempting to cancel transaction and reset session")
-
-            self._close_trans_dialog()
-            # Clean up download and transaction data
-            self.__resetDownloads()
-            #restore actions to Normal
-            self._updateActionView(const.Actions.NORMAL)
-            # TODO change UI and manage this better afer a transaction report        
-            self.backend.clear_cache(also_groups=True)
-            self.packageQueue.clear()
-            self._status = DNFDragoraStatus.RESET_SESSION
-            self._transaction_noreply_warned = False
-            self._enableAction(False)
-            # NOTE: do NOT call backend.ResetSession() here.
-            # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
-            # RunTransaction D-Bus method reply, so _sent is still True at this
-            # point. ResetSession would be rejected with "Command in progress".
-            # The RunTransaction event handler below waits for the reply (which
-            # clears _sent) and then issues ResetSession safely.
-            rebuild_package_list = True
+              logger.warning("User requested close while transaction is still running")
           else:
             request_exit = True
         elif eventType == MUI.YEventType.MenuEvent:
@@ -2160,6 +2161,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self._trans_dialog is not None:
             self._trans_dialog.close()
             self._trans_dialog = None
+        self._offline_transaction_running = False
+        self._offline_transaction_prepared = False
         self.infobar.reset_all()
         self.pbar_layout.setEnabled(True)
 
@@ -2257,6 +2260,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'text': _('Offline transaction was created, but setting finish action failed: %s') % error_msg,
             'richtext': True,
           })
+        else:
+          self._offline_transaction_prepared = True
+          self._offline_transaction_running = False
+          if self._trans_dialog is not None:
+            self._trans_dialog.mark_offline_scheduled(self._offline_finish_action_pending)
       except Exception as err:
         logger.exception("Failed to set offline finish action '%s': %s",
                          self._offline_finish_action_pending, err)
@@ -2266,6 +2274,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           'text': _('Offline transaction was created, but setting finish action failed: %s') % str(err),
           'richtext': True,
         })
+        self._offline_transaction_prepared = True
+        self._offline_transaction_running = False
+        if self._trans_dialog is not None:
+          # Even when set_finish_action fails, offline transaction is typically
+          # still scheduled with default reboot behavior.
+          self._trans_dialog.mark_offline_scheduled('reboot')
       finally:
         self._offline_finish_action_pending = None
         self._offline_finish_action_retries = 0
@@ -2717,12 +2731,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values =  (download_id, download['description'], status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
+      # Keep internal download counters consistent also while transaction dialog
+      # is active, otherwise reset reports stale in-progress downloads.
+      if status in (0, 1):
+        if download['total_to_download'] > 0:
+          download['downloaded'] = download['total_to_download']
+      if self._download_events['in_progress'] > 0:
+        self._download_events['in_progress'] -= 1
+
       if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
           self._trans_dialog.on_download_end(download_id, download['description'], status, error)
       else:
-        if (self._download_events['in_progress'] > 0) :
-          self._download_events['in_progress'] -= 1
-
         # (0 - successful, 1 - already exists, 2 - error)
         if status == 0 or status == 1:  # download OK or already exists
           logger.debug('Downloaded : %s - %s', download_id, download['description'])
@@ -2730,9 +2749,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           logger.error('Download Error : [%s]:[%s] - %s', download_id, download['description'], error)
 
         self.infobar.info_sub("")
-        if (self._download_events['in_progress'] == 0) :
+      if self._download_events['in_progress'] == 0:
+        if self._trans_dialog is None or self._status != DNFDragoraStatus.RUN_TRANSACTION:
           self.infobar.reset_all()
-          self.__resetDownloads()
+        self.__resetDownloads()
 
     def _OnErrorMessage(self, session_object_path, download_id, error, url, metadata):
       logger.error('OnErrorMessage(%s) - name: %s, err: %s url: %s, metadata: %s ', session_object_path, download_id, error, url, metadata)
@@ -2959,9 +2979,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             run_options['offline'] = True
             self._offline_finish_action_pending = offline_finish_action
             self._offline_finish_action_retries = 0
+            self._offline_transaction_running = True
+            self._offline_transaction_prepared = False
           else:
             self._offline_finish_action_pending = None
             self._offline_finish_action_retries = 0
+            self._offline_transaction_running = False
+            self._offline_transaction_prepared = False
 
           self.infobar.info(_('Applying changes to the system'))
           self._show_trans_dialog()

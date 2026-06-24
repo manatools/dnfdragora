@@ -202,6 +202,21 @@ class TransactionProgressDialog:
         self._close_button.setEnabled(True)
         self._update_summary()
 
+    def mark_offline_scheduled(self, finish_action='reboot'):
+        """Mark dialog as ready to close after scheduling offline transaction."""
+        self._complete = True
+        self._success = True
+        action = finish_action if finish_action in ('reboot', 'poweroff') else 'reboot'
+        msg = _("Offline transaction scheduled. Reboot or power off to continue on next startup.")
+        self._append('complete', msg)
+        self._title_label.setValue(_("Offline transaction scheduled"))
+        self._current_label.setValue(msg)
+        self._current_bar.setValue(100)
+        self._global_bar.setValue(100)
+        self._close_button.setLabel(_("&Close"))
+        self._close_button.setEnabled(True)
+        self._update_summary()
+
     def handle_event(self, event):
         """
         Process a widget event from this dialog.
@@ -226,6 +241,14 @@ class TransactionProgressDialog:
         """
         if self._complete:
             return True
+
+        if getattr(self.parent, '_offline_transaction_running', False):
+            if getattr(self.parent, '_offline_transaction_prepared', False):
+                self._append('complete', _("Offline transaction is scheduled. You can close this window."))
+                self._close_button.setEnabled(True)
+                return True
+            self._append('prep', _("Offline transaction is being prepared. Please wait..."))
+            return False
 
         if self._cancel_requested:
             self._append('prep', _("Cancellation already requested; waiting..."))
