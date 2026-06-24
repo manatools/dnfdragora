@@ -133,11 +133,13 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>System options</h2>') + \
           _('<ul><li><b>Run transactions on packages automatically without confirmation needed</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering always <i>yes</i>.') + \
             _('<br><b>NOTE</b> that this option means that also removing packages is silently accepted</li>') + \
-          _('<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are added to updates and filtered as updates.</li>') + \
-          _('<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked dnfdragora update is hidden if there are no updates.') + \
-            _('<br><b>NOTE</b> that this option is experimental, not all desktops manage it as expected</li>') + \
-          _('<li><b>Interval to check for updates</b>: the given number represents how often dnfdragora checks for updates; the value is expressed in minutes</li>') + \
+          _('<li><b>Force distsync as upgrade</b>: if enabled, queued upgrade actions are resolved as distsync actions.</li>') + \
+          _('<li><b>Remove installed package to resolve transactions</b>: if enabled, dependency solving can remove installed packages (<i>allow_erasing</i>).</li>') + \
           _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
+        _('<h2>dnfdragora-updater options</h2>') + \
+          _('<ul><li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked dnfdragora-update is hidden when no updates are available.') + \
+            _('<br><b>NOTE</b> that this option is experimental, not all desktops manage it as expected</li>') + \
+          _('<li><b>Interval to check for updates</b>: how often dnfdragora-update checks for updates; value is expressed in minutes (10..10080).</li></ul>') + \
         _('<h2>Layout options</h2>') + \
           _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, i.e. showing only package available for updates if any.</li>') + \
           _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
@@ -241,6 +243,10 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<ul><li><b>Apply</b>: when some packages are selected for installing or updating or deselected for uninstalling this button runs the transaction to be performed.</li>') + \
         _('<li><b>Select all</b>: if packages are filtered for updates only this button allows to select all the packages in one shot.</li>') + \
         _('<li><b>Quit</b>: exits from dnfdragora.</li></ul>') + \
+        _('<h2>Offline transaction confirmation</h2>') + \
+        _('When transaction confirmation is shown, you can enable <b>Offline</b> and choose <b>Reboot</b> or <b>Power off</b>. ') + \
+        _('dnfdragora schedules the offline transaction and shows a reminder to reboot or power off to continue at the next startup. ') + \
+        _('While offline scheduling is in progress, cancellation is disabled and the progress window stays open until scheduling is completed.') + \
         '<br>',
         # back home
         home_lnk,

@@ -1,5 +1,13 @@
 2026-XX-YY v. 2.99.5
 --------------------
+- Updated Help dialog documentation.
+- Removed legacy "upgrades_as_updates" behavior.
+- Moved updater-specific preferences to a dedicated "dnfdragora-updater" into options dialog for user settings.
+- Added new System preferences for "Force distsync as upgrade" to use distro sync instead of upgrade.
+- Added new System preferences for "Remove installed package to resolve transactions" (allow_erasing).
+- Added dnf5daemon Offline API handling.
+- Added offline transaction controls in transaction confirmation (Offline + Reboot/Power off).
+- Fixed download-end accounting to avoid stale in-progress download counters while transaction progress dialog is active.
 - Fixed #272 dnfdragora-update icon if updates are present. Relies on system-software-update theme one.
 - Reduced minimum dialog size to 900×600 in the hope to stay in limted high size monitors
 - Added --show and --remove parameters (thanks Ramil Nurmanov PR #270 and #271)
