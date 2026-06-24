@@ -1147,6 +1147,17 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.force_dist_sync, self.onForceDistSyncChange, True)
     self.widget_callbacks.append({'widget': self.force_dist_sync, 'handler': self.onForceDistSyncChange})
 
+    allow_erasing_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'allow_erasing',
+                                           default=self.parent.allow_erasing)
+    self.allow_erasing = self.factory.createCheckBox(
+      self.factory.createLeft(vbox),
+      _("Remove installed package to resolve transactions"),
+      allow_erasing_val
+    )
+    self.allow_erasing.setNotify(True)
+    self.eventManager.addWidgetEvent(self.allow_erasing, self.onAllowErasingChange, True)
+    self.widget_callbacks.append({'widget': self.allow_erasing, 'handler': self.onAllowErasingChange})
+
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
 
     hbox = self.factory.createHBox(vbox)
@@ -1425,6 +1436,17 @@ class OptionDialog(basedialog.BaseDialog):
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
+  def onAllowErasingChange(self, obj):
+    '''
+    Remove installed package to resolve transactions changing
+    '''
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings()['allow_erasing'] = obj.isChecked()
+      self.parent.allow_erasing = obj.isChecked()
+      logger.debug("allow_erasing %d", obj.isChecked())
+    else:
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+
   def onHideUpdateMenu(self, obj):
     '''
     Hide update menu changing
@@ -1444,6 +1466,8 @@ class OptionDialog(basedialog.BaseDialog):
       self.parent.always_yes = False
       s['force_dist_sync'] = False
       self.parent.force_dist_sync = False
+      s['allow_erasing'] = False
+      self.parent.allow_erasing = False
       s['metadata'] = {'update_interval': 48}
       self.parent.md_update_interval = 48
       self._openSystemOptions()

@@ -243,6 +243,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
         self.force_dist_sync = False
+        self.allow_erasing = False
         self.fuzzy_search = False
         self.newest_only = False
         self._search_nevra    = True   # search in package names/NEVRA   (with_nevra)
@@ -403,6 +404,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if 'force_dist_sync' in settings.keys() :
               self.force_dist_sync = settings['force_dist_sync']
 
+            if 'allow_erasing' in settings.keys() :
+              self.allow_erasing = settings['allow_erasing']
+
             if 'log_directory' in settings.keys() :
               print("Warning logging must be set in user preferences, discarded")
 
@@ -460,6 +464,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
                 if 'force_dist_sync' in user_settings.keys():
                   self.force_dist_sync = user_settings['force_dist_sync']
+
+                if 'allow_erasing' in user_settings.keys():
+                  self.allow_erasing = user_settings['allow_erasing']
 
                 #### Search
                 if 'search' in user_settings.keys():
@@ -1629,6 +1636,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug('Distro Sync %s' %(pkgs))
             self.backend.DistroSync(pkgs, sync=True)
 
+    def _buildTransaction(self):
+      """Build a transaction using the current dependency-resolution options."""
+      options = {}
+      if self.allow_erasing:
+        options['allow_erasing'] = True
+        logger.debug('Allow erasing option enabled')
+      self.backend.BuildTransaction(options)
+
     def saveUserPreference(self):
         '''
         Save user preferences on exit and view layout if needed.
@@ -2017,7 +2032,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self._enableAction(False)
       self.pbar_layout.setEnabled(True)
       self._populate_transaction()
-      self.backend.BuildTransaction()
+      self._buildTransaction()
 
     def _sync_apply_button_state(self):
       """Keep Apply button enabled state consistent with queue and action mode."""
@@ -3010,7 +3025,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                       pkgs.append(item)
 
                   self.backend.Install(pkgs, sync=True)
-                  self.backend.BuildTransaction()
+                  self._buildTransaction()
                   self._runtime_option_managed = True
                   return
 
@@ -3025,7 +3040,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if not self._runtime_option_managed and 'remove' in self.options.keys() :
                   pkgs = " ".join(self.options['remove'])
                   self.backend.Remove(pkgs, sync=True)
-                  self.backend.BuildTransaction()
+                  self._buildTransaction()
                   self._runtime_option_managed = True
                   return
 
