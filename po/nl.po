@@ -8,9 +8,9 @@
 # Geiger David <david.david@mageialinux-online.org>, 2020
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2021
-# Marcel Pol <marcel@timelord.nl>, 2024
 # Marja van Waes, 2025
 # dragnadh, 2026
+# Marcel Pol <marcel@timelord.nl>, 2026
 # Marc Laan, 2026
 #
 #, fuzzy
@@ -484,19 +484,19 @@ msgstr "Herinstalleren"
 #: dnfdragora/dialogs.py:599 dnfdragora/dialogs.py:606
 #: dnfdragora/dialogs.py:614 dnfdragora/ui.py:740
 msgid "Offline transactions"
-msgstr ""
+msgstr "Offline transacties"
 
 #: dnfdragora/dialogs.py:393
 msgid "Offline transaction status"
-msgstr ""
+msgstr "Offline transactie-status"
 
 #: dnfdragora/dialogs.py:398
 msgid "Status details"
-msgstr ""
+msgstr "Status details"
 
 #: dnfdragora/dialogs.py:401
 msgid "Key"
-msgstr ""
+msgstr "Sleutel"
 
 #: dnfdragora/dialogs.py:402 dnfdragora/dialogs.py:963
 msgid "Value"
@@ -504,15 +504,15 @@ msgstr "Waarde"
 
 #: dnfdragora/dialogs.py:407 dnfdragora/dialogs.py:466
 msgid "Finish action"
-msgstr ""
+msgstr "Actie afsluiten"
 
 #: dnfdragora/dialogs.py:409 dnfdragora/dialogs.py:800
 msgid "Reboot"
-msgstr ""
+msgstr "Herstarten"
 
 #: dnfdragora/dialogs.py:410 dnfdragora/dialogs.py:801
 msgid "Power off"
-msgstr ""
+msgstr "Computer uitschakelen"
 
 #: dnfdragora/dialogs.py:420 dnfdragora/dialogs.py:672
 #: dnfdragora/dialogs.py:811 dnfdragora/dialogs.py:973
@@ -522,101 +522,108 @@ msgstr "&Annuleren"
 
 #: dnfdragora/dialogs.py:421
 msgid "&Finalize"
-msgstr ""
+msgstr "&Afronden"
 
 #: dnfdragora/dialogs.py:422
 msgid "&Clean"
-msgstr ""
+msgstr "&Schoonmaken"
 
 #: dnfdragora/dialogs.py:425
 msgid "Reload the current offline transaction status."
-msgstr ""
+msgstr "De huidige offline transactie-status opnieuw laden."
 
 #: dnfdragora/dialogs.py:426
 msgid ""
 "Cancel the pending offline transaction. Available only when one is scheduled."
 msgstr ""
+"Annuleer de openstaande offline-transactie. Alleen beschikbaar als er een "
+"gepland is."
 
 #: dnfdragora/dialogs.py:427
 msgid ""
 "Set the finish action for the pending offline transaction to reboot or power "
 "off."
 msgstr ""
+"Stel de actie voor het voltooien van de offline-transactie in op pc "
+"herstarten of pc uitschakelen."
 
 #: dnfdragora/dialogs.py:428
 msgid ""
 "Remove any stored offline transaction data, even if no transaction is "
 "currently pending."
 msgstr ""
+"Verwijder alle opgeslagen offline transactiegegevens, zelfs als er momenteel "
+"geen transactie in behandeling is."
 
 #: dnfdragora/dialogs.py:429
 msgid "Close this dialog without changing the offline transaction state."
 msgstr ""
+"Sluit dit dialoogvenster, zonder de offline transactiestatus te wijzigen."
 
 #: dnfdragora/dialogs.py:462
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: dnfdragora/dialogs.py:462
 msgid "Pending"
-msgstr ""
+msgstr "In behandeling"
 
 #: dnfdragora/dialogs.py:462
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: dnfdragora/dialogs.py:464
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: dnfdragora/dialogs.py:477
 msgid "An offline transaction is pending."
-msgstr ""
+msgstr "Een offline transactie is in behandeling."
 
 #: dnfdragora/dialogs.py:477
 msgid "No offline transaction is currently pending."
-msgstr ""
+msgstr "Er zijn momenteel geen offline transacties in behandeling."
 
 #: dnfdragora/dialogs.py:500
 #, python-format
 msgid "Could not read offline transaction status: %s"
-msgstr ""
+msgstr "Kon de offline transactiestatus niet lezen: %s"
 
 #: dnfdragora/dialogs.py:522
 msgid "There is no offline transaction to cancel."
-msgstr ""
+msgstr "Er is geen offline transactie die geannuleerd kan worden."
 
 #: dnfdragora/dialogs.py:535
 msgid "Offline transaction has been canceled."
-msgstr ""
+msgstr "De offline transactie is geannuleerd."
 
 #: dnfdragora/dialogs.py:542 dnfdragora/dialogs.py:550
 #, python-format
 msgid "Failed to cancel offline transaction: %s"
-msgstr ""
+msgstr "Het annuleren van de offline transactie is mislukt: %s"
 
 #: dnfdragora/dialogs.py:559
 msgid "There is no offline transaction to finalize."
-msgstr ""
+msgstr "Er hoeft geen offline transactie te worden afgerond."
 
 #: dnfdragora/dialogs.py:572
 #, python-format
 msgid "Offline transaction finish action set to %s."
-msgstr ""
+msgstr "Actie voor het voltooien van offline transacties ingesteld op %s."
 
 #: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:587
 #, python-format
 msgid "Failed to set offline finish action: %s"
-msgstr ""
+msgstr "Het instellen van de offline-afsluitingsactie is mislukt:%s"
 
 #: dnfdragora/dialogs.py:601
 msgid "Offline transaction data has been cleaned."
-msgstr ""
+msgstr "De offline transactiegegevens zijn opgeschoond."
 
 #: dnfdragora/dialogs.py:608 dnfdragora/dialogs.py:616
 #, python-format
 msgid "Failed to clean offline transaction data: %s"
-msgstr ""
+msgstr "Kan offline transactiegegevens niet opschonen:%s"
 
 #: dnfdragora/dialogs.py:647
 msgid "Action on selected packages"
@@ -660,7 +667,7 @@ msgstr "Totale grootte"
 
 #: dnfdragora/dialogs.py:797
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: dnfdragora/dialogs.py:806
 msgid "Offline mode is unavailable because systemd is not running."
@@ -837,7 +844,7 @@ msgstr "Indeling"
 
 #: dnfdragora/dialogs.py:1344
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-bijwerker"
 
 #: dnfdragora/dialogs.py:1348
 msgid "Logging"
@@ -858,11 +865,11 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1439
 msgid "Force distsync as upgrade"
-msgstr ""
+msgstr "Distsync forceren als upgrade "
 
 #: dnfdragora/dialogs.py:1450
 msgid "Remove installed package to resolve transactions"
-msgstr ""
+msgstr "Verwijder het geïnstalleerde pakket om transacties op te lossen."
 
 #: dnfdragora/dialogs.py:1464
 msgid "Metadata expire time (hours)"
@@ -870,7 +877,7 @@ msgstr "Verlooptijd metagegevens (uren)"
 
 #: dnfdragora/dialogs.py:1487
 msgid "dnfdragora-updater options"
-msgstr ""
+msgstr "opties dnfdragora-bijwerker"
 
 #: dnfdragora/dialogs.py:1495
 msgid "Hide dnfdragora-update menu if there are no updates"
@@ -1780,7 +1787,7 @@ msgstr "Geschiedenis-dialoogvenster"
 
 #: dnfdragora/helpinfo.py:38 dnfdragora/helpinfo.py:310
 msgid "Offline transactions dialog"
-msgstr ""
+msgstr "Dialoogvenster voor offline transacties"
 
 #: dnfdragora/helpinfo.py:54
 msgid "File menu"
@@ -2038,12 +2045,17 @@ msgid ""
 "<li><b>Force distsync as upgrade</b>: if enabled, queued upgrade actions are "
 "resolved as distsync actions.</li>"
 msgstr ""
+"<li><b>Distsync forceren als upgrade</b>:Indien ingeschakeld, worden in de "
+"wachtrij geplaatste upgradeacties afgehandeld als distsync-acties.</li>"
 
 #: dnfdragora/helpinfo.py:139
 msgid ""
 "<li><b>Remove installed package to resolve transactions</b>: if enabled, "
 "dependency solving can remove installed packages (<i>allow_erasing</i>).</li>"
 msgstr ""
+"<li><b>Verwijder het geïnstalleerde pakket om transacties op te lossen.</b>:"
+"Indien ingeschakeld, kan het oplossen van afhankelijkheden geïnstalleerde "
+"pakketten verwijderen.(<i>wissen toestaan</i>).</li>"
 
 #: dnfdragora/helpinfo.py:140
 msgid ""
@@ -2055,13 +2067,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:141
 msgid "<h2>dnfdragora-updater options</h2>"
-msgstr ""
+msgstr "<h2>dnfdragora-bijwerker-opties</h2>"
 
 #: dnfdragora/helpinfo.py:142
 msgid ""
 "<ul><li><b>Hide dnfdragora-update menu if there are no updates</b>: if "
 "checked dnfdragora-update is hidden when no updates are available."
 msgstr ""
+"<ul><li><b>Verberg het dnfdragora-update menu als er geen updates zijn.</b>: "
+"indien aangevinkt, blijft dnfdragora-bijwerker onzichtbaar wanneer er geen "
+"updates beschikbaar zijn."
 
 #: dnfdragora/helpinfo.py:143
 msgid ""
@@ -2076,6 +2091,8 @@ msgid ""
 "<li><b>Interval to check for updates</b>: how often dnfdragora-update checks "
 "for updates; value is expressed in minutes (10..10080).</li></ul>"
 msgstr ""
+"<li><b>Interval om te controleren op updates</b>:Hoe vaak dnfdragora-update "
+"controleert op updates; de waarde is in minuten (10..10080).</li></ul>"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Layout options</h2>"
@@ -2346,25 +2363,32 @@ msgstr "<li><b>Afsluiten</b>: sluit dnfdragora af.</li></ul>"
 
 #: dnfdragora/helpinfo.py:248
 msgid "<h2>Offline transaction confirmation</h2>"
-msgstr ""
+msgstr "<h2>Offline transactiebevestiging</h2>"
 
 #: dnfdragora/helpinfo.py:249
 msgid ""
 "When transaction confirmation is shown, you can enable <b>Offline</b> and "
 "choose <b>Reboot</b> or <b>Power off</b>. "
 msgstr ""
+"Wanneer de transactiebevestiging wordt getoond, kunt u <b>Offline</b> "
+"inschakelen en kiezen: <b>Herstart pc</b> of <b>pc uitschakelen</b>. "
 
 #: dnfdragora/helpinfo.py:250
 msgid ""
 "dnfdragora schedules the offline transaction and shows a reminder to reboot "
 "or power off to continue at the next startup. "
 msgstr ""
+"dnfdragora agendeert de offline transactie in en geeft een herinnering weer "
+"om de computer opnieuw op te starten of uit te schakelen om verder te gaan "
+"bij de volgende opstart."
 
 #: dnfdragora/helpinfo.py:251
 msgid ""
 "While offline scheduling is in progress, cancellation is disabled and the "
 "progress window stays open until scheduling is completed."
 msgstr ""
+"Tijdens het offline agenderen is annuleren niet mogelijk en blijft het "
+"voortgangsvenster open totdat het inplannen is voltooid."
 
 #: dnfdragora/helpinfo.py:261
 msgid ""
@@ -2589,15 +2613,19 @@ msgid ""
 "The Offline transactions dialog shows the current offline transaction status "
 "reported by dnf5daemon.<br><br>"
 msgstr ""
+"Het dialoogvenster 'Offline transacties' toont de huidige status van offline "
+"transacties zoals gerapporteerd door dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:314
 msgid ""
 "Open the dialog from the menu bar: <b>Actions → Offline transactions</b>.<br>"
 msgstr ""
+"Open het dialoogvenster via de menubalk:<b>Acties → Offline transacties</b>."
+"<br>"
 
 #: dnfdragora/helpinfo.py:316
 msgid "<h2>Status and actions</h2>"
-msgstr ""
+msgstr "<h2>Status en acties</h2>"
 
 #: dnfdragora/helpinfo.py:317
 msgid ""
@@ -2606,6 +2634,11 @@ msgid ""
 "press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to "
 "remove the scheduled offline transaction data.<br>"
 msgstr ""
+"Druk op <b>Ververs</b> om de huidige offline-status te herladen. Als er een "
+"offline transactie in behandeling is, kunt u kiezen voor<b>Herstart pc</b> "
+"of <b>Pc uitschakelen</b> en druk op <b>Beëindigen</b> om de "
+"beëindigingsactie in te stellen, of druk op <b>Opruimen</b> om de "
+"geagendeerde offline transactiegegevens te verwijderen.<br>"
 
 #: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
@@ -2624,18 +2657,20 @@ msgid ""
 "Offline transaction scheduled. Reboot or power off to continue on next "
 "startup."
 msgstr ""
+"Offline transactie gepland. Herstart de computer of schakel de pc uit om "
+"verder te gaan na de volgende opstart."
 
 #: dnfdragora/progress_ui.py:212
 msgid "Offline transaction scheduled"
-msgstr ""
+msgstr "Offline transactie ingepland"
 
 #: dnfdragora/progress_ui.py:247
 msgid "Offline transaction is scheduled. You can close this window."
-msgstr ""
+msgstr "De offline transactie is ingepland. U kunt dit venster sluiten."
 
 #: dnfdragora/progress_ui.py:250
 msgid "Offline transaction is being prepared. Please wait..."
-msgstr ""
+msgstr "De offline transactie wordt voorbereid. Even geduld alstublieft..."
 
 #: dnfdragora/progress_ui.py:254
 msgid "Cancellation already requested; waiting..."
@@ -2981,29 +3016,37 @@ msgstr "Beschermd pakket geselecteerd"
 #: dnfdragora/ui.py:2222 dnfdragora/ui.py:2242 dnfdragora/ui.py:2257
 #: dnfdragora/ui.py:2272 dnfdragora/ui.py:2286
 msgid "Offline transaction warning"
-msgstr ""
+msgstr "Offline transactie-waarschuwing"
 
 #: dnfdragora/ui.py:2224
 msgid ""
 "Offline transaction was requested, but backend Offline APIs are not "
 "available."
 msgstr ""
+"Er werd een offline transactie aangevraagd, maar de Offline API's van de "
+"backend zijn niet beschikbaar."
 
 #: dnfdragora/ui.py:2244
 #, python-format
 msgid "Offline transaction was requested, but status verification failed: %s"
 msgstr ""
+"Er werd een offline transactie aangevraagd, maar de statusverificatie is "
+"mislukt: %s"
 
 #: dnfdragora/ui.py:2259
 msgid ""
 "Offline transaction was requested, but no pending offline transaction was "
 "detected."
 msgstr ""
+"Er werd een offline transactie aangevraagd, maar er werd geen openstaande "
+"offline transactie gevonden. "
 
 #: dnfdragora/ui.py:2274 dnfdragora/ui.py:2288
 #, python-format
 msgid "Offline transaction was created, but setting finish action failed: %s"
 msgstr ""
+"Er is een offline transactie aangemaakt, maar het instellen van de "
+"voltooiingsactie is mislukt:%s"
 
 #: dnfdragora/ui.py:2310
 msgid "Backend busy"
@@ -3185,30 +3228,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hoofdvenster"
-
-#~ msgid ""
-#~ "<li><b>Consider packages to upgrade as updates</b>: if checked upgrades "
-#~ "are added to updates and filtered as updates.</li>"
-#~ msgstr ""
-#~ "<li><b> Beschouw upgradepakketten als updates:</b> indien aangevinkt, "
-#~ "worden upgrades toegevoegd aan de updates en als updates gefilterd.</li>"
-
-#~ msgid ""
-#~ "<li><b>Hide dnfdragora-update menu if there are no updates</b>: if "
-#~ "checked dnfdragora update is hidden if there are no updates."
-#~ msgstr ""
-#~ "<li><b>Verberg het dnfdragora-update menu als er geen updates zijn:</b> "
-#~ "als dit is aangevinkt, wordt het dnfdragora-update menu verborgen als er "
-#~ "geen updates zijn."
-
-#~ msgid ""
-#~ "<li><b>Interval to check for updates</b>: the given number represents how "
-#~ "often dnfdragora checks for updates; the value is expressed in minutes</"
-#~ "li>"
-#~ msgstr ""
-#~ "<li><b>Interval om op herzieningen te controleren</b>: het opgegeven "
-#~ "getal bepaalt hoe vaak dnfdragora op herzieningen controleert, uitgedrukt "
-#~ "in minuten</li>"
-
-#~ msgid "Consider packages to upgrade as updates"
-#~ msgstr "Overweeg pakketten te upgraden als updates."
