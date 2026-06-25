@@ -1,6 +1,7 @@
 2026-XX-YY v. 2.99.5
 --------------------
 - Updated Help dialog documentation.
+- Added an Offline transactions dialog to inspect, refresh, finalize, and clean pending offline transactions from the Actions menu.
 - Removed legacy "upgrades_as_updates" behavior.
 - Moved updater-specific preferences to a dedicated "dnfdragora-updater" into options dialog for user settings.
 - Added new System preferences for "Force distsync as upgrade" to use distro sync instead of upgrade.

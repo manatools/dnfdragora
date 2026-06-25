@@ -734,6 +734,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
                  'update_all' : self.menubar.addItem(mItem, _("&Update All"), enabled=False),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
+                'offline_transactions' : self.menubar.addItem(mItem, _("Offline transactions")),
             }
 
             # building Options menu
@@ -1820,6 +1821,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.dialog.setEnabled(True)
           except Exception:
               pass
+        elif item == self.ActionMenu['offline_transactions']:
+          try:
+            self.dialog.setEnabled(False)
+          except Exception:
+            pass
+          offdlg = dialogs.OfflineTransactionsDialog(self)
+          offdlg.run()
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
         elif item == self.helpMenu['help']:
           info = helpinfo.DNFDragoraHelpInfo()
           hd = helpdialog.HelpDialog(info)

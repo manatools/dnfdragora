@@ -35,6 +35,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
     buttons_line_lnk  = '<b>%s</b>'%self._formatLink(_("Button line"), 'button_panel')
     search_dlg_lnk    = '<b>%s</b>'%self._formatLink(_("Search dialog"), 'search_dlg')
     history_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('History dialog'), 'history_dlg')
+    offline_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('Offline transactions dialog'), 'offline_trans_dlg')
 
     index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
       menu_line_lnk,
@@ -46,6 +47,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       buttons_line_lnk,
       search_dlg_lnk,
       history_dlg_lnk,
+      offline_dlg_lnk,
       )
 
     ### Menu bar index
@@ -299,6 +301,21 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('The dialog also queries automatically when it first opens.<br><br>') +
         _('<h2>Close button</h2>') +
         _('Press <b>Close</b> (or the window close button) to dismiss the dialog and return to the main window.<br>'),
+        # back home
+        home_lnk,
+      ),
+
+      'offline_trans_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Offline transactions dialog'),
+        # help
+        _('The Offline transactions dialog shows the current offline transaction status reported by dnf5daemon.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → Offline transactions</b>.<br>') +
+        _('The main dnfdragora window is disabled while the dialog is open to prevent unintended interactions.<br><br>') +
+        _('<h2>Status and actions</h2>') +
+        _('Press <b>Refresh</b> to reload the current offline status. If an offline transaction is pending, you can choose <b>Reboot</b> or <b>Power off</b> and press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to remove the scheduled offline transaction data.<br>') +
+        '<br>',
         # back home
         home_lnk,
       ),

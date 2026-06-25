@@ -360,6 +360,265 @@ class HistoryDialog(basedialog.BaseDialog):
         self.ExitLoop()
 
 
+class OfflineTransactionsDialog(basedialog.BaseDialog):
+    '''
+    Dialog to inspect and manage pending offline transactions.
+    '''
+
+    def __init__(self, parent):
+      basedialog.BaseDialog.__init__(
+        self,
+        _("Offline transactions"),
+        "offline-transactions",
+        basedialog.DialogType.POPUP,
+        820, 520,
+      )
+      self.parent = parent
+      self.backend = self.parent.backend
+      self._pending = False
+      self._status_data = {}
+      self._selected_finish_action = 'reboot'
+
+    def UIlayout(self, layout):
+      '''Build the dialog widgets.'''
+      factory = self.factory
+
+      title_hbox = factory.createHBox(layout)
+      self._title_label = factory.createLabel(
+        title_hbox, _("Offline transaction status"))
+      self._title_label.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      self._summary_label = factory.createLabel(layout, "")
+
+      status_frame = factory.createFrame(layout, _("Status details"))
+      status_vbox = factory.createVBox(status_frame)
+      header = MUI.YTableHeader()
+      header.addColumn(_("Key"), False)
+      header.addColumn(_("Value"), False)
+      self._status_table = factory.createTable(status_vbox, header)
+      self._status_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+      self._status_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      finish_frame = factory.createFrame(layout, _("Finish action"))
+      finish_hbox = factory.createHBox(finish_frame)
+      self._rb_reboot = factory.createRadioButton(finish_hbox, _("Reboot"), True)
+      self._rb_poweroff = factory.createRadioButton(finish_hbox, _("Power off"), False)
+      self._rb_reboot.setNotify(True)
+      self._rb_poweroff.setNotify(True)
+      self._rb_reboot.setEnabled(False)
+      self._rb_poweroff.setEnabled(False)
+      self.eventManager.addWidgetEvent(self._rb_reboot, self._onFinishActionChange, True)
+      self.eventManager.addWidgetEvent(self._rb_poweroff, self._onFinishActionChange, True)
+
+      button_row = factory.createHBox(layout)
+      self._refresh_btn = factory.createPushButton(button_row, _("&Refresh"))
+      self._cancel_btn = factory.createPushButton(button_row, _("&Cancel"))
+      self._finalize_btn = factory.createPushButton(button_row, _("&Finalize"))
+      self._clean_btn = factory.createPushButton(button_row, _("&Clean"))
+      self._close_btn = factory.createPushButton(button_row, _("&Close"))
+
+      self._refresh_btn.setHelpText(_("Reload the current offline transaction status."))
+      self._cancel_btn.setHelpText(_("Cancel the pending offline transaction. Available only when one is scheduled."))
+      self._finalize_btn.setHelpText(_("Set the finish action for the pending offline transaction to reboot or power off."))
+      self._clean_btn.setHelpText(_("Remove any stored offline transaction data, even if no transaction is currently pending."))
+      self._close_btn.setHelpText(_("Close this dialog without changing the offline transaction state."))
+
+      self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
+      self.eventManager.addWidgetEvent(self._cancel_btn, self._onCancelOffline)
+      self.eventManager.addWidgetEvent(self._finalize_btn, self._onFinalize)
+      self.eventManager.addWidgetEvent(self._clean_btn, self._onClean)
+      self.eventManager.addWidgetEvent(self._close_btn, self.onQuitEvent)
+      self.eventManager.addCancelEvent(self.onCancelEvent)
+
+      self._refresh_status()
+
+    def _set_finish_controls_enabled(self, enabled):
+      self._rb_reboot.setEnabled(enabled)
+      self._rb_poweroff.setEnabled(enabled)
+      self._cancel_btn.setEnabled(enabled)
+      self._finalize_btn.setEnabled(enabled)
+      self._clean_btn.setEnabled(True)
+
+    def _flatten_status(self, prefix, value):
+      rows = []
+      if isinstance(value, dict):
+        for key in sorted(value.keys()):
+          child_prefix = f"{prefix}.{key}" if prefix else key
+          rows.extend(self._flatten_status(child_prefix, value[key]))
+      elif isinstance(value, list):
+        rows.append((prefix, ", ".join(str(v) for v in value)))
+      else:
+        rows.append((prefix, str(value)))
+      return rows
+
+    def _render_status(self):
+      self._status_table.deleteAllItems()
+      rows = []
+      rows.append((_("Pending"), _("Yes") if self._pending else _("No")))
+      if self._status_data:
+        rows.extend(self._flatten_status(_("Data"), self._status_data))
+      if self._pending and 'finish_action' not in self._status_data:
+        rows.append((_("Finish action"), self._selected_finish_action))
+
+      items = []
+      for key, value in rows:
+        item = MUI.YTableItem()
+        item.addCell(str(key))
+        item.addCell(str(value))
+        items.append(item)
+      if items:
+        self._status_table.addItems(items)
+      self._summary_label.setValue(
+        _("An offline transaction is pending.") if self._pending else _("No offline transaction is currently pending."))
+      self._set_finish_controls_enabled(self._pending)
+      if self._pending:
+        self._rb_reboot.setValue(self._selected_finish_action != 'poweroff')
+        self._rb_poweroff.setValue(self._selected_finish_action == 'poweroff')
+
+    def _refresh_status(self):
+      try:
+        MUI.YUI.app().busyCursor()
+        pending, transaction_status = self.backend.OfflineGetStatus(sync=True)
+        self._pending = bool(pending)
+        self._status_data = transaction_status if isinstance(transaction_status, dict) else {'status': transaction_status}
+        if isinstance(transaction_status, dict):
+          for key in ('finish_action', 'action'):
+            if key in transaction_status and str(transaction_status[key]) in ('reboot', 'poweroff'):
+              self._selected_finish_action = str(transaction_status[key])
+              break
+        self._render_status()
+      except Exception as err:
+        logger.exception("OfflineGetStatus failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Could not read offline transaction status: %s') % str(err),
+          'richtext': True,
+        })
+      finally:
+        MUI.YUI.app().normalCursor()
+
+    def _onFinishActionChange(self, obj):
+      if obj.widgetClass() == "YRadioButton":
+        if self._rb_poweroff.value():
+          self._selected_finish_action = 'poweroff'
+        else:
+          self._selected_finish_action = 'reboot'
+      self._render_status()
+
+    def _onRefresh(self):
+      self._refresh_status()
+
+    def _onCancelOffline(self):
+      if not self._pending:
+        common.infoMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('There is no offline transaction to cancel.'),
+          'richtext': True,
+        })
+        return
+      try:
+        success, error_msg = self.backend.OfflineCancel(sync=True)
+        if success:
+          self._pending = False
+          self._status_data = {}
+          self._refresh_status()
+          common.infoMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Offline transaction has been canceled.'),
+            'richtext': True,
+          })
+        else:
+          common.warningMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Failed to cancel offline transaction: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("OfflineCancel failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Failed to cancel offline transaction: %s') % str(err),
+          'richtext': True,
+        })
+
+    def _onFinalize(self):
+      if not self._pending:
+        common.infoMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('There is no offline transaction to finalize.'),
+          'richtext': True,
+        })
+        return
+      try:
+        action = 'poweroff' if self._rb_poweroff.value() else 'reboot'
+        success, error_msg = self.backend.OfflineSetFinishAction(action, sync=True)
+        if success:
+          self._selected_finish_action = action
+          self._refresh_status()
+          common.infoMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Offline transaction finish action set to %s.') % action,
+            'richtext': True,
+          })
+        else:
+          common.warningMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Failed to set offline finish action: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("OfflineSetFinishAction failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Failed to set offline finish action: %s') % str(err),
+          'richtext': True,
+        })
+
+    def _onClean(self):
+      try:
+        success, error_msg = self.backend.OfflineClean(sync=True)
+        if success:
+          self._pending = False
+          self._status_data = {}
+          self._refresh_status()
+          common.infoMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Offline transaction data has been cleaned.'),
+            'richtext': True,
+          })
+        else:
+          common.warningMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Failed to clean offline transaction data: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("OfflineClean failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Failed to clean offline transaction data: %s') % str(err),
+          'richtext': True,
+        })
+
+    def onCancelEvent(self, obj=None):
+      self.ExitLoop()
+
+    def onQuitEvent(self, obj=None):
+      self.ExitLoop()
+
+
 class PackageActionDialog:
     '''
       PackageActionDialog is a dialog that allows to select the action 
