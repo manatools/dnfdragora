@@ -27,6 +27,11 @@ import gettext
 import logging
 logger = logging.getLogger('dnfdragora.dialogs')
 
+
+def is_systemd_running():
+  """Check if systemd is running by checking the /run/systemd/system directory."""
+  return os.path.exists('/run/systemd/system')
+
 class HistoryDialog(basedialog.BaseDialog):
     """History dialog for dnfdragora.
 
@@ -782,14 +787,24 @@ class TransactionResult:
         controls_left = self.factory.createLeft(controls)
         controls_right = self.factory.createRight(controls)
 
-        offline_box = self.factory.createHBox(controls_left)
-        offline = self.factory.createCheckBox(offline_box, _("Offline"), False)
-        offline.setNotify(True)
-        self.factory.createHSpacing(offline_box)
-        reboot = self.factory.createRadioButton(offline_box, _("Reboot"), True)
-        poweroff = self.factory.createRadioButton(offline_box, _("Power off"), False)
-        reboot.setEnabled(False)
-        poweroff.setEnabled(False)
+        systemd_running = is_systemd_running()
+
+        offline = None
+        reboot = None
+        poweroff = None
+        if systemd_running:
+          offline_box = self.factory.createHBox(controls_left)
+          offline = self.factory.createCheckBox(offline_box, _("Offline"), False)
+          offline.setNotify(True)
+          self.factory.createHSpacing(offline_box)
+          reboot = self.factory.createRadioButton(offline_box, _("Reboot"), True)
+          poweroff = self.factory.createRadioButton(offline_box, _("Power off"), False)
+          reboot.setEnabled(False)
+          poweroff.setEnabled(False)
+        else:
+          info_box = self.factory.createHBox(controls_left)
+          info = self.factory.createLabel(info_box, _("Offline mode is unavailable because systemd is not running."))
+          info.setAutoWrap()
 
         hbox = self.factory.createHBox(controls_right)
         okButton = self.factory.createPushButton(hbox, _("&Ok"))
@@ -824,15 +839,15 @@ class TransactionResult:
             if (widget == cancelButton) :
               _reset_built_transaction()
               break
-            elif (widget == offline):
+            elif (systemd_running and widget == offline):
               enabled = offline.isChecked()
               reboot.setEnabled(enabled)
               poweroff.setEnabled(enabled)
               if enabled and not (reboot.value() or poweroff.value()):
                 reboot.setValue(True)
             elif (widget == okButton) :
-              self.offline_requested = offline.isChecked()
-              self.offline_finish_action = 'poweroff' if poweroff.value() else 'reboot'
+              self.offline_requested = (systemd_running and offline.isChecked())
+              self.offline_finish_action = ('poweroff' if (systemd_running and poweroff.value()) else 'reboot')
               accepting = True
               break
 
