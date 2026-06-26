@@ -671,7 +671,7 @@ msgstr "Offline"
 
 #: dnfdragora/dialogs.py:806
 msgid "Offline mode is unavailable because systemd is not running."
-msgstr ""
+msgstr "De offline modus is niet beschikbaar omdat systemd niet actief is."
 
 #: dnfdragora/dialogs.py:820
 msgid "Reset transaction failed"
