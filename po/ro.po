@@ -5,8 +5,8 @@
 #
 # Translators:
 # 3d5ab56b1b83fefceeab671c39a98a6d_999ae54, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2017
 # Florin Cătălin RUSSEN <cfrussen@yahoo.co.uk>, 2022
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 # Aurelian R, 2026
 #
 #, fuzzy
@@ -70,11 +70,11 @@ msgstr "instalați pachete"
 
 #: bin/dnfdragora:39
 msgid "search for and show a package by name"
-msgstr ""
+msgstr "caută și afișează un pachet după nume"
 
 #: bin/dnfdragora:40
 msgid "remove packages"
-msgstr ""
+msgstr "înlătură pachete"
 
 #: bin/dnfdragora:41
 msgid "show updates only dialog"
@@ -333,59 +333,59 @@ msgstr "Istoric"
 
 #: dnfdragora/dialogs.py:90
 msgid "&Recent Changes"
-msgstr ""
+msgstr "&Modificări recente"
 
 #: dnfdragora/dialogs.py:93
 msgid "&Transactions"
-msgstr ""
+msgstr "&Tranzacții"
 
 #: dnfdragora/dialogs.py:101
 msgid "Filters"
-msgstr ""
+msgstr "Filtre"
 
 #: dnfdragora/dialogs.py:104
 msgid "Since (YYYY-MM-DD):"
-msgstr ""
+msgstr "Din (AAAA-LL-ZZ):"
 
 #: dnfdragora/dialogs.py:109
 msgid "Change types"
-msgstr ""
+msgstr "Tipuri de modificări"
 
 #: dnfdragora/dialogs.py:112
 msgid "&Installed"
-msgstr ""
+msgstr "&Instalat"
 
 #: dnfdragora/dialogs.py:113
 msgid "&Removed"
-msgstr ""
+msgstr "&Îndepărtat"
 
 #: dnfdragora/dialogs.py:114
 msgid "&Upgraded"
-msgstr ""
+msgstr "&Actualizat"
 
 #: dnfdragora/dialogs.py:115
 msgid "&Downgraded"
-msgstr ""
+msgstr "&Retrogradat"
 
 #: dnfdragora/dialogs.py:117
 msgid "Include &advisories"
-msgstr ""
+msgstr "Includeți &avertismente"
 
 #: dnfdragora/dialogs.py:118
 msgid "All advisories"
-msgstr ""
+msgstr "Toate avertismentele"
 
 #: dnfdragora/dialogs.py:122
 msgid "Transaction filters"
-msgstr ""
+msgstr "Filtre de tranzacții"
 
 #: dnfdragora/dialogs.py:124
 msgid "Limit:"
-msgstr ""
+msgstr "Limită:"
 
 #: dnfdragora/dialogs.py:126
 msgid "  Contains package:"
-msgstr ""
+msgstr "Conține pachetul:"
 
 #: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:897
 #: dnfdragora/dialogs.py:953 dnfdragora/ui.py:586
@@ -394,7 +394,7 @@ msgstr "Denumire"
 
 #: dnfdragora/dialogs.py:136
 msgid "EVR"
-msgstr ""
+msgstr "EVR"
 
 #: dnfdragora/dialogs.py:137 dnfdragora/ui.py:586
 msgid "Arch"
@@ -402,11 +402,11 @@ msgstr "Arhit"
 
 #: dnfdragora/dialogs.py:138
 msgid "Action"
-msgstr ""
+msgstr "Acţiune"
 
 #: dnfdragora/dialogs.py:139
 msgid "Date"
-msgstr ""
+msgstr "Dată"
 
 #: dnfdragora/dialogs.py:140 dnfdragora/ui.py:586
 msgid "Summary"
@@ -414,11 +414,11 @@ msgstr "Sumar"
 
 #: dnfdragora/dialogs.py:146
 msgid "Transactions"
-msgstr ""
+msgstr "Tranzacții"
 
 #: dnfdragora/dialogs.py:154 dnfdragora/dialogs.py:419
 msgid "&Refresh"
-msgstr ""
+msgstr "&Reîmprospătare"
 
 #: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:423
 #: dnfdragora/dialogs.py:1366 dnfdragora/progress_ui.py:201
@@ -429,7 +429,7 @@ msgstr "În&chide"
 #: dnfdragora/dialogs.py:241 dnfdragora/dialogs.py:312
 #, python-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Eroare: %s"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:794
 msgid "installed"
@@ -437,39 +437,39 @@ msgstr "instalat"
 
 #: dnfdragora/dialogs.py:253
 msgid "removed"
-msgstr ""
+msgstr "îndepărtat"
 
 #: dnfdragora/dialogs.py:254
 msgid "upgraded"
-msgstr ""
+msgstr "actualizat"
 
 #: dnfdragora/dialogs.py:255
 msgid "downgraded"
-msgstr ""
+msgstr "retrogradat"
 
 #: dnfdragora/dialogs.py:282 dnfdragora/dialogs.py:356
 msgid "No results"
-msgstr ""
+msgstr "Niciun rezultat"
 
 #: dnfdragora/dialogs.py:317
 msgid "install"
-msgstr ""
+msgstr "instalează"
 
 #: dnfdragora/dialogs.py:318
 msgid "remove"
-msgstr ""
+msgstr "înlătură"
 
 #: dnfdragora/dialogs.py:319
 msgid "upgrade"
-msgstr ""
+msgstr "actualizează"
 
 #: dnfdragora/dialogs.py:320
 msgid "downgrade"
-msgstr ""
+msgstr "retrogradează"
 
 #: dnfdragora/dialogs.py:321
 msgid "reinstall"
-msgstr ""
+msgstr "reinstalează "
 
 #: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:498
 #: dnfdragora/dialogs.py:520 dnfdragora/dialogs.py:533
@@ -479,19 +479,19 @@ msgstr ""
 #: dnfdragora/dialogs.py:599 dnfdragora/dialogs.py:606
 #: dnfdragora/dialogs.py:614 dnfdragora/ui.py:740
 msgid "Offline transactions"
-msgstr ""
+msgstr "Tranzacții în mod deconectat."
 
 #: dnfdragora/dialogs.py:393
 msgid "Offline transaction status"
-msgstr ""
+msgstr "Starea tranzacțiilor în mod deconectat."
 
 #: dnfdragora/dialogs.py:398
 msgid "Status details"
-msgstr ""
+msgstr "Detalii despre stare"
 
 #: dnfdragora/dialogs.py:401
 msgid "Key"
-msgstr ""
+msgstr "Cheie"
 
 #: dnfdragora/dialogs.py:402 dnfdragora/dialogs.py:963
 msgid "Value"
@@ -499,15 +499,15 @@ msgstr "Valoare"
 
 #: dnfdragora/dialogs.py:407 dnfdragora/dialogs.py:466
 msgid "Finish action"
-msgstr ""
+msgstr "Finalizare acțiune"
 
 #: dnfdragora/dialogs.py:409 dnfdragora/dialogs.py:800
 msgid "Reboot"
-msgstr ""
+msgstr "Repornește"
 
 #: dnfdragora/dialogs.py:410 dnfdragora/dialogs.py:801
 msgid "Power off"
-msgstr ""
+msgstr "Opriți"
 
 #: dnfdragora/dialogs.py:420 dnfdragora/dialogs.py:672
 #: dnfdragora/dialogs.py:811 dnfdragora/dialogs.py:973
@@ -517,101 +517,110 @@ msgstr "&Anulează"
 
 #: dnfdragora/dialogs.py:421
 msgid "&Finalize"
-msgstr ""
+msgstr "&Finalizare"
 
 #: dnfdragora/dialogs.py:422
 msgid "&Clean"
-msgstr ""
+msgstr "&Curățare"
 
 #: dnfdragora/dialogs.py:425
 msgid "Reload the current offline transaction status."
-msgstr ""
+msgstr "Reîncărcați starea curentă a tranzacției în mod deconectat."
 
 #: dnfdragora/dialogs.py:426
 msgid ""
 "Cancel the pending offline transaction. Available only when one is scheduled."
 msgstr ""
+"Anulați tranzacția în nod deconectat în așteptare. Disponibilă numai atunci "
+"când este programată una."
 
 #: dnfdragora/dialogs.py:427
 msgid ""
 "Set the finish action for the pending offline transaction to reboot or power "
 "off."
 msgstr ""
+"Setați acțiunea de finalizare pentru tranzacția în mod deconectat în "
+"așteptare la repornire sau oprire."
 
 #: dnfdragora/dialogs.py:428
 msgid ""
 "Remove any stored offline transaction data, even if no transaction is "
 "currently pending."
 msgstr ""
+"Eliminați toate datele stocate ale tranzacțiilor în mod deconectat, chiar "
+"dacă nicio tranzacție nu este în așteptare în prezent."
 
 #: dnfdragora/dialogs.py:429
 msgid "Close this dialog without changing the offline transaction state."
 msgstr ""
+"Închideți această casetă de dialog fără a modifica starea tranzacției în mod "
+"deconectat."
 
 #: dnfdragora/dialogs.py:462
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #: dnfdragora/dialogs.py:462
 msgid "Pending"
-msgstr ""
+msgstr "În așteptare"
 
 #: dnfdragora/dialogs.py:462
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: dnfdragora/dialogs.py:464
 msgid "Data"
-msgstr ""
+msgstr "Date"
 
 #: dnfdragora/dialogs.py:477
 msgid "An offline transaction is pending."
-msgstr ""
+msgstr "O tranzacție în mod deconectat este în așteptare."
 
 #: dnfdragora/dialogs.py:477
 msgid "No offline transaction is currently pending."
-msgstr ""
+msgstr "Nicio tranzacție în mod deconectat nu este în așteptare în prezent."
 
 #: dnfdragora/dialogs.py:500
 #, python-format
 msgid "Could not read offline transaction status: %s"
-msgstr ""
+msgstr "Nu s-a putut citi starea tranzacției în mod deconectat:%s"
 
 #: dnfdragora/dialogs.py:522
 msgid "There is no offline transaction to cancel."
-msgstr ""
+msgstr "Nu există nicio tranzacție în mod deconectat de anulat."
 
 #: dnfdragora/dialogs.py:535
 msgid "Offline transaction has been canceled."
-msgstr ""
+msgstr "Tranzacția în mod deconectat a fost anulată."
 
 #: dnfdragora/dialogs.py:542 dnfdragora/dialogs.py:550
 #, python-format
 msgid "Failed to cancel offline transaction: %s"
-msgstr ""
+msgstr "Tranzacția în mod deconectat nu a putut fi anulată:%s"
 
 #: dnfdragora/dialogs.py:559
 msgid "There is no offline transaction to finalize."
-msgstr ""
+msgstr "Nu există nicio tranzacție în mod deconectat de finalizat."
 
 #: dnfdragora/dialogs.py:572
 #, python-format
 msgid "Offline transaction finish action set to %s."
 msgstr ""
+"Acțiunea de finalizare a tranzacției în mod deconectat a fost setată la %s."
 
 #: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:587
 #, python-format
 msgid "Failed to set offline finish action: %s"
-msgstr ""
+msgstr "Acțiunea de finalizare în mod deconectat nu a putut fi setată:%s"
 
 #: dnfdragora/dialogs.py:601
 msgid "Offline transaction data has been cleaned."
-msgstr ""
+msgstr "Datele tranzacțiilor în mod deconectat au fost curățate."
 
 #: dnfdragora/dialogs.py:608 dnfdragora/dialogs.py:616
 #, python-format
 msgid "Failed to clean offline transaction data: %s"
-msgstr ""
+msgstr "Nu s-au putut curăța datele tranzacțiilor în mod deconectat:%s"
 
 #: dnfdragora/dialogs.py:647
 msgid "Action on selected packages"
@@ -655,15 +664,15 @@ msgstr "Dimensiune totală"
 
 #: dnfdragora/dialogs.py:797
 msgid "Offline"
-msgstr ""
+msgstr "Deconectat"
 
 #: dnfdragora/dialogs.py:806
 msgid "Offline mode is unavailable because systemd is not running."
-msgstr ""
+msgstr "Modul deconectat nu este disponibil deoarece systemd nu rulează."
 
 #: dnfdragora/dialogs.py:820
 msgid "Reset transaction failed"
-msgstr ""
+msgstr "Resetarea tranzacției a eșuat."
 
 #: dnfdragora/dialogs.py:872
 msgid "Repository Management"
@@ -832,7 +841,7 @@ msgstr "Aspect"
 
 #: dnfdragora/dialogs.py:1344
 msgid "dnfdragora-updater"
-msgstr ""
+msgstr "dnfdragora-actualizator"
 
 #: dnfdragora/dialogs.py:1348
 msgid "Logging"
@@ -852,11 +861,11 @@ msgstr "Execută automat tranzacții pe pachete fără a fi nevoie de confirmare
 
 #: dnfdragora/dialogs.py:1439
 msgid "Force distsync as upgrade"
-msgstr ""
+msgstr "Forțează distsync ca actualizare"
 
 #: dnfdragora/dialogs.py:1450
 msgid "Remove installed package to resolve transactions"
-msgstr ""
+msgstr "Eliminați pachetul instalat pentru a rezolva tranzacțiile"
 
 #: dnfdragora/dialogs.py:1464
 msgid "Metadata expire time (hours)"
@@ -864,7 +873,7 @@ msgstr "Timpul de expirare al metadatelor (ore)"
 
 #: dnfdragora/dialogs.py:1487
 msgid "dnfdragora-updater options"
-msgstr ""
+msgstr "opțiuni dnfdragora-actualizator"
 
 #: dnfdragora/dialogs.py:1495
 msgid "Hide dnfdragora-update menu if there are no updates"
@@ -1769,11 +1778,11 @@ msgstr "Caseta de dialog de căutare"
 #: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:116
 #: dnfdragora/helpinfo.py:259
 msgid "History dialog"
-msgstr ""
+msgstr "Dialogul Istoric"
 
 #: dnfdragora/helpinfo.py:38 dnfdragora/helpinfo.py:310
 msgid "Offline transactions dialog"
-msgstr ""
+msgstr "Dialogul de tranzacții în mod deconectat"
 
 #: dnfdragora/helpinfo.py:54
 msgid "File menu"
@@ -1970,6 +1979,7 @@ msgstr "<h2>Istoric</h2>"
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
 msgstr ""
+"Acest meniu deschide %s, care afișează pachetele modificate recent în sistem."
 
 #: dnfdragora/helpinfo.py:123
 msgid "Option Menu"
@@ -2030,12 +2040,18 @@ msgid ""
 "<li><b>Force distsync as upgrade</b>: if enabled, queued upgrade actions are "
 "resolved as distsync actions.</li>"
 msgstr ""
+"<li><b>Forțează sincronizarea distsync ca actualizare</b>: dacă este "
+"activată, acțiunile de actualizare din coadă sunt rezolvate ca acțiuni "
+"distsync.</li>"
 
 #: dnfdragora/helpinfo.py:139
 msgid ""
 "<li><b>Remove installed package to resolve transactions</b>: if enabled, "
 "dependency solving can remove installed packages (<i>allow_erasing</i>).</li>"
 msgstr ""
+"<li><b>Eliminați pachetul instalat pentru a rezolva tranzacțiile</b>: dacă "
+"este activată, rezolvarea dependențelor poate elimina pachetele instalate "
+"(<i>allow_erasing</i>).</li>"
 
 #: dnfdragora/helpinfo.py:140
 msgid ""
@@ -2047,13 +2063,16 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:141
 msgid "<h2>dnfdragora-updater options</h2>"
-msgstr ""
+msgstr "<h2>opțiuni dnfdragora-actualizator</h2>"
 
 #: dnfdragora/helpinfo.py:142
 msgid ""
 "<ul><li><b>Hide dnfdragora-update menu if there are no updates</b>: if "
 "checked dnfdragora-update is hidden when no updates are available."
 msgstr ""
+"<ul><li><b>Ascunde meniul dnfdragora-update dacă nu există actualizări</b>: "
+"dacă este bifat, dnfdragora-update este ascuns când nu sunt disponibile "
+"actualizări."
 
 #: dnfdragora/helpinfo.py:143
 msgid ""
@@ -2068,6 +2087,9 @@ msgid ""
 "<li><b>Interval to check for updates</b>: how often dnfdragora-update checks "
 "for updates; value is expressed in minutes (10..10080).</li></ul>"
 msgstr ""
+"<li><b>Interval de verificare a actualizărilor</b>: cât de des verifică "
+"dnfdragora-update actualizările; valoarea este exprimată în minute "
+"(10..10080).</li></ul>"
 
 #: dnfdragora/helpinfo.py:145
 msgid "<h2>Layout options</h2>"
@@ -2201,6 +2223,8 @@ msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
+"<li><b>Aplicații desktop: afișează</b> pachete care oferă aplicații desktop/"
+"GUI.</li>"
 
 #: dnfdragora/helpinfo.py:185
 msgid ""
@@ -2341,112 +2365,141 @@ msgstr "<li><b>Ieșire</b>: ieșire din dnfdragora.</li></ul>"
 
 #: dnfdragora/helpinfo.py:248
 msgid "<h2>Offline transaction confirmation</h2>"
-msgstr ""
+msgstr "<h2>Confirmarea tranzacției în mod deconectat</h2>"
 
 #: dnfdragora/helpinfo.py:249
 msgid ""
 "When transaction confirmation is shown, you can enable <b>Offline</b> and "
 "choose <b>Reboot</b> or <b>Power off</b>. "
 msgstr ""
+"Când se afișează confirmarea tranzacției, puteți activa <b>Deconectat</b> și "
+"alege <b>Repornire</b> sau <b>Oprire</b>."
 
 #: dnfdragora/helpinfo.py:250
 msgid ""
 "dnfdragora schedules the offline transaction and shows a reminder to reboot "
 "or power off to continue at the next startup. "
 msgstr ""
+"dnfdragora programează tranzacția în mod deconectat și afișează o mențiune "
+"pentru a reporni sau a opri sistemul pentru a continua la următoarea pornire."
 
 #: dnfdragora/helpinfo.py:251
 msgid ""
 "While offline scheduling is in progress, cancellation is disabled and the "
 "progress window stays open until scheduling is completed."
 msgstr ""
+"În timp ce programarea în mod deconectat este în desfășurare, anularea este "
+"dezactivată, iar fereastra de progres rămâne deschisă până la finalizarea "
+"programării."
 
 #: dnfdragora/helpinfo.py:261
 msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
 msgstr ""
+"Caseta de dialog Istoric afișează pachetele care au fost recent modificate "
+"în sistem prin interogarea API-ului Istoric dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:262 dnfdragora/helpinfo.py:313
 msgid "<h2>Opening the dialog</h2>"
-msgstr ""
+msgstr "<h2>Deschiderea dialogului</h2>"
 
 #: dnfdragora/helpinfo.py:263
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
 msgstr ""
+"Deschideți caseta de dialog din bara de meniu: <b>Acțiuni → Istoric</b>.<br>"
 
 #: dnfdragora/helpinfo.py:264 dnfdragora/helpinfo.py:315
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
 msgstr ""
+"Fereastra principală dnfdragora este dezactivată cât timp dialogul este "
+"deschis pentru a preveni interacțiunile neintenționate.<br><br>"
 
 #: dnfdragora/helpinfo.py:266
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
 msgstr ""
+"Secțiunea <b>Filtre</b> din partea de sus a casetei de dialog vă permite să "
+"restrângeți rezultatele:<br>"
 
 #: dnfdragora/helpinfo.py:268
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
 msgstr ""
+"<li><b>De la (AAAA-LL-ZZ)</b>: introduceți o dată pentru a afișa doar "
+"pachetele modificate la sau după acea dată."
 
 #: dnfdragora/helpinfo.py:269
 msgid "Leave empty to retrieve all available history. "
-msgstr ""
+msgstr "Lăsați câmpul gol pentru a recupera tot istoricul disponibil."
 
 #: dnfdragora/helpinfo.py:270
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
+"Data este convertită într-o marcă temporală Unix înainte de a fi trimisă "
+"către daemon.</li>"
 
 #: dnfdragora/helpinfo.py:272
 msgid "<h2>Change type checkboxes</h2>"
-msgstr ""
+msgstr "<h2>Casete de selectare pentru schimbarea tipului</h2>"
 
 #: dnfdragora/helpinfo.py:273
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
 msgstr ""
+"Patru casete de selectare vă permit să alegeți ce tipuri de modificări ale "
+"pachetului să includeți în rezultate:<br>"
 
 #: dnfdragora/helpinfo.py:275
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
-msgstr ""
+msgstr "<li><b>Instalate</b>: pachete nou instalate.</li>"
 
 #: dnfdragora/helpinfo.py:276
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
-msgstr ""
+msgstr "<li><b>Eliminate</b>: pachete care au fost eliminate din sistem.</li>"
 
 #: dnfdragora/helpinfo.py:277
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
+"<li><b>Actualizate</b>: pachete care au fost actualizate la o versiune mai "
+"nouă.</li>"
 
 #: dnfdragora/helpinfo.py:278
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
+"<li><b>Retrogradate</b>: pachete care au fost retrogradate la o versiune mai "
+"veche.</li>"
 
 #: dnfdragora/helpinfo.py:280
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
 msgstr ""
+"Debifați orice tip care nu vă interesează pentru a reduce numărul de rânduri "
+"afișate.<br><br>"
 
 #: dnfdragora/helpinfo.py:281
 msgid "<h2>Advisory options</h2>"
-msgstr ""
+msgstr "<h2>Opțiuni de consultanță</h2>"
 
 #: dnfdragora/helpinfo.py:283
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
 msgstr ""
+"<li><b>Includeți avertismente</b>: când este bifată, informațiile de "
+"avertisment (securitate, remedieri de erori, îmbunătățiri) sunt incluse "
+"acolo unde sunt disponibile.</li>"
 
 #: dnfdragora/helpinfo.py:284
 msgid ""
@@ -2454,101 +2507,125 @@ msgid ""
 "i>, all advisory types are returned rather than only the most relevant one "
 "per package. "
 msgstr ""
+"<li><b>Toate avertismentele</b>: atunci când sunt bifate împreună cu "
+"opțiunea <i>Include avertismente</i>, sunt returnate toate tipurile de "
+"avertismente, nu doar cele mai relevante per pachet."
 
 #: dnfdragora/helpinfo.py:285
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
 msgstr ""
+"Această opțiune este dezactivată automat când nu este bifată opțiunea "
+"<i>Include avertismente</i>.</li>"
 
 #: dnfdragora/helpinfo.py:287
 msgid "<h2>Results table</h2>"
-msgstr ""
+msgstr "<h2>Tabel cu rezultate</h2>"
 
 #: dnfdragora/helpinfo.py:288
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr ""
+"Tabelul afișează câte un rând per pachet modificat, cu următoarele coloane:"
+"<br>"
 
 #: dnfdragora/helpinfo.py:290
 msgid "<li><b>Name</b>: the package name.</li>"
-msgstr ""
+msgstr "<li><b>Nume</b>: numele pachetului.</li>"
 
 #: dnfdragora/helpinfo.py:291
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
 msgstr ""
+"<li><b>EVR</b>: epocă:versiune-lansare a noii versiuni (instalate).</li>"
 
 #: dnfdragora/helpinfo.py:292
 msgid "<li><b>Arch</b>: the package architecture.</li>"
-msgstr ""
+msgstr "<li><b>Arch</b>: arhitectura pachetelor.</li>"
 
 #: dnfdragora/helpinfo.py:293
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
 msgstr ""
+"<li><b>Acțiune</b>: <i>instalare</i>, <i>eliminare</i>, <i>modernizare</i> "
+"sau r<i>etrogradare</i>.</li>"
 
 #: dnfdragora/helpinfo.py:294
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
-msgstr ""
+msgstr "<li><b>Data</b>: data și ora tranzacției (AAAA-LL-ZZ OO:MM).</li>"
 
 #: dnfdragora/helpinfo.py:295
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
-msgstr ""
+msgstr "<li><b>Rezumat</b>: o scurtă descriere a pachetului.</li>"
 
 #: dnfdragora/helpinfo.py:297
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
 msgstr ""
+"Dacă niciun pachet nu corespunde filtrelor curente, se afișează un rând cu "
+"textul <i>Fără rezultate</i>.<br>"
 
 #: dnfdragora/helpinfo.py:298
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
 msgstr ""
+"Dacă apelul daemon eșuează, mesajul de eroare este afișat în tabel, astfel "
+"încât să puteți diagnostica problema.<br><br>"
 
 #: dnfdragora/helpinfo.py:299
 msgid "<h2>Refresh button</h2>"
-msgstr ""
+msgstr "<h2>Butonul Reîmprospătare</h2>"
 
 #: dnfdragora/helpinfo.py:300
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
+"Apăsați <b>Reîmprospătare</b> pentru a reinteroga daemonul cu setările "
+"curente ale filtrului."
 
 #: dnfdragora/helpinfo.py:301
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
+"De asemenea, caseta de dialog interoghează automat la prima deschidere."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:302
 msgid "<h2>Close button</h2>"
-msgstr ""
+msgstr "<h2>Butonul Închidere</h2>"
 
 #: dnfdragora/helpinfo.py:303
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
 msgstr ""
+"Apăsați <b>Închidere</b> (sau butonul de închidere a ferestrei) pentru a "
+"închide caseta de dialog și a reveni la fereastra principală.<br>"
 
 #: dnfdragora/helpinfo.py:312
 msgid ""
 "The Offline transactions dialog shows the current offline transaction status "
 "reported by dnf5daemon.<br><br>"
 msgstr ""
+"Caseta de dialog Tranzacții în mod deconectat afișează starea curentă a "
+"tranzacției în mod deconectat raportată de dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:314
 msgid ""
 "Open the dialog from the menu bar: <b>Actions → Offline transactions</b>.<br>"
 msgstr ""
+"Deschideți caseta de dialog din bara de meniu: <b>Acțiuni → Tranzacții în "
+"mod deconectat</b>.<br>"
 
 #: dnfdragora/helpinfo.py:316
 msgid "<h2>Status and actions</h2>"
-msgstr ""
+msgstr "<h2>Stare și acțiuni</h2>"
 
 #: dnfdragora/helpinfo.py:317
 msgid ""
@@ -2557,6 +2634,11 @@ msgid ""
 "press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to "
 "remove the scheduled offline transaction data.<br>"
 msgstr ""
+"Apăsați <b>Reîmprospătare</b> pentru a reîncărca starea in mod deconectat "
+"curentă. Dacă o tranzacție în mod deconectat este în așteptare, puteți alege "
+"<b>Repornire</b> sau <b>Oprire</b> și apăsați <b>Finalizare</b> pentru a "
+"seta acțiunea de finalizare sau apăsați <b>Curățare</b> pentru a elimina "
+"datele tranzacției în mod deconectat programate.<br>"
 
 #: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
@@ -2575,48 +2657,54 @@ msgid ""
 "Offline transaction scheduled. Reboot or power off to continue on next "
 "startup."
 msgstr ""
+"Tranzacție în mod deconectat programată. Reporniți sau opriți sistemul "
+"pentru a continua la următoarea pornire."
 
 #: dnfdragora/progress_ui.py:212
 msgid "Offline transaction scheduled"
-msgstr ""
+msgstr "Tranzacție în mod deconectat programată"
 
 #: dnfdragora/progress_ui.py:247
 msgid "Offline transaction is scheduled. You can close this window."
 msgstr ""
+"Tranzacția în mod deconectat este programată. Puteți închide această "
+"fereastră."
 
 #: dnfdragora/progress_ui.py:250
 msgid "Offline transaction is being prepared. Please wait..."
 msgstr ""
+"Tranzacția în mod deconectat este în curs de pregătire. Vă rugăm să "
+"așteptați..."
 
 #: dnfdragora/progress_ui.py:254
 msgid "Cancellation already requested; waiting..."
-msgstr ""
+msgstr "Anulare deja solicitată; în așteptare..."
 
 #: dnfdragora/progress_ui.py:262
 #, python-format
 msgid "Cancellation request failed: %(err)s"
-msgstr ""
+msgstr "Cererea de anulare a eșuat:%(err)s"
 
 #: dnfdragora/progress_ui.py:269
 msgid "Cancellation requested; waiting for transaction to stop"
-msgstr ""
+msgstr "Anulare solicitată; se așteaptă oprirea tranzacției"
 
 #: dnfdragora/progress_ui.py:270
 msgid "Cancelling transaction..."
-msgstr ""
+msgstr "Se anulează tranzacția..."
 
 #: dnfdragora/progress_ui.py:271
 msgid "Waiting for backend to stop transaction"
-msgstr ""
+msgstr "Se așteaptă ca backend-ul să oprească tranzacția"
 
 #: dnfdragora/progress_ui.py:275
 msgid "Cancellation refused by backend"
-msgstr ""
+msgstr "Anulare refuzată de backend"
 
 #: dnfdragora/progress_ui.py:277
 #, python-format
 msgid "Cancellation refused: %(msg)s"
-msgstr ""
+msgstr "Anulare refuzată:%(msg)s"
 
 #: dnfdragora/progress_ui.py:286
 #, python-format
@@ -2711,6 +2799,8 @@ msgstr "Cerințe"
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
+"dnfdragora este o interfața pentru daemon-ul DNF5 care funcționează folosind "
+"GTK, ncurses și QT"
 
 #: dnfdragora/ui.py:325
 msgid "Developers"
@@ -2718,27 +2808,27 @@ msgstr "Dezvoltatori"
 
 #: dnfdragora/ui.py:331
 msgid "Current developers and maintainers"
-msgstr ""
+msgstr "Dezvoltatori și întreținători actuali"
 
 #: dnfdragora/ui.py:337
 msgid "Translations"
-msgstr ""
+msgstr "Traducători"
 
 #: dnfdragora/ui.py:341
 msgid "Contributors"
-msgstr ""
+msgstr "Contribuitori"
 
 #: dnfdragora/ui.py:350
 msgid "Project Links"
-msgstr ""
+msgstr "Linkuri de proiect"
 
 #: dnfdragora/ui.py:355
 msgid "Report Issues or Improvements"
-msgstr ""
+msgstr "Raportați probleme sau îmbunătățiri"
 
 #: dnfdragora/ui.py:373
 msgid "Logging directory not found"
-msgstr ""
+msgstr "Directorul de înregistrare în jurnal nu a fost găsit"
 
 #: dnfdragora/ui.py:375
 #, python-format
@@ -2747,6 +2837,9 @@ msgid ""
 "disabled for this session.<br>Please update the log directory in <i>Options "
 "&rarr; User preferences</i>."
 msgstr ""
+"Directorul <b>%s</b>de jurnal configurat nu există. <br>Înregistrarea în "
+"jurnal este dezactivată pentru această sesiune. <br>Vă rugăm să actualizați "
+"directorul de jurnal în <i>Opțiuni &rarr;  Preferințe utilizator</i>."
 
 #: dnfdragora/ui.py:515
 msgid "Software Management - dnfdragora"
@@ -2774,7 +2867,7 @@ msgstr "De actualizat"
 
 #: dnfdragora/ui.py:609
 msgid "Desktop Applications"
-msgstr ""
+msgstr "Aplicații de birou."
 
 #: dnfdragora/ui.py:615
 #, python-format
@@ -2811,7 +2904,7 @@ msgstr "&Selectați tot"
 
 #: dnfdragora/ui.py:704
 msgid "Select all the update packages"
-msgstr ""
+msgstr "Selectați toate pachetele de actualizare"
 
 #: dnfdragora/ui.py:709 dnfdragora/ui.py:728
 msgid "&Quit"
@@ -2847,11 +2940,11 @@ msgstr "&Acțiune asupra pachetelor"
 
 #: dnfdragora/ui.py:736
 msgid "&Update All"
-msgstr ""
+msgstr "&Actualizați tot"
 
 #: dnfdragora/ui.py:737
 msgid "&History"
-msgstr ""
+msgstr "&Istoric"
 
 #: dnfdragora/ui.py:743
 msgid "&Options"
@@ -2927,29 +3020,37 @@ msgstr "Pachet protejat  a fost selectat"
 #: dnfdragora/ui.py:2222 dnfdragora/ui.py:2242 dnfdragora/ui.py:2257
 #: dnfdragora/ui.py:2272 dnfdragora/ui.py:2286
 msgid "Offline transaction warning"
-msgstr ""
+msgstr "Avertisment privind tranzacțiile în mod deconectat"
 
 #: dnfdragora/ui.py:2224
 msgid ""
 "Offline transaction was requested, but backend Offline APIs are not "
 "available."
 msgstr ""
+"A fost solicitată o tranzacție în mod deconectat, dar API-urile în mod "
+"deconectat nu sunt disponibile."
 
 #: dnfdragora/ui.py:2244
 #, python-format
 msgid "Offline transaction was requested, but status verification failed: %s"
 msgstr ""
+"Tranzacția în mod deconectat a fost solicitată, dar verificarea stării a "
+"eșuat:%s"
 
 #: dnfdragora/ui.py:2259
 msgid ""
 "Offline transaction was requested, but no pending offline transaction was "
 "detected."
 msgstr ""
+"A fost solicitată o tranzacție in mod deconectat, dar nu a fost detectată "
+"nicio tranzacție în mod deconectat în așteptare."
 
 #: dnfdragora/ui.py:2274 dnfdragora/ui.py:2288
 #, python-format
 msgid "Offline transaction was created, but setting finish action failed: %s"
 msgstr ""
+"Tranzacția în mod deconectat a fost creată, dar setarea acțiunii de "
+"finalizare a eșuat:%s"
 
 #: dnfdragora/ui.py:2310
 msgid "Backend busy"
@@ -3077,7 +3178,7 @@ msgstr "%d actualizări disponibile."
 #: dnfdragora/updater.py:353
 #, python-format
 msgid "%s - %d updates available."
-msgstr ""
+msgstr "%s - %d actualizări disponibile."
 
 #: dnfdragora/updater.py:373
 msgid "No updates available"
@@ -3132,94 +3233,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Fereastra principală"
-
-#~ msgid "&Undo"
-#~ msgstr "&Anulați"
-
-#~ msgid ""
-#~ "<br><i>Note that this function is currently broken because of a DNF API "
-#~ "change</i><br>"
-#~ msgstr ""
-#~ "<br><i>Rețineți că această funcție nu funcționează din cauza unei "
-#~ "modificări a API-ului DNF.</i><br>"
-
-#~ msgid ""
-#~ "<li><b>Consider packages to upgrade as updates</b>: if checked upgrades "
-#~ "are added to updates and filtered as updates.</li>"
-#~ msgstr ""
-#~ "<li><b>Consideră pachetele de actualizat ca actualizări</b>: dacă este "
-#~ "bifată, actualizările sunt adăugate la actualizări și filtrate ca "
-#~ "actualizări.</li>"
-
-#~ msgid ""
-#~ "<li><b>Hide dnfdragora-update menu if there are no updates</b>: if "
-#~ "checked dnfdragora update is hidden if there are no updates."
-#~ msgstr ""
-#~ "<li><b>Ascunde meniul dnfdragora-update dacă nu există actualizări</b>: "
-#~ "dacă este bifat, actualizarea dnfdragora este ascunsă dacă nu există "
-#~ "actualizări."
-
-#~ msgid ""
-#~ "<li><b>Interval to check for updates</b>: the given number represents how "
-#~ "often dnfdragora checks for updates; the value is expressed in minutes</"
-#~ "li>"
-#~ msgstr ""
-#~ "<li><b>Interval de verificare a actualizărilor</b>: numărul dat "
-#~ "reprezintă frecvența cu care dnfdragora verifică actualizările; valoarea "
-#~ "este exprimată în minute.</li>"
-
-#~ msgid "Build transaction failure"
-#~ msgstr "Eșec al tranzacției de construire"
-
-#~ msgid "Consider packages to upgrade as updates"
-#~ msgstr "Luați în considerare pachetele de actualizat ca actualizări"
-
-#~ msgid "Downloading error"
-#~ msgid_plural "Downloading errors"
-#~ msgstr[0] "Eroare la descărcare"
-#~ msgstr[1] "Erori la descărcare"
-#~ msgstr[2] "Erori la descărcare"
-
-#~ msgid "Error checking package signatures"
-#~ msgstr "Eroare la verificarea semnăturilor pachetului"
-
-#~ msgid "Error in transaction"
-#~ msgid_plural "Errors in transaction"
-#~ msgstr[0] "Erori în tranzacție"
-#~ msgstr[1] "Erori în tranzacție"
-#~ msgstr[2] "Erori în tranzacție"
-
-#~ msgid "Error occured:"
-#~ msgstr "A apărut o eroare:"
-
-#~ msgid "History (Date/Time)"
-#~ msgstr "Istoric (Data/Ora)"
-
-#~ msgid "Packages installed:"
-#~ msgstr "Pachete instalate:"
-
-#~ msgid "Packages removed:"
-#~ msgstr "Pachete eliminate:"
-
-#~ msgid "Select all the packages"
-#~ msgstr "Selectați toate pachetele"
-
-#~ msgid ""
-#~ "This menu runs a dialog containing transaction history shown in a tree "
-#~ "ordered by date. Selected history can be undone by pressing <b>Undo</b> "
-#~ "button.<br>"
-#~ msgstr ""
-#~ "Acest meniu rulează o casetă de dialog care conține istoricul "
-#~ "tranzacțiilor afișat într-un arbore ordonat după dată. Istoricul selectat "
-#~ "poate fi anulat apăsând butonul <b>Anulare</b>.<br>"
-
-#~ msgid "Transaction History"
-#~ msgstr "Istoricul tranzacțiilor"
-
-#~ msgid "Undo transaction"
-#~ msgstr "Anulează tranzacția"
-
-#~ msgid "dnfdragora is a DNF frontend that works using GTK, ncurses and QT"
-#~ msgstr ""
-#~ "dnfdragora este o interfață pentru DNF care funcționează folosind GTK, "
-#~ "ncurses și QT"
