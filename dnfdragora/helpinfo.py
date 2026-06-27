@@ -38,6 +38,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
     search_dlg_lnk    = '<b>%s</b>'%self._formatLink(_("Search dialog"), 'search_dlg')
     history_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('History dialog'), 'history_dlg')
     offline_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('Offline transactions dialog'), 'offline_trans_dlg')
+    system_upgrade_dlg_lnk = '<b>%s</b>'%self._formatLink(_('System upgrade dialog'), 'system_upgrade_dlg')
 
     index_links = (
       menu_line_lnk,
@@ -50,6 +51,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       search_dlg_lnk,
       history_dlg_lnk,
       offline_dlg_lnk,
+      system_upgrade_dlg_lnk,
       )
     index = '<ul>%s</ul>' % ''.join('<li>%s</li>' % link for link in index_links)
 
@@ -116,7 +118,10 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Information Menu'),
         # help
         _('<h2>History</h2>') +\
-          _('This menu opens the %s, which shows packages recently changed on the system.'%self._formatLink(_('History dialog'), 'history_dlg')),
+          _('This menu opens the %s, which shows packages recently changed on the system.'%self._formatLink(_('History dialog'), 'history_dlg')) + \
+        _('<h2>System upgrade</h2>') +\
+          _('This menu opens the %s to prepare an offline distro upgrade to a target releasever. '%self._formatLink(_('System upgrade dialog'), 'system_upgrade_dlg')) + \
+          _('<b>Important:</b> the menu entry is shown only when systemd is available, because execution is scheduled offline for reboot.'),
         # back home
         home_lnk,
       ),
@@ -319,6 +324,25 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>Status and actions</h2>') +
         _('Press <b>Refresh</b> to reload the current offline status. If an offline transaction is pending, you can choose <b>Reboot</b> or <b>Power off</b> and press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to remove the scheduled offline transaction data.<br>') +
         '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'system_upgrade_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('System upgrade dialog'),
+        # help
+        _('The System upgrade dialog prepares a distribution upgrade transaction for offline execution at reboot using dnf5daemon.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>') +
+        _('<b>Note:</b> this menu is available only on systems where systemd is running.<br><br>') +
+        _('<h2>Safety and confirmation</h2>') +
+        _('The dialog starts with a warning and keeps advanced options hidden by default. ') +
+        _('Enable the acknowledgement checkbox to open the options frame and proceed only if you fully understand the risks.<br><br>') +
+        _('<h2>Releasever option</h2>') +
+        _('Enter the target <i>releasever</i> exactly as expected by repositories metadata (for example development values such as <i>cauldron</i> or <i>rawhide</i>, where applicable).<br><br>') +
+        _('<h2>Execution flow</h2>') +
+        _('After confirmation, dnfdragora reopens the daemon session with the chosen releasever, prepares system-upgrade in <i>distrosync</i> mode with interactive prompts enabled, resolves dependencies with allow-erasing, then schedules the transaction offline and sets reboot as finish action.<br>'),
         # back home
         home_lnk,
       ),

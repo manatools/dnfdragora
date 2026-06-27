@@ -736,9 +736,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
                  'update_all' : self.menubar.addItem(mItem, _("&Update All"), enabled=False),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
-                'system_upgrade' : self.menubar.addItem(mItem, _("System upgrade")),
             }
             if self.systemd_running:
+              self.ActionMenu['system_upgrade'] = self.menubar.addItem(mItem, _("System upgrade"))
               self.ActionMenu['offline_transactions'] = self.menubar.addItem(mItem, _("Offline transactions"))
 
             # building Options menu
