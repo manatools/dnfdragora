@@ -2303,6 +2303,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self._refresh_ui_after_event(rebuild_package_list)
         self._sync_apply_button_state()
+        if self._status == DNFDragoraStatus.RUNNING and self._caching_filter_pending is None:
+          # Keep pointer state sane on platforms where a stale busy cursor can survive
+          # asynchronous startup/caching transitions.
+          MUI.YUI.app().normalCursor()
 
       # Save user prefs on exit
       self.saveUserPreference()
@@ -3357,6 +3361,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   else:
                     rebuild_package_list = True
                 self.infobar.reset_all()
+                # Defensive reset for Qt/GNOME Wayland startup path:
+                # avoid leaving a stale busy cursor after caching completes.
+                MUI.YUI.app().normalCursor()
               else:
                 logger.error('GetPackages response for unexpected filter: %s (status=%s)',
                             current_pending, self._status)
@@ -3364,6 +3371,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             else:
               logger.error("GetPackages error for filter=%s: %s", self._caching_filter_pending, info['error'])
               self._caching_filter_pending = None  # Clear pending on error
+              MUI.YUI.app().normalCursor()
               raise UIError(str(info['error']))
 
           elif (event == 'RESearch'):

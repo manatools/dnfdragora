@@ -423,11 +423,11 @@ class AdvisoryDialog(basedialog.BaseDialog):
       self._reference_cves = factory.createInputField(ref_row, "")
       self._reference_cves.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
-      multi_row = factory.createHBox(filters_vbox)
-
-      type_frame = factory.createCheckBoxFrame(multi_row, _("Limit to types"), False)
+      type_frame = factory.createCheckBoxFrame(filters_vbox, _("Limit to types"), False)
       type_frame.setNotify(True)
+      type_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
       self._type_frame = type_frame
+      self.eventManager.addWidgetEvent(type_frame, self._onTypeFrameToggled, True)
       self._type_box = factory.createMultiSelectionBox(type_frame, "")
       self._type_items = {}
       type_values = ("security", "bugfix", "enhancement", "newpackage")
@@ -438,9 +438,11 @@ class AdvisoryDialog(basedialog.BaseDialog):
         type_items.append(item)
       self._type_box.addItems(type_items)
 
-      severity_frame = factory.createCheckBoxFrame(multi_row, _("Limit to severities"), False)
+      severity_frame = factory.createCheckBoxFrame(filters_vbox, _("Limit to severities"), False)
       severity_frame.setNotify(True)
+      severity_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
       self._severity_frame = severity_frame
+      self.eventManager.addWidgetEvent(severity_frame, self._onSeverityFrameToggled, True)
       self._severity_box = factory.createMultiSelectionBox(severity_frame, "")
       self._severity_items = {}
       severity_values = ("critical", "important", "moderate", "low", "none")
@@ -450,6 +452,10 @@ class AdvisoryDialog(basedialog.BaseDialog):
         self._severity_items[value] = item
         severity_items.append(item)
       self._severity_box.addItems(severity_items)
+
+      # Keep advanced filter lists collapsed until explicitly enabled.
+      self._type_frame.showContent(False)
+      self._severity_frame.showContent(False)
 
       toggles_row = factory.createHBox(filters_vbox)
       self._with_cve = factory.createCheckBox(toggles_row, _("With CVE"), False)
@@ -465,8 +471,14 @@ class AdvisoryDialog(basedialog.BaseDialog):
       self.eventManager.addWidgetEvent(self._table, self._onTableEvent, True)
       self._table.setStretchable(MUI.YUIDimension.YD_VERT, True)
       self._table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._table.setWeight(MUI.YUIDimension.YD_VERT, 65)
 
-      details_frame = factory.createFrame(layout, _("Selected advisory details"))
+      details_frame = factory.createCheckBoxFrame(layout, _("Show selected advisory details"), False)
+      details_frame.setNotify(True)
+      details_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self.eventManager.addWidgetEvent(details_frame, self._onDetailsFrameToggled, True)
+      self._details_frame = details_frame
+      self._details_frame.showContent(False)
       details_vbox = factory.createVBox(details_frame)
       details_header = MUI.YTableHeader()
       details_header.addColumn(_("Field"), False)
@@ -474,8 +486,10 @@ class AdvisoryDialog(basedialog.BaseDialog):
       self._details_table = factory.createTable(details_vbox, details_header)
       self._details_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
       self._details_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._details_table.setWeight(MUI.YUIDimension.YD_VERT, 35)
 
       button_row = factory.createHBox(layout)
+      factory.createHStretch(button_row)
       self._refresh_btn = factory.createPushButton(button_row, _("&Refresh"))
       self._close_btn = factory.createPushButton(button_row, _("&Close"))
       self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
@@ -504,6 +518,18 @@ class AdvisoryDialog(basedialog.BaseDialog):
         if item in sel_items:
           selected.append(key)
       return selected
+
+    def _onTypeFrameToggled(self, obj):
+      if obj.widgetClass() == "YCheckBoxFrame":
+        obj.showContent(obj.value())
+
+    def _onSeverityFrameToggled(self, obj):
+      if obj.widgetClass() == "YCheckBoxFrame":
+        obj.showContent(obj.value())
+
+    def _onDetailsFrameToggled(self, obj):
+      if obj.widgetClass() == "YCheckBoxFrame":
+        obj.showContent(obj.value())
 
     def _collect_options(self):
       options = {
