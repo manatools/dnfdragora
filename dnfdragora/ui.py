@@ -3228,11 +3228,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 filter = self._filterNameSelected()
                 self.checkAllUpdateButton.setEnabled(filter == 'to_update')
 
-                sel = self.tree.selectedItem()
-                if sel :
+                if self._search_refresh_pending:
+                  logger.debug("Search refresh pending after cache rebuild; rerunning saved search with stored dialog options")
                   rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                 else:
-                  rebuild_package_list = True
+                  sel = self.tree.selectedItem()
+                  if sel :
+                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                  else:
+                    rebuild_package_list = True
                 self.infobar.reset_all()
               else:
                 logger.error('GetPackages response for unexpected filter: %s (status=%s)',
