@@ -14,6 +14,8 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import manatools.basehelpinfo as helpdata
 import gettext
 
+_ = gettext.gettext
+
 class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
   '''
   DNFDragoraHelpInfo class implements HelpInfoBase show() and home()
@@ -37,7 +39,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
     history_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('History dialog'), 'history_dlg')
     offline_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('Offline transactions dialog'), 'offline_trans_dlg')
 
-    index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
+    index_links = (
       menu_line_lnk,
       filters_lnk,
       group_panel_lnk,
@@ -49,6 +51,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       history_dlg_lnk,
       offline_dlg_lnk,
       )
+    index = '<ul>%s</ul>' % ''.join('<li>%s</li>' % link for link in index_links)
 
     ### Menu bar index
     file_menu_lnk   = '<b>%s</b>'%self._formatLink(_("File menu"), 'file_menu')
