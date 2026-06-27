@@ -736,6 +736,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
                  'update_all' : self.menubar.addItem(mItem, _("&Update All"), enabled=False),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
+                'system_upgrade' : self.menubar.addItem(mItem, _("System upgrade")),
             }
             if self.systemd_running:
               self.ActionMenu['offline_transactions'] = self.menubar.addItem(mItem, _("Offline transactions"))
@@ -1858,6 +1859,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.dialog.setEnabled(True)
           except Exception:
               pass
+        elif item == self.ActionMenu.get('system_upgrade'):
+          self._run_system_upgrade_from_menu()
         elif item == self.ActionMenu.get('offline_transactions'):
           try:
             self.dialog.setEnabled(False)
@@ -2092,6 +2095,110 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       self.pbar_layout.setEnabled(True)
       self._populate_transaction()
       self._buildTransaction()
+
+    def _run_system_upgrade_from_menu(self):
+      """Run the system-upgrade workflow from the Actions menu."""
+      if not self.systemd_running:
+        common.warningMsgBox({
+          'title': _('System upgrade'),
+          'size': (420, 220),
+          'text': _('System upgrade requires systemd because execution is scheduled offline for reboot.'),
+          'richtext': True,
+        })
+        return
+
+      try:
+        self.dialog.setEnabled(False)
+      except Exception:
+        pass
+      dlg = dialogs.SystemUpgradeDialog(self)
+      result = dlg.run()
+      try:
+        self.dialog.setEnabled(True)
+      except Exception:
+        pass
+
+      if not result:
+        return
+
+      confirm = common.askYesOrNo({
+        'title': _('System upgrade confirmation'),
+        'text': _('Are you sure you want to continue with system upgrade to releasever "%s"?') % result['releasever'],
+        'default_button': 2,
+        'richtext': True,
+        'size': (460, 220),
+      })
+      if not confirm:
+        return
+
+      self._run_system_upgrade(result['releasever'])
+
+    def _run_system_upgrade(self, releasever):
+      """Prepare and start offline system upgrade transaction."""
+      self._enableAction(False)
+      self.pbar_layout.setEnabled(True)
+      MUI.YUI.app().busyCursor()
+      try:
+        logger.info("Starting system upgrade workflow for releasever=%s", releasever)
+        self.infobar.info(_('Preparing system upgrade session'))
+
+        # 1-2) Close current session and open a new one with target releasever.
+        self.backend.ReopenSession({'releasever': releasever})
+        self.backend.clear_cache(also_groups=True)
+
+        # 3) Prepare system-upgrade transaction on daemon side.
+        self.infobar.info(_('Creating system upgrade transaction'))
+        self.backend.SystemUpgrade({'mode': 'distrosync', 'interactive': True}, sync=True)
+
+        # 4) Resolve automatically with allow_erasing=True.
+        resolve_result, resolve_items = self.backend.BuildTransaction({'allow_erasing': True}, sync=True)
+        if resolve_result != 0:
+          errors = self.backend.TransactionProblems(sync=True)
+          err = ''.join(errors) if isinstance(errors, list) else str(errors)
+          logger.warning("System upgrade resolve failed result=%s errors=%s", resolve_result, err)
+          common.warningMsgBox({
+            'title': _('System upgrade error'),
+            'size': (520, 260),
+            'text': _('System upgrade resolve failed:<br>%s') % err.replace('\n', '<br>'),
+            'richtext': True,
+          })
+          # Return to a normal session after failure.
+          try:
+            self.backend.ReopenSession({})
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.STARTUP
+          except Exception:
+            logger.exception("Failed to restore default session after system-upgrade resolve failure")
+          self._enableAction(False)
+          return
+
+        # 5) Run transaction offline and set reboot as finish action.
+        self.packageQueue.clear()
+        self._offline_finish_action_pending = 'reboot'
+        self._offline_finish_action_retries = 0
+        self._offline_transaction_running = True
+        self._offline_transaction_prepared = False
+        self.infobar.info(_('Scheduling offline system upgrade'))
+        self._show_trans_dialog()
+        self.backend.RunTransaction({'offline': True})
+        self._status = DNFDragoraStatus.RUN_TRANSACTION
+      except Exception as err:
+        logger.exception("System upgrade workflow failed for releasever=%s: %s", releasever, err)
+        common.warningMsgBox({
+          'title': _('System upgrade error'),
+          'size': (520, 260),
+          'text': _('System upgrade failed: %s') % str(err),
+          'richtext': True,
+        })
+        try:
+          self.backend.ReopenSession({})
+          self.backend.clear_cache(also_groups=True)
+        except Exception:
+          logger.exception("Failed to restore default session after system-upgrade exception")
+        self._status = DNFDragoraStatus.STARTUP
+        self._enableAction(False)
+      finally:
+        MUI.YUI.app().normalCursor()
 
     def _sync_apply_button_state(self):
       """Keep Apply button enabled state consistent with queue and action mode."""

@@ -225,6 +225,7 @@ class Client:
           'Downgrade'           : 'downgrade',
           'Reinstall'           : 'reinstall',
           'DistroSync'          : 'distro_sync',
+          'SystemUpgrade'       : 'system_upgrade',
 
           'SetEnabledRepos'     : 'enable',
           'SetDisabledRepos'    : 'disable',
@@ -255,15 +256,17 @@ class Client:
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
 
-    def _get_daemon(self):
+    def _get_daemon(self, session_options=None):
         ''' Get the daemon dbus proxy object'''
         try:
             if self.session_path:
                 logger.warning(f"Open Dnf5Daemon session: {self.session_path} already opened")
+            if session_options is None:
+                session_options = {}
             self.iface_session = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, DNFDAEMON_OBJECT_PATH),
                 dbus_interface=IFACE_SESSION_MANAGER)
-            self.session_path = self.iface_session.open_session({})
+            self.session_path = self.iface_session.open_session(session_options)
             logger.debug(f"Open Dnf5Daemon session: {self.session_path}")
 
             self.iface_base = dbus.Interface(
@@ -419,7 +422,7 @@ class Client:
             finally:
                 self.session_path = None
 
-    def reloadDaemon(self):
+    def reloadDaemon(self, session_options=None):
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
             logger.info("Reloading Dnf5Daemon...")
@@ -428,7 +431,7 @@ class Client:
             # Close the current session
             self.unloadDaemon()
             # Reinitialize the daemon
-            self._get_daemon()
+            self._get_daemon(session_options=session_options)
             self._reset_async_request_guard("reloadDaemon-end")
             logger.debug("Reinitialized Dnf5Daemon.")
 
@@ -1335,7 +1338,8 @@ class Client:
         ''' return the proxy interface that manages the given command '''
         if cmd == 'GetPackages' or cmd == 'GetPackages_fd' or cmd == 'GetAttribute' or \
            cmd == 'Search' or cmd == 'Install' or cmd == 'Remove' or cmd == 'Update' or \
-           cmd == 'Reinstall' or cmd == 'Downgrade' or cmd == 'DistroSync':
+           cmd == 'Reinstall' or cmd == 'Downgrade' or cmd == 'DistroSync' or \
+           cmd == 'SystemUpgrade':
           return self.iface_rpm
         elif cmd == 'GetRepositories' or cmd == 'ConfirmGPGImport':
             return self.iface_repo
@@ -1625,6 +1629,29 @@ class Client:
         else:
             success, error_msg = self._run_dbus_sync('ResetSession')
             return (unpack_dbus(success), unpack_dbus(error_msg))
+
+    def ReopenSession(self, session_options=None):
+        '''
+            Close the current session and open a new one with the given options.
+            Args:
+                @session_options: map passed to SessionManager.open_session(options)
+        '''
+        if session_options is None:
+            session_options = {}
+        self.reloadDaemon(session_options=session_options)
+
+    def SystemUpgrade(self, options=None, sync=False):
+        '''
+            Prepare a transaction for distribution upgrade on next reboot.
+            Args:
+                @options: map with supported keys such as mode and interactive.
+        '''
+        if options is None:
+            options = {}
+        if not sync:
+            self._run_dbus_async('SystemUpgrade', False, options)
+        else:
+            self._run_dbus_sync('SystemUpgrade', options)
 
     def ConfirmGPGImport(self, key_id, confirmed, sync=False):
         '''

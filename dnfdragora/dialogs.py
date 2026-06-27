@@ -624,6 +624,106 @@ class OfflineTransactionsDialog(basedialog.BaseDialog):
       self.ExitLoop()
 
 
+class SystemUpgradeDialog(basedialog.BaseDialog):
+  '''
+  Dialog to collect and confirm system-upgrade parameters.
+  '''
+
+  def __init__(self, parent):
+    basedialog.BaseDialog.__init__(
+      self,
+      _("System upgrade"),
+      "system-upgrade",
+      basedialog.DialogType.POPUP,
+      760, 420,
+    )
+    self.parent = parent
+    self.accepted = False
+    self.releasever = ""
+
+  def UIlayout(self, layout):
+    title = self.factory.createHeading(layout, _("System upgrade (advanced operation)"))
+    title.setAutoWrap()
+
+    warn = self.factory.createLabel(
+      layout,
+      _("Warning: this operation is intended for expert users only and runs under your full responsibility."))
+    warn.setAutoWrap()
+
+    details = self.factory.createLabel(
+      layout,
+      _("Examples: Mageia development release is often 'cauldron', Fedora development release is often 'rawhide'.") +
+      _(" For stable upgrade, the target is usually current release +1 when available."))
+    details.setAutoWrap()
+
+    self._ack_frame = self.factory.createCheckBoxFrame(
+      layout,
+      _("I understand the risks and want to configure system upgrade options"),
+      False)
+    self._ack_frame.setNotify(True)
+    self.eventManager.addWidgetEvent(self._ack_frame, self._onAcknowledgeChanged, True)
+    self._ack_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    self._ack_frame.showContent(False)
+
+    # CheckBoxFrame is a single-child container: put all advanced controls
+    # inside one VBox child.
+    ack_content = self.factory.createVBox(self._ack_frame)
+
+    hbox = self.factory.createHBox(ack_content)
+    self.factory.createLabel(hbox, _("Release ver:"))
+    self._releasever_input = self.factory.createInputField(hbox, "")
+    self._releasever_input.setNotify(True)
+    self.eventManager.addWidgetEvent(self._releasever_input, self._onReleaseverChanged, True)
+    self._releasever_input.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+    hint = self.factory.createLabel(
+      ack_content,
+      _("Insert the target releasever exactly as expected by repositories metadata."))
+    hint.setAutoWrap()
+
+    buttons = self.factory.createHBox(layout)
+    self.factory.createHStretch(buttons)
+    self._proceed_btn = self.factory.createPushButton(buttons, _("&Proceed"))
+    self._cancel_btn = self.factory.createPushButton(buttons, _("&Cancel"))
+    self._proceed_btn.setEnabled(False)
+
+    self.eventManager.addWidgetEvent(self._proceed_btn, self._onProceed)
+    self.eventManager.addWidgetEvent(self._cancel_btn, self._onCancel)
+    self.eventManager.addCancelEvent(self._onCancel)
+
+  def _updateProceedState(self):
+    releasever = self._releasever_input.value().strip()
+    can_proceed = bool(self._ack_frame.value() and releasever)
+    self._proceed_btn.setEnabled(can_proceed)
+
+  def _onAcknowledgeChanged(self, obj):
+    if obj.widgetClass() == "YCheckBoxFrame":
+      obj.showContent(obj.value())
+    self._updateProceedState()
+
+  def _onReleaseverChanged(self, obj):
+    self._updateProceedState()
+
+  def _onProceed(self):
+    releasever = self._releasever_input.value().strip()
+    if not releasever:
+      return
+    self.releasever = releasever
+    self.accepted = True
+    self.ExitLoop()
+
+  def _onCancel(self):
+    self.accepted = False
+    self.releasever = ""
+    self.ExitLoop()
+
+  def run(self):
+    super().run()
+    if self.accepted:
+      return {'releasever': self.releasever}
+    return None
+
+
 class PackageActionDialog:
     '''
       PackageActionDialog is a dialog that allows to select the action 
