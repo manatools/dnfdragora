@@ -736,6 +736,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
                  'update_all' : self.menubar.addItem(mItem, _("&Update All"), enabled=False),
                  'history'   : self.menubar.addItem(mItem, _("&History")),
+                'advisory_information' : self.menubar.addItem(mItem, _("Advisory information")),
             }
             if self.systemd_running:
               self.ActionMenu['system_upgrade'] = self.menubar.addItem(mItem, _("System upgrade"))
@@ -1859,6 +1860,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               self.dialog.setEnabled(True)
           except Exception:
               pass
+        elif item == self.ActionMenu.get('advisory_information'):
+          try:
+            self.dialog.setEnabled(False)
+          except Exception:
+            pass
+          advdlg = dialogs.AdvisoryDialog(self)
+          advdlg.run()
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
         elif item == self.ActionMenu.get('system_upgrade'):
           self._run_system_upgrade_from_menu()
         elif item == self.ActionMenu.get('offline_transactions'):

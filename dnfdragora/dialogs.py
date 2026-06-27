@@ -365,6 +365,175 @@ class HistoryDialog(basedialog.BaseDialog):
         self.ExitLoop()
 
 
+class AdvisoryDialog(basedialog.BaseDialog):
+    '''
+    Dialog for browsing advisory information exposed by dnf5daemon.
+    '''
+
+    def __init__(self, parent):
+      basedialog.BaseDialog.__init__(
+        self,
+        _("Advisory information"),
+        "advisory-information",
+        basedialog.DialogType.POPUP,
+        960, 620,
+      )
+      self.parent = parent
+
+    def UIlayout(self, layout):
+      factory = self.factory
+
+      title = factory.createHeading(layout, _("Advisory information"))
+      title.setAutoWrap()
+
+      filters_frame = factory.createFrame(layout, _("Filters"))
+      filters_vbox = factory.createVBox(filters_frame)
+
+      row1 = factory.createHBox(filters_vbox)
+      factory.createLabel(row1, _("Availability:"))
+      self._availability = factory.createComboBox(row1, "")
+      self._availability_items = {}
+      availability_values = ("available", "updates", "installed", "all")
+      availability_items = []
+      for value in availability_values:
+        item = MUI.YItem(value)
+        if value == "available":
+          item.setSelected(True)
+        self._availability_items[value] = item
+        availability_items.append(item)
+      self._availability.addItems(availability_items)
+
+      factory.createLabel(row1, _("Type:"))
+      self._type = factory.createComboBox(row1, "")
+      self._type_items = {}
+      type_values = ("all", "security", "bugfix", "enhancement", "newpackage")
+      type_items = []
+      for value in type_values:
+        item = MUI.YItem(value)
+        if value == "all":
+          item.setSelected(True)
+        self._type_items[value] = item
+        type_items.append(item)
+      self._type.addItems(type_items)
+
+      row2 = factory.createHBox(filters_vbox)
+      factory.createLabel(row2, _("Severity:"))
+      self._severity = factory.createComboBox(row2, "")
+      self._severity_items = {}
+      severity_values = ("all", "critical", "important", "moderate", "low", "none")
+      severity_items = []
+      for value in severity_values:
+        item = MUI.YItem(value)
+        if value == "all":
+          item.setSelected(True)
+        self._severity_items[value] = item
+        severity_items.append(item)
+      self._severity.addItems(severity_items)
+
+      factory.createLabel(row2, _("Contains package:"))
+      self._contains_pkg = factory.createInputField(row2, "")
+      self._contains_pkg.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      row3 = factory.createHBox(filters_vbox)
+      self._with_cve = factory.createCheckBox(row3, _("With CVE"), False)
+      self._with_bz = factory.createCheckBox(row3, _("With Bugzilla"), False)
+
+      header = MUI.YTableHeader()
+      header.addColumn(_("Advisory ID"), False)
+      header.addColumn(_("Type"), False)
+      header.addColumn(_("Severity"), False)
+      header.addColumn(_("Title"), False)
+      self._table = factory.createTable(layout, header)
+      self._table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+      self._table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      button_row = factory.createHBox(layout)
+      self._refresh_btn = factory.createPushButton(button_row, _("&Refresh"))
+      self._close_btn = factory.createPushButton(button_row, _("&Close"))
+      self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
+      self.eventManager.addWidgetEvent(self._close_btn, self.onQuitEvent)
+      self.eventManager.addCancelEvent(self.onCancelEvent)
+
+      self._onRefresh()
+
+    def _selected(self, widget, item_map):
+      selected = widget.selectedItem()
+      for key, item in item_map.items():
+        if item == selected:
+          return key
+      return ""
+
+    def _collect_options(self):
+      options = {
+        'advisory_attrs': ['advisoryid', 'name', 'title', 'type', 'severity', 'status'],
+      }
+
+      availability = self._selected(self._availability, self._availability_items)
+      if availability and availability != 'all':
+        options['availability'] = availability
+
+      advisory_type = self._selected(self._type, self._type_items)
+      if advisory_type and advisory_type != 'all':
+        options['types'] = [advisory_type]
+
+      severity = self._selected(self._severity, self._severity_items)
+      if severity and severity != 'all':
+        options['severities'] = [severity]
+
+      pkg = self._contains_pkg.value().strip()
+      if pkg:
+        options['contains_pkgs'] = [pkg]
+
+      options['with_cve'] = bool(self._with_cve.value())
+      options['with_bz'] = bool(self._with_bz.value())
+      return options
+
+    def _render_rows(self, advisories):
+      self._table.deleteAllItems()
+      items = []
+      for advisory in advisories or []:
+        row = MUI.YTableItem()
+        row.addCell(str(advisory.get('advisoryid', advisory.get('name', ''))))
+        row.addCell(str(advisory.get('type', '')))
+        row.addCell(str(advisory.get('severity', '')))
+        row.addCell(str(advisory.get('title', '')))
+        items.append(row)
+
+      if not items:
+        empty_row = MUI.YTableItem()
+        empty_row.addCell(_("No results"))
+        empty_row.addCell('')
+        empty_row.addCell('')
+        empty_row.addCell('')
+        items.append(empty_row)
+
+      self._table.addItems(items)
+
+    def _onRefresh(self, obj=None):
+      MUI.YUI.app().busyCursor()
+      try:
+        options = self._collect_options()
+        advisories = self.parent.backend.AdvisoryList(options, sync=True)
+        self._render_rows(advisories)
+      except Exception as err:
+        logger.exception("AdvisoryList failed: %s", err)
+        self._table.deleteAllItems()
+        row = MUI.YTableItem()
+        row.addCell(_("Error"))
+        row.addCell('')
+        row.addCell('')
+        row.addCell(str(err))
+        self._table.addItems([row])
+      finally:
+        MUI.YUI.app().normalCursor()
+
+    def onCancelEvent(self, obj=None):
+      self.ExitLoop()
+
+    def onQuitEvent(self, obj=None):
+      self.ExitLoop()
+
+
 class OfflineTransactionsDialog(basedialog.BaseDialog):
     '''
     Dialog to inspect and manage pending offline transactions.

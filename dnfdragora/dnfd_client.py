@@ -234,6 +234,7 @@ class Client:
           'ConfirmGPGImport'    : 'confirm_key',
 
           'Advisories'          : 'list',
+          'AdvisoryList'        : 'list',
 
           ##History
           'HistoryRecentChanges': 'recent_changes',
@@ -1345,7 +1346,7 @@ class Client:
             return self.iface_repo
         elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
             return  self.iface_repo
-        elif cmd == 'Advisories':
+        elif cmd == 'Advisories' or cmd == 'AdvisoryList':
             return self.iface_advisory
         elif cmd == 'HistoryRecentChanges' or cmd == 'HistoryList':
             return self.iface_history
@@ -1708,6 +1709,26 @@ class Client:
           result = self._run_dbus_sync(
               'Advisories', options)
           return unpack_dbus(result)
+
+    def AdvisoryList(self, options=None, sync=False):
+        '''
+        Get advisories through org.rpm.dnf.v0.Advisory.list.
+
+        Args:
+            @options: key/value map with supported advisory filters.
+                Common keys: advisory_attrs, availability, names, types,
+                contains_pkgs, severities, reference_bzs, reference_cves,
+                with_bz, with_cve.
+        Returns:
+            List of advisory dictionaries when sync=True.
+        '''
+        if options is None:
+            options = {}
+        if not sync:
+            self._run_dbus_async('AdvisoryList', True, options)
+        else:
+            result = self._run_dbus_sync('AdvisoryList', options)
+            return unpack_dbus(result)
 
     def Install(self, specs, options={}, sync=False):
         '''
