@@ -39,6 +39,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
     history_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('History dialog'), 'history_dlg')
     offline_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('Offline transactions dialog'), 'offline_trans_dlg')
     system_upgrade_dlg_lnk = '<b>%s</b>'%self._formatLink(_('System upgrade dialog'), 'system_upgrade_dlg')
+    advisory_dlg_lnk = '<b>%s</b>'%self._formatLink(_('Advisory information dialog'), 'advisory_dlg')
 
     index_links = (
       menu_line_lnk,
@@ -52,6 +53,7 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       history_dlg_lnk,
       offline_dlg_lnk,
       system_upgrade_dlg_lnk,
+      advisory_dlg_lnk,
       )
     index = '<ul>%s</ul>' % ''.join('<li>%s</li>' % link for link in index_links)
 
@@ -121,7 +123,9 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
           _('This menu opens the %s, which shows packages recently changed on the system.'%self._formatLink(_('History dialog'), 'history_dlg')) + \
         _('<h2>System upgrade</h2>') +\
           _('This menu opens the %s to prepare an offline distro upgrade to a target releasever. '%self._formatLink(_('System upgrade dialog'), 'system_upgrade_dlg')) + \
-          _('<b>Important:</b> the menu entry is shown only when systemd is available, because execution is scheduled offline for reboot.'),
+          _('<b>Important:</b> the menu entry is shown only when systemd is available, because execution is scheduled offline for reboot.') + \
+        _('<h2>Advisory information</h2>') +\
+          _('This menu opens the %s to query advisory metadata (security, bugfix, enhancement) with filters and inspect selected advisory details.'%self._formatLink(_('Advisory information dialog'), 'advisory_dlg')),
         # back home
         home_lnk,
       ),
@@ -343,6 +347,25 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Enter the target <i>releasever</i> exactly as expected by repositories metadata (for example development values such as <i>cauldron</i> or <i>rawhide</i>, where applicable).<br><br>') +
         _('<h2>Execution flow</h2>') +
         _('After confirmation, dnfdragora reopens the daemon session with the chosen releasever, prepares system-upgrade in <i>distrosync</i> mode with interactive prompts enabled, resolves dependencies with allow-erasing, then schedules the transaction offline and sets reboot as finish action.<br>'),
+        # back home
+        home_lnk,
+      ),
+
+      'advisory_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Advisory information dialog'),
+        # help
+        _('The Advisory information dialog queries dnf5daemon advisory metadata and shows matching advisories in a table.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → Advisory information</b>.<br><br>') +
+        _('<h2>Filters</h2>') +
+        _('Use the filter area to narrow results by availability, advisory IDs, package name patterns, Bugzilla IDs, CVE IDs, advisory types, severities, and toggles for advisories containing CVE/Bugzilla references.<br><br>') +
+        _('<h2>Results table</h2>') +
+        _('The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and <b>Title</b> for each advisory returned by the daemon.<br><br>') +
+        _('<h2>Selected advisory details</h2>') +
+        _('Selecting a row updates the details table with available fields such as vendor, status, description, message, collections, and references.<br><br>') +
+        _('<h2>Refresh and Close</h2>') +
+        _('Press <b>Refresh</b> to run the query with current filters, or <b>Close</b> to dismiss the dialog and return to the main window.<br>'),
         # back home
         home_lnk,
       ),

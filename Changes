@@ -1,8 +1,10 @@
 2026-XX-YY v. 2.99.5
 --------------------
 - Updated Help dialog documentation.
-- Disabling Offline transaction if systemd is not running (for instance for PCLinuxOs)
+- Disabling Offline transaction and System ugrade if systemd is not running (for instance for PCLinuxOs)
 - Added an Offline transactions dialog to inspect, refresh, finalize, and clean pending offline transactions from the Actions menu.
+- Added Actions menu "System upgrade" workflow.
+- Added Actions menu "Advisory information" dialog with advisory filters and details view backed by dnf5daemon Advisory.list.
 - Removed legacy "upgrades_as_updates" behavior.
 - Moved updater-specific preferences to a dedicated "dnfdragora-updater" into options dialog for user settings.
 - Added new System preferences for "Force distsync as upgrade" to use distro sync instead of upgrade.
