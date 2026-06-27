@@ -268,6 +268,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_scope   = None   # None = use current filter_box; str = scope key
         self._search_what_type  = None  # daemon option name, e.g. 'whatprovides'; None = text search
         self._search_what_value = ''    # capability string for the what-search
+        self._search_refresh_pending = False
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
@@ -1060,15 +1061,45 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         except Exception:
             pass
         try:
-            if is_searching:
-                self._search_info_label.setLabel(
-                    _("[ Search: %s ]") % self._search_text
-                    if self._search_text
-                    else _("[ Dependency search: %s ]") % self._search_what_value)
+          if is_searching:
+            if self._search_refresh_pending:
+              self._search_info_label.setLabel(
+                _("[ Refreshing search: %s ]") % self._search_text
+                if self._search_text
+                else _("[ Refreshing dependency search: %s ]") % self._search_what_value)
             else:
-                self._search_info_label.setLabel("")
+              self._search_info_label.setLabel(
+                _("[ Search: %s ]") % self._search_text
+                if self._search_text
+                else _("[ Dependency search: %s ]") % self._search_what_value)
+          else:
+            self._search_info_label.setLabel("")
+        except Exception:
+          pass
+
+    def _invalidate_search_results(self):
+        """Drop visible search results until the backend search is run again."""
+        if not (self._search_text or self._search_what_value):
+            self._search_refresh_pending = False
+            return
+
+        logger.debug("Invalidating visible search results while session/cache is refreshed")
+        self._search_refresh_pending = True
+        self.itemList = {}
+        self._selPkg = None
+        try:
+            self.packageList.deleteAllItems()
         except Exception:
             pass
+        try:
+            self.info.setValue("")
+        except Exception:
+            pass
+        try:
+            self.applyButton.setEnabled(False)
+        except Exception:
+            pass
+        self._updateSearchState()
 
     def _selectFilterItem(self, scope_key: str):
         """Programmatically select a filter_box item given a daemon scope key.
@@ -1389,6 +1420,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       Shows an error dialog box and continue to work, it supposes error is not critical
       (i.e. a wrong search for instance)
       '''
+      self._search_refresh_pending = False
       common.warningMsgBox({'title' : title, "size": (400, 200), "text": error, "richtext":True})
       self._enableAction(True)
 
@@ -1446,6 +1478,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if createTreeItem:
           pass  # tree is hidden during searches; no tree item needed
 
+      self._search_refresh_pending = False
+      logger.debug("Search results refreshed with %d packages", len(packages))
+      self._updateSearchState()
       self._enableAction(True)
 
 
@@ -1867,6 +1902,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         request_exit = True
       elif widget == self.packageList:
         if event.reason() == MUI.YEventReason.ValueChanged:
+          if self._search_refresh_pending:
+            logger.debug("Ignoring package toggle while search refresh is pending")
+            return rebuild_package_list, request_exit
           changedItem = self.packageList.changedItem()
           if changedItem:
             for it in self.itemList:
@@ -1901,6 +1939,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._search_scope      = None
         self._search_what_type  = None
         self._search_what_value = ''
+        self._search_refresh_pending = False
         rebuild_package_list = True
         self._fillGroupTree()
         self._updateSearchState()
@@ -1960,6 +1999,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._search_scope      = None
           self._search_what_type  = None
           self._search_what_value = ''
+          self._search_refresh_pending = False
           rebuild_package_list = True
           self._fillGroupTree()
           self._updateSearchState()
@@ -2088,6 +2128,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               # TODO change UI and manage this better afer a transaction report
               self.backend.clear_cache(also_groups=True)
               self.packageQueue.clear()
+              self._invalidate_search_results()
               self._status = DNFDragoraStatus.RESET_SESSION
               self._transaction_noreply_warned = False
               self._enableAction(False)
@@ -2116,6 +2157,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               # TODO change UI and manage this better afer a transaction report        
               self.backend.clear_cache(also_groups=True)
               self.packageQueue.clear()
+              self._invalidate_search_results()
               self._status = DNFDragoraStatus.RESET_SESSION
               self._transaction_noreply_warned = False
               self._enableAction(False)
@@ -3233,6 +3275,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if not info['error']:
               pkgs = None
               packages = self.backend.make_pkg_object_with_attr(info['result'])
+              logger.debug("Search event returned %d package rows", len(info['result']))
               self._showSearchResult(packages, createTreeItem=True)
             else:
               logger.error("Search error: %s", info['error'])
