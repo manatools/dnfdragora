@@ -376,9 +376,11 @@ class AdvisoryDialog(basedialog.BaseDialog):
         _("Advisory information"),
         "advisory-information",
         basedialog.DialogType.POPUP,
-        960, 620,
+        1040, 680,
       )
       self.parent = parent
+      self._table_item_to_advisory = {}
+      self._last_results = []
 
     def UIlayout(self, layout):
       factory = self.factory
@@ -403,40 +405,55 @@ class AdvisoryDialog(basedialog.BaseDialog):
         availability_items.append(item)
       self._availability.addItems(availability_items)
 
-      factory.createLabel(row1, _("Type:"))
-      self._type = factory.createComboBox(row1, "")
-      self._type_items = {}
-      type_values = ("all", "security", "bugfix", "enhancement", "newpackage")
-      type_items = []
-      for value in type_values:
-        item = MUI.YItem(value)
-        if value == "all":
-          item.setSelected(True)
-        self._type_items[value] = item
-        type_items.append(item)
-      self._type.addItems(type_items)
+      names_row = factory.createHBox(filters_vbox)
+      factory.createLabel(names_row, _("Advisory IDs (comma-separated):"))
+      self._names_input = factory.createInputField(names_row, "")
+      self._names_input.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
       row2 = factory.createHBox(filters_vbox)
-      factory.createLabel(row2, _("Severity:"))
-      self._severity = factory.createComboBox(row2, "")
-      self._severity_items = {}
-      severity_values = ("all", "critical", "important", "moderate", "low", "none")
-      severity_items = []
-      for value in severity_values:
-        item = MUI.YItem(value)
-        if value == "all":
-          item.setSelected(True)
-        self._severity_items[value] = item
-        severity_items.append(item)
-      self._severity.addItems(severity_items)
-
       factory.createLabel(row2, _("Contains package:"))
       self._contains_pkg = factory.createInputField(row2, "")
       self._contains_pkg.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
-      row3 = factory.createHBox(filters_vbox)
-      self._with_cve = factory.createCheckBox(row3, _("With CVE"), False)
-      self._with_bz = factory.createCheckBox(row3, _("With Bugzilla"), False)
+      ref_row = factory.createHBox(filters_vbox)
+      factory.createLabel(ref_row, _("Reference BZ IDs (comma-separated):"))
+      self._reference_bzs = factory.createInputField(ref_row, "")
+      self._reference_bzs.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      factory.createLabel(ref_row, _("Reference CVEs (comma-separated):"))
+      self._reference_cves = factory.createInputField(ref_row, "")
+      self._reference_cves.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      multi_row = factory.createHBox(filters_vbox)
+
+      type_frame = factory.createCheckBoxFrame(multi_row, _("Limit to types"), False)
+      type_frame.setNotify(True)
+      self._type_frame = type_frame
+      self._type_box = factory.createMultiSelectionBox(type_frame, "")
+      self._type_items = {}
+      type_values = ("security", "bugfix", "enhancement", "newpackage")
+      type_items = []
+      for value in type_values:
+        item = MUI.YItem(value)
+        self._type_items[value] = item
+        type_items.append(item)
+      self._type_box.addItems(type_items)
+
+      severity_frame = factory.createCheckBoxFrame(multi_row, _("Limit to severities"), False)
+      severity_frame.setNotify(True)
+      self._severity_frame = severity_frame
+      self._severity_box = factory.createMultiSelectionBox(severity_frame, "")
+      self._severity_items = {}
+      severity_values = ("critical", "important", "moderate", "low", "none")
+      severity_items = []
+      for value in severity_values:
+        item = MUI.YItem(value)
+        self._severity_items[value] = item
+        severity_items.append(item)
+      self._severity_box.addItems(severity_items)
+
+      toggles_row = factory.createHBox(filters_vbox)
+      self._with_cve = factory.createCheckBox(toggles_row, _("With CVE"), False)
+      self._with_bz = factory.createCheckBox(toggles_row, _("With Bugzilla"), False)
 
       header = MUI.YTableHeader()
       header.addColumn(_("Advisory ID"), False)
@@ -444,8 +461,19 @@ class AdvisoryDialog(basedialog.BaseDialog):
       header.addColumn(_("Severity"), False)
       header.addColumn(_("Title"), False)
       self._table = factory.createTable(layout, header)
+      self._table.setNotify(True)
+      self.eventManager.addWidgetEvent(self._table, self._onTableEvent, True)
       self._table.setStretchable(MUI.YUIDimension.YD_VERT, True)
       self._table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      details_frame = factory.createFrame(layout, _("Selected advisory details"))
+      details_vbox = factory.createVBox(details_frame)
+      details_header = MUI.YTableHeader()
+      details_header.addColumn(_("Field"), False)
+      details_header.addColumn(_("Value"), False)
+      self._details_table = factory.createTable(details_vbox, details_header)
+      self._details_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+      self._details_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
       button_row = factory.createHBox(layout)
       self._refresh_btn = factory.createPushButton(button_row, _("&Refresh"))
@@ -456,40 +484,125 @@ class AdvisoryDialog(basedialog.BaseDialog):
 
       self._onRefresh()
 
-    def _selected(self, widget, item_map):
-      selected = widget.selectedItem()
+    def _split_csv(self, text):
+      values = []
+      for value in (text or '').split(','):
+        cleaned = value.strip()
+        if cleaned:
+          values.append(cleaned)
+      return values
+
+    def _selected_multi(self, enabled, box, item_map):
+      if not enabled.value():
+        return []
+      selected = []
+      try:
+        sel_items = box.selectedItems()
+      except Exception:
+        sel_items = []
       for key, item in item_map.items():
-        if item == selected:
-          return key
-      return ""
+        if item in sel_items:
+          selected.append(key)
+      return selected
 
     def _collect_options(self):
       options = {
-        'advisory_attrs': ['advisoryid', 'name', 'title', 'type', 'severity', 'status'],
+        'advisory_attrs': [
+          'advisoryid', 'name', 'title', 'type', 'severity', 'status',
+          'vendor', 'description', 'buildtime', 'message', 'rights',
+          'collections', 'references'
+        ],
       }
 
-      availability = self._selected(self._availability, self._availability_items)
+      availability = self._availability.value().strip()
       if availability and availability != 'all':
         options['availability'] = availability
 
-      advisory_type = self._selected(self._type, self._type_items)
-      if advisory_type and advisory_type != 'all':
-        options['types'] = [advisory_type]
+      names = self._split_csv(self._names_input.value())
+      if names:
+        options['names'] = names
 
-      severity = self._selected(self._severity, self._severity_items)
-      if severity and severity != 'all':
-        options['severities'] = [severity]
+      selected_types = self._selected_multi(self._type_frame, self._type_box, self._type_items)
+      if selected_types:
+        options['types'] = selected_types
+
+      selected_severities = self._selected_multi(self._severity_frame, self._severity_box, self._severity_items)
+      if selected_severities:
+        options['severities'] = selected_severities
 
       pkg = self._contains_pkg.value().strip()
       if pkg:
         options['contains_pkgs'] = [pkg]
 
+      reference_bzs = self._split_csv(self._reference_bzs.value())
+      if reference_bzs:
+        options['reference_bzs'] = reference_bzs
+
+      reference_cves = self._split_csv(self._reference_cves.value())
+      if reference_cves:
+        options['reference_cves'] = reference_cves
+
       options['with_cve'] = bool(self._with_cve.value())
       options['with_bz'] = bool(self._with_bz.value())
       return options
 
+    def _stringify(self, value):
+      if value is None:
+        return ''
+      if isinstance(value, list):
+        return ', '.join(self._stringify(v) for v in value)
+      if isinstance(value, dict):
+        parts = []
+        for key in sorted(value.keys()):
+          parts.append('%s=%s' % (str(key), self._stringify(value[key])))
+        return '; '.join(parts)
+      return str(value)
+
+    def _render_details(self, advisory=None):
+      self._details_table.deleteAllItems()
+      if not advisory:
+        row = MUI.YTableItem()
+        row.addCell(_("Selection"))
+        row.addCell(_("No advisory selected"))
+        self._details_table.addItems([row])
+        return
+
+      keys = [
+        ('advisoryid', _("Advisory ID")),
+        ('name', _("Name")),
+        ('title', _("Title")),
+        ('type', _("Type")),
+        ('severity', _("Severity")),
+        ('status', _("Status")),
+        ('vendor', _("Vendor")),
+        ('buildtime', _("Build time")),
+        ('description', _("Description")),
+        ('message', _("Message")),
+        ('rights', _("Rights")),
+        ('collections', _("Collections")),
+        ('references', _("References")),
+      ]
+      rows = []
+      for key, label in keys:
+        value = advisory.get(key)
+        text = self._stringify(value)
+        if text:
+          row = MUI.YTableItem()
+          row.addCell(label)
+          row.addCell(text)
+          rows.append(row)
+
+      if not rows:
+        row = MUI.YTableItem()
+        row.addCell(_("Details"))
+        row.addCell(_("No details available for selected advisory"))
+        rows.append(row)
+      self._details_table.addItems(rows)
+
     def _render_rows(self, advisories):
       self._table.deleteAllItems()
+      self._table_item_to_advisory = {}
+      self._last_results = advisories or []
       items = []
       for advisory in advisories or []:
         row = MUI.YTableItem()
@@ -497,6 +610,7 @@ class AdvisoryDialog(basedialog.BaseDialog):
         row.addCell(str(advisory.get('type', '')))
         row.addCell(str(advisory.get('severity', '')))
         row.addCell(str(advisory.get('title', '')))
+        self._table_item_to_advisory[row] = advisory
         items.append(row)
 
       if not items:
@@ -508,22 +622,33 @@ class AdvisoryDialog(basedialog.BaseDialog):
         items.append(empty_row)
 
       self._table.addItems(items)
+      if advisories:
+        self._render_details(advisories[0])
+      else:
+        self._render_details(None)
+
+    def _onTableEvent(self, yui_event):
+      selected = self._table.selectedItem()
+      advisory = self._table_item_to_advisory.get(selected)
+      self._render_details(advisory)
 
     def _onRefresh(self, obj=None):
       MUI.YUI.app().busyCursor()
       try:
         options = self._collect_options()
-        advisories = self.parent.backend.AdvisoryList(options, sync=True)
+        advisories = self.parent.backend.Advisories(options, sync=True)
         self._render_rows(advisories)
       except Exception as err:
-        logger.exception("AdvisoryList failed: %s", err)
+        logger.exception("Advisories failed: %s", err)
         self._table.deleteAllItems()
+        self._table_item_to_advisory = {}
         row = MUI.YTableItem()
         row.addCell(_("Error"))
         row.addCell('')
         row.addCell('')
         row.addCell(str(err))
         self._table.addItems([row])
+        self._render_details(None)
       finally:
         MUI.YUI.app().normalCursor()
 

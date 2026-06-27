@@ -234,7 +234,6 @@ class Client:
           'ConfirmGPGImport'    : 'confirm_key',
 
           'Advisories'          : 'list',
-          'AdvisoryList'        : 'list',
 
           ##History
           'HistoryRecentChanges': 'recent_changes',
@@ -1346,7 +1345,7 @@ class Client:
             return self.iface_repo
         elif cmd == 'SetEnabledRepos' or cmd == 'SetDisabledRepos':
             return  self.iface_repo
-        elif cmd == 'Advisories' or cmd == 'AdvisoryList':
+        elif cmd == 'Advisories':
             return self.iface_advisory
         elif cmd == 'HistoryRecentChanges' or cmd == 'HistoryList':
             return self.iface_history
@@ -1668,38 +1667,37 @@ class Client:
 
     def Advisories(self, options, sync=False):
         '''
-        Get list of security advisories that match to given filters.
+        Query org.rpm.dnf.v0.Advisory.list with filters.
 
         Args:
-            @options: an array of key/value pairs
-        return:
-            @advisories: array of returned advisories with requested attributes
+            @options: key/value map passed to Advisory.list.
+                Supported keys (unknown keys are ignored by daemon):
+                - advisory_attrs: list[str]
+                    Returned advisory attributes. Supported values are
+                    "advisoryid", "name", "title", "type", "severity", "status",
+                    "vendor", "description", "buildtime", "message", "rights",
+                    "collections", "references".
+                - availability: str, default "available"
+                    One of "available", "all", "installed", "updates".
+                - names: list[str]
+                    Exact advisory IDs to include (e.g. "FEDORA-2025-beb4c9a336").
+                - types: list[str]
+                    Advisory types: "security", "bugfix", "enhancement", "newpackage".
+                - contains_pkgs: list[str]
+                    Package-name glob filters (base package names).
+                - severities: list[str]
+                    One or more from "critical", "important", "moderate", "low", "none".
+                - reference_bzs: list[str]
+                    Bugzilla IDs referenced by advisories.
+                - reference_cves: list[str]
+                    CVE IDs referenced by advisories.
+                - with_bz: bool
+                    Include only advisories that contain Bugzilla references.
+                - with_cve: bool
+                    Include only advisories that contain CVE references.
 
-        Following options and filters are supported:
-            - advisory_attrs: list of strings
-                List of advisory attributes that are returned in `advisories` array.
-                Supported attributes are "advisoryid", "name", "title", "type", "severity", "status",
-                "vendor", "description", "buildtime", "message", "rights", "collections", and "references".
-            - availability: string
-                One of "available" (default if filter is not present), "all", "installed", or "updates".
-            - name: list of strings
-                Consider only advisories with one of given names.
-            - type: list of strings
-                Consider only advisories of given types. Possible types are "security", "bugfix", "enhancement", and "newpackage".
-            - contains_pkgs: list of strings
-                Consider only advisories containing one of given packages.
-            - severity: list of strings
-                Consider only advisories of given severity. Possible values are "critical", "important", "moderate", "low", and "none".
-            - reference_bz: list of strings
-                Consider only advisories referencing given Bugzilla ticket ID. Exepcted values are numeric IDs, e.g. 123456.
-            - reference_cve: list of strings
-                Consider only advisoried referencing given CVE ID. Expected values are strings IDs in CVE format, e.g. CVE-2201-0123.
-            - with_bz: boolean
-                Consider only advisories referencing a Bugzilla ticket.
-            - with_cve: boolean
-                Consider only advisories referencing a CVE ticket.
-
-        Unknown options are ignored.
+        Returns:
+            @advisories: array of advisory dictionaries when sync=True.
 
         '''
         if not sync:
@@ -1709,26 +1707,6 @@ class Client:
           result = self._run_dbus_sync(
               'Advisories', options)
           return unpack_dbus(result)
-
-    def AdvisoryList(self, options=None, sync=False):
-        '''
-        Get advisories through org.rpm.dnf.v0.Advisory.list.
-
-        Args:
-            @options: key/value map with supported advisory filters.
-                Common keys: advisory_attrs, availability, names, types,
-                contains_pkgs, severities, reference_bzs, reference_cves,
-                with_bz, with_cve.
-        Returns:
-            List of advisory dictionaries when sync=True.
-        '''
-        if options is None:
-            options = {}
-        if not sync:
-            self._run_dbus_async('AdvisoryList', True, options)
-        else:
-            result = self._run_dbus_sync('AdvisoryList', options)
-            return unpack_dbus(result)
 
     def Install(self, specs, options={}, sync=False):
         '''
