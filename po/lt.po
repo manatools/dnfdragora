@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 16:19+0200\n"
+"POT-Creation-Date: 2026-06-28 19:13+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Moo, 2020\n"
 "Language-Team: Lithuanian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -163,8 +163,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:1867
-#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:605 dnfdragora/ui.py:620
+#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:2278
+#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:606 dnfdragora/ui.py:621
 msgid "All"
 msgstr "Visos"
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "&Transactions"
 msgstr ""
 
-#: dnfdragora/dialogs.py:101
+#: dnfdragora/dialogs.py:101 dnfdragora/dialogs.py:393
 msgid "Filters"
 msgstr ""
 
@@ -383,8 +383,8 @@ msgstr ""
 msgid "  Contains package:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:897
-#: dnfdragora/dialogs.py:953 dnfdragora/ui.py:586
+#: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:589
+#: dnfdragora/dialogs.py:1308 dnfdragora/dialogs.py:1364 dnfdragora/ui.py:587
 msgid "Name"
 msgstr "Pavadinimas"
 
@@ -392,7 +392,7 @@ msgstr "Pavadinimas"
 msgid "EVR"
 msgstr ""
 
-#: dnfdragora/dialogs.py:137 dnfdragora/ui.py:586
+#: dnfdragora/dialogs.py:137 dnfdragora/ui.py:587
 msgid "Arch"
 msgstr "Architektūra"
 
@@ -404,7 +404,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: dnfdragora/dialogs.py:140 dnfdragora/ui.py:586
+#: dnfdragora/dialogs.py:140 dnfdragora/ui.py:587
 msgid "Summary"
 msgstr "Apibendrinimas"
 
@@ -412,13 +412,14 @@ msgstr "Apibendrinimas"
 msgid "Transactions"
 msgstr ""
 
-#: dnfdragora/dialogs.py:154 dnfdragora/dialogs.py:419
+#: dnfdragora/dialogs.py:154 dnfdragora/dialogs.py:498
+#: dnfdragora/dialogs.py:730
 msgid "&Refresh"
 msgstr ""
 
-#: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:423
-#: dnfdragora/dialogs.py:1366 dnfdragora/progress_ui.py:201
-#: dnfdragora/progress_ui.py:216
+#: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:499
+#: dnfdragora/dialogs.py:734 dnfdragora/dialogs.py:1777
+#: dnfdragora/progress_ui.py:201 dnfdragora/progress_ui.py:216
 msgid "&Close"
 msgstr "&Užverti"
 
@@ -427,7 +428,7 @@ msgstr "&Užverti"
 msgid "Error: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:794
+#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:797
 msgid "installed"
 msgstr ""
 
@@ -444,6 +445,7 @@ msgid "downgraded"
 msgstr ""
 
 #: dnfdragora/dialogs.py:282 dnfdragora/dialogs.py:356
+#: dnfdragora/dialogs.py:635
 msgid "No results"
 msgstr ""
 
@@ -467,687 +469,847 @@ msgstr ""
 msgid "reinstall"
 msgstr ""
 
-#: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:498
-#: dnfdragora/dialogs.py:520 dnfdragora/dialogs.py:533
-#: dnfdragora/dialogs.py:540 dnfdragora/dialogs.py:548
-#: dnfdragora/dialogs.py:557 dnfdragora/dialogs.py:570
-#: dnfdragora/dialogs.py:577 dnfdragora/dialogs.py:585
-#: dnfdragora/dialogs.py:599 dnfdragora/dialogs.py:606
-#: dnfdragora/dialogs.py:614 dnfdragora/ui.py:740
-msgid "Offline transactions"
+#: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:739
+msgid "Advisory information"
 msgstr ""
 
-#: dnfdragora/dialogs.py:393
-msgid "Offline transaction status"
+#: dnfdragora/dialogs.py:395
+msgid "Advisories"
 msgstr ""
 
-#: dnfdragora/dialogs.py:398
-msgid "Status details"
+#: dnfdragora/dialogs.py:396
+msgid "Advisory details"
 msgstr ""
 
-#: dnfdragora/dialogs.py:401
-msgid "Key"
+#: dnfdragora/dialogs.py:413
+msgid "Availability:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:402 dnfdragora/dialogs.py:963
+#: dnfdragora/dialogs.py:427
+msgid "With CVE"
+msgstr ""
+
+#: dnfdragora/dialogs.py:429
+msgid "With Bugzilla"
+msgstr ""
+
+#: dnfdragora/dialogs.py:431
+msgid "Limit to types"
+msgstr ""
+
+#: dnfdragora/dialogs.py:444
+msgid "Limit to severities"
+msgstr ""
+
+#: dnfdragora/dialogs.py:462
+msgid "Advisory IDs (comma-separated):"
+msgstr ""
+
+#: dnfdragora/dialogs.py:464
+msgid "Reference BZ IDs (comma-separated)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:468
+msgid "Contains package:"
+msgstr ""
+
+#: dnfdragora/dialogs.py:470
+msgid "Reference CVEs (comma-separated)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:476 dnfdragora/dialogs.py:588
+msgid "Advisory ID"
+msgstr ""
+
+#: dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:591
+#: dnfdragora/dialogs.py:1309 dnfdragora/ui.py:1365
+msgid "Type"
+msgstr "Tipas"
+
+#: dnfdragora/dialogs.py:478 dnfdragora/dialogs.py:592 dnfdragora/ui.py:1365
+msgid "Severity"
+msgstr ""
+
+#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:590
+msgid "Title"
+msgstr ""
+
+#: dnfdragora/dialogs.py:489
+msgid "Field"
+msgstr ""
+
+#: dnfdragora/dialogs.py:490 dnfdragora/dialogs.py:713
+#: dnfdragora/dialogs.py:1374
 msgid "Value"
 msgstr ""
 
-#: dnfdragora/dialogs.py:407 dnfdragora/dialogs.py:466
+#: dnfdragora/dialogs.py:582
+msgid "Selection"
+msgstr ""
+
+#: dnfdragora/dialogs.py:583
+msgid "No advisory selected"
+msgstr ""
+
+#: dnfdragora/dialogs.py:593 dnfdragora/ui.py:595
+msgid "Status"
+msgstr "Būsena"
+
+#: dnfdragora/dialogs.py:594
+msgid "Vendor"
+msgstr ""
+
+#: dnfdragora/dialogs.py:595
+msgid "Build time"
+msgstr ""
+
+#: dnfdragora/dialogs.py:596
+msgid "Description"
+msgstr ""
+
+#: dnfdragora/dialogs.py:597
+msgid "Message"
+msgstr ""
+
+#: dnfdragora/dialogs.py:598
+msgid "Rights"
+msgstr ""
+
+#: dnfdragora/dialogs.py:599
+msgid "Collections"
+msgstr ""
+
+#: dnfdragora/dialogs.py:600
+msgid "References"
+msgstr ""
+
+#: dnfdragora/dialogs.py:614
+msgid "Details"
+msgstr ""
+
+#: dnfdragora/dialogs.py:615
+msgid "No details available for selected advisory"
+msgstr ""
+
+#: dnfdragora/dialogs.py:663
+msgid "Error"
+msgstr ""
+
+#: dnfdragora/dialogs.py:687 dnfdragora/dialogs.py:809
+#: dnfdragora/dialogs.py:831 dnfdragora/dialogs.py:844
+#: dnfdragora/dialogs.py:851 dnfdragora/dialogs.py:859
+#: dnfdragora/dialogs.py:868 dnfdragora/dialogs.py:881
+#: dnfdragora/dialogs.py:888 dnfdragora/dialogs.py:896
+#: dnfdragora/dialogs.py:910 dnfdragora/dialogs.py:917
+#: dnfdragora/dialogs.py:925 dnfdragora/ui.py:743
+msgid "Offline transactions"
+msgstr ""
+
+#: dnfdragora/dialogs.py:704
+msgid "Offline transaction status"
+msgstr ""
+
+#: dnfdragora/dialogs.py:709
+msgid "Status details"
+msgstr ""
+
+#: dnfdragora/dialogs.py:712
+msgid "Key"
+msgstr ""
+
+#: dnfdragora/dialogs.py:718 dnfdragora/dialogs.py:777
 msgid "Finish action"
 msgstr ""
 
-#: dnfdragora/dialogs.py:409 dnfdragora/dialogs.py:800
+#: dnfdragora/dialogs.py:720 dnfdragora/dialogs.py:1211
 msgid "Reboot"
 msgstr ""
 
-#: dnfdragora/dialogs.py:410 dnfdragora/dialogs.py:801
+#: dnfdragora/dialogs.py:721 dnfdragora/dialogs.py:1212
 msgid "Power off"
 msgstr ""
 
-#: dnfdragora/dialogs.py:420 dnfdragora/dialogs.py:672
-#: dnfdragora/dialogs.py:811 dnfdragora/dialogs.py:973
-#: dnfdragora/progress_ui.py:431
+#: dnfdragora/dialogs.py:731 dnfdragora/dialogs.py:998
+#: dnfdragora/dialogs.py:1083 dnfdragora/dialogs.py:1222
+#: dnfdragora/dialogs.py:1384 dnfdragora/progress_ui.py:431
 msgid "&Cancel"
 msgstr "&Atsisakyti"
 
-#: dnfdragora/dialogs.py:421
+#: dnfdragora/dialogs.py:732
 msgid "&Finalize"
 msgstr ""
 
-#: dnfdragora/dialogs.py:422
+#: dnfdragora/dialogs.py:733
 msgid "&Clean"
 msgstr ""
 
-#: dnfdragora/dialogs.py:425
+#: dnfdragora/dialogs.py:736
 msgid "Reload the current offline transaction status."
 msgstr ""
 
-#: dnfdragora/dialogs.py:426
+#: dnfdragora/dialogs.py:737
 msgid ""
 "Cancel the pending offline transaction. Available only when one is scheduled."
 msgstr ""
 
-#: dnfdragora/dialogs.py:427
+#: dnfdragora/dialogs.py:738
 msgid ""
 "Set the finish action for the pending offline transaction to reboot or power "
 "off."
 msgstr ""
 
-#: dnfdragora/dialogs.py:428
+#: dnfdragora/dialogs.py:739
 msgid ""
 "Remove any stored offline transaction data, even if no transaction is "
 "currently pending."
 msgstr ""
 
-#: dnfdragora/dialogs.py:429
+#: dnfdragora/dialogs.py:740
 msgid "Close this dialog without changing the offline transaction state."
 msgstr ""
 
-#: dnfdragora/dialogs.py:462
+#: dnfdragora/dialogs.py:773
 msgid "No"
 msgstr ""
 
-#: dnfdragora/dialogs.py:462
+#: dnfdragora/dialogs.py:773
 msgid "Pending"
 msgstr ""
 
-#: dnfdragora/dialogs.py:462
+#: dnfdragora/dialogs.py:773
 msgid "Yes"
 msgstr ""
 
-#: dnfdragora/dialogs.py:464
+#: dnfdragora/dialogs.py:775
 msgid "Data"
 msgstr ""
 
-#: dnfdragora/dialogs.py:477
+#: dnfdragora/dialogs.py:788
 msgid "An offline transaction is pending."
 msgstr ""
 
-#: dnfdragora/dialogs.py:477
+#: dnfdragora/dialogs.py:788
 msgid "No offline transaction is currently pending."
 msgstr ""
 
-#: dnfdragora/dialogs.py:500
+#: dnfdragora/dialogs.py:811
 #, python-format
 msgid "Could not read offline transaction status: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:522
+#: dnfdragora/dialogs.py:833
 msgid "There is no offline transaction to cancel."
 msgstr ""
 
-#: dnfdragora/dialogs.py:535
+#: dnfdragora/dialogs.py:846
 msgid "Offline transaction has been canceled."
 msgstr ""
 
-#: dnfdragora/dialogs.py:542 dnfdragora/dialogs.py:550
+#: dnfdragora/dialogs.py:853 dnfdragora/dialogs.py:861
 #, python-format
 msgid "Failed to cancel offline transaction: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:559
+#: dnfdragora/dialogs.py:870
 msgid "There is no offline transaction to finalize."
 msgstr ""
 
-#: dnfdragora/dialogs.py:572
+#: dnfdragora/dialogs.py:883
 #, python-format
 msgid "Offline transaction finish action set to %s."
 msgstr ""
 
-#: dnfdragora/dialogs.py:579 dnfdragora/dialogs.py:587
+#: dnfdragora/dialogs.py:890 dnfdragora/dialogs.py:898
 #, python-format
 msgid "Failed to set offline finish action: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:601
+#: dnfdragora/dialogs.py:912
 msgid "Offline transaction data has been cleaned."
 msgstr ""
 
-#: dnfdragora/dialogs.py:608 dnfdragora/dialogs.py:616
+#: dnfdragora/dialogs.py:919 dnfdragora/dialogs.py:927
 #, python-format
 msgid "Failed to clean offline transaction data: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:647
+#: dnfdragora/dialogs.py:946 dnfdragora/ui.py:742 dnfdragora/ui.py:2115
+msgid "System upgrade"
+msgstr ""
+
+#: dnfdragora/dialogs.py:956
+msgid "System upgrade (advanced operation)"
+msgstr ""
+
+#: dnfdragora/dialogs.py:961
+msgid ""
+"Warning: this operation is intended for expert users only and runs under "
+"your full responsibility."
+msgstr ""
+
+#: dnfdragora/dialogs.py:966
+msgid ""
+"Examples: Mageia development release is often 'cauldron', Fedora development "
+"release is often 'rawhide'."
+msgstr ""
+
+#: dnfdragora/dialogs.py:967
+msgid ""
+" For stable upgrade, the target is usually current release +1 when available."
+msgstr ""
+
+#: dnfdragora/dialogs.py:972
+msgid "I understand the risks and want to configure system upgrade options"
+msgstr ""
+
+#: dnfdragora/dialogs.py:984
+msgid "Release ver:"
+msgstr ""
+
+#: dnfdragora/dialogs.py:992
+msgid ""
+"Insert the target releasever exactly as expected by repositories metadata."
+msgstr ""
+
+#: dnfdragora/dialogs.py:997
+msgid "&Proceed"
+msgstr ""
+
+#: dnfdragora/dialogs.py:1058
 msgid "Action on selected packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:660
+#: dnfdragora/dialogs.py:1071
 msgid "Normal (Install/Upgrade/Remove)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:661
+#: dnfdragora/dialogs.py:1072
 msgid "Reinstall"
 msgstr ""
 
-#: dnfdragora/dialogs.py:664
+#: dnfdragora/dialogs.py:1075
 msgid "Downgrade"
 msgstr ""
 
-#: dnfdragora/dialogs.py:667
+#: dnfdragora/dialogs.py:1078
 msgid "Distro Sync"
 msgstr ""
 
-#: dnfdragora/dialogs.py:671 dnfdragora/dialogs.py:810
+#: dnfdragora/dialogs.py:1082 dnfdragora/dialogs.py:1221
 msgid "&Ok"
 msgstr "&Gerai"
 
-#: dnfdragora/dialogs.py:733
+#: dnfdragora/dialogs.py:1144
 msgid "Transaction result"
 msgstr ""
 
-#: dnfdragora/dialogs.py:742
+#: dnfdragora/dialogs.py:1153
 msgid "Transaction dependency"
 msgstr ""
 
-#: dnfdragora/dialogs.py:770
+#: dnfdragora/dialogs.py:1181
 msgid "replacing "
 msgstr ""
 
-#: dnfdragora/dialogs.py:775
+#: dnfdragora/dialogs.py:1186
 msgid "Total size "
 msgstr ""
 
-#: dnfdragora/dialogs.py:797
+#: dnfdragora/dialogs.py:1208
 msgid "Offline"
 msgstr ""
 
-#: dnfdragora/dialogs.py:806
+#: dnfdragora/dialogs.py:1217
 msgid "Offline mode is unavailable because systemd is not running."
 msgstr ""
 
-#: dnfdragora/dialogs.py:820
+#: dnfdragora/dialogs.py:1231
 msgid "Reset transaction failed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:872
+#: dnfdragora/dialogs.py:1283
 msgid "Repository Management"
 msgstr ""
 
-#: dnfdragora/dialogs.py:896
+#: dnfdragora/dialogs.py:1307
 msgid "Identifier"
 msgstr ""
 
-#: dnfdragora/dialogs.py:898 dnfdragora/ui.py:1332
-msgid "Type"
-msgstr "Tipas"
-
-#: dnfdragora/dialogs.py:899
+#: dnfdragora/dialogs.py:1310
 msgid "Enabled"
 msgstr "Įjungta"
 
-#: dnfdragora/dialogs.py:900
+#: dnfdragora/dialogs.py:1311
 msgid "Priority"
 msgstr ""
 
-#: dnfdragora/dialogs.py:901
+#: dnfdragora/dialogs.py:1312
 msgid "Cost"
 msgstr ""
 
-#: dnfdragora/dialogs.py:902
+#: dnfdragora/dialogs.py:1313
 msgid "Base URL"
 msgstr ""
 
-#: dnfdragora/dialogs.py:903
+#: dnfdragora/dialogs.py:1314
 msgid "Meta link"
 msgstr ""
 
-#: dnfdragora/dialogs.py:904
+#: dnfdragora/dialogs.py:1315
 msgid "Mirror list"
 msgstr "Tinklaviečių sąrašas"
 
-#: dnfdragora/dialogs.py:905
+#: dnfdragora/dialogs.py:1316
 msgid "Metadata expire"
 msgstr ""
 
-#: dnfdragora/dialogs.py:906
+#: dnfdragora/dialogs.py:1317
 msgid "Cache Updated"
 msgstr ""
 
-#: dnfdragora/dialogs.py:907
+#: dnfdragora/dialogs.py:1318
 msgid "Exclude packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:908
+#: dnfdragora/dialogs.py:1319
 msgid "Include packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:909
+#: dnfdragora/dialogs.py:1320
 msgid "Skip if unavailable"
 msgstr ""
 
-#: dnfdragora/dialogs.py:911
+#: dnfdragora/dialogs.py:1322
 msgid "GPG key"
 msgstr "GPG raktas"
 
-#: dnfdragora/dialogs.py:912
+#: dnfdragora/dialogs.py:1323
 msgid "GPG check"
 msgstr ""
 
-#: dnfdragora/dialogs.py:913
+#: dnfdragora/dialogs.py:1324
 msgid "Repo GPG check"
 msgstr ""
 
-#: dnfdragora/dialogs.py:915
+#: dnfdragora/dialogs.py:1326
 msgid "Proxy"
 msgstr "Tarpinis serveris"
 
-#: dnfdragora/dialogs.py:916
+#: dnfdragora/dialogs.py:1327
 msgid "Proxy username"
 msgstr ""
 
-#: dnfdragora/dialogs.py:919
+#: dnfdragora/dialogs.py:1330
 msgid "Repo file"
 msgstr ""
 
-#: dnfdragora/dialogs.py:920
+#: dnfdragora/dialogs.py:1331
 msgid "Revision"
 msgstr ""
 
-#: dnfdragora/dialogs.py:921
+#: dnfdragora/dialogs.py:1332
 msgid "Content tags"
 msgstr ""
 
-#: dnfdragora/dialogs.py:922
+#: dnfdragora/dialogs.py:1333
 msgid "Distro tags "
 msgstr ""
 
-#: dnfdragora/dialogs.py:923
+#: dnfdragora/dialogs.py:1334
 msgid "Updated"
 msgstr ""
 
-#: dnfdragora/dialogs.py:924 dnfdragora/ui.py:586
+#: dnfdragora/dialogs.py:1335 dnfdragora/ui.py:587
 msgid "Size"
 msgstr "Dydis"
 
-#: dnfdragora/dialogs.py:925
+#: dnfdragora/dialogs.py:1336
 msgid "Packages"
 msgstr "Paketai"
 
-#: dnfdragora/dialogs.py:926
+#: dnfdragora/dialogs.py:1337
 msgid "Available packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:1338
 msgid "Mirrors"
 msgstr ""
 
-#: dnfdragora/dialogs.py:935
+#: dnfdragora/dialogs.py:1346
 msgid "Ad&vanced repository types"
 msgstr ""
 
-#: dnfdragora/dialogs.py:939
+#: dnfdragora/dialogs.py:1350
 msgid "&Debug information"
 msgstr ""
 
-#: dnfdragora/dialogs.py:941
+#: dnfdragora/dialogs.py:1352
 msgid "&Source"
 msgstr ""
 
-#: dnfdragora/dialogs.py:943
+#: dnfdragora/dialogs.py:1354
 msgid "&Testing"
 msgstr ""
 
-#: dnfdragora/dialogs.py:954
+#: dnfdragora/dialogs.py:1365
 msgid "Id"
 msgstr ""
 
-#: dnfdragora/dialogs.py:963
+#: dnfdragora/dialogs.py:1374
 msgid "Information"
 msgstr "Informacija"
 
-#: dnfdragora/dialogs.py:971 dnfdragora/ui.py:698 dnfdragora/ui.py:1708
+#: dnfdragora/dialogs.py:1382 dnfdragora/ui.py:699 dnfdragora/ui.py:1745
 msgid "&Apply"
 msgstr "&Taikyti"
 
-#: dnfdragora/dialogs.py:1186
+#: dnfdragora/dialogs.py:1597
 #, python-format
 msgid "%s second(s)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1186
+#: dnfdragora/dialogs.py:1597
 msgid "Never"
 msgstr "Niekada"
 
-#: dnfdragora/dialogs.py:1191
+#: dnfdragora/dialogs.py:1602
 msgid "Now"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1261 dnfdragora/helpinfo.py:132
+#: dnfdragora/dialogs.py:1672 dnfdragora/helpinfo.py:144
 msgid "dnfdragora options"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1336 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:1747 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "Sistema"
 
-#: dnfdragora/dialogs.py:1340
+#: dnfdragora/dialogs.py:1751
 msgid "Layout"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1344
+#: dnfdragora/dialogs.py:1755
 msgid "dnfdragora-updater"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1348
+#: dnfdragora/dialogs.py:1759
 msgid "Logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1361
+#: dnfdragora/dialogs.py:1772
 msgid "Restore &default"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1423
+#: dnfdragora/dialogs.py:1834
 msgid "System options"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1430
+#: dnfdragora/dialogs.py:1841
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1439
+#: dnfdragora/dialogs.py:1850
 msgid "Force distsync as upgrade"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1450
+#: dnfdragora/dialogs.py:1861
 msgid "Remove installed package to resolve transactions"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1464
+#: dnfdragora/dialogs.py:1875
 msgid "Metadata expire time (hours)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1487
+#: dnfdragora/dialogs.py:1898
 msgid "dnfdragora-updater options"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1495
+#: dnfdragora/dialogs.py:1906
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1525
+#: dnfdragora/dialogs.py:1936
 msgid "Interval to check for updates (minutes)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1551
+#: dnfdragora/dialogs.py:1962
 msgid "Layout options (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1562
+#: dnfdragora/dialogs.py:1973
 msgid "Show updates"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1567
+#: dnfdragora/dialogs.py:1978
 msgid "Do not show groups view"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1591
+#: dnfdragora/dialogs.py:2002
 msgid "Logging options (active at next startup)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1608
+#: dnfdragora/dialogs.py:2019
 msgid "Enable logging"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1617
+#: dnfdragora/dialogs.py:2028
 msgid "Change &directory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1622
+#: dnfdragora/dialogs.py:2033
 msgid "Debug level"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1655
+#: dnfdragora/dialogs.py:2066
 msgid "Choose log destination directory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1829
+#: dnfdragora/dialogs.py:2240
 msgid "Find packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1868 dnfdragora/ui.py:606
+#: dnfdragora/dialogs.py:2279 dnfdragora/ui.py:607
 msgid "Installed"
 msgstr "Įdiegtas"
 
-#: dnfdragora/dialogs.py:1869
+#: dnfdragora/dialogs.py:2280
 msgid "Available"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1870
+#: dnfdragora/dialogs.py:2281
 msgid "Upgrades"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1871
+#: dnfdragora/dialogs.py:2282
 msgid "Upgradable"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1892
+#: dnfdragora/dialogs.py:2303
 msgid "Find:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1900
+#: dnfdragora/dialogs.py:2311
 msgid ""
 "Enter the search pattern. In text mode: words separated by spaces or commas. "
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
 "python3')."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1907
+#: dnfdragora/dialogs.py:2318
 msgid "Search in:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1908
+#: dnfdragora/dialogs.py:2319
 msgid "N&ames"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1910
+#: dnfdragora/dialogs.py:2321
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1911
+#: dnfdragora/dialogs.py:2322
 msgid "&Provides"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1913
+#: dnfdragora/dialogs.py:2324
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1914
+#: dnfdragora/dialogs.py:2325
 msgid "&Files"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1916
+#: dnfdragora/dialogs.py:2327
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1919
+#: dnfdragora/dialogs.py:2330
 msgid "&Binaries"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1921
+#: dnfdragora/dialogs.py:2332
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1922
+#: dnfdragora/dialogs.py:2333
 msgid "S&ources"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1924
+#: dnfdragora/dialogs.py:2335
 msgid "Include source RPMs (*.src.rpm) in the results."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1926
+#: dnfdragora/dialogs.py:2337
 msgid "Su&mmary"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1928
+#: dnfdragora/dialogs.py:2339
 msgid "Search in package summaries. Only available in regexp mode."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1932
+#: dnfdragora/dialogs.py:2343
 msgid "Scope:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1943
+#: dnfdragora/dialogs.py:2354
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1945
+#: dnfdragora/dialogs.py:2356
 msgid "Use &regexp"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1948
+#: dnfdragora/dialogs.py:2359
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1950
+#: dnfdragora/dialogs.py:2361
 msgid "&Latest only"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1952
+#: dnfdragora/dialogs.py:2363
 msgid "Show only the latest version of each package name."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1953
+#: dnfdragora/dialogs.py:2364
 msgid "Fu&zzy search"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1955
+#: dnfdragora/dialogs.py:2366
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1956
+#: dnfdragora/dialogs.py:2367
 msgid "Case &sensitive"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1959
+#: dnfdragora/dialogs.py:2370
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1968
+#: dnfdragora/dialogs.py:2379
 msgid "(none)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1969
+#: dnfdragora/dialogs.py:2380
 msgid "provide"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1970
+#: dnfdragora/dialogs.py:2381
 msgid "require"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1971
+#: dnfdragora/dialogs.py:2382
 msgid "depend on"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1972
+#: dnfdragora/dialogs.py:2383
 msgid "recommend"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1973
+#: dnfdragora/dialogs.py:2384
 msgid "enhance"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1974
+#: dnfdragora/dialogs.py:2385
 msgid "suggest"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1975
+#: dnfdragora/dialogs.py:2386
 msgid "supplement"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1976
+#: dnfdragora/dialogs.py:2387
 msgid "obsolete"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1977
+#: dnfdragora/dialogs.py:2388
 msgid "conflict with"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1980
+#: dnfdragora/dialogs.py:2391
 msgid "&Dependency query"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1982
+#: dnfdragora/dialogs.py:2393
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
 msgstr ""
 
-#: dnfdragora/dialogs.py:1987
+#: dnfdragora/dialogs.py:2398
 msgid "Find packages that:"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2000
+#: dnfdragora/dialogs.py:2411
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2001
+#: dnfdragora/dialogs.py:2412
 msgid "the capability in \"Find\" field"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2008
+#: dnfdragora/dialogs.py:2419
 msgid "Limit to repositories"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2010
+#: dnfdragora/dialogs.py:2421
 msgid "When checked, the search is restricted to the selected repositories."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2033
+#: dnfdragora/dialogs.py:2444
 msgid "Limit to architectures"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2035
+#: dnfdragora/dialogs.py:2446
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2060 dnfdragora/ui.py:683
+#: dnfdragora/dialogs.py:2471 dnfdragora/ui.py:684
 msgid "&Search"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2061
+#: dnfdragora/dialogs.py:2472
 msgid "Run the search and show matching packages."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2063
+#: dnfdragora/dialogs.py:2474
 msgid "&Clear"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2064
+#: dnfdragora/dialogs.py:2475
 msgid "Clear the Find field and reset the dependency query frame."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2066
+#: dnfdragora/dialogs.py:2477
 msgid "C&lose"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2067
+#: dnfdragora/dialogs.py:2478
 msgid "Close this dialog without running a new search."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2282 dnfdragora/ui.py:1556
+#: dnfdragora/dialogs.py:2693 dnfdragora/ui.py:1593
 msgid "Invalid regular expression"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2330
+#: dnfdragora/dialogs.py:2741
 msgid "(embedded in repository metadata)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2339
+#: dnfdragora/dialogs.py:2750
 #, python-format
 msgid ""
 "Do you want to import this GPG key?<br><br>Key        : 0x%(id)s:"
@@ -1156,7 +1318,7 @@ msgid ""
 "%(file)s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2351
+#: dnfdragora/dialogs.py:2762
 msgid "GPG key missed"
 msgstr ""
 
@@ -1165,7 +1327,7 @@ msgstr ""
 msgid "package has not any %s attributes"
 msgstr ""
 
-#: dnfdragora/dnfd_client.py:545
+#: dnfdragora/dnfd_client.py:548
 msgid "Command in progress"
 msgstr ""
 
@@ -1698,726 +1860,866 @@ msgstr ""
 msgid "Web/FTP"
 msgstr "Serveris, Tinklalapių/FTP"
 
-#: dnfdragora/helpinfo.py:26
+#: dnfdragora/helpinfo.py:28
 msgid "Go to index"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:29
+#: dnfdragora/helpinfo.py:31
 msgid "Menu line"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:30 dnfdragora/helpinfo.py:173
+#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:185
 msgid "Views, filters and search"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:31 dnfdragora/helpinfo.py:201
+#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:213
 msgid "Group panel"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:32 dnfdragora/helpinfo.py:211
+#: dnfdragora/helpinfo.py:34 dnfdragora/helpinfo.py:223
 msgid "Package panel"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:33 dnfdragora/helpinfo.py:222
+#: dnfdragora/helpinfo.py:35 dnfdragora/helpinfo.py:234
 msgid "Information panel"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:34
+#: dnfdragora/helpinfo.py:36
 msgid "Progress bar line"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:35
+#: dnfdragora/helpinfo.py:37
 msgid "Button line"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:36 dnfdragora/helpinfo.py:189
+#: dnfdragora/helpinfo.py:38 dnfdragora/helpinfo.py:201
 msgid "Search dialog"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:37 dnfdragora/helpinfo.py:116
-#: dnfdragora/helpinfo.py:259
+#: dnfdragora/helpinfo.py:39 dnfdragora/helpinfo.py:123
+#: dnfdragora/helpinfo.py:271
 msgid "History dialog"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:38 dnfdragora/helpinfo.py:310
+#: dnfdragora/helpinfo.py:40 dnfdragora/helpinfo.py:322
 msgid "Offline transactions dialog"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:54
+#: dnfdragora/helpinfo.py:41 dnfdragora/helpinfo.py:125
+#: dnfdragora/helpinfo.py:337
+msgid "System upgrade dialog"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:42 dnfdragora/helpinfo.py:128
+#: dnfdragora/helpinfo.py:356
+msgid "Advisory information dialog"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:61
 msgid "File menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:55
+#: dnfdragora/helpinfo.py:62
 msgid "Information menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:56
+#: dnfdragora/helpinfo.py:63
 msgid "Options menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:57
+#: dnfdragora/helpinfo.py:64
 msgid "Help menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:69
+#: dnfdragora/helpinfo.py:76
 msgid ""
 "dnfdragora is a DNF frontend, based on Mageia rpmdragora layout and Fedora "
 "yumex-dnf interaction with dnfdaemon.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:70
+#: dnfdragora/helpinfo.py:77
 msgid ""
 "dnfdragora is basically a package manager user interface that allows you to "
 "install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:71
+#: dnfdragora/helpinfo.py:78
 msgid ""
 "dnfdragora is part of manatools and it is based on manatools.aui so that it "
 "can work using Qt (PySide6), GTK 4, or ncurses, i.e. both graphical and "
 "textual user interfaces.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:72
+#: dnfdragora/helpinfo.py:79
 msgid "dnfdragora window is comprised of:"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:77
+#: dnfdragora/helpinfo.py:84
 msgid "Menu bar content"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:79
+#: dnfdragora/helpinfo.py:86
 msgid "Menu bar contains dnfdragora drop down menus:"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:87
+#: dnfdragora/helpinfo.py:94
 msgid "File Menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:89
+#: dnfdragora/helpinfo.py:96
 msgid "<h2>Reset selection</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:90
+#: dnfdragora/helpinfo.py:97
 msgid ""
 "This menu removes any flags on packages; if any packages have been selected "
 "for installation or removal, they will be reset to their previous status.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:91
+#: dnfdragora/helpinfo.py:98
 msgid "<h2>Refresh metadata</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:92
+#: dnfdragora/helpinfo.py:99
 msgid ""
 "This menu sends a request to dnfdaemon to force a refresh of all the "
 "metadata. This action is asynchronous and requires rebuilding the package "
 "information cache.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:93
+#: dnfdragora/helpinfo.py:100
 msgid "<h2>Repositories</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:94
+#: dnfdragora/helpinfo.py:101
 msgid "This menu opens the Repository Management dialog.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:95
+#: dnfdragora/helpinfo.py:102
 msgid ""
 "The dialog lists all configured repositories sorted by name. You can enable "
 "or disable each repository using its checkbox. Changes take effect "
 "immediately for the current session but are not permanent.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:96
+#: dnfdragora/helpinfo.py:103
 msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:97
+#: dnfdragora/helpinfo.py:104
 msgid ""
 "By default the list hides debug-information, source, and testing "
 "repositories. Expand the filter frame by checking its title to show three "
 "additional checkboxes:<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:98 dnfdragora/helpinfo.py:267
-#: dnfdragora/helpinfo.py:274 dnfdragora/helpinfo.py:282
-#: dnfdragora/helpinfo.py:289
+#: dnfdragora/helpinfo.py:105 dnfdragora/helpinfo.py:279
+#: dnfdragora/helpinfo.py:286 dnfdragora/helpinfo.py:294
+#: dnfdragora/helpinfo.py:301
 msgid "<ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:99
+#: dnfdragora/helpinfo.py:106
 msgid ""
 "<li><b>Debug information</b>: show repositories whose id ends with <i>-"
 "debuginfo</i>.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:100
+#: dnfdragora/helpinfo.py:107
 msgid ""
 "<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:101
+#: dnfdragora/helpinfo.py:108
 msgid ""
 "<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:102 dnfdragora/helpinfo.py:271
-#: dnfdragora/helpinfo.py:279 dnfdragora/helpinfo.py:286
-#: dnfdragora/helpinfo.py:296
+#: dnfdragora/helpinfo.py:109 dnfdragora/helpinfo.py:283
+#: dnfdragora/helpinfo.py:291 dnfdragora/helpinfo.py:298
+#: dnfdragora/helpinfo.py:308
 msgid "</ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:103
+#: dnfdragora/helpinfo.py:110
 msgid ""
 "If any repository of those types is currently <b>enabled</b> in DNF, the "
 "corresponding checkbox is automatically turned on and the frame is expanded, "
 "ensuring an active repository is never hidden.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:104
+#: dnfdragora/helpinfo.py:111
 msgid ""
 "The filter selections are saved in the user configuration file and restored "
 "at the next launch.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:105
+#: dnfdragora/helpinfo.py:112
 msgid "<h2>Quit</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:106
+#: dnfdragora/helpinfo.py:113
 msgid "This menu exits from dnfdragora.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:113
+#: dnfdragora/helpinfo.py:120
 msgid "Information Menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:115
+#: dnfdragora/helpinfo.py:122
 msgid "<h2>History</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:116
+#: dnfdragora/helpinfo.py:123
 #, python-format
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:123
-msgid "Option Menu"
+#: dnfdragora/helpinfo.py:124
+msgid "<h2>System upgrade</h2>"
 msgstr ""
 
 #: dnfdragora/helpinfo.py:125
-msgid "<h2>User preferences</h2>"
+#, python-format
+msgid ""
+"This menu opens the %s to prepare an offline distro upgrade to a target "
+"releasever. "
 msgstr ""
 
 #: dnfdragora/helpinfo.py:126
+msgid ""
+"<b>Important:</b> the menu entry is shown only when systemd is available, "
+"because execution is scheduled offline for reboot."
+msgstr ""
+
+#: dnfdragora/helpinfo.py:127
+msgid "<h2>Advisory information</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:128
+#, python-format
+msgid ""
+"This menu opens the %s to query advisory metadata (security, bugfix, "
+"enhancement) with filters and inspect selected advisory details."
+msgstr ""
+
+#: dnfdragora/helpinfo.py:135
+msgid "Option Menu"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:137
+msgid "<h2>User preferences</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:138
 #, python-format
 msgid ""
 "This menu opens a %s containing user settings to customize dnfdragora "
 "behavior.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:126
+#: dnfdragora/helpinfo.py:138
 msgid "dialog"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:134
+#: dnfdragora/helpinfo.py:146
 msgid ""
 "This dialog allows to customize dnfdragora behavior by changing options. "
 "Some changes are available after closing the dialog, others need a "
 "dnfdragora restart.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:135
+#: dnfdragora/helpinfo.py:147
 msgid "<h2>System options</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:136
+#: dnfdragora/helpinfo.py:148
 msgid ""
 "<ul><li><b>Run transactions on packages automatically without confirmation "
 "needed</b>: if checked transactions do not need to be confirmed, dnfdragora "
 "works as answering always <i>yes</i>."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:137
+#: dnfdragora/helpinfo.py:149
 msgid ""
 "<br><b>NOTE</b> that this option means that also removing packages is "
 "silently accepted</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:138
+#: dnfdragora/helpinfo.py:150
 msgid ""
 "<li><b>Force distsync as upgrade</b>: if enabled, queued upgrade actions are "
 "resolved as distsync actions.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:139
+#: dnfdragora/helpinfo.py:151
 msgid ""
 "<li><b>Remove installed package to resolve transactions</b>: if enabled, "
 "dependency solving can remove installed packages (<i>allow_erasing</i>).</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:140
+#: dnfdragora/helpinfo.py:152
 msgid ""
 "<li><b>Metadata expire time</b>: time to force Metadata expiration, the "
 "value is expressed in hours</li></ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:141
+#: dnfdragora/helpinfo.py:153
 msgid "<h2>dnfdragora-updater options</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:142
+#: dnfdragora/helpinfo.py:154
 msgid ""
 "<ul><li><b>Hide dnfdragora-update menu if there are no updates</b>: if "
 "checked dnfdragora-update is hidden when no updates are available."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:143
+#: dnfdragora/helpinfo.py:155
 msgid ""
 "<br><b>NOTE</b> that this option is experimental, not all desktops manage it "
 "as expected</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:144
+#: dnfdragora/helpinfo.py:156
 msgid ""
 "<li><b>Interval to check for updates</b>: how often dnfdragora-update checks "
 "for updates; value is expressed in minutes (10..10080).</li></ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:145
+#: dnfdragora/helpinfo.py:157
 msgid "<h2>Layout options</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:146
+#: dnfdragora/helpinfo.py:158
 msgid ""
 "<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</"
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:147
+#: dnfdragora/helpinfo.py:159
 msgid ""
 "<li><b>Do not show groups view</b>: filtering by groups could require CPU if "
 "using comps, if this option is checked dnfdragora starts showing all "
 "packages.</li></ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:148
+#: dnfdragora/helpinfo.py:160
 msgid "<b>NOTE</b> that the above options require dnfdragora to be restarted."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:149
+#: dnfdragora/helpinfo.py:161
 msgid "<h2>Logging options</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:150
+#: dnfdragora/helpinfo.py:162
 msgid ""
 "Enable these options to let dnfdragora log on file called <i>dnfdragora.log</"
 "i>."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:151
+#: dnfdragora/helpinfo.py:163
 msgid ""
 "<ul><li><b>Change directory</b>: this option allows you to set the logging "
 "directory; the directory must exist and needs write permission.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:152
+#: dnfdragora/helpinfo.py:164
 msgid ""
 "<li><b>Debug level</b>: if checked, verbose logging is enabled.</li></ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:160
+#: dnfdragora/helpinfo.py:172
 msgid "Help Menu"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:162
+#: dnfdragora/helpinfo.py:174
 msgid "<h2>Manual</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:163
+#: dnfdragora/helpinfo.py:175
 msgid "This menu opens dnfdragora help dialog."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:164
+#: dnfdragora/helpinfo.py:176
 msgid "<h2>About</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:165
+#: dnfdragora/helpinfo.py:177
 msgid "This menu opens dnfdragora about dialog."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:175
+#: dnfdragora/helpinfo.py:187
 msgid "<h2>Views</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:176
+#: dnfdragora/helpinfo.py:188
 msgid ""
 "The first combobox allows you to show packages by groups. If <i>Groups</i> "
 "is selected, the group panel shows a tree view containing groups, and "
 "selecting a group shows related packages in the package panel.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:177
+#: dnfdragora/helpinfo.py:189
 msgid ""
 "If <i>All</i> is selected, the package panel contains all the packages.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:178 dnfdragora/helpinfo.py:265
+#: dnfdragora/helpinfo.py:190 dnfdragora/helpinfo.py:277
+#: dnfdragora/helpinfo.py:361
 msgid "<h2>Filters</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:179
+#: dnfdragora/helpinfo.py:191
 msgid ""
 "The Filter combobox allows you to filter the packages shown in the package "
 "panel by:"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:181
+#: dnfdragora/helpinfo.py:193
 msgid "<li><b>Installed</b>: shows installed packages only.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:182
+#: dnfdragora/helpinfo.py:194
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:183
+#: dnfdragora/helpinfo.py:195
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:184
+#: dnfdragora/helpinfo.py:196
 msgid ""
 "<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI "
 "applications.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:185
+#: dnfdragora/helpinfo.py:197
 msgid ""
 "<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 "
 "architecture, it hides i686 packages.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:186
+#: dnfdragora/helpinfo.py:198
 msgid ""
 "<li><b>All</b>: shows all the packages, i.e. available, updates and "
 "installed.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:188
+#: dnfdragora/helpinfo.py:200
 msgid "<h2>Search</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:189
+#: dnfdragora/helpinfo.py:201
 #, python-format
 msgid "Pressing the <b>Search</b> button (magnifier icon) opens the %s "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:190
+#: dnfdragora/helpinfo.py:202
 msgid ""
 "that provides full-featured package search. When a search is active the "
 "filter combobox is disabled "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:191
+#: dnfdragora/helpinfo.py:203
 msgid "and an info label shows the active search text or dependency query. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:192
+#: dnfdragora/helpinfo.py:204
 msgid ""
 "The <b>Clear search</b> button (eraser icon) next to the Search button "
 "resets all search state "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:193
+#: dnfdragora/helpinfo.py:205
 msgid "and re-enables the filter combobox.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:203
+#: dnfdragora/helpinfo.py:215
 msgid ""
 "This panel shows all the groups available to filter packages, if the Groups "
 "view is selected. The special group <i>Search</i> is added after a search is "
 "performed."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:213
+#: dnfdragora/helpinfo.py:225
 msgid ""
 "This panel shows all the filtered packages with their basic information such "
 "as <i>name</i>, <i>summary</i>, <i>version</i>, <i>release</i>, "
 "<i>architecture</i>, <i>size</i>, and <i>status</i>."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:214
+#: dnfdragora/helpinfo.py:226
 msgid ""
 "A checkbox for any packages is available to add related package to "
 "transaction for installing, updating or removing."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:224
+#: dnfdragora/helpinfo.py:236
 msgid ""
 "This panel shows all the package information such as <i>description</i>, "
 "<i>URL</i>, <i>repository</i>, <i>requirements</i>, <i>file list</i>, and "
 "<i>changelog</i>."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:225
+#: dnfdragora/helpinfo.py:237
 msgid ""
 "<br><br><i>Note that changelog is not provided by dnfdaemon at the moment.</"
 "i>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:233
+#: dnfdragora/helpinfo.py:245
 msgid "Progress bar"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:235
+#: dnfdragora/helpinfo.py:247
 msgid ""
 "Progress bar shows dnfdragora operations progression such as transactions "
 "and caching data."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:243
+#: dnfdragora/helpinfo.py:255
 msgid "Buttons line"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:245
+#: dnfdragora/helpinfo.py:257
 msgid ""
 "<ul><li><b>Apply</b>: when some packages are selected for installing or "
 "updating or deselected for uninstalling this button runs the transaction to "
 "be performed.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:246
+#: dnfdragora/helpinfo.py:258
 msgid ""
 "<li><b>Select all</b>: if packages are filtered for updates only this button "
 "allows to select all the packages in one shot.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:247
+#: dnfdragora/helpinfo.py:259
 msgid "<li><b>Quit</b>: exits from dnfdragora.</li></ul>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:248
+#: dnfdragora/helpinfo.py:260
 msgid "<h2>Offline transaction confirmation</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:249
+#: dnfdragora/helpinfo.py:261
 msgid ""
 "When transaction confirmation is shown, you can enable <b>Offline</b> and "
 "choose <b>Reboot</b> or <b>Power off</b>. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:250
+#: dnfdragora/helpinfo.py:262
 msgid ""
 "dnfdragora schedules the offline transaction and shows a reminder to reboot "
 "or power off to continue at the next startup. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:251
+#: dnfdragora/helpinfo.py:263
 msgid ""
 "While offline scheduling is in progress, cancellation is disabled and the "
 "progress window stays open until scheduling is completed."
 msgstr ""
 
-#: dnfdragora/helpinfo.py:261
+#: dnfdragora/helpinfo.py:273
 msgid ""
 "The History dialog shows packages that have been recently changed on the "
 "system by querying the dnf5daemon History API.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:262 dnfdragora/helpinfo.py:313
+#: dnfdragora/helpinfo.py:274 dnfdragora/helpinfo.py:325
+#: dnfdragora/helpinfo.py:340 dnfdragora/helpinfo.py:359
 msgid "<h2>Opening the dialog</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:263
+#: dnfdragora/helpinfo.py:275
 msgid "Open the dialog from the menu bar: <b>Actions → History</b>.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:264 dnfdragora/helpinfo.py:315
+#: dnfdragora/helpinfo.py:276 dnfdragora/helpinfo.py:327
 msgid ""
 "The main dnfdragora window is disabled while the dialog is open to prevent "
 "unintended interactions.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:266
+#: dnfdragora/helpinfo.py:278
 msgid ""
 "The <b>Filters</b> section at the top of the dialog lets you narrow the "
 "results:<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:268
+#: dnfdragora/helpinfo.py:280
 msgid ""
 "<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on "
 "or after that date. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:269
+#: dnfdragora/helpinfo.py:281
 msgid "Leave empty to retrieve all available history. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:270
+#: dnfdragora/helpinfo.py:282
 msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:272
+#: dnfdragora/helpinfo.py:284
 msgid "<h2>Change type checkboxes</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:273
+#: dnfdragora/helpinfo.py:285
 msgid ""
 "Four checkboxes let you choose which kinds of package changes to include in "
 "the results:<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:275
+#: dnfdragora/helpinfo.py:287
 msgid "<li><b>Installed</b>: packages that were newly installed.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:276
+#: dnfdragora/helpinfo.py:288
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:277
+#: dnfdragora/helpinfo.py:289
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:278
+#: dnfdragora/helpinfo.py:290
 msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:280
+#: dnfdragora/helpinfo.py:292
 msgid ""
 "Uncheck any type you are not interested in to reduce the number of rows "
 "shown.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:281
+#: dnfdragora/helpinfo.py:293
 msgid "<h2>Advisory options</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:283
+#: dnfdragora/helpinfo.py:295
 msgid ""
 "<li><b>Include advisories</b>: when checked, advisory information (security, "
 "bugfix, enhancement) is included where available.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:284
+#: dnfdragora/helpinfo.py:296
 msgid ""
 "<li><b>All advisories</b>: when checked together with <i>Include advisories</"
 "i>, all advisory types are returned rather than only the most relevant one "
 "per package. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:285
+#: dnfdragora/helpinfo.py:297
 msgid ""
 "This option is automatically disabled when <i>Include advisories</i> is "
 "unchecked.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:287
+#: dnfdragora/helpinfo.py:299 dnfdragora/helpinfo.py:363
 msgid "<h2>Results table</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:288
+#: dnfdragora/helpinfo.py:300
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:290
+#: dnfdragora/helpinfo.py:302
 msgid "<li><b>Name</b>: the package name.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:291
+#: dnfdragora/helpinfo.py:303
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:292
+#: dnfdragora/helpinfo.py:304
 msgid "<li><b>Arch</b>: the package architecture.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:293
+#: dnfdragora/helpinfo.py:305
 msgid ""
 "<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, "
 "or <i>downgraded</i>.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:294
+#: dnfdragora/helpinfo.py:306
 msgid ""
 "<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</"
 "li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:295
+#: dnfdragora/helpinfo.py:307
 msgid "<li><b>Summary</b>: a short description of the package.</li>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:297
+#: dnfdragora/helpinfo.py:309
 msgid ""
 "If no packages match the current filters a <i>No results</i> row is shown."
 "<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:298
+#: dnfdragora/helpinfo.py:310
 msgid ""
 "If the daemon call fails the error message is displayed in the table so you "
 "can diagnose the problem.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:299
+#: dnfdragora/helpinfo.py:311
 msgid "<h2>Refresh button</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:300
+#: dnfdragora/helpinfo.py:312
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
 
-#: dnfdragora/helpinfo.py:301
+#: dnfdragora/helpinfo.py:313
 msgid "The dialog also queries automatically when it first opens.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:302
+#: dnfdragora/helpinfo.py:314
 msgid "<h2>Close button</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:303
+#: dnfdragora/helpinfo.py:315
 msgid ""
 "Press <b>Close</b> (or the window close button) to dismiss the dialog and "
 "return to the main window.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:312
+#: dnfdragora/helpinfo.py:324
 msgid ""
 "The Offline transactions dialog shows the current offline transaction status "
 "reported by dnf5daemon.<br><br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:314
+#: dnfdragora/helpinfo.py:326
 msgid ""
 "Open the dialog from the menu bar: <b>Actions → Offline transactions</b>.<br>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:316
+#: dnfdragora/helpinfo.py:328
 msgid "<h2>Status and actions</h2>"
 msgstr ""
 
-#: dnfdragora/helpinfo.py:317
+#: dnfdragora/helpinfo.py:329
 msgid ""
 "Press <b>Refresh</b> to reload the current offline status. If an offline "
 "transaction is pending, you can choose <b>Reboot</b> or <b>Power off</b> and "
 "press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to "
 "remove the scheduled offline transaction data.<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:339
+msgid ""
+"The System upgrade dialog prepares a distribution upgrade transaction for "
+"offline execution at reboot using dnf5daemon.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:341
+msgid "Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:342
+msgid ""
+"<b>Note:</b> this menu is available only on systems where systemd is running."
+"<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:343
+msgid "<h2>Safety and confirmation</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:344
+msgid ""
+"The dialog starts with a warning and keeps advanced options hidden by "
+"default. "
+msgstr ""
+
+#: dnfdragora/helpinfo.py:345
+msgid ""
+"Enable the acknowledgement checkbox to open the options frame and proceed "
+"only if you fully understand the risks.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:346
+msgid "<h2>Releasever option</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:347
+msgid ""
+"Enter the target <i>releasever</i> exactly as expected by repositories "
+"metadata (for example development values such as <i>cauldron</i> or "
+"<i>rawhide</i>, where applicable).<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:348
+msgid "<h2>Execution flow</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:349
+msgid ""
+"After confirmation, dnfdragora reopens the daemon session with the chosen "
+"releasever, prepares system-upgrade in <i>distrosync</i> mode with "
+"interactive prompts enabled, resolves dependencies with allow-erasing, then "
+"schedules the transaction offline and sets reboot as finish action.<br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:358
+msgid ""
+"The Advisory information dialog queries dnf5daemon advisory metadata and "
+"shows matching advisories in a table.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:360
+msgid ""
+"Open the dialog from the menu bar: <b>Actions → Advisory information</b>."
+"<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:362
+msgid ""
+"Use the filter area to narrow results by availability, advisory IDs, package "
+"name patterns, Bugzilla IDs, CVE IDs, advisory types, severities, and "
+"toggles for advisories containing CVE/Bugzilla references.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:364
+msgid ""
+"The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and "
+"<b>Title</b> for each advisory returned by the daemon.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:365
+msgid "<h2>Selected advisory details</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:366
+msgid ""
+"Selecting a row updates the details table with available fields such as "
+"vendor, status, description, message, collections, and references.<br><br>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:367
+msgid "<h2>Refresh and Close</h2>"
+msgstr ""
+
+#: dnfdragora/helpinfo.py:368
+msgid ""
+"Press <b>Refresh</b> to run the query with current filters, or <b>Close</b> "
+"to dismiss the dialog and return to the main window.<br>"
 msgstr ""
 
 #: dnfdragora/progress_ui.py:193
@@ -2569,40 +2871,40 @@ msgstr ""
 msgid "Requirements"
 msgstr ""
 
-#: dnfdragora/ui.py:323
+#: dnfdragora/ui.py:324
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
 
-#: dnfdragora/ui.py:325
+#: dnfdragora/ui.py:326
 msgid "Developers"
 msgstr ""
 
-#: dnfdragora/ui.py:331
+#: dnfdragora/ui.py:332
 msgid "Current developers and maintainers"
 msgstr ""
 
-#: dnfdragora/ui.py:337
+#: dnfdragora/ui.py:338
 msgid "Translations"
 msgstr ""
 
-#: dnfdragora/ui.py:341
+#: dnfdragora/ui.py:342
 msgid "Contributors"
 msgstr ""
 
-#: dnfdragora/ui.py:350
+#: dnfdragora/ui.py:351
 msgid "Project Links"
 msgstr ""
 
-#: dnfdragora/ui.py:355
+#: dnfdragora/ui.py:356
 msgid "Report Issues or Improvements"
 msgstr ""
 
-#: dnfdragora/ui.py:373
+#: dnfdragora/ui.py:374
 msgid "Logging directory not found"
 msgstr ""
 
-#: dnfdragora/ui.py:375
+#: dnfdragora/ui.py:376
 #, python-format
 msgid ""
 "The configured log directory <b>%s</b> does not exist.<br>Logging is "
@@ -2610,300 +2912,344 @@ msgid ""
 "&rarr; User preferences</i>."
 msgstr ""
 
-#: dnfdragora/ui.py:515
+#: dnfdragora/ui.py:516
 msgid "Software Management - dnfdragora"
 msgstr ""
 
-#: dnfdragora/ui.py:586
+#: dnfdragora/ui.py:587
 msgid "Release"
 msgstr "Laida"
 
-#: dnfdragora/ui.py:586
+#: dnfdragora/ui.py:587
 msgid "Version"
 msgstr "Versija"
 
-#: dnfdragora/ui.py:594
-msgid "Status"
-msgstr "Būsena"
-
-#: dnfdragora/ui.py:607
+#: dnfdragora/ui.py:608
 msgid "Not installed"
 msgstr ""
 
-#: dnfdragora/ui.py:608
+#: dnfdragora/ui.py:609
 msgid "To update"
 msgstr ""
 
-#: dnfdragora/ui.py:609
+#: dnfdragora/ui.py:610
 msgid "Desktop Applications"
 msgstr ""
 
-#: dnfdragora/ui.py:615
+#: dnfdragora/ui.py:616
 #, python-format
 msgid "Show %s and noarch only"
 msgstr ""
 
-#: dnfdragora/ui.py:621
+#: dnfdragora/ui.py:622
 msgid "Groups"
 msgstr "Grupės"
 
-#: dnfdragora/ui.py:626
+#: dnfdragora/ui.py:627
 msgid "Grouping packages"
 msgstr ""
 
-#: dnfdragora/ui.py:659
+#: dnfdragora/ui.py:660
 msgid "Filtering packages"
 msgstr ""
 
-#: dnfdragora/ui.py:684
+#: dnfdragora/ui.py:685
 msgid "Open search dialog"
 msgstr ""
 
-#: dnfdragora/ui.py:686
+#: dnfdragora/ui.py:687
 msgid "&Clear search"
 msgstr ""
 
-#: dnfdragora/ui.py:687
+#: dnfdragora/ui.py:688
 msgid "Clear current search"
 msgstr ""
 
-#: dnfdragora/ui.py:702
+#: dnfdragora/ui.py:703
 msgid "Sel&ect all"
 msgstr ""
 
-#: dnfdragora/ui.py:704
+#: dnfdragora/ui.py:705
 msgid "Select all the update packages"
 msgstr ""
 
-#: dnfdragora/ui.py:709 dnfdragora/ui.py:728
+#: dnfdragora/ui.py:710 dnfdragora/ui.py:729
 msgid "&Quit"
 msgstr "&Baigti"
 
-#: dnfdragora/ui.py:711
+#: dnfdragora/ui.py:712
 msgid "Quit the application"
 msgstr ""
 
-#: dnfdragora/ui.py:721
+#: dnfdragora/ui.py:722
 msgid "&File"
 msgstr "&Failas"
 
-#: dnfdragora/ui.py:724
+#: dnfdragora/ui.py:725
 msgid "Reset the selection"
 msgstr ""
 
-#: dnfdragora/ui.py:725
+#: dnfdragora/ui.py:726
 msgid "Refresh Metadata"
 msgstr ""
 
-#: dnfdragora/ui.py:726
+#: dnfdragora/ui.py:727
 msgid "Repositories"
 msgstr ""
 
-#: dnfdragora/ui.py:732
+#: dnfdragora/ui.py:733
 msgid "&Actions"
 msgstr ""
 
-#: dnfdragora/ui.py:735
+#: dnfdragora/ui.py:736
 msgid "&Action on packages"
 msgstr ""
 
-#: dnfdragora/ui.py:736
+#: dnfdragora/ui.py:737
 msgid "&Update All"
 msgstr ""
 
-#: dnfdragora/ui.py:737
+#: dnfdragora/ui.py:738
 msgid "&History"
 msgstr ""
 
-#: dnfdragora/ui.py:743
+#: dnfdragora/ui.py:746
 msgid "&Options"
 msgstr ""
 
-#: dnfdragora/ui.py:746
+#: dnfdragora/ui.py:749
 msgid "User preferences"
 msgstr ""
 
-#: dnfdragora/ui.py:750
+#: dnfdragora/ui.py:753
 msgid "&Help"
 msgstr ""
 
-#: dnfdragora/ui.py:753
+#: dnfdragora/ui.py:756
 msgid "Manual"
 msgstr "Rankinis"
 
-#: dnfdragora/ui.py:755
+#: dnfdragora/ui.py:758
 msgid "&About"
 msgstr "&Apie"
 
-#: dnfdragora/ui.py:788
+#: dnfdragora/ui.py:791
 msgid "update"
 msgstr ""
 
-#: dnfdragora/ui.py:791
+#: dnfdragora/ui.py:794
 msgid "locked"
 msgstr ""
 
-#: dnfdragora/ui.py:1065
+#: dnfdragora/ui.py:1069
+#, python-format
+msgid "[ Refreshing search: %s ]"
+msgstr ""
+
+#: dnfdragora/ui.py:1071
+#, python-format
+msgid "[ Refreshing dependency search: %s ]"
+msgstr ""
+
+#: dnfdragora/ui.py:1074
 #, python-format
 msgid "[ Search: %s ]"
 msgstr ""
 
-#: dnfdragora/ui.py:1067
+#: dnfdragora/ui.py:1076
 #, python-format
 msgid "[ Dependency search: %s ]"
 msgstr ""
 
-#: dnfdragora/ui.py:1315
+#: dnfdragora/ui.py:1348
 msgid "Missing information"
 msgstr "Trūksta informacijos"
 
-#: dnfdragora/ui.py:1332
-msgid "Severity"
-msgstr ""
-
-#: dnfdragora/ui.py:1341
+#: dnfdragora/ui.py:1374
 msgid "Repository"
 msgstr ""
 
-#: dnfdragora/ui.py:1721
+#: dnfdragora/ui.py:1758
 msgid "&Downgrade"
 msgstr ""
 
-#: dnfdragora/ui.py:1724
+#: dnfdragora/ui.py:1761
 msgid "&Reinstall"
 msgstr ""
 
-#: dnfdragora/ui.py:1727
+#: dnfdragora/ui.py:1764
 msgid "&Distro Sync"
 msgstr ""
 
-#: dnfdragora/ui.py:1876
+#: dnfdragora/ui.py:1929
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr ""
 
-#: dnfdragora/ui.py:1876
+#: dnfdragora/ui.py:1929
 msgid "Protected package selected"
 msgstr ""
 
-#: dnfdragora/ui.py:2222 dnfdragora/ui.py:2242 dnfdragora/ui.py:2257
-#: dnfdragora/ui.py:2272 dnfdragora/ui.py:2286
+#: dnfdragora/ui.py:2117
+msgid ""
+"System upgrade requires systemd because execution is scheduled offline for "
+"reboot."
+msgstr ""
+
+#: dnfdragora/ui.py:2137
+msgid "System upgrade confirmation"
+msgstr ""
+
+#: dnfdragora/ui.py:2138
+#, python-format
+msgid ""
+"Are you sure you want to continue with system upgrade to releasever \"%s\"?"
+msgstr ""
+
+#: dnfdragora/ui.py:2155
+msgid "Preparing system upgrade session"
+msgstr ""
+
+#: dnfdragora/ui.py:2162
+msgid "Creating system upgrade transaction"
+msgstr ""
+
+#: dnfdragora/ui.py:2172 dnfdragora/ui.py:2200
+msgid "System upgrade error"
+msgstr ""
+
+#: dnfdragora/ui.py:2174
+#, python-format
+msgid "System upgrade resolve failed:<br>%s"
+msgstr ""
+
+#: dnfdragora/ui.py:2193
+msgid "Scheduling offline system upgrade"
+msgstr ""
+
+#: dnfdragora/ui.py:2202
+#, python-format
+msgid "System upgrade failed: %s"
+msgstr ""
+
+#: dnfdragora/ui.py:2387 dnfdragora/ui.py:2407 dnfdragora/ui.py:2422
+#: dnfdragora/ui.py:2437 dnfdragora/ui.py:2451
 msgid "Offline transaction warning"
 msgstr ""
 
-#: dnfdragora/ui.py:2224
+#: dnfdragora/ui.py:2389
 msgid ""
 "Offline transaction was requested, but backend Offline APIs are not "
 "available."
 msgstr ""
 
-#: dnfdragora/ui.py:2244
+#: dnfdragora/ui.py:2409
 #, python-format
 msgid "Offline transaction was requested, but status verification failed: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:2259
+#: dnfdragora/ui.py:2424
 msgid ""
 "Offline transaction was requested, but no pending offline transaction was "
 "detected."
 msgstr ""
 
-#: dnfdragora/ui.py:2274 dnfdragora/ui.py:2288
+#: dnfdragora/ui.py:2439 dnfdragora/ui.py:2453
 #, python-format
 msgid "Offline transaction was created, but setting finish action failed: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:2310
+#: dnfdragora/ui.py:2475
 msgid "Backend busy"
 msgstr ""
 
-#: dnfdragora/ui.py:2312
+#: dnfdragora/ui.py:2477
 msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
 msgstr ""
 
-#: dnfdragora/ui.py:2348
+#: dnfdragora/ui.py:2513
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr ""
 
-#: dnfdragora/ui.py:2380
+#: dnfdragora/ui.py:2545
 msgid "Transaction verification"
 msgstr ""
 
-#: dnfdragora/ui.py:2436
+#: dnfdragora/ui.py:2601
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr ""
 
-#: dnfdragora/ui.py:2455
+#: dnfdragora/ui.py:2620
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr ""
 
-#: dnfdragora/ui.py:2494
+#: dnfdragora/ui.py:2659
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr ""
 
-#: dnfdragora/ui.py:2513 dnfdragora/ui.py:2534
+#: dnfdragora/ui.py:2678 dnfdragora/ui.py:2699
 msgid "Preparation of transaction"
 msgstr ""
 
-#: dnfdragora/ui.py:2574
+#: dnfdragora/ui.py:2739
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr ""
 
-#: dnfdragora/ui.py:2663
+#: dnfdragora/ui.py:2828
 msgid "Unknown"
 msgstr ""
 
-#: dnfdragora/ui.py:2695
+#: dnfdragora/ui.py:2860
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 
-#: dnfdragora/ui.py:2732
+#: dnfdragora/ui.py:2897
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr ""
 
-#: dnfdragora/ui.py:2835
+#: dnfdragora/ui.py:3000
 msgid "Caching updates"
 msgstr ""
 
-#: dnfdragora/ui.py:2838
+#: dnfdragora/ui.py:3003
 msgid "Caching installed"
 msgstr ""
 
-#: dnfdragora/ui.py:2842
+#: dnfdragora/ui.py:3007
 msgid "Caching available"
 msgstr ""
 
-#: dnfdragora/ui.py:2897
+#: dnfdragora/ui.py:3062
 msgid "Creating packages cache"
 msgstr ""
 
-#: dnfdragora/ui.py:2918
+#: dnfdragora/ui.py:3083
 msgid "Transaction with warnings"
 msgstr ""
 
-#: dnfdragora/ui.py:2962 dnfdragora/ui.py:3011
+#: dnfdragora/ui.py:3127 dnfdragora/ui.py:3176
 msgid "Build Transaction error"
 msgstr ""
 
-#: dnfdragora/ui.py:3004
+#: dnfdragora/ui.py:3169
 msgid "Applying changes to the system"
 msgstr ""
 
-#: dnfdragora/ui.py:3041
+#: dnfdragora/ui.py:3206
 #, python-format
 msgid "Error in status %(status)s on %(event)s"
 msgstr ""
 
-#: dnfdragora/ui.py:3229
+#: dnfdragora/ui.py:3402
 msgid "Search error using regular expression"
 msgstr ""
 
