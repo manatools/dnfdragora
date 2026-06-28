@@ -388,12 +388,30 @@ class AdvisoryDialog(basedialog.BaseDialog):
       title = factory.createHeading(layout, _("Advisory information"))
       title.setAutoWrap()
 
-      filters_frame = factory.createFrame(layout, _("Filters"))
-      filters_vbox = factory.createVBox(filters_frame)
+      # Layout: vertical paned split in 3 sections (filters, advisories, advisory info).
+      split_outer = factory.createPaned(layout, MUI.YUIDimension.YD_VERT)
+      filter_frame = factory.createFrame(split_outer, _("Filters"))
+      split_inner = factory.createPaned(split_outer, MUI.YUIDimension.YD_VERT)
+      results_frame = factory.createFrame(split_inner, _("Advisories"))
+      info_frame = factory.createFrame(split_inner, _("Advisory details"))
+      
+      filters_vbox = factory.createVBox(filter_frame)
+      advisories_vbox = factory.createVBox(results_frame)
+      details_vbox = factory.createVBox(info_frame)
 
+      filter_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      split_outer.setWeight(MUI.YUIDimension.YD_VERT, 35)
+      #split_inner.setWeight(MUI.YUIDimension.YD_VERT, 65)
+      advisories_vbox.setWeight(MUI.YUIDimension.YD_VERT, 60)
+      details_vbox.setWeight(MUI.YUIDimension.YD_VERT, 40)
+
+      # row1 => availability/flags column, limit-to-types frame, limit-to-severities frame
       row1 = factory.createHBox(filters_vbox)
-      factory.createLabel(row1, _("Availability:"))
-      self._availability = factory.createComboBox(row1, "")
+
+      left_col = factory.createVBox(row1)
+      availability_row = factory.createHBox(left_col)
+      factory.createLabel(availability_row, _("Availability:"))
+      self._availability = factory.createComboBox(availability_row, "")
       self._availability_items = {}
       availability_values = ("available", "updates", "installed", "all")
       availability_items = []
@@ -405,30 +423,15 @@ class AdvisoryDialog(basedialog.BaseDialog):
         availability_items.append(item)
       self._availability.addItems(availability_items)
 
-      names_row = factory.createHBox(filters_vbox)
-      factory.createLabel(names_row, _("Advisory IDs (comma-separated):"))
-      self._names_input = factory.createInputField(names_row, "")
-      self._names_input.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      with_cve_row = factory.createHBox(left_col)
+      self._with_cve = factory.createCheckBox(with_cve_row, _("With CVE"), False)
+      with_bz_row = factory.createHBox(left_col)
+      self._with_bz = factory.createCheckBox(with_bz_row, _("With Bugzilla"), False)
 
-      row2 = factory.createHBox(filters_vbox)
-      factory.createLabel(row2, _("Contains package:"))
-      self._contains_pkg = factory.createInputField(row2, "")
-      self._contains_pkg.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-
-      ref_row = factory.createHBox(filters_vbox)
-      factory.createLabel(ref_row, _("Reference BZ IDs (comma-separated):"))
-      self._reference_bzs = factory.createInputField(ref_row, "")
-      self._reference_bzs.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      factory.createLabel(ref_row, _("Reference CVEs (comma-separated):"))
-      self._reference_cves = factory.createInputField(ref_row, "")
-      self._reference_cves.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-
-      type_frame = factory.createCheckBoxFrame(filters_vbox, _("Limit to types"), False)
-      type_frame.setNotify(True)
+      type_frame = factory.createFrame(row1, _("Limit to types"))
       type_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      self._type_frame = type_frame
-      self.eventManager.addWidgetEvent(type_frame, self._onTypeFrameToggled, True)
-      self._type_box = factory.createMultiSelectionBox(type_frame, "")
+      type_box_vbox = factory.createVBox(type_frame)
+      self._type_box = factory.createMultiSelectionBox(type_box_vbox, "")
       self._type_items = {}
       type_values = ("security", "bugfix", "enhancement", "newpackage")
       type_items = []
@@ -438,12 +441,10 @@ class AdvisoryDialog(basedialog.BaseDialog):
         type_items.append(item)
       self._type_box.addItems(type_items)
 
-      severity_frame = factory.createCheckBoxFrame(filters_vbox, _("Limit to severities"), False)
-      severity_frame.setNotify(True)
+      severity_frame = factory.createFrame(row1, _("Limit to severities"))
       severity_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      self._severity_frame = severity_frame
-      self.eventManager.addWidgetEvent(severity_frame, self._onSeverityFrameToggled, True)
-      self._severity_box = factory.createMultiSelectionBox(severity_frame, "")
+      severity_box_vbox = factory.createVBox(severity_frame)
+      self._severity_box = factory.createMultiSelectionBox(severity_box_vbox, "")
       self._severity_items = {}
       severity_values = ("critical", "important", "moderate", "low", "none")
       severity_items = []
@@ -452,41 +453,45 @@ class AdvisoryDialog(basedialog.BaseDialog):
         self._severity_items[value] = item
         severity_items.append(item)
       self._severity_box.addItems(severity_items)
+      
+      row2 = factory.createHBox(filters_vbox)
+      col1 = factory.createVBox(row2)
+      col2 = factory.createVBox(row2)
 
-      # Keep advanced filter lists collapsed until explicitly enabled.
-      self._type_frame.showContent(False)
-      self._severity_frame.showContent(False)
+      # col1 => 2 input fields (Advisory IDs + Reference BZs)
+      self._names_input = factory.createInputField(col1, _("Advisory IDs (comma-separated):"))
+      self._names_input.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._reference_bzs = factory.createInputField(col1, _("Reference BZ IDs (comma-separated)"))
+      self._reference_bzs.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
-      toggles_row = factory.createHBox(filters_vbox)
-      self._with_cve = factory.createCheckBox(toggles_row, _("With CVE"), False)
-      self._with_bz = factory.createCheckBox(toggles_row, _("With Bugzilla"), False)
+      # col2 => 2 input fields (Contains package + Reference CVEs)
+      self._contains_pkg = factory.createInputField(col2, _("Contains package:"))
+      self._contains_pkg.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._reference_cves = factory.createInputField(col2, _("Reference CVEs (comma-separated)"))
+      self._reference_cves.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      factory.createVSpacing(filters_vbox, 2)
 
       header = MUI.YTableHeader()
       header.addColumn(_("Advisory ID"), False)
       header.addColumn(_("Type"), False)
       header.addColumn(_("Severity"), False)
       header.addColumn(_("Title"), False)
-      self._table = factory.createTable(layout, header)
+      self._table = factory.createTable(advisories_vbox, header)
       self._table.setNotify(True)
       self.eventManager.addWidgetEvent(self._table, self._onTableEvent, True)
       self._table.setStretchable(MUI.YUIDimension.YD_VERT, True)
       self._table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      self._table.setWeight(MUI.YUIDimension.YD_VERT, 65)
+      self._table.setWeight(MUI.YUIDimension.YD_VERT, 100)
 
-      details_frame = factory.createCheckBoxFrame(layout, _("Show selected advisory details"), False)
-      details_frame.setNotify(True)
-      details_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      self.eventManager.addWidgetEvent(details_frame, self._onDetailsFrameToggled, True)
-      self._details_frame = details_frame
-      self._details_frame.showContent(False)
-      details_vbox = factory.createVBox(details_frame)
+      # No collapsible details frame: details table is always visible.
       details_header = MUI.YTableHeader()
       details_header.addColumn(_("Field"), False)
       details_header.addColumn(_("Value"), False)
       self._details_table = factory.createTable(details_vbox, details_header)
       self._details_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
       self._details_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      self._details_table.setWeight(MUI.YUIDimension.YD_VERT, 35)
+      self._details_table.setWeight(MUI.YUIDimension.YD_VERT, 100)
 
       button_row = factory.createHBox(layout)
       factory.createHStretch(button_row)
@@ -506,9 +511,7 @@ class AdvisoryDialog(basedialog.BaseDialog):
           values.append(cleaned)
       return values
 
-    def _selected_multi(self, enabled, box, item_map):
-      if not enabled.value():
-        return []
+    def _selected_multi(self, box, item_map):
       selected = []
       try:
         sel_items = box.selectedItems()
@@ -518,18 +521,6 @@ class AdvisoryDialog(basedialog.BaseDialog):
         if item in sel_items:
           selected.append(key)
       return selected
-
-    def _onTypeFrameToggled(self, obj):
-      if obj.widgetClass() == "YCheckBoxFrame":
-        obj.showContent(obj.value())
-
-    def _onSeverityFrameToggled(self, obj):
-      if obj.widgetClass() == "YCheckBoxFrame":
-        obj.showContent(obj.value())
-
-    def _onDetailsFrameToggled(self, obj):
-      if obj.widgetClass() == "YCheckBoxFrame":
-        obj.showContent(obj.value())
 
     def _collect_options(self):
       options = {
@@ -548,11 +539,11 @@ class AdvisoryDialog(basedialog.BaseDialog):
       if names:
         options['names'] = names
 
-      selected_types = self._selected_multi(self._type_frame, self._type_box, self._type_items)
+      selected_types = self._selected_multi(self._type_box, self._type_items)
       if selected_types:
         options['types'] = selected_types
 
-      selected_severities = self._selected_multi(self._severity_frame, self._severity_box, self._severity_items)
+      selected_severities = self._selected_multi(self._severity_box, self._severity_items)
       if selected_severities:
         options['severities'] = selected_severities
 

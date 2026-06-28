@@ -22,7 +22,7 @@ Example with ncurses:
 * Included in the DNF5 distribution.
 * Required when `use_comps` is enabled (group metadata loading via `libdnf5.comps`).
 
-### python-manatools >= 0.99.2
+### python-manatools >= 0.99.3
 * https://github.com/manatools/python-manatools
 * Provides `manatools.aui` (the UI abstraction layer) and `manatools.ui` (common dialogs and helpers).
 
