@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'dnfdragora'
-copyright = '2016 - 2017, Angelo Naselli and Neal Gompa'
+copyright = '2016 - 2026, Angelo Naselli and Neal Gompa'
 author = 'Angelo Naselli and Neal Gompa'
 AUTHORS = author
 

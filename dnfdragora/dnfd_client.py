@@ -123,7 +123,9 @@ IFACE_REPO = '{}.rpm.Repo'.format(DNFDAEMON_BUS_NAME)
 IFACE_REPOCONF = '{}.rpm.RepoConf'.format(DNFDAEMON_BUS_NAME)
 IFACE_RPM = '{}.rpm.Rpm'.format(DNFDAEMON_BUS_NAME)
 IFACE_GOAL = '{}.Goal'.format(DNFDAEMON_BUS_NAME)
+IFACE_OFFLINE = '{}.Offline'.format(DNFDAEMON_BUS_NAME)
 IFACE_ADVISORY = '{}.Advisory'.format(DNFDAEMON_BUS_NAME)
+IFACE_HISTORY = '{}.History'.format(DNFDAEMON_BUS_NAME)
 
 
 def unpack_dbus(data):
@@ -182,6 +184,7 @@ class Client:
         self.iface_repo = None
         self.iface_rpm = None
         self.iface_goal = None
+        self.iface_offline = None
 
         self.iface_base_signalhandler_maches = None
         self.iface_rpm_signalhandler_maches = None
@@ -212,8 +215,8 @@ class Client:
           'ResetSession'        : 'reset',
           'ReloadMetadata'      : 'read_all_repos',
 
-          'GetPackages'         : 'list_fd',
-          #'GetPackages'         : 'list', WARNING list often hangs for big data through dbus, use list_fd
+          'GetPackages_fd'      : 'list_fd',
+          'GetPackages'         : 'list', #WARNING list often hangs for big data through dbus, use list_fd
           'GetAttribute'        : 'list',
           'Search'              : 'list',
           'Install'             : 'install',
@@ -222,6 +225,7 @@ class Client:
           'Downgrade'           : 'downgrade',
           'Reinstall'           : 'reinstall',
           'DistroSync'          : 'distro_sync',
+          'SystemUpgrade'       : 'system_upgrade',
 
           'SetEnabledRepos'     : 'enable',
           'SetDisabledRepos'    : 'disable',
@@ -231,24 +235,38 @@ class Client:
 
           'Advisories'          : 'list',
 
+          ##History
+          'HistoryRecentChanges': 'recent_changes',
+          'HistoryList'         : 'list',
+
           ##Goal
           'BuildTransaction'    : 'resolve',
+          'ResetTransaction'    : 'reset',
           'RunTransaction'      : 'do_transaction',
+          'CancelTransaction'   : 'cancel',
           'TransactionProblems' : 'get_transaction_problems_string',
+
+          ##Offline
+          'OfflineGetStatus'       : 'get_status',
+          'OfflineCancel'          : 'cancel',
+          'OfflineClean'           : 'clean',
+          'OfflineSetFinishAction' : 'set_finish_action',
 
           }
 
         logger.debug("%s Dnf5Daemon loaded" %(DNFDAEMON_BUS_NAME))
 
-    def _get_daemon(self):
+    def _get_daemon(self, session_options=None):
         ''' Get the daemon dbus proxy object'''
         try:
             if self.session_path:
                 logger.warning(f"Open Dnf5Daemon session: {self.session_path} already opened")
+            if session_options is None:
+                session_options = {}
             self.iface_session = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, DNFDAEMON_OBJECT_PATH),
                 dbus_interface=IFACE_SESSION_MANAGER)
-            self.session_path = self.iface_session.open_session({})
+            self.session_path = self.iface_session.open_session(session_options)
             logger.debug(f"Open Dnf5Daemon session: {self.session_path}")
 
             self.iface_base = dbus.Interface(
@@ -269,10 +287,17 @@ class Client:
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_GOAL)
 
+            self.iface_offline = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_OFFLINE)
+
             self.iface_advisory = dbus.Interface(
                 self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
                 dbus_interface=IFACE_ADVISORY)
 
+            self.iface_history = dbus.Interface(
+                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                dbus_interface=IFACE_HISTORY)
 
             # Managing dnf5daemon signals
             self.iface_base_signalhandler_maches = [
@@ -397,7 +422,7 @@ class Client:
             finally:
                 self.session_path = None
 
-    def reloadDaemon(self):
+    def reloadDaemon(self, session_options=None):
         '''Close the D-Bus connection, disconnect signals, and restart it.'''
         try:
             logger.info("Reloading Dnf5Daemon...")
@@ -406,7 +431,7 @@ class Client:
             # Close the current session
             self.unloadDaemon()
             # Reinitialize the daemon
-            self._get_daemon()
+            self._get_daemon(session_options=session_options)
             self._reset_async_request_guard("reloadDaemon-end")
             logger.debug("Reinitialized Dnf5Daemon.")
 
@@ -537,6 +562,7 @@ class Client:
             self._return_handler(err, data)
             return
         method_name = self.proxyMethod.get(cmd)
+        logger.debug("run_dbus_async %s ==> %s", cmd, method_name)
         if method_name is None:
             err = DaemonError(f"No proxyMethod configured for command {cmd}")
             self._return_handler(err, data)
@@ -553,7 +579,10 @@ class Client:
         def on_error(error):
             logger.error("run_dbus_async error for command %s: %s", cmd, error)
             # Route via _return_handler so _sent is cleared and UI notified (when applicable)
-            self._return_handler(error, data)
+            if isinstance(error, Exception):
+                self._return_handler(error, data)
+            else:
+                self._return_handler(Exception(str(error)), data)
 
         if return_value:
             # Methods that return values
@@ -640,66 +669,19 @@ class Client:
                     except Exception:
                         pass
 
-                # 3. D-Bus call queued and local pipe_w closed; start reader.
-                #    Use GLib.io_add_watch (the proper PyGObject API for FD monitoring).
-                #    GLib.unix_fd_add does NOT exist in PyGObject — it is a C-only GLib macro;
-                #    the Python binding exposes g_io_add_watch via GLib.io_add_watch instead.
-                #    Thread reference is stored so waitForLastAsyncRequestTermination() can join it.
-                channel = GLib.IOChannel.unix_new(pipe_r)
-                channel.set_encoding(None)   # binary / no character conversion
-                channel.set_buffered(False)  # direct reads, no internal buffering
-
-                def _fd_cb(channel, cond):
-                    try:
-                        if cond & GLib.IOCondition.HUP:
-                            _finish_with(state['items'])
-                            try:
-                                os.close(pipe_r)
-                            except Exception:
-                                pass
-                            return False
-                        if cond & GLib.IOCondition.IN:
-                            chunk = os.read(pipe_r, 65536)
-                            if not chunk:
-                                _finish_with(state['items'])
-                                try:
-                                    os.close(pipe_r)
-                                except Exception:
-                                    pass
-                                return False
-                            buffer = chunk.decode(errors='ignore')
-                            if buffer:
-                                state['buf'] += buffer
-                                while state['buf']:
-                                    try:
-                                        obj, end = parser.raw_decode(state['buf'])
-                                        state['items'].append(obj)
-                                        state['buf'] = state['buf'][end:].lstrip()
-                                    except json.decoder.JSONDecodeError:
-                                        break
-                    except Exception as ex:
-                        logging.getLogger("dnfdaemon.client").exception("list_fd io_add_watch error: %s", ex)
-                        _finish_with(ex)
-                        try:
-                            os.close(pipe_r)
-                        except Exception:
-                            pass
-                        return False
-                    return True
-
-                try:
-                    GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT,
-                                      GLib.IOCondition.IN | GLib.IOCondition.HUP, _fd_cb)
-                    logger.debug("list_fd: using GLib.io_add_watch for pipe_r=%d", pipe_r)
-                except Exception as e:
-                    logger.warning("GLib.io_add_watch failed; using thread reader for list_fd: %s", e)
-                    self.__async_thread = threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True)
-                    self.__async_thread.start()
+                # 3. D-Bus call queued and local pipe_w closed; start reader thread.
+                #    Always use thread reader for list_fd to ensure reliability.
+                #    GLib.io_add_watch requires an active GLib.MainLoop, which may not
+                #    be running in GUI mode (QT/GTK). The thread-based reader with
+                #    select.poll() works reliably in all scenarios.
+                logger.debug("list_fd: using thread reader for pipe_r=%d", pipe_r)
+                self.__async_thread = threading.Thread(target=_reader_loop, args=(pipe_r,), daemon=True)
+                self.__async_thread.start()
 
             else:
                 # Regular async method with return value
                 def on_success(*result):
-                    logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result))
+                    logger.debug("run_dbus_async success for %s with result: %s", cmd, repr(result) if method_name != 'list' else "")
                     if len(result) == 0:
                         # Method has no output args (e.g. Repo.enable / Repo.disable):
                         # call _return_handler with True so the event is queued and
@@ -1354,9 +1336,10 @@ class Client:
 #
     def Proxy(self, cmd) :
         ''' return the proxy interface that manages the given command '''
-        if cmd == 'GetPackages' or cmd == 'GetAttribute' or \
+        if cmd == 'GetPackages' or cmd == 'GetPackages_fd' or cmd == 'GetAttribute' or \
            cmd == 'Search' or cmd == 'Install' or cmd == 'Remove' or cmd == 'Update' or \
-           cmd == 'Reinstall' or cmd == 'Downgrade' or cmd == 'DistroSync':
+           cmd == 'Reinstall' or cmd == 'Downgrade' or cmd == 'DistroSync' or \
+           cmd == 'SystemUpgrade':
           return self.iface_rpm
         elif cmd == 'GetRepositories' or cmd == 'ConfirmGPGImport':
             return self.iface_repo
@@ -1364,10 +1347,16 @@ class Client:
             return  self.iface_repo
         elif cmd == 'Advisories':
             return self.iface_advisory
+        elif cmd == 'HistoryRecentChanges' or cmd == 'HistoryList':
+            return self.iface_history
         elif cmd == 'ReloadMetadata' or cmd == 'CleanCache' or cmd == 'ResetSession':
             return self.iface_base
-        elif cmd == 'BuildTransaction' or cmd == 'RunTransaction' or cmd == 'TransactionProblems':
+        elif cmd == 'BuildTransaction' or cmd == 'ResetTransaction' or cmd == 'RunTransaction' or \
+             cmd == 'CancelTransaction' or cmd == 'TransactionProblems':
             return  self.iface_goal
+        elif cmd == 'OfflineGetStatus' or cmd == 'OfflineCancel' or cmd == 'OfflineClean' or \
+             cmd == 'OfflineSetFinishAction':
+            return self.iface_offline
 
         return None
 
@@ -1376,7 +1365,7 @@ class Client:
 # API Methods
 #
 
-    def GetPackages(self, options, sync=False):
+    def GetPackages(self, options, sync=False, piped=True):
         '''
           Get a list of pkg list for a given option
 
@@ -1426,12 +1415,13 @@ class Client:
                 whatconflicts: list of strings
                     limit the resulting set only to packages that conflict with any of given capabilities
         '''
+        method_name = 'GetPackages_fd' if piped else 'GetPackages'
         if not sync:
           self._run_dbus_async(
-              'GetPackages', True, options)
+              method_name, True, options)
         else:
           result = self._run_dbus_sync(
-              'GetPackages', options)
+              method_name, options)
           return unpack_dbus(result)
 
     def GetAttribute(self, full_nevra, attr, sync=False):
@@ -1509,10 +1499,6 @@ class Client:
           result = self._run_dbus_sync('Search', options)
           pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
           return pkg_ids
-
-# TODO old Search remind some parameters not present in dnf5daemon
-#      def Search(self, fields, keys, attrs, match_all, newest_only, tags):
-#        pass
 
     def GetRepositories(self, patterns=["*"], repo_attrs=["id", "name", "enabled"], enable_disable="all", sync=False):
         '''Get a list of repository where id matches with any of the given patterns
@@ -1644,6 +1630,29 @@ class Client:
             success, error_msg = self._run_dbus_sync('ResetSession')
             return (unpack_dbus(success), unpack_dbus(error_msg))
 
+    def ReopenSession(self, session_options=None):
+        '''
+            Close the current session and open a new one with the given options.
+            Args:
+                @session_options: map passed to SessionManager.open_session(options)
+        '''
+        if session_options is None:
+            session_options = {}
+        self.reloadDaemon(session_options=session_options)
+
+    def SystemUpgrade(self, options=None, sync=False):
+        '''
+            Prepare a transaction for distribution upgrade on next reboot.
+            Args:
+                @options: map with supported keys such as mode and interactive.
+        '''
+        if options is None:
+            options = {}
+        if not sync:
+            self._run_dbus_async('SystemUpgrade', False, options)
+        else:
+            self._run_dbus_sync('SystemUpgrade', options)
+
     def ConfirmGPGImport(self, key_id, confirmed, sync=False):
         '''
             confirm_key - Confirm to import the given PGP key
@@ -1658,38 +1667,37 @@ class Client:
 
     def Advisories(self, options, sync=False):
         '''
-        Get list of security advisories that match to given filters.
+        Query org.rpm.dnf.v0.Advisory.list with filters.
 
         Args:
-            @options: an array of key/value pairs
-        return:
-            @advisories: array of returned advisories with requested attributes
+            @options: key/value map passed to Advisory.list.
+                Supported keys (unknown keys are ignored by daemon):
+                - advisory_attrs: list[str]
+                    Returned advisory attributes. Supported values are
+                    "advisoryid", "name", "title", "type", "severity", "status",
+                    "vendor", "description", "buildtime", "message", "rights",
+                    "collections", "references".
+                - availability: str, default "available"
+                    One of "available", "all", "installed", "updates".
+                - names: list[str]
+                    Exact advisory IDs to include (e.g. "FEDORA-2025-beb4c9a336").
+                - types: list[str]
+                    Advisory types: "security", "bugfix", "enhancement", "newpackage".
+                - contains_pkgs: list[str]
+                    Package-name glob filters (base package names).
+                - severities: list[str]
+                    One or more from "critical", "important", "moderate", "low", "none".
+                - reference_bzs: list[str]
+                    Bugzilla IDs referenced by advisories.
+                - reference_cves: list[str]
+                    CVE IDs referenced by advisories.
+                - with_bz: bool
+                    Include only advisories that contain Bugzilla references.
+                - with_cve: bool
+                    Include only advisories that contain CVE references.
 
-        Following options and filters are supported:
-            - advisory_attrs: list of strings
-                List of advisory attributes that are returned in `advisories` array.
-                Supported attributes are "advisoryid", "name", "title", "type", "severity", "status",
-                "vendor", "description", "buildtime", "message", "rights", "collections", and "references".
-            - availability: string
-                One of "available" (default if filter is not present), "all", "installed", or "updates".
-            - name: list of strings
-                Consider only advisories with one of given names.
-            - type: list of strings
-                Consider only advisories of given types. Possible types are "security", "bugfix", "enhancement", and "newpackage".
-            - contains_pkgs: list of strings
-                Consider only advisories containing one of given packages.
-            - severity: list of strings
-                Consider only advisories of given severity. Possible values are "critical", "important", "moderate", "low", and "none".
-            - reference_bz: list of strings
-                Consider only advisories referencing given Bugzilla ticket ID. Exepcted values are numeric IDs, e.g. 123456.
-            - reference_cve: list of strings
-                Consider only advisoried referencing given CVE ID. Expected values are strings IDs in CVE format, e.g. CVE-2201-0123.
-            - with_bz: boolean
-                Consider only advisories referencing a Bugzilla ticket.
-            - with_cve: boolean
-                Consider only advisories referencing a CVE ticket.
-
-        Unknown options are ignored.
+        Returns:
+            @advisories: array of advisory dictionaries when sync=True.
 
         '''
         if not sync:
@@ -1754,7 +1762,7 @@ class Client:
     def Reinstall(self, specs, options={}, sync=False):
         '''
             Mark packages specified by @specs for reinstall.
-            aRGS:
+            Args:
                 @specs: an array of package specifications to be reinstalled on the system
                 @options: an array of key/value pairs to modify reinstall behavior
 
@@ -1801,7 +1809,6 @@ class Client:
         '''
             Resolve the transaction.
             Args:
-:
                 @options: an array of key/value pairs to modify dependency resolving
             Return:
                 @transaction_items: array
@@ -1823,6 +1830,15 @@ class Client:
           resolved, result = self._run_dbus_sync('BuildTransaction', options)
           return (unpack_dbus(result), unpack_dbus(resolved))
 
+    def ResetTransaction(self, sync=False):
+        '''    
+            Reset the prepared rpm transaction. After this call the session is ready to perform another rpm transaction.
+        '''
+        if not sync:
+          self._run_dbus_async('ResetTransaction', False)
+        else:
+          return self._run_dbus_sync('ResetTransaction')
+
     def RunTransaction(self, options={}, sync=False):
         '''
             Perform the resolved transaction.
@@ -1843,6 +1859,78 @@ class Client:
         else:
           self._run_dbus_sync('RunTransaction', options)
 
+    def CancelTransaction(self, sync=False):
+        '''
+            Cancel the transaction that was initiated by `do_transaction()`. 
+            The transaction can only be canceled during the package download phase. 
+            Once the RPM transaction has begun, cancellation is no longer permitted.
+            Return:
+                @success: true if the cancellation was successfully requested
+                @error_msg: error message if the cancellation was refused
+        '''
+        if not sync:
+          self._run_dbus_async('CancelTransaction', True)
+        else:
+          success, error_msg = self._run_dbus_sync('CancelTransaction')
+          return (unpack_dbus(success), unpack_dbus(error_msg))
+
+    def OfflineGetStatus(self, sync=False):
+            '''
+                    Return current offline-transaction status.
+                    Return:
+                            @pending: true if an offline transaction is currently scheduled.
+                            @transaction_status: map with the offline transaction status details.
+            '''
+            if not sync:
+                self._run_dbus_async('OfflineGetStatus', True)
+            else:
+                pending, transaction_status = self._run_dbus_sync('OfflineGetStatus')
+                return (unpack_dbus(pending), unpack_dbus(transaction_status))
+
+    def OfflineCancel(self, sync=False):
+            '''
+                    Cancel any scheduled offline transaction.
+                    Return:
+                            @success: true if cancellation succeeded (or no offline transaction was scheduled).
+                            @error_msg: error message when cancellation fails.
+            '''
+            if not sync:
+                self._run_dbus_async('OfflineCancel', True)
+            else:
+                success, error_msg = self._run_dbus_sync('OfflineCancel')
+                return (unpack_dbus(success), unpack_dbus(error_msg))
+
+    def OfflineClean(self, options=None, sync=False):
+            '''
+                    Cancel and clean scheduled offline transaction data.
+                    Args:
+                            @options: optional behavior modifiers (for interfaces exposing clean(options)).
+                    Return:
+                            @success: true if cleanup succeeded.
+                            @error_msg: error message when cleanup fails.
+            '''
+            if options is None:
+                options = {}
+            if not sync:
+                self._run_dbus_async('OfflineClean', True, options)
+            else:
+                success, error_msg = self._run_dbus_sync('OfflineClean', options)
+                return (unpack_dbus(success), unpack_dbus(error_msg))
+
+    def OfflineSetFinishAction(self, action, sync=False):
+            '''
+                    Set the action to perform after applying offline transaction.
+                    Args:
+                            @action: one of 'reboot' or 'poweroff'.
+                    Return:
+                            @success: true if finish action was successfully set.
+                            @error_msg: error message when setting fails.
+            '''
+            if not sync:
+                self._run_dbus_async('OfflineSetFinishAction', True, action)
+            else:
+                success, error_msg = self._run_dbus_sync('OfflineSetFinishAction', action)
+                return (unpack_dbus(success), unpack_dbus(error_msg))
 
     def TransactionProblems(self, sync=False):
         '''
@@ -1961,138 +2049,81 @@ class Client:
       else:
         self._run_dbus_sync('Exit')
 
-## TODO fix next API
-    def SetConfig(self, setting, value, sync=False):
-        '''Set a dnf config setting
+    @staticmethod
+    def _to_history_dbus_options(options):
+        """Convert a plain Python dict to a dbus.Dictionary typed as a{sv}.
 
-        Args:
-            setting: yum conf setting to set
-            value: value to set
-        '''
-        if not sync:
-          self._run_dbus_async(
-              'SetConfig', '(ss)', setting, json.dumps(value))
-        else:
-          return self._run_dbus_sync(
-              'SetConfig', '(ss)', setting, json.dumps(value))
-
-
-    def GetTransaction(self, sync=False):
-        '''Get the current transaction
-
-        Returns:
-            the current transaction
-        '''
-        if not sync:
-          self._run_dbus_async('GetTransaction')
-        else:
-          result = self._run_dbus_sync('GetTransaction')
-          return json.loads(result)
-
-    def AddTransaction(self, id, action, sync=False):
-        '''Add an package to the current transaction
-
-        Args:
-            id: package id for the package to add
-            action: the action to perform ( install, update, remove,
-                    obsolete, reinstall, downgrade, localinstall )
-        '''
-        if not sync:
-          self._run_dbus_async('AddTransaction', '(ss)', id, action)
-        else:
-          result = self._run_dbus_sync('AddTransaction', '(ss)', id, action)
-          return json.loads(result)
-
-    def GroupInstall(self, pattern, sync=False):
-        '''Do a group install <pattern string>,
-        same as dnf group install <pattern string>
-
-        Args:
-            pattern: group pattern to install
-        '''
-        if not sync:
-          self._run_dbus_async('GroupInstall', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('GroupInstall', '(s)', pattern)
-          return json.loads(result)
-
-    def GroupRemove(self, pattern, sync=False):
-        '''
-        Do a group remove <pattern string>,
-        same as dnf group remove <pattern string>
-
-        Args:
-            pattern: group pattern to remove
-        '''
-        if not sync:
-          self._run_dbus_async('GroupRemove', '(s)', pattern)
-        else:
-          result = self._run_dbus_sync('GroupRemove', '(s)', pattern)
-          return json.loads(result)
-
-
-
-
-    def GetHistoryByDays(self, start_days, end_days, sync=False):
-        '''Get History transaction in a interval of days from today
-
-        Args:
-            start_days: start of interval in days from now (0 = today)
-            end_days:end of interval in days from now
-
-        Returns:
-            list of (transaction is, date-time) pairs
-        '''
-        if not sync:
-          self._run_dbus_async('GetHistoryByDays', '(ii)', start_days, end_days)
-        else:
-          result = self._run_dbus_sync('GetHistoryByDays', '(ii)', start_days, end_days)
-          return json.loads(result)
-
-    def HistorySearch(self, pattern, sync=False):
-        '''Search the history for transaction matching a pattern
-
-        Args:
-            pattern: patterne to match
-
-        Returns:
-            list of (tid,isodates)
-        '''
-        if not sync:
-          self._run_dbus_async('HistorySearch', '(as)', pattern)
-        else:
-          result = self._run_dbus_sync('HistorySearch', '(as)', pattern)
-          return json.loads(result)
-
-    def GetHistoryPackages(self, tid, sync=False):
-        '''Get packages from a given yum history transaction id
-
-        Args:
-            tid: history transaction id
-
-        Returns:
-            list of (pkg_id, state, installed) pairs
-        '''
-        if not sync:
-          self._run_dbus_async('GetHistoryPackages', '(i)', tid)
-        else:
-          result = self._run_dbus_sync('GetHistoryPackages', '(i)', tid)
-          return json.loads(result)
-
-    def HistoryUndo(self, tid, sync=False):
-        """Undo a given dnf history transaction id
-
-        Args:
-            tid: history transaction id
-
-        Returns:
-            (rc, messages)
+        dbus-python with signature=None cannot auto-detect the variant subtype
+        for a dict whose values include bool, int, or list.  We must:
+          - wrap each value with the correct dbus scalar/array type, AND
+          - wrap the whole dict as dbus.Dictionary(signature='sv') so that
+            dbus-python knows the container signature is a{sv} and stops
+            trying to iterate the values to guess it.
         """
-        if not sync:
-          self._run_dbus_async('HistoryUndo', '(i)', tid)
-        else:
-          result = self._run_dbus_sync('HistoryUndo', '(i)', tid)
-          return json.loads(result)
+        typed = {}
+        for k, v in options.items():
+            if isinstance(v, bool):
+                typed[k] = dbus.Boolean(v)
+            elif isinstance(v, int):
+                typed[k] = dbus.Int64(v)
+            elif isinstance(v, list):
+                typed[k] = dbus.Array([dbus.String(s) for s in v], signature='s')
+            else:
+                typed[k] = v
+        return dbus.Dictionary(typed, signature='sv')
+
+    def HistoryRecentChanges(self, options=None, sync=True):
+        """Get recently changed packages via org.rpm.dnf.v0.History.recent_changes.
+
+        Args:
+            options (dict): D-Bus options, all optional:
+                since              (int)  Unix timestamp — return changes after this date.
+                installed_packages (bool) include installed packages (default True).
+                removed_packages   (bool) include removed packages (default True).
+                upgraded_packages  (bool) include upgraded packages (default True).
+                downgraded_packages(bool) include downgraded packages (default True).
+                include_advisory   (bool) include advisory info for upgrades (default True).
+                all_advisories     (bool) include all advisories (default False).
+                package_attrs      (list) package attributes to return
+                                   (default ["name","summary","evr","arch"]).
+                interactive        (bool) allow polkit prompts (default False).
+            sync (bool): always True — History is a synchronous popup dialog.
+
+        Returns:
+            dict  {"installed": [...], "removed": [...], "upgraded": [...], "downgraded": [...]}
+            Each value is a list of dicts with the requested package attributes.
+        """
+        if options is None:
+            options = {}
+        result = self._run_dbus_sync('HistoryRecentChanges',
+                                     self._to_history_dbus_options(options))
+        return unpack_dbus(result)
+
+    def HistoryList(self, options=None, sync=True):
+        """Get the list of dnf5 transactions via org.rpm.dnf.v0.History.list.
+
+        Args:
+            options (dict): D-Bus options, all optional:
+                limit              (int)  max number of transactions to return.
+                since              (int)  Unix timestamp — return transactions after this date.
+                reverse            (bool) oldest first (default False = newest first).
+                contains_pkgs      (list) filter to transactions containing these package names.
+                transaction_attrs  (list) transaction attributes to include
+                                   (default ["id","start","end","user_id","description","status"]).
+                package_attrs      (list) package attributes to include
+                                   (default ["name","arch","evr"]).
+                include_packages   (bool) include package lists (default True).
+            sync (bool): always True — History is a synchronous popup dialog.
+
+        Returns:
+            list of transaction dicts with the requested attributes.
+        """
+        if options is None:
+            options = {}
+        result = self._run_dbus_sync('HistoryList',
+                                     self._to_history_dbus_options(options))
+        return unpack_dbus(result)
+
 
 
 

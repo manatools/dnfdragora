@@ -1,4 +1,3 @@
-
 '''
 dnfdragora is a graphical frontend based on rpmdragora implementation
 that uses dnf as rpm backend, due to libyui python bindings dnfdragora
@@ -183,16 +182,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
   asynchronous backend (dnfdaemon) notifications to widgets.
     """
 
-    def __init__(self, options={}):
+    def __init__(self, options=None):
         '''
         constructor
         '''
+        if options is None:
+            options = {}
 
         self._status = DNFDragoraStatus.STARTUP
         self._beforeLockAgain = 20 # 20 x 500 ms = 10 sec
         self.running = False
         self.loop_has_finished = False
         self.options = options
+        self.systemd_running = dialogs.is_systemd_running()
         self.infobar = None
         self.packageQueue = PackageQueue()
         self.toRemove = []
@@ -207,6 +209,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           'in_progress' : 0,
           'downloads' : {}
         } # obsoletes _files_to_download and _files_downloaded
+        # Track caching requests to avoid race conditions
+        self._caching_filter_pending = None  # Which filter (installed, updates, available) is currently being requested
+        self._caching_sequence = []          # Expected sequence of caching operations
 
         self.packageActionValue = const.Actions.NORMAL
         # TODO... _package_name, _gpg_confirm imported from old event management
@@ -218,6 +223,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self._transaction_tries = 0
         self._transaction_noreply_warned = False
         self._trans_dialog = None  # TransactionProgressDialog, active during RUN_TRANSACTION
+        self._offline_finish_action_pending = None
+        self._offline_finish_action_retries = 0
+        self._offline_finish_action_retry_max = 30
+        self._offline_transaction_running = False
+        self._offline_transaction_prepared = False
         self.started_transaction = _('No transaction found')
         # {
         #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -238,27 +248,50 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.group_icon_path = None
         self.images_path = '/usr/share/dnfdragora/images/'
         self.always_yes = False
+        self.force_dist_sync = False
+        self.allow_erasing = False
         self.fuzzy_search = False
         self.newest_only = False
+        self._search_nevra    = True   # search in package names/NEVRA   (with_nevra)
+        self._search_provides = False  # search in provides               (with_provides)
+        self._search_filenames= False  # search in all file paths         (with_filenames)
+        self._search_binaries = False  # search in binary paths           (with_binaries)
+        self._search_src      = False  # include source RPMs              (with_src)
+        self._search_summary  = False  # search in summary, regexp only
+        self._search_text = ''
+        self._search_use_regexp = False
+        self._search_repos  = []       # list of repo IDs to restrict search; [] = all
+        self._available_repos = None  # lazy-loaded list of {'id':…,'name':…} dicts
+        self._search_arches  = []       # list of arch strings to restrict search; [] = all
+        self._available_arches = None  # lazy-loaded sorted list of arch strings
+        self._search_icase   = True   # icase option: True = case-insensitive (daemon default)
+        self._search_scope   = None   # None = use current filter_box; str = scope key
+        self._search_what_type  = None  # daemon option name, e.g. 'whatprovides'; None = text search
+        self._search_what_value = ''    # capability string for the what-search
+        self._search_refresh_pending = False
         self.all_updates_filter = False
         self.log_enabled = False
         self.log_directory = None
         self.level_debug = False
-        self.upgrades_as_updates = True # NOTE consider package to upgrade as update
         self.config = dnfdragora.config.AppConfig(self.appname)
 
         # settings from configuration file first
         self._configFileRead()
 
+        self._log_missing_dir_warning = None
         if self.log_enabled:
           if self.log_directory:
-            log_filename = os.path.join(self.log_directory, "dnfdragora.log")
-            if self.level_debug:
-              misc.logger_setup(log_filename, loglvl=logging.DEBUG)
+            if not os.path.isdir(self.log_directory):
+              print("WARNING: log directory '%s' does not exist; logging disabled" % self.log_directory)
+              self._log_missing_dir_warning = self.log_directory
             else:
-              misc.logger_setup(log_filename)
-            print("Logging into %s, debug mode is %s"%(self.log_directory, ("enabled" if self.level_debug else "disabled")))
-            logger.info("dnfdragora started")
+              log_filename = os.path.join(self.log_directory, "dnfdragora.log")
+              if self.level_debug:
+                misc.logger_setup(log_filename, loglvl=logging.DEBUG)
+              else:
+                misc.logger_setup(log_filename)
+              print("Logging into %s, debug mode is %s"%(self.log_directory, ("enabled" if self.level_debug else "disabled")))
+              logger.info("dnfdragora started")
         else:
            print("Logging disabled")
 
@@ -278,10 +311,54 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self.group_icon_path and not self.group_icon_path.endswith('/'):
             self.group_icon_path += "/"
 
+        app = MUI.YUI.app()
         if MUI.YUI.app().isTextMode():
           self.glib_loop = GLib.MainLoop()
           self.glib_thread = threading.Thread(target=self.glib_mainloop, args=(self.glib_loop,))
           self.glib_thread.start()
+
+        # Set application metadata for about dialog and desktop integration
+        app.application_name = self.appname
+        app.version = const.VERSION
+        app.license = 'GPLv3'
+        app.description = _("dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT")
+        app.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li></ul>"%(
+                            _("Developers"),
+                            "Angelo Naselli &lt;anaselli@linux.it&gt;",
+                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;")
+        app.logo =  self.images_path + "dnfdragora-logo.png"
+        
+        # Credits with HTML formatting from AUTHORS file
+        app.credits = "<h3>%s</h3>" % _("Current developers and maintainers") + \
+                      "<ul>" \
+                      "<li>Angelo Naselli &lt;anaselli@linux.it&gt;</li>" \
+                      "<li>Neal Gompa &lt;ngompa13@gmail.com&gt;</li>" \
+                      "<li>Matteo Pasotti &lt;matteo.pasotti@gmail.com&gt;</li>" \
+                      "</ul>" + \
+                      "<h3>%s</h3>" % _("Translations") + \
+                      "<ul>" \
+                      "<li>Yuri Chornoivan &lt;yurchor@ukr.net&gt;</li>" \
+                      "</ul>" + \
+                      "<h3>%s</h3>" % _("Contributors") + \
+                      "<ul>" \
+                      "<li>Corey Farrell &lt;git@cfware.com&gt;</li>" \
+                      "<li>Petr Leliaev &lt;petrleliaev@gmail.com&gt;</li>" \
+                      "<li>Daniel Rusek &lt;mail@asciiwolf.com&gt;</li>" \
+                      "<li>Björn Esser &lt;besser82@fedoraproject.org&gt;</li>" \
+                      "</ul>"
+
+        # GitHub links for repository and issue reporting
+        app.information = "<h3>%s</h3>" % _("Project Links") + \
+                          "<ul>" \
+                          "<li><b>dnfdragora:</b> <a href='https://github.com/manatools/dnfdragora'>https://github.com/manatools/dnfdragora</a></li>" \
+                          "<li><b>python-manatools (AUI):</b> <a href='https://github.com/manatools/python-manatools'>https://github.com/manatools/python-manatools</a></li>" \
+                          "</ul>" + \
+                          "<h3>%s</h3>" % _("Report Issues or Improvements") + \
+                          "<ul>" \
+                          "<li><b>dnfdragora:</b> <a href='https://github.com/manatools/dnfdragora/issues'>https://github.com/manatools/dnfdragora/issues</a></li>" \
+                          "<li><b>python-manatools:</b> <a href='https://github.com/manatools/python-manatools/issues'>https://github.com/manatools/python-manatools/issues</a></li>" \
+                          "</ul>"                
+
 #
 
         dnfdragora.basedragora.BaseDragora.__init__(self, self.use_comps)
@@ -291,6 +368,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self._enableAction(False)
         self.pbar_layout.setEnabled(True)
+
+        if self._log_missing_dir_warning:
+            common.warningMsgBox({
+                'title': _("Logging directory not found"),
+                'size': (400, 200),
+                'text': _("The configured log directory <b>%s</b> does not exist.<br>"
+                          "Logging is disabled for this session.<br>"
+                          "Please update the log directory in "
+                          "<i>Options &rarr; User preferences</i>.") % self._log_missing_dir_warning,
+                'richtext': True,
+            })
 
         self.backend
         #self.dialog.pollEvent()
@@ -319,6 +407,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
             if 'always_yes' in settings.keys() :
                 self.always_yes = settings['always_yes']
+
+            if 'force_dist_sync' in settings.keys() :
+              self.force_dist_sync = settings['force_dist_sync']
+
+            if 'allow_erasing' in settings.keys() :
+              self.allow_erasing = settings['allow_erasing']
 
             if 'log_directory' in settings.keys() :
               print("Warning logging must be set in user preferences, discarded")
@@ -360,6 +454,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 #### MetaData
                 if 'metadata' in user_settings.keys():
                   metadata = user_settings['metadata']
+                  if not isinstance(metadata, dict):
+                    metadata = {}
+                    user_settings['metadata'] = metadata
                   if 'update_interval' in metadata.keys():
                     self.md_update_interval = metadata['update_interval']
                   else:
@@ -367,12 +464,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   if 'last_update' in metadata.keys():
                     self.md_last_refresh_date =  metadata['last_update']
                 else:
-                  self.config.userPreferences['settings']['metadata'] ={
+                  user_settings['metadata'] = {
                     'update_interval': self.md_update_interval, # 48 Default
                     'last_update': ''
                   }
-                if 'upgrades as updates' in user_settings.keys():
-                  self.upgrades_as_updates = user_settings['upgrades as updates']
+
+                if 'force_dist_sync' in user_settings.keys():
+                  self.force_dist_sync = user_settings['force_dist_sync']
+
+                if 'allow_erasing' in user_settings.keys():
+                  self.allow_erasing = user_settings['allow_erasing']
 
                 #### Search
                 if 'search' in user_settings.keys():
@@ -389,14 +490,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                   if self.log_enabled:
                     if 'directory' in log.keys() :
                         self.log_directory = log['directory']
+                    else:
+                        # No directory configured: fall back to home dir and
+                        # persist it so the dialog and next startup reflect it.
+                        self.log_directory = os.path.expanduser("~")
+                        log['directory'] = self.log_directory
                     if 'level_debug' in log.keys() :
                         self.level_debug = log['level_debug']
 
-        # metadata settings is needed adding it to update old configuration files
-        if not 'settings' in self.config.userPreferences.keys() :
-          self.config.userPreferences['settings'] = {}
-        if not 'metadata' in self.config.userPreferences['settings'].keys():
-          self.config.userPreferences['settings']['metadata'] = {
+        # Ensure settings/metadata always exist in userPreferences so that
+        # callers never need to guard against missing or None sub-dicts.
+        user_prefs = self.config.userPreferences
+        if not isinstance(user_prefs.get('settings'), dict):
+          user_prefs['settings'] = {}
+        if not isinstance(user_prefs['settings'].get('metadata'), dict):
+          user_prefs['settings']['metadata'] = {
             'update_interval': self.md_update_interval, # 48 Default
             'last_update': ''
           }
@@ -408,23 +516,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         MUI.YUI.app().setApplicationTitle(_("Software Management - dnfdragora"))
 
         self.icon = "dnfdragora" #self.images_path + "dnfdragora.png"
-        self.logo = self.images_path + "dnfdragora-logo.png"
         MUI.YUI.app().setApplicationIcon(self.icon)
         # Wayland/Plasma: tell the compositor which .desktop file represents this
         # window so the task manager shows the correct icon and application name.
         MUI.YUI.app().desktop_file_name = "org.mageia.dnfdragora"
 
-        self.factory = MUI.YUI.widgetFactory()
         
-        self.AboutDialog = dialogs.AboutDialog(self)
+        self.factory = MUI.YUI.widgetFactory()
 
         ### MAIN DIALOG ###
         self.dialog = self.factory.createMainDialog()
 
         # Enforce a comfortable minimum size so the window opens with enough
         # space for the group tree, the full package table, and the description
-        # pane.  Units are PIXELS: 900×680 is comfortable on a 1080p display.
-        min_size = self.factory.createMinSize(self.dialog, 900, 680)
+        # pane.  Units are PIXELS: 900×600 is comfortable on a 1080p display.
+        min_size = self.factory.createMinSize(self.dialog, 900, 600)
         vbox = self.factory.createVBox(min_size)
 
         hbox_menubar = self.factory.createHBox(vbox)
@@ -500,9 +606,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             'all' : {'title' : _("All")},
             'installed' : {'title' : _("Installed")},
             'not_installed' : {'title' : _("Not installed")},
-            'to_update' : {'title' : _("To update")}
+            'to_update' : {'title' : _("To update")},
+            'GUI': {'title': _("Desktop Applications")},
         }
-        ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
+        ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed', 'GUI' ]
         if platform.machine() == "x86_64" :
             # NOTE this should work on other architectures too, but maybe it
             #      is a nonsense, at least for i586
@@ -523,10 +630,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         view = {}
         settings = {}
         if self.config.userPreferences:
-            if 'settings' in self.config.userPreferences.keys() :
-                settings = self.config.userPreferences['settings']
-            if 'view' in self.config.userPreferences.keys() :
-                view = self.config.userPreferences['view']
+            settings = self.config.userPreferences.get('settings') or {}
+            view = self.config.userPreferences.get('view') or {}
             if 'show updates at startup' in settings.keys() :
                 if settings['show updates at startup'] :
                     view['filter'] = 'to_update'
@@ -570,41 +675,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.filter_box.setNotify(True)
         self.filter_box.setEnabled(not self.update_only)
 
-        self.local_search_types = {
-            'name'       : {'title' : _("in names")       },
-            'description': {'title' : _("in descriptions")},
-            'summary'    : {'title' : _("in summaries")   },
-            'file'       : {'title' : _("in file names")  }
-        }
-        search_types = ['name', 'summary', 'description', 'file' ]
+        # Visual separator: push search buttons to the right
+        self.factory.createHStretch(hbox_top)
 
-        self.search_list = self.factory.createComboBox(hbox_top,"")
-        itemColl.clear()
-        for s in search_types:
-            item = MUI.YItem(self.local_search_types[s]['title'])
-            if s == search_types[0] :
-                item.setSelected(True)
-            # adding item to local_search_types to find the item selected
-            self.local_search_types[s]['item'] = item
-            itemColl.append(item)
-
-        self.search_list.addItems(itemColl)
-        self.search_list.setNotify(True)
-
-        self.find_entry = self.factory.createInputField(hbox_top, "")
-        self.find_entry.setWeight(MUI.YUIDimension.YD_HORIZ, 50)
-        self.find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-        self.find_entry.setNotify(False)
-
-        self.use_regexp = self.factory.createCheckBox(hbox_top, _("Use regexp"))
-        self.use_regexp.setNotify(True)
+        # Search-result indicator: hidden (empty text) when not in search mode.
+        self._search_info_label = self.factory.createLabel(hbox_top, "")
 
         self.find_button = self.factory.createIconButton(hbox_top, 'edit-find', _("&Search"))
-        self.find_button.setHelpText(_("Search packages"))
-        #TODO self.find_button.setDefaultButton(True)
+        self.find_button.setHelpText(_("Open search dialog"))
 
         self.reset_search_button = self.factory.createIconButton(hbox_top, 'edit-clear', _("&Clear search"))
-        self.reset_search_button.setHelpText(_("Clear search field"))
+        self.reset_search_button.setHelpText(_("Clear current search"))
 
         self.info = self.factory.createRichText(hbox_bottom,"")
         # Give the description area a larger share of the bottom pane so
@@ -619,10 +700,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
         self.applyButton.setEnabled(False)
 
-        self.checkAllButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
-        self.checkAllButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
-        self.checkAllButton.setHelpText(_("Select all the packages"))
-        self.checkAllButton.setEnabled(False)
+        self.checkAllUpdateButton = self.factory.createIconButton(hbox_footbar, 'edit-select-all', _("Sel&ect all"))
+        self.checkAllUpdateButton.setWeight(MUI.YUIDimension.YD_HORIZ,1)
+        self.checkAllUpdateButton.setHelpText(_("Select all the update packages"))
+        self.checkAllUpdateButton.setEnabled(False)
         spacing = self.factory.createHStretch(hbox_footbar)
 
         spacing = self.factory.createHStretch(right_footbar)
@@ -647,29 +728,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'sep0'      : mItem.addSeparator(),
                 'quit'      : self.menubar.addItem(mItem, _("&Quit"), "application-exit"),
             }
-            #Items must be "disowned"
-            #for k in self.fileMenu.keys():
-            #    self.fileMenu[k].this.own(False)
 
             # building Actions menu
             mItem = self.menubar.addMenu(_("&Actions"))
             self.ActionMenu = {
                  'menu_name' : mItem,
                  'actions'   : self.menubar.addItem(mItem, _("&Action on packages")),
+                 'update_all' : self.menubar.addItem(mItem, _("&Update All"), enabled=False),
+                 'history'   : self.menubar.addItem(mItem, _("&History")),
+                'advisory_information' : self.menubar.addItem(mItem, _("Advisory information")),
             }
-            #Items must be "disowned"
-            #for k in self.ActionMenu.keys():
-            #    self.ActionMenu[k].this.own(False)
-
-            # # building Information menu
-            # mItem = self.menubar.addMenu(_("&Information"))
-            # self.infoMenu = {
-            #     'menu_name' : mItem,
-            #     'history'   : MUI.YMenuItem(mItem, _("&History")),
-            # }
-            # #Items must be "disowned"
-            # for k in self.infoMenu.keys():
-            #     self.infoMenu[k].this.own(False)
+            if self.systemd_running:
+              self.ActionMenu['system_upgrade'] = self.menubar.addItem(mItem, _("System upgrade"))
+              self.ActionMenu['offline_transactions'] = self.menubar.addItem(mItem, _("Offline transactions"))
 
             # building Options menu
             mItem = self.menubar.addMenu(_("&Options"))
@@ -677,9 +748,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'menu_name'  : mItem,
                 'user_prefs' : self.menubar.addItem(mItem, _("User preferences")),
             }
-            #Items must be "disowned"
-            #for k in self.optionsMenu.keys():
-            #    self.optionsMenu[k].this.own(False)
 
             # build Help menu
             mItem = self.menubar.addMenu(_("&Help"))
@@ -689,71 +757,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'sep0'     : mItem.addSeparator(),
                 'about'    : self.menubar.addItem(mItem, _("&About"), 'dnfdragora'),
             }
-            #Items must be "disowned"
-            #for k in self.helpMenu.keys():
-            #    self.helpMenu[k].this.own(False)
-
-            #TODO self.menubar.resolveShortcutConflicts()
+            
             self.menubar.rebuildMenus()
-        else:
-            logger.info("System has not createMenuBar, using old menu buttons")
-            self._createMenuButtons(self.factory.createHBox(self.factory.createLeft(hbox_menubar)))
         ### END Menus #########################
-
-    def _createMenuButtons(self, headbar):
-        ''' create obsolete menu buttons to allow using dnfdragora if manubar 
-            is not implemented, in the case libyui-mga is old
-        '''
-        # build File menu
-        self.fileMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&File")),
-            'reset_sel' : MUI.YMenuItem(_("Reset the selection")),
-            'reload'    : MUI.YMenuItem(_("Refresh Metadata")),
-            'repos'     : MUI.YMenuItem(_("Repositories")),
-            'quit'      : MUI.YMenuItem(_("&Quit"), "application-exit"),
-        }
-
-        ordered_menu_lines = ['reset_sel', 'reload', 'repos', 'quit']
-        for l in ordered_menu_lines :
-            self.fileMenu['widget'].addItem(self.fileMenu[l])
-        self.fileMenu['widget'].rebuildMenuTree();
-
-        # build Options menu
-        #self.infoMenu = {
-        #    'widget'    : self.factory.createMenuButton(headbar, _("&Information")),
-        #    'history' : MUI.YMenuItem(_("History")),
-        #}
-
-        #NOTE following the same behavior to simplfy further menu entry addtion
-        #ordered_menu_lines = ['history']
-        #for l in ordered_menu_lines :
-        #    self.infoMenu['widget'].addItem(self.infoMenu[l])
-        #self.infoMenu['widget'].rebuildMenuTree();
-
-        # build Options menu
-        self.optionsMenu = {
-            'widget'    : self.factory.createMenuButton(headbar, _("&Options")),
-            'user_prefs' : MUI.YMenuItem(_("User preferences")),
-        }
-
-        #NOTE following the same behavior to simplfy further menu entry addtion
-        ordered_menu_lines = ['user_prefs']
-        for l in ordered_menu_lines :
-            self.optionsMenu['widget'].addItem(self.optionsMenu[l])
-        self.optionsMenu['widget'].rebuildMenuTree();
-
-        # build help menu
-        self.helpMenu = {
-            'widget': self.factory.createMenuButton(headbar, _("&Help")),
-            'help'  : MUI.YMenuItem(_("Manual")),
-            'about' : MUI.YMenuItem(_("&About"), 'dnfdragora'),
-        }
-        ordered_menu_lines = ['help', 'about']
-        for l in ordered_menu_lines :
-            self.helpMenu['widget'].addItem(self.helpMenu[l])
-
-        self.helpMenu['widget'].rebuildMenuTree()
-
     
     def _enableAction(self, value=True):
       '''
@@ -847,7 +853,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         and checks installed packages.
         Special value for groupName 'All' means all packages
         Available filters are:
-        all, installed, not_installed, to_update and skip_other
+        all, installed, not_installed, to_update, GUI and skip_other
         '''
         sel_pkg = self._selectedPackage()
         # reset info view
@@ -868,6 +874,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 logger.exception("Failed to load package names for comps group '%s': %s", groupName, error)
 
         machine_arch = platform.machine()
+
+        gui_packages = []
+        if filter == 'GUI':
+          gui_packages = self._getGUIPackages()
 
         def _is_package_in_selected_group(pkg):
             """Return True when package belongs to selected group or no group filter is active."""
@@ -973,6 +983,28 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                             item.addCell(" ")
                             self._setStatusToItem(pkg,item)
 
+        if filter == 'GUI':
+          for pkg in gui_packages:
+            insert_items = _is_package_in_selected_group(pkg)
+            if insert_items:
+              item = self._createCBItem(self.packageQueue.checked(pkg),
+                          pkg.name,
+                          pkg.summary,
+                          pkg.version,
+                          pkg.release,
+                          pkg.arch,
+                          pkg.sizeM)
+              pkg_name = pkg.fullname
+              if sel_pkg:
+                if sel_pkg.fullname == pkg_name:
+                  item.setSelected(True)
+              self.itemList[pkg_name] = {
+                'pkg': pkg, 'item': item
+                }
+              if not self.update_only:
+                item.addCell(" ")
+                self._setStatusToItem(pkg, item)
+
         keylist = sorted(self.itemList.keys())
         v = []
         for key in keylist :
@@ -1017,6 +1049,87 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return filter
 
+    def _updateSearchState(self):
+        """Reflect the current search state in the main UI:
+
+        - Disable filter_box while a search is active (scope is owned by SearchDialog).
+        - Re-enable filter_box when search is cleared.
+        - Update the search-info label so the user knows they are viewing search results.
+        """
+        is_searching = bool(self._search_text) or bool(self._search_what_value)
+        try:
+            if not self.update_only:
+                self.filter_box.setEnabled(not is_searching)
+        except Exception:
+            pass
+        try:
+          if is_searching:
+            if self._search_refresh_pending:
+              self._search_info_label.setLabel(
+                _("[ Refreshing search: %s ]") % self._search_text
+                if self._search_text
+                else _("[ Refreshing dependency search: %s ]") % self._search_what_value)
+            else:
+              self._search_info_label.setLabel(
+                _("[ Search: %s ]") % self._search_text
+                if self._search_text
+                else _("[ Dependency search: %s ]") % self._search_what_value)
+          else:
+            self._search_info_label.setLabel("")
+        except Exception:
+          pass
+
+    def _invalidate_search_results(self):
+        """Drop visible search results until the backend search is run again."""
+        if not (self._search_text or self._search_what_value):
+            self._search_refresh_pending = False
+            return
+
+        logger.debug("Invalidating visible search results while session/cache is refreshed")
+        self._search_refresh_pending = True
+        self.itemList = {}
+        self._selPkg = None
+        try:
+            self.packageList.deleteAllItems()
+        except Exception:
+            pass
+        try:
+            self.info.setValue("")
+        except Exception:
+            pass
+        try:
+            self.applyButton.setEnabled(False)
+        except Exception:
+            pass
+        self._updateSearchState()
+
+    def _selectFilterItem(self, scope_key: str):
+        """Programmatically select a filter_box item given a daemon scope key.
+
+        Maps daemon scope strings ('all','installed','available','upgrades','upgradable')
+        back to the internal filter_box key, then selects the corresponding YItem.
+        Falls back silently if the key is not present in the current filter set.
+
+        """
+        _scope_to_filter = {
+            'all'        : 'all',
+            'installed'  : 'installed',
+            'available'  : 'not_installed',
+            'upgrades'   : 'to_update',
+            'upgradable' : 'to_update',
+        }
+        filter_key = _scope_to_filter.get(scope_key, 'all')
+        try:
+            item = self.filters.get(filter_key, {}).get('item')
+            if item is not None:
+                self.filter_box.setNotify(False)
+                try:
+                    self.filter_box.selectItem(item, True)
+                finally:
+                    self.filter_box.setNotify(True)
+        except Exception:
+            pass
+
     def _groupNameFromItem(self, group, treeItem) :
         '''
         return the group name to be used for a search by group
@@ -1036,6 +1149,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         return None
 
+    def _getGUIPackages(self):
+        """Return packages providing application() for the GUI filter."""
+        try:
+            gui_options = {
+                'scope': 'all',
+                'whatprovides': ['application()'],
+            }
+            gui_pkg_ids = self.backend.Search(gui_options, sync=True)
+            return self.backend.make_pkg_object_with_attr(gui_pkg_ids)
+        except Exception as error:
+            logger.exception("Failed to fetch GUI packages (Provides: application()): %s", error)
+            return []
+
     def _collect_groups_for_tree(self, view_name, filter_name):
         """Return normalized group names for the left tree according to view and filter."""
         if view_name == 'all':
@@ -1050,6 +1176,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         elif filter_name == 'not_installed':
             logger.debug("Collecting groups from available packages")
             package_scope = 'available'
+        elif filter_name == 'GUI':
+            logger.debug("Collecting groups from GUI packages")
+            package_scope = 'GUI'
         else:
             logger.debug("Collecting all groups from backend cache")
             try:
@@ -1058,11 +1187,15 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 logger.exception("Cannot read group cache from backend: %s", error)
                 return []
 
-        try:
-            packages = self.backend.get_packages(package_scope)
-        except Exception as error:
-            logger.exception("Cannot load packages for scope '%s': %s", package_scope, error)
-            return []
+        packages = []
+        if filter_name == 'GUI':
+            packages = self._getGUIPackages()
+        else:
+            try:
+                packages = self.backend.get_packages(package_scope)
+            except Exception as error:
+                logger.exception("Cannot load packages for scope '%s': %s", package_scope, error)
+                return []
 
         if self.use_comps:
             pkg_names = [pkg.name for pkg in packages if getattr(pkg, 'name', None)]
@@ -1094,8 +1227,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       the case of an active search result
       '''
       rebuild_package_list = False
-      search_string = self.find_entry.value() if hasattr(self, 'find_entry') else ''
-      if search_string:
+      search_string = self._search_text
+      if search_string or (self._search_what_type and self._search_what_value):
         # Search is active and tree is hidden; re-run the search.
         rebuild_package_list = not self._searchPackages()
       else:
@@ -1289,7 +1422,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       Shows an error dialog box and continue to work, it supposes error is not critical
       (i.e. a wrong search for instance)
       '''
-      dialogs.warningMsgBox({'title' : title, "text": error, "richtext":True})
+      self._search_refresh_pending = False
+      common.warningMsgBox({'title' : title, "size": (400, 200), "text": error, "richtext":True})
       self._enableAction(True)
 
     def _showSearchResult(self, packages, createTreeItem=False):
@@ -1303,7 +1437,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if createTreeItem:
           self._set_tree_visible(False)
 
-      filter = self._filterNameSelected()
       self.itemList = {}
       # {
       #   name-epoch_version-release.arch : { pkg: dnf-pkg, item: YItem}
@@ -1311,26 +1444,23 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
       # Package API doc: http://dnf.readthedocs.org/en/latest/api_package.html
       for pkg in packages:
-        if (filter == 'all' or (filter == 'to_update' and pkg.is_update ) or (filter == 'installed' and pkg.installed) or
-            (filter == 'not_installed' and not pkg.installed) or
-            (filter == 'skip_other' and (pkg.arch == 'noarch' or pkg.arch == platform.machine()))) :
-            item = self._createCBItem(self.packageQueue.checked(pkg),
-                                           pkg.name,
-                                           pkg.summary,
-                                           pkg.version,
-                                           pkg.release,
-                                           pkg.arch,
-                                           pkg.sizeM)
-            pkg_name = pkg.fullname
-            if sel_pkg :
-                if sel_pkg.fullname == pkg_name :
-                    item.setSelected(True)
-            self.itemList[pkg_name] = {
-                'pkg' : pkg, 'item' : item
-                }
-            if not self.update_only:
-                item.addCell(" ")
-                self._setStatusToItem(pkg,item)
+        item = self._createCBItem(self.packageQueue.checked(pkg),
+                                        pkg.name,
+                                        pkg.summary,
+                                        pkg.version,
+                                        pkg.release,
+                                        pkg.arch,
+                                        pkg.sizeM)
+        pkg_name = pkg.fullname
+        if sel_pkg :
+            if sel_pkg.fullname == pkg_name :
+                item.setSelected(True)
+        self.itemList[pkg_name] = {
+            'pkg' : pkg, 'item' : item
+            }
+        if not self.update_only:
+            item.addCell(" ")
+            self._setStatusToItem(pkg,item)
 
       keylist = sorted(self.itemList.keys())
       v = []
@@ -1350,71 +1480,158 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       if createTreeItem:
           pass  # tree is hidden during searches; no tree item needed
 
+      self._search_refresh_pending = False
+      logger.debug("Search results refreshed with %d packages", len(packages))
+      self._updateSearchState()
       self._enableAction(True)
 
 
-    def _searchPackages(self) :
+    def _get_available_repos(self):
+        """Return sorted list of {'id':…,'name':…} for all enabled repos.
+
+        The result is cached in self._available_repos after the first call so
+        subsequent SearchDialog openings are instant.
+        """
+        if self._available_repos is None:
+            try:
+                repos = self.backend.GetRepositories(enable_disable='enabled', sync=True)
+                repos = [r for r in repos
+                         if not r['id'].endswith('-source')
+                         and not r['id'].endswith('-debuginfo')]
+                repos = sorted(repos, key=lambda r: (r.get('name', ''), r['id']))
+                self._available_repos = [{'id': r['id'], 'name': r.get('name', r['id'])} for r in repos]
+            except Exception:
+                logger.exception("Could not fetch repository list for search dialog")
+                self._available_repos = []
+        return self._available_repos
+
+    def _get_available_arches(self):
+        """Return sorted list of architecture strings found in the package cache.
+
+        Collected by scanning the already-cached packages so no extra backend call
+        is needed. The result is cached in self._available_arches.
+        """
+        if self._available_arches is None:
+            try:
+                pkgs = self.backend.get_packages('all')
+                self._available_arches = sorted({p.arch for p in pkgs if p.arch})
+            except Exception:
+                logger.exception("Could not collect architecture list for search dialog")
+                self._available_arches = []
+        return self._available_arches
+
+    def _searchPackages(self):
         '''
-        retrieves the info from search input field and from the search type list
-        to perform a package research and to fill the package list widget
+        Uses stored search-field flags, _search_text and _search_use_regexp
+        to perform a package search and fill the package list widget.
 
-        return False if an empty string used
+        Returns False if no search is active (empty text and no what-query).
         '''
+        search_string = self._search_text
+        use_regexp    = self._search_use_regexp
 
-        type_item = self.search_list.selectedItem()
-        #fields = []
-        #for field in self.local_search_types.keys():
-            #if self.local_search_types[field]['item'] == type_item:
-                #fields.append(field)
-                #break
-        fields = [ field for field in self.local_search_types.keys() if self.local_search_types[field]['item'] == type_item ]
-        field = fields[0] if fields else None
+        # --- Dependency / what-search path ---
+        if self._search_what_type and self._search_what_value:
+            # Resolve scope same as text-search path.
+            if self._search_scope:
+                filter = self._search_scope
+            else:
+                _filter_to_scope = {
+                    'installed'     : 'installed',
+                    'not_installed' : 'available',
+                    'to_update'     : 'upgrades',
+                    'GUI'           : 'all',
+                    'all'           : 'all',
+                    'skip_other'    : 'all',
+                }
+                filter = _filter_to_scope.get(self._filterNameSelected(), 'all')
 
-        if field == 'name' or field == 'summary':
-          self.use_regexp.setEnabled()
-        else:
-          self.use_regexp.setChecked(False)
-          self.use_regexp.setEnabled(False)
+            caps = [c.strip() for c in self._search_what_value.split(',') if c.strip()]
+            options = {
+                'scope': filter,
+                self._search_what_type: caps,
+            }
+            if self.newest_only:
+                options['latest-limit'] = 1
+            if self._search_repos:
+                options['repo'] = self._search_repos
+            if self._search_arches:
+                options['arch'] = self._search_arches
+            self._set_tree_visible(False)
+            self.backend.Search(options)
+            self._enableAction(False)
+            return True
 
-        search_string = self.find_entry.value().strip()
-        if not search_string :
+        # --- Text / pattern search path ---
+        if not search_string:
           return False
 
-        filters = {
-            'installed'     : 'installed',
-            'not_installed' : 'available',
-            'to_update'     : 'upgrades',
-            'all'           : 'all',
-            'skip_other'    : 'all',
-        }
-        filter = filters[self._filterNameSelected()]
-        if self.use_regexp.isEnabled() and self.use_regexp.isChecked() :
-          # fixing attribute names
-          if field == 'name' :
-            field = 'fullname'
-          self.backend.search(filter, field, search_string)
+        # Resolve scope: if the user explicitly chose one in SearchDialog, use it
+        # directly (it is already a valid dnf5daemon scope string).
+        # Otherwise map the main filter_box selection to the equivalent scope value.
+        if self._search_scope:
+            filter = self._search_scope
         else:
-          strings = [s for s in re.split('[ ,|:;]',search_string) if s]
+            _filter_to_scope = {
+                'installed'     : 'installed',
+                'not_installed' : 'available',
+                'to_update'     : 'upgrades',
+                'GUI'           : 'all',
+                'all'           : 'all',
+                'skip_other'    : 'all',
+            }
+            filter = _filter_to_scope.get(self._filterNameSelected(), 'all')
+        if use_regexp:
+          # Regexp mode: single-field search via backend.search().
+          # Field priority: summary (if checked) > names (fullname).
+          regexp_field = 'summary' if self._search_summary else 'fullname'
+          try:
+            re.compile(search_string)
+          except re.error as exc:
+            logger.error("Invalid regular expression '%s': %s", search_string, exc)
+            common.warningMsgBox({
+              'title': _("Invalid regular expression"),
+              'size': (400, 200),
+              'text': str(exc),
+              'richtext': False,
+            })
+            # Clear the search text so the loop cannot re-trigger itself.
+            self._search_text = ''
+            self._search_use_regexp = False
+            return False
+          self.backend.search(filter, regexp_field, search_string)
+        else:
+          strings = [s for s in re.split('[ ,|:;]', search_string) if s]
           if self.fuzzy_search:
-             strings = [s.join(["*","*"]) for s in strings]
+            strings = [s.join(["*", "*"]) for s in strings]
 
           options = {
-            "scope": filter,
-            "with_binaries": field == 'file',
-            "with_filenames": field == 'file',
-            "with_nevra" : field == 'name',
-            #"with_provides" : False,
-            #"with_src" : False,
-            "patterns": strings
+            "scope":          filter,
+            "with_nevra":     self._search_nevra,
+            "with_provides":  self._search_provides,
+            "with_filenames": self._search_filenames,
+            "with_binaries":  self._search_binaries,
+            "patterns":       strings
           }
 
+          if self._search_src:
+            options['with_src'] = True
+
           if self.newest_only:
-              options['latest-limit'] = 1
+            options['latest-limit'] = 1
+
+          if self._search_repos:
+            options['repo'] = self._search_repos
+
+          if self._search_arches:
+            options['arch'] = self._search_arches
+
+          if not self._search_icase:
+            options['icase'] = False
 
           self.backend.Search(options)
 
         self._enableAction(False)
-
         return True
 
     def _populate_transaction(self) :
@@ -1430,6 +1647,12 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     if action == 'i':
                         self.backend.Install(pkgs, sync=True)
                     elif action == 'u':
+                      if self.force_dist_sync:
+                        # Force upgrade requests through DistroSync before resolve/do_transaction.
+                        distsync_specs = [dnfdragora.misc.to_pkg_tuple(pkg_id)[0] for pkg_id in pkg_ids]
+                        logger.debug('Force DistroSync for upgrades: %s', distsync_specs)
+                        self.backend.DistroSync(distsync_specs, sync=True)
+                      else:
                         self.backend.Update(pkgs, sync=True)
                     elif action == 'r':
                         self.backend.Remove(pkgs, sync=True)
@@ -1458,81 +1681,13 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.debug('Distro Sync %s' %(pkgs))
             self.backend.DistroSync(pkgs, sync=True)
 
-    def _undo_transaction(self):
-        '''
-        Run the undo transaction
-        '''
-        locked = False
-        performedUndo = False
-        sync = True
-
-        try:
-            rc, result = self.backend.GetTransaction(sync)
-            if rc :
-                transaction_result_dlg = dialogs.TransactionResult(self)
-                ok = transaction_result_dlg.run(result)
-
-                if ok:  # Ok pressed
-                    self.infobar.info(_('Undo transaction'))
-                    rc, result = self.backend.RunTransaction(sync)
-                    # This can happen more than once (more gpg keys to be
-                    # imported)
-                    while rc == 1:
-                        logger.debug('GPG key missing: %s' % repr(result))
-                        # get info about gpgkey to be confirmed
-                        values = self._gpg_confirm
-                        if values:  # There is a gpgkey to be verified
-                            (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
-                            logger.debug('GPGKey : %s' % repr(values))
-                            resp = dialogs.ask_for_gpg_import(values)
-                            self.backend.ConfirmGPGImport(key_id, resp, sync)
-                            # tell the backend that the gpg key is confirmed
-                            # rerun the transaction
-                            # FIXME: It should not be needed to populate
-                            # the transaction again
-                            if resp:
-                                rc, result = self.backend.GetTransaction(sync)
-                                rc, result = self.backend.RunTransaction(sync)
-                            else:
-                                # NOTE TODO answer no is the only way to exit, since it seems not
-                                # to install the key :(
-                                break
-                        else:  # error in signature verification
-                            dialogs.infoMsgBox({'title' : _('Error checking package signatures'),
-                                                'text' : '<br>'.join(result), 'richtext' : True })
-                            break
-                    if rc == 4:  # Download errors
-                        dialogs.infoMsgBox({'title'  : ngettext('Downloading error',
-                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-                        logger.error('Download error')
-                        logger.error(result)
-                    elif rc != 0:  # other transaction errors
-                        dialogs.infoMsgBox({'title'  : ngettext('Error in transaction',
-                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-                        logger.error('RunTransaction failure')
-                        logger.error(result)
-
-                    self.release_root_backend()
-                    self.backend.reload()
-                    performedUndo = (rc == 0)
-            else:
-                logger.error('BuildTransaction failure')
-                logger.error(result)
-                s = "%s"%result
-                dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": s, "richtext":True})
-        #except dnfdaemon.client.AccessDeniedError as e:
-        #    logger.error("dnfdaemon client AccessDeniedError: %s ", e)
-        #    dialogs.warningMsgBox({'title' : _("Build transaction failure"), "text": _("dnfdaemon client not authorized:%(NL)s%(error)s")%{'NL': "\n",'error' : str(e)}})
-        except Exception as err:
-          exc, msg = misc.parse_dbus_error()
-          if 'AccessDeniedError' in exc:
-            logger.warning("User pressed cancel button in policykit window")
-            logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
-          else:
-            logger.exception("Unexpected error while undoing transaction: %s", err)
-
-        return performedUndo
-
+    def _buildTransaction(self):
+      """Build a transaction using the current dependency-resolution options."""
+      options = {}
+      if self.allow_erasing:
+        options['allow_erasing'] = True
+        logger.debug('Allow erasing option enabled')
+      self.backend.BuildTransaction(options=options)
 
     def saveUserPreference(self):
         '''
@@ -1567,17 +1722,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.exception("saveUserPreference: could not collect view/search state; settings will still be saved")
         self.config.saveUserPreferences()
 
-    def _load_history(self, transactions):
-        '''
-        Load history and populate view.
-        Args:
-            list of (transaction is, date-time) pairs
-        '''
-        hw = dialogs.HistoryView(self)
-        undo = hw.run(transactions)
-        hw = None
-        return undo
-
     def _updateActionView(self, newAction):
         '''
             Prepare the dnfdragora view according to the selected new action.
@@ -1604,9 +1748,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 disable_select_all = True
                 #let's get back the last saved filter for NORMAL actions
                 filter_item = self.config.userPreferences['view']['filter']
-                ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed' ]
+                ordered_filters = [ 'all', 'installed', 'to_update', 'not_installed', 'GUI' ]
                 if platform.machine() == "x86_64" :
                     ordered_filters.append('skip_other')
+                self.filter_box.setEnabled(not self.update_only)
             elif newAction == const.Actions.DOWNGRADE:
                 ordered_filters = [ 'not_installed' ]
                 filter_item = 'not_installed'
@@ -1649,7 +1794,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.applyButton.setLabel(apply_button_text)
             self.applyButton.setEnabled(enable_apply_button)
             #disable "select all" to avoid mistakes
-            self.checkAllButton.setEnabled(enable_select_all)
+            self.checkAllUpdateButton.setEnabled(enable_select_all)
 
 
         return rebuild_package_list
@@ -1677,8 +1822,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         elif item == self.fileMenu['reload']:
           self.backend.CleanCache()
         elif item == self.fileMenu['repos']:
+          try:
+            self.dialog.setEnabled(False)
+          except Exception:
+            pass
           rd = dialogs.RepoDialog(self)
           rd.run()
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
         elif item == self.fileMenu['quit']:
           request_exit = True
         elif item == self.optionsMenu['user_prefs']:
@@ -1688,12 +1841,55 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           actDlg = dialogs.PackageActionDialog(self, self.packageActionValue)
           newAction = actDlg.run()
           rebuild_package_list = self._updateActionView(newAction)
+        elif item == self.ActionMenu.get('update_all') or (
+             hasattr(self, 'actionMenu') and item == self.actionMenu.get('update_all')):
+          # Update All: select all updates + apply transaction
+          if self._selectAllUpdates():
+              rebuild_package_list = True
+              # Apply immediately after selecting all updates
+              self._applyTransaction()
+        elif item == self.ActionMenu['history'] or (
+             hasattr(self, 'actionMenu') and item == self.actionMenu.get('history')):
+          try:
+              self.dialog.setEnabled(False)
+          except Exception:
+              pass
+          hd = dialogs.HistoryDialog(self)
+          hd.run()
+          try:
+              self.dialog.setEnabled(True)
+          except Exception:
+              pass
+        elif item == self.ActionMenu.get('advisory_information'):
+          try:
+            self.dialog.setEnabled(False)
+          except Exception:
+            pass
+          advdlg = dialogs.AdvisoryDialog(self)
+          advdlg.run()
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
+        elif item == self.ActionMenu.get('system_upgrade'):
+          self._run_system_upgrade_from_menu()
+        elif item == self.ActionMenu.get('offline_transactions'):
+          try:
+            self.dialog.setEnabled(False)
+          except Exception:
+            pass
+          offdlg = dialogs.OfflineTransactionsDialog(self)
+          offdlg.run()
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
         elif item == self.helpMenu['help']:
           info = helpinfo.DNFDragoraHelpInfo()
           hd = helpdialog.HelpDialog(info)
           hd.run()
         elif item == self.helpMenu['about']:
-          self.AboutDialog.run()
+          common.AboutDialog(dialog_mode=common.AboutDialogMode.TABBED, size=(320, 240))
       else:
         # AUI menu events expose id() directly on the event for rich text links.
         url = getattr(event, 'id', lambda: None)()
@@ -1721,13 +1917,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         request_exit = True
       elif widget == self.packageList:
         if event.reason() == MUI.YEventReason.ValueChanged:
+          if self._search_refresh_pending:
+            logger.debug("Ignoring package toggle while search refresh is pending")
+            return rebuild_package_list, request_exit
           changedItem = self.packageList.changedItem()
           if changedItem:
             for it in self.itemList:
               if self.itemList[it]['item'] == changedItem:
                 pkg = self.itemList[it]['pkg']
                 if pkg.installed and self.backend.protected(pkg):
-                  dialogs.warningMsgBox({'title': _("Protected package selected"), "text": _("Package %s cannot be removed") % pkg.name, "richtext": True})
+                  common.warningMsgBox({'title': _("Protected package selected"), "size": (400, 200), "text": _("Package %s cannot be removed") % pkg.name, "richtext": True})
                   rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                 else:
                   # Checkbox is first column (0).
@@ -1741,37 +1940,111 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
           logger.debug("Package list selected, but no items changed")
       elif widget == self.reset_search_button:
+        self._search_text       = ''
+        self._search_nevra      = True
+        self._search_provides   = False
+        self._search_filenames  = False
+        self._search_binaries   = False
+        self._search_src        = False
+        self._search_summary    = False
+        self._search_use_regexp = False
+        self._search_repos      = []
+        self._search_arches     = []
+        self._search_icase      = True
+        self._search_scope      = None
+        self._search_what_type  = None
+        self._search_what_value = ''
+        self._search_refresh_pending = False
         rebuild_package_list = True
-        self.find_entry.setValue("")
         self._fillGroupTree()
-      elif widget == self.find_button or widget == self.search_list or widget == self.use_regexp:
-        if not self._searchPackages():
+        self._updateSearchState()
+      elif widget == self.find_button:
+        # Disable the main dialog while SearchDialog is running to prevent
+        # the user from queuing widget events in the background.
+        try:
+            self.dialog.setEnabled(False)
+        except Exception:
+            pass
+        dlg = dialogs.SearchDialog(self)
+        dlg.run()
+        try:
+            self.dialog.setEnabled(True)
+        except Exception:
+            pass
+        if dlg.action == 'search':
+          self._search_nevra      = dlg.search_nevra
+          self._search_provides   = dlg.search_provides
+          self._search_filenames  = dlg.search_filenames
+          self._search_binaries   = dlg.search_binaries
+          self._search_src        = dlg.search_src
+          self._search_summary    = dlg.search_summary
+          self._search_text       = dlg.search_text
+          self._search_use_regexp = dlg.search_use_regexp
+          self._search_repos      = dlg.search_repos
+          self._search_arches     = dlg.search_arches
+          self._search_icase      = dlg.search_icase
+          self.newest_only        = dlg.search_newest_only
+          self.fuzzy_search       = dlg.search_fuzzy
+          self._search_scope      = dlg.search_scope
+          self._search_what_type  = dlg.search_what_type
+          self._search_what_value = dlg.search_what_value
+          # Sync the main filter_box to reflect the scope chosen in the search dialog.
+          self._selectFilterItem(self._search_scope)
+          # Persist search preferences immediately so they survive a crash.
+          try:
+              self.saveUserPreference()
+          except Exception:
+              pass
+          self._updateSearchState()
+          if not self._searchPackages():
+            rebuild_package_list = True
+            self._fillGroupTree()
+        elif dlg.action == 'clear':
+          self._search_nevra      = True
+          self._search_provides   = False
+          self._search_filenames  = False
+          self._search_binaries   = False
+          self._search_src        = False
+          self._search_summary    = False
+          self._search_text       = ''
+          self._search_use_regexp = False
+          self._search_repos      = []
+          self._search_arches     = []
+          self._search_icase      = True
+          self._search_scope      = None
+          self._search_what_type  = None
+          self._search_what_value = ''
+          self._search_refresh_pending = False
           rebuild_package_list = True
           self._fillGroupTree()
-      elif widget == self.checkAllButton:
-        for it in self.itemList:
-          pkg = self.itemList[it]['pkg']
-          self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
-        rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+          self._updateSearchState()
+      elif widget == self.checkAllUpdateButton:
+        # Select ALL upgradable packages using helper method
+        if self._selectAllUpdates():
+            rebuild_package_list = True
       elif widget == self.applyButton:
-        # Disable actions while creating and running transaction.
-        self._enableAction(False)
-        self.pbar_layout.setEnabled(True)
-        self._populate_transaction()
-        self.backend.BuildTransaction()
+        # Apply transaction using helper method
+        self._applyTransaction()
       elif widget == self.view_box:
         filter = self._filterNameSelected()
-        self.checkAllButton.setEnabled(filter == 'to_update')
+        self.checkAllUpdateButton.setEnabled(filter == 'to_update')
         rebuild_package_list = True
-        self.find_entry.setValue("")
+        self._search_text  = ''
+        self._search_scope = None
+        self._search_what_type  = None
+        self._search_what_value = ''
         self._fillGroupTree()
+        self._updateSearchState()
       elif widget == self.tree:
         rebuild_package_list = True
-        self.find_entry.setValue("")
+        self._search_text        = ''
+        self._search_what_type   = None
+        self._search_what_value  = ''
+        self._updateSearchState()
       elif widget == self.filter_box:
         filter = self._filterNameSelected()
         self._fillGroupTree()
-        self.checkAllButton.setEnabled(filter == 'to_update')
+        self.checkAllUpdateButton.setEnabled(filter == 'to_update')
         rebuild_package_list = not self._searchPackages()
       else:
         logger.warning("Unmanaged widget event received")
@@ -1782,7 +2055,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       """Refresh package list and info panel after a single event is processed."""
       if rebuild_package_list:
         filter = self._filterNameSelected()
-        search_string = self.find_entry.value()
+        search_string = self._search_text
         if not search_string:
           view = self._viewNameSelected()
           if view == 'all':
@@ -1806,6 +2079,138 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._selPkg = sel_pkg
       else:
         self.info.setValue("")
+
+    def _selectAllUpdates(self):
+      """Select ALL upgradable packages from backend, regardless of current view.
+      
+      Returns:
+        bool: True if any packages were selected, False otherwise.
+      """
+      MUI.YUI.app().busyCursor()
+      try:
+          updates = self.backend.get_packages('updates')
+          if updates:
+              for pkg in updates:
+                  self.packageQueue.add(pkg, 'u' if pkg.action == 'u' else 'i')
+              return True
+          return False
+      except Exception as e:
+          self.exception_handler(e)
+          return False
+      finally:
+          MUI.YUI.app().normalCursor()
+
+    def _applyTransaction(self):
+      """Prepare and build transaction from current package queue."""
+      # Disable actions while creating and running transaction.
+      self._enableAction(False)
+      self.pbar_layout.setEnabled(True)
+      self._populate_transaction()
+      self._buildTransaction()
+
+    def _run_system_upgrade_from_menu(self):
+      """Run the system-upgrade workflow from the Actions menu."""
+      if not self.systemd_running:
+        common.warningMsgBox({
+          'title': _('System upgrade'),
+          'size': (420, 220),
+          'text': _('System upgrade requires systemd because execution is scheduled offline for reboot.'),
+          'richtext': True,
+        })
+        return
+
+      try:
+        self.dialog.setEnabled(False)
+      except Exception:
+        pass
+      dlg = dialogs.SystemUpgradeDialog(self)
+      result = dlg.run()
+      try:
+        self.dialog.setEnabled(True)
+      except Exception:
+        pass
+
+      if not result:
+        return
+
+      confirm = common.askYesOrNo({
+        'title': _('System upgrade confirmation'),
+        'text': _('Are you sure you want to continue with system upgrade to releasever "%s"?') % result['releasever'],
+        'default_button': 2,
+        'richtext': True,
+        'size': (460, 220),
+      })
+      if not confirm:
+        return
+
+      self._run_system_upgrade(result['releasever'])
+
+    def _run_system_upgrade(self, releasever):
+      """Prepare and start offline system upgrade transaction."""
+      self._enableAction(False)
+      self.pbar_layout.setEnabled(True)
+      MUI.YUI.app().busyCursor()
+      try:
+        logger.info("Starting system upgrade workflow for releasever=%s", releasever)
+        self.infobar.info(_('Preparing system upgrade session'))
+
+        # 1-2) Close current session and open a new one with target releasever.
+        self.backend.ReopenSession({'releasever': releasever})
+        self.backend.clear_cache(also_groups=True)
+
+        # 3) Prepare system-upgrade transaction on daemon side.
+        self.infobar.info(_('Creating system upgrade transaction'))
+        self.backend.SystemUpgrade({'mode': 'distrosync', 'interactive': True}, sync=True)
+
+        # 4) Resolve automatically with allow_erasing=True.
+        resolve_result, resolve_items = self.backend.BuildTransaction({'allow_erasing': True}, sync=True)
+        if resolve_result != 0:
+          errors = self.backend.TransactionProblems(sync=True)
+          err = ''.join(errors) if isinstance(errors, list) else str(errors)
+          logger.warning("System upgrade resolve failed result=%s errors=%s", resolve_result, err)
+          common.warningMsgBox({
+            'title': _('System upgrade error'),
+            'size': (520, 260),
+            'text': _('System upgrade resolve failed:<br>%s') % err.replace('\n', '<br>'),
+            'richtext': True,
+          })
+          # Return to a normal session after failure.
+          try:
+            self.backend.ReopenSession({})
+            self.backend.clear_cache(also_groups=True)
+            self._status = DNFDragoraStatus.STARTUP
+          except Exception:
+            logger.exception("Failed to restore default session after system-upgrade resolve failure")
+          self._enableAction(False)
+          return
+
+        # 5) Run transaction offline and set reboot as finish action.
+        self.packageQueue.clear()
+        self._offline_finish_action_pending = 'reboot'
+        self._offline_finish_action_retries = 0
+        self._offline_transaction_running = True
+        self._offline_transaction_prepared = False
+        self.infobar.info(_('Scheduling offline system upgrade'))
+        self._show_trans_dialog()
+        self.backend.RunTransaction({'offline': True})
+        self._status = DNFDragoraStatus.RUN_TRANSACTION
+      except Exception as err:
+        logger.exception("System upgrade workflow failed for releasever=%s: %s", releasever, err)
+        common.warningMsgBox({
+          'title': _('System upgrade error'),
+          'size': (520, 260),
+          'text': _('System upgrade failed: %s') % str(err),
+          'richtext': True,
+        })
+        try:
+          self.backend.ReopenSession({})
+          self.backend.clear_cache(also_groups=True)
+        except Exception:
+          logger.exception("Failed to restore default session after system-upgrade exception")
+        self._status = DNFDragoraStatus.STARTUP
+        self._enableAction(False)
+      finally:
+        MUI.YUI.app().normalCursor()
 
     def _sync_apply_button_state(self):
       """Keep Apply button enabled state consistent with queue and action mode."""
@@ -1831,24 +2236,30 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         if eventType == MUI.YEventType.CancelEvent:
           if self._trans_dialog is not None:
-            self._close_trans_dialog()
-            # Clean up download and transaction data
-            self.__resetDownloads()
-            #restore actions to Normal
-            self._updateActionView(const.Actions.NORMAL)
-            # TODO change UI and manage this better afer a transaction report        
-            self.backend.clear_cache(also_groups=True)
-            self.packageQueue.clear()
-            self._status = DNFDragoraStatus.RESET_SESSION
-            self._transaction_noreply_warned = False
-            self._enableAction(False)
-            # NOTE: do NOT call backend.ResetSession() here.
-            # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
-            # RunTransaction D-Bus method reply, so _sent is still True at this
-            # point. ResetSession would be rejected with "Command in progress".
-            # The RunTransaction event handler below waits for the reply (which
-            # clears _sent) and then issues ResetSession safely.
-            rebuild_package_list = True
+            # Respect the dialog close policy: only close when request_close allows it.
+            if self._trans_dialog.request_close():
+              logger.debug("User closed transaction dialog")
+              self._close_trans_dialog()
+              # Clean up download and transaction data
+              self.__resetDownloads()
+              #restore actions to Normal
+              self._updateActionView(const.Actions.NORMAL)
+              # TODO change UI and manage this better afer a transaction report
+              self.backend.clear_cache(also_groups=True)
+              self.packageQueue.clear()
+              self._invalidate_search_results()
+              self._status = DNFDragoraStatus.RESET_SESSION
+              self._transaction_noreply_warned = False
+              self._enableAction(False)
+              # NOTE: do NOT call backend.ResetSession() here.
+              # OnTransactionAfterComplete arrives as a D-Bus signal BEFORE the
+              # RunTransaction D-Bus method reply, so _sent is still True at this
+              # point. ResetSession would be rejected with "Command in progress".
+              # The RunTransaction event handler below waits for the reply (which
+              # clears _sent) and then issues ResetSession safely.
+              rebuild_package_list = True
+            else:
+              logger.warning("User requested close while transaction is still running")
           else:
             request_exit = True
         elif eventType == MUI.YEventType.MenuEvent:
@@ -1865,6 +2276,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               # TODO change UI and manage this better afer a transaction report        
               self.backend.clear_cache(also_groups=True)
               self.packageQueue.clear()
+              self._invalidate_search_results()
               self._status = DNFDragoraStatus.RESET_SESSION
               self._transaction_noreply_warned = False
               self._enableAction(False)
@@ -1891,6 +2303,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
 
         self._refresh_ui_after_event(rebuild_package_list)
         self._sync_apply_button_state()
+        if self._status == DNFDragoraStatus.RUNNING and self._caching_filter_pending is None:
+          # Keep pointer state sane on platforms where a stale busy cursor can survive
+          # asynchronous startup/caching transitions.
+          MUI.YUI.app().normalCursor()
 
       # Save user prefs on exit
       self.saveUserPreference()
@@ -1924,7 +2340,8 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if self._trans_dialog is not None:
             self._trans_dialog.close()
             self._trans_dialog = None
-        # Reset progress bar now that the main window is visible again
+        self._offline_transaction_running = False
+        self._offline_transaction_prepared = False
         self.infobar.reset_all()
         self.pbar_layout.setEnabled(True)
 
@@ -1953,6 +2370,99 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
             logger.warning("Transaction complete event received, but transaction dialog is not open")
 
+    def _try_finalize_offline_finish_action(self):
+      '''
+      Apply pending offline finish action when the async RunTransaction command
+      has fully released and an offline transaction is confirmed as pending.
+      '''
+      if self._offline_finish_action_pending is None:
+        return
+
+      if self.backend._sent:
+        return
+
+      if not hasattr(self.backend, 'OfflineGetStatus') or not hasattr(self.backend, 'OfflineSetFinishAction'):
+        logger.error("Offline API missing in backend; cannot set offline finish action")
+        common.warningMsgBox({
+          'title': _('Offline transaction warning'),
+          'size': (400, 200),
+          'text': _('Offline transaction was requested, but backend Offline APIs are not available.'),
+          'richtext': True,
+        })
+        self._offline_finish_action_pending = None
+        self._offline_finish_action_retries = 0
+        return
+
+      try:
+        pending, _status = self.backend.OfflineGetStatus(sync=True)
+      except Exception as err:
+        self._offline_finish_action_retries += 1
+        logger.debug("OfflineGetStatus retry %d/%d failed: %s",
+                     self._offline_finish_action_retries,
+                     self._offline_finish_action_retry_max,
+                     err)
+        if self._offline_finish_action_retries >= self._offline_finish_action_retry_max:
+          logger.exception("Failed to get offline status after retries: %s", err)
+          common.warningMsgBox({
+            'title': _('Offline transaction warning'),
+            'size': (400, 200),
+            'text': _('Offline transaction was requested, but status verification failed: %s') % str(err),
+            'richtext': True,
+          })
+          self._offline_finish_action_pending = None
+          self._offline_finish_action_retries = 0
+        return
+
+      if not pending:
+        self._offline_finish_action_retries += 1
+        if self._offline_finish_action_retries >= self._offline_finish_action_retry_max:
+          logger.warning("Offline transaction not pending after %d retries; skipping finish action",
+                         self._offline_finish_action_retry_max)
+          common.warningMsgBox({
+            'title': _('Offline transaction warning'),
+            'size': (400, 200),
+            'text': _('Offline transaction was requested, but no pending offline transaction was detected.'),
+            'richtext': True,
+          })
+          self._offline_finish_action_pending = None
+          self._offline_finish_action_retries = 0
+        return
+
+      try:
+        success, error_msg = self.backend.OfflineSetFinishAction(self._offline_finish_action_pending, sync=True)
+        if not success:
+          logger.warning("Failed to set offline finish action '%s': %s",
+                         self._offline_finish_action_pending, error_msg)
+          common.warningMsgBox({
+            'title': _('Offline transaction warning'),
+            'size': (400, 200),
+            'text': _('Offline transaction was created, but setting finish action failed: %s') % error_msg,
+            'richtext': True,
+          })
+        else:
+          self._offline_transaction_prepared = True
+          self._offline_transaction_running = False
+          if self._trans_dialog is not None:
+            self._trans_dialog.mark_offline_scheduled(self._offline_finish_action_pending)
+      except Exception as err:
+        logger.exception("Failed to set offline finish action '%s': %s",
+                         self._offline_finish_action_pending, err)
+        common.warningMsgBox({
+          'title': _('Offline transaction warning'),
+          'size': (400, 200),
+          'text': _('Offline transaction was created, but setting finish action failed: %s') % str(err),
+          'richtext': True,
+        })
+        self._offline_transaction_prepared = True
+        self._offline_transaction_running = False
+        if self._trans_dialog is not None:
+          # Even when set_finish_action fails, offline transaction is typically
+          # still scheduled with default reboot behavior.
+          self._trans_dialog.mark_offline_scheduled('reboot')
+      finally:
+        self._offline_finish_action_pending = None
+        self._offline_finish_action_retries = 0
+
     def exception_handler(self, e):
       """Handle frontend exceptions; keep transaction alive on transient DBus NoReply."""
       msg = str(e)
@@ -1961,8 +2471,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if not self._transaction_noreply_warned:
           logger.warning("Transient DBus NoReply during RUN_TRANSACTION; keeping transaction alive")
           # TODO remove later
-          dialogs.warningMsgBox({
+          common.warningMsgBox({
             'title': _("Backend busy"),
+            'size': (400, 200),
             'text': _("The backend is busy processing the transaction. The operation will continue and progress events will still be tracked."),
             'richtext': False
           })
@@ -2103,7 +2614,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if session_object_path != self.backend.session_path :
             logger.warning("OnTransactionActionProgress: Different session path received")
             return
-        #TODO bar with processed??? if not always 0 self.infobar.set_progress(0.0)
         if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
             self._trans_dialog.on_action_progress(nevra, processed, total)
         else:
@@ -2214,28 +2724,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             @session_object_path: object path of the dnf5daemon session
             @nevra: full NEVRA of the package script belongs to
             @scriptlet_type: scriptlet type that started (pre, post,...)
-        '''
-        '''
-        TODO scriptlet type to show in the progress bar
-            class LIBDNF_API TransactionCallbacks {
-            public:
-                enum class ScriptType {
-                    UNKNOWN,
-                    PRE_INSTALL,            // "%pre"
-                    POST_INSTALL,           // "%post"
-                    PRE_UNINSTALL,          // "%preun"
-                    POST_UNINSTALL,         // "%postun"
-                    PRE_TRANSACTION,        // "%pretrans"
-                    POST_TRANSACTION,       // "%posttrans"
-                    TRIGGER_PRE_INSTALL,    // "%triggerprein"
-                    TRIGGER_INSTALL,        // "%triggerin"
-                    TRIGGER_UNINSTALL,      // "%triggerun"
-                    TRIGGER_POST_UNINSTALL  // "%triggerpostun"
-                };
-
-                /// @param type  scriptlet type
-                /// @return  string representation of the scriptlet type
-                static const char * script_type_to_string(ScriptType type) noexcept;
         '''
         scriptletType=libdnf5.rpm.TransactionCallbacks.script_type_to_string(scriptlet_type)
         values = (session_object_path,nevra, scriptlet_type, scriptletType)
@@ -2422,12 +2910,17 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       values =  (download_id, download['description'], status, error)
       logger.debug('OnDownloadEnd %s', repr(values))
 
+      # Keep internal download counters consistent also while transaction dialog
+      # is active, otherwise reset reports stale in-progress downloads.
+      if status in (0, 1):
+        if download['total_to_download'] > 0:
+          download['downloaded'] = download['total_to_download']
+      if self._download_events['in_progress'] > 0:
+        self._download_events['in_progress'] -= 1
+
       if self._trans_dialog is not None and self._status == DNFDragoraStatus.RUN_TRANSACTION:
           self._trans_dialog.on_download_end(download_id, download['description'], status, error)
       else:
-        if (self._download_events['in_progress'] > 0) :
-          self._download_events['in_progress'] -= 1
-
         # (0 - successful, 1 - already exists, 2 - error)
         if status == 0 or status == 1:  # download OK or already exists
           logger.debug('Downloaded : %s - %s', download_id, download['description'])
@@ -2435,9 +2928,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           logger.error('Download Error : [%s]:[%s] - %s', download_id, download['description'], error)
 
         self.infobar.info_sub("")
-        if (self._download_events['in_progress'] == 0) :
+      if self._download_events['in_progress'] == 0:
+        if self._trans_dialog is None or self._status != DNFDragoraStatus.RUN_TRANSACTION:
           self.infobar.reset_all()
-          self.__resetDownloads()
+        self.__resetDownloads()
 
     def _OnErrorMessage(self, session_object_path, download_id, error, url, metadata):
       logger.error('OnErrorMessage(%s) - name: %s, err: %s url: %s, metadata: %s ', session_object_path, download_id, error, url, metadata)
@@ -2451,12 +2945,16 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       @params pkg_flt (available, installed, updates)
       “all”, “installed”, “available”, “upgrades”, “upgradable”
       '''
+      # Prevent race conditions: wait for pending request to complete
+      if self._caching_filter_pending is not None:
+        logger.warning('Caching request for %s ignored: pending request for %s still in progress',
+                       pkg_flt, self._caching_filter_pending)
+        return
+
       logger.debug('Start caching %s', pkg_flt)
       filter = pkg_flt
       #TODO manage upgrades/upgradable correctly
       if pkg_flt == "updates":
-        filter = "upgrades"
-      elif pkg_flt == "updates_all":
         filter = "upgrades"
 
       options = {"package_attrs": [
@@ -2494,7 +2992,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         "group",
         ],
         "scope": filter }
-      if pkg_flt == 'updates' or pkg_flt == 'updates_all':
+      
+      # Mark this filter as pending BEFORE changing status and making the async call
+      self._caching_filter_pending = pkg_flt
+      
+      if pkg_flt == 'updates':
         self.infobar.info_sub(_("Caching updates"))
         self._status = DNFDragoraStatus.CACHING_UPDATE
       elif pkg_flt == 'installed':
@@ -2507,12 +3009,14 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         #self.backend.reloadDaemon()
       else:
         logger.error("Wrong package filter %s", pkg_flt)
+        self._caching_filter_pending = None
         return
+      
+      logger.info('Requesting GetPackages for filter=%s (pkg_flt=%s), status=%s',
+                  filter, pkg_flt, self._status)
       self.backend.GetPackages(options)
 
     def _populateCache(self, pkg_flt, po_list) :
-      if pkg_flt == 'updates_all':
-        pkg_flt = 'updates'
       # is this type of packages is already cached ?
       if not self.backend.cache.is_populated(pkg_flt):
         pkgs = self.backend.make_pkg_object(po_list, pkg_flt)
@@ -2552,7 +3056,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
       '''
       self.infobar.reset_all()
       self.backend.cache.reset()
+      # Reset caching tracking
+      self._caching_filter_pending = None
+      self._caching_sequence = []
       self.infobar.info(_('Creating packages cache'))
+      logger.info('Starting caching sequence: installed -> updates -> available')
       self._cachingRequest('installed')
 
     def _OnBuildTransaction(self, info):
@@ -2572,7 +3080,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         if result == 1: #Transaction WARNING
           errors = self.backend.TransactionProblems(sync=True)
           err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
-          dialogs.warningMsgBox({'title'  : _('Transaction with warnings',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          common.warningMsgBox({'title'  : _('Transaction with warnings',), 'size': (400, 200), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction with warnings: %s", repr(errors))
 
         ok = result == 0 # Avoid to die "or result == 1" TODO manage Warning
@@ -2616,7 +3124,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
           errors = self.backend.TransactionProblems(sync=True)
           err =  "".join(errors) if isinstance(errors, list) else errors if type(errors) is str else repr(errors);
-          dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          common.infoMsgBox({'title'  : _('Build Transaction error',), 'size': (400, 200), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(errors))
 
           # TODO Transaction has errors we should clean it up reload all by now
@@ -2626,6 +3134,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self._status = DNFDragoraStatus.STARTUP
           self._enableAction(False)
           return
+        offline_requested = False
+        offline_finish_action = 'reboot'
+
         # If status is RUN_TRANSACTION we have already confirmed our transaction into BuildTransaction
         # and we are here most probably for a GPG key confirmed during last transaction
         #TODO dialog to confirm transaction, NOTE that there is no clean transaction if user say no
@@ -2636,44 +3147,33 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 if not ok:
                     self._enableAction(True)
                     return
+                offline_requested = transaction_result_dlg.offline_requested
+                offline_finish_action = transaction_result_dlg.offline_finish_action
         elif ok !=0:
           logger.error("Build transaction error %d", ok) #TODO read errors from dnf daemon
 
-        #TODO
-        TODO=True
-        if not TODO:
-          self.started_transaction = ''
-          try:
-              installed_packages = []
-              removed_packages = []
-              for action_list in resolve:
-                  if action_list and action_list[0] == 'install':
-                      if len(action_list) > 1:
-                          for program in action_list[1]:
-                              program_info = program[0].split(',')
-                              installed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-                  if action_list and action_list[0] == 'remove':
-                      if len(action_list) > 1:
-                          for program in action_list[1]:
-                              program_info = program[0].split(',')
-                              removed_packages.append(f'{program_info[0]}-{program_info[2]}-{program_info[3]}.{program_info[4]}')
-              if installed_packages:
-                  installed_packages = '\n' + "\n".join(installed_packages) + '\n\n'
-                  self.started_transaction += _('Packages installed:') + f' {installed_packages}'
-              if removed_packages:
-                  removed_packages = '\n' + "\n".join(removed_packages)
-                  self.started_transaction += _('Packages removed:') + f' {removed_packages}'
-          except Exception as e:
-              self.started_transaction += _('Error occured:') + f' {e}' + '\n' + f'result = {result}'
-
         if ok:
+          run_options = {}
+          if offline_requested:
+            run_options['offline'] = True
+            self._offline_finish_action_pending = offline_finish_action
+            self._offline_finish_action_retries = 0
+            self._offline_transaction_running = True
+            self._offline_transaction_prepared = False
+          else:
+            self._offline_finish_action_pending = None
+            self._offline_finish_action_retries = 0
+            self._offline_transaction_running = False
+            self._offline_transaction_prepared = False
+
           self.infobar.info(_('Applying changes to the system'))
           self._show_trans_dialog()
-          self.backend.RunTransaction()
+          self.backend.RunTransaction(run_options)
+
           self._status = DNFDragoraStatus.RUN_TRANSACTION
         else:
           err =  "".join(resolve) if isinstance(resolve, list) else resolve if type(resolve) is str else repr(resolve);
-          dialogs.infoMsgBox({'title'  : _('Build Transaction error',), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
+          common.infoMsgBox({'title'  : _('Build Transaction error',), 'size': (400, 200), 'text' : err.replace("\n", "<br>"), 'richtext' : True })
           logger.warning("Transaction Cancelled: %s", repr(resolve))
           self._enableAction(True)
 
@@ -2704,7 +3204,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 #got an Exception into trhead loop
                 logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
                 title = _("Error in status %(status)s on %(event)s")%({'status':self._status, 'event':(event if event else "---")})
-                dialogs.warningMsgBox({'title' : title, "text": str(info['error']), "richtext":True})
+                common.warningMsgBox({'title' : title, "size": (400, 200), "text": str(info['error']), "richtext":True})
                 # Force return on STARTUP on error
                 try:
                   self.backend.reloadDaemon()
@@ -2761,23 +3261,49 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self._enableAction(False)
             # CleanCache has been invoked let's refresh data => ReloadMetadata
             self.backend.ReloadMetadata()            
-          elif (event == 'GetPackages'):
+          elif (event == 'GetPackages') or (event == 'GetPackages_fd'):
+            logger.debug('%s event received: status=%s, pending_filter=%s, has_error=%s',
+                        event, self._status, self._caching_filter_pending, bool(info.get('error')))
+            
             if not info['error']:
-              if self._status == DNFDragoraStatus.CACHING_INSTALLED:
+              # Verify this response matches the expected pending filter
+              current_pending = self._caching_filter_pending
+              
+              if current_pending is None:
+                logger.warning('GetPackages response received but no pending request tracked. Status=%s', self._status)
+                # Try to continue based on status for backward compatibility
+                current_pending = 'installed' if self._status == DNFDragoraStatus.CACHING_INSTALLED else \
+                                  'updates' if self._status == DNFDragoraStatus.CACHING_UPDATE else \
+                                  'available' if self._status == DNFDragoraStatus.CACHING_AVAILABLE else None
+              
+              if current_pending == 'installed':
                 po_list = info['result']
+                logger.info('Received %d installed packages', len(po_list))
                 # we requested installed for caching
                 self._populateCache('installed', po_list)
                 self.infobar.set_progress(0.33)
-                cache_update = 'updates_all' if self.upgrades_as_updates else 'updates'
-                self._cachingRequest(cache_update)
-              elif self._status == DNFDragoraStatus.CACHING_UPDATE:
+                self._caching_filter_pending = None  # Clear pending before next request
+                self._cachingRequest('updates')
+              elif current_pending == 'updates':
                 po_list = info['result']
+                logger.info('Received %d update packages', len(po_list))
                 # we requested updates for caching
                 self._populateCache('updates', po_list)
                 self.infobar.set_progress(0.66)
+                
+                # Enable/disable "Update All" menu item based on updates availability
+                has_updates = len(po_list) > 0
+                try:
+                    if hasattr(self, 'ActionMenu') and 'update_all' in self.ActionMenu:
+                        self.menubar.setItemEnabled(self.ActionMenu['update_all'], has_updates)
+                except Exception:
+                    pass                
+                
+                self._caching_filter_pending = None  # Clear pending before next request
                 self._cachingRequest('available')
-              elif self._status == DNFDragoraStatus.CACHING_AVAILABLE:
+              elif current_pending == 'available':
                 po_list = info['result']
+                logger.info('Received %d available packages', len(po_list))
                 rpm_groups = None
                 if self.use_comps :
                   # let's show the dialog with a poll event
@@ -2787,28 +3313,65 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 # we requested available for caching
                 self.infobar.set_progress(1.0)
                 self._populateCache('available', po_list)
+                self._caching_filter_pending = None  # Clear pending
                 self._status = DNFDragoraStatus.RUNNING
 
-                #TODO check --install option how it works using dnf5daemon and fix eventually
                 if not self._runtime_option_managed and 'install' in self.options.keys() :
-                  pkgs = " ".join(i.replace(" ", "\\ ") for i in self.options['install'])
+                  # Convert relative RPM file paths to absolute paths
+                  pkgs = []
+                  for item in self.options['install']:
+                    if item.endswith('.rpm') and not os.path.isabs(item):
+                      # It's a relative RPM file path, convert to absolute
+                      pkgs.append(os.path.abspath(item))
+                    else:
+                      # It's either a package name or already an absolute path
+                      pkgs.append(item)
+
                   self.backend.Install(pkgs, sync=True)
-                  self.backend.BuildTransaction()
+                  self._buildTransaction()
+                  self._runtime_option_managed = True
+                  return
+
+                if not self._runtime_option_managed and 'show' in self.options.keys() :
+                  self._search_text = self.options['show']
+                  self._search_nevra = True
+                  self._search_scope = 'all'
+                  self._runtime_option_managed = True
+                  self._updateSearchState()
+                  self._searchPackages()
+
+                if not self._runtime_option_managed and 'remove' in self.options.keys() :
+                  pkgs = " ".join(self.options['remove'])
+                  self.backend.Remove(pkgs, sync=True)
+                  self._buildTransaction()
                   self._runtime_option_managed = True
                   return
 
                 self._enableAction(True)
                 filter = self._filterNameSelected()
-                self.checkAllButton.setEnabled(filter == 'to_update')
+                self.checkAllUpdateButton.setEnabled(filter == 'to_update')
 
-                sel = self.tree.selectedItem()
-                if sel :
+                if self._search_refresh_pending:
+                  logger.debug("Search refresh pending after cache rebuild; rerunning saved search with stored dialog options")
                   rebuild_package_list = self._rebuildPackageListWithSearchGroup()
                 else:
-                  rebuild_package_list = True
+                  sel = self.tree.selectedItem()
+                  if sel :
+                    rebuild_package_list = self._rebuildPackageListWithSearchGroup()
+                  else:
+                    rebuild_package_list = True
                 self.infobar.reset_all()
+                # Defensive reset for Qt/GNOME Wayland startup path:
+                # avoid leaving a stale busy cursor after caching completes.
+                MUI.YUI.app().normalCursor()
+              else:
+                logger.error('GetPackages response for unexpected filter: %s (status=%s)',
+                            current_pending, self._status)
+                self._caching_filter_pending = None
             else:
-              logger.error("GetPackages error: %s", info['error'])
+              logger.error("GetPackages error for filter=%s: %s", self._caching_filter_pending, info['error'])
+              self._caching_filter_pending = None  # Clear pending on error
+              MUI.YUI.app().normalCursor()
               raise UIError(str(info['error']))
 
           elif (event == 'RESearch'):
@@ -2843,6 +3406,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             if not info['error']:
               pkgs = None
               packages = self.backend.make_pkg_object_with_attr(info['result'])
+              logger.debug("Search event returned %d package rows", len(info['result']))
               self._showSearchResult(packages, createTreeItem=True)
             else:
               logger.error("Search error: %s", info['error'])
@@ -2900,26 +3464,6 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           elif (event == 'OnErrorMessage'):
             logger.warning(info)
             self._OnErrorMessage(info['session_object_path'], info['download_id'], info['error'], info['url'], info['metadata'])
-          elif (event == 'GetHistoryByDays'):
-            if not info['error']:
-              transaction_list = info['result']
-              self._load_history(transaction_list)
-              #### TODO fix history undo transaction
-              # TODO if performedUNDO:
-              # TODO   sel = self.tree.selectedItem()
-              # TODO   if sel :
-              # TODO       group = self._groupNameFromItem(self.groupList, sel)
-              # TODO       filter = self._filterNameSelected()
-              # TODO       if (group == "Search"):
-              # TODO           # force tree rebuilding to show new package status
-              # TODO           if not self._searchPackages(filter, True) :
-              # TODO               rebuild_package_list = True
-              # TODO       else:
-              # TODO           if filter == "to_update":
-              # TODO               self._fillGroupTree()
-              # TODO           rebuild_package_list = True
-          elif (event == 'HistoryUndo'):
-            self._undo_transaction()
           elif (event == 'SetEnabledRepos') or (event == 'SetDisabledRepos'):
             logger.debug("%s - %s", event, info['result'])
             self.backend.clear_cache(also_groups=True)
@@ -2931,6 +3475,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             logger.warning("Unmanaged event received %s - info %s", event, str(info))
 
       except Empty:
+          self._try_finalize_offline_finish_action()
           if self._status == DNFDragoraStatus.STARTUP:
             self._status = DNFDragoraStatus.RUNNING
             self._start_caching_packages()

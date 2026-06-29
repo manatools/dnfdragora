@@ -1,3 +1,47 @@
+2026-XX-YY v. 2.99.5
+--------------------
+- Updated Help dialog documentation.
+- Disabling Offline transaction and System ugrade if systemd is not running (for instance for PCLinuxOs)
+- Added an Offline transactions dialog to inspect, refresh, finalize, and clean pending offline transactions from the Actions menu.
+- Added Actions menu "System upgrade" workflow.
+- Added Actions menu "Advisory information" dialog with advisory filters and details view backed by dnf5daemon Advisory.list.
+- Removed legacy "upgrades_as_updates" behavior.
+- Moved updater-specific preferences to a dedicated "dnfdragora-updater" into options dialog for user settings.
+- Added new System preferences for "Force distsync as upgrade" to use distro sync instead of upgrade.
+- Added new System preferences for "Remove installed package to resolve transactions" (allow_erasing).
+- Added dnf5daemon Offline API handling.
+- Added offline transaction controls in transaction confirmation (Offline + Reboot/Power off).
+- Fixed download-end accounting to avoid stale in-progress download counters while transaction progress dialog is active.
+- Fixed #272 dnfdragora-update icon if updates are present. Relies on system-software-update theme one.
+- Reduced minimum dialog size to 900×600 in the hope to stay in limted high size monitors
+- Added --show and --remove parameters (thanks Ramil Nurmanov PR #270 and #271)
+- Used YPaned into OptionDialog and changed the minimum size to 700x300 (#235)
+- Added warning and info message minimum size (400x200) bug #269
+- Removed custom implementation of warning and info messages and used manatools.common one
+- Added Desktop Application filter fixes #258 and Mageia bug https://bugs.mageia.org/show_bug.cgi?id=34657
+- Added from Goal interface transaction reset and cancel and managed
+- Added Action menu Update All available when updates are present
+- Fixed no updates found during caching
+- Select all updates also in group view
+- Removed legacy about dialog and used python-manatools one with app metadata
+- Added History recent_changes view
+- Fixed dnfdragora --install command line for both local and from repo packages
+
+2026-05-31 v. 2.99.4
+--------------------
+- Re-enabled filter combobox after a downgrade action performed
+- Improved Load Configuration (user settings)
+- Fixed a crash when caching packages if package list was empty for a group
+- Fixed log enabling when default directory wasn't changed, logging wasn't really working
+
+2026-04-26 v. 2.99.3
+--------------------
+- New search dialog with dnfdaemon available options 
+- Use manatools.ui.BaseDialog for RepoDialog
+- Added back repo information content
+- Added checkboxes to enable/disable source, debuginfo and testing repositories
+- Update manual page #264
+
 2026-04-12 v. 2.99.2
 --------------------
 - Complete rework on UI moved to manatools.aui.

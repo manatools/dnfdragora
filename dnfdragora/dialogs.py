@@ -22,318 +22,1017 @@ from dnfdragora import const
 import dnfdragora.misc as misc
 from dnfdragora import const
 
+import re
 import gettext
 import logging
 logger = logging.getLogger('dnfdragora.dialogs')
 
-class HistoryView:
-    ''' History View Class'''
+
+def is_systemd_running():
+  """Check if systemd is running by checking the /run/systemd/system directory."""
+  return os.path.exists('/run/systemd/system')
+
+class HistoryDialog(basedialog.BaseDialog):
+    """History dialog for dnfdragora.
+
+    Provides two views of the dnf5 transaction history:
+      • Recent Changes  — org.rpm.dnf.v0.History.recent_changes()
+        Shows packages changed since a given date, grouped by action
+        (installed / removed / upgraded / downgraded).
+      • Transactions    — org.rpm.dnf.v0.History.list()
+        Shows a list of complete transactions with their packages.
+
+    Filters available in both modes:
+      - "Since" date (YYYY-MM-DD) converted to a Unix timestamp.
+    Additional filters:
+      - Recent Changes: checkboxes for each change type, advisories toggle.
+      - Transactions:   limit spinner, "contains package" text field.
+    """
+
+    # ── column indices in the result table ──────────────────────────────────
+    _COL_NAME    = 0
+    _COL_EVR     = 1
+    _COL_ARCH    = 2
+    _COL_ACTION  = 3
+    _COL_DATE    = 4
+    _COL_SUMMARY = 5
+
+    _COL_TXN_ID    = 0
+    _COL_TXN_DATE  = 1
+    _COL_TXN_USER  = 2
+    _COL_TXN_DESC  = 3
+    _COL_TXN_STATUS= 4
 
     def __init__(self, parent):
-        self.parent = parent
-        self.factory = self.parent.factory
-        ''' _tid: hash containing tid: YItem'''
-        self._tid = {}
+        basedialog.BaseDialog.__init__(
+            self,
+            _("History"),
+            "history",
+            basedialog.DialogType.POPUP,
+            900, 600,
+        )
+        self.parent  = parent
+        self._mode   = 'recent'   # 'recent' | 'transactions'
+        self._result_items = []   # cached last result rows
 
-    def _getTID(self, selectedItem):
-        ''' get the tid connected to selected item '''
-        tid = None
-        for t in self._tid.keys():
-            if self._tid[t] == selectedItem:
-                tid = t
-                break
-        return tid
+    # ── UI layout ────────────────────────────────────────────────────────────
 
-    def _populateHistory(self, selected=None):
-        '''
-        Populate history packages
-        @param selected: selected date from tree
-        '''
-        itemVect = []
-        if selected:
-            pkgs = []
-            tid = self._getTID(selected)
-            if tid:
-                pkgs = self.parent.backend.GetHistoryPackages(tid, sync=True)
+    def UIlayout(self, layout):
+        """Build the dialog widgets."""
+        factory = self.factory
 
-            # Order by package name.arch
-            names = {}
-            names_pair = {}
-            for elem in pkgs:
-                pkg_id, state, is_inst = elem
-                (n, e, v, r, a, repo_id) = misc.to_pkg_tuple(pkg_id)
-                na = "%s.%s" % (n, a)
-                if state in const.HISTORY_UPDATE_STATES:  # part of a pair
-                    if na in names_pair:
-                        # this is the updating pkg
-                        if state in const.HISTORY_NEW_STATES:
-                            names_pair[na].insert(0, elem)  # add first in list
-                        else:
-                            names_pair[na].append(elem)
-                    else:
-                        names_pair[na] = [elem]
-                else:
-                    names[na] = [elem]
+        # ── mode selector ───────────────────────────────────────────────────
+        # NOTE: The Transactions mode uses org.rpm.dnf.v0.History.list which is
+        # not yet in an official dnf5daemon release — the radio button is kept
+        # in the code but hidden so it can be enabled once the API ships.
+        mode_hbox = factory.createHBox(layout)
+        self._rb_recent = factory.createRadioButton(
+            mode_hbox, _("&Recent Changes"), True)
+        self._rb_recent.setNotify(True)
+        self._rb_txn = factory.createRadioButton(
+            mode_hbox, _("&Transactions"), False)
+        self._rb_txn.setNotify(True)
+        self._rb_txn.setEnabled(False)   # not yet available upstream
+        self.eventManager.addWidgetEvent(self._rb_recent, self._onModeChange)
+        self.eventManager.addWidgetEvent(self._rb_txn,    self._onModeChange)
+        mode_hbox.setVisible(False)       # hide whole row until both modes work
 
-            # order by primary state
-            states = {}
-            # pkgs without relatives
-            for na in sorted(list(names)):
-                pkg_list = names[na]
-                pkg_id, state, is_inst = pkg_list[
-                    0]  # Get first element (the primary (new) one )
-                if state in states:
-                    states[state].append(pkg_list)
-                else:
-                    states[state] = [pkg_list]
-            # pkgs with relatives
-            for na in sorted(list(names_pair)):
-                pkg_list = names_pair[na]
-                pkg_id, state, is_inst = pkg_list[
-                    0]  # Get first element (the primary (new) one )
-                if state in states:
-                    states[state].append(pkg_list)
-                else:
-                    states[state] = [pkg_list]
+        # ── common filter: Since date ────────────────────────────────────────
+        filter_frame = factory.createFrame(layout, _("Filters"))
+        filter_vbox  = factory.createVBox(filter_frame)
+        since_hbox   = factory.createHBox(filter_vbox)
+        factory.createLabel(since_hbox, _("Since (YYYY-MM-DD):"))
+        self._since_field = factory.createInputField(since_hbox, "")
+        self._since_field.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
-            # filling tree view items
-            for state in const.HISTORY_SORT_ORDER:
-                if state in states:
-                    num = len(states[state])
-                    cat = MUI.YTreeItem(label="%s (%i)"%(const.HISTORY_STATE_LABLES[state], num), is_open=True)
+        # ── recent-changes-specific filters ─────────────────────────────────
+        self._rc_frame = factory.createFrame(filter_vbox, _("Change types"))
+        rc_inner_vbox = factory.createVBox(self._rc_frame)
+        cb_hbox = factory.createHBox(rc_inner_vbox)
+        self._cb_installed  = factory.createCheckBox(cb_hbox, _("&Installed"),   True)
+        self._cb_removed    = factory.createCheckBox(cb_hbox, _("&Removed"),     True)
+        self._cb_upgraded   = factory.createCheckBox(cb_hbox, _("&Upgraded"),    True)
+        self._cb_downgraded = factory.createCheckBox(cb_hbox, _("&Downgraded"),  True)
+        adv_hbox = factory.createHBox(rc_inner_vbox)
+        self._cb_advisory   = factory.createCheckBox(adv_hbox, _("Include &advisories"), True)
+        self._cb_all_adv    = factory.createCheckBox(adv_hbox, _("All advisories"),       False)
+        self.eventManager.addWidgetEvent(self._cb_advisory, self._onAdvisoryToggle)
 
-                    for pkg_list in states[state]:
-                        pkg_id, st, is_inst = pkg_list[0]
-                        name = misc.pkg_id_to_full_name(pkg_id)
-                        pkg_cat = MUI.YTreeItem(parent=cat, label=name, is_open=True)
+        # ── transactions-specific filters ────────────────────────────────────
+        self._txn_frame = factory.createFrame(filter_vbox, _("Transaction filters"))
+        txn_hbox1 = factory.createHBox(self._txn_frame)
+        factory.createLabel(txn_hbox1, _("Limit:"))
+        self._limit_field = factory.createIntField(txn_hbox1, "", 1, 9999, 50)
+        factory.createLabel(txn_hbox1, _("  Contains package:"))
+        self._pkg_field = factory.createInputField(txn_hbox1, "")
+        self._pkg_field.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self._txn_frame.setEnabled(False)
+        self._txn_frame.setVisible(False)   # hidden until History.list ships officially
 
-                        if len(pkg_list) == 2:
-                            pkg_id, st, is_inst = pkg_list[1]
-                            name = misc.pkg_id_to_full_name(pkg_id)
-                            item = MUI.YTreeItem(parent=pkg_cat, label=name, is_open=True)
+        # ── results area ─────────────────────────────────────────────────────
+        # Recent-changes table
+        rc_header = MUI.YTableHeader()
+        rc_header.addColumn(_("Name"),    False)
+        rc_header.addColumn(_("EVR"),     False)
+        rc_header.addColumn(_("Arch"),    False)
+        rc_header.addColumn(_("Action"),  False)
+        rc_header.addColumn(_("Date"),    False)
+        rc_header.addColumn(_("Summary"), False)
+        self._rc_table = factory.createTable(layout, rc_header)
+        self._rc_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self._rc_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
-                    itemVect.append(cat)
+        # Transactions tree — hidden until History.list ships officially
+        self._txn_tree = factory.createTree(layout, _("Transactions"))
+        self._txn_tree.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self._txn_tree.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self._txn_tree.setVisible(False)
 
-        itemCollection = None
+        # ── bottom buttons ───────────────────────────────────────────────────
+        btn_align = factory.createRight(layout)
+        btn_hbox  = factory.createHBox(btn_align)
+        self._refresh_btn = factory.createPushButton(btn_hbox, _("&Refresh"))
+        self._close_btn   = factory.createPushButton(btn_hbox, _("&Close"))
+        self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
+        self.eventManager.addWidgetEvent(self._close_btn,   self.onQuitEvent)
+        self.eventManager.addCancelEvent(self.onCancelEvent)
+
+        # populate on open
+        self._onRefresh()
+
+    # ── helpers ──────────────────────────────────────────────────────────────
+
+    def _parse_since(self):
+        """Return a Unix timestamp from the Since field, or None if empty/invalid."""
+        text = self._since_field.value().strip()
+        if not text:
+            return None
+        for fmt in ('%Y-%m-%d %H:%M', '%Y-%m-%d'):
+            try:
+                dt = datetime.datetime.strptime(text, fmt)
+                return int(dt.timestamp())
+            except ValueError:
+                pass
+        return None
+
+    def _fmt_ts(self, ts):
+        """Format a Unix timestamp int as a locale date-time string."""
+        try:
+            return datetime.datetime.fromtimestamp(int(ts)).strftime('%Y-%m-%d %H:%M')
+        except Exception:
+            return str(ts)
+
+    # ── event handlers ───────────────────────────────────────────────────────
+
+    def _onModeChange(self, obj=None):
+        """Switch between Recent Changes and Transactions mode."""
+        if self._rb_recent.value():
+            self._mode = 'recent'
+            self._rc_frame.setEnabled(True)
+            self._txn_frame.setEnabled(False)
+            self._rc_table.setVisible(True)
+            self._txn_tree.setVisible(False)
+        else:
+            self._mode = 'transactions'
+            self._rc_frame.setEnabled(False)
+            self._txn_frame.setEnabled(True)
+            self._rc_table.setVisible(False)
+            self._txn_tree.setVisible(True)
+        self._onRefresh()
+
+    def _onAdvisoryToggle(self, obj=None):
+        """Enable/disable 'All advisories' depending on 'Include advisories'."""
+        self._cb_all_adv.setEnabled(self._cb_advisory.value())
+
+    def _onRefresh(self, obj=None):
+        """Fetch history data from the backend and refresh the results view."""
         MUI.YUI.app().busyCursor()
-        if selected:
-            itemCollection = itemVect
+        try:
+            since = self._parse_since()
+            if self._mode == 'recent':
+                self._refreshRecentChanges(since)
+            else:
+                self._refreshTransactions(since)
+        except Exception as exc:
+            logger.exception("HistoryDialog: refresh failed: %s", exc)
+        finally:
+            MUI.YUI.app().normalCursor()
 
-        self._historyView.deleteAllItems()
-        if selected:
-            self._historyView.addItems(itemCollection)
-
-        MUI.YUI.app().normalCursor()
-
-    def _populateTree(self, data):
-        '''
-        Populate history date tree
-        @param data list of date and tid
-        '''
-        self._tid = {}
-
-        main = {}
-        for tid, dt in data:
-            # example of dt : 2017-11-01T13:37:50
-            date = datetime.datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S")
-
-            # year
-            if date.year not in main.keys():
-                main[date.year] = {}
-                item = MUI.YTreeItem(label=date.strftime("%Y"), is_open=True)
-                main[date.year]['item'] = item
-
-            mdict = main[date.year]
-            # month
-            if date.month not in mdict.keys():
-                mdict[date.month] = {}
-                item = MUI.YTreeItem(parent=main[date.year]['item'], label=date.strftime("%m"), is_open=True)
-                mdict[date.month]['item'] = item
-
-            ddict = mdict[date.month]
-            # day
-            if date.day not in ddict.keys():
-                ddict[date.day] = {}
-                item = MUI.YTreeItem(parent=mdict[date.month]['item'], label=date.strftime("%d"), is_open=True)
-                ddict[date.day]['item'] = item
-            ddict[date.day][date.strftime("%H:%M:%S")] = tid
-            item = MUI.YTreeItem(parent=ddict[date.day]['item'], label=date.strftime("%H:%M:%S"), is_open=False)
-            self._tid[tid]= item
-
-        itemVect = []
-        for year in main.keys():
-            itemVect.append(main[year]['item'])
-
-        #self._dlg .pollEvent()
-
-        MUI.YUI.app().busyCursor()
-        itemCollection = itemVect
-        self._historyTree.deleteAllItems()
-        self._historyTree.addItems(itemCollection)
-        MUI.YUI.app().normalCursor()
-
-    def _run_transaction(self):
-        '''
-        Run the undo transaction
-        '''
-        locked = False
-        parent = self.parent
-        if not parent :
-            raise ValueError("Null parent")
-        performedUndo = False
+    def _refreshRecentChanges(self, since):
+        """Call History.recent_changes and populate the table."""
+        options = {
+            'installed_packages':  self._cb_installed.value(),
+            'removed_packages':    self._cb_removed.value(),
+            'upgraded_packages':   self._cb_upgraded.value(),
+            'downgraded_packages': self._cb_downgraded.value(),
+            'include_advisory':    self._cb_advisory.value(),
+            'all_advisories':      self._cb_all_adv.value(),
+            'package_attrs':       ['name', 'evr', 'arch', 'summary'],
+        }
+        if since is not None:
+            options['since'] = since
 
         try:
-            rc, result = parent.backend.GetTransaction()
-            if rc :
-                transaction_result_dlg = TransactionResult(parent)
-                ok = transaction_result_dlg.run(result)
+            changeset = self.parent.backend.HistoryRecentChanges(options)
+        except Exception as exc:
+            logger.error("HistoryRecentChanges D-Bus call failed: %s", exc)
+            self._rc_table.deleteAllItems()
+            err_item = MUI.YTableItem()
+            err_item.addCell(_("Error: %s") % str(exc))
+            err_item.addCell('')
+            err_item.addCell('')
+            err_item.addCell('')
+            err_item.addCell('')
+            err_item.addCell('')
+            self._rc_table.addItems([err_item])
+            return
 
-                if ok:  # Ok pressed
-                    parent.infobar.info(_('Undo transaction'))
-                    rc, result = parent.backend.RunTransaction()
-                    # This can happen more than once (more gpg keys to be
-                    # imported)
-                    while rc == 1:
-                        logger.debug('GPG key missing: %s' % repr(result))
-                        # get info about gpgkey to be confirmed
-                        values = parent._gpg_confirm
-                        if values:  # There is a gpgkey to be verified
-                            (key_id, user_ids, key_fingerprint, key_url, timestamp) = values
-                            logger.debug('GPGKey : %s' % repr(values))
-                            resp = ask_for_gpg_import(values)
-                            parent.backend.ConfirmGPGImport(key_id, resp)
-                            # tell the backend that the gpg key is confirmed
-                            # rerun the transaction
-                            # FIXME: It should not be needed to populate
-                            # the transaction again
-                            if resp:
-                                rc, result = parent.backend.GetTransaction()
-                                rc, result = parent.backend.RunTransaction()
-                            else:
-                                # NOTE TODO answer no is the only way to exit, since it seems not
-                                # to install the key :(
-                                break
-                        else:  # error in signature verification
-                            infoMsgBox({'title' : _('Error checking package signatures'),
-                                                'text' : '<br>'.join(result), 'richtext' : True })
-                            break
-                    if rc == 4:  # Download errors
-                        infoMsgBox({'title'  : ngettext('Downloading error',
-                            'Downloading errors', len(result)), 'text' : '<br>'.join(result), 'richtext' : True })
-                        logger.error('Download error')
-                        logger.error(result)
-                    elif rc != 0:  # other transaction errors
-                        infoMsgBox({'title'  : ngettext('Error in transaction',
-                                    'Errors in transaction', len(result)), 'text' :  '<br>'.join(result), 'richtext' : True })
-                        logger.error('RunTransaction failure')
-                        logger.error(result)
+        # Action labels for display
+        action_labels = {
+            'installed':  _('installed'),
+            'removed':    _('removed'),
+            'upgraded':   _('upgraded'),
+            'downgraded': _('downgraded'),
+        }
 
-                    parent.release_root_backend()
-                    parent.backend.reload()
-                    performedUndo = (rc == 0)
-            else:
-                logger.error('BuildTransaction failure')
-                logger.error(result)
-                s = "%s"%result
-                warningMsgBox({'title' : _("Build transaction failure"), "text": s, "richtext":True})
-        except:
-            exc, msg = misc.parse_dbus_error()
-            if 'AccessDeniedError' in exc:
-                logger.warning("User pressed cancel button in policykit window")
-                logger.warning("dnfdaemon client AccessDeniedError: %s ", msg)
-            else:
-                pass
+        items = []
+        for change_type, pkgs in (changeset or {}).items():
+            label = action_labels.get(change_type, change_type)
+            for pkg in (pkgs or []):
+                name    = pkg.get('name', '')
+                evr     = pkg.get('evr', '')
+                arch    = pkg.get('arch', '')
+                summary = pkg.get('summary', '')
+                ts      = pkg.get('transaction_time', '')
+                date    = self._fmt_ts(ts) if ts else ''
+                item = MUI.YTableItem()
+                item.addCell(name)
+                item.addCell(evr)
+                item.addCell(arch)
+                item.addCell(label)
+                item.addCell(date)
+                item.addCell(summary)
+                items.append(item)
 
-        return performedUndo
+        self._rc_table.deleteAllItems()
+        if items:
+            self._rc_table.addItems(items)
+        else:
+            empty_item = MUI.YTableItem()
+            empty_item.addCell(_("No results"))
+            empty_item.addCell('')
+            empty_item.addCell('')
+            empty_item.addCell('')
+            empty_item.addCell('')
+            empty_item.addCell('')
+            self._rc_table.addItems([empty_item])
 
-    def _on_history_undo(self):
-      '''Handle the undo button'''
+    def _refreshTransactions(self, since):
+        """Call History.list and populate the transaction tree."""
+        options = {
+            'transaction_attrs': ['id', 'start', 'end', 'user_id', 'description', 'status'],
+            'package_attrs':     ['name', 'arch', 'evr', 'action'],
+            'include_packages':  True,
+            'reverse':           False,
+        }
+        limit_val = self._limit_field.value()
+        if limit_val > 0:
+            options['limit'] = limit_val
+        if since is not None:
+            options['since'] = since
+        pkg_filter = self._pkg_field.value().strip()
+        if pkg_filter:
+            options['contains_pkgs'] = [p.strip() for p in pkg_filter.split(',') if p.strip()]
 
-      sel = self._historyTree.selectedItem()
-      tid = self._getTID(sel)
-      if tid:
-        logger.debug('History Undo : %s', tid)
-        self.parent.backend.HistoryUndo(tid)
-        ## TODO REMOVE rc, messages = self.parent.backend.HistoryUndo(tid)
-        ## TODO REMOVE if rc:
-        ## TODO REMOVE     undo = self._run_transaction()
-        ## TODO REMOVE else:
-        ## TODO REMOVE     msg = "Can't undo history transaction :\n%s" % \
-        ## TODO REMOVE         ("\n".join(messages))
-        ## TODO REMOVE     logger.debug(msg)
-        ## TODO REMOVE     warningMsgBox({
-        ## TODO REMOVE         "title": _("History undo"),
-        ## TODO REMOVE         "text":  msg,
-        ## TODO REMOVE         "richtext": False,
-        ## TODO REMOVE         })
-      return True
+        try:
+            transactions = self.parent.backend.HistoryList(options)
+        except Exception as exc:
+            logger.error("HistoryList D-Bus call failed: %s", exc)
+            self._txn_tree.deleteAllItems()
+            err_item = MUI.YTreeItem(label=_("Error: %s") % str(exc), is_open=False)
+            self._txn_tree.addItems([err_item])
+            return
+
+        action_labels = {
+            'Install':   _('install'),
+            'Remove':    _('remove'),
+            'Upgrade':   _('upgrade'),
+            'Downgrade': _('downgrade'),
+            'Reinstall': _('reinstall'),
+        }
+
+        tree_items = []
+        for txn in (transactions or []):
+            tid    = txn.get('id', '?')
+            start  = txn.get('start', None)
+            date   = self._fmt_ts(start) if start else '?'
+            user   = txn.get('user_id', '')
+            desc   = txn.get('description', '')
+            status = txn.get('status', '')
+            label  = f"#{tid}  {date}  {user}  {status}"
+            if desc:
+                label += f"  [{desc}]"
+            root = MUI.YTreeItem(label=label, is_open=False)
+
+            for action_key in ('installed', 'removed', 'upgraded', 'downgraded', 'reinstalled'):
+                pkgs = txn.get(action_key, [])
+                if not pkgs:
+                    continue
+                act_label = action_labels.get(action_key.rstrip('d'), action_key)
+                cat = MUI.YTreeItem(parent=root,
+                                    label=f"{act_label} ({len(pkgs)})",
+                                    is_open=True)
+                for pkg in pkgs:
+                    name = pkg.get('name', '')
+                    evr  = pkg.get('evr', '')
+                    arch = pkg.get('arch', '')
+                    MUI.YTreeItem(parent=cat, label=f"{name}-{evr}.{arch}", is_open=False)
+            tree_items.append(root)
+
+        self._txn_tree.deleteAllItems()
+        if tree_items:
+            self._txn_tree.addItems(tree_items)
+        else:
+            empty_item = MUI.YTreeItem(label=_("No results"), is_open=False)
+            self._txn_tree.addItems([empty_item])
+
+    # ── base class callbacks ─────────────────────────────────────────────────
+
+    def onQuitEvent(self, obj=None):
+        self.ExitLoop()
+
+    def onCancelEvent(self, obj=None):
+        self.ExitLoop()
 
 
-    def run(self, data):
-        '''
-        Populate the TreeView with data and run the dialog
-        @param data: list of transaction information date
-        @return if undo action has been performed
-        '''
+class AdvisoryDialog(basedialog.BaseDialog):
+    '''
+    Dialog for browsing advisory information exposed by dnf5daemon.
+    '''
 
-        ## push application title
-        appTitle = MUI.YUI.app().applicationTitle()
-        ## set new title to get it in dialog
-        MUI.YUI.app().setApplicationTitle(_("History") )
-        minWidth  = 700  # pixels
-        minHeight = 500  # pixels
-        self._dlg     = self.factory.createPopupDialog()
-        minSize = self.factory.createMinSize(self._dlg , minWidth, minHeight)
-        layout  = self.factory.createVBox(minSize)
-        hbox = self.factory.createHBox(layout)
-        self._historyTree = self.factory.createTree(hbox, _("History (Date/Time)"))
-        self._historyTree.setNotify(True)
-        self._historyView = self.factory.createTree(hbox,_("Transaction History"))
+    def __init__(self, parent):
+      basedialog.BaseDialog.__init__(
+        self,
+        _("Advisory information"),
+        "advisory-information",
+        basedialog.DialogType.POPUP,
+        1040, 680,
+      )
+      self.parent = parent
+      self._table_item_to_advisory = {}
+      self._last_results = []
 
-        align = self.factory.createRight(layout)
-        hbox = self.factory.createHBox(align)
-        self._undoButton = self.factory.createPushButton(hbox, _("&Undo"))
-        self._undoButton.setDisabled()
-        self._closeButton = self.factory.createPushButton(hbox, _("&Close"))
+    def UIlayout(self, layout):
+      factory = self.factory
 
-        self._populateTree(data)
-        self._populateHistory()
+      title = factory.createHeading(layout, _("Advisory information"))
+      title.setAutoWrap()
 
-        #self._dlg .setDefaultButton(self._closeButton)
+      # Layout: vertical paned split in 3 sections (filters, advisories, advisory info).
+      split_outer = factory.createPaned(layout, MUI.YUIDimension.YD_VERT)
+      filter_frame = factory.createFrame(split_outer, _("Filters"))
+      split_inner = factory.createPaned(split_outer, MUI.YUIDimension.YD_VERT)
+      results_frame = factory.createFrame(split_inner, _("Advisories"))
+      info_frame = factory.createFrame(split_inner, _("Advisory details"))
+      
+      filters_vbox = factory.createVBox(filter_frame)
+      advisories_vbox = factory.createVBox(results_frame)
+      details_vbox = factory.createVBox(info_frame)
 
-        performedUndo = False
-        while (True) :
-            event = self._dlg.waitForEvent()
-            eventType = event.eventType()
-            #event type checking
-            if (eventType == MUI.YEventType.CancelEvent) :
-                break
-            elif (eventType == MUI.YEventType.WidgetEvent) :
-                # widget selected
-                widget = event.widget()
+      filter_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      split_outer.setWeight(MUI.YUIDimension.YD_VERT, 35)
+      #split_inner.setWeight(MUI.YUIDimension.YD_VERT, 65)
+      advisories_vbox.setWeight(MUI.YUIDimension.YD_VERT, 60)
+      details_vbox.setWeight(MUI.YUIDimension.YD_VERT, 40)
 
-                if (widget == self._undoButton) :
-                    performedUndo = self._on_history_undo()
-                    if performedUndo:
-                        break
-                elif (widget == self._closeButton) :
-                    break
-                elif (widget == self._historyTree):
-                    sel = self._historyTree.selectedItem()
-                    if sel :
-                        show_info = sel in self._tid.values()
-                        self._undoButton.setEnabled(show_info)
-                        #self._closeButton.setDefaultButton()
-                        if not show_info:
-                            sel = None
-                    self._populateHistory(sel)
+      # row1 => availability/flags column, limit-to-types frame, limit-to-severities frame
+      row1 = factory.createHBox(filters_vbox)
 
-        self._dlg.destroy()
+      left_col = factory.createVBox(row1)
+      availability_row = factory.createHBox(left_col)
+      factory.createLabel(availability_row, _("Availability:"))
+      self._availability = factory.createComboBox(availability_row, "")
+      self._availability_items = {}
+      availability_values = ("available", "updates", "installed", "all")
+      availability_items = []
+      for value in availability_values:
+        item = MUI.YItem(value)
+        if value == "available":
+          item.setSelected(True)
+        self._availability_items[value] = item
+        availability_items.append(item)
+      self._availability.addItems(availability_items)
 
-        #restore old application title
-        MUI.YUI.app().setApplicationTitle(appTitle)
+      with_cve_row = factory.createHBox(left_col)
+      self._with_cve = factory.createCheckBox(with_cve_row, _("With CVE"), False)
+      with_bz_row = factory.createHBox(left_col)
+      self._with_bz = factory.createCheckBox(with_bz_row, _("With Bugzilla"), False)
 
-        return performedUndo
+      type_frame = factory.createFrame(row1, _("Limit to types"))
+      type_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      type_box_vbox = factory.createVBox(type_frame)
+      self._type_box = factory.createMultiSelectionBox(type_box_vbox, "")
+      self._type_items = {}
+      type_values = ("security", "bugfix", "enhancement", "newpackage")
+      type_items = []
+      for value in type_values:
+        item = MUI.YItem(value)
+        self._type_items[value] = item
+        type_items.append(item)
+      self._type_box.addItems(type_items)
+
+      severity_frame = factory.createFrame(row1, _("Limit to severities"))
+      severity_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      severity_box_vbox = factory.createVBox(severity_frame)
+      self._severity_box = factory.createMultiSelectionBox(severity_box_vbox, "")
+      self._severity_items = {}
+      severity_values = ("critical", "important", "moderate", "low", "none")
+      severity_items = []
+      for value in severity_values:
+        item = MUI.YItem(value)
+        self._severity_items[value] = item
+        severity_items.append(item)
+      self._severity_box.addItems(severity_items)
+      
+      row2 = factory.createHBox(filters_vbox)
+      col1 = factory.createVBox(row2)
+      col2 = factory.createVBox(row2)
+
+      # col1 => 2 input fields (Advisory IDs + Reference BZs)
+      self._names_input = factory.createInputField(col1, _("Advisory IDs (comma-separated):"))
+      self._names_input.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._reference_bzs = factory.createInputField(col1, _("Reference BZ IDs (comma-separated)"))
+      self._reference_bzs.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      # col2 => 2 input fields (Contains package + Reference CVEs)
+      self._contains_pkg = factory.createInputField(col2, _("Contains package:"))
+      self._contains_pkg.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._reference_cves = factory.createInputField(col2, _("Reference CVEs (comma-separated)"))
+      self._reference_cves.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      factory.createVSpacing(filters_vbox, 2)
+
+      header = MUI.YTableHeader()
+      header.addColumn(_("Advisory ID"), False)
+      header.addColumn(_("Type"), False)
+      header.addColumn(_("Severity"), False)
+      header.addColumn(_("Title"), False)
+      self._table = factory.createTable(advisories_vbox, header)
+      self._table.setNotify(True)
+      self.eventManager.addWidgetEvent(self._table, self._onTableEvent, True)
+      self._table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+      self._table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._table.setWeight(MUI.YUIDimension.YD_VERT, 100)
+
+      # No collapsible details frame: details table is always visible.
+      details_header = MUI.YTableHeader()
+      details_header.addColumn(_("Field"), False)
+      details_header.addColumn(_("Value"), False)
+      self._details_table = factory.createTable(details_vbox, details_header)
+      self._details_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+      self._details_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self._details_table.setWeight(MUI.YUIDimension.YD_VERT, 100)
+
+      button_row = factory.createHBox(layout)
+      factory.createHStretch(button_row)
+      self._refresh_btn = factory.createPushButton(button_row, _("&Refresh"))
+      self._close_btn = factory.createPushButton(button_row, _("&Close"))
+      self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
+      self.eventManager.addWidgetEvent(self._close_btn, self.onQuitEvent)
+      self.eventManager.addCancelEvent(self.onCancelEvent)
+
+      self._onRefresh()
+
+    def _split_csv(self, text):
+      values = []
+      for value in (text or '').split(','):
+        cleaned = value.strip()
+        if cleaned:
+          values.append(cleaned)
+      return values
+
+    def _selected_multi(self, box, item_map):
+      selected = []
+      try:
+        sel_items = box.selectedItems()
+      except Exception:
+        sel_items = []
+      for key, item in item_map.items():
+        if item in sel_items:
+          selected.append(key)
+      return selected
+
+    def _collect_options(self):
+      options = {
+        'advisory_attrs': [
+          'advisoryid', 'name', 'title', 'type', 'severity', 'status',
+          'vendor', 'description', 'buildtime', 'message', 'rights',
+          'collections', 'references'
+        ],
+      }
+
+      availability = self._availability.value().strip()
+      if availability and availability != 'all':
+        options['availability'] = availability
+
+      names = self._split_csv(self._names_input.value())
+      if names:
+        options['names'] = names
+
+      selected_types = self._selected_multi(self._type_box, self._type_items)
+      if selected_types:
+        options['types'] = selected_types
+
+      selected_severities = self._selected_multi(self._severity_box, self._severity_items)
+      if selected_severities:
+        options['severities'] = selected_severities
+
+      pkg = self._contains_pkg.value().strip()
+      if pkg:
+        options['contains_pkgs'] = [pkg]
+
+      reference_bzs = self._split_csv(self._reference_bzs.value())
+      if reference_bzs:
+        options['reference_bzs'] = reference_bzs
+
+      reference_cves = self._split_csv(self._reference_cves.value())
+      if reference_cves:
+        options['reference_cves'] = reference_cves
+
+      options['with_cve'] = bool(self._with_cve.value())
+      options['with_bz'] = bool(self._with_bz.value())
+      return options
+
+    def _stringify(self, value):
+      if value is None:
+        return ''
+      if isinstance(value, list):
+        return ', '.join(self._stringify(v) for v in value)
+      if isinstance(value, dict):
+        parts = []
+        for key in sorted(value.keys()):
+          parts.append('%s=%s' % (str(key), self._stringify(value[key])))
+        return '; '.join(parts)
+      return str(value)
+
+    def _render_details(self, advisory=None):
+      self._details_table.deleteAllItems()
+      if not advisory:
+        row = MUI.YTableItem()
+        row.addCell(_("Selection"))
+        row.addCell(_("No advisory selected"))
+        self._details_table.addItems([row])
+        return
+
+      keys = [
+        ('advisoryid', _("Advisory ID")),
+        ('name', _("Name")),
+        ('title', _("Title")),
+        ('type', _("Type")),
+        ('severity', _("Severity")),
+        ('status', _("Status")),
+        ('vendor', _("Vendor")),
+        ('buildtime', _("Build time")),
+        ('description', _("Description")),
+        ('message', _("Message")),
+        ('rights', _("Rights")),
+        ('collections', _("Collections")),
+        ('references', _("References")),
+      ]
+      rows = []
+      for key, label in keys:
+        value = advisory.get(key)
+        text = self._stringify(value)
+        if text:
+          row = MUI.YTableItem()
+          row.addCell(label)
+          row.addCell(text)
+          rows.append(row)
+
+      if not rows:
+        row = MUI.YTableItem()
+        row.addCell(_("Details"))
+        row.addCell(_("No details available for selected advisory"))
+        rows.append(row)
+      self._details_table.addItems(rows)
+
+    def _render_rows(self, advisories):
+      self._table.deleteAllItems()
+      self._table_item_to_advisory = {}
+      self._last_results = advisories or []
+      items = []
+      for advisory in advisories or []:
+        row = MUI.YTableItem()
+        row.addCell(str(advisory.get('advisoryid', advisory.get('name', ''))))
+        row.addCell(str(advisory.get('type', '')))
+        row.addCell(str(advisory.get('severity', '')))
+        row.addCell(str(advisory.get('title', '')))
+        self._table_item_to_advisory[row] = advisory
+        items.append(row)
+
+      if not items:
+        empty_row = MUI.YTableItem()
+        empty_row.addCell(_("No results"))
+        empty_row.addCell('')
+        empty_row.addCell('')
+        empty_row.addCell('')
+        items.append(empty_row)
+
+      self._table.addItems(items)
+      if advisories:
+        self._render_details(advisories[0])
+      else:
+        self._render_details(None)
+
+    def _onTableEvent(self, yui_event):
+      selected = self._table.selectedItem()
+      advisory = self._table_item_to_advisory.get(selected)
+      self._render_details(advisory)
+
+    def _onRefresh(self, obj=None):
+      MUI.YUI.app().busyCursor()
+      try:
+        options = self._collect_options()
+        advisories = self.parent.backend.Advisories(options, sync=True)
+        self._render_rows(advisories)
+      except Exception as err:
+        logger.exception("Advisories failed: %s", err)
+        self._table.deleteAllItems()
+        self._table_item_to_advisory = {}
+        row = MUI.YTableItem()
+        row.addCell(_("Error"))
+        row.addCell('')
+        row.addCell('')
+        row.addCell(str(err))
+        self._table.addItems([row])
+        self._render_details(None)
+      finally:
+        MUI.YUI.app().normalCursor()
+
+    def onCancelEvent(self, obj=None):
+      self.ExitLoop()
+
+    def onQuitEvent(self, obj=None):
+      self.ExitLoop()
+
+
+class OfflineTransactionsDialog(basedialog.BaseDialog):
+    '''
+    Dialog to inspect and manage pending offline transactions.
+    '''
+
+    def __init__(self, parent):
+      basedialog.BaseDialog.__init__(
+        self,
+        _("Offline transactions"),
+        "offline-transactions",
+        basedialog.DialogType.POPUP,
+        820, 520,
+      )
+      self.parent = parent
+      self.backend = self.parent.backend
+      self._pending = False
+      self._status_data = {}
+      self._selected_finish_action = 'reboot'
+
+    def UIlayout(self, layout):
+      '''Build the dialog widgets.'''
+      factory = self.factory
+
+      title_hbox = factory.createHBox(layout)
+      self._title_label = factory.createLabel(
+        title_hbox, _("Offline transaction status"))
+      self._title_label.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      self._summary_label = factory.createLabel(layout, "")
+
+      status_frame = factory.createFrame(layout, _("Status details"))
+      status_vbox = factory.createVBox(status_frame)
+      header = MUI.YTableHeader()
+      header.addColumn(_("Key"), False)
+      header.addColumn(_("Value"), False)
+      self._status_table = factory.createTable(status_vbox, header)
+      self._status_table.setStretchable(MUI.YUIDimension.YD_VERT, True)
+      self._status_table.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+      finish_frame = factory.createFrame(layout, _("Finish action"))
+      finish_hbox = factory.createHBox(finish_frame)
+      self._rb_reboot = factory.createRadioButton(finish_hbox, _("Reboot"), True)
+      self._rb_poweroff = factory.createRadioButton(finish_hbox, _("Power off"), False)
+      self._rb_reboot.setNotify(True)
+      self._rb_poweroff.setNotify(True)
+      self._rb_reboot.setEnabled(False)
+      self._rb_poweroff.setEnabled(False)
+      self.eventManager.addWidgetEvent(self._rb_reboot, self._onFinishActionChange, True)
+      self.eventManager.addWidgetEvent(self._rb_poweroff, self._onFinishActionChange, True)
+
+      button_row = factory.createHBox(layout)
+      self._refresh_btn = factory.createPushButton(button_row, _("&Refresh"))
+      self._cancel_btn = factory.createPushButton(button_row, _("&Cancel"))
+      self._finalize_btn = factory.createPushButton(button_row, _("&Finalize"))
+      self._clean_btn = factory.createPushButton(button_row, _("&Clean"))
+      self._close_btn = factory.createPushButton(button_row, _("&Close"))
+
+      self._refresh_btn.setHelpText(_("Reload the current offline transaction status."))
+      self._cancel_btn.setHelpText(_("Cancel the pending offline transaction. Available only when one is scheduled."))
+      self._finalize_btn.setHelpText(_("Set the finish action for the pending offline transaction to reboot or power off."))
+      self._clean_btn.setHelpText(_("Remove any stored offline transaction data, even if no transaction is currently pending."))
+      self._close_btn.setHelpText(_("Close this dialog without changing the offline transaction state."))
+
+      self.eventManager.addWidgetEvent(self._refresh_btn, self._onRefresh)
+      self.eventManager.addWidgetEvent(self._cancel_btn, self._onCancelOffline)
+      self.eventManager.addWidgetEvent(self._finalize_btn, self._onFinalize)
+      self.eventManager.addWidgetEvent(self._clean_btn, self._onClean)
+      self.eventManager.addWidgetEvent(self._close_btn, self.onQuitEvent)
+      self.eventManager.addCancelEvent(self.onCancelEvent)
+
+      self._refresh_status()
+
+    def _set_finish_controls_enabled(self, enabled):
+      self._rb_reboot.setEnabled(enabled)
+      self._rb_poweroff.setEnabled(enabled)
+      self._cancel_btn.setEnabled(enabled)
+      self._finalize_btn.setEnabled(enabled)
+      self._clean_btn.setEnabled(True)
+
+    def _flatten_status(self, prefix, value):
+      rows = []
+      if isinstance(value, dict):
+        for key in sorted(value.keys()):
+          child_prefix = f"{prefix}.{key}" if prefix else key
+          rows.extend(self._flatten_status(child_prefix, value[key]))
+      elif isinstance(value, list):
+        rows.append((prefix, ", ".join(str(v) for v in value)))
+      else:
+        rows.append((prefix, str(value)))
+      return rows
+
+    def _render_status(self):
+      self._status_table.deleteAllItems()
+      rows = []
+      rows.append((_("Pending"), _("Yes") if self._pending else _("No")))
+      if self._status_data:
+        rows.extend(self._flatten_status(_("Data"), self._status_data))
+      if self._pending and 'finish_action' not in self._status_data:
+        rows.append((_("Finish action"), self._selected_finish_action))
+
+      items = []
+      for key, value in rows:
+        item = MUI.YTableItem()
+        item.addCell(str(key))
+        item.addCell(str(value))
+        items.append(item)
+      if items:
+        self._status_table.addItems(items)
+      self._summary_label.setValue(
+        _("An offline transaction is pending.") if self._pending else _("No offline transaction is currently pending."))
+      self._set_finish_controls_enabled(self._pending)
+      if self._pending:
+        self._rb_reboot.setValue(self._selected_finish_action != 'poweroff')
+        self._rb_poweroff.setValue(self._selected_finish_action == 'poweroff')
+
+    def _refresh_status(self):
+      try:
+        MUI.YUI.app().busyCursor()
+        pending, transaction_status = self.backend.OfflineGetStatus(sync=True)
+        self._pending = bool(pending)
+        self._status_data = transaction_status if isinstance(transaction_status, dict) else {'status': transaction_status}
+        if isinstance(transaction_status, dict):
+          for key in ('finish_action', 'action'):
+            if key in transaction_status and str(transaction_status[key]) in ('reboot', 'poweroff'):
+              self._selected_finish_action = str(transaction_status[key])
+              break
+        self._render_status()
+      except Exception as err:
+        logger.exception("OfflineGetStatus failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Could not read offline transaction status: %s') % str(err),
+          'richtext': True,
+        })
+      finally:
+        MUI.YUI.app().normalCursor()
+
+    def _onFinishActionChange(self, obj):
+      if obj.widgetClass() == "YRadioButton":
+        if self._rb_poweroff.value():
+          self._selected_finish_action = 'poweroff'
+        else:
+          self._selected_finish_action = 'reboot'
+      self._render_status()
+
+    def _onRefresh(self):
+      self._refresh_status()
+
+    def _onCancelOffline(self):
+      if not self._pending:
+        common.infoMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('There is no offline transaction to cancel.'),
+          'richtext': True,
+        })
+        return
+      try:
+        success, error_msg = self.backend.OfflineCancel(sync=True)
+        if success:
+          self._pending = False
+          self._status_data = {}
+          self._refresh_status()
+          common.infoMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Offline transaction has been canceled.'),
+            'richtext': True,
+          })
+        else:
+          common.warningMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Failed to cancel offline transaction: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("OfflineCancel failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Failed to cancel offline transaction: %s') % str(err),
+          'richtext': True,
+        })
+
+    def _onFinalize(self):
+      if not self._pending:
+        common.infoMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('There is no offline transaction to finalize.'),
+          'richtext': True,
+        })
+        return
+      try:
+        action = 'poweroff' if self._rb_poweroff.value() else 'reboot'
+        success, error_msg = self.backend.OfflineSetFinishAction(action, sync=True)
+        if success:
+          self._selected_finish_action = action
+          self._refresh_status()
+          common.infoMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Offline transaction finish action set to %s.') % action,
+            'richtext': True,
+          })
+        else:
+          common.warningMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Failed to set offline finish action: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("OfflineSetFinishAction failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Failed to set offline finish action: %s') % str(err),
+          'richtext': True,
+        })
+
+    def _onClean(self):
+      try:
+        success, error_msg = self.backend.OfflineClean(sync=True)
+        if success:
+          self._pending = False
+          self._status_data = {}
+          self._refresh_status()
+          common.infoMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Offline transaction data has been cleaned.'),
+            'richtext': True,
+          })
+        else:
+          common.warningMsgBox({
+            'title': _('Offline transactions'),
+            'size': (400, 200),
+            'text': _('Failed to clean offline transaction data: %s') % error_msg,
+            'richtext': True,
+          })
+      except Exception as err:
+        logger.exception("OfflineClean failed: %s", err)
+        common.warningMsgBox({
+          'title': _('Offline transactions'),
+          'size': (400, 200),
+          'text': _('Failed to clean offline transaction data: %s') % str(err),
+          'richtext': True,
+        })
+
+    def onCancelEvent(self, obj=None):
+      self.ExitLoop()
+
+    def onQuitEvent(self, obj=None):
+      self.ExitLoop()
+
+
+class SystemUpgradeDialog(basedialog.BaseDialog):
+  '''
+  Dialog to collect and confirm system-upgrade parameters.
+  '''
+
+  def __init__(self, parent):
+    basedialog.BaseDialog.__init__(
+      self,
+      _("System upgrade"),
+      "system-upgrade",
+      basedialog.DialogType.POPUP,
+      760, 420,
+    )
+    self.parent = parent
+    self.accepted = False
+    self.releasever = ""
+
+  def UIlayout(self, layout):
+    title = self.factory.createHeading(layout, _("System upgrade (advanced operation)"))
+    title.setAutoWrap()
+
+    warn = self.factory.createLabel(
+      layout,
+      _("Warning: this operation is intended for expert users only and runs under your full responsibility."))
+    warn.setAutoWrap()
+
+    details = self.factory.createLabel(
+      layout,
+      _("Examples: Mageia development release is often 'cauldron', Fedora development release is often 'rawhide'.") +
+      _(" For stable upgrade, the target is usually current release +1 when available."))
+    details.setAutoWrap()
+
+    self._ack_frame = self.factory.createCheckBoxFrame(
+      layout,
+      _("I understand the risks and want to configure system upgrade options"),
+      False)
+    self._ack_frame.setNotify(True)
+    self.eventManager.addWidgetEvent(self._ack_frame, self._onAcknowledgeChanged, True)
+    self._ack_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    self._ack_frame.showContent(False)
+
+    # CheckBoxFrame is a single-child container: put all advanced controls
+    # inside one VBox child.
+    ack_content = self.factory.createVBox(self._ack_frame)
+
+    hbox = self.factory.createHBox(ack_content)
+    self.factory.createLabel(hbox, _("Release ver:"))
+    self._releasever_input = self.factory.createInputField(hbox, "")
+    self._releasever_input.setNotify(True)
+    self.eventManager.addWidgetEvent(self._releasever_input, self._onReleaseverChanged, True)
+    self._releasever_input.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+
+    hint = self.factory.createLabel(
+      ack_content,
+      _("Insert the target releasever exactly as expected by repositories metadata."))
+    hint.setAutoWrap()
+
+    buttons = self.factory.createHBox(layout)
+    self.factory.createHStretch(buttons)
+    self._proceed_btn = self.factory.createPushButton(buttons, _("&Proceed"))
+    self._cancel_btn = self.factory.createPushButton(buttons, _("&Cancel"))
+    self._proceed_btn.setEnabled(False)
+
+    self.eventManager.addWidgetEvent(self._proceed_btn, self._onProceed)
+    self.eventManager.addWidgetEvent(self._cancel_btn, self._onCancel)
+    self.eventManager.addCancelEvent(self._onCancel)
+
+  def _updateProceedState(self):
+    releasever = self._releasever_input.value().strip()
+    can_proceed = bool(self._ack_frame.value() and releasever)
+    self._proceed_btn.setEnabled(can_proceed)
+
+  def _onAcknowledgeChanged(self, obj):
+    if obj.widgetClass() == "YCheckBoxFrame":
+      obj.showContent(obj.value())
+    self._updateProceedState()
+
+  def _onReleaseverChanged(self, obj):
+    self._updateProceedState()
+
+  def _onProceed(self):
+    releasever = self._releasever_input.value().strip()
+    if not releasever:
+      return
+    self.releasever = releasever
+    self.accepted = True
+    self.ExitLoop()
+
+  def _onCancel(self):
+    self.accepted = False
+    self.releasever = ""
+    self.ExitLoop()
+
+  def run(self):
+    super().run()
+    if self.accepted:
+      return {'releasever': self.releasever}
+    return None
 
 
 class PackageActionDialog:
@@ -427,6 +1126,8 @@ class TransactionResult:
     def __init__(self, parent):
         self.parent = parent
         self.factory = self.parent.factory
+        self.offline_requested = False
+        self.offline_finish_action = 'reboot'
 
 
     def run(self, pkglist):
@@ -455,11 +1156,6 @@ class TransactionResult:
         treeWidget.setStretchable(MUI.YUIDimension.YD_VERT, True)
         treeWidget.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         sizeLabel = self.factory.createLabel(layout,"")
-
-        align = self.factory.createRight(layout)
-        hbox = self.factory.createHBox(align)
-        okButton = self.factory.createPushButton(hbox, _("&Ok"))
-        cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
 
         itemVect = []
         total_size = 0
@@ -498,23 +1194,73 @@ class TransactionResult:
 
         #dlg.setDefaultButton(okButton)
 
+        controls = self.factory.createHBox(layout)
+        controls_left = self.factory.createLeft(controls)
+        controls_right = self.factory.createRight(controls)
+
+        systemd_running = is_systemd_running()
+
+        offline = None
+        reboot = None
+        poweroff = None
+        if systemd_running:
+          offline_box = self.factory.createHBox(controls_left)
+          offline = self.factory.createCheckBox(offline_box, _("Offline"), False)
+          offline.setNotify(True)
+          self.factory.createHSpacing(offline_box)
+          reboot = self.factory.createRadioButton(offline_box, _("Reboot"), True)
+          poweroff = self.factory.createRadioButton(offline_box, _("Power off"), False)
+          reboot.setEnabled(False)
+          poweroff.setEnabled(False)
+        else:
+          info_box = self.factory.createHBox(controls_left)
+          info = self.factory.createLabel(info_box, _("Offline mode is unavailable because systemd is not running."))
+          info.setAutoWrap()
+
+        hbox = self.factory.createHBox(controls_right)
+        okButton = self.factory.createPushButton(hbox, _("&Ok"))
+        cancelButton = self.factory.createPushButton(hbox, _("&Cancel"))
+
+        def _reset_built_transaction():
+          """Reset prepared goal when user cancels before RunTransaction."""
+          try:
+            self.parent.backend.ResetTransaction(sync=True)
+          except Exception as err:
+            logger.exception("ResetTransaction failed after TransactionResult cancel: %s", err)
+            common.warningMsgBox({
+              'title': _('Reset transaction failed'),
+              'size': (400, 200),
+              'text': str(err),
+              'richtext': True,
+            })
+
 
         accepting = False
         while (True) :
-            event = dlg.waitForEvent()
-            eventType = event.eventType()
-            #event type checking
-            if (eventType == MUI.YEventType.CancelEvent) :
-                break
-            elif (eventType == MUI.YEventType.WidgetEvent) :
-                # widget selected
-                widget = event.widget()
+          event = dlg.waitForEvent()
+          eventType = event.eventType()
+          #event type checking
+          if (eventType == MUI.YEventType.CancelEvent) :
+            _reset_built_transaction()
+            break
+          elif (eventType == MUI.YEventType.WidgetEvent) :
+            # widget selected
+            widget = event.widget()
 
-                if (widget == cancelButton) :
-                    break
-                elif (widget == okButton) :
-                    accepting = True
-                    break
+            if (widget == cancelButton) :
+              _reset_built_transaction()
+              break
+            elif (systemd_running and widget == offline):
+              enabled = offline.isChecked()
+              reboot.setEnabled(enabled)
+              poweroff.setEnabled(enabled)
+              if enabled and not (reboot.value() or poweroff.value()):
+                reboot.setValue(True)
+            elif (widget == okButton) :
+              self.offline_requested = (systemd_running and offline.isChecked())
+              self.offline_finish_action = ('poweroff' if (systemd_running and poweroff.value()) else 'reboot')
+              accepting = True
+              break
 
         dlg.destroy()
 
@@ -523,77 +1269,40 @@ class TransactionResult:
 
         return accepting
 
-class AboutDialog:
+class RepoDialog(basedialog.BaseDialog):
     '''
-    Create an about dialog
-    '''
-
-    def __init__(self, parent):
-        '''
-        Constructor
-        @param parent: main parent dialog
-
-        '''
-        self.parent = parent
-        self.factory = MUI.YUI.widgetFactory()
-        # name        => the application name
-        # version     =>  the application version
-        # license     =>  the application license, the short length one (e.g. GPLv2, GPLv3, LGPLv2+, etc)
-        # authors     =>  the string providing the list of authors; it could be html-formatted
-        # description =>  the string providing a brief description of the application
-        # logo        => the string providing the file path for the application logo (high-res image)
-        # icon        => the string providing the file path for the application icon (low-res image)
-        # credits     => the application credits, they can be html-formatted
-        # information => other extra information, it can be html-formatted
-        # dialog_mode => 1: classic style dialog, any other as tabbed style dialog
-        self.name    = parent.appname
-        self.version = const.VERSION
-        self.license = "GPLv3"
-        self.authors = "<h3>%s</h3><ul><li>%s</li><li>%s</li><li>%s</li></ul>"%(
-                            _("Developers"),
-                            "Angelo Naselli &lt;anaselli@linux.it&gt;",
-                            "Neal   Gompa   &lt;ngompa13@gmail.com&gt;",
-                            "Björn  Esser   &lt;besser82@fedoraproject.org&gt;")
-        self.description = _("dnfdragora is a DNF frontend that works using GTK, ncurses and QT")
-        # dialog mode retained for compatibility; common.AboutDialog handles layout
-        # self.dialog_mode = common.AboutDialogMode.TABBED
-        # TODO
-        self.logo = parent.images_path + "dnfdragora-logo.png"
-        self.icon = parent.icon
-        self.credits = ""
-        self.information = ""
-
-    def run (self) :
-        '''
-        shows the about dialog
-        '''
-        info = {
-          'name': self.name,
-          'version': self.version,
-          'license': self.license,
-          'authors': self.authors,
-          'description': self.description,
-          'logo': self.logo,
-          'icon': self.icon,
-          'credits': self.credits,
-          'information': self.information,
-        }
-        common.AboutDialog(info)
-
-class RepoDialog:
-    '''
-    Create a dialog to manage repository enabling and disabling
+    Dialog to manage repository enabling and disabling.
+    Inherits from BaseDialog; uses eventManager for all widget events.
+    Selecting any row (click or keyboard navigation) immediately populates
+    the attribute panel at the bottom.
     '''
 
     def __init__(self, parent):
-        '''
-        Constructor
-        @param parent: main parent dialog
-        '''
+        basedialog.BaseDialog.__init__(
+            self,
+            _("Repository Management"),
+            "",
+            basedialog.DialogType.POPUP,
+            700, 500,
+        )
         self.parent = parent
-        self.factory = self.parent.factory
         self.backend = self.parent.backend
         self.itemList = {}
+        self.enabledRepos = []
+        self.disabledRepos = []
+        self._refresh_data = False
+        # Reverse map: YTableItem → repo_id for O(1) lookup in _selectedRepository()
+        self._itemToRepoId = {}
+        # Last repo_id whose attributes were loaded; avoids redundant dbus calls
+        # when the same row is still selected (e.g. checkbox toggle on same row).
+        self._last_info_repo_id = None
+        # Reference to the filter CheckBoxFrame widget (set in UIlayout).
+        self._filter_frame = None
+        # Filter states — read from config, written back on every checkbox change.
+        self._show_debuginfo = False
+        self._show_source = False
+        self._show_testing = False
+        self._read_filter_prefs()
         self.infoKeys = {
           'id'                  : _('Identifier'),
           'name'                : _('Name'),
@@ -616,7 +1325,7 @@ class RepoDialog:
           #
           'proxy'               : _('Proxy'),
           'proxy_username'      : _('Proxy username'),
-          'proxy_password'      : _('Proxy password'),
+          #'proxy_password'      : _('Proxy password'), TODO re-enable when it works
           #
           'repofile'            : _('Repo file'),
           'revision'            : _('Revision'),
@@ -629,238 +1338,338 @@ class RepoDialog:
           'mirrors'             : _('Mirrors'),
         }
 
-    def _setupUI(self):
-        '''
-        setup the dialog layout
-        '''
-        self.appTitle = MUI.YUI.app().applicationTitle()
+    def UIlayout(self, layout):
+        '''Build the dialog widget tree.'''
+        # Filter frame — collapsed by default; reveals additional repo-type checkboxes
+        any_active = self._show_debuginfo or self._show_source or self._show_testing
+        self._filter_frame = self.factory.createCheckBoxFrame(
+            layout, _("Ad&vanced repository types"), any_active)
+        self._filter_frame.setNotify(True)
+        hbox_filters = self.factory.createHBox(self._filter_frame)
+        self._cb_debuginfo = self.factory.createCheckBox(
+            hbox_filters, _("&Debug information"), self._show_debuginfo)
+        self._cb_source = self.factory.createCheckBox(
+            hbox_filters, _("&Source"), self._show_source)
+        self._cb_testing = self.factory.createCheckBox(
+            hbox_filters, _("&Testing"), self._show_testing)
+        self.factory.createHStretch(hbox_filters)
 
-        self.dialog = self.factory.createPopupDialog()
-        ## set new title to get it in dialog
-        MUI.YUI.app().setApplicationTitle(_("Repository Management") )
-
-        vbox = self.factory.createVBox(self.dialog)
-        minSize = self.factory.createMinSize( vbox, 700, 500 )  # pixels
-        vbox = self.factory.createVBox(minSize)
-
-        #Line for logo and title
-        hbox_iconbar  = self.factory.createHBox(vbox)
-        head_align_left  = self.factory.createLeft(hbox_iconbar)
-        hbox_iconbar     = self.factory.createHBox(head_align_left)
-        #TODO fix icon with one that recall repository management
-        self.factory.createImage(hbox_iconbar, self.parent.icon)
-
-        self.factory.createHeading(hbox_iconbar, _("Repository Management"))
-
-        hbox_middle = self.factory.createHBox(vbox)
-        hbox_bottom = self.factory.createHBox(vbox)
-        hbox_footbar = self.factory.createHBox(vbox)
-
-        hbox_middle.setWeight(MUI.YUIDimension.YD_VERT,50)
-        hbox_bottom.setWeight(MUI.YUIDimension.YD_VERT,30)
-        hbox_footbar.setWeight(MUI.YUIDimension.YD_VERT,10)
+        # Repo list (upper area)
+        hbox_repos = self.factory.createHBox(layout)
+        hbox_repos.setWeight(MUI.YUIDimension.YD_VERT, 50)
 
         checkboxed = True
         repoList_header = MUI.YTableHeader()
         repoList_header.addColumn("", checkboxed, alignment=MUI.YAlignmentType.YAlignCenter)
         repoList_header.addColumn(_('Name'))
         repoList_header.addColumn(_('Id'))
+        self.repoList = self.factory.createTable(hbox_repos, repoList_header)
+        self.repoList.setNotify(True)
 
-
-        self.repoList = self.factory.createTable(hbox_middle, repoList_header)
+        # Attribute panel (lower area)
+        hbox_info = self.factory.createHBox(layout)
+        hbox_info.setWeight(MUI.YUIDimension.YD_VERT, 35)
 
         info_header = MUI.YTableHeader()
-        columns = [_('Information'), _('Value') ]
-        for col in (columns):
+        for col in [_('Information'), _('Value')]:
             info_header.addColumn(col)
-        self.info = self.factory.createTable(hbox_bottom, info_header)
+        self.info = self.factory.createTable(hbox_info, info_header)
 
-        #self.info = self.factory.createRichText(hbox_bottom,"")
-        #self.info.setWeight(0,40)
-        #self.info.setWeight(1,40)
+        # Button bar
+        hbox_buttons = self.factory.createHBox(layout)
+        hbox_buttons.setWeight(MUI.YUIDimension.YD_VERT, 10)
 
-        self.applyButton = self.factory.createPushButton(hbox_footbar, _("&Apply"))
-        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
+        self.applyButton = self.factory.createPushButton(hbox_buttons, _("&Apply"))
+        self.applyButton.setWeight(MUI.YUIDimension.YD_HORIZ, 3)
+        self.quitButton = self.factory.createPushButton(hbox_buttons, _("&Cancel"))
+        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ, 3)
 
-        self.quitButton = self.factory.createPushButton(hbox_footbar, _("&Cancel"))
-        self.quitButton.setWeight(MUI.YUIDimension.YD_HORIZ,3)
-        #self.dialog.setDefaultButton(self.quitButton)
+        # Wire events
+        self.eventManager.addWidgetEvent(self.repoList, self._onRepoListEvent)
+        self.eventManager.addWidgetEvent(self._filter_frame, self._onFilterFrameToggled, True)
+        self.eventManager.addWidgetEvent(self._cb_debuginfo, self._onFilterChange)
+        self.eventManager.addWidgetEvent(self._cb_source, self._onFilterChange)
+        self.eventManager.addWidgetEvent(self._cb_testing, self._onFilterChange)
+        self.eventManager.addWidgetEvent(self.applyButton, self._onApply)
+        self.eventManager.addWidgetEvent(self.quitButton, self._onCancel)
+        self.eventManager.addCancelEvent(self._onCancel)
+
+        # Populate the list
+        self._populateRepoList()
+
+    def _setupUI(self):
+        '''Build widget tree then force GTK backend creation for initial visibility.
+        Mirrors the SearchDialog pattern: super()._setupUI() builds widgets,
+        then dialog.open() materialises GTK objects, then _initVisibility()
+        calls showContent so the frame is collapsed before the event loop starts.
+        '''
+        super()._setupUI()
+        try:
+            self.dialog.open()
+        except Exception:
+            pass
+        self._initVisibility()
+
+    def _initVisibility(self):
+        '''Sync frame checked state and content visibility after dialog.open().
+        Must be called after dialog.open() for the GTK backend to honour showContent.
+        _show_* flags may have been updated by auto-detection in _populateRepoList.
+        '''
+        any_active = self._show_debuginfo or self._show_source or self._show_testing
+        self._filter_frame.setNotify(False)  # avoid triggering _onFilterFrameToggled
+        self._filter_frame.setValue(any_active)
+        self._filter_frame.showContent(any_active)
+        self._filter_frame.setNotify(True)  # re-enable notifications
+
+    def _read_filter_prefs(self):
+        '''Load filter checkbox states from userPreferences (defaults: all False).'''
+        config = getattr(self.parent, 'config', None)
+        prefs = getattr(config, 'userPreferences', None) or {}
+        filters = (prefs.get('settings') or {}).get('repo_filters') or {}
+        self._show_debuginfo = bool(filters.get('show_debuginfo', False))
+        self._show_source    = bool(filters.get('show_source',    False))
+        self._show_testing   = bool(filters.get('show_testing',   False))
+
+    def _save_filter_prefs(self):
+        '''Persist current filter states to userPreferences and flush to disk.'''
+        config = getattr(self.parent, 'config', None)
+        if config is None:
+            return
+        prefs = config.userPreferences  # property triggers lazy _load()
+        settings = prefs.setdefault('settings', {})
+        if settings is None:
+            settings = {}
+            prefs['settings'] = settings
+        settings['repo_filters'] = {
+            'show_debuginfo': self._show_debuginfo,
+            'show_source':    self._show_source,
+            'show_testing':   self._show_testing,
+        }
+        try:
+            config.saveUserPreferences()
+        except Exception:
+            logger.warning("RepoDialog: could not save filter preferences")
+
+    def _onFilterFrameToggled(self, obj):
+        '''Frame checkbox toggled — expand or collapse the inner checkboxes.
+
+        Checking the frame expands the content immediately.
+        Unchecking resets all filter flags to False; auto-detection in
+        _populateRepoList may re-enable some (and re-open the frame) if
+        currently-enabled repos of those types exist.
+        '''
+        checked = bool(obj.value())
+        if checked:
+            # Expand now; inner checkboxes keep their last saved values.
+            self._filter_frame.showContent(True)
+        else:
+            any_active = self._show_debuginfo or self._show_source or self._show_testing
+            self._filter_frame.setNotify(False)  # avoid triggering _onFilterFrameToggled
+            if any_active:
+                self._filter_frame.setValue(any_active)
+            else:
+                self._filter_frame.showContent(any_active)
+            self._filter_frame.setNotify(True)  # re-enable notifications
+
+    def _onFilterChange(self):
+        '''Called when any inner filter checkbox is toggled; refreshes the repo list.'''
+        self._show_debuginfo = bool(self._cb_debuginfo.value())
+        self._show_source    = bool(self._cb_source.value())
+        self._show_testing   = bool(self._cb_testing.value())
+        self._save_filter_prefs()
+        #populateRepoList will restore checkboxes to True if currently enabled repos 
+        # of those types would be hidden by the new filter settings.
+        self._populateRepoList()
+        # Auto-detect in populate may have forced some flags back True;
+        # sync frame to the actual state.
+        any_active = self._show_debuginfo or self._show_source or self._show_testing
+        if not any_active:
+          self._filter_frame.setNotify(False)  # avoid triggering _onFilterFrameToggled
+          self._filter_frame.setValue(any_active)
+          self._filter_frame.showContent(any_active)
+          self._filter_frame.setNotify(True)  # re-enable notifications
+
+    def _populateRepoList(self):
+        '''Load repositories into the table and show attributes of the first row.
+        Only repos passing the current filter checkboxes are shown.
+        '''
+        # Single backend call — replaces 3 separate dbus calls
+        all_repos = list(self.backend.get_repositories())
+        self.enabledRepos  = [r['id'] for r in all_repos if r.get('enabled')]
+        self.disabledRepos = [r['id'] for r in all_repos if not r.get('enabled')]
 
         self.itemList = {}
-        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='enabled', sync=True)
-        self.enabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
-        repos = self.backend.GetRepositories(repo_attrs=['id'], enable_disable='disabled', sync=True)
-        self.disabledRepos = [ repo['id'] for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
+        self._itemToRepoId = {}
+        self._last_info_repo_id = None
 
-        repos = self.backend.get_repositories()
+        # Auto-detect: if any ENABLED repo belongs to a filtered category,
+        # force the corresponding flag on so enabled repos are never hidden.
+        # We only OR into existing flags — never clear them here.
+        for r in all_repos:
+            rid = r['id']
+            if r.get('enabled'):
+                if rid.endswith('-debuginfo'):
+                    self._show_debuginfo = True
+                if rid.endswith('-source'):
+                    self._show_source = True
+                if 'testing' in rid:
+                    self._show_testing = True
 
-        for r in repos:
+        # Sync inner checkbox values to reflect auto-detected state.
+        # Wrapped in try/except because widgets may not yet exist on first call
+        # (UIlayout builds checkboxes, then calls _populateRepoList).
+        self._cb_debuginfo.setNotify(False)
+        self._cb_source.setNotify(False)
+        self._cb_testing.setNotify(False)
+        self._cb_debuginfo.setValue(self._show_debuginfo)
+        self._cb_source.setValue(self._show_source)
+        self._cb_testing.setValue(self._show_testing)
+        self._cb_debuginfo.setNotify(True)
+        self._cb_source.setNotify(True)
+        self._cb_testing.setNotify(True)
+
+        # Build the filtered display list
+        for r in all_repos:
+            rid = r['id']
+            if not self._show_debuginfo and rid.endswith('-debuginfo'):
+                continue
+            if not self._show_source and rid.endswith('-source'):
+                continue
+            if not self._show_testing and 'testing' in rid:
+                continue
             item = MUI.YTableItem()
             item.addCell(bool(r['enabled']))
             item.addCell(str(r['name']))
             item.addCell(str(r['id']))
-
             self.itemList[r['id']] = {
-                'item' : item, 'name': r['name'], 'id': r['id'], 'enabled' : r['enabled']
+                'item': item, 'name': r['name'], 'id': r['id'], 'enabled': r['enabled'],
             }
+            self._itemToRepoId[item] = r['id']
 
-        keylist = sorted(self.itemList.keys())
-        v = []
-        for key in keylist :
-            item = self.itemList[key]['item']
-            v.append(item)
-
-        itemCollection = v
-
-        # cleanup old changed items since we are removing all of them
+        by_name = sorted(self.itemList.keys(), key=lambda k: self.itemList[k]['name'].casefold())
+        v = [self.itemList[k]['item'] for k in by_name]
         self.repoList.deleteAllItems()
-        self.repoList.addItems(itemCollection)
-        repo_id = self._selectedRepository()
-        self._addAttributeInfo(repo_id)
+        self.repoList.addItems(v)
 
+        # Explicitly select the first row so attributes are shown immediately.
+        if v:
+            try:
+                self.repoList.selectItem(v[0], True)
+            except Exception:
+                pass
+            first_id = by_name[0] if by_name else None
+            if first_id:
+                self._addAttributeInfo(first_id)
+
+    def _selectedRepository(self):
+        '''Return the repo id of the currently selected table row, or None.
+        O(1) via the reverse-lookup dict built in _populateRepoList().
+        '''
+        sel = self.repoList.selectedItem()
+        if sel:
+            return self._itemToRepoId.get(sel)
+        return None
 
     def _addAttributeInfo(self, repo_id):
-      '''
-        fill attribute information of the given repo_id
-      '''
-      if not repo_id:
-        return
-      v=[]
-      try:
-          repo_attrs= [ repo_attr for repo_attr in self.infoKeys.keys() if repo_attr != "proxy_password" ] # TODO add it backs when it works
-
-          ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
-          logger.debug(ri)
-          if len(ri) > 1:
-            logger.warn("Got %d elements expected 1", len(ri))
-          ri = ri[0] # first element
-          for k in sorted(ri.keys()):
-            if k == "enabled" or k=="name" or k=="id":
-              # skipping data that are already shown into the listbox
-              continue
-            key = None
-            value = ""
-            if ri[k]:
-              key = self.infoKeys[k] if k in self.infoKeys.keys() else k
-              if k == 'size':
-                value = misc.format_number(ri[k])
-              elif k == 'metadata_expire':
-                if ri[k] <= -1:
-                  value = _('Never')
-                else:
-                  value = _("%s second(s)"%(ri[k]))
-              else:
-                value = "%s"%(ri[k])
-            else:
-              if k == 'metadata_expire':
-                key = self.infoKeys[k]
-                value = _('Now')
-            if key:
-              item = MUI.YTableItem(key, value)
-              v.append(item)
-
-      except NameError as e:
-          logger.error("dnfdaemon NameError: %s ", e)
-      except AttributeError as e:
-          logger.error("dnfdaemon AttributeError: %s ", e)
-      except GLib.Error as err:
-          logger.error("dnfdaemon client failure [%s]", err)
-      except:
-          logger.error("Unexpected error: %s ", sys.exc_info()[0])
-
-      itemCollection = v
-
-      # cleanup old changed items since we are removing all of them
-      self.info.deleteAllItems()
-      self.info.addItems(itemCollection)
-
-    def _selectedRepository(self) :
+        '''Fill the attribute table for repo_id.
+        Updates self._last_info_repo_id so callers can skip redundant fetches.
         '''
-        gets the selected repository id from repo list, if any selected
+        if not repo_id:
+            return
+        v = []
+        try:
+            repo_attrs = [a for a in self.infoKeys.keys()]
+            ri = self.backend.GetRepositories(patterns=[repo_id], repo_attrs=repo_attrs, sync=True)
+            logger.debug(ri)
+            if len(ri) > 1:
+                logger.warning("Got %d elements expected 1", len(ri))
+            ri = ri[0]
+            for k in sorted(ri.keys()):
+                if k in ("enabled", "name", "id"):
+                    continue
+                key = None
+                value = ""
+                if ri[k]:
+                    key = self.infoKeys.get(k, k)
+                    if k == 'size':
+                        value = misc.format_number(ri[k])
+                    elif k == 'metadata_expire':
+                        value = _('Never') if ri[k] <= -1 else _("%s second(s)" % ri[k])
+                    else:
+                        value = "%s" % (ri[k],)
+                elif k == 'metadata_expire':
+                    key = self.infoKeys[k]
+                    value = _('Now')
+                if key:
+                    item = MUI.YTableItem()
+                    item.addCell(str(key))
+                    item.addCell(str(value))
+                    v.append(item)
+        except NameError as e:
+            logger.error("dnfdaemon NameError: %s", e)
+        except AttributeError as e:
+            logger.error("dnfdaemon AttributeError: %s", e)
+        except GLib.Error as err:
+            logger.error("dnfdaemon client failure [%s]", err)
+        except Exception:
+            logger.error("Unexpected error: %s", sys.exc_info()[0])
+
+        self.info.deleteAllItems()
+        self.info.addItems(v)
+        self._last_info_repo_id = repo_id
+
+    # ── event handlers ──────────────────────────────────────────────────────
+
+    def _onRepoListEvent(self, yui_event):
+        '''Handle any event from the repo table.
+
+        ValueChanged  → checkbox was toggled: update the in-memory enabled state.
+        Any reason    → refresh the attribute panel for the now-selected row,
+                        but only when the selection actually changed (avoids a
+                        redundant synchronous dbus call on every checkbox click
+                        that lands on the already-selected row).
         '''
-        selected_repo = None
-        sel = self.repoList.selectedItem()
-        if sel :
-            for repo_id in self.itemList:
-                if (self.itemList[repo_id]['item'] == sel) :
-                    selected_repo = repo_id
-                    break
+        if yui_event.reason() == MUI.YEventReason.ValueChanged:
+            changedItem = self.repoList.changedItem()
+            if changedItem:
+                try:
+                    new_state = bool(changedItem.cell(0).checked())
+                except Exception:
+                    new_state = False
+                repo_key = self._itemToRepoId.get(changedItem)
+                if repo_key is not None:
+                    self.itemList[repo_key]['enabled'] = new_state
 
-        return selected_repo
+        repo_id = self._selectedRepository()
+        if repo_id and repo_id != self._last_info_repo_id:
+            MUI.YUI.app().busyCursor()
+            self._addAttributeInfo(repo_id)
+            MUI.YUI.app().normalCursor()
 
-    def _handleEvents(self):
-        '''
-        manages dialog events and returns if sack should be filled again for new enabled/disabled repositories
-        '''
-        while True:
-            event = self.dialog.waitForEvent()
+    def _onApply(self):
+        enabled_repos  = [k for k in self.itemList if self.itemList[k]['enabled'] and k in self.disabledRepos]
+        disabled_repos = [k for k in self.itemList if not self.itemList[k]['enabled'] and k in self.enabledRepos]
+        logger.info("Enabling repos: %s", " ".join(enabled_repos))
+        # NOTE: only one async call can be in flight at a time; these are quick
+        # but main window must know repos changed, so keep at least one async.
+        if enabled_repos:
+            self.backend.SetEnabledRepos(enabled_repos)
+        if disabled_repos:
+            self.backend.SetDisabledRepos(disabled_repos, sync=(bool(enabled_repos) and bool(disabled_repos)))
+        self._refresh_data = True
+        self.ExitLoop()
 
-            eventType = event.eventType()
-
-            rebuild_package_list = False
-            group = None
-            #event type checking
-            if (eventType == MUI.YEventType.CancelEvent) :
-                break
-            elif (eventType == MUI.YEventType.WidgetEvent) :
-                # widget selected
-                widget  = event.widget()
-                if (widget == self.quitButton) :
-                    #### QUIT
-                    break
-                elif (widget == self.applyButton) :
-
-                    enabled_repos = [k for k in self.itemList.keys() if self.itemList[k]['enabled'] and k in self.disabledRepos]
-                    disabled_repos = [k for k in self.itemList.keys() if not self.itemList[k]['enabled'] and k in self.enabledRepos]
-
-                    logger.info("Enabling repos %s "%" ".join(enabled_repos))
-                    # NOTE we can manage one async call at the time atm, TODO fix in the future,
-                    # these call are quick though, but main window must know that repos are changed,
-                    # so let's at least one be async
-                    if enabled_repos:
-                      self.backend.SetEnabledRepos(enabled_repos)
-                    if disabled_repos:
-                      self.backend.SetDisabledRepos(disabled_repos, sync=(enabled_repos and disabled_repos))
-                    return True
-                elif (widget == self.repoList) :
-                  if (event.reason() == MUI.YEventReason.ValueChanged) :
-                    changedItem = self.repoList.changedItem()
-                    if changedItem :
-                      # first column is the checkbox
-                      new_state = False
-                      try:
-                        new_state = bool(changedItem.cell(0).checked())
-                      except Exception:
-                        pass
-                      for it in self.itemList:
-                        if (self.itemList[it]['item'] == changedItem) :
-                          self.itemList[it]['enabled'] = new_state
-                          break
-
-                    repo_id = self._selectedRepository()
-                    MUI.YUI.app().busyCursor()
-                    self._addAttributeInfo(repo_id)
-                    MUI.YUI.app().normalCursor()
-
-        return False
+    def _onCancel(self):
+        self.ExitLoop()
 
     def run(self):
-        '''
-        show and run the dialog
-        '''
-        self._setupUI()
-        refresh_data=self._handleEvents()
-
-        #restore old application title
-        MUI.YUI.app().setApplicationTitle(self.appTitle)
-
-        self.dialog.destroy()
-        self.dialog = None
-        return refresh_data
+        '''Run the dialog and return True if repos were changed.'''
+        super().run()
+        return self._refresh_data
 
 class OptionDialog(basedialog.BaseDialog):
   def __init__(self, parent):
-    basedialog.BaseDialog.__init__(self, _("dnfdragora options"), "dnfdragora", basedialog.DialogType.POPUP, 640, 480)
+    basedialog.BaseDialog.__init__(self, _("dnfdragora options"), "dnfdragora", basedialog.DialogType.POPUP, 700, 300)
     self.parent = parent
     self.log_vbox = None
     self.widget_callbacks = []
@@ -911,8 +1720,7 @@ class OptionDialog(basedialog.BaseDialog):
     dnfdragora options layout implementation
     '''
 
-    hbox_config = self.factory.createHBox(layout)
-    self.factory.createVStretch(layout)
+    hbox_config = self.factory.createPaned(layout, MUI.YUIDimension.YD_HORIZ)
     hbox_bottom = self.factory.createHBox(layout)
     # Wrap the tree in MinSize to guarantee a minimum column width regardless
     # of the ReplacePoint content on the right (long labels in System options
@@ -928,8 +1736,8 @@ class OptionDialog(basedialog.BaseDialog):
     itemVect = []
     self.option_items = {
       "system" : None,
+      "updater" : None,
       "layout" : None,
-      "search" : None,
       "logging" : None,
       }
     self.selected_option = None
@@ -944,9 +1752,9 @@ class OptionDialog(basedialog.BaseDialog):
     itemVect.append(item)
     self.option_items ["layout"] = item
 
-    item = MUI.YTreeItem(_("Search"))
+    item = MUI.YTreeItem(_("dnfdragora-updater"))
     itemVect.append(item)
-    self.option_items ["search"] = item
+    self.option_items ["updater"] = item
 
     item = MUI.YTreeItem(_("Logging"))
     itemVect.append(item)
@@ -991,10 +1799,10 @@ class OptionDialog(basedialog.BaseDialog):
             self._cleanCallbacks()
             if k == "system":
               self._openSystemOptions()
+            elif k == "updater":
+              self._openUpdaterOptions()
             elif  k == "layout":
               self._openLayoutOptions()
-            elif k == "search":
-              self._openSearchOptions()
             elif k == "logging":
               self._openLoggingOptions()
 
@@ -1035,43 +1843,33 @@ class OptionDialog(basedialog.BaseDialog):
     self.eventManager.addWidgetEvent(self.always_yes, self.onAlwaysYesChange, True)
     self.widget_callbacks.append( { 'widget': self.always_yes, 'handler': self.onAlwaysYesChange} )
 
-    self.upgrades_as_updates  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Consider packages to upgrade as updates"), self.parent.upgrades_as_updates )
-    self.upgrades_as_updates.setNotify(True)
-    self.eventManager.addWidgetEvent(self.upgrades_as_updates, self.onUpgradesAsUpdates, True)
-    self.widget_callbacks.append( { 'widget': self.upgrades_as_updates, 'handler': self.onUpgradesAsUpdates} )
+    force_dist_sync_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'force_dist_sync',
+                                             default=self.parent.force_dist_sync)
+    self.force_dist_sync = self.factory.createCheckBox(
+      self.factory.createLeft(vbox),
+      _("Force distsync as upgrade"),
+      force_dist_sync_val
+    )
+    self.force_dist_sync.setNotify(True)
+    self.eventManager.addWidgetEvent(self.force_dist_sync, self.onForceDistSyncChange, True)
+    self.widget_callbacks.append({'widget': self.force_dist_sync, 'handler': self.onForceDistSyncChange})
 
-    hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
-                                               default=False)
-
-    self.hide_update_menu  =  self.factory.createCheckBox(self.factory.createLeft(vbox), _("Hide dnfdragora-update menu if there are no updates"), hide_update_menu_val )
-    self.hide_update_menu.setNotify(True)
-    self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
-    self.widget_callbacks.append( { 'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu} )
+    allow_erasing_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'allow_erasing',
+                                           default=self.parent.allow_erasing)
+    self.allow_erasing = self.factory.createCheckBox(
+      self.factory.createLeft(vbox),
+      _("Remove installed package to resolve transactions"),
+      allow_erasing_val
+    )
+    self.allow_erasing.setNotify(True)
+    self.eventManager.addWidgetEvent(self.allow_erasing, self.onAllowErasingChange, True)
+    self.widget_callbacks.append({'widget': self.allow_erasing, 'handler': self.onAllowErasingChange})
 
     self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
-
-    # Determine update interval with fallbacks and robust parsing
-    updateInterval = 180
-    try:
-      val = self._safe_cfg_get(self._user_prefs(), 'settings', 'interval for checking updates')
-      if val is not None:
-        updateInterval = int(val)
-      else:
-        val = self._safe_cfg_get(self._system_settings(), 'settings', 'update_interval')
-        if val is not None:
-          updateInterval = int(val)
-    except (TypeError, ValueError):
-      updateInterval = 180
 
     hbox = self.factory.createHBox(vbox)
     col1 = self.factory.createVBox(hbox)
     col2 = self.factory.createVBox(hbox)
-    label = self.factory.createLabel(self.factory.createLeft(col1), _("Interval to check for updates (minutes)"))
-    self.factory.createHSpacing(hbox)
-    self.updateInterval = self.factory.createIntField(self.factory.createRight(col2), "", 30, 1440, updateInterval )
-    self.updateInterval.setNotify(True)
-    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
-    self.widget_callbacks.append( { 'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange} )
 
 
     label = self.factory.createLabel(self.factory.createLeft(col1), _("Metadata expire time (hours)"))
@@ -1083,6 +1881,69 @@ class OptionDialog(basedialog.BaseDialog):
 
     self.factory.createVStretch(vbox)
 
+    self.config_tab.showChild()
+
+  def _openUpdaterOptions(self):
+    '''
+    show updater configuration options
+    '''
+    if self.config_tab.hasChildren():
+      self.config_tab.deleteChildren()
+
+    hbox = self.factory.createHBox(self.config_tab)
+    self.factory.createHSpacing(hbox)
+    vbox = self.factory.createVBox(hbox)
+    self.factory.createHSpacing(hbox)
+
+    heading = self.factory.createHeading(vbox, _("dnfdragora-updater options"))
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
+    heading.setAutoWrap()
+
+    hide_update_menu_val = self._safe_cfg_get(self._user_prefs(), 'settings', 'hide_update_menu',
+                                               default=False)
+    self.hide_update_menu = self.factory.createCheckBox(
+      self.factory.createLeft(vbox),
+      _("Hide dnfdragora-update menu if there are no updates"),
+      hide_update_menu_val
+    )
+    self.hide_update_menu.setNotify(True)
+    self.eventManager.addWidgetEvent(self.hide_update_menu, self.onHideUpdateMenu, True)
+    self.widget_callbacks.append({'widget': self.hide_update_menu, 'handler': self.onHideUpdateMenu})
+
+    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
+
+    # Determine update interval with fallbacks and robust parsing.
+    # Valid range for updater checks: 10 minutes .. 7 days (10080 minutes).
+    update_interval = 180
+    try:
+      val = self._safe_cfg_get(self._user_prefs(), 'settings', 'interval for checking updates')
+      if val is not None:
+        update_interval = int(val)
+      else:
+        val = self._safe_cfg_get(self._system_settings(), 'settings', 'update_interval')
+        if val is not None:
+          update_interval = int(val)
+    except (TypeError, ValueError):
+      update_interval = 180
+
+    update_interval = max(10, min(10080, update_interval))
+
+    hbox = self.factory.createHBox(vbox)
+    col1 = self.factory.createVBox(hbox)
+    col2 = self.factory.createVBox(hbox)
+    self.factory.createLabel(
+      self.factory.createLeft(col1),
+      _("Interval to check for updates (minutes)")
+    )
+    self.factory.createHSpacing(hbox)
+    self.updateInterval = self.factory.createIntField(
+      self.factory.createRight(col2), "", 10, 10080, update_interval
+    )
+    self.updateInterval.setNotify(True)
+    self.eventManager.addWidgetEvent(self.updateInterval, self.onUpdateIntervalChange, True)
+    self.widget_callbacks.append({'widget': self.updateInterval, 'handler': self.onUpdateIntervalChange})
+
+    self.factory.createVStretch(vbox)
     self.config_tab.showChild()
 
   def _openLayoutOptions(self):
@@ -1123,37 +1984,7 @@ class OptionDialog(basedialog.BaseDialog):
     self.config_tab.showChild()
 
   def _openSearchOptions(self):
-    '''
-    show search configuration options
-    '''
-    if self.config_tab.hasChildren():
-      self.config_tab.deleteChildren()
-
-    hbox = self.factory.createHBox(self.config_tab)
-    self.factory.createHSpacing(hbox)
-    vbox = self.factory.createVBox(hbox)
-    self.factory.createHSpacing(hbox)
-
-    # Title
-    heading=self.factory.createHeading( vbox, _("Search options") )
-    self.factory.createVSpacing(vbox, 0.3*self._VSPACING_PX)
-    heading.setAutoWrap()
-
-    fuzzy_search = self.parent.fuzzy_search
-    newest_only = self.parent.newest_only
-
-    self.newest_only = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Show newest packages only"), newest_only )
-    self.newest_only.setNotify(True)
-    self.eventManager.addWidgetEvent(self.newest_only, self.onNewestOnly, True)
-    self.widget_callbacks.append( { 'widget': self.newest_only, 'handler': self.onNewestOnly} )
-
-    self.fuzzy_search   = self.factory.createCheckBox(self.factory.createLeft(vbox) , _("Fuzzy search (legacy mode)"), fuzzy_search )
-    self.fuzzy_search.setNotify(True)
-    self.eventManager.addWidgetEvent(self.fuzzy_search, self.onFuzzySearch, True)
-    self.widget_callbacks.append( { 'widget': self.fuzzy_search, 'handler': self.onFuzzySearch} )
-
-    self.factory.createVStretch(vbox)
-    self.config_tab.showChild()
+    pass  # Search options moved to SearchDialog
 
   def _openLoggingOptions(self):
     '''
@@ -1215,7 +2046,13 @@ class OptionDialog(basedialog.BaseDialog):
     '''
     if obj.widgetClass() == "YCheckBoxFrame":
       self.log_vbox.setEnabled(obj.value())
-      self._ensure_settings().setdefault('log', {})['enabled'] = obj.value()
+      log_prefs = self._ensure_settings().setdefault('log', {})
+      log_prefs['enabled'] = obj.value()
+      # When enabling for the first time, persist the currently displayed
+      # directory (default: home) so that _configFileRead can use it on the
+      # next startup even if the user never clicked "Change directory".
+      if obj.value() and 'directory' not in log_prefs:
+          log_prefs['directory'] = self.log_directory.text()
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
@@ -1250,24 +2087,10 @@ class OptionDialog(basedialog.BaseDialog):
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
   def onFuzzySearch(self, obj):
-    '''
-    Fuzzy Search Changing
-    '''
-    if obj.widgetClass() == "YCheckBox":
-      self._ensure_settings().setdefault('search', {})['fuzzy_search'] = obj.isChecked()
-      self.parent.fuzzy_search = obj.isChecked()
-    else:
-      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+    pass  # Search options moved to SearchDialog
 
   def onNewestOnly(self, obj):
-    '''
-    Newest Only Changing
-    '''
-    if obj.widgetClass() == "YCheckBox":
-      self._ensure_settings().setdefault('search', {})['newest_only'] = obj.isChecked()
-      self.parent.newest_only = obj.isChecked()
-    else:
-      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+    pass  # Search options moved to SearchDialog
 
   def onLevelDebugChange(self, obj):
     '''
@@ -1309,15 +2132,25 @@ class OptionDialog(basedialog.BaseDialog):
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
-  def onUpgradesAsUpdates (self, obj):
+  def onForceDistSyncChange(self, obj):
     '''
-    Consider Upgrades as Updates
+    Force distsync as upgrade changing
     '''
     if obj.widgetClass() == "YCheckBox":
-      s = self._ensure_settings()
-      s['upgrades as updates'] = obj.isChecked()
-      logger.debug("onUpgradesAsUpdates %d", obj.isChecked())
-      self.parent.upgrades_as_updates = s['upgrades as updates']
+      self._ensure_settings()['force_dist_sync'] = obj.isChecked()
+      self.parent.force_dist_sync = obj.isChecked()
+      logger.debug("force_dist_sync %d", obj.isChecked())
+    else:
+      logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
+
+  def onAllowErasingChange(self, obj):
+    '''
+    Remove installed package to resolve transactions changing
+    '''
+    if obj.widgetClass() == "YCheckBox":
+      self._ensure_settings()['allow_erasing'] = obj.isChecked()
+      self.parent.allow_erasing = obj.isChecked()
+      logger.debug("allow_erasing %d", obj.isChecked())
     else:
       logger.error("OptionDialog: Invalid object passed %s", obj.widgetClass())
 
@@ -1338,23 +2171,23 @@ class OptionDialog(basedialog.BaseDialog):
       s = self._ensure_settings()
       s['always_yes'] = False
       self.parent.always_yes = False
-      s['interval for checking updates'] = 180
+      s['force_dist_sync'] = False
+      self.parent.force_dist_sync = False
+      s['allow_erasing'] = False
+      self.parent.allow_erasing = False
       s['metadata'] = {'update_interval': 48}
       self.parent.md_update_interval = 48
       self._openSystemOptions()
+    elif k == "updater":
+      s = self._ensure_settings()
+      s['hide_update_menu'] = False
+      s['interval for checking updates'] = 180
+      self._openUpdaterOptions()
     elif  k == "layout":
       s = self._ensure_settings()
       s['show updates at startup'] = False
       s['do not show groups at startup'] = False
       self._openLayoutOptions()
-    elif k == "search":
-      self._ensure_settings()['search'] = {
-        'fuzzy_search': False,
-        'newest_only': False,
-      }
-      self.parent.fuzzy_search = False
-      self.parent.newest_only = False
-      self._openSearchOptions()
     elif k == "logging":
       self._ensure_settings()['log'] = {
         'enabled': False,
@@ -1380,93 +2213,509 @@ class OptionDialog(basedialog.BaseDialog):
     self.ExitLoop()
 
 
-def warningMsgBox (info) :
-    '''
-    This function creates an Warning dialog and show the message
-    passed as input.
+class SearchDialog(basedialog.BaseDialog):
+  """
+  Dedicated search popup for dnfdragora.
 
-    @param info: dictionary, information to be passed to the dialog.
-            title     =>     dialog title
-            text      =>     string to be swhon into the dialog
-            richtext  =>     True if using rich text
-    '''
-    if (not info) :
-        return 0
+  Opens as a modal popup pre-populated with the parent's last search state.
+  After run() returns, inspect:
+    .action            : 'search' | 'clear' | 'cancel'
+    .search_nevra      : bool — search in package names/NEVRA  (with_nevra)
+    .search_provides   : bool — search in provides             (with_provides)
+    .search_filenames  : bool — search in all file paths       (with_filenames)
+    .search_binaries   : bool — search in binary paths only    (with_binaries)
+    .search_src        : bool — include source RPMs            (with_src)
+    .search_summary    : bool — search in summary, regexp only
+    .search_text       : stripped search string
+    .search_use_regexp : bool
+    .search_repos      : list of repo IDs to restrict to ([] = all repos)
+    .search_arches     : list of arch strings to restrict to ([] = all arches)
+    .search_scope      : daemon scope string ('all','installed','available','upgrades','upgradable')
+    .search_what_type  : str — daemon option name ('whatprovides',…) or None
+    .search_what_value : str — capability string(s) for the what-query, comma-separated
+  """
 
-    return common.warningMsgBox(info)
+  def __init__(self, parent):
+    basedialog.BaseDialog.__init__(
+      self, _("Find packages"), "dnfdragora",
+      basedialog.DialogType.POPUP, 520, -1
+    )
+    self.parent = parent
+    # Pre-populate boolean "search in" flags from the parent's stored state
+    self.search_nevra      = parent._search_nevra
+    self.search_provides   = parent._search_provides
+    self.search_filenames  = parent._search_filenames
+    self.search_binaries   = parent._search_binaries
+    self.search_src        = parent._search_src
+    self.search_summary    = parent._search_summary
+    self.search_text       = parent._search_text
+    self.search_use_regexp = parent._search_use_regexp
+    self.search_repos      = list(parent._search_repos)
+    self.search_arches     = list(parent._search_arches)
+    self.search_icase      = parent._search_icase
+    self.search_newest_only = parent.newest_only
+    self.search_fuzzy      = parent.fuzzy_search
+    # search_scope is set in UIlayout() where _SCOPE_ORDER/_scope_labels are defined.
+    self.search_scope      = 'all'
+    self.search_what_type  = parent._search_what_type   # None or daemon option name
+    self.search_what_value = parent._search_what_value  # capability string(s)
+    # Keep last-used scope; fall back to filter_box only if no search has been done yet.
+    self._last_scope       = parent._search_scope   # None = first time
+    self.action = None   # 'search' | 'clear' | 'cancel'
+    # Fetch repo and arch lists once from the parent's lazy caches
+    self._repos  = parent._get_available_repos()
+    self._arches = parent._get_available_arches()
 
+  def UIlayout(self, layout):
+    # Scope keys → exact daemon scope strings accepted by Search(scope=…).
+    self._SCOPE_ORDER = ['all', 'installed', 'available', 'upgrades', 'upgradable']
+    # Pre-initialise frame references so _updateRegexpState() can safely iterate
+    # them even when called before all rows have been built.
+    self._what_frame = None
+    self._repo_frame = None
+    self._arch_frame = None
+    self._scope_labels = {
+      'all'        : _("All"),
+      'installed'  : _("Installed"),
+      'available'  : _("Available"),
+      'upgrades'   : _("Upgrades"),
+      'upgradable' : _("Upgradable"),
+    }
+    # Scope: restore last used scope; use filter_box mapping only on first open.
+    _filter_to_scope = {
+      'all'          : 'all',
+      'installed'    : 'installed',
+      'not_installed': 'available',
+      'to_update'    : 'upgrades',
+      'skip_other'   : 'all',
+    }
+    if self._last_scope:
+      self.search_scope = self._last_scope
+    else:
+      self.search_scope = _filter_to_scope.get(self.parent._filterNameSelected(), 'all')
 
-def infoMsgBox (info) :
-    '''
-    This function creates an Info dialog and show the message
-    passed as input.
+    # ── Row 1: "Find:" label + input field ──────────────────────────────────
+    # The Find field is dual-purpose:
+    #   - text search mode: pattern string(s) for Search(patterns=[...])
+    #   - dependency query mode: capability string(s) for Search(whatXXX=[...])
+    _what_active = bool(self.search_what_type)
+    hbox_find = self.factory.createHBox(layout)
+    self.factory.createLabel(hbox_find, _("Find:"))
+    self._find_entry = self.factory.createInputField(hbox_find, "")
+    self._find_entry.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    # Pre-populate with capability or text depending on current mode.
+    self._find_entry.setValue(
+        (self.search_what_value or "") if _what_active else (self.search_text or ""))
+    self._find_entry.setNotify(False)
+    self._find_entry.setHelpText(_(
+        "Enter the search pattern. In text mode: words separated by spaces or commas. "
+        "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/python3')."))
 
-    @param info: dictionary, information to be passed to the dialog.
-            title     =>     dialog title
-            text      =>     string to be swhon into the dialog
-            richtext  =>     True if using rich text
-    '''
-    if (not info) :
-        return 0
+    # ── Row 2: "Search in:" checkboxes ──────────────────────────────────────
+    # Each checkbox maps directly to a dnf5daemon Search() boolean flag.
+    # "Summary" is regexp-only and is enabled/disabled by _updateRegexpState().
+    hbox_fields = self.factory.createHBox(layout)
+    self.factory.createLabel(hbox_fields, _("Search in:"))
+    self._nevra_check = self.factory.createCheckBox(hbox_fields, _("N&ames"))
+    self._nevra_check.setChecked(self.search_nevra)
+    self._nevra_check.setHelpText(_("Search in package names and NEVRA (name-epoch:version-release.arch)."))
+    self._provides_check = self.factory.createCheckBox(hbox_fields, _("&Provides"))
+    self._provides_check.setChecked(self.search_provides)
+    self._provides_check.setHelpText(_("Also match packages whose Provides: tags include the search pattern."))
+    self._filenames_check = self.factory.createCheckBox(hbox_fields, _("&Files"))
+    self._filenames_check.setChecked(self.search_filenames)
+    self._filenames_check.setHelpText(_("Match packages that own files whose path matches the pattern."))
+    self._filenames_check.setNotify(True)
+    self.eventManager.addWidgetEvent(self._filenames_check, self._onFilenamesChanged)
+    self._binaries_check = self.factory.createCheckBox(hbox_fields, _("&Binaries"))
+    self._binaries_check.setChecked(self.search_binaries)
+    self._binaries_check.setHelpText(_("Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."))
+    self._src_check = self.factory.createCheckBox(hbox_fields, _("S&ources"))
+    self._src_check.setChecked(self.search_src)
+    self._src_check.setHelpText(_("Include source RPMs (*.src.rpm) in the results."))
+    self.factory.createHSpacing(hbox_fields, 1)
+    self._summary_check = self.factory.createCheckBox(hbox_fields, _("Su&mmary"))
+    self._summary_check.setChecked(self.search_summary)
+    self._summary_check.setHelpText(_("Search in package summaries. Only available in regexp mode."))
 
-    return common.infoMsgBox(info)
+    # ── Row 3: Scope combobox + search-modifier checkboxes ───────────────────
+    hbox_opts = self.factory.createHBox(layout)
+    self.factory.createLabel(hbox_opts, _("Scope:"))
+    self._scope_items = {}
+    scope_coll = []
+    for key in self._SCOPE_ORDER:
+      item = MUI.YItem(self._scope_labels[key])
+      if key == self.search_scope:
+        item.setSelected(True)
+      self._scope_items[key] = item
+      scope_coll.append(item)
+    self._scope_list = self.factory.createComboBox(hbox_opts, "")
+    self._scope_list.addItems(scope_coll)
+    self._scope_list.setHelpText(_("Limit the search to a subset of packages: all, installed, available to install, upgrades or upgradable."))
+    self.factory.createHStretch(hbox_opts)
+    self._use_regexp = self.factory.createCheckBox(hbox_opts, _("Use &regexp"))
+    self._use_regexp.setChecked(self.search_use_regexp)
+    self._use_regexp.setNotify(True)
+    self._use_regexp.setHelpText(_("Treat the Find field as a regular expression (Python re syntax). Disables multi-field search."))
+    self.eventManager.addWidgetEvent(self._use_regexp, self._updateRegexpState)
+    self._latest_only_check = self.factory.createCheckBox(hbox_opts, _("&Latest only"))
+    self._latest_only_check.setChecked(self.search_newest_only)
+    self._latest_only_check.setHelpText(_("Show only the latest version of each package name."))
+    self._fuzzy_check = self.factory.createCheckBox(hbox_opts, _("Fu&zzy search"))
+    self._fuzzy_check.setChecked(self.search_fuzzy)
+    self._fuzzy_check.setHelpText(_("Automatically add wildcards around each search token (e.g. 'gtk' becomes '*gtk*'). Disabled in regexp mode."))
+    self._icase_check = self.factory.createCheckBox(hbox_opts, _("Case &sensitive"))
+    self._icase_check.setChecked(not self.search_icase)   # icase=True → unchecked
+    self._icase_check.setNotify(True)
+    self._icase_check.setHelpText(_("When checked, the search is case-sensitive. By default search is case-insensitive."))
+    # ── Row 3b: Dependency / what-query (CheckBoxFrame) ─────────────────────
+    # When active, the Find field is used as the capability string.
+    # Search-in checkboxes, regexp, fuzzy and icase are disabled in this mode.
+    self._WHAT_ORDER = [
+      '', 'whatprovides', 'whatrequires', 'whatdepends', 'whatrecommends',
+      'whatenhances', 'whatsuggests', 'whatsupplements', 'whatobsoletes', 'whatconflicts',
+    ]
+    self._what_labels = {
+      ''              : _('(none)'),
+      'whatprovides'  : _('provide'),
+      'whatrequires'  : _('require'),
+      'whatdepends'   : _('depend on'),
+      'whatrecommends': _('recommend'),
+      'whatenhances'  : _('enhance'),
+      'whatsuggests'  : _('suggest'),
+      'whatsupplements': _('supplement'),
+      'whatobsoletes' : _('obsolete'),
+      'whatconflicts' : _('conflict with'),
+    }
+    what_frame = self.factory.createCheckBoxFrame(
+      layout, _('&Dependency query'), _what_active)
+    what_frame.setNotify(True)
+    what_frame.setHelpText(_("When checked, the Find field is used as a capability name and packages are searched by dependency relation instead of text pattern."))
+    self.eventManager.addWidgetEvent(what_frame, self._onWhatFrameToggled, True)
+    self._what_frame = what_frame
+    what_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+    hbox_what = self.factory.createHBox(what_frame)
+    self.factory.createLabel(hbox_what, _('Find packages that:'))
+    self._what_items = {}
+    what_item_list = []
+    for key in self._WHAT_ORDER:
+      if not key:
+        continue   # skip '(none)' — not needed inside the frame
+      item = MUI.YItem(self._what_labels[key])
+      if key == (self.search_what_type or 'whatprovides'):
+        item.setSelected(True)
+      self._what_items[key] = item
+      what_item_list.append(item)
+    self._what_combo = self.factory.createComboBox(hbox_what, '')
+    self._what_combo.addItems(what_item_list)
+    self._what_combo.setHelpText(_("Choose the dependency relation to search: provide, require, depend on, recommend, etc."))
+    self.factory.createLabel(hbox_what, _('the capability in "Find" field'))
 
-def msgBox (info) :
-    '''
-    This function creates a dialog and show the message passed as input.
+    self._updateRegexpState()
+    self._updateWhatState()
 
-    @param info: dictionary, information to be passed to the dialog.
-            title     =>     dialog title
-            text      =>     string to be swhon into the dialog
-            richtext  =>     True if using rich text
-    '''
-    if (not info) :
-        return 0
+    # ── Row 4: Repository filter (multi-selection) ───────────────────────────
+    if self._repos:
+      frame = self.factory.createCheckBoxFrame(layout, _("Limit to repositories"), bool(self.search_repos))
+      frame.setNotify(True)
+      frame.setHelpText(_("When checked, the search is restricted to the selected repositories."))
+      frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self.eventManager.addWidgetEvent(frame, self._onRepoFrameToggled, True)
+      self._repo_frame = frame
 
-    return common.msgBox(info)
+      self._repo_box = self.factory.createMultiSelectionBox(frame, "")
+      repo_items = []
+      self._repo_items = {}   # repo_id → YItem
+      for repo in self._repos:
+        item = MUI.YItem(repo['name'] if repo['name'] else repo['id'])
+        if repo['id'] in self.search_repos:
+          item.setSelected(True)
+        self._repo_items[repo['id']] = item
+        repo_items.append(item)
+      self._repo_box.addItems(repo_items)
+      # box starts visible only if there are pre-existing selections (visibility set in _initVisibility)
+    else:
+      self._repo_frame = None
+      self._repo_box   = None
+      self._repo_items = {}
 
+    # ── Row 4: Architecture filter (multi-selection) ──────────────────────────
+    if self._arches:
+      arch_frame = self.factory.createCheckBoxFrame(layout, _("Limit to architectures"), bool(self.search_arches))
+      arch_frame.setNotify(True)
+      arch_frame.setHelpText(_("When checked, the search is restricted to the selected CPU architectures."))
+      arch_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+      self.eventManager.addWidgetEvent(arch_frame, self._onArchFrameToggled, True)
+      self._arch_frame = arch_frame
 
-def askOkCancel (info) :
-    '''
-    This function create an OK-Cancel dialog with a <<title>> and a
-    <<text>> passed as parameters.
+      self._arch_box = self.factory.createMultiSelectionBox(arch_frame, "")
+      arch_items = []
+      self._arch_items = {}   # arch string → YItem
+      for arch in self._arches:
+        item = MUI.YItem(arch)
+        if arch in self.search_arches:
+          item.setSelected(True)
+        self._arch_items[arch] = item
+        arch_items.append(item)
+      self._arch_box.addItems(arch_items)
+      # box starts visible only if there are pre-existing selections (visibility set in _initVisibility)
+    else:
+      self._arch_frame = None
+      self._arch_box   = None
+      self._arch_items = {}
 
-    @param info: dictionary, information to be passed to the dialog.
-        title     =>     dialog title
-        text      =>     string to be swhon into the dialog
-        richtext  =>     True if using rich text
-        default_button => optional default button [1 => Ok - any other values => Cancel]
+    # ── Row 5: action buttons ─────────────────────────────────────────────────
+    hbox_btns = self.factory.createHBox(layout)
+    self.factory.createHStretch(hbox_btns)
+    self._search_button = self.factory.createIconButton(
+      hbox_btns, 'edit-find', _("&Search"))
+    self._search_button.setHelpText(_("Run the search and show matching packages."))
+    self._clear_button = self.factory.createIconButton(
+      hbox_btns, 'edit-clear', _("&Clear"))
+    self._clear_button.setHelpText(_("Clear the Find field and reset the dependency query frame."))
+    self._close_button = self.factory.createIconButton(
+      hbox_btns, 'window-close', _("C&lose"))
+    self._close_button.setHelpText(_("Close this dialog without running a new search."))
 
-    @output:
-        False: Cancel button has been pressed
-        True:  Ok button has been pressed
-    '''
-    if (not info) :
-        return False
+    self.eventManager.addWidgetEvent(self._search_button, self._onSearch)
+    self.eventManager.addWidgetEvent(self._clear_button,  self._onClear)
+    self.eventManager.addWidgetEvent(self._close_button,  self._onClose)
+    self.eventManager.addCancelEvent(self._onClose)
 
-    return common.askOkCancel(info)
+  # ── helpers ──────────────────────────────────────────────────────────────
 
-def askYesOrNo (info) :
-    '''
-    This function create an Yes-No dialog with a <<title>> and a
-    <<text>> passed as parameters.
+  def _setupUI(self):
+    """Build the widget tree then force GTK backend creation so we can set
+    initial visibility before the event loop starts."""
+    super()._setupUI()
+    # open() creates all GTK backend widgets; must happen before _initVisibility
+    self.dialog.open()
+    self._initVisibility()
 
-    @param info: dictionary, information to be passed to the dialog.
-        title     =>     dialog title
-        text      =>     string to be swhon into the dialog
-        richtext  =>     True if using rich text
-        default_button => optional default button [1 => Yes - any other values => No]
-        size => [row, coulmn]
+  def _initVisibility(self):
+    """Collapse the content area of filter frames when no items are pre-selected."""
+    if self._repo_frame is not None:
+      self._repo_frame.showContent(bool(self.search_repos))
+    if self._arch_frame is not None:
+      self._arch_frame.showContent(bool(self.search_arches))
+    if self._what_frame is not None:
+      self._what_frame.showContent(bool(self.search_what_type))
+    # Apply initial enable/disable state for what-mode compatibility
+    self._updateWhatState()
 
-    @output:
-        False: No button has been pressed
-        True:  Yes button has been pressed
-    '''
-    if (not info) :
-        return False
+  def _currentScope(self):
+    sel = self._scope_list.selectedItem()
+    for key, item in self._scope_items.items():
+      if item == sel:
+        return key
+    return 'all'
 
-    return common.askYesOrNo(info)
+  def _currentWhatType(self):
+    """Return the daemon option name currently selected in the what-combo, or ''."""
+    sel = self._what_combo.selectedItem()
+    for key, item in self._what_items.items():
+      if item == sel:
+        return key
+    return ''
 
+  def _updateWhatState(self):
+    """Enable/disable widgets based on whether dependency-query mode is active.
+
+    When the Dependency query frame is checked:
+      - Find field is used as capability string → search-in checkboxes, regexp,
+        fuzzy and icase are disabled (they only apply to text search).
+    When the frame is unchecked:
+      - All text-search options are re-enabled and regexp state is restored.
+    """
+    is_what = bool(self._what_frame is not None and self._what_frame.value())
+    # Search-in checkboxes: only valid for text search
+    for cb in (self._nevra_check, self._provides_check, self._filenames_check,
+               self._binaries_check, self._src_check, self._summary_check):
+      try:
+        cb.setEnabled(not is_what)
+      except Exception:
+        pass
+    # Regexp, fuzzy, icase: only valid for text search
+    for cb in (self._use_regexp, self._fuzzy_check, self._icase_check):
+      try:
+        cb.setEnabled(not is_what)
+        if is_what:
+          cb.setChecked(False)
+      except Exception:
+        pass
+    if not is_what:
+      self._updateRegexpState()
+
+  def _selectedRepos(self):
+    """Return list of repo IDs currently selected in the multi-selection box."""
+    if self._repo_box is None or self._repo_frame is None:
+      return []
+    if not self._repo_frame.value():
+      return []
+    selected = []
+    try:
+      sel_items = self._repo_box.selectedItems()
+    except Exception:
+      sel_items = []
+    for repo_id, item in self._repo_items.items():
+      if item in sel_items:
+        selected.append(repo_id)
+    return selected
+
+  def _selectedArches(self):
+    """Return list of arch strings currently selected in the arch multi-selection box."""
+    if self._arch_box is None or self._arch_frame is None:
+      return []
+    if not self._arch_frame.value():
+      return []
+    selected = []
+    try:
+      sel_items = self._arch_box.selectedItems()
+    except Exception:
+      sel_items = []
+    for arch, item in self._arch_items.items():
+      if item in sel_items:
+        selected.append(arch)
+    return selected
+
+  # ── event handlers ───────────────────────────────────────────────────────
+
+  def _onFilenamesChanged(self):
+    """Uncheck Binaries if Files is unchecked (binaries are a subset of files)."""
+    if not self._filenames_check.isChecked():
+      try:
+        self._binaries_check.setChecked(False)
+      except Exception:
+        pass
+
+  def _updateRegexpState(self):
+    """Enable/disable checkboxes based on regexp mode.
+
+    Non-regexp (Search() API): with_nevra, with_provides, with_filenames,
+    with_binaries, with_src are valid; Summary must be disabled.
+    Regexp (search() API): only a single text field (summary or names) is used;
+    the Search()-only flags are disabled. icase, fuzzy, dependency-query,
+    repository and architecture filters are also disabled (they only apply to
+    the multi-field Search() path).
+    """
+    is_regexp = self._use_regexp.isChecked()
+    # Checkboxes valid only in non-regexp Search() mode.
+    for cb in (self._provides_check, self._filenames_check,
+               self._binaries_check, self._src_check):
+      try:
+        cb.setEnabled(not is_regexp)
+      except Exception:
+        pass
+    # Summary is valid only in regexp mode (backend.search() field).
+    try:
+      self._summary_check.setEnabled(is_regexp)
+      if not is_regexp:
+        self._summary_check.setChecked(False)
+    except Exception:
+      pass
+    # Fuzzy search is incompatible with regexp (would wrap the whole pattern in *…*).
+    try:
+      self._fuzzy_check.setEnabled(not is_regexp)
+      if is_regexp:
+        self._fuzzy_check.setChecked(False)
+    except Exception:
+      pass
+    # icase / case-sensitive: only meaningful in non-regexp mode.
+    try:
+      self._icase_check.setEnabled(not is_regexp)
+    except Exception:
+      pass
+    # Dependency query, repo filter and arch filter are incompatible with regexp:
+    # backend.search() does not support them.
+    for frame in (self._what_frame, self._repo_frame, self._arch_frame):
+      if frame is None:
+        continue
+      try:
+        frame.setEnabled(not is_regexp)
+        if is_regexp:
+          frame.setValue(False)
+          frame.showContent(False)
+      except Exception:
+        pass
+
+  def _onRepoFrameToggled(self, obj):
+    """Expand or collapse the repo list when the CheckBoxFrame is toggled."""
+    if self._repo_frame is not None:
+      self._repo_frame.showContent(obj.value())
+
+  def _onArchFrameToggled(self, obj):
+    """Expand or collapse the arch list when the CheckBoxFrame is toggled."""
+    if self._arch_frame is not None:
+      self._arch_frame.showContent(obj.value())
+
+  def _onWhatFrameToggled(self, obj):
+    """Expand or collapse the what-query when the CheckBoxFrame is toggled."""
+    if self._what_frame is not None:
+      self._what_frame.showContent(obj.value())
+    self._updateWhatState()
+
+  def _onSearch(self):
+    # Read boolean "search in" flags; non-regexp ones are invalid when regexp is active.
+    is_regexp = self._use_regexp.isChecked()
+    self.search_nevra      = self._nevra_check.isChecked()
+    self.search_provides   = (not is_regexp) and self._provides_check.isChecked()
+    self.search_filenames  = (not is_regexp) and self._filenames_check.isChecked()
+    self.search_binaries   = (not is_regexp) and self._binaries_check.isChecked()
+    self.search_src        = (not is_regexp) and self._src_check.isChecked()
+    self.search_summary    = is_regexp and self._summary_check.isChecked()
+    self.search_text       = self._find_entry.value().strip()
+    self.search_use_regexp = is_regexp
+    self.search_repos      = self._selectedRepos()
+    self.search_arches     = self._selectedArches()
+    self.search_icase      = not self._icase_check.isChecked()
+    self.search_newest_only = self._latest_only_check.isChecked()
+    self.search_fuzzy      = self._fuzzy_check.isChecked()
+    self.search_scope      = self._currentScope()
+    # Read dependency/what-query state.
+    # Capability string comes from the same Find field as the text search.
+    self.search_what_type  = None
+    self.search_what_value = ''
+    if self._what_frame is not None and self._what_frame.value():
+      wtype = self._currentWhatType()
+      wval  = self.search_text   # already stripped above from _find_entry
+      if wtype and wval:
+        self.search_what_type  = wtype
+        self.search_what_value = wval
+        # Dependency query is exclusive: clear text so the main UI shows the
+        # right label and doesn't trigger a text search.
+        self.search_text = ''
+    # Validate regex before accepting — avoids an unbreakable error loop in the main UI.
+    if self.search_use_regexp and self.search_text:
+      try:
+        re.compile(self.search_text)
+      except re.error as exc:
+        common.warningMsgBox({
+          'title': _('Invalid regular expression'),
+          'size': (400, 200),
+          'text':  str(exc),
+          'richtext': False,
+        })
+        return   # stay in the dialog so the user can fix the pattern
+    self.action = 'search'
+    self.ExitLoop()
+
+  def _onClear(self):
+    """Clear the Find field and reset the dependency query frame. Stay in dialog."""
+    try:
+      self._find_entry.setValue('')
+    except Exception:
+      pass
+    if self._what_frame is not None:
+      try:
+        self._what_frame.setValue(False)
+        self._what_frame.showContent(False)
+      except Exception:
+        pass
+      self._updateWhatState()
+
+  def _onClose(self):
+    self.action = 'cancel'
+    self.ExitLoop()
 
 def ask_for_gpg_import (values):
     '''
@@ -1510,8 +2759,8 @@ def ask_for_gpg_import (values):
             'timestamp': display_timestamp,
             'file': display_url})
 
-    return askYesOrNo({'title' : _("GPG key missed"),
+    return common.askYesOrNo({'title' : _("GPG key missed"),
                        'text': msg,
                        'default_button' : 1,
                        'richtext' : True,
-                       'size' : [60, 10]})
+                       'size' : (400, 200)})

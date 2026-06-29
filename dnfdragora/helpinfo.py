@@ -14,6 +14,8 @@ Author:  Angelo Naselli <anaselli@linux.it>
 import manatools.basehelpinfo as helpdata
 import gettext
 
+_ = gettext.gettext
+
 class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
   '''
   DNFDragoraHelpInfo class implements HelpInfoBase show() and home()
@@ -27,14 +29,19 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
 
     ### Main index
     menu_line_lnk     = '<b>%s</b>'%self._formatLink(_("Menu line"), 'menus')
-    filters_lnk       = '<b>%s</b>'%self._formatLink(_("Filters and search line"), 'filters')
+    filters_lnk       = '<b>%s</b>'%self._formatLink(_("Views, filters and search"), 'filters')
     group_panel_lnk   = '<b>%s</b>'%self._formatLink(_("Group panel"), 'group_panel')
     package_panel_lnk = '<b>%s</b>'%self._formatLink(_("Package panel"), 'package_panel')
     info_panel_lnk    = '<b>%s</b>'%self._formatLink(_("Information panel"), 'info_panel')
     pbar_line_lnk     = '<b>%s</b>'%self._formatLink(_("Progress bar line"), 'pbar_panel')
     buttons_line_lnk  = '<b>%s</b>'%self._formatLink(_("Button line"), 'button_panel')
+    search_dlg_lnk    = '<b>%s</b>'%self._formatLink(_("Search dialog"), 'search_dlg')
+    history_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('History dialog'), 'history_dlg')
+    offline_dlg_lnk   = '<b>%s</b>'%self._formatLink(_('Offline transactions dialog'), 'offline_trans_dlg')
+    system_upgrade_dlg_lnk = '<b>%s</b>'%self._formatLink(_('System upgrade dialog'), 'system_upgrade_dlg')
+    advisory_dlg_lnk = '<b>%s</b>'%self._formatLink(_('Advisory information dialog'), 'advisory_dlg')
 
-    index = '<ul><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li><li>%s</li></ul>'%(
+    index_links = (
       menu_line_lnk,
       filters_lnk,
       group_panel_lnk,
@@ -42,7 +49,13 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
       info_panel_lnk,
       pbar_line_lnk,
       buttons_line_lnk,
+      search_dlg_lnk,
+      history_dlg_lnk,
+      offline_dlg_lnk,
+      system_upgrade_dlg_lnk,
+      advisory_dlg_lnk,
       )
+    index = '<ul>%s</ul>' % ''.join('<li>%s</li>' % link for link in index_links)
 
     ### Menu bar index
     file_menu_lnk   = '<b>%s</b>'%self._formatLink(_("File menu"), 'file_menu')
@@ -85,7 +98,17 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>Refresh metadata</h2>') +\
           _('This menu sends a request to dnfdaemon to force a refresh of all the metadata. This action is asynchronous and requires rebuilding the package information cache.<br>') +\
         _('<h2>Repositories</h2>') +\
-          _('This menu opens a dialog that allows you to enable or disable repositories. Any changes are valid only while dnfdragora is running and are not permanent.<br>')+\
+          _('This menu opens the Repository Management dialog.<br>') +\
+          _('The dialog lists all configured repositories sorted by name. You can enable or disable each repository using its checkbox. Changes take effect immediately for the current session but are not permanent.<br><br>') +\
+          _('<b>Filter frame \u2014 Show additional repository types</b><br>') +\
+          _('By default the list hides debug-information, source, and testing repositories. Expand the filter frame by checking its title to show three additional checkboxes:<br>') +\
+          _('<ul>') +\
+          _('<li><b>Debug information</b>: show repositories whose id ends with <i>-debuginfo</i>.</li>') +\
+          _('<li><b>Source</b>: show repositories whose id ends with <i>-source</i>.</li>') +\
+          _('<li><b>Testing</b>: show repositories whose id contains <i>testing</i>.</li>') +\
+          _('</ul>') +\
+          _('If any repository of those types is currently <b>enabled</b> in DNF, the corresponding checkbox is automatically turned on and the frame is expanded, ensuring an active repository is never hidden.<br>') +\
+          _('The filter selections are saved in the user configuration file and restored at the next launch.<br>')+\
         _('<h2>Quit</h2>') +\
           _('This menu exits from dnfdragora.<br>'),
         # back home
@@ -97,8 +120,12 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('Information Menu'),
         # help
         _('<h2>History</h2>') +\
-          _('This menu runs a dialog containing transaction history shown in a tree ordered by date. Selected history can be undone by pressing <b>Undo</b> button.<br>') + \
-          _('<br><i>Note that this function is currently broken because of a DNF API change</i><br>'),
+          _('This menu opens the %s, which shows packages recently changed on the system.'%self._formatLink(_('History dialog'), 'history_dlg')) + \
+        _('<h2>System upgrade</h2>') +\
+          _('This menu opens the %s to prepare an offline distro upgrade to a target releasever. '%self._formatLink(_('System upgrade dialog'), 'system_upgrade_dlg')) + \
+          _('<b>Important:</b> the menu entry is shown only when systemd is available, because execution is scheduled offline for reboot.') + \
+        _('<h2>Advisory information</h2>') +\
+          _('This menu opens the %s to query advisory metadata (security, bugfix, enhancement) with filters and inspect selected advisory details.'%self._formatLink(_('Advisory information dialog'), 'advisory_dlg')),
         # back home
         home_lnk,
       ),
@@ -120,18 +147,17 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<h2>System options</h2>') + \
           _('<ul><li><b>Run transactions on packages automatically without confirmation needed</b>: if checked transactions do not need to be confirmed, dnfdragora works as answering always <i>yes</i>.') + \
             _('<br><b>NOTE</b> that this option means that also removing packages is silently accepted</li>') + \
-          _('<li><b>Consider packages to upgrade as updates</b>: if checked upgrades are added to updates and filtered as updates.</li>') + \
-          _('<li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked dnfdragora update is hidden if there are no updates.') + \
-            _('<br><b>NOTE</b> that this option is experimental, not all desktops manage it as expected</li>') + \
-          _('<li><b>Interval to check for updates</b>: the given number represents how often dnfdragora checks for updates; the value is expressed in minutes</li>') + \
+          _('<li><b>Force distsync as upgrade</b>: if enabled, queued upgrade actions are resolved as distsync actions.</li>') + \
+          _('<li><b>Remove installed package to resolve transactions</b>: if enabled, dependency solving can remove installed packages (<i>allow_erasing</i>).</li>') + \
           _('<li><b>Metadata expire time</b>: time to force Metadata expiration, the value is expressed in hours</li></ul>') + \
+        _('<h2>dnfdragora-updater options</h2>') + \
+          _('<ul><li><b>Hide dnfdragora-update menu if there are no updates</b>: if checked dnfdragora-update is hidden when no updates are available.') + \
+            _('<br><b>NOTE</b> that this option is experimental, not all desktops manage it as expected</li>') + \
+          _('<li><b>Interval to check for updates</b>: how often dnfdragora-update checks for updates; value is expressed in minutes (10..10080).</li></ul>') + \
         _('<h2>Layout options</h2>') + \
           _('<ul><li><b>Show updates</b>: if checked dnfdragora starts with <i>updates</i> filter active, i.e. showing only package available for updates if any.</li>') + \
           _('<li><b>Do not show groups view</b>: filtering by groups could require CPU if using comps, if this option is checked dnfdragora starts showing all packages.</li></ul>') + \
           _('<b>NOTE</b> that the above options require dnfdragora to be restarted.') + \
-        _('<h2>Search options</h2>') + \
-          _('<ul><li><b>Show newest packages only</b>: if checked dnfdragora shows only newest packages on search.</li>') + \
-          _('<li><b>Fuzzy search (legacy mode)</b>: if checked a search without using regular expressions will add "*" to the given words, restoring the behavior dnfdragora had using dnfdaemon 4.</li></ul>') + \
         _('<h2>Logging options</h2>') + \
           _('Enable these options to let dnfdragora log on file called <i>dnfdragora.log</i>.') + \
           _('<ul><li><b>Change directory</b>: this option allows you to set the logging directory; the directory must exist and needs write permission.</li>') + \
@@ -156,23 +182,27 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
 
       'filters':   '<h1>%s</h1>%s<br>%s'%(
         # title
-        _('Views and search'),
+        _('Views, filters and search'),
         # help
         _('<h2>Views</h2>') +\
-          _('The first combobox allows you to show packages by groups. If <i>Groups</i> is selected, the group panel shows a tree view containing groups, and selecting a group shows related packages in the package panel.') + \
-          _('If <i>All</i> is selected, the package panel contains all the packages.') + \
+          _('The first combobox allows you to show packages by groups. If <i>Groups</i> is selected, the group panel shows a tree view containing groups, and selecting a group shows related packages in the package panel.<br>') + \
+          _('If <i>All</i> is selected, the package panel contains all the packages.<br>') + \
         _('<h2>Filters</h2>') +\
           _('The Filter combobox allows you to filter the packages shown in the package panel by:') + \
-            _('<ul><li><b>Installed</b>: shows installed packages only.</li>') + \
+          '<ul>' + \
+            _('<li><b>Installed</b>: shows installed packages only.</li>') + \
             _('<li><b>Not installed</b>: shows available packages only.</li>') + \
             _('<li><b>To update</b>: shows packages that are available for updates only.</li>') + \
+            _('<li><b>Desktop Applications</b>: shows packages that provide desktop/GUI applications.</li>') + \
             _('<li><b>Show x86_64 and noarch only</b>: if dnfdragora is running on x86_64 architecture, it hides i686 packages.</li>') + \
-            _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li></ul>') + \
+            _('<li><b>All</b>: shows all the packages, i.e. available, updates and installed.</li>') + \
+          '</ul>' + \
         _('<h2>Search</h2>') +\
-          _('Search is performed by pressing the <i>Search</i> button when the text field is not empty. The Search combobox allows you to search the given text in package <i>names</i>, <i>summaries</i>, <i>descriptions</i>, or <i>files</i>.') + \
-          _('A special checkbox <i>Use regexp</i> is used to look for packages by python language regular expressions. This search is performed on cached package information such as for the <b>only names and summaries</b>.') + \
-          _('<i>Note</i>: when regular expressions are used to search by name, the full package filename including the version is used.') + \
-          _('The <i>Clear search</i> button resets search text field.') + \
+          _('Pressing the <b>Search</b> button (magnifier icon) opens the %s '% self._formatLink(_('Search dialog'), 'search_dlg')) + \
+          _('that provides full-featured package search. When a search is active the filter combobox is disabled ') + \
+          _('and an info label shows the active search text or dependency query. ') + \
+          _('The <b>Clear search</b> button (eraser icon) next to the Search button resets all search state ') + \
+          _('and re-enables the filter combobox.<br>') + \
         '<br>',
         # back home
         home_lnk,
@@ -227,7 +257,115 @@ class DNFDragoraHelpInfo(helpdata.HelpInfoBase):
         _('<ul><li><b>Apply</b>: when some packages are selected for installing or updating or deselected for uninstalling this button runs the transaction to be performed.</li>') + \
         _('<li><b>Select all</b>: if packages are filtered for updates only this button allows to select all the packages in one shot.</li>') + \
         _('<li><b>Quit</b>: exits from dnfdragora.</li></ul>') + \
+        _('<h2>Offline transaction confirmation</h2>') + \
+        _('When transaction confirmation is shown, you can enable <b>Offline</b> and choose <b>Reboot</b> or <b>Power off</b>. ') + \
+        _('dnfdragora schedules the offline transaction and shows a reminder to reboot or power off to continue at the next startup. ') + \
+        _('While offline scheduling is in progress, cancellation is disabled and the progress window stays open until scheduling is completed.') + \
         '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'history_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('History dialog'),
+        # help
+        _('The History dialog shows packages that have been recently changed on the system by querying the dnf5daemon History API.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → History</b>.<br>') +
+        _('The main dnfdragora window is disabled while the dialog is open to prevent unintended interactions.<br><br>') +
+        _('<h2>Filters</h2>') +
+        _('The <b>Filters</b> section at the top of the dialog lets you narrow the results:<br>') +
+        _('<ul>') +
+        _('<li><b>Since (YYYY-MM-DD)</b>: enter a date to show only packages changed on or after that date. ') +
+        _('Leave empty to retrieve all available history. ') +
+        _('The date is converted to a Unix timestamp before being sent to the daemon.</li>') +
+        _('</ul>') +
+        _('<h2>Change type checkboxes</h2>') +
+        _('Four checkboxes let you choose which kinds of package changes to include in the results:<br>') +
+        _('<ul>') +
+        _('<li><b>Installed</b>: packages that were newly installed.</li>') +
+        _('<li><b>Removed</b>: packages that were removed from the system.</li>') +
+        _('<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>') +
+        _('<li><b>Downgraded</b>: packages that were downgraded to an older version.</li>') +
+        _('</ul>') +
+        _('Uncheck any type you are not interested in to reduce the number of rows shown.<br><br>') +
+        _('<h2>Advisory options</h2>') +
+        _('<ul>') +
+        _('<li><b>Include advisories</b>: when checked, advisory information (security, bugfix, enhancement) is included where available.</li>') +
+        _('<li><b>All advisories</b>: when checked together with <i>Include advisories</i>, all advisory types are returned rather than only the most relevant one per package. ') +
+        _('This option is automatically disabled when <i>Include advisories</i> is unchecked.</li>') +
+        _('</ul>') +
+        _('<h2>Results table</h2>') +
+        _('The table shows one row per changed package with the following columns:<br>') +
+        _('<ul>') +
+        _('<li><b>Name</b>: the package name.</li>') +
+        _('<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>') +
+        _('<li><b>Arch</b>: the package architecture.</li>') +
+        _('<li><b>Action</b>: one of <i>installed</i>, <i>removed</i>, <i>upgraded</i>, or <i>downgraded</i>.</li>') +
+        _('<li><b>Date</b>: the date and time of the transaction (YYYY-MM-DD HH:MM).</li>') +
+        _('<li><b>Summary</b>: a short description of the package.</li>') +
+        _('</ul>') +
+        _('If no packages match the current filters a <i>No results</i> row is shown.<br>') +
+        _('If the daemon call fails the error message is displayed in the table so you can diagnose the problem.<br><br>') +
+        _('<h2>Refresh button</h2>') +
+        _('Press <b>Refresh</b> to re-query the daemon with the current filter settings. ') +
+        _('The dialog also queries automatically when it first opens.<br><br>') +
+        _('<h2>Close button</h2>') +
+        _('Press <b>Close</b> (or the window close button) to dismiss the dialog and return to the main window.<br>'),
+        # back home
+        home_lnk,
+      ),
+
+      'offline_trans_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Offline transactions dialog'),
+        # help
+        _('The Offline transactions dialog shows the current offline transaction status reported by dnf5daemon.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → Offline transactions</b>.<br>') +
+        _('The main dnfdragora window is disabled while the dialog is open to prevent unintended interactions.<br><br>') +
+        _('<h2>Status and actions</h2>') +
+        _('Press <b>Refresh</b> to reload the current offline status. If an offline transaction is pending, you can choose <b>Reboot</b> or <b>Power off</b> and press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to remove the scheduled offline transaction data.<br>') +
+        '<br>',
+        # back home
+        home_lnk,
+      ),
+
+      'system_upgrade_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('System upgrade dialog'),
+        # help
+        _('The System upgrade dialog prepares a distribution upgrade transaction for offline execution at reboot using dnf5daemon.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>') +
+        _('<b>Note:</b> this menu is available only on systems where systemd is running.<br><br>') +
+        _('<h2>Safety and confirmation</h2>') +
+        _('The dialog starts with a warning and keeps advanced options hidden by default. ') +
+        _('Enable the acknowledgement checkbox to open the options frame and proceed only if you fully understand the risks.<br><br>') +
+        _('<h2>Releasever option</h2>') +
+        _('Enter the target <i>releasever</i> exactly as expected by repositories metadata (for example development values such as <i>cauldron</i> or <i>rawhide</i>, where applicable).<br><br>') +
+        _('<h2>Execution flow</h2>') +
+        _('After confirmation, dnfdragora reopens the daemon session with the chosen releasever, prepares system-upgrade in <i>distrosync</i> mode with interactive prompts enabled, resolves dependencies with allow-erasing, then schedules the transaction offline and sets reboot as finish action.<br>'),
+        # back home
+        home_lnk,
+      ),
+
+      'advisory_dlg': '<h1>%s</h1>%s<br>%s'%(
+        # title
+        _('Advisory information dialog'),
+        # help
+        _('The Advisory information dialog queries dnf5daemon advisory metadata and shows matching advisories in a table.<br><br>') +
+        _('<h2>Opening the dialog</h2>') +
+        _('Open the dialog from the menu bar: <b>Actions → Advisory information</b>.<br><br>') +
+        _('<h2>Filters</h2>') +
+        _('Use the filter area to narrow results by availability, advisory IDs, package name patterns, Bugzilla IDs, CVE IDs, advisory types, severities, and toggles for advisories containing CVE/Bugzilla references.<br><br>') +
+        _('<h2>Results table</h2>') +
+        _('The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and <b>Title</b> for each advisory returned by the daemon.<br><br>') +
+        _('<h2>Selected advisory details</h2>') +
+        _('Selecting a row updates the details table with available fields such as vendor, status, description, message, collections, and references.<br><br>') +
+        _('<h2>Refresh and Close</h2>') +
+        _('Press <b>Refresh</b> to run the query with current filters, or <b>Close</b> to dismiss the dialog and return to the main window.<br>'),
         # back home
         home_lnk,
       ),

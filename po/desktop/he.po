@@ -60,3 +60,9 @@ msgstr "אשף התקנת חבילות RPM"
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "התקנת חבילות מקומיות על המערכת"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""

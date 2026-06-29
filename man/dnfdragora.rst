@@ -1,7 +1,7 @@
 :orphan:
 
 ..
-  Copyright (C) 2016-2021 Angelo Naselli and Neal Gompa
+  Copyright (C) 2016-2026 Angelo Naselli and Neal Gompa
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@
 
 DNFDragora is a DNF frontend, based on rpmdragora from Mageia
 (originally rpmdrake) Perl code. It is written in Python 3 and uses
-libYui, the widget abstraction library written by SUSE, so that it
-can be run using Qt 5, GTK+ 3, or ncurses interfaces.
+manatools.aui, the widget abstraction library, so that it can be run
+using Qt (PySide6), GTK 4, or ncurses interfaces.
 
 .. _options-label:
 
@@ -49,16 +49,13 @@ can be run using Qt 5, GTK+ 3, or ncurses interfaces.
     Show help message and exit.
 
 ``--gtk``
-    Start using yui GTK+ plugin implementation.
+    Start using the manatools.aui GTK 4 backend.
 
 ``--ncurses``
-    Start using yui ncurses plugin implementation.
+    Start using the manatools.aui ncurses backend.
 
 ``--qt``
-    Start using yui Qt plugin implementation.
-
-``--fullscreen``
-    Use full screen for dialogs.
+    Start using the manatools.aui Qt (PySide6) backend.
 
 ``--update-only``
     Show updates dialog only.
@@ -66,7 +63,7 @@ can be run using Qt 5, GTK+ 3, or ncurses interfaces.
 ``--group-icons-path <GROUP_ICONS_PATH>``
     Force a new path for group icons (instead of /usr/share/icons).
 
-``--images-path* <IMAGES_PATH>``
+``--images-path <IMAGES_PATH>``
     Force a new path for all the needed images (instead of
     /usr/share/dnfdragora/images).
 
@@ -77,14 +74,8 @@ can be run using Qt 5, GTK+ 3, or ncurses interfaces.
 ``--install <RPM-Packages …>``
     Install local rpm packages.
 
-``--update-only``
-    Start a dialog showing only packages to update.
-
 ``--version``
     Show application version and exit.
-
-``--exit``
-    Force dnfdaemon dbus services used by dnfdragora to exit.
 
 ======
  Bugs

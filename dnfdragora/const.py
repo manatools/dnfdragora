@@ -95,7 +95,7 @@ ACTIONS_FILTER = {'u': 'updates', 'i': 'available',
 
 FILTER_ACTIONS = {'updates': 'u', 'available': 'i', 'installed': 'r',
                   'obsoletes': 'o', 'downgrade': 'do', 'reinstall': 'ri',
-                  'localinstall': 'li', 'updates_all': 'u'}
+                  'localinstall': 'li'}
 
 BACKEND_ACTIONS = {
     'update': 'u',

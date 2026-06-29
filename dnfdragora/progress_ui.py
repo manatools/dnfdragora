@@ -5,6 +5,7 @@ import datetime
 import os
 import logging
 import manatools.aui.yui as MUI
+import manatools.ui.common as common
 
 logger = logging.getLogger('dnfdragora.progress_ui')
 
@@ -137,6 +138,7 @@ class TransactionProgressDialog:
         self._icon = parent.icon
         self._complete = False
         self._success = None
+        self._cancel_requested = False
         self._pkg_done = 0
         self._pkg_total = 0
         self._errors = 0
@@ -165,12 +167,12 @@ class TransactionProgressDialog:
         return self._dialog
 
     def open(self):
-        """Show this dialog and hide the main application window."""
+        """Show this dialog and disable the main application window."""
         self._dialog.open()
         self._set_main_window_visible(False)
 
     def close(self):
-        """Destroy the popup and restore the main application window."""
+        """Destroy the popup and re-enable the main application window."""
         if self._dialog is not None:
             try:
                 self._dialog.destroy()
@@ -196,6 +198,22 @@ class TransactionProgressDialog:
         self._current_label.setValue(msg)
         self._current_bar.setValue(100 if success else 0)
         self._global_bar.setValue(100)
+        self._close_button.setLabel(_("&Close"))
+        self._close_button.setEnabled(True)
+        self._update_summary()
+
+    def mark_offline_scheduled(self, finish_action='reboot'):
+        """Mark dialog as ready to close after scheduling offline transaction."""
+        self._complete = True
+        self._success = True
+        action = finish_action if finish_action in ('reboot', 'poweroff') else 'reboot'
+        msg = _("Offline transaction scheduled. Reboot or power off to continue on next startup.")
+        self._append('complete', msg)
+        self._title_label.setValue(_("Offline transaction scheduled"))
+        self._current_label.setValue(msg)
+        self._current_bar.setValue(100)
+        self._global_bar.setValue(100)
+        self._close_button.setLabel(_("&Close"))
         self._close_button.setEnabled(True)
         self._update_summary()
 
@@ -208,9 +226,55 @@ class TransactionProgressDialog:
         """
         widget = event.widget()
         if widget == self._close_button:
-            return True
+            return self.request_close()
         if widget == self._save_button:
             self._save_log()
+        return False
+
+    def request_close(self):
+        """Handle user close/cancel requests during transaction execution.
+
+        Behavior:
+        - If transaction is complete, allow closing.
+        - If still running, request Goal.cancel and keep dialog open.
+        - On cancel refusal/error, keep dialog open and show the reason.
+        """
+        if self._complete:
+            return True
+
+        if getattr(self.parent, '_offline_transaction_running', False):
+            if getattr(self.parent, '_offline_transaction_prepared', False):
+                self._append('complete', _("Offline transaction is scheduled. You can close this window."))
+                self._close_button.setEnabled(True)
+                return True
+            self._append('prep', _("Offline transaction is being prepared. Please wait..."))
+            return False
+
+        if self._cancel_requested:
+            self._append('prep', _("Cancellation already requested; waiting..."))
+            return False
+
+        try:
+            MUI.YUI.app().busyCursor()
+            success, error_msg = self.parent.backend.CancelTransaction(sync=True)
+        except Exception as err:
+            logger.exception("CancelTransaction failed: %s", err)
+            self._append('error', _("Cancellation request failed: %(err)s") % {'err': str(err)})
+            return False
+        finally:
+            MUI.YUI.app().normalCursor()
+
+        if success:
+            self._cancel_requested = True
+            self._append('prep', _("Cancellation requested; waiting for transaction to stop"))
+            self._title_label.setValue(_("Cancelling transaction..."))
+            self._current_label.setValue(_("Waiting for backend to stop transaction"))
+            logger.info("CancelTransaction success")
+            return True
+
+        msg = error_msg if error_msg else _("Cancellation refused by backend")
+        logger.warning("CancelTransaction refused: %s", msg)
+        self._append('error', _("Cancellation refused: %(msg)s") % {'msg': msg})
         return False
 
     # ── Event feed methods (called from ui.py _On* handlers) ─────────────
@@ -364,7 +428,11 @@ class TransactionProgressDialog:
         self._save_button = self.factory.createIconButton(
             bottom_hbox, 'document-save', _("&Save log…"))
         self._close_button = self.factory.createIconButton(
-            bottom_hbox, 'window-close', _("&Close"))
+            bottom_hbox, 'window-close', _("&Cancel"))
+        # Must be active during download/running to let user request Goal.cancel.
+        # Cancel a transaction is only possible when downloading packages, 
+        # so at the very beginning of the running transaction, let's disable the Close button 
+        # to avoid problems (for instance, PCLinuxOS hangs running a sync cancel).
         self._close_button.setEnabled(False)
         MUI.YUI.app().setApplicationIcon(self._icon)
 
@@ -416,12 +484,11 @@ class TransactionProgressDialog:
         return _MAP.get(action_str, 'elem')
 
     def _set_main_window_visible(self, visible):
-        """Show or hide the main application window."""
-        try:
-            self.parent.dialog.setVisible(visible)
-        except Exception:
-            logger.error("_set_main_window_visible: setVisible not available")
-        # Fallback: enable/disable
+        """Keep main window visible and only toggle interactivity.
+
+        Hiding the main window can break modal-child behavior and can remove
+        the application icon from taskbar on some backends/window managers.
+        """
         try:
             self.parent.dialog.setEnabled(visible)
         except Exception:

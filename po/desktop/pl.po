@@ -61,3 +61,9 @@ msgstr "Wgrywanie pakietów RPM"
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "Wgrywaj pakiety z lokalnego systemu"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""

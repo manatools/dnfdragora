@@ -21,8 +21,8 @@ import sys
 import time
 
 import dnfdragora.const as const
-import dnfdragora.dialogs as dialogs
 import dnfdragora.dnf_backend
+import manatools.ui.common as common
 from manatools.aui import yui as yui
 
 logger = logging.getLogger('dnfdragora.base')
@@ -125,7 +125,7 @@ class BaseDragora:
             close = False
         if errmsg == '':
             errmsg = msg
-        dialogs.warningMsgBox({'title' : _("Sorry"), "text": errmsg})
+        common.warningMsgBox({'title' : _("Sorry"), "size": (400, 200), "text": errmsg})
         logger.critical(errmsg)
 
         # try to exit the backends, ignore errors

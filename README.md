@@ -22,7 +22,7 @@ Example with ncurses:
 * Included in the DNF5 distribution.
 * Required when `use_comps` is enabled (group metadata loading via `libdnf5.comps`).
 
-### python-manatools > 0.0.4
+### python-manatools >= 0.99.3
 * https://github.com/manatools/python-manatools
 * Provides `manatools.aui` (the UI abstraction layer) and `manatools.ui` (common dialogs and helpers).
 
@@ -33,6 +33,12 @@ Example with ncurses:
 
 ### dbus-python
 * Required for D-Bus communication with dnf5daemon.
+
+## PACKAGING AND TESTING NOTE — Tray / dnfdragora-update
+
+- The `dnfdragora-update` helper (installed as `dnfdragora-updater`) uses the platform system tray via Qt's `QSystemTrayIcon`; therefore, the Qt Python bindings (`PySide6`) must be available at runtime. Unfortunately, at the time of writing, we did not find any Gtk4 implementations for a system tray icon.
+- Packagers: if `dnfdragora-update` or any split packaging includes the updater/tray helper as a separate package, declare a runtime dependency on PySide6 (distribution package commonly named `python3-pyside6`) so the tray icon and updater features work correctly.
+- Users: on systems without a system tray (some Wayland sessions or minimal desktop environments) tray functionality may be limited or unavailable; `dnfdragora` will continue to run without the tray, but tray-specific updater notifications and controls will be disabled.
 
 ## INSTALLATION
 

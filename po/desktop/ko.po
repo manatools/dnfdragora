@@ -60,3 +60,9 @@ msgstr "RPM 패키지 설치 프로그램"
 msgctxt "Comment"
 msgid "Install local packages on the system"
 msgstr "시스템에 로컬 패키지 설치"
+
+#: ./share/applications/org.mageia.dnfdragora.desktop
+msgctxt "Keywords"
+msgid ""
+"package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;"
+msgstr ""

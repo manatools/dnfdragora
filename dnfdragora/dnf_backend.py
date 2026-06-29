@@ -378,9 +378,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
     @ExceptionHandler
     def get_repositories(self, flt=['*']):
         """Get a list of repo attributes to populate repo view."""
-        repos = self.GetRepositories(patterns=flt, sync=True)
-        repo_list = [ repo for repo in repos if not repo['id'].endswith('-source') and not repo['id'].endswith('-debuginfo') ]
-        return sorted(repo_list, key=lambda elem: (elem['name'], elem['id']))
+        repos = self.GetRepositories(patterns=flt, sync=True)        
+        return sorted(repos, key=lambda elem: (elem['name'], elem['id']))
 
     @TimeFunction
     @ExceptionHandler
@@ -458,7 +457,8 @@ class DnfRootBackend(dnfdragora.backend.Backend, dnfdragora.dnfd_client.Client):
                 for line in content_file:
                     if line.strip() :
                         pkg_lst.append(line.strip())
-
+        if not pkg_lst:
+            return
         options = {
           "scope": "installed",
           "patterns": pkg_lst

@@ -33,9 +33,9 @@ for rootdir, dirnames, filenames in os.walk(directory):
     files.extend(glob.glob(rootdir + "/*.desktop"))
 
 # Define Templates and po directory name
-messagetemplate='(?<=\n)(Name=.*?\n|Comment=.*?\n|GenericName=.*?\n)'
+messagetemplate='(?<=\n)(Name=.*?\n|Comment=.*?\n|GenericName=.*?\n|Keywords=.*?\n)'
 mpattern=re.compile(messagetemplate,re.DOTALL)
-translationtemplate='(?<=\n)(Name\[.*?\n|Comment\[.*?\n|GenericName\[.*?\n)'
+translationtemplate='(?<=\n)(Name\[.*?\n|Comment\[.*?\n|GenericName\[.*?\n|Keywords\[.*?\n)'
 tpattern=re.compile(translationtemplate,re.DOTALL)
 podir = 'po/desktop'
 
