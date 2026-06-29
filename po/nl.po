@@ -8,9 +8,9 @@
 # Geiger David <david.david@mageialinux-online.org>, 2020
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
 # Yuri Chornoivan <yurchor@ukr.net>, 2021
-# Marja van Waes, 2025
 # dragnadh, 2026
 # Marcel Pol <marcel@timelord.nl>, 2026
+# Marja van Waes, 2026
 # Marc Laan, 2026
 #
 #, fuzzy
@@ -480,55 +480,55 @@ msgstr "Herinstalleren"
 
 #: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:739
 msgid "Advisory information"
-msgstr ""
+msgstr "Veiligheidsadvies-informatie"
 
 #: dnfdragora/dialogs.py:395
 msgid "Advisories"
-msgstr ""
+msgstr "Veiligheidsadviezen"
 
 #: dnfdragora/dialogs.py:396
 msgid "Advisory details"
-msgstr ""
+msgstr "Details veiligheidsadvies"
 
 #: dnfdragora/dialogs.py:413
 msgid "Availability:"
-msgstr ""
+msgstr "Beschikbaarheid:"
 
 #: dnfdragora/dialogs.py:427
 msgid "With CVE"
-msgstr ""
+msgstr "Met CVE"
 
 #: dnfdragora/dialogs.py:429
 msgid "With Bugzilla"
-msgstr ""
+msgstr "Met Bugzilla"
 
 #: dnfdragora/dialogs.py:431
 msgid "Limit to types"
-msgstr ""
+msgstr "Beperk tot typen"
 
 #: dnfdragora/dialogs.py:444
 msgid "Limit to severities"
-msgstr ""
+msgstr "Beperkt tot ernstgraad"
 
 #: dnfdragora/dialogs.py:462
 msgid "Advisory IDs (comma-separated):"
-msgstr ""
+msgstr "ID's veiligheidsadviezen (gescheiden door komma's)"
 
 #: dnfdragora/dialogs.py:464
 msgid "Reference BZ IDs (comma-separated)"
-msgstr ""
+msgstr "Referentie-BZ-ID's (gescheiden door komma's)"
 
 #: dnfdragora/dialogs.py:468
 msgid "Contains package:"
-msgstr ""
+msgstr "  Bevat pakket:"
 
 #: dnfdragora/dialogs.py:470
 msgid "Reference CVEs (comma-separated)"
-msgstr ""
+msgstr "Referentie CVE's (door komma's gescheiden)"
 
 #: dnfdragora/dialogs.py:476 dnfdragora/dialogs.py:588
 msgid "Advisory ID"
-msgstr ""
+msgstr "ID veiligheidsadvies"
 
 #: dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:591
 #: dnfdragora/dialogs.py:1309 dnfdragora/ui.py:1365
@@ -541,11 +541,11 @@ msgstr "Ernst"
 
 #: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:590
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: dnfdragora/dialogs.py:489
 msgid "Field"
-msgstr ""
+msgstr "Veld"
 
 #: dnfdragora/dialogs.py:490 dnfdragora/dialogs.py:713
 #: dnfdragora/dialogs.py:1374
@@ -554,11 +554,11 @@ msgstr "Waarde"
 
 #: dnfdragora/dialogs.py:582
 msgid "Selection"
-msgstr ""
+msgstr "Selectie"
 
 #: dnfdragora/dialogs.py:583
 msgid "No advisory selected"
-msgstr ""
+msgstr "Geen veiligheidsavies gekozen"
 
 #: dnfdragora/dialogs.py:593 dnfdragora/ui.py:595
 msgid "Status"
@@ -566,43 +566,43 @@ msgstr "Status"
 
 #: dnfdragora/dialogs.py:594
 msgid "Vendor"
-msgstr ""
+msgstr "Fabrikant"
 
 #: dnfdragora/dialogs.py:595
 msgid "Build time"
-msgstr ""
+msgstr "Aanmaak-tijd"
 
 #: dnfdragora/dialogs.py:596
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
 #: dnfdragora/dialogs.py:597
 msgid "Message"
-msgstr ""
+msgstr "Bericht"
 
 #: dnfdragora/dialogs.py:598
 msgid "Rights"
-msgstr ""
+msgstr "Rechten"
 
 #: dnfdragora/dialogs.py:599
 msgid "Collections"
-msgstr ""
+msgstr "Verzamelingen"
 
 #: dnfdragora/dialogs.py:600
 msgid "References"
-msgstr ""
+msgstr "Referencies"
 
 #: dnfdragora/dialogs.py:614
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: dnfdragora/dialogs.py:615
 msgid "No details available for selected advisory"
-msgstr ""
+msgstr "Geen details beschikbaar voor gekozen veiligheidsadvies"
 
 #: dnfdragora/dialogs.py:663
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #: dnfdragora/dialogs.py:687 dnfdragora/dialogs.py:809
 #: dnfdragora/dialogs.py:831 dnfdragora/dialogs.py:844
@@ -751,45 +751,56 @@ msgstr "Kan offline transactiegegevens niet opschonen:%s"
 
 #: dnfdragora/dialogs.py:946 dnfdragora/ui.py:742 dnfdragora/ui.py:2115
 msgid "System upgrade"
-msgstr ""
+msgstr "Systeem-opwaardering"
 
 #: dnfdragora/dialogs.py:956
 msgid "System upgrade (advanced operation)"
-msgstr ""
+msgstr "Systeem-opwaardering (geavanceerde werking)"
 
 #: dnfdragora/dialogs.py:961
 msgid ""
 "Warning: this operation is intended for expert users only and runs under "
 "your full responsibility."
 msgstr ""
+"Waarschuwing: deze handeling is uitsluitend bedoeld voor ervaren gebruikers "
+"en wordt volledig op uw eigen risico uitgevoerd."
 
 #: dnfdragora/dialogs.py:966
 msgid ""
 "Examples: Mageia development release is often 'cauldron', Fedora development "
 "release is often 'rawhide'."
 msgstr ""
+"Voorbeelden: De ontwikkelingsversie van Mageia heet vaak 'cauldron', de "
+"ontwikkelingsversie van Fedora heet vaak 'rawhide'."
 
 #: dnfdragora/dialogs.py:967
 msgid ""
 " For stable upgrade, the target is usually current release +1 when available."
 msgstr ""
+"Voor een stabiele opwaardering is het doel doorgaans de huidige versie +1, "
+"indien beschikbaar. \n"
+" \n"
+" "
 
 #: dnfdragora/dialogs.py:972
 msgid "I understand the risks and want to configure system upgrade options"
 msgstr ""
+"Ik begrijp de risico's en wil de opties voor systeemupgrades aanpassen."
 
 #: dnfdragora/dialogs.py:984
 msgid "Release ver:"
-msgstr ""
+msgstr "Releaseversie:"
 
 #: dnfdragora/dialogs.py:992
 msgid ""
 "Insert the target releasever exactly as expected by repositories metadata."
 msgstr ""
+"Voeg de beoogde releaseversie precies in zoals verwacht door de metadata van "
+"het pakketdepot."
 
 #: dnfdragora/dialogs.py:997
 msgid "&Proceed"
-msgstr ""
+msgstr "&Doorgaan"
 
 #: dnfdragora/dialogs.py:1058
 msgid "Action on selected packages"
@@ -1954,12 +1965,12 @@ msgstr "Dialoogvenster voor offline transacties"
 #: dnfdragora/helpinfo.py:41 dnfdragora/helpinfo.py:125
 #: dnfdragora/helpinfo.py:337
 msgid "System upgrade dialog"
-msgstr ""
+msgstr "Dialoogvenster systeem-opwaardering"
 
 #: dnfdragora/helpinfo.py:42 dnfdragora/helpinfo.py:128
 #: dnfdragora/helpinfo.py:356
 msgid "Advisory information dialog"
-msgstr ""
+msgstr "Dialoogvenster veiligheidsadvies-informatie"
 
 #: dnfdragora/helpinfo.py:61
 msgid "File menu"
@@ -2161,7 +2172,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:124
 msgid "<h2>System upgrade</h2>"
-msgstr ""
+msgstr "<h2>Systeem opwaardering</h2>"
 
 #: dnfdragora/helpinfo.py:125
 #, python-format
@@ -2169,16 +2180,21 @@ msgid ""
 "This menu opens the %s to prepare an offline distro upgrade to a target "
 "releasever. "
 msgstr ""
+"Dit menu opent de %s om een ​​offline distributie-upgrade naar een doelrelease-"
+"versie voor te bereiden. "
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<b>Important:</b> the menu entry is shown only when systemd is available, "
 "because execution is scheduled offline for reboot."
 msgstr ""
+"<b>Belangrijk:</b> de menuoptie wordt alleen weergegeven als systemd "
+"beschikbaar is, omdat de uitvoering offline is gepland voor het opnieuw "
+"starten."
 
 #: dnfdragora/helpinfo.py:127
 msgid "<h2>Advisory information</h2>"
-msgstr ""
+msgstr "<h2>Informatie veiligheidsadvies</h2>"
 
 #: dnfdragora/helpinfo.py:128
 #, python-format
@@ -2186,6 +2202,9 @@ msgid ""
 "This menu opens the %s to query advisory metadata (security, bugfix, "
 "enhancement) with filters and inspect selected advisory details."
 msgstr ""
+"Dit menu opent de %s om adviesmetadata (beveiliging, bugfixes, "
+"verbeteringen) op te vragen via filters, en geselecteerde beveiligingsadvies-"
+"details te bekijken."
 
 #: dnfdragora/helpinfo.py:135
 msgid "Option Menu"
@@ -2847,36 +2866,47 @@ msgid ""
 "The System upgrade dialog prepares a distribution upgrade transaction for "
 "offline execution at reboot using dnf5daemon.<br><br>"
 msgstr ""
+"Het dialoogvenster voor systeemupgrades bereidt een distributie-upgrade "
+"voor, voor offline uitvoering tijdens het opnieuw opstarten van de pc met "
+"behulp van dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:341
 msgid "Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>"
 msgstr ""
+"Open het dialoogvenster vanuit de menubalk: <b>Actions → Systeem "
+"opwaardering</b>.<br>"
 
 #: dnfdragora/helpinfo.py:342
 msgid ""
 "<b>Note:</b> this menu is available only on systems where systemd is running."
 "<br><br>"
 msgstr ""
+"<b>Opmerking:</b> dit menu is alleen aanwezig op systemen waarop systemd "
+"draait.<br><br>"
 
 #: dnfdragora/helpinfo.py:343
 msgid "<h2>Safety and confirmation</h2>"
-msgstr ""
+msgstr "<h2>Veiligheid en bevestiging</h2>"
 
 #: dnfdragora/helpinfo.py:344
 msgid ""
 "The dialog starts with a warning and keeps advanced options hidden by "
 "default. "
 msgstr ""
+"Het dialoogvenster begint met een waarschuwing en houdt geavanceerde opties "
+"standaard verborgen. "
 
 #: dnfdragora/helpinfo.py:345
 msgid ""
 "Enable the acknowledgement checkbox to open the options frame and proceed "
 "only if you fully understand the risks.<br><br>"
 msgstr ""
+"Schakel het selectievakje voor bevestiging in om het optievenster te openen "
+"en ga alleen verder als u de risico's volledig begrijpt.<br><br>"
 
 #: dnfdragora/helpinfo.py:346
 msgid "<h2>Releasever option</h2>"
-msgstr ""
+msgstr "<h2>Releaseversie-optie</h2>"
 
 #: dnfdragora/helpinfo.py:347
 msgid ""
@@ -2884,10 +2914,13 @@ msgid ""
 "metadata (for example development values such as <i>cauldron</i> or "
 "<i>rawhide</i>, where applicable).<br><br>"
 msgstr ""
+"Typ de doel <i>releaseversie</i> exact in zoals verwacht door de metadata "
+"van de pakketdepots (bijvoorbeeld ontwikkelingswaarden als  <i>cauldron</i> "
+"of <i>rawhide</i>, indien van toepassing).<br><br>"
 
 #: dnfdragora/helpinfo.py:348
 msgid "<h2>Execution flow</h2>"
-msgstr ""
+msgstr "<h2>Uitvoeringsstroom</h2>"
 
 #: dnfdragora/helpinfo.py:349
 msgid ""
@@ -2896,18 +2929,28 @@ msgid ""
 "interactive prompts enabled, resolves dependencies with allow-erasing, then "
 "schedules the transaction offline and sets reboot as finish action.<br>"
 msgstr ""
+"Na bevestiging heropent dnfdragora de daemon-sessie met de gekozen releaser, "
+"bereidt de systeemupgrade voor in  <i>distrosync</i> modus met interactieve "
+"prompts ingeschakeld, lost afhankelijkheden op met allow-erasing, plant "
+"vervolgens de transactie offline in en stelt herstarten in als afsluitende "
+"actie. <br>"
 
 #: dnfdragora/helpinfo.py:358
 msgid ""
 "The Advisory information dialog queries dnf5daemon advisory metadata and "
 "shows matching advisories in a table.<br><br>"
 msgstr ""
+"Het dialoogvenster met informatie over het beveiligingsadvies raadpleegt de "
+"metagegevens van dnf5daemon voor adviezen en toont overeenkomende "
+"beveiligingsadviezen in een tabel.<br><br>"
 
 #: dnfdragora/helpinfo.py:360
 msgid ""
 "Open the dialog from the menu bar: <b>Actions → Advisory information</b>."
 "<br><br>"
 msgstr ""
+"Open het dialoogvenster vanuit de menubalk: <b>Actions → Informatie "
+"beveiligingsadvies</b>.<br>"
 
 #: dnfdragora/helpinfo.py:362
 msgid ""
@@ -2915,32 +2958,44 @@ msgid ""
 "name patterns, Bugzilla IDs, CVE IDs, advisory types, severities, and "
 "toggles for advisories containing CVE/Bugzilla references.<br><br>"
 msgstr ""
+"Gebruik het filtergebied om de resultaten te verfijnen op beschikbaarheid, "
+"advies-ID's, pakketnaampatronen, Bugzilla-ID's, CVE-ID's, adviestypen, "
+"ernstniveaus, en schakel de optie in of uit voor adviezen die CVE/Bugzilla-"
+"verwijzingen bevatten."
 
 #: dnfdragora/helpinfo.py:364
 msgid ""
 "The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and "
 "<b>Title</b> for each advisory returned by the daemon.<br><br>"
 msgstr ""
+"The hoofdtabel toont <b>Beveiligingsadvies-ID</b>, <b>Type</b>, <b>Ernst</"
+"b>, en <b>Titel</b> voor elk beveiligingsadvies dat de deamon heeft geopperd."
 
 #: dnfdragora/helpinfo.py:365
 msgid "<h2>Selected advisory details</h2>"
-msgstr ""
+msgstr "<h2>Gekozen details beveiligingsadvies</h2>"
 
 #: dnfdragora/helpinfo.py:366
 msgid ""
 "Selecting a row updates the details table with available fields such as "
 "vendor, status, description, message, collections, and references.<br><br>"
 msgstr ""
+"Door een rij te selecteren, wordt de detailtabel bijgewerkt met beschikbare "
+"velden zoals fabrikant, status, beschrijving, bericht, collecties en "
+"referenties."
 
 #: dnfdragora/helpinfo.py:367
 msgid "<h2>Refresh and Close</h2>"
-msgstr ""
+msgstr "<h2>Vernieuwen en Sluiten</h2>"
 
 #: dnfdragora/helpinfo.py:368
 msgid ""
 "Press <b>Refresh</b> to run the query with current filters, or <b>Close</b> "
 "to dismiss the dialog and return to the main window.<br>"
 msgstr ""
+"Typ <b>Ververs</b> om het onderzoek uit te voeren met de huidige filters, of "
+"<b>Sluiten</b> om het dialoogvenster te sluiten en terug te keren naar het "
+"hoofdvenster.<br>"
 
 #: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
@@ -3271,12 +3326,12 @@ msgstr "vergrendeld"
 #: dnfdragora/ui.py:1069
 #, python-format
 msgid "[ Refreshing search: %s ]"
-msgstr ""
+msgstr "[ Zoekresultaten vernieuwen:%s ]"
 
 #: dnfdragora/ui.py:1071
 #, python-format
 msgid "[ Refreshing dependency search: %s ]"
-msgstr ""
+msgstr "[ Ververs het zoeken naar afhankelijkheden: %s ]"
 
 #: dnfdragora/ui.py:1074
 #, python-format
@@ -3322,42 +3377,46 @@ msgid ""
 "System upgrade requires systemd because execution is scheduled offline for "
 "reboot."
 msgstr ""
+"Systeem-opwaardering vereist systemd, omdat de uitvoering offline is gepland "
+"voor opnieuw opstarten."
 
 #: dnfdragora/ui.py:2137
 msgid "System upgrade confirmation"
-msgstr ""
+msgstr "Bevestiging systeem-opwaardering"
 
 #: dnfdragora/ui.py:2138
 #, python-format
 msgid ""
 "Are you sure you want to continue with system upgrade to releasever \"%s\"?"
 msgstr ""
+"Weet u zeker dat u wilt doorgaan met de systeem-opwaardering naar "
+"releaseversie \"%s\"?"
 
 #: dnfdragora/ui.py:2155
 msgid "Preparing system upgrade session"
-msgstr ""
+msgstr "Voorbereiden van de systeem-opwaarderingssessie"
 
 #: dnfdragora/ui.py:2162
 msgid "Creating system upgrade transaction"
-msgstr ""
+msgstr "Systeemopwaarderings-transactie aanmaken"
 
 #: dnfdragora/ui.py:2172 dnfdragora/ui.py:2200
 msgid "System upgrade error"
-msgstr ""
+msgstr "Fout bij systeem-opwaardering"
 
 #: dnfdragora/ui.py:2174
 #, python-format
 msgid "System upgrade resolve failed:<br>%s"
-msgstr ""
+msgstr "Het oplossen van de systeemopwaardering is mislukt:<br>%s"
 
 #: dnfdragora/ui.py:2193
 msgid "Scheduling offline system upgrade"
-msgstr ""
+msgstr "Agenderen van een offline systeemopwaardering"
 
 #: dnfdragora/ui.py:2202
 #, python-format
 msgid "System upgrade failed: %s"
-msgstr ""
+msgstr "Systemopwaardering is mislukt: %s"
 
 #: dnfdragora/ui.py:2387 dnfdragora/ui.py:2407 dnfdragora/ui.py:2422
 #: dnfdragora/ui.py:2437 dnfdragora/ui.py:2451
