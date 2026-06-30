@@ -7,9 +7,9 @@
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Oresti Koxhaj, 2017
 # Geiger David <david.david@mageialinux-online.org>, 2020
-# Yuri Chornoivan <yurchor@ukr.net>, 2020
-# Dimitrios Glentadakis <dglent@free.fr>, 2020
 # tsallinia <tsallinia@riseup.net>, 2021
+# Dimitrios Glentadakis <dglent@free.fr>, 2024
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 #
 #, fuzzy
 msgid ""
@@ -18,8 +18,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-28 19:13+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: tsallinia <tsallinia@riseup.net>, 2021\n"
-"Language-Team: Greek (https://www.transifex.com/MageiaLinux/teams/9361/el/)\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2026\n"
+"Language-Team: Greek (https://app.transifex.com/MageiaLinux/teams/9361/el/)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -622,7 +622,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:720 dnfdragora/dialogs.py:1211
 msgid "Reboot"
-msgstr ""
+msgstr "Επανεκκίνηση"
 
 #: dnfdragora/dialogs.py:721 dnfdragora/dialogs.py:1212
 msgid "Power off"
@@ -932,7 +932,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:1338
 msgid "Mirrors"
-msgstr ""
+msgstr "Καθρεπτισμοί"
 
 #: dnfdragora/dialogs.py:1346
 msgid "Ad&vanced repository types"
@@ -3326,42 +3326,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr ""
-
-#~ msgid "&No"
-#~ msgstr "&Όχι"
-
-#~ msgid "&Yes"
-#~ msgstr "&Ναί"
-
-#~ msgid "Downloading packages"
-#~ msgstr "Λήψη των πακέτων"
-
-#~ msgid "Enhancement"
-#~ msgstr "Βελτιστοποίηση"
-
-#~ msgid "New Package"
-#~ msgstr "Νέο πακέτο"
-
-#~ msgid "Password"
-#~ msgstr "Κωδικός πρόσβασης"
-
-#~ msgid "Search"
-#~ msgstr "Αναζήτηση"
-
-#~ msgid "Start transaction"
-#~ msgstr "Έναρξη συναλλαγής"
-
-#~ msgid "Username"
-#~ msgstr "Όνομα χρήστη"
-
-#~ msgid "in descriptions"
-#~ msgstr "στις περιγραφές"
-
-#~ msgid "in file names"
-#~ msgstr "στα ονόματα αρχείων"
-
-#~ msgid "in names"
-#~ msgstr "στα ονόματα"
-
-#~ msgid "in summaries"
-#~ msgstr "στις περιλήψεις"
