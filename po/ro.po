@@ -475,55 +475,55 @@ msgstr "reinstalează "
 
 #: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:739
 msgid "Advisory information"
-msgstr ""
+msgstr "Informații despre avertismente"
 
 #: dnfdragora/dialogs.py:395
 msgid "Advisories"
-msgstr ""
+msgstr "Avertismente"
 
 #: dnfdragora/dialogs.py:396
 msgid "Advisory details"
-msgstr ""
+msgstr "Detalii avertismente"
 
 #: dnfdragora/dialogs.py:413
 msgid "Availability:"
-msgstr ""
+msgstr "Disponibilitate:"
 
 #: dnfdragora/dialogs.py:427
 msgid "With CVE"
-msgstr ""
+msgstr "Cu CVE"
 
 #: dnfdragora/dialogs.py:429
 msgid "With Bugzilla"
-msgstr ""
+msgstr "Cu Bugzilla"
 
 #: dnfdragora/dialogs.py:431
 msgid "Limit to types"
-msgstr ""
+msgstr "Limitare după tipuri"
 
 #: dnfdragora/dialogs.py:444
 msgid "Limit to severities"
-msgstr ""
+msgstr "Limitare după severitate"
 
 #: dnfdragora/dialogs.py:462
 msgid "Advisory IDs (comma-separated):"
-msgstr ""
+msgstr "ID-uri de avertismente (separate prin virgulă):"
 
 #: dnfdragora/dialogs.py:464
 msgid "Reference BZ IDs (comma-separated)"
-msgstr ""
+msgstr "ID-uri BZ de referință (separate prin virgulă)"
 
 #: dnfdragora/dialogs.py:468
 msgid "Contains package:"
-msgstr ""
+msgstr "Conține pachetul:"
 
 #: dnfdragora/dialogs.py:470
 msgid "Reference CVEs (comma-separated)"
-msgstr ""
+msgstr "CVE-uri de referință (separate prin virgulă)"
 
 #: dnfdragora/dialogs.py:476 dnfdragora/dialogs.py:588
 msgid "Advisory ID"
-msgstr ""
+msgstr "ID avertisment"
 
 #: dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:591
 #: dnfdragora/dialogs.py:1309 dnfdragora/ui.py:1365
@@ -536,11 +536,11 @@ msgstr "Severitate"
 
 #: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:590
 msgid "Title"
-msgstr ""
+msgstr "Titlu"
 
 #: dnfdragora/dialogs.py:489
 msgid "Field"
-msgstr ""
+msgstr "Câmp"
 
 #: dnfdragora/dialogs.py:490 dnfdragora/dialogs.py:713
 #: dnfdragora/dialogs.py:1374
@@ -549,11 +549,11 @@ msgstr "Valoare"
 
 #: dnfdragora/dialogs.py:582
 msgid "Selection"
-msgstr ""
+msgstr "Selecție"
 
 #: dnfdragora/dialogs.py:583
 msgid "No advisory selected"
-msgstr ""
+msgstr "Niciun avertisment selectat"
 
 #: dnfdragora/dialogs.py:593 dnfdragora/ui.py:595
 msgid "Status"
@@ -561,43 +561,43 @@ msgstr "Stare"
 
 #: dnfdragora/dialogs.py:594
 msgid "Vendor"
-msgstr ""
+msgstr "Fabricant"
 
 #: dnfdragora/dialogs.py:595
 msgid "Build time"
-msgstr ""
+msgstr "Timp de construire"
 
 #: dnfdragora/dialogs.py:596
 msgid "Description"
-msgstr ""
+msgstr "Desciere"
 
 #: dnfdragora/dialogs.py:597
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #: dnfdragora/dialogs.py:598
 msgid "Rights"
-msgstr ""
+msgstr "Drepturi"
 
 #: dnfdragora/dialogs.py:599
 msgid "Collections"
-msgstr ""
+msgstr "Colecții"
 
 #: dnfdragora/dialogs.py:600
 msgid "References"
-msgstr ""
+msgstr "Referințe"
 
 #: dnfdragora/dialogs.py:614
 msgid "Details"
-msgstr ""
+msgstr "Detalii"
 
 #: dnfdragora/dialogs.py:615
 msgid "No details available for selected advisory"
-msgstr ""
+msgstr "Nu sunt disponibile detalii pentru avertismentul selectat"
 
 #: dnfdragora/dialogs.py:663
 msgid "Error"
-msgstr ""
+msgstr "Eroare"
 
 #: dnfdragora/dialogs.py:687 dnfdragora/dialogs.py:809
 #: dnfdragora/dialogs.py:831 dnfdragora/dialogs.py:844
@@ -748,45 +748,55 @@ msgstr "Nu s-au putut curăța datele tranzacțiilor în mod deconectat:%s"
 
 #: dnfdragora/dialogs.py:946 dnfdragora/ui.py:742 dnfdragora/ui.py:2115
 msgid "System upgrade"
-msgstr ""
+msgstr "Actualizare sistem"
 
 #: dnfdragora/dialogs.py:956
 msgid "System upgrade (advanced operation)"
-msgstr ""
+msgstr "Actualizare sistem (operare avansată)"
 
 #: dnfdragora/dialogs.py:961
 msgid ""
 "Warning: this operation is intended for expert users only and runs under "
 "your full responsibility."
 msgstr ""
+"Atenție: această operațiune este destinată exclusiv utilizatorilor experți "
+"și se desfășoară pe întreaga dumneavoastră responsabilitate."
 
 #: dnfdragora/dialogs.py:966
 msgid ""
 "Examples: Mageia development release is often 'cauldron', Fedora development "
 "release is often 'rawhide'."
 msgstr ""
+"Exemple: Versiunea de dezvoltare Mageia este adesea „cauldron”, versiunea de "
+"dezvoltare Fedora este adesea „rawhide”."
 
 #: dnfdragora/dialogs.py:967
 msgid ""
 " For stable upgrade, the target is usually current release +1 when available."
 msgstr ""
+"Pentru o actualizare stabilă, obiectivul este de obicei versiunea curentă "
+"+1, atunci când este disponibilă."
 
 #: dnfdragora/dialogs.py:972
 msgid "I understand the risks and want to configure system upgrade options"
 msgstr ""
+"Înțeleg riscurile și vreau să configurez opțiunile de actualizare a "
+"sistemului"
 
 #: dnfdragora/dialogs.py:984
 msgid "Release ver:"
-msgstr ""
+msgstr "Versiune de lansare:"
 
 #: dnfdragora/dialogs.py:992
 msgid ""
 "Insert the target releasever exactly as expected by repositories metadata."
 msgstr ""
+"Introduceți versiunea țintă a versiunii release exact așa cum este așteptat "
+"de metadatele depozitelor."
 
 #: dnfdragora/dialogs.py:997
 msgid "&Proceed"
-msgstr ""
+msgstr "&Continuați"
 
 #: dnfdragora/dialogs.py:1058
 msgid "Action on selected packages"
@@ -1949,12 +1959,12 @@ msgstr "Dialogul de tranzacții în mod deconectat"
 #: dnfdragora/helpinfo.py:41 dnfdragora/helpinfo.py:125
 #: dnfdragora/helpinfo.py:337
 msgid "System upgrade dialog"
-msgstr ""
+msgstr "Dialog de actualizare a sistemului"
 
 #: dnfdragora/helpinfo.py:42 dnfdragora/helpinfo.py:128
 #: dnfdragora/helpinfo.py:356
 msgid "Advisory information dialog"
-msgstr ""
+msgstr "Dialog cu informații despre avertismente"
 
 #: dnfdragora/helpinfo.py:61
 msgid "File menu"
@@ -2155,7 +2165,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:124
 msgid "<h2>System upgrade</h2>"
-msgstr ""
+msgstr "<h2>Actualizare sistem</h2>"
 
 #: dnfdragora/helpinfo.py:125
 #, python-format
@@ -2163,16 +2173,21 @@ msgid ""
 "This menu opens the %s to prepare an offline distro upgrade to a target "
 "releasever. "
 msgstr ""
+"Acest meniu deschide %s pentru a pregăti o actualizare în mod deconectat a "
+"distribuției către o versiune țintă."
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<b>Important:</b> the menu entry is shown only when systemd is available, "
 "because execution is scheduled offline for reboot."
 msgstr ""
+"<b>Important:</b> intrarea de meniu este afișată doar atunci când systemd "
+"este disponibil, deoarece execuția este programată în mod deconectat pentru "
+"repornire."
 
 #: dnfdragora/helpinfo.py:127
 msgid "<h2>Advisory information</h2>"
-msgstr ""
+msgstr "<h2>Informații despre avertismente</h2>"
 
 #: dnfdragora/helpinfo.py:128
 #, python-format
@@ -2180,6 +2195,9 @@ msgid ""
 "This menu opens the %s to query advisory metadata (security, bugfix, "
 "enhancement) with filters and inspect selected advisory details."
 msgstr ""
+"Acest meniu deschide %s pentru a interoga metadatele avertismentelor "
+"(securitate, corecții de erori, îmbunătățiri) cu filtre și pentru a inspecta "
+"detaliile avertismentelor selectate."
 
 #: dnfdragora/helpinfo.py:135
 msgid "Option Menu"
@@ -2847,36 +2865,47 @@ msgid ""
 "The System upgrade dialog prepares a distribution upgrade transaction for "
 "offline execution at reboot using dnf5daemon.<br><br>"
 msgstr ""
+"Caseta de dialog Actualizare sistem pregătește o tranzacție de actualizare a "
+"distribuției pentru execuție in mod deconectat la repornire folosind "
+"dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:341
 msgid "Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>"
 msgstr ""
+"Deschideți caseta de dialog din bara de meniu: <b>Acțiuni → Actualizare "
+"sistem</b>.<br>"
 
 #: dnfdragora/helpinfo.py:342
 msgid ""
 "<b>Note:</b> this menu is available only on systems where systemd is running."
 "<br><br>"
 msgstr ""
+"<b>Notă:</b> acest meniu este disponibil numai pe sistemele pe care rulează "
+"systemd.<br><br>"
 
 #: dnfdragora/helpinfo.py:343
 msgid "<h2>Safety and confirmation</h2>"
-msgstr ""
+msgstr "<h2>Siguranță și confirmare</h2>"
 
 #: dnfdragora/helpinfo.py:344
 msgid ""
 "The dialog starts with a warning and keeps advanced options hidden by "
 "default. "
 msgstr ""
+"Caseta de dialog începe cu un avertisment și păstrează opțiunile avansate "
+"ascunse în mod implicit."
 
 #: dnfdragora/helpinfo.py:345
 msgid ""
 "Enable the acknowledgement checkbox to open the options frame and proceed "
 "only if you fully understand the risks.<br><br>"
 msgstr ""
+"Bifați caseta de selectare a confirmării pentru a deschide cadrul de opțiuni "
+"și continuați numai dacă înțelegeți pe deplin riscurile.<br><br>"
 
 #: dnfdragora/helpinfo.py:346
 msgid "<h2>Releasever option</h2>"
-msgstr ""
+msgstr "<h2>Opțiuni pentru versiunea lansată</h2>"
 
 #: dnfdragora/helpinfo.py:347
 msgid ""
@@ -2884,10 +2913,13 @@ msgid ""
 "metadata (for example development values such as <i>cauldron</i> or "
 "<i>rawhide</i>, where applicable).<br><br>"
 msgstr ""
+"Introduceți versiunea țintă a <i>versiunii de lansare</i> exact așa cum este "
+"așteptat de metadatele depozitelor (de exemplu, valori de dezvoltare precum "
+"<i>cauldron</i> sau <i>rawhide</i>, acolo unde este cazul).<br><br>"
 
 #: dnfdragora/helpinfo.py:348
 msgid "<h2>Execution flow</h2>"
-msgstr ""
+msgstr "<h2>Flux de execuție</h2>"
 
 #: dnfdragora/helpinfo.py:349
 msgid ""
@@ -2896,18 +2928,28 @@ msgid ""
 "interactive prompts enabled, resolves dependencies with allow-erasing, then "
 "schedules the transaction offline and sets reboot as finish action.<br>"
 msgstr ""
+"După confirmare, dnfdragora redeschide sesiunea daemon cu versiunea de "
+"lansare aleasă, pregătește actualizarea sistemului în modul <i>distrosync</"
+"i> cu solicitările interactive activate, rezolvă dependențele cu opțiunea de "
+"ștergere permisă, apoi programează tranzacția în mod deconectat și setează "
+"repornirea ca acțiune de finalizare.<br>"
 
 #: dnfdragora/helpinfo.py:358
 msgid ""
 "The Advisory information dialog queries dnf5daemon advisory metadata and "
 "shows matching advisories in a table.<br><br>"
 msgstr ""
+"Caseta de dialog Informații despre avertismente interoghează metadatele "
+"avertismentelor cu dnf5daemon și afișează avertismentele corespunzătoare "
+"într-un tabel.<br><br>"
 
 #: dnfdragora/helpinfo.py:360
 msgid ""
 "Open the dialog from the menu bar: <b>Actions → Advisory information</b>."
 "<br><br>"
 msgstr ""
+"Deschideți caseta de dialog din bara de meniu: <b>Acțiuni → Informații "
+"avertismente</b>.<br><br>"
 
 #: dnfdragora/helpinfo.py:362
 msgid ""
@@ -2915,32 +2957,45 @@ msgid ""
 "name patterns, Bugzilla IDs, CVE IDs, advisory types, severities, and "
 "toggles for advisories containing CVE/Bugzilla references.<br><br>"
 msgstr ""
+"Folosește zona de filtrare pentru a restrânge rezultatele după "
+"disponibilitate, ID-uri de avertismente, modele de nume de pachete, ID-uri "
+"Bugzilla, ID-uri CVE, tipuri de avertismente, severități și comutatoare "
+"pentru avertismentel care conțin referințe CVE/Bugzilla.<br><br>"
 
 #: dnfdragora/helpinfo.py:364
 msgid ""
 "The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and "
 "<b>Title</b> for each advisory returned by the daemon.<br><br>"
 msgstr ""
+"Tabelul principal afișează <b>ID-ul avertismentului</b>, <b>Tipul</b>, "
+"<b>Severitatea</b> și <b>Titlul</b> pentru fiecare avertisment returnat de "
+"daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:365
 msgid "<h2>Selected advisory details</h2>"
-msgstr ""
+msgstr "<h2>Detaliile avertismentelor selectate</h2>"
 
 #: dnfdragora/helpinfo.py:366
 msgid ""
 "Selecting a row updates the details table with available fields such as "
 "vendor, status, description, message, collections, and references.<br><br>"
 msgstr ""
+"Selectarea unui rând actualizează tabelul cu detalii cu câmpurile "
+"disponibile, cum ar fi furnizor, stare, descriere, mesaj, colecții și "
+"referințe.<br><br>"
 
 #: dnfdragora/helpinfo.py:367
 msgid "<h2>Refresh and Close</h2>"
-msgstr ""
+msgstr "<h2>Reîmprospătare și închidere</h2>"
 
 #: dnfdragora/helpinfo.py:368
 msgid ""
 "Press <b>Refresh</b> to run the query with current filters, or <b>Close</b> "
 "to dismiss the dialog and return to the main window.<br>"
 msgstr ""
+"Apăsați <b>Reîmprospătare</b> pentru a rula interogarea cu filtrele curente "
+"sau <b>Închidere</b> pentru a închide caseta de dialog și a reveni la "
+"fereastra principală.<br>"
 
 #: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
@@ -3275,12 +3330,12 @@ msgstr "blocat"
 #: dnfdragora/ui.py:1069
 #, python-format
 msgid "[ Refreshing search: %s ]"
-msgstr ""
+msgstr "[ Se actualizează căutarea: %s]"
 
 #: dnfdragora/ui.py:1071
 #, python-format
 msgid "[ Refreshing dependency search: %s ]"
-msgstr ""
+msgstr "[ Se actualizează căutarea de dependențe: %s]"
 
 #: dnfdragora/ui.py:1074
 #, python-format
@@ -3326,42 +3381,46 @@ msgid ""
 "System upgrade requires systemd because execution is scheduled offline for "
 "reboot."
 msgstr ""
+"Actualizarea sistemului necesită systemd deoarece execuția este programată "
+"în mod deconectat pentru repornire."
 
 #: dnfdragora/ui.py:2137
 msgid "System upgrade confirmation"
-msgstr ""
+msgstr "Confirmarea actualizării sistemului"
 
 #: dnfdragora/ui.py:2138
 #, python-format
 msgid ""
 "Are you sure you want to continue with system upgrade to releasever \"%s\"?"
 msgstr ""
+"Sigur doriți să continuați cu actualizarea sistemului la versiunea "
+"„releasever”%s?"
 
 #: dnfdragora/ui.py:2155
 msgid "Preparing system upgrade session"
-msgstr ""
+msgstr "Pregătirea sesiunii de actualizare a sistemului"
 
 #: dnfdragora/ui.py:2162
 msgid "Creating system upgrade transaction"
-msgstr ""
+msgstr "Crearea tranzacției de actualizare a sistemului"
 
 #: dnfdragora/ui.py:2172 dnfdragora/ui.py:2200
 msgid "System upgrade error"
-msgstr ""
+msgstr "Eroare de actualizare a sistemului"
 
 #: dnfdragora/ui.py:2174
 #, python-format
 msgid "System upgrade resolve failed:<br>%s"
-msgstr ""
+msgstr "Rezolvarea actualizării sistemului a eșuat:<br>%s"
 
 #: dnfdragora/ui.py:2193
 msgid "Scheduling offline system upgrade"
-msgstr ""
+msgstr "Programarea actualizării sistemului în mod deconectat"
 
 #: dnfdragora/ui.py:2202
 #, python-format
 msgid "System upgrade failed: %s"
-msgstr ""
+msgstr "Actualizarea sistemului a eșuat:%s"
 
 #: dnfdragora/ui.py:2387 dnfdragora/ui.py:2407 dnfdragora/ui.py:2422
 #: dnfdragora/ui.py:2437 dnfdragora/ui.py:2451
