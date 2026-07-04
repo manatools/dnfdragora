@@ -400,10 +400,11 @@ class AdvisoryDialog(basedialog.BaseDialog):
       details_vbox = factory.createVBox(info_frame)
 
       filter_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
-      split_outer.setWeight(MUI.YUIDimension.YD_VERT, 35)
-      #split_inner.setWeight(MUI.YUIDimension.YD_VERT, 65)
-      advisories_vbox.setWeight(MUI.YUIDimension.YD_VERT, 60)
-      details_vbox.setWeight(MUI.YUIDimension.YD_VERT, 40)
+      # Weights must be set on direct Paned children.
+      filter_frame.setWeight(MUI.YUIDimension.YD_VERT, 35)
+      split_inner.setWeight(MUI.YUIDimension.YD_VERT, 65)
+      results_frame.setWeight(MUI.YUIDimension.YD_VERT, 60)
+      info_frame.setWeight(MUI.YUIDimension.YD_VERT, 40)
 
       # row1 => availability/flags column, limit-to-types frame, limit-to-severities frame
       row1 = factory.createHBox(filters_vbox)
