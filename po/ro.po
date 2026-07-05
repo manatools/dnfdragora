@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-28 19:13+0200\n"
+"POT-Creation-Date: 2026-07-05 11:37+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Aurelian R, 2026\n"
 "Language-Team: Romanian (https://app.transifex.com/MageiaLinux/teams/9361/"
@@ -167,7 +167,7 @@ msgstr "Sistemul de bază"
 msgid "Content"
 msgstr "Conţinut"
 
-#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:2278
+#: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:2279
 #: dnfdragora/groupicons.py:17 dnfdragora/ui.py:606 dnfdragora/ui.py:621
 msgid "All"
 msgstr "Toate"
@@ -387,8 +387,8 @@ msgstr "Limită:"
 msgid "  Contains package:"
 msgstr "Conține pachetul:"
 
-#: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:589
-#: dnfdragora/dialogs.py:1308 dnfdragora/dialogs.py:1364 dnfdragora/ui.py:587
+#: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:590
+#: dnfdragora/dialogs.py:1309 dnfdragora/dialogs.py:1365 dnfdragora/ui.py:587
 msgid "Name"
 msgstr "Denumire"
 
@@ -416,13 +416,13 @@ msgstr "Sumar"
 msgid "Transactions"
 msgstr "Tranzacții"
 
-#: dnfdragora/dialogs.py:154 dnfdragora/dialogs.py:498
-#: dnfdragora/dialogs.py:730
+#: dnfdragora/dialogs.py:154 dnfdragora/dialogs.py:499
+#: dnfdragora/dialogs.py:731
 msgid "&Refresh"
 msgstr "&Reîmprospătare"
 
-#: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:499
-#: dnfdragora/dialogs.py:734 dnfdragora/dialogs.py:1777
+#: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:500
+#: dnfdragora/dialogs.py:735 dnfdragora/dialogs.py:1778
 #: dnfdragora/progress_ui.py:201 dnfdragora/progress_ui.py:216
 msgid "&Close"
 msgstr "În&chide"
@@ -449,7 +449,7 @@ msgid "downgraded"
 msgstr "retrogradat"
 
 #: dnfdragora/dialogs.py:282 dnfdragora/dialogs.py:356
-#: dnfdragora/dialogs.py:635
+#: dnfdragora/dialogs.py:636
 msgid "No results"
 msgstr "Niciun rezultat"
 
@@ -485,180 +485,180 @@ msgstr "Avertismente"
 msgid "Advisory details"
 msgstr "Detalii avertismente"
 
-#: dnfdragora/dialogs.py:413
+#: dnfdragora/dialogs.py:414
 msgid "Availability:"
 msgstr "Disponibilitate:"
 
-#: dnfdragora/dialogs.py:427
+#: dnfdragora/dialogs.py:428
 msgid "With CVE"
 msgstr "Cu CVE"
 
-#: dnfdragora/dialogs.py:429
+#: dnfdragora/dialogs.py:430
 msgid "With Bugzilla"
 msgstr "Cu Bugzilla"
 
-#: dnfdragora/dialogs.py:431
+#: dnfdragora/dialogs.py:432
 msgid "Limit to types"
 msgstr "Limitare după tipuri"
 
-#: dnfdragora/dialogs.py:444
+#: dnfdragora/dialogs.py:445
 msgid "Limit to severities"
 msgstr "Limitare după severitate"
 
-#: dnfdragora/dialogs.py:462
+#: dnfdragora/dialogs.py:463
 msgid "Advisory IDs (comma-separated):"
 msgstr "ID-uri de avertismente (separate prin virgulă):"
 
-#: dnfdragora/dialogs.py:464
+#: dnfdragora/dialogs.py:465
 msgid "Reference BZ IDs (comma-separated)"
 msgstr "ID-uri BZ de referință (separate prin virgulă)"
 
-#: dnfdragora/dialogs.py:468
+#: dnfdragora/dialogs.py:469
 msgid "Contains package:"
 msgstr "Conține pachetul:"
 
-#: dnfdragora/dialogs.py:470
+#: dnfdragora/dialogs.py:471
 msgid "Reference CVEs (comma-separated)"
 msgstr "CVE-uri de referință (separate prin virgulă)"
 
-#: dnfdragora/dialogs.py:476 dnfdragora/dialogs.py:588
+#: dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:589
 msgid "Advisory ID"
 msgstr "ID avertisment"
 
-#: dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:591
-#: dnfdragora/dialogs.py:1309 dnfdragora/ui.py:1365
+#: dnfdragora/dialogs.py:478 dnfdragora/dialogs.py:592
+#: dnfdragora/dialogs.py:1310 dnfdragora/ui.py:1365
 msgid "Type"
 msgstr "Tip"
 
-#: dnfdragora/dialogs.py:478 dnfdragora/dialogs.py:592 dnfdragora/ui.py:1365
+#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:593 dnfdragora/ui.py:1365
 msgid "Severity"
 msgstr "Severitate"
 
-#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:590
+#: dnfdragora/dialogs.py:480 dnfdragora/dialogs.py:591
 msgid "Title"
 msgstr "Titlu"
 
-#: dnfdragora/dialogs.py:489
+#: dnfdragora/dialogs.py:490
 msgid "Field"
 msgstr "Câmp"
 
-#: dnfdragora/dialogs.py:490 dnfdragora/dialogs.py:713
-#: dnfdragora/dialogs.py:1374
+#: dnfdragora/dialogs.py:491 dnfdragora/dialogs.py:714
+#: dnfdragora/dialogs.py:1375
 msgid "Value"
 msgstr "Valoare"
 
-#: dnfdragora/dialogs.py:582
+#: dnfdragora/dialogs.py:583
 msgid "Selection"
 msgstr "Selecție"
 
-#: dnfdragora/dialogs.py:583
+#: dnfdragora/dialogs.py:584
 msgid "No advisory selected"
 msgstr "Niciun avertisment selectat"
 
-#: dnfdragora/dialogs.py:593 dnfdragora/ui.py:595
+#: dnfdragora/dialogs.py:594 dnfdragora/ui.py:595
 msgid "Status"
 msgstr "Stare"
 
-#: dnfdragora/dialogs.py:594
+#: dnfdragora/dialogs.py:595
 msgid "Vendor"
 msgstr "Fabricant"
 
-#: dnfdragora/dialogs.py:595
+#: dnfdragora/dialogs.py:596
 msgid "Build time"
 msgstr "Timp de construire"
 
-#: dnfdragora/dialogs.py:596
+#: dnfdragora/dialogs.py:597
 msgid "Description"
 msgstr "Desciere"
 
-#: dnfdragora/dialogs.py:597
+#: dnfdragora/dialogs.py:598
 msgid "Message"
 msgstr "Mesaj"
 
-#: dnfdragora/dialogs.py:598
+#: dnfdragora/dialogs.py:599
 msgid "Rights"
 msgstr "Drepturi"
 
-#: dnfdragora/dialogs.py:599
+#: dnfdragora/dialogs.py:600
 msgid "Collections"
 msgstr "Colecții"
 
-#: dnfdragora/dialogs.py:600
+#: dnfdragora/dialogs.py:601
 msgid "References"
 msgstr "Referințe"
 
-#: dnfdragora/dialogs.py:614
+#: dnfdragora/dialogs.py:615
 msgid "Details"
 msgstr "Detalii"
 
-#: dnfdragora/dialogs.py:615
+#: dnfdragora/dialogs.py:616
 msgid "No details available for selected advisory"
 msgstr "Nu sunt disponibile detalii pentru avertismentul selectat"
 
-#: dnfdragora/dialogs.py:663
+#: dnfdragora/dialogs.py:664
 msgid "Error"
 msgstr "Eroare"
 
-#: dnfdragora/dialogs.py:687 dnfdragora/dialogs.py:809
-#: dnfdragora/dialogs.py:831 dnfdragora/dialogs.py:844
-#: dnfdragora/dialogs.py:851 dnfdragora/dialogs.py:859
-#: dnfdragora/dialogs.py:868 dnfdragora/dialogs.py:881
-#: dnfdragora/dialogs.py:888 dnfdragora/dialogs.py:896
-#: dnfdragora/dialogs.py:910 dnfdragora/dialogs.py:917
-#: dnfdragora/dialogs.py:925 dnfdragora/ui.py:743
+#: dnfdragora/dialogs.py:688 dnfdragora/dialogs.py:810
+#: dnfdragora/dialogs.py:832 dnfdragora/dialogs.py:845
+#: dnfdragora/dialogs.py:852 dnfdragora/dialogs.py:860
+#: dnfdragora/dialogs.py:869 dnfdragora/dialogs.py:882
+#: dnfdragora/dialogs.py:889 dnfdragora/dialogs.py:897
+#: dnfdragora/dialogs.py:911 dnfdragora/dialogs.py:918
+#: dnfdragora/dialogs.py:926 dnfdragora/ui.py:743
 msgid "Offline transactions"
 msgstr "Tranzacții în mod deconectat."
 
-#: dnfdragora/dialogs.py:704
+#: dnfdragora/dialogs.py:705
 msgid "Offline transaction status"
 msgstr "Starea tranzacțiilor în mod deconectat."
 
-#: dnfdragora/dialogs.py:709
+#: dnfdragora/dialogs.py:710
 msgid "Status details"
 msgstr "Detalii despre stare"
 
-#: dnfdragora/dialogs.py:712
+#: dnfdragora/dialogs.py:713
 msgid "Key"
 msgstr "Cheie"
 
-#: dnfdragora/dialogs.py:718 dnfdragora/dialogs.py:777
+#: dnfdragora/dialogs.py:719 dnfdragora/dialogs.py:778
 msgid "Finish action"
 msgstr "Finalizare acțiune"
 
-#: dnfdragora/dialogs.py:720 dnfdragora/dialogs.py:1211
+#: dnfdragora/dialogs.py:721 dnfdragora/dialogs.py:1212
 msgid "Reboot"
 msgstr "Repornește"
 
-#: dnfdragora/dialogs.py:721 dnfdragora/dialogs.py:1212
+#: dnfdragora/dialogs.py:722 dnfdragora/dialogs.py:1213
 msgid "Power off"
 msgstr "Opriți"
 
-#: dnfdragora/dialogs.py:731 dnfdragora/dialogs.py:998
-#: dnfdragora/dialogs.py:1083 dnfdragora/dialogs.py:1222
-#: dnfdragora/dialogs.py:1384 dnfdragora/progress_ui.py:431
+#: dnfdragora/dialogs.py:732 dnfdragora/dialogs.py:999
+#: dnfdragora/dialogs.py:1084 dnfdragora/dialogs.py:1223
+#: dnfdragora/dialogs.py:1385 dnfdragora/progress_ui.py:431
 msgid "&Cancel"
 msgstr "&Anulează"
 
-#: dnfdragora/dialogs.py:732
+#: dnfdragora/dialogs.py:733
 msgid "&Finalize"
 msgstr "&Finalizare"
 
-#: dnfdragora/dialogs.py:733
+#: dnfdragora/dialogs.py:734
 msgid "&Clean"
 msgstr "&Curățare"
 
-#: dnfdragora/dialogs.py:736
+#: dnfdragora/dialogs.py:737
 msgid "Reload the current offline transaction status."
 msgstr "Reîncărcați starea curentă a tranzacției în mod deconectat."
 
-#: dnfdragora/dialogs.py:737
+#: dnfdragora/dialogs.py:738
 msgid ""
 "Cancel the pending offline transaction. Available only when one is scheduled."
 msgstr ""
 "Anulați tranzacția în nod deconectat în așteptare. Disponibilă numai atunci "
 "când este programată una."
 
-#: dnfdragora/dialogs.py:738
+#: dnfdragora/dialogs.py:739
 msgid ""
 "Set the finish action for the pending offline transaction to reboot or power "
 "off."
@@ -666,7 +666,7 @@ msgstr ""
 "Setați acțiunea de finalizare pentru tranzacția în mod deconectat în "
 "așteptare la repornire sau oprire."
 
-#: dnfdragora/dialogs.py:739
+#: dnfdragora/dialogs.py:740
 msgid ""
 "Remove any stored offline transaction data, even if no transaction is "
 "currently pending."
@@ -674,87 +674,87 @@ msgstr ""
 "Eliminați toate datele stocate ale tranzacțiilor în mod deconectat, chiar "
 "dacă nicio tranzacție nu este în așteptare în prezent."
 
-#: dnfdragora/dialogs.py:740
+#: dnfdragora/dialogs.py:741
 msgid "Close this dialog without changing the offline transaction state."
 msgstr ""
 "Închideți această casetă de dialog fără a modifica starea tranzacției în mod "
 "deconectat."
 
-#: dnfdragora/dialogs.py:773
+#: dnfdragora/dialogs.py:774
 msgid "No"
 msgstr "Nu"
 
-#: dnfdragora/dialogs.py:773
+#: dnfdragora/dialogs.py:774
 msgid "Pending"
 msgstr "În așteptare"
 
-#: dnfdragora/dialogs.py:773
+#: dnfdragora/dialogs.py:774
 msgid "Yes"
 msgstr "Da"
 
-#: dnfdragora/dialogs.py:775
+#: dnfdragora/dialogs.py:776
 msgid "Data"
 msgstr "Date"
 
-#: dnfdragora/dialogs.py:788
+#: dnfdragora/dialogs.py:789
 msgid "An offline transaction is pending."
 msgstr "O tranzacție în mod deconectat este în așteptare."
 
-#: dnfdragora/dialogs.py:788
+#: dnfdragora/dialogs.py:789
 msgid "No offline transaction is currently pending."
 msgstr "Nicio tranzacție în mod deconectat nu este în așteptare în prezent."
 
-#: dnfdragora/dialogs.py:811
+#: dnfdragora/dialogs.py:812
 #, python-format
 msgid "Could not read offline transaction status: %s"
 msgstr "Nu s-a putut citi starea tranzacției în mod deconectat:%s"
 
-#: dnfdragora/dialogs.py:833
+#: dnfdragora/dialogs.py:834
 msgid "There is no offline transaction to cancel."
 msgstr "Nu există nicio tranzacție în mod deconectat de anulat."
 
-#: dnfdragora/dialogs.py:846
+#: dnfdragora/dialogs.py:847
 msgid "Offline transaction has been canceled."
 msgstr "Tranzacția în mod deconectat a fost anulată."
 
-#: dnfdragora/dialogs.py:853 dnfdragora/dialogs.py:861
+#: dnfdragora/dialogs.py:854 dnfdragora/dialogs.py:862
 #, python-format
 msgid "Failed to cancel offline transaction: %s"
 msgstr "Tranzacția în mod deconectat nu a putut fi anulată:%s"
 
-#: dnfdragora/dialogs.py:870
+#: dnfdragora/dialogs.py:871
 msgid "There is no offline transaction to finalize."
 msgstr "Nu există nicio tranzacție în mod deconectat de finalizat."
 
-#: dnfdragora/dialogs.py:883
+#: dnfdragora/dialogs.py:884
 #, python-format
 msgid "Offline transaction finish action set to %s."
 msgstr ""
 "Acțiunea de finalizare a tranzacției în mod deconectat a fost setată la %s."
 
-#: dnfdragora/dialogs.py:890 dnfdragora/dialogs.py:898
+#: dnfdragora/dialogs.py:891 dnfdragora/dialogs.py:899
 #, python-format
 msgid "Failed to set offline finish action: %s"
 msgstr "Acțiunea de finalizare în mod deconectat nu a putut fi setată:%s"
 
-#: dnfdragora/dialogs.py:912
+#: dnfdragora/dialogs.py:913
 msgid "Offline transaction data has been cleaned."
 msgstr "Datele tranzacțiilor în mod deconectat au fost curățate."
 
-#: dnfdragora/dialogs.py:919 dnfdragora/dialogs.py:927
+#: dnfdragora/dialogs.py:920 dnfdragora/dialogs.py:928
 #, python-format
 msgid "Failed to clean offline transaction data: %s"
 msgstr "Nu s-au putut curăța datele tranzacțiilor în mod deconectat:%s"
 
-#: dnfdragora/dialogs.py:946 dnfdragora/ui.py:742 dnfdragora/ui.py:2115
+#: dnfdragora/dialogs.py:947 dnfdragora/ui.py:742 dnfdragora/ui.py:2115
 msgid "System upgrade"
 msgstr "Actualizare sistem"
 
-#: dnfdragora/dialogs.py:956
+#: dnfdragora/dialogs.py:957
 msgid "System upgrade (advanced operation)"
 msgstr "Actualizare sistem (operare avansată)"
 
-#: dnfdragora/dialogs.py:961
+#: dnfdragora/dialogs.py:962
 msgid ""
 "Warning: this operation is intended for expert users only and runs under "
 "your full responsibility."
@@ -762,7 +762,7 @@ msgstr ""
 "Atenție: această operațiune este destinată exclusiv utilizatorilor experți "
 "și se desfășoară pe întreaga dumneavoastră responsabilitate."
 
-#: dnfdragora/dialogs.py:966
+#: dnfdragora/dialogs.py:967
 msgid ""
 "Examples: Mageia development release is often 'cauldron', Fedora development "
 "release is often 'rawhide'."
@@ -770,348 +770,348 @@ msgstr ""
 "Exemple: Versiunea de dezvoltare Mageia este adesea „cauldron”, versiunea de "
 "dezvoltare Fedora este adesea „rawhide”."
 
-#: dnfdragora/dialogs.py:967
+#: dnfdragora/dialogs.py:968
 msgid ""
 " For stable upgrade, the target is usually current release +1 when available."
 msgstr ""
 "Pentru o actualizare stabilă, obiectivul este de obicei versiunea curentă "
 "+1, atunci când este disponibilă."
 
-#: dnfdragora/dialogs.py:972
+#: dnfdragora/dialogs.py:973
 msgid "I understand the risks and want to configure system upgrade options"
 msgstr ""
 "Înțeleg riscurile și vreau să configurez opțiunile de actualizare a "
 "sistemului"
 
-#: dnfdragora/dialogs.py:984
+#: dnfdragora/dialogs.py:985
 msgid "Release ver:"
 msgstr "Versiune de lansare:"
 
-#: dnfdragora/dialogs.py:992
+#: dnfdragora/dialogs.py:993
 msgid ""
 "Insert the target releasever exactly as expected by repositories metadata."
 msgstr ""
 "Introduceți versiunea țintă a versiunii release exact așa cum este așteptat "
 "de metadatele depozitelor."
 
-#: dnfdragora/dialogs.py:997
+#: dnfdragora/dialogs.py:998
 msgid "&Proceed"
 msgstr "&Continuați"
 
-#: dnfdragora/dialogs.py:1058
+#: dnfdragora/dialogs.py:1059
 msgid "Action on selected packages"
 msgstr "Acțiune asupra pachetelor selectate"
 
-#: dnfdragora/dialogs.py:1071
+#: dnfdragora/dialogs.py:1072
 msgid "Normal (Install/Upgrade/Remove)"
 msgstr "Normal (Instalare/Actualizare/Eliminare)"
 
-#: dnfdragora/dialogs.py:1072
+#: dnfdragora/dialogs.py:1073
 msgid "Reinstall"
 msgstr "Reinstalare"
 
-#: dnfdragora/dialogs.py:1075
+#: dnfdragora/dialogs.py:1076
 msgid "Downgrade"
 msgstr "Retrogradare"
 
-#: dnfdragora/dialogs.py:1078
+#: dnfdragora/dialogs.py:1079
 msgid "Distro Sync"
 msgstr "Sincronizare distribuție"
 
-#: dnfdragora/dialogs.py:1082 dnfdragora/dialogs.py:1221
+#: dnfdragora/dialogs.py:1083 dnfdragora/dialogs.py:1222
 msgid "&Ok"
 msgstr "&OK"
 
-#: dnfdragora/dialogs.py:1144
+#: dnfdragora/dialogs.py:1145
 msgid "Transaction result"
 msgstr "Rezultatul tranzacției"
 
-#: dnfdragora/dialogs.py:1153
+#: dnfdragora/dialogs.py:1154
 msgid "Transaction dependency"
 msgstr "Dependențele tranzacției"
 
-#: dnfdragora/dialogs.py:1181
+#: dnfdragora/dialogs.py:1182
 msgid "replacing "
 msgstr "înlocuirea"
 
-#: dnfdragora/dialogs.py:1186
+#: dnfdragora/dialogs.py:1187
 msgid "Total size "
 msgstr "Dimensiune totală"
 
-#: dnfdragora/dialogs.py:1208
+#: dnfdragora/dialogs.py:1209
 msgid "Offline"
 msgstr "Deconectat"
 
-#: dnfdragora/dialogs.py:1217
+#: dnfdragora/dialogs.py:1218
 msgid "Offline mode is unavailable because systemd is not running."
 msgstr "Modul deconectat nu este disponibil deoarece systemd nu rulează."
 
-#: dnfdragora/dialogs.py:1231
+#: dnfdragora/dialogs.py:1232
 msgid "Reset transaction failed"
 msgstr "Resetarea tranzacției a eșuat."
 
-#: dnfdragora/dialogs.py:1283
+#: dnfdragora/dialogs.py:1284
 msgid "Repository Management"
 msgstr "Managementul repozitoriului"
 
-#: dnfdragora/dialogs.py:1307
+#: dnfdragora/dialogs.py:1308
 msgid "Identifier"
 msgstr "Identificator"
 
-#: dnfdragora/dialogs.py:1310
+#: dnfdragora/dialogs.py:1311
 msgid "Enabled"
 msgstr "Activat"
 
-#: dnfdragora/dialogs.py:1311
+#: dnfdragora/dialogs.py:1312
 msgid "Priority"
 msgstr "Prioritate"
 
-#: dnfdragora/dialogs.py:1312
+#: dnfdragora/dialogs.py:1313
 msgid "Cost"
 msgstr "Cost"
 
-#: dnfdragora/dialogs.py:1313
+#: dnfdragora/dialogs.py:1314
 msgid "Base URL"
 msgstr "URL de bază"
 
-#: dnfdragora/dialogs.py:1314
+#: dnfdragora/dialogs.py:1315
 msgid "Meta link"
 msgstr "Meta-legătură"
 
-#: dnfdragora/dialogs.py:1315
+#: dnfdragora/dialogs.py:1316
 msgid "Mirror list"
 msgstr "Lista de oglinzi"
 
-#: dnfdragora/dialogs.py:1316
+#: dnfdragora/dialogs.py:1317
 msgid "Metadata expire"
 msgstr "Metadatele expiră"
 
-#: dnfdragora/dialogs.py:1317
+#: dnfdragora/dialogs.py:1318
 msgid "Cache Updated"
 msgstr "Cache actualizat"
 
-#: dnfdragora/dialogs.py:1318
+#: dnfdragora/dialogs.py:1319
 msgid "Exclude packages"
 msgstr "Excludeți pachetele"
 
-#: dnfdragora/dialogs.py:1319
+#: dnfdragora/dialogs.py:1320
 msgid "Include packages"
 msgstr "Includeți pachete"
 
-#: dnfdragora/dialogs.py:1320
+#: dnfdragora/dialogs.py:1321
 msgid "Skip if unavailable"
 msgstr "Omiteți dacă nu este disponibil"
 
-#: dnfdragora/dialogs.py:1322
+#: dnfdragora/dialogs.py:1323
 msgid "GPG key"
 msgstr "Cheie GPG"
 
-#: dnfdragora/dialogs.py:1323
+#: dnfdragora/dialogs.py:1324
 msgid "GPG check"
 msgstr "Verificare GPG"
 
-#: dnfdragora/dialogs.py:1324
+#: dnfdragora/dialogs.py:1325
 msgid "Repo GPG check"
 msgstr "Verificare GPG a repozitoriului"
 
-#: dnfdragora/dialogs.py:1326
+#: dnfdragora/dialogs.py:1327
 msgid "Proxy"
 msgstr "Proxy"
 
-#: dnfdragora/dialogs.py:1327
+#: dnfdragora/dialogs.py:1328
 msgid "Proxy username"
 msgstr "Nume de utilizator proxy"
 
-#: dnfdragora/dialogs.py:1330
+#: dnfdragora/dialogs.py:1331
 msgid "Repo file"
 msgstr "Fișier repozitoriu"
 
-#: dnfdragora/dialogs.py:1331
+#: dnfdragora/dialogs.py:1332
 msgid "Revision"
 msgstr "Revizuire"
 
-#: dnfdragora/dialogs.py:1332
+#: dnfdragora/dialogs.py:1333
 msgid "Content tags"
 msgstr "Etichete de conținut"
 
-#: dnfdragora/dialogs.py:1333
+#: dnfdragora/dialogs.py:1334
 msgid "Distro tags "
 msgstr "Etichete de distribuție"
 
-#: dnfdragora/dialogs.py:1334
+#: dnfdragora/dialogs.py:1335
 msgid "Updated"
 msgstr "Actualizat"
 
-#: dnfdragora/dialogs.py:1335 dnfdragora/ui.py:587
+#: dnfdragora/dialogs.py:1336 dnfdragora/ui.py:587
 msgid "Size"
 msgstr "Mărime"
 
-#: dnfdragora/dialogs.py:1336
+#: dnfdragora/dialogs.py:1337
 msgid "Packages"
 msgstr "Pachete"
 
-#: dnfdragora/dialogs.py:1337
+#: dnfdragora/dialogs.py:1338
 msgid "Available packages"
 msgstr "Pachete disponibile"
 
-#: dnfdragora/dialogs.py:1338
+#: dnfdragora/dialogs.py:1339
 msgid "Mirrors"
 msgstr "Servere în oglindă"
 
-#: dnfdragora/dialogs.py:1346
+#: dnfdragora/dialogs.py:1347
 msgid "Ad&vanced repository types"
 msgstr "&Tipuri avansate de repozitorii"
 
-#: dnfdragora/dialogs.py:1350
+#: dnfdragora/dialogs.py:1351
 msgid "&Debug information"
 msgstr "&Informații de depanare"
 
-#: dnfdragora/dialogs.py:1352
+#: dnfdragora/dialogs.py:1353
 msgid "&Source"
 msgstr "&Sursă"
 
-#: dnfdragora/dialogs.py:1354
+#: dnfdragora/dialogs.py:1355
 msgid "&Testing"
 msgstr "&Testare"
 
-#: dnfdragora/dialogs.py:1365
+#: dnfdragora/dialogs.py:1366
 msgid "Id"
 msgstr "Id"
 
-#: dnfdragora/dialogs.py:1374
+#: dnfdragora/dialogs.py:1375
 msgid "Information"
 msgstr "Informații"
 
-#: dnfdragora/dialogs.py:1382 dnfdragora/ui.py:699 dnfdragora/ui.py:1745
+#: dnfdragora/dialogs.py:1383 dnfdragora/ui.py:699 dnfdragora/ui.py:1745
 msgid "&Apply"
 msgstr "&Aplică"
 
-#: dnfdragora/dialogs.py:1597
+#: dnfdragora/dialogs.py:1598
 #, python-format
 msgid "%s second(s)"
 msgstr "%s secundă(e)"
 
-#: dnfdragora/dialogs.py:1597
+#: dnfdragora/dialogs.py:1598
 msgid "Never"
 msgstr "Niciodată"
 
-#: dnfdragora/dialogs.py:1602
+#: dnfdragora/dialogs.py:1603
 msgid "Now"
 msgstr "Nou"
 
-#: dnfdragora/dialogs.py:1672 dnfdragora/helpinfo.py:144
+#: dnfdragora/dialogs.py:1673 dnfdragora/helpinfo.py:144
 msgid "dnfdragora options"
 msgstr "opțiuni dnfdragora"
 
-#: dnfdragora/dialogs.py:1747 dnfdragora/groupicons.py:434
+#: dnfdragora/dialogs.py:1748 dnfdragora/groupicons.py:434
 msgid "System"
 msgstr "Sistem"
 
-#: dnfdragora/dialogs.py:1751
+#: dnfdragora/dialogs.py:1752
 msgid "Layout"
 msgstr "Aspect"
 
-#: dnfdragora/dialogs.py:1755
+#: dnfdragora/dialogs.py:1756
 msgid "dnfdragora-updater"
 msgstr "dnfdragora-actualizator"
 
-#: dnfdragora/dialogs.py:1759
+#: dnfdragora/dialogs.py:1760
 msgid "Logging"
 msgstr "Autentificare"
 
-#: dnfdragora/dialogs.py:1772
+#: dnfdragora/dialogs.py:1773
 msgid "Restore &default"
 msgstr "Restaurare &implicită"
 
-#: dnfdragora/dialogs.py:1834
+#: dnfdragora/dialogs.py:1835
 msgid "System options"
 msgstr "Opțiuni de sistem"
 
-#: dnfdragora/dialogs.py:1841
+#: dnfdragora/dialogs.py:1842
 msgid "Run transactions on packages automatically without confirmation needed"
 msgstr "Execută automat tranzacții pe pachete fără a fi nevoie de confirmare"
 
-#: dnfdragora/dialogs.py:1850
+#: dnfdragora/dialogs.py:1851
 msgid "Force distsync as upgrade"
 msgstr "Forțează distsync ca actualizare"
 
-#: dnfdragora/dialogs.py:1861
+#: dnfdragora/dialogs.py:1862
 msgid "Remove installed package to resolve transactions"
 msgstr "Eliminați pachetul instalat pentru a rezolva tranzacțiile"
 
-#: dnfdragora/dialogs.py:1875
+#: dnfdragora/dialogs.py:1876
 msgid "Metadata expire time (hours)"
 msgstr "Timpul de expirare al metadatelor (ore)"
 
-#: dnfdragora/dialogs.py:1898
+#: dnfdragora/dialogs.py:1899
 msgid "dnfdragora-updater options"
 msgstr "opțiuni dnfdragora-actualizator"
 
-#: dnfdragora/dialogs.py:1906
+#: dnfdragora/dialogs.py:1907
 msgid "Hide dnfdragora-update menu if there are no updates"
 msgstr "Ascunde meniul dnfdragora-update dacă nu există actualizări"
 
-#: dnfdragora/dialogs.py:1936
+#: dnfdragora/dialogs.py:1937
 msgid "Interval to check for updates (minutes)"
 msgstr "Interval de verificare a actualizărilor (minute)"
 
-#: dnfdragora/dialogs.py:1962
+#: dnfdragora/dialogs.py:1963
 msgid "Layout options (active at next startup)"
 msgstr "Opțiuni de aspect (active la următoarea pornire)"
 
-#: dnfdragora/dialogs.py:1973
+#: dnfdragora/dialogs.py:1974
 msgid "Show updates"
 msgstr "Afișați actualizările"
 
-#: dnfdragora/dialogs.py:1978
+#: dnfdragora/dialogs.py:1979
 msgid "Do not show groups view"
 msgstr "Nu afișați vizualizarea grupurilor"
 
-#: dnfdragora/dialogs.py:2002
+#: dnfdragora/dialogs.py:2003
 msgid "Logging options (active at next startup)"
 msgstr "Opțiuni de înregistrare în jurnal (active la următoarea pornire)"
 
-#: dnfdragora/dialogs.py:2019
+#: dnfdragora/dialogs.py:2020
 msgid "Enable logging"
 msgstr "Activează înregistrarea în jurnal"
 
-#: dnfdragora/dialogs.py:2028
+#: dnfdragora/dialogs.py:2029
 msgid "Change &directory"
 msgstr "Schimbați &directory"
 
-#: dnfdragora/dialogs.py:2033
+#: dnfdragora/dialogs.py:2034
 msgid "Debug level"
 msgstr "Nivel de depanare"
 
-#: dnfdragora/dialogs.py:2066
+#: dnfdragora/dialogs.py:2067
 msgid "Choose log destination directory"
 msgstr "Alegeți directorul de destinație al jurnalului"
 
-#: dnfdragora/dialogs.py:2240
+#: dnfdragora/dialogs.py:2241
 msgid "Find packages"
 msgstr "Găsește pachete"
 
-#: dnfdragora/dialogs.py:2279 dnfdragora/ui.py:607
+#: dnfdragora/dialogs.py:2280 dnfdragora/ui.py:607
 msgid "Installed"
 msgstr "Instalate"
 
-#: dnfdragora/dialogs.py:2280
+#: dnfdragora/dialogs.py:2281
 msgid "Available"
 msgstr "Disponibil"
 
-#: dnfdragora/dialogs.py:2281
+#: dnfdragora/dialogs.py:2282
 msgid "Upgrades"
 msgstr "Actualizări"
 
-#: dnfdragora/dialogs.py:2282
+#: dnfdragora/dialogs.py:2283
 msgid "Upgradable"
 msgstr "Actualizabile"
 
-#: dnfdragora/dialogs.py:2303
+#: dnfdragora/dialogs.py:2304
 msgid "Find:"
 msgstr "Căutare:"
 
-#: dnfdragora/dialogs.py:2311
+#: dnfdragora/dialogs.py:2312
 msgid ""
 "Enter the search pattern. In text mode: words separated by spaces or commas. "
 "In dependency query mode: capability name (e.g. 'python3', '/usr/bin/"
@@ -1121,70 +1121,70 @@ msgstr ""
 "sau virgule. În modul de interogare a dependenței: numele capacității (de "
 "exemplu, „python3”, „/usr/bin/python3”)."
 
-#: dnfdragora/dialogs.py:2318
+#: dnfdragora/dialogs.py:2319
 msgid "Search in:"
 msgstr "Caută în:"
 
-#: dnfdragora/dialogs.py:2319
+#: dnfdragora/dialogs.py:2320
 msgid "N&ames"
 msgstr "&Denumire"
 
-#: dnfdragora/dialogs.py:2321
+#: dnfdragora/dialogs.py:2322
 msgid "Search in package names and NEVRA (name-epoch:version-release.arch)."
 msgstr ""
 "Căutați în numele pachetelor și în NEVRA (name-epoch:version-release.arch)."
 
-#: dnfdragora/dialogs.py:2322
+#: dnfdragora/dialogs.py:2323
 msgid "&Provides"
 msgstr "&Oferă"
 
-#: dnfdragora/dialogs.py:2324
+#: dnfdragora/dialogs.py:2325
 msgid "Also match packages whose Provides: tags include the search pattern."
 msgstr ""
 "De asemenea, potrivește pachetele ale căror etichete Oferă: includ modelul "
 "de căutare."
 
-#: dnfdragora/dialogs.py:2325
+#: dnfdragora/dialogs.py:2326
 msgid "&Files"
 msgstr "&Fișiere"
 
-#: dnfdragora/dialogs.py:2327
+#: dnfdragora/dialogs.py:2328
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
 "Potrivește pachetele care dețin fișiere a căror cale corespunde modelului."
 
-#: dnfdragora/dialogs.py:2330
+#: dnfdragora/dialogs.py:2331
 msgid "&Binaries"
 msgstr "&Binare"
 
-#: dnfdragora/dialogs.py:2332
+#: dnfdragora/dialogs.py:2333
 msgid ""
 "Restrict file matching to /usr/bin and /usr/sbin only (subset of Files)."
 msgstr ""
 "Restricționează potrivirea fișierelor doar la /usr/bin și /usr/sbin (subset "
 "de Fișiere)."
 
-#: dnfdragora/dialogs.py:2333
+#: dnfdragora/dialogs.py:2334
 msgid "S&ources"
 msgstr "&Surse"
 
-#: dnfdragora/dialogs.py:2335
+#: dnfdragora/dialogs.py:2336
 msgid "Include source RPMs (*.src.rpm) in the results."
 msgstr "Includeți RPM-urile sursă (*.src.rpm) în rezultate."
 
-#: dnfdragora/dialogs.py:2337
+#: dnfdragora/dialogs.py:2338
 msgid "Su&mmary"
 msgstr "&Rezumat"
 
-#: dnfdragora/dialogs.py:2339
+#: dnfdragora/dialogs.py:2340
 msgid "Search in package summaries. Only available in regexp mode."
 msgstr "Căutare în rezumatele pachetelor. Disponibil doar în modul regexp."
 
-#: dnfdragora/dialogs.py:2343
+#: dnfdragora/dialogs.py:2344
 msgid "Scope:"
 msgstr "Scop:"
 
-#: dnfdragora/dialogs.py:2354
+#: dnfdragora/dialogs.py:2355
 msgid ""
 "Limit the search to a subset of packages: all, installed, available to "
 "install, upgrades or upgradable."
@@ -1192,11 +1192,11 @@ msgstr ""
 "Limitați căutarea la un subset de pachete: toate, instalate, disponibile "
 "pentru instalare, actualizări sau actualizabile."
 
-#: dnfdragora/dialogs.py:2356
+#: dnfdragora/dialogs.py:2357
 msgid "Use &regexp"
 msgstr "Folosiți &regexp"
 
-#: dnfdragora/dialogs.py:2359
+#: dnfdragora/dialogs.py:2360
 msgid ""
 "Treat the Find field as a regular expression (Python re syntax). Disables "
 "multi-field search."
@@ -1204,19 +1204,19 @@ msgstr ""
 "Tratați câmpul Căutare ca o expresie regulată (sintaxa Python). Dezactivează "
 "căutarea în câmpuri multiple."
 
-#: dnfdragora/dialogs.py:2361
+#: dnfdragora/dialogs.py:2362
 msgid "&Latest only"
 msgstr "&Numai cele mai recente"
 
-#: dnfdragora/dialogs.py:2363
+#: dnfdragora/dialogs.py:2364
 msgid "Show only the latest version of each package name."
 msgstr "Afișează doar cea mai recentă versiune a fiecărui nume de pachet."
 
-#: dnfdragora/dialogs.py:2364
+#: dnfdragora/dialogs.py:2365
 msgid "Fu&zzy search"
 msgstr "&Căutare vagă"
 
-#: dnfdragora/dialogs.py:2366
+#: dnfdragora/dialogs.py:2367
 msgid ""
 "Automatically add wildcards around each search token (e.g. 'gtk' becomes "
 "'*gtk*'). Disabled in regexp mode."
@@ -1224,11 +1224,11 @@ msgstr ""
 "Adăugați automat caractere wildcard în jurul fiecărui cuvânt de căutare (de "
 "exemplu, 'gtk' devine '*gtk*'). Dezactivat în modul regexp."
 
-#: dnfdragora/dialogs.py:2367
+#: dnfdragora/dialogs.py:2368
 msgid "Case &sensitive"
 msgstr "Caz &sensibil"
 
-#: dnfdragora/dialogs.py:2370
+#: dnfdragora/dialogs.py:2371
 msgid ""
 "When checked, the search is case-sensitive. By default search is case-"
 "insensitive."
@@ -1236,51 +1236,51 @@ msgstr ""
 "Când este bifată, căutarea este sensibilă la majuscule/minuscule. În mod "
 "implicit, căutarea nu este sensibilă la majuscule/minuscule."
 
-#: dnfdragora/dialogs.py:2379
+#: dnfdragora/dialogs.py:2380
 msgid "(none)"
 msgstr "(nimic)"
 
-#: dnfdragora/dialogs.py:2380
+#: dnfdragora/dialogs.py:2381
 msgid "provide"
 msgstr "oferă"
 
-#: dnfdragora/dialogs.py:2381
+#: dnfdragora/dialogs.py:2382
 msgid "require"
 msgstr "necesită"
 
-#: dnfdragora/dialogs.py:2382
+#: dnfdragora/dialogs.py:2383
 msgid "depend on"
 msgstr "depinde de"
 
-#: dnfdragora/dialogs.py:2383
+#: dnfdragora/dialogs.py:2384
 msgid "recommend"
 msgstr "recomandă"
 
-#: dnfdragora/dialogs.py:2384
+#: dnfdragora/dialogs.py:2385
 msgid "enhance"
 msgstr "îmbunătățește"
 
-#: dnfdragora/dialogs.py:2385
+#: dnfdragora/dialogs.py:2386
 msgid "suggest"
 msgstr "sugerează"
 
-#: dnfdragora/dialogs.py:2386
+#: dnfdragora/dialogs.py:2387
 msgid "supplement"
 msgstr "suplimentare"
 
-#: dnfdragora/dialogs.py:2387
+#: dnfdragora/dialogs.py:2388
 msgid "obsolete"
 msgstr "anacronic"
 
-#: dnfdragora/dialogs.py:2388
+#: dnfdragora/dialogs.py:2389
 msgid "conflict with"
 msgstr "în conflict cu"
 
-#: dnfdragora/dialogs.py:2391
+#: dnfdragora/dialogs.py:2392
 msgid "&Dependency query"
 msgstr "&Interogare de dependență"
 
-#: dnfdragora/dialogs.py:2393
+#: dnfdragora/dialogs.py:2394
 msgid ""
 "When checked, the Find field is used as a capability name and packages are "
 "searched by dependency relation instead of text pattern."
@@ -1288,11 +1288,11 @@ msgstr ""
 "Când este bifat, câmpul Căutare este utilizat ca nume de capacitate, iar "
 "pachetele sunt căutate după relația de dependență în loc de modelul de text."
 
-#: dnfdragora/dialogs.py:2398
+#: dnfdragora/dialogs.py:2399
 msgid "Find packages that:"
 msgstr "Găsiți pachete care:"
 
-#: dnfdragora/dialogs.py:2411
+#: dnfdragora/dialogs.py:2412
 msgid ""
 "Choose the dependency relation to search: provide, require, depend on, "
 "recommend, etc."
@@ -1300,64 +1300,64 @@ msgstr ""
 "Alegeți relația de dependență pentru căutare: oferă, necesită, depinde de, "
 "recomandă etc."
 
-#: dnfdragora/dialogs.py:2412
+#: dnfdragora/dialogs.py:2413
 msgid "the capability in \"Find\" field"
 msgstr "capacitatea din câmpul „Căutare”"
 
-#: dnfdragora/dialogs.py:2419
+#: dnfdragora/dialogs.py:2420
 msgid "Limit to repositories"
 msgstr "Limitează la reposotoriile"
 
-#: dnfdragora/dialogs.py:2421
+#: dnfdragora/dialogs.py:2422
 msgid "When checked, the search is restricted to the selected repositories."
 msgstr ""
 "Când este bifată, căutarea este restricționată la repozitoriile selectate."
 
-#: dnfdragora/dialogs.py:2444
+#: dnfdragora/dialogs.py:2445
 msgid "Limit to architectures"
 msgstr "Limitează la tipul de arhitectură"
 
-#: dnfdragora/dialogs.py:2446
+#: dnfdragora/dialogs.py:2447
 msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
 "Când este bifată, căutarea este restricționată la arhitecturile de CPU "
 "selectate."
 
-#: dnfdragora/dialogs.py:2471 dnfdragora/ui.py:684
+#: dnfdragora/dialogs.py:2472 dnfdragora/ui.py:684
 msgid "&Search"
 msgstr "Ca&ută"
 
-#: dnfdragora/dialogs.py:2472
+#: dnfdragora/dialogs.py:2473
 msgid "Run the search and show matching packages."
 msgstr "Rulați căutarea și afișați pachetele potrivite."
 
-#: dnfdragora/dialogs.py:2474
+#: dnfdragora/dialogs.py:2475
 msgid "&Clear"
 msgstr "&Golește"
 
-#: dnfdragora/dialogs.py:2475
+#: dnfdragora/dialogs.py:2476
 msgid "Clear the Find field and reset the dependency query frame."
 msgstr ""
 "Ștergeți câmpul Căutare și resetați cadrul de interogare a dependenței."
 
-#: dnfdragora/dialogs.py:2477
+#: dnfdragora/dialogs.py:2478
 msgid "C&lose"
 msgstr "&Închide"
 
-#: dnfdragora/dialogs.py:2478
+#: dnfdragora/dialogs.py:2479
 msgid "Close this dialog without running a new search."
 msgstr "Închideți această casetă de dialog fără a rula o nouă căutare."
 
-#: dnfdragora/dialogs.py:2693 dnfdragora/ui.py:1593
+#: dnfdragora/dialogs.py:2694 dnfdragora/ui.py:1593
 msgid "Invalid regular expression"
 msgstr "Expresie regulată incorectă"
 
-#: dnfdragora/dialogs.py:2741
+#: dnfdragora/dialogs.py:2742
 msgid "(embedded in repository metadata)"
 msgstr "(încorporat în metadatele repozitoriului)"
 
-#: dnfdragora/dialogs.py:2750
+#: dnfdragora/dialogs.py:2751
 #, python-format
 msgid ""
 "Do you want to import this GPG key?<br><br>Key        : 0x%(id)s:"
@@ -1369,7 +1369,7 @@ msgstr ""
 "utilizator: \"%(user)s\"<br> Amprentă digitală: \"%(fingerprint)s\"<br> "
 "Marcă temporală: \"%(timestamp)s\"<br>De la: %(file)s"
 
-#: dnfdragora/dialogs.py:2762
+#: dnfdragora/dialogs.py:2763
 msgid "GPG key missed"
 msgstr "Cheia GPG a fost ratată"
 
@@ -2072,10 +2072,8 @@ msgstr ""
 "dar nu sunt permanente.<br><br>"
 
 #: dnfdragora/helpinfo.py:103
-msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
+msgid "<b>Filter frame — Show additional repository types</b><br>"
 msgstr ""
-"<b>Cadru de filtru \\u2014 Afișează tipuri suplimentare de repozitorii</"
-"b><br>"
 
 #: dnfdragora/helpinfo.py:104
 msgid ""
@@ -3128,6 +3126,14 @@ msgstr "Finalizat ✓"
 msgid "Completed with errors"
 msgstr "Finalizat cu erori"
 
+#: dnfdragora/progress_ui.py:466
+msgid "Errors"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:469
+msgid "Done"
+msgstr ""
+
 #: dnfdragora/progress_ui.py:507
 msgid "Save transaction log"
 msgstr "Salvați jurnalul de tranzacții"
@@ -3638,3 +3644,8 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Fereastra principală"
+
+#~ msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
+#~ msgstr ""
+#~ "<b>Cadru de filtru \\u2014 Afișează tipuri suplimentare de repozitorii</"
+#~ "b><br>"
