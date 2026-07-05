@@ -2074,6 +2074,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:103
 msgid "<b>Filter frame — Show additional repository types</b><br>"
 msgstr ""
+"<b>Cadru de filtrare — Afișați tipuri suplimentare de repozitorii</b><br>"
 
 #: dnfdragora/helpinfo.py:104
 msgid ""
@@ -3128,11 +3129,11 @@ msgstr "Finalizat cu erori"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Errors"
-msgstr ""
+msgstr "Erori"
 
 #: dnfdragora/progress_ui.py:469
 msgid "Done"
-msgstr ""
+msgstr "Terminat"
 
 #: dnfdragora/progress_ui.py:507
 msgid "Save transaction log"
@@ -3644,8 +3645,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Fereastra principală"
-
-#~ msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-#~ msgstr ""
-#~ "<b>Cadru de filtru \\u2014 Afișează tipuri suplimentare de repozitorii</"
-#~ "b><br>"
