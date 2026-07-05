@@ -2082,7 +2082,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:103
 msgid "<b>Filter frame — Show additional repository types</b><br>"
-msgstr ""
+msgstr "<b>Filterkader — Toon aanvullende typen pakketdepots</b><br>"
 
 #: dnfdragora/helpinfo.py:104
 msgid ""
@@ -2272,8 +2272,8 @@ msgid ""
 "<li><b>Remove installed package to resolve transactions</b>: if enabled, "
 "dependency solving can remove installed packages (<i>allow_erasing</i>).</li>"
 msgstr ""
-"<li><b>Verwijder het geïnstalleerde pakket om transacties op te lossen.</"
-"b>:Indien ingeschakeld, kan het oplossen van afhankelijkheden geïnstalleerde "
+"<li><b>Verwijder het geïnstalleerde pakket om transacties op te lossen.</b>:"
+"Indien ingeschakeld, kan het oplossen van afhankelijkheden geïnstalleerde "
 "pakketten verwijderen.(<i>wissen toestaan</i>).</li>"
 
 #: dnfdragora/helpinfo.py:152
@@ -3126,11 +3126,11 @@ msgstr "Voltooid met fouten"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Errors"
-msgstr ""
+msgstr "Fouten"
 
 #: dnfdragora/progress_ui.py:469
 msgid "Done"
-msgstr ""
+msgstr "Klaar"
 
 #: dnfdragora/progress_ui.py:507
 msgid "Save transaction log"
@@ -3641,6 +3641,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hoofdvenster"
-
-#~ msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-#~ msgstr "<b>Filter kader \\u2014 - Toon aanvullende opslagtypen</b><br>"
