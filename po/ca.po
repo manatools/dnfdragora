@@ -6,8 +6,8 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2020
+# Yuri Chornoivan <yurchor@ukr.net>, 2021
 # Rafa Llandres, 2024
-# Yuri Chornoivan <yurchor@ukr.net>, 2025
 # Davidmp <medipas@gmail.com>, 2026
 #
 #, fuzzy
@@ -45,7 +45,7 @@ msgstr "inicia l'ús de la implementació del connector yui Qt"
 
 #: bin/dnfdragora:31
 msgid "use full screen for dialogs"
-msgstr "utilitza la pantalla completa per als diàlegs"
+msgstr "usa la pantalla completa per als diàlegs"
 
 #: bin/dnfdragora:34
 msgid "force a new path for group icons (instead of /usr/share/icons)"
@@ -86,8 +86,7 @@ msgstr "mostra la versió de l'aplicació i surt"
 
 #: bin/dnfdragora:43
 msgid "force dnfdaemon dbus services used by dnfdragora to exit"
-msgstr ""
-"força la sortida dels serveis dbus de dnfdaemon utilitzats amb dnfdragora"
+msgstr "força la sortida dels serveis dbus de dnfdaemon usats amb dnfdragora"
 
 #: bin/dnfdragora:83
 #, python-format
@@ -420,7 +419,7 @@ msgstr "Transaccions"
 #: dnfdragora/dialogs.py:154 dnfdragora/dialogs.py:499
 #: dnfdragora/dialogs.py:731
 msgid "&Refresh"
-msgstr "&Refresca"
+msgstr "&Actualitza"
 
 #: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:500
 #: dnfdragora/dialogs.py:735 dnfdragora/dialogs.py:1778
@@ -476,55 +475,55 @@ msgstr "reinstal·la"
 
 #: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:739
 msgid "Advisory information"
-msgstr ""
+msgstr "Informació d'assessorament"
 
 #: dnfdragora/dialogs.py:395
 msgid "Advisories"
-msgstr ""
+msgstr "Avisos"
 
 #: dnfdragora/dialogs.py:396
 msgid "Advisory details"
-msgstr ""
+msgstr "Detalls d'assessorament"
 
 #: dnfdragora/dialogs.py:414
 msgid "Availability:"
-msgstr ""
+msgstr "Disponibilitat:"
 
 #: dnfdragora/dialogs.py:428
 msgid "With CVE"
-msgstr ""
+msgstr "Amb CVE"
 
 #: dnfdragora/dialogs.py:430
 msgid "With Bugzilla"
-msgstr ""
+msgstr "Amb Bugzilla"
 
 #: dnfdragora/dialogs.py:432
 msgid "Limit to types"
-msgstr ""
+msgstr "Limita als tipus"
 
 #: dnfdragora/dialogs.py:445
 msgid "Limit to severities"
-msgstr ""
+msgstr "Límita a la gravetat"
 
 #: dnfdragora/dialogs.py:463
 msgid "Advisory IDs (comma-separated):"
-msgstr ""
+msgstr "Identificadors d'avisos (separats per comes):"
 
 #: dnfdragora/dialogs.py:465
 msgid "Reference BZ IDs (comma-separated)"
-msgstr ""
+msgstr "IDs de referència BZ (separats per comes)"
 
 #: dnfdragora/dialogs.py:469
 msgid "Contains package:"
-msgstr ""
+msgstr "  Conté el paquet:"
 
 #: dnfdragora/dialogs.py:471
 msgid "Reference CVEs (comma-separated)"
-msgstr ""
+msgstr "CVEs de referència (separats per comes)"
 
 #: dnfdragora/dialogs.py:477 dnfdragora/dialogs.py:589
 msgid "Advisory ID"
-msgstr ""
+msgstr "ID d'avís"
 
 #: dnfdragora/dialogs.py:478 dnfdragora/dialogs.py:592
 #: dnfdragora/dialogs.py:1310 dnfdragora/ui.py:1365
@@ -537,11 +536,11 @@ msgstr "Severitat"
 
 #: dnfdragora/dialogs.py:480 dnfdragora/dialogs.py:591
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 #: dnfdragora/dialogs.py:490
 msgid "Field"
-msgstr ""
+msgstr "Camp"
 
 #: dnfdragora/dialogs.py:491 dnfdragora/dialogs.py:714
 #: dnfdragora/dialogs.py:1375
@@ -550,11 +549,11 @@ msgstr "Valor"
 
 #: dnfdragora/dialogs.py:583
 msgid "Selection"
-msgstr ""
+msgstr "Selecció"
 
 #: dnfdragora/dialogs.py:584
 msgid "No advisory selected"
-msgstr ""
+msgstr "No s'ha seleccionat cap avís."
 
 #: dnfdragora/dialogs.py:594 dnfdragora/ui.py:595
 msgid "Status"
@@ -562,43 +561,43 @@ msgstr "Estat"
 
 #: dnfdragora/dialogs.py:595
 msgid "Vendor"
-msgstr ""
+msgstr "Proveïdor"
 
 #: dnfdragora/dialogs.py:596
 msgid "Build time"
-msgstr ""
+msgstr "Hora de construcció"
 
 #: dnfdragora/dialogs.py:597
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #: dnfdragora/dialogs.py:598
 msgid "Message"
-msgstr ""
+msgstr "Missatge"
 
 #: dnfdragora/dialogs.py:599
 msgid "Rights"
-msgstr ""
+msgstr "Drets"
 
 #: dnfdragora/dialogs.py:600
 msgid "Collections"
-msgstr ""
+msgstr "Col·leccions"
 
 #: dnfdragora/dialogs.py:601
 msgid "References"
-msgstr ""
+msgstr "Referències"
 
 #: dnfdragora/dialogs.py:615
 msgid "Details"
-msgstr ""
+msgstr "Detalls"
 
 #: dnfdragora/dialogs.py:616
 msgid "No details available for selected advisory"
-msgstr ""
+msgstr "No hi ha detalls disponibles per a l'avís seleccionat."
 
 #: dnfdragora/dialogs.py:664
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: dnfdragora/dialogs.py:688 dnfdragora/dialogs.py:810
 #: dnfdragora/dialogs.py:832 dnfdragora/dialogs.py:845
@@ -748,45 +747,55 @@ msgstr "No s'han pogut netejar les dades de les transaccions fora de línia: %s"
 
 #: dnfdragora/dialogs.py:947 dnfdragora/ui.py:742 dnfdragora/ui.py:2115
 msgid "System upgrade"
-msgstr ""
+msgstr "Actualització del sistema"
 
 #: dnfdragora/dialogs.py:957
 msgid "System upgrade (advanced operation)"
-msgstr ""
+msgstr "Actualització del sistema (operació avançada)"
 
 #: dnfdragora/dialogs.py:962
 msgid ""
 "Warning: this operation is intended for expert users only and runs under "
 "your full responsibility."
 msgstr ""
+"Avís: aquesta operació només està pensada per a usuaris experts i es fa sota "
+"la vostra plena responsabilitat."
 
 #: dnfdragora/dialogs.py:967
 msgid ""
 "Examples: Mageia development release is often 'cauldron', Fedora development "
 "release is often 'rawhide'."
 msgstr ""
+"Exemples: la versió de desenvolupament de Mageia sovint és cauldron, la "
+"versió de desenvolupament de Fedora sovint és rawhide."
 
 #: dnfdragora/dialogs.py:968
 msgid ""
 " For stable upgrade, the target is usually current release +1 when available."
 msgstr ""
+"Per a una actualització estable, l'objectiu sol ser la versió actual +1 quan "
+"estigui disponible."
 
 #: dnfdragora/dialogs.py:973
 msgid "I understand the risks and want to configure system upgrade options"
 msgstr ""
+"N'entenc els riscos i vull configurar les opcions d'actualització del "
+"sistema."
 
 #: dnfdragora/dialogs.py:985
 msgid "Release ver:"
-msgstr ""
+msgstr "Versió del llançament:"
 
 #: dnfdragora/dialogs.py:993
 msgid ""
 "Insert the target releasever exactly as expected by repositories metadata."
 msgstr ""
+"Inseriu la versió de destinació exactament com s'espera segons les metadades "
+"dels repositoris."
 
 #: dnfdragora/dialogs.py:998
 msgid "&Proceed"
-msgstr ""
+msgstr "&Procedeix"
 
 #: dnfdragora/dialogs.py:1059
 msgid "Action on selected packages"
@@ -1951,12 +1960,12 @@ msgstr "Diàleg de transaccions fora de línia"
 #: dnfdragora/helpinfo.py:41 dnfdragora/helpinfo.py:125
 #: dnfdragora/helpinfo.py:337
 msgid "System upgrade dialog"
-msgstr ""
+msgstr "Diàleg d'actualització del sistema"
 
 #: dnfdragora/helpinfo.py:42 dnfdragora/helpinfo.py:128
 #: dnfdragora/helpinfo.py:356
 msgid "Advisory information dialog"
-msgstr ""
+msgstr "Diàleg d'informació d'avís"
 
 #: dnfdragora/helpinfo.py:61
 msgid "File menu"
@@ -2032,7 +2041,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:98
 msgid "<h2>Refresh metadata</h2>"
-msgstr "<h2>Refresca les metadades</h2>"
+msgstr "<h2>Actualitza les metadades</h2>"
 
 #: dnfdragora/helpinfo.py:99
 msgid ""
@@ -2066,6 +2075,7 @@ msgstr ""
 #: dnfdragora/helpinfo.py:103
 msgid "<b>Filter frame — Show additional repository types</b><br>"
 msgstr ""
+"<b>Marc de filtratge: mostra els tipus de repositoris addicionals</b><br>"
 
 #: dnfdragora/helpinfo.py:104
 msgid ""
@@ -2155,7 +2165,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:124
 msgid "<h2>System upgrade</h2>"
-msgstr ""
+msgstr "<h2>Actualització del sistema</h2>"
 
 #: dnfdragora/helpinfo.py:125
 #, python-format
@@ -2163,16 +2173,20 @@ msgid ""
 "This menu opens the %s to prepare an offline distro upgrade to a target "
 "releasever. "
 msgstr ""
+"Aquest menú obre la %s per preparar una actualització fora de línia de la "
+"distribució a una versió de destinació."
 
 #: dnfdragora/helpinfo.py:126
 msgid ""
 "<b>Important:</b> the menu entry is shown only when systemd is available, "
 "because execution is scheduled offline for reboot."
 msgstr ""
+"<b>Important:</b> l'entrada del menú només es mostra quan systemd està "
+"disponible, perquè l'execució està programada fora de línia per al reinici."
 
 #: dnfdragora/helpinfo.py:127
 msgid "<h2>Advisory information</h2>"
-msgstr ""
+msgstr "<h2>Informació d'avís</h2>"
 
 #: dnfdragora/helpinfo.py:128
 #, python-format
@@ -2180,6 +2194,9 @@ msgid ""
 "This menu opens the %s to query advisory metadata (security, bugfix, "
 "enhancement) with filters and inspect selected advisory details."
 msgstr ""
+"Aquest menú obre el %s per consultar les metadades dels avisos (seguretat, "
+"correcció d'errors, millora) amb filtres i inspeccionar els detalls dels "
+"avisos seleccionats."
 
 #: dnfdragora/helpinfo.py:135
 msgid "Option Menu"
@@ -2778,15 +2795,15 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:311
 msgid "<h2>Refresh button</h2>"
-msgstr "<h2>Botó de refresc</h2>"
+msgstr "<h2>Botó d'actualització</h2>"
 
 #: dnfdragora/helpinfo.py:312
 msgid ""
 "Press <b>Refresh</b> to re-query the daemon with the current filter "
 "settings. "
 msgstr ""
-"Premeu <b>Refresca</b> per tornar a consultar el dimoni amb la configuració "
-"del filtre actual."
+"Premeu <b>Actualitza</b> per tornar a consultar el dimoni amb la "
+"configuració del filtre actual."
 
 #: dnfdragora/helpinfo.py:313
 msgid "The dialog also queries automatically when it first opens.<br><br>"
@@ -2832,7 +2849,7 @@ msgid ""
 "press <b>Finalize</b> to set the finish action, or press <b>Clean</b> to "
 "remove the scheduled offline transaction data.<br>"
 msgstr ""
-"Premeu <b>Refresca</b> per tornar a carregar l'estat fora de línia actual. "
+"Premeu <b>Actualitza</b> per tornar a carregar l'estat fora de línia actual. "
 "Si hi ha una transacció fora de línia pendent, podeu triar <b>reinicia</b> o "
 "<b>Atura</b> i prémer <b>Acaba</b> per establir l'acció d'acabament, o "
 "prémer <b>Neteja</b> per suprimir les dades de la transacció fora de línia "
@@ -2843,36 +2860,47 @@ msgid ""
 "The System upgrade dialog prepares a distribution upgrade transaction for "
 "offline execution at reboot using dnf5daemon.<br><br>"
 msgstr ""
+"El diàleg d'actualització del sistema prepara una transacció d'actualització "
+"de distribució per a l'execució fora de línia en reiniciar mitjançant "
+"dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:341
 msgid "Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>"
 msgstr ""
+"Obriu el diàleg des de la barra de menús:<b>Accions → Actualització del "
+"sistema</b>.<br>"
 
 #: dnfdragora/helpinfo.py:342
 msgid ""
 "<b>Note:</b> this menu is available only on systems where systemd is running."
 "<br><br>"
 msgstr ""
+"<b>Nota:</b> aquest menú només està disponible en sistemes on s'executa "
+"systemd.<br><br>"
 
 #: dnfdragora/helpinfo.py:343
 msgid "<h2>Safety and confirmation</h2>"
-msgstr ""
+msgstr "<h2>Seguretat i confirmació</h2>"
 
 #: dnfdragora/helpinfo.py:344
 msgid ""
 "The dialog starts with a warning and keeps advanced options hidden by "
 "default. "
 msgstr ""
+"El quadre de diàleg comença amb un avís i manté les opcions avançades "
+"amagades per defecte."
 
 #: dnfdragora/helpinfo.py:345
 msgid ""
 "Enable the acknowledgement checkbox to open the options frame and proceed "
 "only if you fully understand the risks.<br><br>"
 msgstr ""
+"Activeu la casella de selecció de confirmació per obrir el marc d'opcions i "
+"continueu només si n'enteneu completament els riscos.<br><br>"
 
 #: dnfdragora/helpinfo.py:346
 msgid "<h2>Releasever option</h2>"
-msgstr ""
+msgstr "<h2>Opció de Releasever</h2>"
 
 #: dnfdragora/helpinfo.py:347
 msgid ""
@@ -2880,10 +2908,13 @@ msgid ""
 "metadata (for example development values such as <i>cauldron</i> or "
 "<i>rawhide</i>, where applicable).<br><br>"
 msgstr ""
+"Introduïu l'objectiu de <i>releasever</i> exactament com s'espera segons les "
+"metadades dels repositoris (per exemple, valors de desenvolupament com ara "
+"<i>cauldron</i> o <i>rawhide</i>, si escau).<br><br>"
 
 #: dnfdragora/helpinfo.py:348
 msgid "<h2>Execution flow</h2>"
-msgstr ""
+msgstr "<h2>Flux d'execució</h2>"
 
 #: dnfdragora/helpinfo.py:349
 msgid ""
@@ -2892,18 +2923,27 @@ msgid ""
 "interactive prompts enabled, resolves dependencies with allow-erasing, then "
 "schedules the transaction offline and sets reboot as finish action.<br>"
 msgstr ""
+"Després de la confirmació, dnfdragora torna a obrir la sessió del dimoni amb "
+"la versió de llançament triada, prepara l'actualització del sistema en mode "
+"<i>distrosync</i> amb les indicacions interactives habilitades, resol les "
+"dependències amb l'opció de supressió permesa, després programa la "
+"transacció fora de línia i estableix el reinici com a acció d'acabament.<br>"
 
 #: dnfdragora/helpinfo.py:358
 msgid ""
 "The Advisory information dialog queries dnf5daemon advisory metadata and "
 "shows matching advisories in a table.<br><br>"
 msgstr ""
+"El diàleg d'informació d'avisos consulta les metadades d'assessorament de "
+"dnf5daemon i mostra els avisos coincidents en una taula.<br><br>"
 
 #: dnfdragora/helpinfo.py:360
 msgid ""
 "Open the dialog from the menu bar: <b>Actions → Advisory information</b>."
 "<br><br>"
 msgstr ""
+"Obriu el quadre de diàleg des de la barra de menús: <b>Accions → Informació "
+"d'avisos</b>.<br><br>"
 
 #: dnfdragora/helpinfo.py:362
 msgid ""
@@ -2911,32 +2951,44 @@ msgid ""
 "name patterns, Bugzilla IDs, CVE IDs, advisory types, severities, and "
 "toggles for advisories containing CVE/Bugzilla references.<br><br>"
 msgstr ""
+"Useu l'àrea de filtre per restringir els resultats per disponibilitat, ID "
+"d'avís, patrons de nom de paquet, ID de Bugzilla, ID de CVE, tipus d'avís, "
+"gravetats i activacions per a avisos que contenen referències a CVE / "
+"Bugzilla..<br><br>"
 
 #: dnfdragora/helpinfo.py:364
 msgid ""
 "The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and "
 "<b>Title</b> for each advisory returned by the daemon.<br><br>"
 msgstr ""
+"La taula principal mostra l'<b>ID de l'avís</b>, el <b>tipus</b>, la "
+"<b>gravetat</b> i el <b>títol</b> per a cada avís retornat pel dimoni."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:365
 msgid "<h2>Selected advisory details</h2>"
-msgstr ""
+msgstr "<h2>Detalls d'avís seleccionats</h2>"
 
 #: dnfdragora/helpinfo.py:366
 msgid ""
 "Selecting a row updates the details table with available fields such as "
 "vendor, status, description, message, collections, and references.<br><br>"
 msgstr ""
+"En seleccionar una fila, s'actualitza la taula de detalls amb els camps "
+"disponibles, com ara el proveïdor, l'estat, la descripció, el missatge, les "
+"col·leccions i les referències.<br><br>"
 
 #: dnfdragora/helpinfo.py:367
 msgid "<h2>Refresh and Close</h2>"
-msgstr ""
+msgstr "<h2>Actualització i tancament</h2>"
 
 #: dnfdragora/helpinfo.py:368
 msgid ""
 "Press <b>Refresh</b> to run the query with current filters, or <b>Close</b> "
 "to dismiss the dialog and return to the main window.<br>"
 msgstr ""
+"Premeu <b>Actualitza</b> per executar la consulta amb els filtres actuals o "
+"<b>Tanca</b> per tancar el diàleg i tornar a la finestra principal.<br>"
 
 #: dnfdragora/progress_ui.py:193
 msgid "Transaction completed successfully"
@@ -3068,11 +3120,11 @@ msgstr "Completat amb errors"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Errors"
-msgstr ""
+msgstr "Errors"
 
 #: dnfdragora/progress_ui.py:469
 msgid "Done"
-msgstr ""
+msgstr "Fet"
 
 #: dnfdragora/progress_ui.py:507
 msgid "Save transaction log"
@@ -3223,7 +3275,7 @@ msgstr "Restableix la selecció"
 
 #: dnfdragora/ui.py:726
 msgid "Refresh Metadata"
-msgstr "Refresca les metadades"
+msgstr "Actualitza les metadades"
 
 #: dnfdragora/ui.py:727
 msgid "Repositories"
@@ -3271,17 +3323,17 @@ msgstr "actualització"
 
 #: dnfdragora/ui.py:794
 msgid "locked"
-msgstr "bloquejat"
+msgstr "blocat"
 
 #: dnfdragora/ui.py:1069
 #, python-format
 msgid "[ Refreshing search: %s ]"
-msgstr ""
+msgstr "[ S'actualitza la cerca: %s ]"
 
 #: dnfdragora/ui.py:1071
 #, python-format
 msgid "[ Refreshing dependency search: %s ]"
-msgstr ""
+msgstr "[S'actualitza la cerca de dependències: %s ]"
 
 #: dnfdragora/ui.py:1074
 #, python-format
@@ -3327,42 +3379,46 @@ msgid ""
 "System upgrade requires systemd because execution is scheduled offline for "
 "reboot."
 msgstr ""
+"L'actualització del sistema requereix systemd perquè l'execució està "
+"programada fora de línia per al reinici."
 
 #: dnfdragora/ui.py:2137
 msgid "System upgrade confirmation"
-msgstr ""
+msgstr "Confirmació de l'actualització del sistema"
 
 #: dnfdragora/ui.py:2138
 #, python-format
 msgid ""
 "Are you sure you want to continue with system upgrade to releasever \"%s\"?"
 msgstr ""
+"Segur que voleu continuar l'actualització del sistema a la versió releasever "
+"%s?"
 
 #: dnfdragora/ui.py:2155
 msgid "Preparing system upgrade session"
-msgstr ""
+msgstr "Es prepara la sessió d'actualització del sistema."
 
 #: dnfdragora/ui.py:2162
 msgid "Creating system upgrade transaction"
-msgstr ""
+msgstr "Es crea la transacció d'actualització del sistema."
 
 #: dnfdragora/ui.py:2172 dnfdragora/ui.py:2200
 msgid "System upgrade error"
-msgstr ""
+msgstr "Error d'actualització del sistema"
 
 #: dnfdragora/ui.py:2174
 #, python-format
 msgid "System upgrade resolve failed:<br>%s"
-msgstr ""
+msgstr "La resolució de l'actualització del sistema ha fallat:<br>%s"
 
 #: dnfdragora/ui.py:2193
 msgid "Scheduling offline system upgrade"
-msgstr ""
+msgstr "Es programa l'actualització del sistema fora de línia."
 
 #: dnfdragora/ui.py:2202
 #, python-format
 msgid "System upgrade failed: %s"
-msgstr ""
+msgstr "L'actualització del sistema ha fallat: %s"
 
 #: dnfdragora/ui.py:2387 dnfdragora/ui.py:2407 dnfdragora/ui.py:2422
 #: dnfdragora/ui.py:2437 dnfdragora/ui.py:2451
@@ -3580,7 +3636,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Finestra principal"
-
-#~ msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-#~ msgstr ""
-#~ "<b>Marc de filtre \\u2014 Mostra tipus de repositori addicionals</b><br>"
