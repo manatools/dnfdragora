@@ -16,8 +16,8 @@ msgstr ""
 "POT-Creation-Date: 2026-07-05 11:37+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2026\n"
-"Language-Team: Norwegian Bokmål (https://app.transifex.com/MageiaLinux/teams/"
-"9361/nb/)\n"
+"Language-Team: Norwegian Bokmål (https://app.transifex.com/MageiaLinux/"
+"teams/9361/nb/)\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2062,7 +2062,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:103
 msgid "<b>Filter frame — Show additional repository types</b><br>"
-msgstr ""
+msgstr "<b>Filterramme – Vis flere depottyper</b><br>"
 
 #: dnfdragora/helpinfo.py:104
 msgid ""
@@ -3088,11 +3088,11 @@ msgstr "Ferdig, men med feil"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Errors"
-msgstr ""
+msgstr "Feil"
 
 #: dnfdragora/progress_ui.py:469
 msgid "Done"
-msgstr ""
+msgstr "Ferdig"
 
 #: dnfdragora/progress_ui.py:507
 msgid "Save transaction log"
@@ -3598,6 +3598,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hovedvindu"
-
-#~ msgid "<b>Filter frame \\u2014 Show additional repository types</b><br>"
-#~ msgstr "<b>Filterramme \\u2014 Vis flere depottyper1</b><br>"
