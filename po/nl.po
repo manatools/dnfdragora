@@ -2272,8 +2272,8 @@ msgid ""
 "<li><b>Remove installed package to resolve transactions</b>: if enabled, "
 "dependency solving can remove installed packages (<i>allow_erasing</i>).</li>"
 msgstr ""
-"<li><b>Verwijder het geïnstalleerde pakket om transacties op te lossen.</"
-"b>:Indien ingeschakeld, kan het oplossen van afhankelijkheden geïnstalleerde "
+"<li><b>Verwijder het geïnstalleerde pakket om transacties op te lossen.</b>:"
+"Indien ingeschakeld, kan het oplossen van afhankelijkheden geïnstalleerde "
 "pakketten verwijderen.(<i>wissen toestaan</i>).</li>"
 
 #: dnfdragora/helpinfo.py:152
@@ -3211,6 +3211,11 @@ msgid ""
 "\n"
 "Error details: %s"
 msgstr ""
+"Fout bij het verbinden met de dnfdaemon-service. Controleer of dnfdaemon is "
+"geïnstalleerd en actief is en probeer het "
+"opnieuw.                            \n"
+"\n"
+"Foutdetails: %s"
 
 #: dnfdragora/ui.py:518
 msgid "Software Management - dnfdragora"
@@ -3226,7 +3231,7 @@ msgstr "Versie"
 
 #: dnfdragora/ui.py:604
 msgid "Package list"
-msgstr ""
+msgstr "Pakketlijst"
 
 #: dnfdragora/ui.py:610
 msgid "Not installed"
@@ -3593,10 +3598,13 @@ msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
+"Fout bij het verbinden met de dnfdaemon-service.\n"
+"Controleer of dnfdaemon is geïnstalleerd en actief is, en probeer het "
+"opnieuw."
 
 #: dnfdragora/updater.py:143
 msgid "dnfdragora-updater failure"
-msgstr ""
+msgstr "dnfdragora-bijwerker mislukt"
 
 #: dnfdragora/updater.py:352
 #, python-format
@@ -3614,7 +3622,7 @@ msgstr "Geen herzieningen beschikbaar"
 
 #: dnfdragora/updater.py:549
 msgid "Error launching dnfdragora dialog"
-msgstr ""
+msgstr "Fout bij het starten van het dnfdragora-dialoogvenster"
 
 #: dnfdragora/updater.py:551
 msgid "Running dnfdragora failure"
@@ -3664,7 +3672,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Hoofdvenster"
-
-#, python-format
-#~ msgid "Error starting dnfdaemon service: [%s]"
-#~ msgstr "Fout bij het opstarten van dnfdaemon-service: [%s]"
