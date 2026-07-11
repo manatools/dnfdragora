@@ -95,9 +95,8 @@ if __name__ == "__main__":
             try:
                 common.warningMsgBox({
                     'title': _("Sorry"),
-                    'size': (400, 200),
+                    'size': (400, 300),
                     "text": _("Error occurred:%(NL)s%(error)s") % {'NL': "\n", 'error': str(e)},
-                    "size": (400, 200),
                     "richtext": False,
                 })
             except Exception:

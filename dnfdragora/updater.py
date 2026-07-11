@@ -135,10 +135,11 @@ class Updater:
         try:
             self.__backend = dnfd_client.Client()
         except Exception as e:
-            logger.error(_('Error starting dnfdaemon service: [%s]') % str(e))
+            logger.error('Error connecting to dnfdaemon service: [%s]' % str(e))
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Icon.Critical)
-            msg.setText(_("Error starting dnfdaemon service"))
+            msg.setText(_("Error connecting to dnfdaemon service. \
+                              Please check that dnfdaemon is installed and running and try again."))
             msg.setInformativeText(str(e))
             msg.setWindowTitle(_("dnfdragora-updater failure"))
             msg.exec()
