@@ -1,29 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
-# Yuri Chornoivan <yurchor@ukr.net>, 2026
 #
-#, fuzzy
+# Yuri Chornoivan <yurchor@ukr.net>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-11 10:29+0200\n"
-"PO-Revision-Date: 2017-01-09 12:17+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2026\n"
-"Language-Team: Ukrainian (https://app.transifex.com/MageiaLinux/teams/9361/"
-"uk/)\n"
+"PO-Revision-Date: 2026-07-11 11:48+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11"
+" ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100"
+" > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n %"
+" 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: bin/dnfdragora:25 bin/dnfdragora-updater:22
 #, python-format
@@ -2847,7 +2844,8 @@ msgstr ""
 "виконання під час перезавантаження системи за допомогою dnf5daemon.<br><br>"
 
 #: dnfdragora/helpinfo.py:341
-msgid "Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>"
+msgid ""
+"Open the dialog from the menu bar: <b>Actions → System upgrade</b>.<br>"
 msgstr "Відкриття вікна з панелі меню: <b>Дії → Оновлення системи</b>.<br>"
 
 #: dnfdragora/helpinfo.py:342
@@ -3183,6 +3181,12 @@ msgid ""
 "\n"
 "Error details: %s"
 msgstr ""
+"Помилка під час спроби встановити з'єднання зі службою dnfdaemon.           "
+"                   \n"
+"Будь ласка, перевірте, чи встановлено і запущено dnfdaemon, потім повторіть"
+" спробу.                              \n"
+"\n"
+"Подробиці: %s"
 
 #: dnfdragora/ui.py:518
 msgid "Software Management - dnfdragora"
@@ -3198,7 +3202,7 @@ msgstr "Версія"
 
 #: dnfdragora/ui.py:604
 msgid "Package list"
-msgstr ""
+msgstr "Список пакунків"
 
 #: dnfdragora/ui.py:610
 msgid "Not installed"
@@ -3496,7 +3500,8 @@ msgstr "Невідомий"
 
 #: dnfdragora/ui.py:2862
 #, python-format
-msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
+msgid ""
+"Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr ""
 "Розпочато отримання [%(count_files)d] - файл %(id)s - %(description)s ..."
 
@@ -3563,10 +3568,13 @@ msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
+"Помилка під час спроби встановити з'єднання зі службою dnfdaemon.\n"
+"Будь ласка, перевірте, чи встановлено і запущено dnfdaemon, потім повторіть"
+" спробу."
 
 #: dnfdragora/updater.py:143
 msgid "dnfdragora-updater failure"
-msgstr ""
+msgstr "Помилка dnfdragora-updater"
 
 #: dnfdragora/updater.py:352
 #, python-format
@@ -3584,7 +3592,7 @@ msgstr "Немає доступних оновлень"
 
 #: dnfdragora/updater.py:549
 msgid "Error launching dnfdragora dialog"
-msgstr ""
+msgstr "Помилка під час спроби відкрити вікно dnfdragora"
 
 #: dnfdragora/updater.py:551
 msgid "Running dnfdragora failure"
