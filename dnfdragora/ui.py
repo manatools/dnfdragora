@@ -599,7 +599,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         self.packageList.setWeight(MUI.YUIDimension.YD_VERT, 60)
         if hasattr(self.packageList, 'setStretchable'):
           self.packageList.setStretchable(MUI.YUIDimension.YD_VERT, True)
-        self.packageList.setHelpText("Package list")
+        self.packageList.setHelpText(_("Package list"))
         #self.packageList.setImmediateMode(True)
 
         self.filters = {
