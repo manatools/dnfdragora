@@ -384,7 +384,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           self.backend
         except Exception as e:
             logger.error("Exception creating backend: %s", e)
-            raise Exception(_("Error connecting to dnfdaemon service. \
+            raise Exception(_("Error connecting to dnfdaemon service.\
                               \nPlease check that dnfdaemon is installed and running and try again.\
                               \n\nError details: %s") % str(e))
 

@@ -138,8 +138,7 @@ class Updater:
             logger.error('Error connecting to dnfdaemon service: [%s]' % str(e))
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Icon.Critical)
-            msg.setText(_("Error connecting to dnfdaemon service. \
-                              Please check that dnfdaemon is installed and running and try again."))
+            msg.setText(_("Error connecting to dnfdaemon service.\nPlease check that dnfdaemon is installed and running and try again."))
             msg.setInformativeText(str(e))
             msg.setWindowTitle(_("dnfdragora-updater failure"))
             msg.exec()
