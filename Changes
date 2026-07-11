@@ -1,6 +1,9 @@
 2026-XX-YY v. 2.99.5
 --------------------
 - Updated Help dialog documentation.
+- Resolved a font problem experienced in pclinuxos.
+- Removed manatools.common.aui dialgos and used Qt ones in updater (since it is Qt only)
+- Added a critical message dialog if dnfdaemon is not reachable
 - Disabling Offline transaction and System ugrade if systemd is not running (for instance for PCLinuxOs)
 - Added an Offline transactions dialog to inspect, refresh, finalize, and clean pending offline transactions from the Actions menu.
 - Added Actions menu "System upgrade" workflow.
