@@ -14,12 +14,11 @@ Former author:  Björn Esser <besser82@fedoraproject.org>
 
 import gettext, sched, sys, threading, time, os
 
-from dnfdragora import config, misc, ui, dnfd_client
-import manatools.ui.common as common
-
-from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
+from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon, QMessageBox
 from PySide6.QtGui     import QIcon
 from PySide6.QtCore    import QCoreApplication, QEventLoop, QTimer
+
+from dnfdragora import config, misc, ui, dnfd_client
 
 from queue import Queue, Empty
 
@@ -137,6 +136,12 @@ class Updater:
             self.__backend = dnfd_client.Client()
         except Exception as e:
             logger.error(_('Error starting dnfdaemon service: [%s]') % str(e))
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setText(_("Error starting dnfdaemon service"))
+            msg.setInformativeText(str(e))
+            msg.setWindowTitle(_("dnfdragora-updater failure"))
+            msg.exec()
             return
 
         # ── Update-loop thread ────────────────────────────────────────────────
@@ -539,9 +544,13 @@ class Updater:
             self.__main_gui = ui.mainGui(args)
         except Exception as e:
             logger.error("Exception launching dnfdragora (args=%s): %s", args, e)
-            common.warningMsgBox({'title': _("Running dnfdragora failure"),
-                                  'size': (400, 200),
-                                   "text": str(e), "richtext": True})
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setText(_("Error launching dnfdragora dialog"))
+            msg.setInformativeText(str(e))
+            msg.setWindowTitle(_("Running dnfdragora failure"))
+            msg.exec()
+
             self.__main_gui = None
             self.__reopen_backend()
             self.__dialog_open = False
