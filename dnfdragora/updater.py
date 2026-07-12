@@ -12,7 +12,7 @@ Former author:  Björn Esser <besser82@fedoraproject.org>
 @package dnfdragora
 '''
 
-import gettext, sched, sys, threading, time, os
+import gettext, sched, signal, sys, threading, time, os
 
 from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon, QMessageBox
 from PySide6.QtGui     import QIcon
@@ -53,6 +53,7 @@ class Updater:
         self._tray                 = None
         self.__backend             = None
         self.__getUpdatesRequested = False
+        self.__shutdown_requested  = False
         # Set to True while a dnfdragora dialog is open so that __update_loop
         # stands down and __get_updates skips (backend session intentionally
         # closed during that window to free a D-Bus session slot).
@@ -328,19 +329,47 @@ class Updater:
 
     def __process_gui_queue(self):
         '''Drain the cross-thread GUI command queue in the main thread.'''
-        while True:
+        try:
+            while True:
+                try:
+                    cmd, *args = self._gui_queue.get_nowait()
+                except Empty:
+                    break
+                if cmd == 'updates_found':
+                    # args = (count, gen)
+                    self.__on_updates_found(args[0], args[1] if len(args) > 1 else None)
+                elif cmd == 'no_updates':
+                    # args = (gen,)
+                    self.__on_no_updates(args[0] if args else None)
+                elif cmd == 'check_failed':
+                    self.__on_check_failed(args[0])
+        except KeyboardInterrupt:
+            logger.info("KeyboardInterrupt received while processing GUI queue")
+            self.__request_shutdown('keyboard interrupt')
+
+    def __request_shutdown(self, reason=''):
+        '''Request shutdown once, from any callback/signal path.'''
+        if self.__shutdown_requested:
+            return
+        self.__shutdown_requested = True
+        logger.info("Shutdown requested%s",
+                    ' [%s]' % reason if reason else '')
+        self.__running = False
+        if self._poll_timer is not None:
             try:
-                cmd, *args = self._gui_queue.get_nowait()
-            except Empty:
-                break
-            if cmd == 'updates_found':
-                # args = (count, gen)
-                self.__on_updates_found(args[0], args[1] if len(args) > 1 else None)
-            elif cmd == 'no_updates':
-                # args = (gen,)
-                self.__on_no_updates(args[0] if args else None)
-            elif cmd == 'check_failed':
-                self.__on_check_failed(args[0])
+                self._poll_timer.stop()
+            except Exception:
+                pass
+        # Execute actual shutdown work in the Qt event loop thread.
+        QTimer.singleShot(0, self.__shutdown)
+
+    def __on_signal(self, signum, _frame):
+        try:
+            sig_name = signal.Signals(signum).name
+        except Exception:
+            sig_name = str(signum)
+        logger.info("Received signal %s", sig_name)
+        self.__request_shutdown('signal %s' % sig_name)
 
     def __on_updates_found(self, n, gen=None):
         logger.info("updates_found: %d update(s) [gen=%s current_gen=%d]",
@@ -559,34 +588,37 @@ class Updater:
             self.__reschedule_update_in(0.5)
             return
 
-        # handleevent() runs a nested Qt event loop (QApplication.processEvents
-        # in a loop) and returns when the dialog is closed.
-        self.__main_gui.handleevent()
-
-        # Safety net: poll until loop_has_finished is set.
-        logger.debug("Waiting for dnfdragora to finish")
-        while not self.__main_gui.loop_has_finished:
-            self.__processEvents(0.5)
-        logger.info("dnfdragora dialog closed")
-
-        # ── Step 5a: explicitly close dnfdragora's D-Bus session ──────────────
-        # mainGui → DnfRootBackend → mainGui is a circular reference.  CPython's
-        # ref-counting cannot collect it immediately on __main_gui = None.  Call
-        # unloadDaemon() now so the eventual __del__ is a no-op.
         try:
-            root_backend = getattr(self.__main_gui, '_root_backend', None)
-            if root_backend is not None and root_backend.session_path:
-                root_backend.unloadDaemon()
-                logger.info("Explicitly closed dnfdragora D-Bus session")
-            else:
-                logger.debug("dnfdragora _root_backend session already closed "
-                             "(session=%s)",
-                             root_backend.session_path if root_backend else 'N/A')
-        except Exception:
-            logger.warning("Could not explicitly close dnfdragora backend",
-                           exc_info=True)
+            # handleevent() runs a nested Qt event loop (QApplication.processEvents
+            # in a loop) and returns when the dialog is closed.
+            self.__main_gui.handleevent()
 
-        self.__main_gui = None
+            # Safety net: poll until loop_has_finished is set.
+            logger.debug("Waiting for dnfdragora to finish")
+            self.__processEvents(0.5)
+            logger.info("dnfdragora dialog closed")
+
+            # ── Step 5a: explicitly close dnfdragora's D-Bus session ──────────────
+            # mainGui → DnfRootBackend → mainGui is a circular reference.  CPython's
+            # ref-counting cannot collect it immediately on __main_gui = None.  Call
+            # unloadDaemon() now so the eventual __del__ is a no-op.
+            try:
+                root_backend = getattr(self.__main_gui, '_root_backend', None)
+                if root_backend is not None and root_backend.session_path:
+                    root_backend.unloadDaemon()
+                    logger.info("Explicitly closed dnfdragora D-Bus session")
+                else:
+                    logger.debug("dnfdragora _root_backend session already closed "
+                                "(session=%s)",
+                                root_backend.session_path if root_backend else 'N/A')
+            except Exception:
+                logger.warning("Could not explicitly close dnfdragora backend",
+                            exc_info=True)
+
+        except Exception as e:
+            logger.error("Exception in dnfdragora dialog: %s", e, exc_info=True)
+        finally:
+            self.__main_gui = None
 
         # Reset the manatools YUI singleton so the next dialog open gets a
         # fresh widget-factory instance.  The dialog's Qt widgets are already
@@ -769,5 +801,17 @@ class Updater:
             self.__set_tray_visible(True, 'startup')
 
         self.__updater.start()
-        sys.exit(self._app.exec())
+
+        # Ensure Ctrl-C from console triggers a graceful shutdown path.
+        # SIGTERM is also trapped for service managers.
+        signal.signal(signal.SIGINT, self.__on_signal)
+        signal.signal(signal.SIGTERM, self.__on_signal)
+
+        try:
+            rc = self._app.exec()
+        except KeyboardInterrupt:
+            logger.info("KeyboardInterrupt in Qt main loop")
+            self.__request_shutdown('keyboard interrupt in main loop')
+            rc = 130
+        sys.exit(rc)
 
