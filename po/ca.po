@@ -3205,6 +3205,11 @@ msgid ""
 "\n"
 "Error details: %s"
 msgstr ""
+"Error en connectar-se al servei dnfdaemon. \n"
+"Comproveu que dnfdaemon estigui instal·lat i en execució, i torneu-ho a "
+"provar. \n"
+"\n"
+"Detalls de l'error: %s"
 
 #: dnfdragora/ui.py:518
 msgid "Software Management - dnfdragora"
@@ -3220,7 +3225,7 @@ msgstr "Versió"
 
 #: dnfdragora/ui.py:604
 msgid "Package list"
-msgstr ""
+msgstr "Llista de paquets"
 
 #: dnfdragora/ui.py:610
 msgid "Not installed"
@@ -3587,10 +3592,13 @@ msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
+"Error en connectar-se al servei dnfdaemon.\n"
+"Comproveu que dnfdaemon estigui instal·lat i en execució, i torneu-ho a "
+"provar."
 
 #: dnfdragora/updater.py:143
 msgid "dnfdragora-updater failure"
-msgstr ""
+msgstr "Error de l'actualitzador dnfdragora"
 
 #: dnfdragora/updater.py:352
 #, python-format
@@ -3608,7 +3616,7 @@ msgstr "No hi ha particions disponibles."
 
 #: dnfdragora/updater.py:549
 msgid "Error launching dnfdragora dialog"
-msgstr ""
+msgstr "Error en iniciar el diàleg de dnfdragora"
 
 #: dnfdragora/updater.py:551
 msgid "Running dnfdragora failure"
@@ -3659,7 +3667,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Finestra principal"
-
-#, python-format
-#~ msgid "Error starting dnfdaemon service: [%s]"
-#~ msgstr "Error en iniciar el servei dnfdaemon: [%s]"
