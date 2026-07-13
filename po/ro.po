@@ -3214,6 +3214,10 @@ msgid ""
 "\n"
 "Error details: %s"
 msgstr ""
+"Eroare la conectarea la serviciul dnfdaemon.  \n"
+"Verificați dacă dnfdaemon este instalat și rulează și încercați din nou. \n"
+"\n"
+" Detalii eroare:%s"
 
 #: dnfdragora/ui.py:518
 msgid "Software Management - dnfdragora"
@@ -3229,7 +3233,7 @@ msgstr "Versiune"
 
 #: dnfdragora/ui.py:604
 msgid "Package list"
-msgstr ""
+msgstr "Lista de pachete"
 
 #: dnfdragora/ui.py:610
 msgid "Not installed"
@@ -3596,10 +3600,12 @@ msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
+"Eroare la conectarea la serviciul dnfdaemon.\n"
+"Verificați dacă dnfdaemon este instalat și rulează și încercați din nou."
 
 #: dnfdragora/updater.py:143
 msgid "dnfdragora-updater failure"
-msgstr ""
+msgstr "eșec actualizare dnfdragora"
 
 #: dnfdragora/updater.py:352
 #, python-format
@@ -3617,7 +3623,7 @@ msgstr "Nu sunt disponibile actualizări"
 
 #: dnfdragora/updater.py:549
 msgid "Error launching dnfdragora dialog"
-msgstr ""
+msgstr "Eroare la lansarea dialogului dnfdragora"
 
 #: dnfdragora/updater.py:551
 msgid "Running dnfdragora failure"
@@ -3668,7 +3674,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Fereastra principală"
-
-#, python-format
-#~ msgid "Error starting dnfdaemon service: [%s]"
-#~ msgstr "Eroare la pornirea serviciului dnfdaemon: [%s]"
