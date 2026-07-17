@@ -1,6 +1,7 @@
 2026-XX-YY v. 2.99.5
 --------------------
 - Updated Help dialog documentation.
+- Managed in dnfdragora-updater download events
 - Resolved a font problem experienced in pclinuxos.
 - Removed manatools.common.aui dialgos and used Qt ones in updater (since it is Qt only)
 - Added a critical message dialog if dnfdaemon is not reachable
