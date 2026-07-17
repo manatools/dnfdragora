@@ -54,6 +54,9 @@ class Updater:
         self.__backend             = None
         self.__getUpdatesRequested = False
         self.__shutdown_requested  = False
+        self.__repo_md_active_ids  = set()
+        self.__repo_md_seen_ids    = set()
+        self.__repo_md_followup_scheduled = False
         # Set to True while a dnfdragora dialog is open so that __update_loop
         # stands down and __get_updates skips (backend session intentionally
         # closed during that window to free a D-Bus session slot).
@@ -664,12 +667,68 @@ class Updater:
 
     # ── Update logic (background thread) ─────────────────────────────────────
 
+    def __reset_repo_metadata_tracking(self):
+        self.__repo_md_active_ids.clear()
+        self.__repo_md_seen_ids.clear()
+        self.__repo_md_followup_scheduled = False
+
+    @staticmethod
+    def __is_repo_metadata_download(info):
+        download_id = str(info.get('download_id') or '')
+        return download_id.startswith('repo:')
+
+    def __handle_repo_metadata_download(self, event, info):
+        if not self.__is_repo_metadata_download(info):
+            return False
+
+        session_path = self.__backend.session_path if self.__backend else None
+        event_session = info.get('session_object_path')
+        if session_path and event_session and event_session != session_path:
+            logger.debug(
+                "Ignoring repo metadata event from stale session %s (current=%s)",
+                event_session, session_path,
+            )
+            return True
+
+        download_id = str(info.get('download_id') or '')
+        if event == 'OnDownloadStart':
+            is_new = download_id not in self.__repo_md_seen_ids
+            self.__repo_md_active_ids.add(download_id)
+            self.__repo_md_seen_ids.add(download_id)
+            if is_new and len(self.__repo_md_seen_ids) == 1:
+                logger.info("Repository metadata refresh detected during update check")
+            return True
+
+        if event == 'OnDownloadProgress':
+            return True
+
+        if event == 'OnDownloadEnd':
+            self.__repo_md_active_ids.discard(download_id)
+            if (
+                self.__repo_md_seen_ids
+                and not self.__repo_md_active_ids
+                and not self.__repo_md_followup_scheduled
+                and self.__running
+                and not self.__dialog_open
+            ):
+                self.__repo_md_followup_scheduled = True
+                logger.info(
+                    "Repository metadata refresh completed for %d repo(s); scheduling update recheck in 30 seconds",
+                    len(self.__repo_md_seen_ids),
+                )
+                self.__reschedule_update_in(0.5)
+            return True
+
+        return False
+
     def __get_updates(self, *kwargs):
         session_path = self.__backend.session_path if self.__backend else None
         if self.__dialog_open or session_path is None:
             logger.info("Skipping update check: dialog_open=%s session=%s",
                         self.__dialog_open, session_path)
             return
+
+        self.__reset_repo_metadata_tracking()
 
         # Each call gets a new generation number.  This number is stamped on
         # ('no_updates', gen) messages so the main thread can detect and
@@ -744,6 +803,11 @@ class Updater:
 
                     if event == 'OnRepoMetaDataProgress':
                         self.__OnRepoMetaDataProgress(info['name'], info['frac'])
+
+                    elif event in ('OnDownloadStart', 'OnDownloadProgress', 'OnDownloadEnd'):
+                        if self.__handle_repo_metadata_download(event, info):
+                            continue
+                        logger.debug("Ignoring non-repo download event %s: %s", event, info)
 
                     elif event == 'GetPackages_fd' or event == 'GetPackages':
                         # Capture the generation number at read-time (update
