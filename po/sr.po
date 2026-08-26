@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-11 10:29+0200\n"
+"POT-Creation-Date: 2026-08-26 16:50+0200\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: tomaja <toma.jankovic@gmail.com>, 2020\n"
 "Language-Team: Serbian (https://www.transifex.com/MageiaLinux/teams/9361/"
@@ -423,7 +423,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:155 dnfdragora/dialogs.py:500
 #: dnfdragora/dialogs.py:735 dnfdragora/dialogs.py:1778
-#: dnfdragora/progress_ui.py:201 dnfdragora/progress_ui.py:216
+#: dnfdragora/progress_ui.py:209 dnfdragora/progress_ui.py:224
 msgid "&Close"
 msgstr "&Затвори"
 
@@ -595,7 +595,7 @@ msgstr ""
 msgid "No details available for selected advisory"
 msgstr ""
 
-#: dnfdragora/dialogs.py:664
+#: dnfdragora/dialogs.py:664 dnfdragora/progress_ui.py:127
 msgid "Error"
 msgstr ""
 
@@ -635,7 +635,7 @@ msgstr ""
 
 #: dnfdragora/dialogs.py:732 dnfdragora/dialogs.py:999
 #: dnfdragora/dialogs.py:1084 dnfdragora/dialogs.py:1223
-#: dnfdragora/dialogs.py:1385 dnfdragora/progress_ui.py:431
+#: dnfdragora/dialogs.py:1385 dnfdragora/progress_ui.py:480
 msgid "&Cancel"
 msgstr "&Поништи"
 
@@ -787,11 +787,11 @@ msgstr ""
 msgid "Normal (Install/Upgrade/Remove)"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1073
+#: dnfdragora/dialogs.py:1073 dnfdragora/progress_ui.py:546
 msgid "Reinstall"
 msgstr ""
 
-#: dnfdragora/dialogs.py:1076
+#: dnfdragora/dialogs.py:1076 dnfdragora/progress_ui.py:545
 msgid "Downgrade"
 msgstr ""
 
@@ -1072,7 +1072,8 @@ msgstr "Изабери дестинациони директоријум за л
 msgid "Find packages"
 msgstr ""
 
-#: dnfdragora/dialogs.py:2280 dnfdragora/ui.py:609
+#: dnfdragora/dialogs.py:2280 dnfdragora/progress_ui.py:118
+#: dnfdragora/ui.py:609
 msgid "Installed"
 msgstr "Инсталирано"
 
@@ -2767,141 +2768,337 @@ msgid ""
 "to dismiss the dialog and return to the main window.<br>"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:193
+#: dnfdragora/progress_ui.py:110
+msgid "Download start"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:111
+msgid "Downloaded"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:112
+msgid "Already cached"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:113
+msgid "Download error"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:114
+msgid "Verify"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:115
+msgid "Prepare"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:116
+msgid "Package"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:117 dnfdragora/progress_ui.py:543
+msgid "Install"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:119 dnfdragora/progress_ui.py:544
+msgid "Upgrade"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:120
+msgid "Upgraded"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:121 dnfdragora/progress_ui.py:547
+msgid "Remove"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:122
+msgid "Removed"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:123
+msgid "Scriptlet"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:124
+msgid "Scriptlet done"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:125
+msgid "Scriptlet error"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:126
+msgid "Completed"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:201
 msgid "Transaction completed successfully"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:194
+#: dnfdragora/progress_ui.py:202
 msgid "Transaction completed with errors"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:197
+#: dnfdragora/progress_ui.py:205
 msgid "Transaction completed"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:210
+#: dnfdragora/progress_ui.py:218
 msgid ""
 "Offline transaction scheduled. Reboot or power off to continue on next "
 "startup."
 msgstr ""
 
-#: dnfdragora/progress_ui.py:212
+#: dnfdragora/progress_ui.py:220
 msgid "Offline transaction scheduled"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:247
+#: dnfdragora/progress_ui.py:262
 msgid "Offline transaction is scheduled. You can close this window."
 msgstr ""
 
-#: dnfdragora/progress_ui.py:250
+#: dnfdragora/progress_ui.py:265
 msgid "Offline transaction is being prepared. Please wait..."
 msgstr ""
 
-#: dnfdragora/progress_ui.py:254
-msgid "Cancellation already requested; waiting..."
-msgstr ""
-
-#: dnfdragora/progress_ui.py:262
-#, python-format
-msgid "Cancellation request failed: %(err)s"
-msgstr ""
-
 #: dnfdragora/progress_ui.py:269
-msgid "Cancellation requested; waiting for transaction to stop"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:270
-msgid "Cancelling transaction..."
-msgstr ""
-
-#: dnfdragora/progress_ui.py:271
-msgid "Waiting for backend to stop transaction"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:275
-msgid "Cancellation refused by backend"
+msgid "Cancellation already requested; waiting..."
 msgstr ""
 
 #: dnfdragora/progress_ui.py:277
 #, python-format
-msgid "Cancellation refused: %(msg)s"
+msgid "Cancellation request failed: %(err)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:284
+msgid "Cancellation requested; waiting for transaction to stop"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:285
+msgid "Cancelling transaction..."
 msgstr ""
 
 #: dnfdragora/progress_ui.py:286
+msgid "Waiting for backend to stop transaction"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:290
+msgid "Cancellation refused by backend"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:292
+#, python-format
+msgid "Cancellation refused: %(msg)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:301
 #, python-format
 msgid "Downloading:  %(d)s"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:307
+#: dnfdragora/progress_ui.py:311
+#, python-format
+msgid "%(desc)s  completed"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:313
+#, python-format
+msgid "%(desc)s  already cached"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:316
+#, python-format
+msgid "%(desc)s  failed: %(err)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:325
 #, python-format
 msgid "Verifying %(n)d packages"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:308
+#: dnfdragora/progress_ui.py:326
 msgid "Verifying packages"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:322
+#: dnfdragora/progress_ui.py:340
 #, python-format
 msgid "Preparing transaction: %(n)d packages"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:323
+#: dnfdragora/progress_ui.py:341
 msgid "Preparing transaction"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:337
+#: dnfdragora/progress_ui.py:355
 #, python-format
 msgid "Processing: %(n)s"
 msgstr ""
 
 #: dnfdragora/progress_ui.py:362
 #, python-format
+msgid "%(action)s: %(nevra)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:383
+#, python-format
+msgid "%(nevra)s  [%(kind)s]"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:388
+#, python-format
 msgid "Scriptlet: %(n)s  [%(t)s]"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:397
-msgid "Transaction in progress…"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:402
-msgid "Packages:"
+#: dnfdragora/progress_ui.py:394 dnfdragora/progress_ui.py:401
+#, python-format
+msgid "%(nevra)s  [%(kind)s]  %(status)s"
 msgstr ""
 
 #: dnfdragora/progress_ui.py:410
+#, python-format
+msgid "%(nevra)s  [%(kind)s]  failed: %(status)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:440
+msgid "Transaction in progress…"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:445
+msgid "Packages:"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:453
 msgid "Current:"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:418
-msgid "Transaction log"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:426 dnfdragora/progress_ui.py:465
-msgid "Running…"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:429
-msgid "&Save log…"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:462
-msgid "Completed ✓"
-msgstr ""
-
-#: dnfdragora/progress_ui.py:463
-msgid "Completed with errors"
+#: dnfdragora/progress_ui.py:461
+msgid "Show transaction log"
 msgstr ""
 
 #: dnfdragora/progress_ui.py:466
+msgid "Transaction log"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:475 dnfdragora/progress_ui.py:518
+msgid "Running…"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:478
+msgid "&Save log…"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:494
+msgid "Info"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:495
+#, python-format
+msgid "[%(time)s] [%(phase)s] %(text)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:515
+msgid "Completed ✓"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:516
+msgid "Completed with errors"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:519
 msgid "Errors"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:469
+#: dnfdragora/progress_ui.py:522
 msgid "Done"
 msgstr ""
 
-#: dnfdragora/progress_ui.py:507
+#: dnfdragora/progress_ui.py:548
+msgid "Cleanup"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:549
+msgid "Replaced"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:559
+msgid "Pre script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:560
+msgid "Post script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:561
+msgid "Pre-install script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:562
+msgid "Post-install script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:563
+msgid "Pre-uninstall script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:564
+msgid "Post-uninstall script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:565
+msgid "Pre-transaction script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:566
+msgid "Post-transaction script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:567
+msgid "Install trigger"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:568
+msgid "Uninstall trigger"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:569
+msgid "Post-uninstall trigger"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:570
+msgid "Verification script"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:575
+#, python-format
+msgid "Unknown scriptlet (%(token)s)"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:576
+msgid "Unknown scriptlet"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:582
+msgid "completed successfully"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:583
+#, python-format
+msgid "failed with exit code %(code)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:665
 msgid "Save transaction log"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:674
+#, python-format
+msgid "Log saved to %(path)s"
+msgstr ""
+
+#: dnfdragora/progress_ui.py:677
+#, python-format
+msgid "Saving log failed: %(err)s"
 msgstr ""
 
 #: dnfdragora/ui.py:231
@@ -3320,55 +3517,55 @@ msgstr ""
 msgid "Search error using regular expression"
 msgstr "Грешка при претраживању коришћењем регуларних израза"
 
-#: dnfdragora/updater.py:115
+#: dnfdragora/updater.py:119
 msgid "Update"
 msgstr "Надоградња"
 
-#: dnfdragora/updater.py:116
+#: dnfdragora/updater.py:120
 msgid "Open dnfdragora dialog"
 msgstr "Отвори dnfdragora дијалог"
 
-#: dnfdragora/updater.py:117
+#: dnfdragora/updater.py:121
 msgid "Check for updates"
 msgstr "Провери да ли има надоградњи"
 
-#: dnfdragora/updater.py:119
+#: dnfdragora/updater.py:123
 msgid "Exit"
 msgstr "Излаз"
 
-#: dnfdragora/updater.py:141
+#: dnfdragora/updater.py:145
 msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
 
-#: dnfdragora/updater.py:143
+#: dnfdragora/updater.py:147
 msgid "dnfdragora-updater failure"
 msgstr ""
 
-#: dnfdragora/updater.py:352
+#: dnfdragora/updater.py:384
 #, python-format
 msgid "%d updates available."
 msgstr "%d надоградњи доступно."
 
-#: dnfdragora/updater.py:358
+#: dnfdragora/updater.py:390
 #, python-format
 msgid "%s - %d updates available."
 msgstr ""
 
-#: dnfdragora/updater.py:378
+#: dnfdragora/updater.py:410
 msgid "No updates available"
 msgstr "Нема доступних ажурирање"
 
-#: dnfdragora/updater.py:549
+#: dnfdragora/updater.py:581
 msgid "Error launching dnfdragora dialog"
 msgstr ""
 
-#: dnfdragora/updater.py:551
+#: dnfdragora/updater.py:583
 msgid "Running dnfdragora failure"
 msgstr "Покретање dnfdragora није успело"
 
-#: dnfdragora/updater.py:631 dnfdragora/updater.py:686
+#: dnfdragora/updater.py:666 dnfdragora/updater.py:777
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Ухваћени изузеци: [%s]"
