@@ -4,6 +4,7 @@ from __future__ import absolute_import
 import datetime
 import os
 import logging
+from gettext import gettext as _
 import manatools.aui.yui as MUI
 import manatools.ui.common as common
 
@@ -104,26 +105,26 @@ class TransactionProgressDialog:
     transaction is running.
     """
 
-    # Fixed-width phase badges used in the log (exactly 6 chars)
+    # Localized phase labels shown in the log.
     _PHASES = {
-        'dl_start':   '[  DL ]',
-        'dl_ok':      '[ DL✓ ]',
-        'dl_exists':  '[ DL= ]',
-        'dl_err':     '[ DL✗ ]',
-        'verify':     '[ VFY ]',
-        'prep':       '[PREP ]',
-        'elem':       '[ PKG ]',
-        'inst':       '[INST ]',
-        'inst_ok':    '[INST✓]',
-        'upd':        '[ UPD ]',
-        'upd_ok':     '[ UPD✓]',
-        'rm':         '[  RM ]',
-        'rm_ok':      '[ RM✓ ]',
-        'script':     '[SCRP ]',
-        'script_ok':  '[SCRP✓]',
-        'script_err': '[SCRP✗]',
-        'complete':   '[DONE✓]',
-        'error':      '[ERR! ]',
+        'dl_start':   _('Download start'),
+        'dl_ok':      _('Downloaded'),
+        'dl_exists':  _('Already cached'),
+        'dl_err':     _('Download error'),
+        'verify':     _('Verify'),
+        'prep':       _('Prepare'),
+        'elem':       _('Package'),
+        'inst':       _('Install'),
+        'inst_ok':    _('Installed'),
+        'upd':        _('Upgrade'),
+        'upd_ok':     _('Upgraded'),
+        'rm':         _('Remove'),
+        'rm_ok':      _('Removed'),
+        'script':     _('Scriptlet'),
+        'script_ok':  _('Scriptlet done'),
+        'script_err': _('Scriptlet error'),
+        'complete':   _('Completed'),
+        'error':      _('Error'),
     }
 
     def __init__(self, parent):
@@ -153,6 +154,9 @@ class TransactionProgressDialog:
         self._current_label = None
         self._current_bar = None
         self._log_view = None
+        self._log_frame = None
+        self._log_content = None
+        self._log_visible = True
         self._summary_label = None
         self._save_button = None
         self._close_button = None
@@ -229,6 +233,8 @@ class TransactionProgressDialog:
             return self.request_close()
         if widget == self._save_button:
             self._save_log()
+        if widget == self._log_frame:
+            self._on_log_frame_toggled()
         return False
 
     def request_close(self):
@@ -293,12 +299,15 @@ class TransactionProgressDialog:
 
     def on_download_end(self, download_id, description, status, error):
         if status == 0:
-            self._append('dl_ok', f"{description}  OK")
+            self._append('dl_ok', _("%(desc)s  completed") % {'desc': description})
         elif status == 1:
-            self._append('dl_exists', f"{description}  already cached")
+            self._append('dl_exists', _("%(desc)s  already cached") % {'desc': description})
         else:
             self._append('dl_err',
-                         f"{description}  ERROR: {error or '?'}")
+                         _("%(desc)s  failed: %(err)s") % {
+                             'desc': description,
+                             'err': error or '?',
+                         })
             self._errors += 1
             self._update_summary()
 
@@ -340,7 +349,11 @@ class TransactionProgressDialog:
         self._action_map[nevra] = action_str
         phase = self._action_to_phase(action_str)
         self._append(phase, f"{nevra}")
-        self._current_label.setValue(f"{action_str}: {nevra}")
+        self._current_label.setValue(
+            _("%(action)s: %(nevra)s") % {
+                'action': self._human_action(action_str),
+                'nevra': nevra,
+            })
         self._current_bar.setValue(0)
 
     def on_action_progress(self, nevra, processed, total):
@@ -357,21 +370,39 @@ class TransactionProgressDialog:
         self._update_stats()
 
     def on_script_start(self, nevra, scriptlet_type):
-        self._append('script', f"{nevra}  [{scriptlet_type}]")
+        scriptlet_human = self._human_scriptlet_type(scriptlet_type)
+        self._append('script', _("%(nevra)s  [%(kind)s]") % {
+            'nevra': nevra,
+            'kind': scriptlet_human,
+        })
         self._current_label.setValue(
-            _("Scriptlet: %(n)s  [%(t)s]") % {'n': nevra, 't': scriptlet_type})
+            _("Scriptlet: %(n)s  [%(t)s]") % {'n': nevra, 't': scriptlet_human})
 
     def on_script_stop(self, nevra, scriptlet_type, return_code):
+        scriptlet_human = self._human_scriptlet_type(scriptlet_type)
         if return_code == 0:
             self._append('script_ok',
-                         f"{nevra}  [{scriptlet_type}]  rc=0")
+                         _("%(nevra)s  [%(kind)s]  %(status)s") % {
+                             'nevra': nevra,
+                             'kind': scriptlet_human,
+                             'status': self._human_exit_status(return_code),
+                         })
         else:
             self._append('script_err',
-                         f"{nevra}  [{scriptlet_type}]  rc={return_code}")
+                         _("%(nevra)s  [%(kind)s]  %(status)s") % {
+                             'nevra': nevra,
+                             'kind': scriptlet_human,
+                             'status': self._human_exit_status(return_code),
+                         })
 
     def on_script_error(self, nevra, scriptlet_type, return_code):
+        scriptlet_human = self._human_scriptlet_type(scriptlet_type)
         self._append('script_err',
-                     f"{nevra}  [{scriptlet_type}]  ERROR rc={return_code}")
+                     _("%(nevra)s  [%(kind)s]  failed: %(status)s") % {
+                         'nevra': nevra,
+                         'kind': scriptlet_human,
+                         'status': self._human_exit_status(return_code),
+                     })
         self._errors += 1
         self._update_summary()
 
@@ -385,6 +416,7 @@ class TransactionProgressDialog:
     def _build_dialog(self):
         """Construct the popup dialog with all widgets."""
         self._dialog = self.factory.createPopupDialog()
+        self._log_visible = self._read_log_visibility_pref(default=True)
         # Pixel dimensions: 800×500 gives enough width to read full package
         # NEVRAs and rpm scriptlet output without horizontal scrolling, and
         # enough height to display a meaningful trace at a glance.
@@ -413,12 +445,18 @@ class TransactionProgressDialog:
         self._current_bar = self.factory.createProgressBar(vbox, "")
         self._current_bar.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
 
-        # ── Log view ────────────────────────────────────────────────────
+        # ── Log view (collapsible) ──────────────────────────────────────
+        self._log_frame = self.factory.createCheckBoxFrame(
+            vbox, _("Show transaction log"), self._log_visible)
+        self._log_frame.setNotify(True)
+        self._log_frame.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
+        self._log_content = self.factory.createVBox(self._log_frame)
         self._log_view = self.factory.createLogView(
-            vbox, _("Transaction log"), 20, storedLines=2000, 
+            self._log_content, _("Transaction log"), 20, storedLines=2000,
             focus=MUI.YLogViewFocus.TAIL, reverse=False)
         self._log_view.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         self._log_view.setStretchable(MUI.YUIDimension.YD_VERT, True)
+        self._log_frame.showContent(self._log_visible)
 
         # ── Bottom bar: stats + buttons ────────────────────────────────
         bottom_hbox = self.factory.createHBox(vbox)
@@ -442,8 +480,12 @@ class TransactionProgressDialog:
 
     def _append(self, phase_key, text):
         """Append one timestamped line to the log view."""
-        badge = self._PHASES.get(phase_key, '[     ]')
-        line = f"[{self._ts()}] {badge} {text}"
+        phase = self._PHASES.get(phase_key, _('Info'))
+        line = _("[%(time)s] [%(phase)s] %(text)s") % {
+            'time': self._ts(),
+            'phase': phase,
+            'text': text,
+        }
         self._log_lines.append(line)
         self._log_view.appendLines(line)
 
@@ -483,6 +525,94 @@ class TransactionProgressDialog:
         }
         return _MAP.get(action_str, 'elem')
 
+    @staticmethod
+    def _human_action(action_str):
+        """Return a translatable label for a backend action string."""
+        action_map = {
+            'Install': _('Install'),
+            'Upgrade': _('Upgrade'),
+            'Downgrade': _('Downgrade'),
+            'Reinstall': _('Reinstall'),
+            'Remove': _('Remove'),
+            'Cleanup': _('Cleanup'),
+            'Replaced': _('Replaced'),
+        }
+        return action_map.get(action_str, action_str)
+
+    @staticmethod
+    def _human_scriptlet_type(scriptlet_type):
+        """Return a readable label for dnf/rpm scriptlet type tokens."""
+        token = str(scriptlet_type or '').strip()
+        normalized = token.lower().replace('-', '').replace('_', '')
+        kind_map = {
+            'pre': _('Pre script'),
+            'post': _('Post script'),
+            'prein': _('Pre-install script'),
+            'postin': _('Post-install script'),
+            'preun': _('Pre-uninstall script'),
+            'postun': _('Post-uninstall script'),
+            'pretrans': _('Pre-transaction script'),
+            'posttrans': _('Post-transaction script'),
+            'triggerin': _('Install trigger'),
+            'triggerun': _('Uninstall trigger'),
+            'triggerpostun': _('Post-uninstall trigger'),
+            'verify': _('Verification script'),
+        }
+        if normalized in kind_map:
+            return kind_map[normalized]
+        if token:
+            return _("Unknown scriptlet (%(token)s)") % {'token': token}
+        return _('Unknown scriptlet')
+
+    @staticmethod
+    def _human_exit_status(return_code):
+        """Return a readable and translatable scriptlet exit status text."""
+        if return_code == 0:
+            return _('completed successfully')
+        return _("failed with exit code %(code)s") % {'code': return_code}
+
+    def _on_log_frame_toggled(self):
+        """Apply and persist the user choice for log-frame visibility."""
+        try:
+            self._log_visible = bool(self._log_frame.value())
+            self._log_frame.showContent(self._log_visible)
+            self._save_log_visibility_pref(self._log_visible)
+            logger.debug("Transaction log visibility changed to %s", self._log_visible)
+        except Exception as exc:
+            logger.exception("Failed to toggle/persist transaction log visibility: %s", exc)
+
+    def _read_log_visibility_pref(self, default=True):
+        """Read persisted visibility preference for transaction log details."""
+        try:
+            config = getattr(self.parent, 'config', None)
+            if config is None:
+                return default
+            prefs = config.userPreferences or {}
+            settings = prefs.get('settings') or {}
+            tx = settings.get('transaction_progress') or {}
+            return bool(tx.get('show_log', default))
+        except Exception as exc:
+            logger.exception("Failed reading transaction log visibility preference: %s", exc)
+            return default
+
+    def _save_log_visibility_pref(self, value):
+        """Persist visibility preference for transaction log details."""
+        try:
+            config = getattr(self.parent, 'config', None)
+            if config is None:
+                logger.debug("Transaction log visibility not saved: config is unavailable")
+                return
+            prefs = config.userPreferences
+            if not isinstance(prefs, dict):
+                prefs = {}
+                config._userPrefs = prefs
+            settings = prefs.setdefault('settings', {})
+            tx = settings.setdefault('transaction_progress', {})
+            tx['show_log'] = bool(value)
+            config.saveUserPreferences()
+        except Exception as exc:
+            logger.exception("Failed saving transaction log visibility preference: %s", exc)
+
     def _set_main_window_visible(self, visible):
         """Keep main window visible and only toggle interactivity.
 
@@ -491,8 +621,8 @@ class TransactionProgressDialog:
         """
         try:
             self.parent.dialog.setEnabled(visible)
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.exception("Failed to set main window enabled=%s: %s", visible, exc)
 
     def _save_log(self):
         """Ask the user for a file path and write the log there."""
@@ -513,7 +643,7 @@ class TransactionProgressDialog:
                     f"# {datetime.datetime.now().isoformat()}\n\n")
                 for line in self._log_lines:
                     fh.write(line + "\n")
-            self._append('elem', f"Log saved → {path}")
+            self._append('elem', _("Log saved to %(path)s") % {'path': path})
         except Exception as exc:
             logger.error("TransactionProgressDialog._save_log: %s", exc)
-            self._append('error', f"Save failed: {exc}")
+            self._append('error', _("Saving log failed: %(err)s") % {'err': exc})
