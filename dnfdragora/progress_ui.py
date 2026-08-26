@@ -126,6 +126,9 @@ class TransactionProgressDialog:
         'complete':   _('Completed'),
         'error':      _('Error'),
     }
+    _DIALOG_MIN_WIDTH = 800
+    _DIALOG_MIN_HEIGHT_WITH_LOG = 500
+    _DIALOG_MIN_HEIGHT_NO_LOG = 240
 
     def __init__(self, parent):
         """
@@ -173,6 +176,7 @@ class TransactionProgressDialog:
     def open(self):
         """Show this dialog and disable the main application window."""
         self._dialog.open()
+        self._apply_log_visibility(bool(self._log_frame.value()), persist=False)
         self._set_main_window_visible(False)
 
     def close(self):
@@ -229,6 +233,11 @@ class TransactionProgressDialog:
         Close or dismissed the window).
         """
         widget = event.widget()
+        # Some backends emit the inner checkbox widget event instead of the
+        # frame itself. Keep log visibility in sync by observing current value.
+        current_log_visibility = bool(self._log_frame.value())
+        if current_log_visibility != self._log_visible:
+            self._apply_log_visibility(current_log_visibility, persist=True)
         if widget == self._close_button:
             return self.request_close()
         if widget == self._save_button:
@@ -417,10 +426,12 @@ class TransactionProgressDialog:
         """Construct the popup dialog with all widgets."""
         self._dialog = self.factory.createPopupDialog()
         self._log_visible = self._read_log_visibility_pref(default=True)
-        # Pixel dimensions: 800×500 gives enough width to read full package
-        # NEVRAs and rpm scriptlet output without horizontal scrolling, and
-        # enough height to display a meaningful trace at a glance.
-        min_size = self.factory.createMinSize(self._dialog, 800, 500)
+        min_height = (self._DIALOG_MIN_HEIGHT_WITH_LOG
+                      if self._log_visible else self._DIALOG_MIN_HEIGHT_NO_LOG)
+        # Keep width readable for full NEVRA strings. Height is adaptive:
+        # compact when the log is hidden, larger when the log is visible.
+        min_size = self.factory.createMinSize(
+            self._dialog, self._DIALOG_MIN_WIDTH, min_height)
         vbox = self.factory.createVBox(min_size)
 
         # ── Title ──────────────────────────────────────────────────────
@@ -456,7 +467,7 @@ class TransactionProgressDialog:
             focus=MUI.YLogViewFocus.TAIL, reverse=False)
         self._log_view.setStretchable(MUI.YUIDimension.YD_HORIZ, True)
         self._log_view.setStretchable(MUI.YUIDimension.YD_VERT, True)
-        self._log_frame.showContent(self._log_visible)
+        self._apply_log_visibility(self._log_visible, persist=False)
 
         # ── Bottom bar: stats + buttons ────────────────────────────────
         bottom_hbox = self.factory.createHBox(vbox)
@@ -543,7 +554,7 @@ class TransactionProgressDialog:
     def _human_scriptlet_type(scriptlet_type):
         """Return a readable label for dnf/rpm scriptlet type tokens."""
         token = str(scriptlet_type or '').strip()
-        normalized = token.lower().replace('-', '').replace('_', '')
+        normalized = token.lower().strip('%').replace('-', '').replace('_', '')
         kind_map = {
             'pre': _('Pre script'),
             'post': _('Post script'),
@@ -574,12 +585,29 @@ class TransactionProgressDialog:
     def _on_log_frame_toggled(self):
         """Apply and persist the user choice for log-frame visibility."""
         try:
-            self._log_visible = bool(self._log_frame.value())
-            self._log_frame.showContent(self._log_visible)
-            self._save_log_visibility_pref(self._log_visible)
+            self._apply_log_visibility(bool(self._log_frame.value()), persist=True)
             logger.debug("Transaction log visibility changed to %s", self._log_visible)
         except Exception as exc:
             logger.exception("Failed to toggle/persist transaction log visibility: %s", exc)
+
+    def _apply_log_visibility(self, visible, persist=True):
+        """Apply log visibility in UI and optionally persist it."""
+        self._log_visible = bool(visible)
+        self._log_frame.showContent(self._log_visible)
+        # Explicit visibility update helps backends that do not relayout
+        # CheckBoxFrame content reliably on toggle.
+        if self._log_content is not None:
+            self._log_content.setVisible(self._log_visible)
+            self._log_content.setWeight(
+                MUI.YUIDimension.YD_VERT, 100 if self._log_visible else 1)
+        if self._log_view is not None:
+            self._log_view.setVisible(self._log_visible)
+        if self._log_frame is not None:
+            self._log_frame.setWeight(
+                MUI.YUIDimension.YD_VERT, 100 if self._log_visible else 1)
+            self._log_frame.setStretchable(MUI.YUIDimension.YD_VERT, self._log_visible)
+        if persist:
+            self._save_log_visibility_pref(self._log_visible)
 
     def _read_log_visibility_pref(self, default=True):
         """Read persisted visibility preference for transaction log details."""
