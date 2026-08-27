@@ -6,8 +6,8 @@
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2020
-# Yuri Chornoivan <yurchor@ukr.net>, 2021
 # Rafa Llandres, 2024
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 # Davidmp <medipas@gmail.com>, 2026
 #
 #, fuzzy
@@ -2993,67 +2993,67 @@ msgstr ""
 
 #: dnfdragora/progress_ui.py:110
 msgid "Download start"
-msgstr ""
+msgstr "Inici de la baixada"
 
 #: dnfdragora/progress_ui.py:111
 msgid "Downloaded"
-msgstr ""
+msgstr "Baixat"
 
 #: dnfdragora/progress_ui.py:112
 msgid "Already cached"
-msgstr ""
+msgstr "Ja a la cau"
 
 #: dnfdragora/progress_ui.py:113
 msgid "Download error"
-msgstr ""
+msgstr "Error de baixada"
 
 #: dnfdragora/progress_ui.py:114
 msgid "Verify"
-msgstr ""
+msgstr "Verifica"
 
 #: dnfdragora/progress_ui.py:115
 msgid "Prepare"
-msgstr ""
+msgstr "Prepara"
 
 #: dnfdragora/progress_ui.py:116
 msgid "Package"
-msgstr ""
+msgstr "Paquet"
 
 #: dnfdragora/progress_ui.py:117 dnfdragora/progress_ui.py:543
 msgid "Install"
-msgstr ""
+msgstr "Instal·la"
 
 #: dnfdragora/progress_ui.py:119 dnfdragora/progress_ui.py:544
 msgid "Upgrade"
-msgstr ""
+msgstr "Actualitza"
 
 #: dnfdragora/progress_ui.py:120
 msgid "Upgraded"
-msgstr ""
+msgstr "Actualitzat"
 
 #: dnfdragora/progress_ui.py:121 dnfdragora/progress_ui.py:547
 msgid "Remove"
-msgstr ""
+msgstr "Suprimeix"
 
 #: dnfdragora/progress_ui.py:122
 msgid "Removed"
-msgstr ""
+msgstr "Suprimit"
 
 #: dnfdragora/progress_ui.py:123
 msgid "Scriptlet"
-msgstr ""
+msgstr "Scriptlet"
 
 #: dnfdragora/progress_ui.py:124
 msgid "Scriptlet done"
-msgstr ""
+msgstr "Scriptlet fet"
 
 #: dnfdragora/progress_ui.py:125
 msgid "Scriptlet error"
-msgstr ""
+msgstr "Error de scriptlet"
 
 #: dnfdragora/progress_ui.py:126
 msgid "Completed"
-msgstr ""
+msgstr "Completat ✓"
 
 #: dnfdragora/progress_ui.py:201
 msgid "Transaction completed successfully"
@@ -3126,17 +3126,17 @@ msgstr "Es baixa %(d)s"
 #: dnfdragora/progress_ui.py:311
 #, python-format
 msgid "%(desc)s  completed"
-msgstr ""
+msgstr "%(desc)s  completat"
 
 #: dnfdragora/progress_ui.py:313
 #, python-format
 msgid "%(desc)s  already cached"
-msgstr ""
+msgstr "%(desc)s  ja a la cau"
 
 #: dnfdragora/progress_ui.py:316
 #, python-format
 msgid "%(desc)s  failed: %(err)s"
-msgstr ""
+msgstr "%(desc)s  ha fallat: %(err)s"
 
 #: dnfdragora/progress_ui.py:325
 #, python-format
@@ -3164,12 +3164,12 @@ msgstr "Es processa %(n)s"
 #: dnfdragora/progress_ui.py:362
 #, python-format
 msgid "%(action)s: %(nevra)s"
-msgstr ""
+msgstr "%(action)s: %(nevra)s"
 
 #: dnfdragora/progress_ui.py:383
 #, python-format
 msgid "%(nevra)s  [%(kind)s]"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]"
 
 #: dnfdragora/progress_ui.py:388
 #, python-format
@@ -3179,12 +3179,12 @@ msgstr "Scriptlet: %(n)s  [%(t)s]"
 #: dnfdragora/progress_ui.py:394 dnfdragora/progress_ui.py:401
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  %(status)s"
 
 #: dnfdragora/progress_ui.py:410
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  failed: %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  ha fallat: %(status)s"
 
 #: dnfdragora/progress_ui.py:440
 msgid "Transaction in progress…"
@@ -3200,7 +3200,7 @@ msgstr "Actual:"
 
 #: dnfdragora/progress_ui.py:461
 msgid "Show transaction log"
-msgstr ""
+msgstr "Mostra el registre de la transacció"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Transaction log"
@@ -3216,12 +3216,12 @@ msgstr "De&sa'n el registre..."
 
 #: dnfdragora/progress_ui.py:494
 msgid "Info"
-msgstr ""
+msgstr "Informació"
 
 #: dnfdragora/progress_ui.py:495
 #, python-format
 msgid "[%(time)s] [%(phase)s] %(text)s"
-msgstr ""
+msgstr "[%(time)s] [%(phase)s] %(text)s"
 
 #: dnfdragora/progress_ui.py:515
 msgid "Completed ✓"
@@ -3241,77 +3241,77 @@ msgstr "Fet"
 
 #: dnfdragora/progress_ui.py:548
 msgid "Cleanup"
-msgstr ""
+msgstr "Neteja"
 
 #: dnfdragora/progress_ui.py:549
 msgid "Replaced"
-msgstr ""
+msgstr "Substituït"
 
 #: dnfdragora/progress_ui.py:559
 msgid "Pre script"
-msgstr ""
+msgstr "Script previ"
 
 #: dnfdragora/progress_ui.py:560
 msgid "Post script"
-msgstr ""
+msgstr "Script posterior"
 
 #: dnfdragora/progress_ui.py:561
 msgid "Pre-install script"
-msgstr ""
+msgstr "Script de preinstal·lació"
 
 #: dnfdragora/progress_ui.py:562
 msgid "Post-install script"
-msgstr ""
+msgstr "Script de postinstal·lació"
 
 #: dnfdragora/progress_ui.py:563
 msgid "Pre-uninstall script"
-msgstr ""
+msgstr "Script de predesinstal·lació"
 
 #: dnfdragora/progress_ui.py:564
 msgid "Post-uninstall script"
-msgstr ""
+msgstr "Script posterior a la desinstal·lació"
 
 #: dnfdragora/progress_ui.py:565
 msgid "Pre-transaction script"
-msgstr ""
+msgstr "Script previ a la transacció"
 
 #: dnfdragora/progress_ui.py:566
 msgid "Post-transaction script"
-msgstr ""
+msgstr "Script posterior a la transacció"
 
 #: dnfdragora/progress_ui.py:567
 msgid "Install trigger"
-msgstr ""
+msgstr "Desencadenador d'instal·lació"
 
 #: dnfdragora/progress_ui.py:568
 msgid "Uninstall trigger"
-msgstr ""
+msgstr "Desencadenador de desinstal·lació"
 
 #: dnfdragora/progress_ui.py:569
 msgid "Post-uninstall trigger"
-msgstr ""
+msgstr "Desencadenador de postinstal·lació"
 
 #: dnfdragora/progress_ui.py:570
 msgid "Verification script"
-msgstr ""
+msgstr "Script de verificació"
 
 #: dnfdragora/progress_ui.py:575
 #, python-format
 msgid "Unknown scriptlet (%(token)s)"
-msgstr ""
+msgstr "Scriptlet desconegut (%(token)s)"
 
 #: dnfdragora/progress_ui.py:576
 msgid "Unknown scriptlet"
-msgstr ""
+msgstr "Scriptlet desconegut"
 
 #: dnfdragora/progress_ui.py:582
 msgid "completed successfully"
-msgstr ""
+msgstr "completat correctament"
 
 #: dnfdragora/progress_ui.py:583
 #, python-format
 msgid "failed with exit code %(code)s"
-msgstr ""
+msgstr "ha fallat amb el codi de sortida %(code)s"
 
 #: dnfdragora/progress_ui.py:665
 msgid "Save transaction log"
@@ -3320,12 +3320,12 @@ msgstr "Desa el registre de la transacció"
 #: dnfdragora/progress_ui.py:674
 #, python-format
 msgid "Log saved to %(path)s"
-msgstr ""
+msgstr "Registre desat a %(path)s"
 
 #: dnfdragora/progress_ui.py:677
 #, python-format
 msgid "Saving log failed: %(err)s"
-msgstr ""
+msgstr "Ha fallat desar el registre: %(err)s"
 
 #: dnfdragora/ui.py:231
 msgid "No transaction found"
