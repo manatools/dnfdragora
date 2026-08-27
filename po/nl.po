@@ -7,10 +7,10 @@
 # Yves Brungard, 2017
 # Geiger David <david.david@mageialinux-online.org>, 2020
 # Dennis Holierhoek <dennis.hh@hotmail.com>, 2020
-# Yuri Chornoivan <yurchor@ukr.net>, 2021
 # dragnadh, 2026
-# Marcel Pol <marcel@timelord.nl>, 2026
 # Marja van Waes, 2026
+# Marcel Pol <marcel@timelord.nl>, 2026
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 # Marc Laan, 2026
 #
 #, fuzzy
@@ -3000,67 +3000,67 @@ msgstr ""
 
 #: dnfdragora/progress_ui.py:110
 msgid "Download start"
-msgstr ""
+msgstr "Download begin"
 
 #: dnfdragora/progress_ui.py:111
 msgid "Downloaded"
-msgstr ""
+msgstr "Gedownload"
 
 #: dnfdragora/progress_ui.py:112
 msgid "Already cached"
-msgstr ""
+msgstr "Reeds in de cache opgeslagen"
 
 #: dnfdragora/progress_ui.py:113
 msgid "Download error"
-msgstr ""
+msgstr "Fout tijdens het downloaden"
 
 #: dnfdragora/progress_ui.py:114
 msgid "Verify"
-msgstr ""
+msgstr "Verifiëren"
 
 #: dnfdragora/progress_ui.py:115
 msgid "Prepare"
-msgstr ""
+msgstr "Voorbereiden"
 
 #: dnfdragora/progress_ui.py:116
 msgid "Package"
-msgstr ""
+msgstr "Pakket"
 
 #: dnfdragora/progress_ui.py:117 dnfdragora/progress_ui.py:543
 msgid "Install"
-msgstr ""
+msgstr "Installatie"
 
 #: dnfdragora/progress_ui.py:119 dnfdragora/progress_ui.py:544
 msgid "Upgrade"
-msgstr ""
+msgstr "Opwaardering"
 
 #: dnfdragora/progress_ui.py:120
 msgid "Upgraded"
-msgstr ""
+msgstr "Opgewaardeerd"
 
 #: dnfdragora/progress_ui.py:121 dnfdragora/progress_ui.py:547
 msgid "Remove"
-msgstr ""
+msgstr "Verwijderen"
 
 #: dnfdragora/progress_ui.py:122
 msgid "Removed"
-msgstr ""
+msgstr "Verwijderd"
 
 #: dnfdragora/progress_ui.py:123
 msgid "Scriptlet"
-msgstr ""
+msgstr "Scriptlet"
 
 #: dnfdragora/progress_ui.py:124
 msgid "Scriptlet done"
-msgstr ""
+msgstr "Scriptlet voltooid"
 
 #: dnfdragora/progress_ui.py:125
 msgid "Scriptlet error"
-msgstr ""
+msgstr "Scriptlet-fout"
 
 #: dnfdragora/progress_ui.py:126
 msgid "Completed"
-msgstr ""
+msgstr "Voltooid"
 
 #: dnfdragora/progress_ui.py:201
 msgid "Transaction completed successfully"
@@ -3132,17 +3132,17 @@ msgstr "Downloaden:  %(d)s"
 #: dnfdragora/progress_ui.py:311
 #, python-format
 msgid "%(desc)s  completed"
-msgstr ""
+msgstr "%(desc)s  voltooid"
 
 #: dnfdragora/progress_ui.py:313
 #, python-format
 msgid "%(desc)s  already cached"
-msgstr ""
+msgstr "%(desc)s  reeds in de cache opgeslagen"
 
 #: dnfdragora/progress_ui.py:316
 #, python-format
 msgid "%(desc)s  failed: %(err)s"
-msgstr ""
+msgstr "%(desc)s  mislukt: %(err)s"
 
 #: dnfdragora/progress_ui.py:325
 #, python-format
@@ -3170,12 +3170,12 @@ msgstr "Verwerken: %(n)s"
 #: dnfdragora/progress_ui.py:362
 #, python-format
 msgid "%(action)s: %(nevra)s"
-msgstr ""
+msgstr "%(action)s: %(nevra)s"
 
 #: dnfdragora/progress_ui.py:383
 #, python-format
 msgid "%(nevra)s  [%(kind)s]"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]"
 
 #: dnfdragora/progress_ui.py:388
 #, python-format
@@ -3185,12 +3185,12 @@ msgstr "Scriptlet: %(n)s  [%(t)s]"
 #: dnfdragora/progress_ui.py:394 dnfdragora/progress_ui.py:401
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  %(status)s"
 
 #: dnfdragora/progress_ui.py:410
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  failed: %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  mislukt: %(status)s"
 
 #: dnfdragora/progress_ui.py:440
 msgid "Transaction in progress…"
@@ -3206,7 +3206,7 @@ msgstr "Huidige:"
 
 #: dnfdragora/progress_ui.py:461
 msgid "Show transaction log"
-msgstr ""
+msgstr "Transactielogboek tonen"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Transaction log"
@@ -3222,12 +3222,12 @@ msgstr "&Save log…"
 
 #: dnfdragora/progress_ui.py:494
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: dnfdragora/progress_ui.py:495
 #, python-format
 msgid "[%(time)s] [%(phase)s] %(text)s"
-msgstr ""
+msgstr "[%(time)s] [%(phase)s] %(text)s"
 
 #: dnfdragora/progress_ui.py:515
 msgid "Completed ✓"
@@ -3247,77 +3247,77 @@ msgstr "Klaar"
 
 #: dnfdragora/progress_ui.py:548
 msgid "Cleanup"
-msgstr ""
+msgstr "Opschonen"
 
 #: dnfdragora/progress_ui.py:549
 msgid "Replaced"
-msgstr ""
+msgstr "Vervangen"
 
 #: dnfdragora/progress_ui.py:559
 msgid "Pre script"
-msgstr ""
+msgstr "Pre script"
 
 #: dnfdragora/progress_ui.py:560
 msgid "Post script"
-msgstr ""
+msgstr "Post script"
 
 #: dnfdragora/progress_ui.py:561
 msgid "Pre-install script"
-msgstr ""
+msgstr "Pre-installatiescript"
 
 #: dnfdragora/progress_ui.py:562
 msgid "Post-install script"
-msgstr ""
+msgstr "Post-installatiescript"
 
 #: dnfdragora/progress_ui.py:563
 msgid "Pre-uninstall script"
-msgstr ""
+msgstr "Pre-uninstall script"
 
 #: dnfdragora/progress_ui.py:564
 msgid "Post-uninstall script"
-msgstr ""
+msgstr "Post-uninstall script"
 
 #: dnfdragora/progress_ui.py:565
 msgid "Pre-transaction script"
-msgstr ""
+msgstr "Pre-transactiescript"
 
 #: dnfdragora/progress_ui.py:566
 msgid "Post-transaction script"
-msgstr ""
+msgstr "Post-transactiescript"
 
 #: dnfdragora/progress_ui.py:567
 msgid "Install trigger"
-msgstr ""
+msgstr "Installeer trigger"
 
 #: dnfdragora/progress_ui.py:568
 msgid "Uninstall trigger"
-msgstr ""
+msgstr "Deïnstalleer trigger"
 
 #: dnfdragora/progress_ui.py:569
 msgid "Post-uninstall trigger"
-msgstr ""
+msgstr "Post-uninstall trigger"
 
 #: dnfdragora/progress_ui.py:570
 msgid "Verification script"
-msgstr ""
+msgstr "Verificatiescript"
 
 #: dnfdragora/progress_ui.py:575
 #, python-format
 msgid "Unknown scriptlet (%(token)s)"
-msgstr ""
+msgstr "Onbekende scriptlet (%(token)s)"
 
 #: dnfdragora/progress_ui.py:576
 msgid "Unknown scriptlet"
-msgstr ""
+msgstr "Onbekende scriptlet"
 
 #: dnfdragora/progress_ui.py:582
 msgid "completed successfully"
-msgstr ""
+msgstr "succesvol afgerond"
 
 #: dnfdragora/progress_ui.py:583
 #, python-format
 msgid "failed with exit code %(code)s"
-msgstr ""
+msgstr "mislukt met exitcode %(code)s"
 
 #: dnfdragora/progress_ui.py:665
 msgid "Save transaction log"
@@ -3326,12 +3326,12 @@ msgstr "Transactielogboek opslaan"
 #: dnfdragora/progress_ui.py:674
 #, python-format
 msgid "Log saved to %(path)s"
-msgstr ""
+msgstr "Logboek opgeslagen in %(path)s"
 
 #: dnfdragora/progress_ui.py:677
 #, python-format
 msgid "Saving log failed: %(err)s"
-msgstr ""
+msgstr "Het opslaan van het logboek is mislukt: %(err)s"
 
 #: dnfdragora/ui.py:231
 msgid "No transaction found"
