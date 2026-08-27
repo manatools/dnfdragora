@@ -5,11 +5,11 @@
 #
 # Translators:
 # Filip Komar <filip.komar@guest.arnes.si>, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
 # Валентин Сайков <saikov.vb@gmail.com>, 2020
 # Alex Malykh <a2m-dev@yandex.ru>, 2023
 # algri14 <aliger14@mail.ru>, 2026
 # Victor, 2026
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 # AlexL <loginov.alex.valer@gmail.com>, 2026
 #
 #, fuzzy
@@ -362,19 +362,19 @@ msgstr "&Установленные"
 
 #: dnfdragora/dialogs.py:113
 msgid "&Removed"
-msgstr "&Удаленные"
+msgstr "&Удалённые"
 
 #: dnfdragora/dialogs.py:114
 msgid "&Upgraded"
-msgstr "&Обновленные"
+msgstr "&Обновлённые"
 
 #: dnfdragora/dialogs.py:115
 msgid "&Downgraded"
-msgstr "С &пониженной версией"
+msgstr "П&ониженные"
 
 #: dnfdragora/dialogs.py:117
 msgid "Include &advisories"
-msgstr "Включать &бюллетени (advisories)"
+msgstr "Включать &бюллетени"
 
 #: dnfdragora/dialogs.py:118
 msgid "All advisories"
@@ -403,7 +403,7 @@ msgstr "EVR"
 
 #: dnfdragora/dialogs.py:137 dnfdragora/ui.py:589
 msgid "Arch"
-msgstr "Платформа"
+msgstr "Архитектура"
 
 #: dnfdragora/dialogs.py:138
 msgid "Action"
@@ -439,7 +439,7 @@ msgstr "Ошибка: %s"
 
 #: dnfdragora/dialogs.py:252 dnfdragora/ui.py:799
 msgid "installed"
-msgstr "установлен"
+msgstr "установлено"
 
 #: dnfdragora/dialogs.py:253
 msgid "removed"
@@ -451,7 +451,7 @@ msgstr "обновлено"
 
 #: dnfdragora/dialogs.py:255
 msgid "downgraded"
-msgstr "понижена версия"
+msgstr "понижено"
 
 #: dnfdragora/dialogs.py:282 dnfdragora/dialogs.py:356
 #: dnfdragora/dialogs.py:636
@@ -472,7 +472,7 @@ msgstr "обновить"
 
 #: dnfdragora/dialogs.py:320
 msgid "downgrade"
-msgstr "понизить версию"
+msgstr "понизить"
 
 #: dnfdragora/dialogs.py:321
 msgid "reinstall"
@@ -676,7 +676,7 @@ msgid ""
 "Remove any stored offline transaction data, even if no transaction is "
 "currently pending."
 msgstr ""
-"Удалить все сохраненные данные автономных транзакций, даже если в данный "
+"Удалить все сохранённые данные автономных транзакций, даже если в данный "
 "момент нет запланированных транзакций."
 
 #: dnfdragora/dialogs.py:741
@@ -762,7 +762,7 @@ msgid ""
 "your full responsibility."
 msgstr ""
 "Предупреждение: эта операция предназначена только для опытных пользователей, "
-"и вы несете за нее полную ответственность."
+"и вы несёте за неё полную ответственность."
 
 #: dnfdragora/dialogs.py:967
 msgid ""
@@ -776,7 +776,7 @@ msgstr ""
 msgid ""
 " For stable upgrade, the target is usually current release +1 when available."
 msgstr ""
-" Для стабильного обновления целью обычно является текущий выпуск +1, если он "
+" Для стабильного обновления целью обычно является текущий релиз +1, если он "
 "доступен."
 
 #: dnfdragora/dialogs.py:973
@@ -785,7 +785,7 @@ msgstr "Я понимаю риски и хочу настроить параме
 
 #: dnfdragora/dialogs.py:985
 msgid "Release ver:"
-msgstr "Версия выпуска:"
+msgstr "Версия релиза:"
 
 #: dnfdragora/dialogs.py:993
 msgid ""
@@ -804,7 +804,7 @@ msgstr "Действие для отмеченных пакетов"
 
 #: dnfdragora/dialogs.py:1072
 msgid "Normal (Install/Upgrade/Remove)"
-msgstr "Обычная (Установить/Обновить/Удалить)"
+msgstr "Обычное (Установить/Обновить/Удалить)"
 
 #: dnfdragora/dialogs.py:1073 dnfdragora/progress_ui.py:546
 msgid "Reinstall"
@@ -928,7 +928,7 @@ msgstr "Файл репозитория"
 
 #: dnfdragora/dialogs.py:1332
 msgid "Revision"
-msgstr "Модификация"
+msgstr "Ревизия"
 
 #: dnfdragora/dialogs.py:1333
 msgid "Content tags"
@@ -1151,7 +1151,7 @@ msgstr "&Файлы"
 #: dnfdragora/dialogs.py:2328
 msgid "Match packages that own files whose path matches the pattern."
 msgstr ""
-"Найдите пакеты, которым принадлежат файлы, путь к которым соответствует "
+"Искать пакеты, которым принадлежат файлы, путь к которым соответствует "
 "заданному шаблону."
 
 #: dnfdragora/dialogs.py:2331
@@ -1613,7 +1613,7 @@ msgstr "3D"
 #: dnfdragora/groupicons.py:265 dnfdragora/groupicons.py:413
 #: dnfdragora/groupicons.py:517
 msgid "Editors and Converters"
-msgstr "Редакторы и конверторы"
+msgstr "Редакторы и конвертеры"
 
 #: dnfdragora/groupicons.py:269 dnfdragora/groupicons.py:345
 #: dnfdragora/groupicons.py:429 dnfdragora/groupicons.py:529
@@ -1826,7 +1826,7 @@ msgstr "Игрушки"
 
 #: dnfdragora/groupicons.py:514
 msgid "Video"
-msgstr "Работа с видео"
+msgstr "Видео"
 
 #: dnfdragora/groupicons.py:525
 msgid "Television"
@@ -1902,7 +1902,7 @@ msgstr "Файервол/Маршрутизатор"
 
 #: dnfdragora/groupicons.py:630
 msgid "Mail/Groupware/News"
-msgstr "Почта/групповое ПО/новости"
+msgstr "Почта/Групповое ПО/Новости"
 
 #: dnfdragora/groupicons.py:634
 msgid "Network Computer server"
@@ -1996,8 +1996,9 @@ msgid ""
 "dnfdragora is basically a package manager user interface that allows you to "
 "install, update, remove, and search for packages and more.<br><br>"
 msgstr ""
-"dnfdragora - это пользовательский интерфейс для пакетного менеджера, который "
-"позволяет вам устанавливать, обновлять, удалять, искать пакеты и т.д.<br><br>"
+"dnfdragora — это пользовательский интерфейс для пакетного менеджера, который "
+"позволяет вам устанавливать, обновлять, удалять, искать пакеты и т. д."
+"<br><br>"
 
 #: dnfdragora/helpinfo.py:78
 msgid ""
@@ -2015,11 +2016,11 @@ msgstr "Окно dnfdragora состоит из следующих элемен�
 
 #: dnfdragora/helpinfo.py:84
 msgid "Menu bar content"
-msgstr "Содержимое полоски меню"
+msgstr "Содержимое строки меню"
 
 #: dnfdragora/helpinfo.py:86
 msgid "Menu bar contains dnfdragora drop down menus:"
-msgstr "Полоска меню dnfdragora содержит следующие выпадающие меню:"
+msgstr "Строка меню dnfdragora содержит следующие выпадающие меню:"
 
 #: dnfdragora/helpinfo.py:94
 msgid "File Menu"
@@ -2159,7 +2160,7 @@ msgstr "<h2>История</h2>"
 msgid ""
 "This menu opens the %s, which shows packages recently changed on the system."
 msgstr ""
-"Это меню открывает %s, где показаны недавно измененные в системе пакеты."
+"Это меню открывает %s, где показаны недавно изменённые в системе пакеты."
 
 #: dnfdragora/helpinfo.py:124
 msgid "<h2>System upgrade</h2>"
@@ -2316,7 +2317,7 @@ msgid ""
 "i> filter active, i.e. showing only package available for updates if any.</"
 "li>"
 msgstr ""
-"<ul><li><b>Показать обновления</b>: если отмечено, dnfdragora запускается со "
+"<ul><li><b>Показать обновления</b>: если отмечено, dnfdragora запускается с "
 "включенным фильтром <i>обновлений</i>, т.е. показывает только пакеты, "
 "доступные для обновления, если такие есть. </li>"
 
@@ -2421,14 +2422,15 @@ msgstr "<li><b>Установленные</b>: показывать только
 #: dnfdragora/helpinfo.py:194
 msgid "<li><b>Not installed</b>: shows available packages only.</li>"
 msgstr ""
-"<li><b>Не установлено:</b> показать только неустановленные пакеты.</li>"
+"<li><b>Неустановленные:</b> показать только неустановленные пакеты.</li>"
 
 #: dnfdragora/helpinfo.py:195
 msgid ""
 "<li><b>To update</b>: shows packages that are available for updates only.</"
 "li>"
 msgstr ""
-"<li><b>Обновление:</b> показать только пакеты, доступные для обновления.</li>"
+"<li><b>Для обновления</b>: показывать только пакеты, доступные для "
+"обновления.</li>"
 
 #: dnfdragora/helpinfo.py:196
 msgid ""
@@ -2600,7 +2602,7 @@ msgid ""
 "progress window stays open until scheduling is completed."
 msgstr ""
 "Пока выполняется автономное планирование, отмена отключена, а окно "
-"выполнения остается открытым до завершения планирования."
+"выполнения остаётся открытым до завершения планирования."
 
 #: dnfdragora/helpinfo.py:273
 msgid ""
@@ -2641,7 +2643,7 @@ msgid ""
 "or after that date. "
 msgstr ""
 "<li><b>С даты (ГГГГ-ММ-ДД)</b>: введите дату, чтобы отображать только "
-"пакеты, измененные в этот день или после него. "
+"пакеты, изменённые в этот день или после него. "
 
 #: dnfdragora/helpinfo.py:281
 msgid "Leave empty to retrieve all available history. "
@@ -2652,8 +2654,7 @@ msgid ""
 "The date is converted to a Unix timestamp before being sent to the daemon.</"
 "li>"
 msgstr ""
-"Перед отправкой в фоновую службу дата преобразуется в метку времени Unix.</"
-"li>"
+"Дата преобразуется в метку времени Unix перед отправкой фоновой службе.</li>"
 
 #: dnfdragora/helpinfo.py:284
 msgid "<h2>Change type checkboxes</h2>"
@@ -2674,13 +2675,13 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:288
 msgid "<li><b>Removed</b>: packages that were removed from the system.</li>"
-msgstr "<li><b>Удаленные</b>: пакеты, которые были удалены из системы.</li>"
+msgstr "<li><b>Удалённые</b>: пакеты, которые были удалены из системы.</li>"
 
 #: dnfdragora/helpinfo.py:289
 msgid ""
 "<li><b>Upgraded</b>: packages that were upgraded to a newer version.</li>"
 msgstr ""
-"<li><b>Обновленные</b>: пакеты, которые были обновлены до более новой версии."
+"<li><b>Обновлённые</b>: пакеты, которые были обновлены до более новой версии."
 "</li>"
 
 #: dnfdragora/helpinfo.py:290
@@ -2688,8 +2689,8 @@ msgid ""
 "<li><b>Downgraded</b>: packages that were downgraded to an older version.</"
 "li>"
 msgstr ""
-"<li><b>С пониженной версией</b>: пакеты, версия которых была понижена до "
-"более старой.</li>"
+"<li><b>Пониженные</b>: пакеты, у которых была понижена версия до более "
+"старой.</li>"
 
 #: dnfdragora/helpinfo.py:292
 msgid ""
@@ -2738,7 +2739,7 @@ msgstr "<h2>Таблица результатов</h2>"
 msgid ""
 "The table shows one row per changed package with the following columns:<br>"
 msgstr ""
-"В таблице отображается по одной строке на каждый измененный пакет со "
+"В таблице отображается по одной строке на каждый изменённый пакет со "
 "следующими столбцами:<br>"
 
 #: dnfdragora/helpinfo.py:302
@@ -2748,8 +2749,7 @@ msgstr "<li><b>Имя</b>: имя пакета.</li>"
 #: dnfdragora/helpinfo.py:303
 msgid ""
 "<li><b>EVR</b>: epoch:version-release of the new (installed) version.</li>"
-msgstr ""
-"<li><b>EVR</b>: epoch:version-release новой (установленной) версии.</li>"
+msgstr "<li><b>EVR</b>: эпоха:версия-релиз новой (установленной) версии.</li>"
 
 #: dnfdragora/helpinfo.py:304
 msgid "<li><b>Arch</b>: the package architecture.</li>"
@@ -2761,7 +2761,7 @@ msgid ""
 "or <i>downgraded</i>.</li>"
 msgstr ""
 "<li><b>Действие</b>: одно из значений: <i>установлено</i>, <i>удалено</i>, "
-"<i>обновлено</i> или <i>понижена версия</i>.</li>"
+"<i>обновлено</i> или <i>понижено</i>.</li>"
 
 #: dnfdragora/helpinfo.py:306
 msgid ""
@@ -2892,7 +2892,7 @@ msgstr ""
 
 #: dnfdragora/helpinfo.py:346
 msgid "<h2>Releasever option</h2>"
-msgstr "<h2>Параметр releasever</h2>"
+msgstr "<h2>Параметр релиза (releasever)</h2>"
 
 #: dnfdragora/helpinfo.py:347
 msgid ""
@@ -2944,7 +2944,7 @@ msgid ""
 "toggles for advisories containing CVE/Bugzilla references.<br><br>"
 msgstr ""
 "Используйте область фильтрации для сужения результатов по доступности, "
-"идентификаторам бюллетеней, шаблонам имен пакетов, идентификаторам Bugzilla, "
+"идентификаторам бюллетеней, шаблонам имён пакетов, идентификаторам Bugzilla, "
 "идентификаторам CVE, типам бюллетеней, критичности и переключателям для "
 "бюллетеней, содержащих ссылки на CVE/Bugzilla.<br><br>"
 
@@ -2953,8 +2953,8 @@ msgid ""
 "The main table shows <b>Advisory ID</b>, <b>Type</b>, <b>Severity</b>, and "
 "<b>Title</b> for each advisory returned by the daemon.<br><br>"
 msgstr ""
-"В главной таблице отображаются <b>ID бюллетеня</b>, <b>Тип</b>, "
-"<b>Критичность</b> и <b>Заголовок</b> для каждого бюллетеня, возвращенного "
+"В главной таблице отображаются <b>Идентификатор бюллетеня</b>, <b>Тип</b>, "
+"<b>Критичность</b> и <b>Заголовок</b> для каждого бюллетеня, возвращённого "
 "фоновой службой.<br><br>"
 
 #: dnfdragora/helpinfo.py:365
@@ -2983,67 +2983,67 @@ msgstr ""
 
 #: dnfdragora/progress_ui.py:110
 msgid "Download start"
-msgstr ""
+msgstr "Начало загрузки"
 
 #: dnfdragora/progress_ui.py:111
 msgid "Downloaded"
-msgstr ""
+msgstr "Загружено"
 
 #: dnfdragora/progress_ui.py:112
 msgid "Already cached"
-msgstr ""
+msgstr "Уже в кэше"
 
 #: dnfdragora/progress_ui.py:113
 msgid "Download error"
-msgstr ""
+msgstr "Ошибка загрузки"
 
 #: dnfdragora/progress_ui.py:114
 msgid "Verify"
-msgstr ""
+msgstr "Проверка"
 
 #: dnfdragora/progress_ui.py:115
 msgid "Prepare"
-msgstr ""
+msgstr "Подготовка"
 
 #: dnfdragora/progress_ui.py:116
 msgid "Package"
-msgstr ""
+msgstr "Пакет"
 
 #: dnfdragora/progress_ui.py:117 dnfdragora/progress_ui.py:543
 msgid "Install"
-msgstr ""
+msgstr "Установить"
 
 #: dnfdragora/progress_ui.py:119 dnfdragora/progress_ui.py:544
 msgid "Upgrade"
-msgstr ""
+msgstr "Обновить"
 
 #: dnfdragora/progress_ui.py:120
 msgid "Upgraded"
-msgstr ""
+msgstr "Обновлено"
 
 #: dnfdragora/progress_ui.py:121 dnfdragora/progress_ui.py:547
 msgid "Remove"
-msgstr ""
+msgstr "Удалить"
 
 #: dnfdragora/progress_ui.py:122
 msgid "Removed"
-msgstr ""
+msgstr "Удалено"
 
 #: dnfdragora/progress_ui.py:123
 msgid "Scriptlet"
-msgstr ""
+msgstr "Скриптлет"
 
 #: dnfdragora/progress_ui.py:124
 msgid "Scriptlet done"
-msgstr ""
+msgstr "Скриптлет выполнен"
 
 #: dnfdragora/progress_ui.py:125
 msgid "Scriptlet error"
-msgstr ""
+msgstr "Ошибка скриптлета"
 
 #: dnfdragora/progress_ui.py:126
 msgid "Completed"
-msgstr ""
+msgstr "Завершено"
 
 #: dnfdragora/progress_ui.py:201
 msgid "Transaction completed successfully"
@@ -3115,17 +3115,17 @@ msgstr "Загружается:  %(d)s"
 #: dnfdragora/progress_ui.py:311
 #, python-format
 msgid "%(desc)s  completed"
-msgstr ""
+msgstr "%(desc)s: завершено"
 
 #: dnfdragora/progress_ui.py:313
 #, python-format
 msgid "%(desc)s  already cached"
-msgstr ""
+msgstr "%(desc)s: уже в кэше"
 
 #: dnfdragora/progress_ui.py:316
 #, python-format
 msgid "%(desc)s  failed: %(err)s"
-msgstr ""
+msgstr "%(desc)s: сбой: %(err)s"
 
 #: dnfdragora/progress_ui.py:325
 #, python-format
@@ -3153,12 +3153,12 @@ msgstr "Обработка: %(n)s"
 #: dnfdragora/progress_ui.py:362
 #, python-format
 msgid "%(action)s: %(nevra)s"
-msgstr ""
+msgstr "%(action)s: %(nevra)s"
 
 #: dnfdragora/progress_ui.py:383
 #, python-format
 msgid "%(nevra)s  [%(kind)s]"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]"
 
 #: dnfdragora/progress_ui.py:388
 #, python-format
@@ -3168,12 +3168,12 @@ msgstr "Скриптлет: %(n)s  [%(t)s]"
 #: dnfdragora/progress_ui.py:394 dnfdragora/progress_ui.py:401
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  %(status)s"
 
 #: dnfdragora/progress_ui.py:410
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  failed: %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  сбой: %(status)s"
 
 #: dnfdragora/progress_ui.py:440
 msgid "Transaction in progress…"
@@ -3189,7 +3189,7 @@ msgstr "Текущий:"
 
 #: dnfdragora/progress_ui.py:461
 msgid "Show transaction log"
-msgstr ""
+msgstr "Показать журнал транзакций"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Transaction log"
@@ -3205,12 +3205,12 @@ msgstr "&Сохранить лог..."
 
 #: dnfdragora/progress_ui.py:494
 msgid "Info"
-msgstr ""
+msgstr "Информация"
 
 #: dnfdragora/progress_ui.py:495
 #, python-format
 msgid "[%(time)s] [%(phase)s] %(text)s"
-msgstr ""
+msgstr "[%(time)s] [%(phase)s] %(text)s"
 
 #: dnfdragora/progress_ui.py:515
 msgid "Completed ✓"
@@ -3230,77 +3230,77 @@ msgstr "Готово"
 
 #: dnfdragora/progress_ui.py:548
 msgid "Cleanup"
-msgstr ""
+msgstr "Очистка"
 
 #: dnfdragora/progress_ui.py:549
 msgid "Replaced"
-msgstr ""
+msgstr "Заменено"
 
 #: dnfdragora/progress_ui.py:559
 msgid "Pre script"
-msgstr ""
+msgstr "Сценарий подготовки"
 
 #: dnfdragora/progress_ui.py:560
 msgid "Post script"
-msgstr ""
+msgstr "Сценарий после завершения"
 
 #: dnfdragora/progress_ui.py:561
 msgid "Pre-install script"
-msgstr ""
+msgstr "Сценарий перед установкой"
 
 #: dnfdragora/progress_ui.py:562
 msgid "Post-install script"
-msgstr ""
+msgstr "Сценарий после установки"
 
 #: dnfdragora/progress_ui.py:563
 msgid "Pre-uninstall script"
-msgstr ""
+msgstr "Сценарий перед удалением"
 
 #: dnfdragora/progress_ui.py:564
 msgid "Post-uninstall script"
-msgstr ""
+msgstr "Сценарий после удаления"
 
 #: dnfdragora/progress_ui.py:565
 msgid "Pre-transaction script"
-msgstr ""
+msgstr "Сценарий перед транзакцией"
 
 #: dnfdragora/progress_ui.py:566
 msgid "Post-transaction script"
-msgstr ""
+msgstr "Сценарий после транзакции"
 
 #: dnfdragora/progress_ui.py:567
 msgid "Install trigger"
-msgstr ""
+msgstr "Триггер установки"
 
 #: dnfdragora/progress_ui.py:568
 msgid "Uninstall trigger"
-msgstr ""
+msgstr "Триггер удаления"
 
 #: dnfdragora/progress_ui.py:569
 msgid "Post-uninstall trigger"
-msgstr ""
+msgstr "Триггер после удаления"
 
 #: dnfdragora/progress_ui.py:570
 msgid "Verification script"
-msgstr ""
+msgstr "Сценарий проверки"
 
 #: dnfdragora/progress_ui.py:575
 #, python-format
 msgid "Unknown scriptlet (%(token)s)"
-msgstr ""
+msgstr "Неизвестный скриптлет (%(token)s)"
 
 #: dnfdragora/progress_ui.py:576
 msgid "Unknown scriptlet"
-msgstr ""
+msgstr "Неизвестный скриптлет"
 
 #: dnfdragora/progress_ui.py:582
 msgid "completed successfully"
-msgstr ""
+msgstr "успешно завершено"
 
 #: dnfdragora/progress_ui.py:583
 #, python-format
 msgid "failed with exit code %(code)s"
-msgstr ""
+msgstr "завершено с ошибкой (код выхода: %(code)s)"
 
 #: dnfdragora/progress_ui.py:665
 msgid "Save transaction log"
@@ -3309,12 +3309,12 @@ msgstr "Сохранить лог транзакций"
 #: dnfdragora/progress_ui.py:674
 #, python-format
 msgid "Log saved to %(path)s"
-msgstr ""
+msgstr "Лог сохранён в %(path)s"
 
 #: dnfdragora/progress_ui.py:677
 #, python-format
 msgid "Saving log failed: %(err)s"
-msgstr ""
+msgstr "Не удалось сохранить лог: %(err)s"
 
 #: dnfdragora/ui.py:231
 msgid "No transaction found"
@@ -3596,7 +3596,8 @@ msgstr "Подтверждение обновления системы"
 msgid ""
 "Are you sure you want to continue with system upgrade to releasever \"%s\"?"
 msgstr ""
-"Вы действительно хотите продолжить обновление системы до версии \"%s\"?"
+"Вы действительно хотите продолжить обновление системы до версии (releasever) "
+"\"%s\"?"
 
 #: dnfdragora/ui.py:2157
 msgid "Preparing system upgrade session"
