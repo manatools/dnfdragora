@@ -1,17 +1,21 @@
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # Translators:
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2026.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-26 16:50+0200\n"
-"PO-Revision-Date: 2026-07-11 11:48+0300\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
+"PO-Revision-Date: 2017-01-09 12:17+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>, 2026\n"
+"Language-Team: Ukrainian (https://app.transifex.com/MageiaLinux/teams/9361/"
+"uk/)\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +24,6 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-"X-Generator: Lokalize 23.04.3\n"
 
 #: bin/dnfdragora:25 bin/dnfdragora-updater:22
 #, python-format
@@ -2969,67 +2972,67 @@ msgstr ""
 
 #: dnfdragora/progress_ui.py:110
 msgid "Download start"
-msgstr ""
+msgstr "Почато отримання"
 
 #: dnfdragora/progress_ui.py:111
 msgid "Downloaded"
-msgstr ""
+msgstr "Отримано"
 
 #: dnfdragora/progress_ui.py:112
 msgid "Already cached"
-msgstr ""
+msgstr "Вже кешовано"
 
 #: dnfdragora/progress_ui.py:113
 msgid "Download error"
-msgstr ""
+msgstr "Помилка отримання"
 
 #: dnfdragora/progress_ui.py:114
 msgid "Verify"
-msgstr ""
+msgstr "Перевірити"
 
 #: dnfdragora/progress_ui.py:115
 msgid "Prepare"
-msgstr ""
+msgstr "Приготувати"
 
 #: dnfdragora/progress_ui.py:116
 msgid "Package"
-msgstr ""
+msgstr "Пакунок"
 
 #: dnfdragora/progress_ui.py:117 dnfdragora/progress_ui.py:543
 msgid "Install"
-msgstr ""
+msgstr "Встановлення"
 
 #: dnfdragora/progress_ui.py:119 dnfdragora/progress_ui.py:544
 msgid "Upgrade"
-msgstr ""
+msgstr "Поновлення"
 
 #: dnfdragora/progress_ui.py:120
 msgid "Upgraded"
-msgstr ""
+msgstr "Оновлено"
 
 #: dnfdragora/progress_ui.py:121 dnfdragora/progress_ui.py:547
 msgid "Remove"
-msgstr ""
+msgstr "Вилучити"
 
 #: dnfdragora/progress_ui.py:122
 msgid "Removed"
-msgstr ""
+msgstr "Вилучено"
 
 #: dnfdragora/progress_ui.py:123
 msgid "Scriptlet"
-msgstr ""
+msgstr "Дієскрипт"
 
 #: dnfdragora/progress_ui.py:124
 msgid "Scriptlet done"
-msgstr ""
+msgstr "Дієскрипт виконано"
 
 #: dnfdragora/progress_ui.py:125
 msgid "Scriptlet error"
-msgstr ""
+msgstr "Помилка виконання дієскрипту"
 
 #: dnfdragora/progress_ui.py:126
 msgid "Completed"
-msgstr ""
+msgstr "Завершено"
 
 #: dnfdragora/progress_ui.py:201
 msgid "Transaction completed successfully"
@@ -3101,17 +3104,17 @@ msgstr "Отримання:  %(d)s"
 #: dnfdragora/progress_ui.py:311
 #, python-format
 msgid "%(desc)s  completed"
-msgstr ""
+msgstr "%(desc)s  завершено"
 
 #: dnfdragora/progress_ui.py:313
 #, python-format
 msgid "%(desc)s  already cached"
-msgstr ""
+msgstr "%(desc)s  вже кешовано"
 
 #: dnfdragora/progress_ui.py:316
 #, python-format
 msgid "%(desc)s  failed: %(err)s"
-msgstr ""
+msgstr "Помилка %(desc)s: %(err)s"
 
 #: dnfdragora/progress_ui.py:325
 #, python-format
@@ -3139,12 +3142,12 @@ msgstr "Обробка: %(n)s"
 #: dnfdragora/progress_ui.py:362
 #, python-format
 msgid "%(action)s: %(nevra)s"
-msgstr ""
+msgstr "%(action)s: %(nevra)s"
 
 #: dnfdragora/progress_ui.py:383
 #, python-format
 msgid "%(nevra)s  [%(kind)s]"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]"
 
 #: dnfdragora/progress_ui.py:388
 #, python-format
@@ -3154,12 +3157,12 @@ msgstr "Дієсценарій: %(n)s  [%(t)s]"
 #: dnfdragora/progress_ui.py:394 dnfdragora/progress_ui.py:401
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  %(status)s"
 
 #: dnfdragora/progress_ui.py:410
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  failed: %(status)s"
-msgstr ""
+msgstr "Помилка %(nevra)s  [%(kind)s] : %(status)s"
 
 #: dnfdragora/progress_ui.py:440
 msgid "Transaction in progress…"
@@ -3175,7 +3178,7 @@ msgstr "Поточний:"
 
 #: dnfdragora/progress_ui.py:461
 msgid "Show transaction log"
-msgstr ""
+msgstr "Показати журнал операцій"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Transaction log"
@@ -3191,12 +3194,12 @@ msgstr "З&берегти журнал…"
 
 #: dnfdragora/progress_ui.py:494
 msgid "Info"
-msgstr ""
+msgstr "Відомості"
 
 #: dnfdragora/progress_ui.py:495
 #, python-format
 msgid "[%(time)s] [%(phase)s] %(text)s"
-msgstr ""
+msgstr "[%(time)s] [%(phase)s] %(text)s"
 
 #: dnfdragora/progress_ui.py:515
 msgid "Completed ✓"
@@ -3216,77 +3219,77 @@ msgstr "Виконано"
 
 #: dnfdragora/progress_ui.py:548
 msgid "Cleanup"
-msgstr ""
+msgstr "Чищення"
 
 #: dnfdragora/progress_ui.py:549
 msgid "Replaced"
-msgstr ""
+msgstr "Замінено"
 
 #: dnfdragora/progress_ui.py:559
 msgid "Pre script"
-msgstr ""
+msgstr "Передскрипт"
 
 #: dnfdragora/progress_ui.py:560
 msgid "Post script"
-msgstr ""
+msgstr "Післяскрипт"
 
 #: dnfdragora/progress_ui.py:561
 msgid "Pre-install script"
-msgstr ""
+msgstr "Скрипт перед встановленням"
 
 #: dnfdragora/progress_ui.py:562
 msgid "Post-install script"
-msgstr ""
+msgstr "Скрипт після встановлення"
 
 #: dnfdragora/progress_ui.py:563
 msgid "Pre-uninstall script"
-msgstr ""
+msgstr "Скрипт перед вилученням"
 
 #: dnfdragora/progress_ui.py:564
 msgid "Post-uninstall script"
-msgstr ""
+msgstr "Скрипт після вилучення"
 
 #: dnfdragora/progress_ui.py:565
 msgid "Pre-transaction script"
-msgstr ""
+msgstr "Скрипт до операції"
 
 #: dnfdragora/progress_ui.py:566
 msgid "Post-transaction script"
-msgstr ""
+msgstr "Скрипт після операції"
 
 #: dnfdragora/progress_ui.py:567
 msgid "Install trigger"
-msgstr ""
+msgstr "Перемикач встановлення"
 
 #: dnfdragora/progress_ui.py:568
 msgid "Uninstall trigger"
-msgstr ""
+msgstr "Перемикач вилучення"
 
 #: dnfdragora/progress_ui.py:569
 msgid "Post-uninstall trigger"
-msgstr ""
+msgstr "Перемикач після вилучення"
 
 #: dnfdragora/progress_ui.py:570
 msgid "Verification script"
-msgstr ""
+msgstr "Скрипт перевірки"
 
 #: dnfdragora/progress_ui.py:575
 #, python-format
 msgid "Unknown scriptlet (%(token)s)"
-msgstr ""
+msgstr "Невідомий дієскрипт (%(token)s)"
 
 #: dnfdragora/progress_ui.py:576
 msgid "Unknown scriptlet"
-msgstr ""
+msgstr "Невідомий дієскрипт"
 
 #: dnfdragora/progress_ui.py:582
 msgid "completed successfully"
-msgstr ""
+msgstr "успішно завершено"
 
 #: dnfdragora/progress_ui.py:583
 #, python-format
 msgid "failed with exit code %(code)s"
-msgstr ""
+msgstr "помилка з кодом виходу %(code)s"
 
 #: dnfdragora/progress_ui.py:665
 msgid "Save transaction log"
@@ -3295,12 +3298,12 @@ msgstr "Зберегти журнал дій"
 #: dnfdragora/progress_ui.py:674
 #, python-format
 msgid "Log saved to %(path)s"
-msgstr ""
+msgstr "Журнал збережено до %(path)s"
 
 #: dnfdragora/progress_ui.py:677
 #, python-format
 msgid "Saving log failed: %(err)s"
-msgstr ""
+msgstr "Не вдалося зберегти журнал: %(err)s"
 
 #: dnfdragora/ui.py:231
 msgid "No transaction found"
@@ -3838,7 +3841,3 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "Головне вікно"
-
-#, python-format
-#~ msgid "Error starting dnfdaemon service: [%s]"
-#~ msgstr "Помилка під час спроби запустити службу dnfdaemon: [%s]"
