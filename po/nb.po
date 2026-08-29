@@ -5,7 +5,7 @@
 #
 # Translators:
 # Rémi Verschelde <akien@mageia.org>, 2017
-# Yuri Chornoivan <yurchor@ukr.net>, 2018
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
 # Karl Morten Ramberg <karl.m.ramberg@gmail.com>, 2026
 #
 #, fuzzy
@@ -2962,67 +2962,67 @@ msgstr ""
 
 #: dnfdragora/progress_ui.py:110
 msgid "Download start"
-msgstr ""
+msgstr "Start nedlastning"
 
 #: dnfdragora/progress_ui.py:111
 msgid "Downloaded"
-msgstr ""
+msgstr "Nedlastet:"
 
 #: dnfdragora/progress_ui.py:112
 msgid "Already cached"
-msgstr ""
+msgstr "Allerede bufret"
 
 #: dnfdragora/progress_ui.py:113
 msgid "Download error"
-msgstr ""
+msgstr "Nedlastingsfeil"
 
 #: dnfdragora/progress_ui.py:114
 msgid "Verify"
-msgstr ""
+msgstr "Verifiser"
 
 #: dnfdragora/progress_ui.py:115
 msgid "Prepare"
-msgstr ""
+msgstr "Forbered"
 
 #: dnfdragora/progress_ui.py:116
 msgid "Package"
-msgstr ""
+msgstr "Pakke"
 
 #: dnfdragora/progress_ui.py:117 dnfdragora/progress_ui.py:543
 msgid "Install"
-msgstr ""
+msgstr "Installer"
 
 #: dnfdragora/progress_ui.py:119 dnfdragora/progress_ui.py:544
 msgid "Upgrade"
-msgstr ""
+msgstr "Oppgrader"
 
 #: dnfdragora/progress_ui.py:120
 msgid "Upgraded"
-msgstr ""
+msgstr "Oppgradert"
 
 #: dnfdragora/progress_ui.py:121 dnfdragora/progress_ui.py:547
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #: dnfdragora/progress_ui.py:122
 msgid "Removed"
-msgstr ""
+msgstr "Fjernet"
 
 #: dnfdragora/progress_ui.py:123
 msgid "Scriptlet"
-msgstr ""
+msgstr "Skriptlet"
 
 #: dnfdragora/progress_ui.py:124
 msgid "Scriptlet done"
-msgstr ""
+msgstr "Skriptlet utført"
 
 #: dnfdragora/progress_ui.py:125
 msgid "Scriptlet error"
-msgstr ""
+msgstr "Skriptletfeil"
 
 #: dnfdragora/progress_ui.py:126
 msgid "Completed"
-msgstr ""
+msgstr "Ferdig"
 
 #: dnfdragora/progress_ui.py:201
 msgid "Transaction completed successfully"
@@ -3094,17 +3094,17 @@ msgstr "Nedlasting:  %(d)s"
 #: dnfdragora/progress_ui.py:311
 #, python-format
 msgid "%(desc)s  completed"
-msgstr ""
+msgstr "%(desc)s  ferdig"
 
 #: dnfdragora/progress_ui.py:313
 #, python-format
 msgid "%(desc)s  already cached"
-msgstr ""
+msgstr "%(desc)s Allerede bufret"
 
 #: dnfdragora/progress_ui.py:316
 #, python-format
 msgid "%(desc)s  failed: %(err)s"
-msgstr ""
+msgstr "%(desc)s  feilet: %(err)s"
 
 #: dnfdragora/progress_ui.py:325
 #, python-format
@@ -3132,12 +3132,12 @@ msgstr "Prosesserer: %(n)s"
 #: dnfdragora/progress_ui.py:362
 #, python-format
 msgid "%(action)s: %(nevra)s"
-msgstr ""
+msgstr "%(action)s: %(nevra)s"
 
 #: dnfdragora/progress_ui.py:383
 #, python-format
 msgid "%(nevra)s  [%(kind)s]"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]"
 
 #: dnfdragora/progress_ui.py:388
 #, python-format
@@ -3147,12 +3147,12 @@ msgstr "Lite skript%(n)s[%(t)s]"
 #: dnfdragora/progress_ui.py:394 dnfdragora/progress_ui.py:401
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  %(status)s"
 
 #: dnfdragora/progress_ui.py:410
 #, python-format
 msgid "%(nevra)s  [%(kind)s]  failed: %(status)s"
-msgstr ""
+msgstr "%(nevra)s  [%(kind)s]  feilet: %(status)s"
 
 #: dnfdragora/progress_ui.py:440
 msgid "Transaction in progress…"
@@ -3168,7 +3168,7 @@ msgstr "Nåværende:"
 
 #: dnfdragora/progress_ui.py:461
 msgid "Show transaction log"
-msgstr ""
+msgstr "Vis transaksjonslogg"
 
 #: dnfdragora/progress_ui.py:466
 msgid "Transaction log"
@@ -3184,12 +3184,12 @@ msgstr "&Lagringslog…"
 
 #: dnfdragora/progress_ui.py:494
 msgid "Info"
-msgstr ""
+msgstr "Informasjon"
 
 #: dnfdragora/progress_ui.py:495
 #, python-format
 msgid "[%(time)s] [%(phase)s] %(text)s"
-msgstr ""
+msgstr "[%(time)s] [%(phase)s] %(text)s"
 
 #: dnfdragora/progress_ui.py:515
 msgid "Completed ✓"
@@ -3209,77 +3209,77 @@ msgstr "Ferdig"
 
 #: dnfdragora/progress_ui.py:548
 msgid "Cleanup"
-msgstr ""
+msgstr "Renser: %s"
 
 #: dnfdragora/progress_ui.py:549
 msgid "Replaced"
-msgstr ""
+msgstr "Erstattet"
 
 #: dnfdragora/progress_ui.py:559
 msgid "Pre script"
-msgstr ""
+msgstr "Pre skript"
 
 #: dnfdragora/progress_ui.py:560
 msgid "Post script"
-msgstr ""
+msgstr "Post skript"
 
 #: dnfdragora/progress_ui.py:561
 msgid "Pre-install script"
-msgstr ""
+msgstr "Pre-installerings-skript"
 
 #: dnfdragora/progress_ui.py:562
 msgid "Post-install script"
-msgstr ""
+msgstr "Post-installerings-skript"
 
 #: dnfdragora/progress_ui.py:563
 msgid "Pre-uninstall script"
-msgstr ""
+msgstr "Pre-avinstallerings-sript"
 
 #: dnfdragora/progress_ui.py:564
 msgid "Post-uninstall script"
-msgstr ""
+msgstr "Post-avinstallerings-sript"
 
 #: dnfdragora/progress_ui.py:565
 msgid "Pre-transaction script"
-msgstr ""
+msgstr "Pre-transaksjons-script"
 
 #: dnfdragora/progress_ui.py:566
 msgid "Post-transaction script"
-msgstr ""
+msgstr "Post-transaksjons-script"
 
 #: dnfdragora/progress_ui.py:567
 msgid "Install trigger"
-msgstr ""
+msgstr "Installer utløser"
 
 #: dnfdragora/progress_ui.py:568
 msgid "Uninstall trigger"
-msgstr ""
+msgstr "Avinstaller utløser"
 
 #: dnfdragora/progress_ui.py:569
 msgid "Post-uninstall trigger"
-msgstr ""
+msgstr "Post-avinstaller utløser"
 
 #: dnfdragora/progress_ui.py:570
 msgid "Verification script"
-msgstr ""
+msgstr "Verifiseringsskript"
 
 #: dnfdragora/progress_ui.py:575
 #, python-format
 msgid "Unknown scriptlet (%(token)s)"
-msgstr ""
+msgstr "Ukjent kcriptlet%(token)s"
 
 #: dnfdragora/progress_ui.py:576
 msgid "Unknown scriptlet"
-msgstr ""
+msgstr "Ukjent skriptlet"
 
 #: dnfdragora/progress_ui.py:582
 msgid "completed successfully"
-msgstr ""
+msgstr "fullført vellykket"
 
 #: dnfdragora/progress_ui.py:583
 #, python-format
 msgid "failed with exit code %(code)s"
-msgstr ""
+msgstr "mislyktes med exitkode %(code)s"
 
 #: dnfdragora/progress_ui.py:665
 msgid "Save transaction log"
@@ -3288,12 +3288,12 @@ msgstr "Lagre transaksjonslog"
 #: dnfdragora/progress_ui.py:674
 #, python-format
 msgid "Log saved to %(path)s"
-msgstr ""
+msgstr "Logg lagret til%(path)s"
 
 #: dnfdragora/progress_ui.py:677
 #, python-format
 msgid "Saving log failed: %(err)s"
-msgstr ""
+msgstr "Lagring av logg mislyktes:%(err)s"
 
 #: dnfdragora/ui.py:231
 msgid "No transaction found"
