@@ -2237,6 +2237,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         request_exit = False
 
         if eventType == MUI.YEventType.CancelEvent:
+          logger.debug("User triggered cancel event")
           if self._trans_dialog is not None:
             # Respect the dialog close policy: only close when request_close allows it.
             if self._trans_dialog.request_close():
@@ -2262,6 +2263,7 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
               rebuild_package_list = True
             else:
               logger.warning("User requested close while transaction is still running")
+              request_exit = True
           else:
             request_exit = True
         elif eventType == MUI.YEventType.MenuEvent:
