@@ -27,6 +27,11 @@ logger = logging.getLogger('dnfdragora.updater')
 
 
 class Updater:
+    '''Updater class for managing system tray updates in dnfdragora.'''
+
+    '''Reschedule interval in seconds, 
+       after a conclusion of an operation, such as running dindfdragora or dnfddragora update.'''
+    RESCHEDULE_INTERVAL_SEC = 5 # 5 seconds
 
     def __init__(self, options=None):
         if options is None:
@@ -466,7 +471,7 @@ class Updater:
         logger.error("Failed to reopen backend session after 3 attempts")
         return False
 
-    def __reschedule_update_in(self, minutes):
+    def __reschedule_update_in(self, minutes=0, seconds=0):
         logger.debug("rescheduling")
         if not self.__scheduler.empty():
             logger.debug("Reset scheduler")
@@ -476,10 +481,14 @@ class Updater:
                 except Exception:
                     pass
         if self.__scheduler.empty():
-            self.__scheduler.enter(minutes * 60, 1, self.__get_updates)
-            logger.info("Scheduled check for updates in %d %s",
-                        minutes if minutes >= 1 else minutes * 60,
-                        "minutes" if minutes >= 1 else "seconds")
+            if minutes < 0 : minutes = 0
+            if seconds < 0 : seconds = 0
+            if minutes == 0 and seconds == 0:
+                seconds = 1
+            self.__scheduler.enter(minutes * 60 + seconds, 1, self.__get_updates)
+            logger.info("Scheduled check for updates in %d minutes and %d seconds",
+                        minutes,
+                        seconds)
             return True
         return False
 
@@ -588,7 +597,7 @@ class Updater:
             self.__dialog_open = False
             logger.debug("Update loop resumed after dialog launch failure")
             self.__set_tray_visible(not self.__hide_menu, 'dialog launch failure')
-            self.__reschedule_update_in(0.5)
+            self.__reschedule_update_in(seconds=Updater.RESCHEDULE_INTERVAL_SEC)
             return
 
         try:
@@ -645,7 +654,7 @@ class Updater:
         logger.debug("Update loop resumed (session=%s)",
                      self.__backend.session_path if self.__backend else 'N/A')
         self.__set_tray_visible(not self.__hide_menu, 'dialog closed')
-        done = self.__reschedule_update_in(0.5)
+        done = self.__reschedule_update_in(seconds=Updater.RESCHEDULE_INTERVAL_SEC)
         logger.debug("Post-dialog update check scheduled: %s",
                      "yes" if done else "skipped")
 
@@ -713,10 +722,11 @@ class Updater:
             ):
                 self.__repo_md_followup_scheduled = True
                 logger.info(
-                    "Repository metadata refresh completed for %d repo(s); scheduling update recheck in 30 seconds",
+                    "Repository metadata refresh completed for %d repo(s); scheduling update recheck in %d seconds",
                     len(self.__repo_md_seen_ids),
+                    Updater.RESCHEDULE_INTERVAL_SEC,
                 )
-                self.__reschedule_update_in(0.5)
+                self.__reschedule_update_in(seconds=Updater.RESCHEDULE_INTERVAL_SEC)
             return True
 
         return False
@@ -838,7 +848,7 @@ class Updater:
                 pass
 
             if add_to_schedule:
-                self.__reschedule_update_in(update_next)
+                self.__reschedule_update_in(minutes=update_next)
             elif self.__scheduler.empty():
                 self.__scheduler.enter(update_next * 60, 1, self.__get_updates)
                 logger.info("Scheduled check for updates in %d minutes",
