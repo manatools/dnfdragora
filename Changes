@@ -2,6 +2,8 @@
 --------------------
 - Fixed issue #275: Clean feedback after update
 - dnfdragora-updater: Reduced post-dnfdragora-run update check delay from 30s to 5s.
+- Force-exit dnfdragora if the "transaction running" window is closed mid-execution, 
+  preventing dnfdragora-updater from getting stuck due to an unclean shutdown.
 
 2026-07-17 v. 2.99.5
 --------------------
