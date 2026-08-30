@@ -1,6 +1,7 @@
 2026-XX-YY v. 2.99.6
 --------------------
 - Fixed issue #275: Clean feedback after update
+- dnfdragora-updater: Reduced post-dnfdragora-run update check delay from 30s to 5s.
 
 2026-07-17 v. 2.99.5
 --------------------
