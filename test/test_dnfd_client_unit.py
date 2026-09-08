@@ -38,12 +38,19 @@ def _install_dependency_stubs():
             pass
 
         class _DBusArray(list):
-            pass
+            def __init__(self, values=(), signature=None):
+                super().__init__(values)
+                self.signature = signature
 
         class _DBusStruct(tuple):
             pass
 
         class _DBusDictionary(dict):
+            def __init__(self, values=(), signature=None):
+                super().__init__(values)
+                self.signature = signature
+
+        class _DBusUnixFd(int):
             pass
 
         dbus_mod.String = _DBusString
@@ -61,6 +68,8 @@ def _install_dependency_stubs():
         dbus_mod.Array = _DBusArray
         dbus_mod.Struct = _DBusStruct
         dbus_mod.Dictionary = _DBusDictionary
+        dbus_mod.UnixFd = _DBusUnixFd
+        dbus_mod.types = types.SimpleNamespace(UnixFd=_DBusUnixFd)
 
         dbus_mod.Interface = lambda obj, dbus_interface=None: obj
 
@@ -315,6 +324,259 @@ def test_handle_dbus_error_maps_known_errors_and_fallback():
         assert 'fallback' in str(err)
 
 
+def test_get_object_proxy_uses_introspect_false():
+    c = _make_client_stub()
+    captured = {}
+
+    class _Bus:
+        def get_object(self, bus_name, object_path, introspect=None):
+            captured['bus_name'] = bus_name
+            captured['object_path'] = object_path
+            captured['introspect'] = introspect
+            return object()
+
+    c.bus = _Bus()
+    obj = c._get_object_proxy('/org/rpm/dnf/v0')
+    assert obj is not None
+    assert captured['bus_name'] == dnfd_client.DNFDAEMON_BUS_NAME
+    assert captured['object_path'] == '/org/rpm/dnf/v0'
+    assert captured['introspect'] is False
+
+
+def test_get_object_proxy_fallback_when_introspect_kw_not_supported():
+    c = _make_client_stub()
+    calls = {'count': 0}
+
+    class _Bus:
+        def get_object(self, bus_name, object_path, introspect=None):
+            calls['count'] += 1
+            if calls['count'] == 1:
+                raise TypeError('unexpected keyword argument introspect')
+            return (bus_name, object_path)
+
+    c.bus = _Bus()
+    out = c._get_object_proxy('/org/rpm/dnf/v0')
+    assert out == (dnfd_client.DNFDAEMON_BUS_NAME, '/org/rpm/dnf/v0')
+    assert calls['count'] == 2
+
+
+def test_to_session_dbus_options_handles_empty_dict():
+    out = dnfd_client.Client._to_session_dbus_options({})
+    assert len(dict(out)) == 0
+
+
+def test_to_session_dbus_options_converts_scalar_values():
+    out = dnfd_client.Client._to_session_dbus_options({
+        'interactive': True,
+        'retry_count': 2,
+        'mode': 'default',
+    })
+    # Keep assertions backend-agnostic against local dbus stubs.
+    values = dict(out)
+    assert bool(values['interactive']) is True
+    assert int(values['retry_count']) == 2
+    assert str(values['mode']) == 'default'
+
+
+def test_run_dbus_sync_coerces_getpackages_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _list_method(options, timeout=None):
+        captured['options'] = options
+        captured['timeout'] = timeout
+        return []
+
+    proxy = _FakeProxy(list=_list_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'GetPackages': 'list'}
+
+    c._run_dbus_sync('GetPackages', {'scope': 'upgrades', 'package_attrs': ['nevra']})
+
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == 600
+
+
+def test_run_dbus_async_coerces_getpackages_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _list_method(options, reply_handler=None, error_handler=None, timeout=None):
+        captured['options'] = options
+        captured['timeout'] = timeout
+        if reply_handler is not None:
+            reply_handler([])
+
+    proxy = _FakeProxy(list=_list_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'GetPackages': 'list'}
+
+    c._run_dbus_async('GetPackages', True, {'scope': 'upgrades', 'package_attrs': ['nevra']})
+
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == dnfd_client._DBUS_TIMEOUT_DEFAULT
+
+
+def test_coerce_dbus_args_handles_getpackages_fd_options():
+    c = _make_client_stub()
+    args = c._coerce_dbus_args('GetPackages_fd', ({'scope': 'all'},))
+    assert len(args) == 1
+    assert hasattr(args[0], 'signature')
+    assert args[0].signature == 'sv'
+
+
+def test_wrap_unix_fd_uses_dbus_type_when_available():
+    wrapped = dnfd_client.Client._wrap_unix_fd(42)
+    assert isinstance(wrapped, int)
+    # On real dbus-python this should be dbus.UnixFd or dbus.types.UnixFd.
+    assert wrapped.__class__.__name__.lower().endswith('unixfd')
+    assert int(wrapped) == 42
+
+
+def test_coerce_dbus_args_keeps_typed_dbus_dictionary_unchanged():
+    c = _make_client_stub()
+    typed = dnfd_client.dbus.Dictionary(
+        {'upgraded_packages': dnfd_client.dbus.Boolean(True)},
+        signature='sv',
+    )
+    coerced = c._coerce_dbus_args('GetPackages', (typed,))
+    assert coerced[0] is typed
+
+
+def test_run_dbus_sync_coerces_advisories_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _list_method(options, timeout=None):
+        captured['options'] = options
+        captured['timeout'] = timeout
+        return []
+
+    proxy = _FakeProxy(list=_list_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'Advisories': 'list'}
+
+    c._run_dbus_sync('Advisories', {
+        'availability': 'available',
+        'types': ['security'],
+    })
+
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == 600
+
+
+def test_run_dbus_async_coerces_advisories_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _list_method(options, reply_handler=None, error_handler=None, timeout=None):
+        captured['options'] = options
+        captured['timeout'] = timeout
+        if reply_handler is not None:
+            reply_handler([])
+
+    proxy = _FakeProxy(list=_list_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'Advisories': 'list'}
+
+    c._run_dbus_async('Advisories', True, {
+        'availability': 'available',
+        'types': ['security'],
+    })
+
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == dnfd_client._DBUS_TIMEOUT_DEFAULT
+
+
+def test_run_dbus_sync_coerces_distrosync_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _method(specs, options, timeout=None):
+        captured['specs'] = specs
+        captured['options'] = options
+        captured['timeout'] = timeout
+        return True
+
+    proxy = _FakeProxy(distro_sync=_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'DistroSync': 'distro_sync'}
+
+    c._run_dbus_sync('DistroSync', ['nano'], {'repo_ids': ['updates']})
+
+    assert captured['specs'] == ['nano']
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == 600
+
+
+def test_run_dbus_async_coerces_distrosync_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _method(specs, options, reply_handler=None, error_handler=None, timeout=None):
+        captured['specs'] = specs
+        captured['options'] = options
+        captured['timeout'] = timeout
+        if reply_handler is not None:
+            reply_handler()
+
+    proxy = _FakeProxy(distro_sync=_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'DistroSync': 'distro_sync'}
+
+    c._run_dbus_async('DistroSync', False, ['nano'], {'repo_ids': ['updates']})
+
+    assert captured['specs'] == ['nano']
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == dnfd_client._DBUS_TIMEOUT_DEFAULT
+
+
+def test_run_dbus_sync_coerces_offlineclean_options_to_sv_map():
+    c = _make_client_stub()
+    captured = {}
+
+    def _method(options, timeout=None):
+        captured['options'] = options
+        captured['timeout'] = timeout
+        return (True, '')
+
+    proxy = _FakeProxy(clean=_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'OfflineClean': 'clean'}
+
+    c._run_dbus_sync('OfflineClean', {'interactive': False})
+
+    assert hasattr(captured['options'], 'signature')
+    assert captured['options'].signature == 'sv'
+    assert captured['timeout'] == 600
+
+
+def test_run_dbus_async_keeps_offline_finish_action_scalar():
+    c = _make_client_stub()
+    captured = {}
+
+    def _method(action, reply_handler=None, error_handler=None, timeout=None):
+        captured['action'] = action
+        captured['timeout'] = timeout
+        if reply_handler is not None:
+            reply_handler(True, '')
+
+    proxy = _FakeProxy(set_finish_action=_method)
+    c.Proxy = lambda _cmd: proxy
+    c.proxyMethod = {'OfflineSetFinishAction': 'set_finish_action'}
+
+    c._run_dbus_async('OfflineSetFinishAction', True, 'reboot')
+
+    assert captured['action'] == 'reboot'
+    assert captured['timeout'] == dnfd_client._DBUS_TIMEOUT_DEFAULT
+
+
 if __name__ == '__main__':
     tests = [
         test_proxy_routes_commands_to_expected_interfaces,
@@ -327,6 +589,21 @@ if __name__ == '__main__':
         test_async_guard_rejects_second_command_and_emits_event,
         test_get_result_getattribute_error_markers_and_success_path,
         test_handle_dbus_error_maps_known_errors_and_fallback,
+        test_get_object_proxy_uses_introspect_false,
+        test_get_object_proxy_fallback_when_introspect_kw_not_supported,
+        test_to_session_dbus_options_handles_empty_dict,
+        test_to_session_dbus_options_converts_scalar_values,
+        test_run_dbus_sync_coerces_getpackages_options_to_sv_map,
+        test_run_dbus_async_coerces_getpackages_options_to_sv_map,
+        test_coerce_dbus_args_handles_getpackages_fd_options,
+        test_wrap_unix_fd_uses_dbus_type_when_available,
+        test_coerce_dbus_args_keeps_typed_dbus_dictionary_unchanged,
+        test_run_dbus_sync_coerces_advisories_options_to_sv_map,
+        test_run_dbus_async_coerces_advisories_options_to_sv_map,
+        test_run_dbus_sync_coerces_distrosync_options_to_sv_map,
+        test_run_dbus_async_coerces_distrosync_options_to_sv_map,
+        test_run_dbus_sync_coerces_offlineclean_options_to_sv_map,
+        test_run_dbus_async_keeps_offline_finish_action_scalar,
     ]
 
     passed = 0

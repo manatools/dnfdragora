@@ -127,6 +127,26 @@ IFACE_OFFLINE = '{}.Offline'.format(DNFDAEMON_BUS_NAME)
 IFACE_ADVISORY = '{}.Advisory'.format(DNFDAEMON_BUS_NAME)
 IFACE_HISTORY = '{}.History'.format(DNFDAEMON_BUS_NAME)
 
+# Commands that receive one or more option maps typed as a{sv}.
+_SV_MAP_OPTION_COMMANDS = {
+    'GetPackages',
+    'GetPackages_fd',
+    'Search',
+    'GetAttribute',
+    'GetRepositories',
+    'SystemUpgrade',
+    'Advisories',
+    'Install',
+    'Remove',
+    'Update',
+    'Reinstall',
+    'Downgrade',
+    'DistroSync',
+    'BuildTransaction',
+    'RunTransaction',
+    'OfflineClean',
+}
+
 
 def unpack_dbus(data):
     ''' convert dbus data types to python native data types '''
@@ -263,40 +283,41 @@ class Client:
                 logger.warning(f"Open Dnf5Daemon session: {self.session_path} already opened")
             if session_options is None:
                 session_options = {}
+            session_options = self._to_session_dbus_options(session_options)
             self.iface_session = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, DNFDAEMON_OBJECT_PATH),
+                self._get_object_proxy(DNFDAEMON_OBJECT_PATH),
                 dbus_interface=IFACE_SESSION_MANAGER)
             self.session_path = self.iface_session.open_session(session_options)
             logger.debug(f"Open Dnf5Daemon session: {self.session_path}")
 
             self.iface_base = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_BASE)
             self.iface_repo = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_REPO)
             self.iface_repoconf = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_REPOCONF)
 
             self.iface_rpm = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_RPM)
 
             self.iface_goal = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_GOAL)
 
             self.iface_offline = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_OFFLINE)
 
             self.iface_advisory = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_ADVISORY)
 
             self.iface_history = dbus.Interface(
-                self.bus.get_object(DNFDAEMON_BUS_NAME, self.session_path),
+                self._get_object_proxy(self.session_path),
                 dbus_interface=IFACE_HISTORY)
 
             # Managing dnf5daemon signals
@@ -365,6 +386,94 @@ class Client:
         ### TODO check dnf5daemon errors and manage correctly        
         except Exception as err:
             self._handle_dbus_error(err)
+
+    def _get_object_proxy(self, object_path):
+        """Return a dbus-python ProxyObject with introspection disabled.
+
+        dnfdragora always calls known interfaces/method names, so runtime
+        introspection is unnecessary.  Disabling it avoids the async introspect
+        path that triggers a dbus-python 1.4.x crash regression on malformed or
+        unexpected replies.
+        """
+        try:
+            return self.bus.get_object(
+                DNFDAEMON_BUS_NAME,
+                object_path,
+                introspect=False,
+            )
+        except TypeError:
+            # Defensive fallback for very old dbus-python variants.
+            logger.warning(
+                "dbus get_object() does not accept introspect=False; "
+                "falling back to default behavior"
+            )
+            return self.bus.get_object(DNFDAEMON_BUS_NAME, object_path)
+
+    @staticmethod
+    def _to_session_dbus_options(options):
+        """Convert session options to a DBus a{sv} map.
+
+        With introspection disabled, dbus-python cannot infer the signature for
+        an empty dict argument.  Passing dbus.Dictionary(signature='sv') keeps
+        open_session({}) valid and avoids ValueError during startup.
+        """
+        return Client._to_dbus_sv_options(options)
+
+    @staticmethod
+    def _to_dbus_sv_options(options):
+        """Convert a Python dict into a DBus dictionary typed as a{sv}."""
+        if options is None:
+            options = {}
+        if not isinstance(options, dict):
+            return options
+
+        typed = {}
+        for key, value in options.items():
+            if isinstance(value, bool):
+                typed[key] = dbus.Boolean(value)
+            elif isinstance(value, int):
+                typed[key] = dbus.Int64(value)
+            elif isinstance(value, str):
+                typed[key] = dbus.String(value)
+            elif isinstance(value, list):
+                typed[key] = dbus.Array([dbus.String(str(v)) for v in value], signature='s')
+            else:
+                typed[key] = value
+
+        try:
+            return dbus.Dictionary(typed, signature='sv')
+        except TypeError:
+            logger.debug("dbus.Dictionary(signature='sv') unsupported; using plain dict")
+            return typed
+
+    def _coerce_dbus_args(self, cmd, args):
+        """Coerce known option-map arguments to a{sv} for D-Bus calls."""
+        if cmd not in _SV_MAP_OPTION_COMMANDS:
+            return args
+        converted = []
+        for value in args:
+            # Convert only plain Python dicts.  Already-typed DBus mappings
+            # (e.g. dbus.Dictionary from History helpers) must pass through
+            # unchanged to avoid bool/int type drift in variants.
+            if type(value) is dict:
+                converted.append(self._to_dbus_sv_options(value))
+            else:
+                converted.append(value)
+        return tuple(converted)
+
+    @staticmethod
+    def _wrap_unix_fd(fd):
+        """Wrap an integer file descriptor as DBus UnixFd when supported."""
+        unix_fd_cls = getattr(dbus, 'UnixFd', None)
+        if unix_fd_cls is None:
+            unix_fd_cls = getattr(getattr(dbus, 'types', None), 'UnixFd', None)
+        if unix_fd_cls is None:
+            return fd
+        try:
+            return unix_fd_cls(fd)
+        except Exception as err:
+            logger.debug("Failed to wrap fd as UnixFd (%s); using raw fd", err)
+            return fd
 
     def __del__(self):
         ''' destructor - closing session'''
@@ -555,6 +664,8 @@ class Client:
             self._data = {'cmd': cmd, 'return_value': return_value, 'args': args}
             data = self._data
 
+        dbus_args = self._coerce_dbus_args(cmd, args)
+
         # Resolve proxy and method
         proxy = self.Proxy(cmd)
         if proxy is None:
@@ -647,7 +758,8 @@ class Client:
                 #    error_handler uses _finish_with so the _done guard prevents
                 #    double delivery if the thread also fires later.
                 try:
-                    func(*args, pipe_w, reply_handler=lambda *_: None, error_handler=_finish_with, timeout=600)
+                    dbus_pipe_w = self._wrap_unix_fd(pipe_w)
+                    func(*dbus_args, dbus_pipe_w, reply_handler=lambda *_: None, error_handler=_finish_with, timeout=600)
                 except Exception as e:
                     # func() raised before even queuing the call: close both ends and return.
                     # Thread not started yet, so no double delivery.
@@ -702,7 +814,7 @@ class Client:
                             self._sent = False
 
                 try:
-                    func(*args, reply_handler=on_success, error_handler=on_error, timeout=timeout)
+                    func(*dbus_args, reply_handler=on_success, error_handler=on_error, timeout=timeout)
                 except Exception as e:
                     self._return_handler(e, data)
                     return
@@ -717,7 +829,7 @@ class Client:
                     self._sent = False
 
             try:
-                func(*args, reply_handler=on_success_novalue, error_handler=on_error, timeout=timeout)
+                func(*dbus_args, reply_handler=on_success_novalue, error_handler=on_error, timeout=timeout)
             except Exception as e:
                 # Route via _return_handler so _sent is cleared and UI handles error
                 self._return_handler(e, data)
@@ -726,6 +838,7 @@ class Client:
     def _run_dbus_sync(self, cmd, *args):
         '''Make a sync call to a DBus method in the dnf5daemon service'''
         logger.debug("_run_dbus_sync %s - args: (%s)", cmd, repr(args) if args else "")
+        dbus_args = self._coerce_dbus_args(cmd, args)
         proxy = self.Proxy(cmd)
         if proxy is None:
             raise DaemonError(f"No proxy available for command {cmd}")
@@ -740,7 +853,8 @@ class Client:
             try:
                 method = getattr(proxy, method_name)
                 # call with write-end; daemon writes JSON stream
-                method(*args, pipe_w, timeout=600)
+                dbus_pipe_w = self._wrap_unix_fd(pipe_w)
+                method(*dbus_args, dbus_pipe_w, timeout=600)
                 # close local write-end so reader can receive HUP when daemon closes
                 try:
                     os.close(pipe_w)
@@ -794,7 +908,7 @@ class Client:
                     pass
         else:
             method = getattr(proxy, method_name)
-            return method(*args, timeout=600)
+            return method(*dbus_args, timeout=600)
 
     def waitForLastAsyncRequestTermination(self):
       '''
