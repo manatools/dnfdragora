@@ -160,6 +160,7 @@ Keywords=package;program;software;apps;applications;store;repository;add;install
 Keywords[ca]=paquet;programa;programari;aplicacions;emmagatzematge;repositori;afegir;instal·lar;desinstal·lar;eliminar;suprimir;actualitzar;millorar;
 Keywords[cs]=package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;
 Keywords[de]=paket;programm;software;apps;anwendungen;store;repository;hinzufügen;installieren;deinstallieren;entfernen;löschen;aktualisieren;upgrade;
+Keywords[es]=paquete;programa;software;apps;applicaciones;almacenamiento;repositorioy;agregar;instalarl;desinstalar;eliminar;borrar;actualizar;mejora;
 Keywords[fr]=paquet;paquetage;programme;application;magasin;dépôt;installer;ajouter;désinstaller;effacer;mettre à jour;mettre à niveau;
 Keywords[nb]=package;program;software;apps;applications;store;repository;add;install;uninstall;remove;delete;update;upgrade;
 Keywords[nl]=pakket;programma;software;apps;applicaties;opslaan;pakketdepot;toevoegen;installeren;de-installeren;verwijderen;wissen;herziening;opwaardering;
