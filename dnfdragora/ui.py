@@ -1967,12 +1967,19 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
             self.dialog.setEnabled(False)
         except Exception:
             pass
-        dlg = dialogs.SearchDialog(self)
-        dlg.run()
+        dlg = None
         try:
-            self.dialog.setEnabled(True)
+          dlg = dialogs.SearchDialog(self)
+          dlg.run()
         except Exception:
-            pass
+          logger.exception("Search dialog failed")
+        finally:
+          # Always restore the main window sensitivity, even when the popup
+          # aborts due to backend/ESC edge-cases.
+          self.dialog.setEnabled(True)
+
+        if dlg is None:
+          return rebuild_package_list, request_exit
         if dlg.action == 'search':
           self._search_nevra      = dlg.search_nevra
           self._search_provides   = dlg.search_provides
