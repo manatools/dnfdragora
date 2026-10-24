@@ -2381,6 +2381,38 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         else:
             logger.warning("Transaction complete event received, but transaction dialog is not open")
 
+    def _handle_run_transaction_abort(self, error):
+      '''Handle RunTransaction failure while transaction dialog is active.'''
+      err_text = str(error) if error is not None else _('Unknown transaction error')
+      logger.error('RunTransaction aborted: %s', err_text)
+
+      self._offline_finish_action_pending = None
+      self._offline_finish_action_retries = 0
+      self._offline_transaction_running = False
+      self._offline_transaction_prepared = False
+      self._transaction_noreply_warned = False
+
+      if self._trans_dialog is not None:
+        # Keep the log dialog open and let user close it gracefully.
+        self._trans_dialog.on_error(_('Transaction aborted: %(err)s') % {'err': err_text})
+        self._trans_dialog.mark_complete(False)
+        self._status = DNFDragoraStatus.RUN_TRANSACTION
+        return
+
+      title = _('Error in status %(status)s on %(event)s') % {
+        'status': self._status,
+        'event': 'RunTransaction',
+      }
+      common.warningMsgBox({'title': title, 'size': (400, 200), 'text': err_text, 'richtext': True})
+      try:
+        self.backend.reloadDaemon()
+      except Exception as reload_err:
+        logger.error('reloadDaemon failed during transaction-abort recovery: %s', reload_err)
+      self.backend.clear_cache(also_groups=True)
+      self.packageQueue.clear()
+      self._status = DNFDragoraStatus.STARTUP
+      self._enableAction(False)
+
     def _try_finalize_offline_finish_action(self):
       '''
       Apply pending offline finish action when the async RunTransaction command
@@ -3212,6 +3244,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           if is_dict:
             if 'error' in info.keys() and 'result' in info.keys():
               if info['error']:
+                if event == 'RunTransaction' and (self._status == DNFDragoraStatus.RUN_TRANSACTION or self._trans_dialog is not None):
+                  self._handle_run_transaction_abort(info['error'])
+                  continue
                 #got an Exception into trhead loop
                 logger.error("Event received %s, %s - status %s", event, info['error'], self._status)
                 title = _("Error in status %(status)s on %(event)s")%({'status':self._status, 'event':(event if event else "---")})
