@@ -21,6 +21,13 @@ jobs:
       - name: Refresh dnf metadata (Mageia only)
         if: startsWith(matrix.container, 'docker.io/library/mageia:')
         run: |
+          # Remove failing repository
+          rm -f /etc/yum.repos.d/mageia-x86_64.repo
+          
+          # Force configure cauldron
+          dnf config-manager --add-repo https://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release/cauldron-x86_64.repo
+          
+          # Refresh cache
           dnf clean all
           dnf --refresh -y makecache
       - run: dnf --assumeyes install
