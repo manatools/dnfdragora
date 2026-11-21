@@ -1,5 +1,6 @@
 2026-XX-YY v. 2.99.6
 --------------------
+- dnfdragora and dnfdragora-updater can run external application for updates as plugins see docs/plugins.md
 - dnfdragora: handled transaction errors gracefully to allow proper application exit
 - dnfdragora-updater: added left mouse button click to run updates in the case updates are available
 - Fixed issue #275: Clean feedback after update
