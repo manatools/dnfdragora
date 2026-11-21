@@ -13,6 +13,7 @@ Former author:  Björn Esser <besser82@fedoraproject.org>
 '''
 
 import gettext, sched, signal, sys, threading, time, os
+from typing import Optional
 
 from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon, QMessageBox
 from PySide6.QtGui     import QIcon
@@ -128,12 +129,13 @@ class Updater:
         self._tray_menu.addAction(_('Open dnfdragora dialog'), self.__run_dnfdragora)
         self._tray_menu.addAction(_('Check for updates'),      self.__check_updates)
         
-        # Plugin menu (Extra) - will be populated dynamically
+        # Plugin menu (Extra) - populated dynamically before Exit.
         self._plugin_menu = None
         self._plugin_menu_actions = {}
+        self._plugin_menu_top_separator = None
+        self._plugin_menu_bottom_separator = None
+        self._tray_exit_action = self._tray_menu.addAction(_('Exit'), self.__shutdown)
         
-        self._tray_menu.addSeparator()
-        self._tray_menu.addAction(_('Exit'),                   self.__shutdown)
         self._tray_menu.aboutToShow.connect(self.__on_tray_menu_about_to_show)
         self._tray.setContextMenu(self._tray_menu)
         self._tray.activated.connect(self.__on_tray_activated)
@@ -566,36 +568,102 @@ class Updater:
         QTimer.singleShot(0, self.__run_update)
 
     def __populate_plugin_menu(self):
-        """Populate the Extra menu with available plugins that have updater modules."""
-        # Clear existing plugin menu actions
-        if self._plugin_menu is None:
-            self._plugin_menu = self._tray_menu.addMenu(_('Extra plugins'))
+        """
+        Populate the Extra menu with available plugins that have updater modules.
         
-        self._plugin_menu.clear()
+        The menu is positioned BEFORE the Exit action with a separator.
+        Menu structure:
+            Update
+            Open dnfdragora dialog
+            Check for updates
+            ───────────────── (separator)
+            [Extra plugins submenu]  (only if plugins exist)
+            ───────────────── (separator)
+            Exit
+        """
+        # Remove old plugin menu and separators if they exist
+        if self._plugin_menu is not None:
+            self._tray_menu.removeAction(self._plugin_menu.menuAction())
+            self._plugin_menu = None
+
+        if self._plugin_menu_top_separator is not None:
+            self._tray_menu.removeAction(self._plugin_menu_top_separator)
+            self._plugin_menu_top_separator = None
+
+        if self._plugin_menu_bottom_separator is not None:
+            self._tray_menu.removeAction(self._plugin_menu_bottom_separator)
+            self._plugin_menu_bottom_separator = None
+
         self._plugin_menu_actions.clear()
         
         try:
             self.__plugin_loader.discover_plugins()
             updater_plugins = self.__plugin_loader.get_plugins_for_updater()
             
-            if not updater_plugins:
-                action = self._plugin_menu.addAction(_('No plugins available'))
-                action.setEnabled(False)
-                return
-            
-            for plugin in updater_plugins:
-                action = self._plugin_menu.addAction(plugin.name)
-                self._plugin_menu_actions[action] = plugin
-                action.triggered.connect(lambda checked=False, p=plugin: self.__run_plugin_dialog(p))
+            # Only create menu if we have plugins
+            if updater_plugins:
+                # Create submenu with icon support
+                self._plugin_menu = QMenu(_('Extra plugins'), self._tray_menu)
                 
-                # Add update count info if available
-                update_count = self.__plugin_updates.get(plugin.name, 0)
-                if update_count > 0:
-                    action.setText(f"{plugin.name} ({update_count} update{'s' if update_count != 1 else ''})")
+                # Add plugins to submenu with icons if available
+                for plugin in updater_plugins:
+                    # Try to load plugin icon from theme
+                    icon = None
+                    if plugin.icon_name:
+                        icon = self.__load_plugin_icon(plugin.icon_name)
+                    
+                    # Create action with optional icon
+                    if icon:
+                        action = self._plugin_menu.addAction(icon, plugin.name)
+                    else:
+                        action = self._plugin_menu.addAction(plugin.name)
+                    
+                    self._plugin_menu_actions[action] = plugin
+                    action.triggered.connect(lambda checked=False, p=plugin: self.__run_plugin_dialog(p))
+                    
+                    # Add update count info if available
+                    update_count = self.__plugin_updates.get(plugin.name, 0)
+                    if update_count > 0:
+                        action.setText(f"{plugin.name} ({update_count} update{'s' if update_count != 1 else ''})")
+                
+                if self._tray_exit_action is not None:
+                    # Keep plugin group visually isolated and always before Exit:
+                    # [... Check updates] [sep] [Extra plugins] [sep] [Exit]
+                    self._plugin_menu_top_separator = self._tray_menu.insertSeparator(self._tray_exit_action)
+                    self._tray_menu.insertMenu(self._tray_exit_action, self._plugin_menu)
+                    self._plugin_menu_bottom_separator = self._tray_menu.insertSeparator(self._tray_exit_action)
+                else:
+                    # Fallback should never happen, but keep behavior safe.
+                    self._tray_menu.addSeparator()
+                    self._tray_menu.addMenu(self._plugin_menu)
+                    self._tray_menu.addSeparator()
+                    self._tray_exit_action = self._tray_menu.addAction(_('Exit'), self.__shutdown)
+                    
         except Exception as e:
             logger.error(f"Error populating plugin menu: {e}", exc_info=True)
-            action = self._plugin_menu.addAction(_('Error loading plugins'))
-            action.setEnabled(False)
+
+    def __load_plugin_icon(self, icon_name: str) -> Optional[QIcon]:
+        """
+        Attempt to load a plugin icon from the system theme.
+        
+        Args:
+            icon_name: Icon name (e.g., 'manapak')
+            
+        Returns:
+            QIcon if found in theme, None otherwise
+        """
+        try:
+            from PySide6.QtGui import QIcon
+            if QIcon.hasThemeIcon(icon_name):
+                icon = QIcon.fromTheme(icon_name)
+                if not icon.isNull():
+                    logger.debug(f"Loaded plugin icon from theme: {icon_name}")
+                    return icon
+            logger.debug(f"Plugin icon not found in theme: {icon_name}")
+            return None
+        except Exception as e:
+            logger.debug(f"Failed to load plugin icon {icon_name}: {e}")
+            return None
 
     def __run_plugin_dialog(self, plugin):
         """Launch a plugin dialog from the updater tray menu."""
