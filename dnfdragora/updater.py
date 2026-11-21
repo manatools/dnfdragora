@@ -804,9 +804,6 @@ class Updater:
             logger.warning("Cannot run dnfdragora: tray icon is not visible")
             return
 
-        #---if self.__hide_menu:
-        #---    self.__set_tray_visible(False, 'dialog opening, hide_menu')
-
         # ── Step 1: pause the update loop ─────────────────────────────────────
         # Give the update loop up to 1 s to finish its current iteration and
         # notice __dialog_open = True.  processEvents keeps the tray responsive.
