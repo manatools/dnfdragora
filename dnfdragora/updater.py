@@ -925,8 +925,10 @@ class Updater:
 
     def __check_updates(self):
         logger.debug("Start checking for updates, by menu command")
-        if self.__hide_menu:
-            self.__set_tray_visible(False, 'check_updates, hide_menu')
+        # Do not hide tray here.  On some desktop environments hiding the tray
+        # icon from within the tray-menu action callback can terminate the app.
+        # hide_update_menu is applied only when a check result confirms no
+        # updates (see __handle_check_result / __on_no_updates flow).
         if self.__dialog_open:
             logger.info("Check for updates requested while dialog is open; "
                         "will check automatically after the dialog closes")
@@ -1146,11 +1148,29 @@ class Updater:
         signal.signal(signal.SIGINT, self.__on_signal)
         signal.signal(signal.SIGTERM, self.__on_signal)
 
-        try:
-            rc = self._app.exec()
-        except KeyboardInterrupt:
-            logger.info("KeyboardInterrupt in Qt main loop")
-            self.__request_shutdown('keyboard interrupt in main loop')
-            rc = 130
+        rc = 0
+        while True:
+            try:
+                rc = self._app.exec()
+            except KeyboardInterrupt:
+                logger.info("KeyboardInterrupt in Qt main loop")
+                self.__request_shutdown('keyboard interrupt in main loop')
+                rc = 130
+
+            # Normal shutdown path:
+            # - __shutdown() sets __running=False
+            # - __request_shutdown() sets __shutdown_requested=True
+            if self.__shutdown_requested or not self.__running:
+                break
+
+            # Some desktop tray implementations can terminate the Qt event
+            # loop when the tray icon is hidden and no windows are visible.
+            # Keep updater alive and continue background scheduling.
+            tray_visible = self._tray.isVisible() if self._tray is not None else False
+            logger.warning(
+                "Qt main loop exited unexpectedly (rc=%s, hide_menu=%s, tray_visible=%s); restarting",
+                rc, self.__hide_menu, tray_visible
+            )
+            time.sleep(0.2)
         sys.exit(rc)
 
