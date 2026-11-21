@@ -23,11 +23,17 @@ jobs:
         run: |
           # Remove failing repository
           rm -f /etc/yum.repos.d/mageia-x86_64.repo
-          
-          # Force configure cauldron
-          dnf config-manager --add-repo https://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release/cauldron-x86_64.repo
-          
-          # Refresh cache
+
+          # Add epository manually (config manager plugin is not present)
+          cat <<EOF > /etc/yum.repos.d/cauldron.repo
+          [cauldron]
+          name=Mageia Cauldron
+          baseurl=https://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release/
+          enabled=1
+          gpgcheck=1
+          gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
+          EOF
+
           dnf clean all
           dnf --refresh -y makecache
       - run: dnf --assumeyes install
