@@ -765,8 +765,10 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                     'menu_name': mItem,
                 }
                 for plugin in self._plugins:
+                    # Use plugin icon if available, otherwise no icon
+                    icon_name = plugin.icon_name if plugin.icon_name else ""
                     self.pluginMenu[plugin.name] = self.menubar.addItem(
-                        mItem, plugin.name
+                        mItem, plugin.name, icon_name
                     )
                     self._plugin_menu_items[self.pluginMenu[plugin.name]] = plugin
             else:

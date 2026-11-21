@@ -32,6 +32,7 @@ class Plugin:
         module_name: Fully qualified Python module name
         dialog_class_name: Name of the dialog class to instantiate
         updater_module_name: Optional module with get_update_count() function
+        icon_name: Optional icon name from theme (e.g. 'manapak')
         config_path: Path to the plugin configuration file
         module: Loaded Python module (None if not yet loaded)
         dialog_class: Loaded dialog class (None if not yet loaded)
@@ -40,6 +41,7 @@ class Plugin:
     module_name: str
     dialog_class_name: str
     updater_module_name: Optional[str]
+    icon_name: Optional[str]
     config_path: Path
     module: Optional[Any] = None
     dialog_class: Optional[Any] = None
@@ -149,6 +151,7 @@ class PluginLoader:
 
         Optional keys:
             - updater_module: Module with get_update_count() function
+            - icon: Icon name from the system theme
 
         Args:
             config_path: Path to the configuration file
@@ -183,6 +186,7 @@ class PluginLoader:
                 module_name=section['module'].strip(),
                 dialog_class_name=section['dialog_class'].strip(),
                 updater_module_name=section.get('updater_module', '').strip() or None,
+                icon_name=section.get('icon', '').strip() or None,
                 config_path=config_path
             )
             return plugin

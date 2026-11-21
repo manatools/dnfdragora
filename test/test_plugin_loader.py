@@ -239,6 +239,7 @@ class TestPluginLoading:
                 module_name="test.module",
                 dialog_class_name="TestDialog",
                 updater_module_name=None,
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -259,6 +260,7 @@ class TestPluginLoading:
                 module_name="nonexistent.module",
                 dialog_class_name="TestDialog",
                 updater_module_name=None,
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -279,6 +281,7 @@ class TestPluginLoading:
                 module_name="test.module",
                 dialog_class_name="TestDialog",
                 updater_module_name=None,
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -305,6 +308,7 @@ class TestPluginLoading:
                 module_name="test.module",
                 dialog_class_name="TestDialog",
                 updater_module_name=None,
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -326,6 +330,7 @@ class TestPluginLoading:
                 module_name="test.module",
                 dialog_class_name="NonexistentDialog",
                 updater_module_name=None,
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -345,6 +350,7 @@ class TestUpdaterIntegration:
             module_name="plugin1",
             dialog_class_name="Dialog1",
             updater_module_name="updater1",
+                icon_name=None,
             config_path=Path("/fake/1")
         )
         p2 = Plugin(
@@ -352,6 +358,7 @@ class TestUpdaterIntegration:
             module_name="plugin2",
             dialog_class_name="Dialog2",
             updater_module_name=None,
+                icon_name=None,
             config_path=Path("/fake/2")
         )
         loader._plugins = [p1, p2]
@@ -370,6 +377,7 @@ class TestUpdaterIntegration:
             module_name="plugin1",
             dialog_class_name="Dialog1",
             updater_module_name="updater1",
+                icon_name=None,
             config_path=Path("/fake/1")
         )
         p2 = Plugin(
@@ -377,6 +385,7 @@ class TestUpdaterIntegration:
             module_name="plugin2",
             dialog_class_name="Dialog2",
             updater_module_name=None,
+                icon_name=None,
             config_path=Path("/fake/2")
         )
         loader._plugins = [p1, p2]
@@ -400,6 +409,7 @@ class TestUpdaterIntegration:
                 module_name="test.module",
                 dialog_class_name="TestDialog",
                 updater_module_name="test.updater",
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -428,6 +438,7 @@ class TestUpdaterIntegration:
                 module_name="test.module",
                 dialog_class_name="TestDialog",
                 updater_module_name="test.updater",
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -451,6 +462,7 @@ class TestUpdaterIntegration:
                 module_name="test.module",
                 dialog_class_name="TestDialog",
                 updater_module_name="test.updater",
+                icon_name=None,
                 config_path=Path("/fake/path")
             )
 
@@ -466,6 +478,7 @@ class TestUpdaterIntegration:
             module_name="plugin1",
             dialog_class_name="Dialog1",
             updater_module_name="updater1",
+                icon_name=None,
             config_path=Path("/fake/1")
         )
         p2 = Plugin(
@@ -473,6 +486,7 @@ class TestUpdaterIntegration:
             module_name="plugin2",
             dialog_class_name="Dialog2",
             updater_module_name="updater2",
+                icon_name=None,
             config_path=Path("/fake/2")
         )
 
@@ -493,6 +507,82 @@ class TestUpdaterIntegration:
             assert updates == {"Plugin1": 3, "Plugin2": 7}
 
 
+class TestIconSupport:
+    """Test icon name parsing and support."""
+
+    def test_parse_plugin_config_with_icon(self):
+        """Test parsing plugin config with icon field."""
+        loader = PluginLoader()
+
+        config_content = """[plugin]
+name = PluginWithIcon
+module = icon_plugin.plugin
+dialog_class = IconPluginDialog
+icon = icon_name_from_theme
+"""
+        with tempfile.NamedTemporaryFile(
+            mode='w', suffix='.plugin', delete=False, encoding='utf-8'
+        ) as f:
+            f.write(config_content)
+            config_path = Path(f.name)
+
+        try:
+            plugin = loader._parse_plugin_config(config_path)
+            assert plugin is not None
+            assert plugin.icon_name == "icon_name_from_theme"
+        finally:
+            os.unlink(config_path)
+
+    def test_parse_plugin_config_without_icon(self):
+        """Test that icon field is optional and defaults to None."""
+        loader = PluginLoader()
+
+        config_content = """[plugin]
+name = PluginWithoutIcon
+module = no_icon_plugin.plugin
+dialog_class = NoIconPluginDialog
+"""
+        with tempfile.NamedTemporaryFile(
+            mode='w', suffix='.plugin', delete=False, encoding='utf-8'
+        ) as f:
+            f.write(config_content)
+            config_path = Path(f.name)
+
+        try:
+            plugin = loader._parse_plugin_config(config_path)
+            assert plugin is not None
+            assert plugin.icon_name is None
+        finally:
+            os.unlink(config_path)
+
+    def test_plugin_icon_name_attribute(self):
+        """Test that Plugin dataclass has icon_name attribute."""
+        plugin = Plugin(
+            name="TestPlugin",
+            module_name="test.plugin",
+            dialog_class_name="TestDialog",
+            updater_module_name=None,
+            icon_name="test_icon",
+            config_path=Path("/fake/path")
+        )
+        
+        assert hasattr(plugin, 'icon_name')
+        assert plugin.icon_name == "test_icon"
+
+    def test_plugin_icon_name_optional(self):
+        """Test that Plugin can be created without icon_name (None)."""
+        plugin = Plugin(
+            name="TestPlugin",
+            module_name="test.plugin",
+            dialog_class_name="TestDialog",
+            updater_module_name=None,
+            icon_name=None,
+            config_path=Path("/fake/path")
+        )
+        
+        assert plugin.icon_name is None
+
+
 class TestPluginReset:
     """Test plugin loader reset functionality."""
 
@@ -505,6 +595,7 @@ class TestPluginReset:
             module_name="plugin1",
             dialog_class_name="Dialog1",
             updater_module_name=None,
+                icon_name=None,
             config_path=Path("/fake/1")
         )
         loader._plugins = [p1]
