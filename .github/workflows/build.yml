@@ -21,21 +21,8 @@ jobs:
       - name: Refresh dnf metadata (Mageia only)
         if: startsWith(matrix.container, 'docker.io/library/mageia:')
         run: |
-          # Remove failing repository
-          rm -f /etc/yum.repos.d/mageia-x86_64.repo
-
-          # Add epository manually (config manager plugin is not present)
-          cat <<EOF > /etc/yum.repos.d/cauldron.repo
-          [cauldron]
-          name=Mageia Cauldron
-          baseurl=https://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release/
-          enabled=1
-          gpgcheck=1
-          gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
-          EOF
-
           dnf clean all
-          dnf --refresh -y makecache
+          #dnf --refresh -y makecache
       - run: dnf --assumeyes install
               --refresh
               /usr/bin/cmake
