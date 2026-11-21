@@ -489,6 +489,11 @@ class Updater:
                     7000,
                 )
             self._tray.setToolTip('dnfdragora-updater')
+            # Apply hide_menu setting only when there are NO updates
+            if self.__hide_menu:
+                self.__set_tray_visible(False, 'no updates, hide_menu')
+            else:
+                self.__set_tray_visible(True, 'no updates, always-visible')
 
         self.__getUpdatesRequested = False
 
@@ -519,13 +524,8 @@ class Updater:
                            "[gen=%d, current_gen=%d]", gen, self.__check_gen)
             return
         logger.debug("Backend event: no_updates (gen=%s, current_gen=%d)", gen, self.__check_gen)
-        # Delegates to unified handler which checks plugin updates
+        # Delegates to unified handler which checks plugin updates AND handles hide_menu
         self.__handle_check_result(0, gen)
-        self.__getUpdatesRequested = False
-        if self.__hide_menu:
-            self.__set_tray_visible(False, 'no updates, hide_menu')
-        else:
-            self.__set_tray_visible(True, 'no updates, always-visible')
 
     def __on_check_failed(self, error):
         logger.error("GetPackages error: %s", error)

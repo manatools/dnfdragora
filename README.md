@@ -96,7 +96,7 @@ The Matrix room is also bridged to the IRC channel `#manatools` on Libera Chat. 
 
 If you have any issues or ideas add or comment an [issue](https://github.com/manatools/dnfdragora/issues).
 
-Check also into our [TODO](TODO.md) file.
+To develop a dnfdragora and dnfdragora-updater plugin see [plugins.md](docs/plugins.md)
 
 ## LICENSE AND COPYRIGHT
 

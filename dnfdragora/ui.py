@@ -39,6 +39,7 @@ import dnfdragora.progress_ui as progress_ui
 import dnfdragora.dialogs as dialogs
 import dnfdragora.misc as misc
 import dnfdragora.helpinfo as helpinfo
+import dnfdragora.plugin_loader as plugin_loader
 
 import dnfdragora.config
 from dnfdragora import const
@@ -212,6 +213,11 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         # Track caching requests to avoid race conditions
         self._caching_filter_pending = None  # Which filter (installed, updates, available) is currently being requested
         self._caching_sequence = []          # Expected sequence of caching operations
+
+        # Initialize plugin loader
+        self._plugin_loader = plugin_loader.PluginLoader()
+        self._plugins = []
+        self._plugin_menu_items = {}
 
         self.packageActionValue = const.Actions.NORMAL
         # TODO... _package_name, _gpg_confirm imported from old event management
@@ -750,6 +756,21 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
                 'menu_name'  : mItem,
                 'user_prefs' : self.menubar.addItem(mItem, _("User preferences")),
             }
+
+            # Load and build Plugins menu if any plugins are available
+            self._load_plugins()
+            if self._plugins:
+                mItem = self.menubar.addMenu(_("E&xtra"))
+                self.pluginMenu = {
+                    'menu_name': mItem,
+                }
+                for plugin in self._plugins:
+                    self.pluginMenu[plugin.name] = self.menubar.addItem(
+                        mItem, plugin.name
+                    )
+                    self._plugin_menu_items[self.pluginMenu[plugin.name]] = plugin
+            else:
+                self.pluginMenu = {}
 
             # build Help menu
             mItem = self.menubar.addMenu(_("&Help"))
@@ -1811,6 +1832,87 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
         return 20
       return 200
 
+    def _load_plugins(self):
+      """
+      Load available plugins from the system.
+
+      Discovers and loads plugins using the PluginLoader. Errors during
+      plugin loading are caught and logged to prevent application crash.
+      """
+      try:
+        logger.debug("Loading plugins...")
+        self._plugins = self._plugin_loader.discover_plugins()
+        logger.info(f"Loaded {len(self._plugins)} plugins")
+      except Exception as e:
+        logger.error(f"Error loading plugins: {e}", exc_info=True)
+        self._plugins = []
+
+    def _run_plugin_dialog(self, plugin):
+      """
+      Instantiate and run a plugin's dialog.
+
+      Args:
+          plugin: The Plugin object to run
+
+      Returns:
+          True if the dialog ran successfully, False otherwise
+      """
+      try:
+        dialog_class = self._plugin_loader.get_plugin_dialog_class(plugin)
+        if not dialog_class:
+          logger.error(f"Failed to get dialog class for plugin {plugin.name}")
+          common.errorMsgBox({
+              'title': _("Plugin Error"),
+              'text': _("Failed to load plugin {0}").format(plugin.name),
+              'richtext': True
+          })
+          return False
+
+        logger.debug(f"Instantiating dialog for plugin {plugin.name}")
+        dialog = dialog_class()
+
+        # Disable main dialog while plugin dialog runs
+        try:
+          self.dialog.setEnabled(False)
+        except Exception:
+          pass
+
+        try:
+          if hasattr(dialog, 'run'):
+            dialog.run()
+          else:
+            logger.error(
+                f"Plugin {plugin.name} dialog does not have run() method"
+            )
+            common.errorMsgBox({
+                'title': _("Plugin Error"),
+                'text': _("Plugin {0} dialog missing run() method").format(
+                    plugin.name
+                ),
+                'richtext': True
+            })
+            return False
+        finally:
+          # Restore main dialog
+          try:
+            self.dialog.setEnabled(True)
+          except Exception:
+            pass
+
+        logger.info(f"Successfully ran plugin {plugin.name}")
+        return True
+
+      except Exception as e:
+        logger.error(f"Error running plugin {plugin.name}: {e}", exc_info=True)
+        common.errorMsgBox({
+            'title': _("Plugin Error"),
+            'text': _("Error running plugin {0}: {1}").format(
+                plugin.name, str(e)
+            ),
+            'richtext': True
+        })
+        return False
+
     def _handle_menu_event(self, event):
       """Handle AUI menu events and return (rebuild_package_list, request_exit)."""
       rebuild_package_list = False
@@ -1892,6 +1994,9 @@ class mainGui(dnfdragora.basedragora.BaseDragora):
           hd.run()
         elif item == self.helpMenu['about']:
           common.AboutDialog(dialog_mode=common.AboutDialogMode.TABBED, size=(320, 240))
+        elif item in self._plugin_menu_items:
+          plugin = self._plugin_menu_items[item]
+          self._run_plugin_dialog(plugin)
       else:
         # AUI menu events expose id() directly on the event for rich text links.
         url = getattr(event, 'id', lambda: None)()
