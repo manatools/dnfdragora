@@ -18,7 +18,7 @@ from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon, QMessageBox
 from PySide6.QtGui     import QIcon
 from PySide6.QtCore    import QCoreApplication, QEventLoop, QTimer
 
-from dnfdragora import config, misc, ui, dnfd_client
+from dnfdragora import config, misc, ui, dnfd_client, plugin_loader
 
 from queue import Queue, Empty
 
@@ -85,6 +85,8 @@ class Updater:
         self.__log_directory  = None
         self.__level_debug    = False
         self.__hide_menu      = True
+        self.__plugin_loader  = plugin_loader.PluginLoader()
+        self.__plugin_updates = {}  # Cache for plugin update counts
 
         if self.__config.userPreferences:
             if 'settings' in self.__config.userPreferences.keys():
@@ -125,6 +127,11 @@ class Updater:
         self._tray_menu.addAction(_('Update'),                 self.__run_update)
         self._tray_menu.addAction(_('Open dnfdragora dialog'), self.__run_dnfdragora)
         self._tray_menu.addAction(_('Check for updates'),      self.__check_updates)
+        
+        # Plugin menu (Extra) - will be populated dynamically
+        self._plugin_menu = None
+        self._plugin_menu_actions = {}
+        
         self._tray_menu.addSeparator()
         self._tray_menu.addAction(_('Exit'),                   self.__shutdown)
         self._tray_menu.aboutToShow.connect(self.__on_tray_menu_about_to_show)
@@ -382,23 +389,128 @@ class Updater:
         logger.info("Received signal %s", sig_name)
         self.__request_shutdown('signal %s' % sig_name)
 
-    def __on_updates_found(self, n, gen=None):
-        logger.info("updates_found: %d update(s) [gen=%s current_gen=%d]",
-                    n, gen, self.__check_gen)
-        self.__has_updates = True
-        if QSystemTrayIcon.supportsMessages():
-            self._tray.showMessage(
-                'dnfdragora-update',
-                _('%d updates available.') % n,
-                QSystemTrayIcon.MessageIcon.Information,
-                7000,
+    def __refresh_plugin_updates(self):
+        """
+        Query all available plugins for update counts.
+
+        Update counts are cached and queried in background threads with timeout
+        to prevent blocking the main event loop.
+        """
+        try:
+            self.__plugin_loader.discover_plugins()
+            self.__plugin_updates = self.__plugin_loader.get_total_plugin_updates(
+                timeout_sec=5.0
             )
-        self.__set_tray_icon('system-software-update', 'updates found')
-        self.__set_tray_visible(True, 'updates found')
-        self._tray.setToolTip(_('%s - %d updates available.') % ('dnfdragora-updater', n))
+            logger.debug(f"Plugin updates: {self.__plugin_updates}")
+        except Exception as e:
+            logger.error(f"Error refreshing plugin updates: {e}", exc_info=True)
+            self.__plugin_updates = {}
+
+    def __get_total_update_count(self):
+        """
+        Calculate total update count: DNF updates + plugin updates.
+
+        Returns:
+            Tuple of (total_count, dnf_count, plugin_counts_dict)
+        """
+        dnf_count = max(0, self.__update_count)  # -1 becomes 0
+        plugin_total = sum(self.__plugin_updates.values())
+        total_count = dnf_count + plugin_total
+        return total_count, dnf_count, self.__plugin_updates
+
+    def __handle_check_result(self, dnf_update_count, gen=None):
+        """
+        Handle the result of an update check: DNF + plugin updates.
+
+        This method is called after each update check (regardless of whether
+        DNF has updates or not) to aggregate updates from both DNF and all
+        plugin sources.
+
+        Args:
+            dnf_update_count: Number of DNF package updates available
+            gen: Generation number for stale result detection
+
+        Behavior:
+        - Always refreshes plugin updates (critical fix!)
+        - If DNF updates OR plugin updates exist: shows "updates found"
+        - If neither exist: shows "no updates"
+        """
+        # CRITICAL: Always refresh plugin updates, even if DNF count is 0
+        # This ensures plugin updates are detected independently of DNF updates
+        self.__refresh_plugin_updates()
+
+        total_count, dnf_count, plugin_counts = self.__get_total_update_count()
+        plugin_total = sum(plugin_counts.values())
+
+        logger.info("check_result: %d DNF update(s), %d plugin update(s), "
+                    "total: %d [gen=%s current_gen=%d]",
+                    dnf_count, plugin_total, total_count,
+                    gen, self.__check_gen)
+
+        # Determine if we have any updates (DNF or plugin)
+        has_any_updates = total_count > 0
+
+        if has_any_updates:
+            self.__has_updates = True
+            # Build detailed update message
+            message_parts = []
+            if dnf_count > 0:
+                message_parts.append(_('%d DNF update(s)') % dnf_count)
+            for plugin_name, count in plugin_counts.items():
+                if count > 0:
+                    message_parts.append(_('%d %s update(s)') % (count, plugin_name))
+
+            if message_parts:
+                message = ', '.join(message_parts)
+            else:
+                message = _('%d updates available') % total_count
+
+            if QSystemTrayIcon.supportsMessages():
+                self._tray.showMessage(
+                    'dnfdragora-update',
+                    message,
+                    QSystemTrayIcon.MessageIcon.Information,
+                    7000,
+                )
+            self.__set_tray_icon('system-software-update', 'updates found')
+            self.__set_tray_visible(True, 'updates found')
+            self._tray.setToolTip(_('%s - %d updates available.') % (
+                'dnfdragora-updater', total_count
+            ))
+        else:
+            # No updates from any source (DNF or plugins)
+            self.__has_updates = False
+            self.__set_tray_icon('dnfdragora', 'no updates')
+            if self.__getUpdatesRequested and QSystemTrayIcon.supportsMessages():
+                self._tray.showMessage(
+                    'dnfdragora-update',
+                    _('No updates available'),
+                    QSystemTrayIcon.MessageIcon.Information,
+                    7000,
+                )
+            self._tray.setToolTip('dnfdragora-updater')
+
         self.__getUpdatesRequested = False
 
+    def __on_updates_found(self, n, gen=None):
+        """
+        Backend callback: DNF package updates found.
+
+        Delegates to unified handler which also checks plugin updates.
+        """
+        logger.debug("Backend event: updates_found (n=%d, gen=%s)", n, gen)
+        self.__handle_check_result(n, gen)
+
     def __on_no_updates(self, gen=None):
+        """
+        Backend callback: No DNF package updates found.
+
+        CRITICAL FIX: Discard stale results, then check plugin updates anyway!
+        Even if DNF has no updates, plugins might have updates.
+
+        Args:
+            gen: Generation number for stale result detection
+        """
         # Discard stale results: if a newer check has already been initiated
         # (check_gen advanced), this result is from a previous cycle and must
         # not reset the update icon.
@@ -406,20 +518,9 @@ class Updater:
             logger.warning("Ignoring stale no_updates result "
                            "[gen=%d, current_gen=%d]", gen, self.__check_gen)
             return
-        logger.info("no_updates [gen=%s current_gen=%d "
-                    "was_updates=%s requested=%s]",
-                    gen, self.__check_gen,
-                    self.__has_updates, self.__getUpdatesRequested)
-        self.__has_updates = False
-        self.__set_tray_icon('dnfdragora', 'no updates')
-        if self.__getUpdatesRequested and QSystemTrayIcon.supportsMessages():
-            self._tray.showMessage(
-                'dnfdragora-update',
-                _('No updates available'),
-                QSystemTrayIcon.MessageIcon.Information,
-                7000,
-            )
-        self._tray.setToolTip('dnfdragora-updater')
+        logger.debug("Backend event: no_updates (gen=%s, current_gen=%d)", gen, self.__check_gen)
+        # Delegates to unified handler which checks plugin updates
+        self.__handle_check_result(0, gen)
         self.__getUpdatesRequested = False
         if self.__hide_menu:
             self.__set_tray_visible(False, 'no updates, hide_menu')
@@ -430,12 +531,15 @@ class Updater:
         logger.error("GetPackages error: %s", error)
 
     def __on_tray_menu_about_to_show(self):
-        '''Suppress one delayed context-menu popup after a left-click launch.
-
+        '''Update plugin menu before showing the tray context menu.
+        
+        Suppress one delayed context-menu popup after a left-click launch.
         Some tray implementations can deliver a late context-menu popup even
         when the action was initiated via left-click (Trigger). When that
         happens while opening the update dialog, hide this menu once.
         '''
+        self.__populate_plugin_menu()
+        
         if not self.__suppress_context_menu_once:
             return
         self.__suppress_context_menu_once = False
@@ -460,6 +564,64 @@ class Updater:
         # Guard against a delayed context-menu popup generated by tray hosts.
         self.__suppress_context_menu_once = True
         QTimer.singleShot(0, self.__run_update)
+
+    def __populate_plugin_menu(self):
+        """Populate the Extra menu with available plugins that have updater modules."""
+        # Clear existing plugin menu actions
+        if self._plugin_menu is None:
+            self._plugin_menu = self._tray_menu.addMenu(_('Extra plugins'))
+        
+        self._plugin_menu.clear()
+        self._plugin_menu_actions.clear()
+        
+        try:
+            self.__plugin_loader.discover_plugins()
+            updater_plugins = self.__plugin_loader.get_plugins_for_updater()
+            
+            if not updater_plugins:
+                action = self._plugin_menu.addAction(_('No plugins available'))
+                action.setEnabled(False)
+                return
+            
+            for plugin in updater_plugins:
+                action = self._plugin_menu.addAction(plugin.name)
+                self._plugin_menu_actions[action] = plugin
+                action.triggered.connect(lambda checked=False, p=plugin: self.__run_plugin_dialog(p))
+                
+                # Add update count info if available
+                update_count = self.__plugin_updates.get(plugin.name, 0)
+                if update_count > 0:
+                    action.setText(f"{plugin.name} ({update_count} update{'s' if update_count != 1 else ''})")
+        except Exception as e:
+            logger.error(f"Error populating plugin menu: {e}", exc_info=True)
+            action = self._plugin_menu.addAction(_('Error loading plugins'))
+            action.setEnabled(False)
+
+    def __run_plugin_dialog(self, plugin):
+        """Launch a plugin dialog from the updater tray menu."""
+        try:
+            logger.info(f"Running plugin dialog: {plugin.name}")
+            # Import the dialog class and instantiate it
+            dialog_class = self.__plugin_loader.get_plugin_dialog_class(plugin)
+            if dialog_class is None:
+                logger.error(f"Could not load dialog class for plugin {plugin.name}")
+                return
+            
+            # Instantiate and run the dialog
+            dialog = dialog_class()
+            dialog.run()
+            
+            # Refresh updates after plugin runs (might have made changes)
+            QTimer.singleShot(1000, lambda: self.__get_updates())
+        except Exception as e:
+            logger.error(f"Error running plugin dialog {plugin.name}: {e}", exc_info=True)
+            if QSystemTrayIcon.supportsMessages():
+                self._tray.showMessage(
+                    'dnfdragora-update',
+                    _('Error running plugin: %s') % plugin.name,
+                    QSystemTrayIcon.MessageIcon.Warning,
+                    7000,
+                )
 
     # ── Lifecycle ─────────────────────────────────────────────────────────────
 
