@@ -13,6 +13,7 @@ Former author:  Björn Esser <besser82@fedoraproject.org>
 '''
 
 import gettext, sched, signal, sys, threading, time, os
+from dataclasses import dataclass
 from typing import Optional
 
 from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon, QMessageBox
@@ -27,8 +28,18 @@ import logging
 logger = logging.getLogger('dnfdragora.updater')
 
 
+@dataclass
+class UpdateProviderState:
+    provider_id: str
+    display_name: str
+    include_in_extra_menu: bool
+    icon_name: Optional[str] = None
+    plugin: Optional[object] = None
+
+
 class Updater:
     '''Updater class for managing system tray updates in dnfdragora.'''
+    DNF_PROVIDER_ID = "__dnf_internal__"
 
     '''Reschedule interval in seconds, 
        after a conclusion of an operation, such as running dindfdragora or dnfddragora update.'''
@@ -89,6 +100,10 @@ class Updater:
         self.__plugin_loader  = plugin_loader.PluginLoader()
         self.__plugin_updates = {}  # Cache for plugin update counts
         self.__plugin_updates_lock = threading.Lock()
+        self.__update_provider_states = {}
+        self.__update_provider_counts = {}
+        self.__update_provider_lock = threading.Lock()
+        self.__dnf_provider_enabled = options.get('enable-dnf-provider', True)
 
         if self.__config.userPreferences:
             if 'settings' in self.__config.userPreferences.keys():
@@ -154,17 +169,21 @@ class Updater:
         self._poll_timer.start()
 
         # ── D-Bus backend ─────────────────────────────────────────────────────
-        try:
-            self.__backend = dnfd_client.Client()
-        except Exception as e:
-            logger.error('Error connecting to dnfdaemon service: [%s]' % str(e))
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Icon.Critical)
-            msg.setText(_("Error connecting to dnfdaemon service.\nPlease check that dnfdaemon is installed and running and try again."))
-            msg.setInformativeText(str(e))
-            msg.setWindowTitle(_("dnfdragora-updater failure"))
-            msg.exec()
-            return
+        if self.__dnf_provider_enabled:
+            try:
+                self.__backend = dnfd_client.Client()
+            except Exception as e:
+                logger.error('Error connecting to dnfdaemon service: [%s]' % str(e))
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Icon.Critical)
+                msg.setText(_("Error connecting to dnfdaemon service.\nPlease check that dnfdaemon is installed and running and try again."))
+                msg.setInformativeText(str(e))
+                msg.setWindowTitle(_("dnfdragora-updater failure"))
+                msg.exec()
+                return
+        else:
+            self.__backend = None
+            logger.info("DNF update provider disabled; updater will use external providers only")
 
         # ── Update-loop thread ────────────────────────────────────────────────
         self.__running   = True
@@ -392,25 +411,61 @@ class Updater:
         logger.info("Received signal %s", sig_name)
         self.__request_shutdown('signal %s' % sig_name)
 
-    def __refresh_plugin_updates(self):
+    def __refresh_update_providers(self, dnf_count=None):
         """
-        Query all available plugins for update counts.
+        Refresh all update providers (internal + external) in background phase.
 
-        Update counts are cached and queried in background threads with timeout
-        to prevent blocking the main event loop.
+        DNF is represented as a special internal provider. External plugins
+        are represented as regular providers that can appear in the "Extra"
+        menu. The menu consumes only cached provider state.
         """
+        provider_states = {}
+        provider_counts = {}
+        plugin_updates = {}
+
+        if self.__dnf_provider_enabled and dnf_count is not None:
+            try:
+                normalized_dnf_count = max(0, int(dnf_count))
+            except (TypeError, ValueError):
+                normalized_dnf_count = 0
+            provider_states[self.DNF_PROVIDER_ID] = UpdateProviderState(
+                provider_id=self.DNF_PROVIDER_ID,
+                display_name='dnf',
+                include_in_extra_menu=False,
+                icon_name='dnfdragora',
+            )
+            provider_counts[self.DNF_PROVIDER_ID] = normalized_dnf_count
+
         try:
             self.__plugin_loader.discover_plugins()
+            updater_plugins = self.__plugin_loader.get_plugins_for_updater()
             plugin_updates = self.__plugin_loader.get_total_plugin_updates(
                 timeout_sec=5.0
             )
-            with self.__plugin_updates_lock:
-                self.__plugin_updates = plugin_updates
-            logger.debug(f"Plugin updates: {plugin_updates}")
+            for plugin in updater_plugins:
+                provider_id = f"plugin::{plugin.name}"
+                provider_states[provider_id] = UpdateProviderState(
+                    provider_id=provider_id,
+                    display_name=plugin.name,
+                    include_in_extra_menu=True,
+                    icon_name=plugin.icon_name,
+                    plugin=plugin,
+                )
+                plugin_count = plugin_updates.get(plugin.name, 0)
+                provider_counts[provider_id] = max(0, int(plugin_count))
+            logger.debug("Update provider cache refreshed: %s", provider_counts)
         except Exception as e:
-            logger.error(f"Error refreshing plugin updates: {e}", exc_info=True)
-            with self.__plugin_updates_lock:
-                self.__plugin_updates = {}
+            logger.error(f"Error refreshing update providers: {e}", exc_info=True)
+
+        with self.__plugin_updates_lock:
+            self.__plugin_updates = dict(plugin_updates)
+        with self.__update_provider_lock:
+            self.__update_provider_states = provider_states
+            self.__update_provider_counts = provider_counts
+
+    def __get_update_providers_snapshot(self):
+        with self.__update_provider_lock:
+            return dict(self.__update_provider_states), dict(self.__update_provider_counts)
 
     def __get_plugin_updates_snapshot(self):
         with self.__plugin_updates_lock:
@@ -423,11 +478,14 @@ class Updater:
         Returns:
             Tuple of (total_count, dnf_count, plugin_counts_dict)
         """
-        dnf_count = max(0, self.__update_count)  # -1 becomes 0
-        plugin_updates = self.__get_plugin_updates_snapshot()
-        plugin_total = sum(plugin_updates.values())
-        total_count = dnf_count + plugin_total
-        return total_count, dnf_count, plugin_updates
+        provider_states, provider_counts = self.__get_update_providers_snapshot()
+        dnf_count = provider_counts.get(self.DNF_PROVIDER_ID, 0)
+        plugin_counts = {}
+        for provider_id, state in provider_states.items():
+            if state.include_in_extra_menu:
+                plugin_counts[state.display_name] = provider_counts.get(provider_id, 0)
+        total_count = sum(provider_counts.values())
+        return total_count, dnf_count, plugin_counts
 
     def __handle_check_result(self, dnf_update_count, gen=None):
         """
@@ -442,7 +500,7 @@ class Updater:
             gen: Generation number for stale result detection
 
         Behavior:
-        - Uses plugin update cache refreshed by background update-check phase
+        - Uses provider cache refreshed by background update-check phase
         - If DNF updates OR plugin updates exist: shows "updates found"
         - If neither exist: shows "no updates"
         """
@@ -455,6 +513,16 @@ class Updater:
             logger.warning("Invalid dnf_update_count=%r, forcing to 0",
                            dnf_update_count)
             self.__update_count = 0
+        if self.__dnf_provider_enabled:
+            with self.__update_provider_lock:
+                if self.DNF_PROVIDER_ID not in self.__update_provider_states:
+                    self.__update_provider_states[self.DNF_PROVIDER_ID] = UpdateProviderState(
+                        provider_id=self.DNF_PROVIDER_ID,
+                        display_name='dnf',
+                        include_in_extra_menu=False,
+                        icon_name='dnfdragora',
+                    )
+                self.__update_provider_counts[self.DNF_PROVIDER_ID] = self.__update_count
 
         total_count, dnf_count, plugin_counts = self.__get_total_update_count()
         plugin_total = sum(plugin_counts.values())
@@ -614,35 +682,39 @@ class Updater:
         self._plugin_menu_actions.clear()
         
         try:
-            self.__plugin_loader.discover_plugins()
-            updater_plugins = self.__plugin_loader.get_plugins_for_updater()
+            provider_states, provider_counts = self.__get_update_providers_snapshot()
+            extra_providers = [
+                (provider_id, state)
+                for provider_id, state in provider_states.items()
+                if state.include_in_extra_menu and state.plugin is not None
+            ]
             
             # Only create menu if we have plugins
-            if updater_plugins:
+            if extra_providers:
                 # Create submenu with icon support
                 self._plugin_menu = QMenu(_('Extra plugins'), self._tray_menu)
-                plugin_updates = self.__get_plugin_updates_snapshot()
                 
                 # Add plugins to submenu with icons if available
-                for plugin in updater_plugins:
+                for provider_id, state in extra_providers:
+                    plugin = state.plugin
                     # Try to load plugin icon from theme
                     icon = None
-                    if plugin.icon_name:
-                        icon = self.__load_plugin_icon(plugin.icon_name)
+                    if state.icon_name:
+                        icon = self.__load_plugin_icon(state.icon_name)
                     
                     # Create action with optional icon
                     if icon:
-                        action = self._plugin_menu.addAction(icon, plugin.name)
+                        action = self._plugin_menu.addAction(icon, state.display_name)
                     else:
-                        action = self._plugin_menu.addAction(plugin.name)
+                        action = self._plugin_menu.addAction(state.display_name)
                     
                     self._plugin_menu_actions[action] = plugin
                     action.triggered.connect(lambda checked=False, p=plugin: self.__run_plugin_dialog(p))
                     
                     # Add update count info if available
-                    update_count = plugin_updates.get(plugin.name, 0)
+                    update_count = provider_counts.get(provider_id, 0)
                     if update_count > 0:
-                        action.setText(f"{plugin.name} ({update_count} update{'s' if update_count != 1 else ''})")
+                        action.setText(f"{state.display_name} ({update_count} update{'s' if update_count != 1 else ''})")
                 
                 if self._tray_exit_action is not None:
                     # Keep plugin group visually isolated and always before Exit:
@@ -737,6 +809,9 @@ class Updater:
 
     def __reopen_backend(self):
         '''Try to reopen the D-Bus backend session up to 3 times.'''
+        if not self.__backend:
+            logger.debug("Backend reopen skipped: no backend client available")
+            return not self.__dnf_provider_enabled
         for attempt in range(1, 4):
             try:
                 self.__backend.reloadDaemon()
@@ -1014,10 +1089,10 @@ class Updater:
         return False
 
     def __get_updates(self, *kwargs):
-        session_path = self.__backend.session_path if self.__backend else None
-        if self.__dialog_open or session_path is None:
+        if self.__dialog_open:
             logger.info("Skipping update check: dialog_open=%s session=%s",
-                        self.__dialog_open, session_path)
+                        self.__dialog_open,
+                        self.__backend.session_path if self.__backend else None)
             return
 
         self.__reset_repo_metadata_tracking()
@@ -1026,8 +1101,30 @@ class Updater:
         # ('no_updates', gen) messages so the main thread can detect and
         # discard results that belong to an older check cycle.
         self.__check_gen += 1
+        gen = self.__check_gen
+        if not self.__dnf_provider_enabled:
+            logger.debug("Starting provider-only update check (gen=%d)", gen)
+            self.__refresh_update_providers(dnf_count=None)
+            total_count, _, _ = self.__get_total_update_count()
+            if total_count > 0:
+                self._gui_queue.put(('updates_found', total_count, gen))
+            else:
+                self._gui_queue.put(('no_updates', gen))
+            return
+
+        session_path = self.__backend.session_path if self.__backend else None
+        if session_path is None:
+            logger.warning("Skipping DNF update fetch: backend session is unavailable")
+            self.__refresh_update_providers(dnf_count=0)
+            total_count, _, _ = self.__get_total_update_count()
+            if total_count > 0:
+                self._gui_queue.put(('updates_found', total_count, gen))
+            else:
+                self._gui_queue.put(('no_updates', gen))
+            return
+
         logger.debug("Starting update check (gen=%d session=%s)",
-                     self.__check_gen, session_path)
+                     gen, session_path)
 
         # Discard any stale events left over from a previous (possibly
         # cancelled) check.  Without this flush, the loop might read an old
@@ -1042,10 +1139,6 @@ class Updater:
         if stale:
             logger.debug("Discarded %d stale backend event(s) before fetching updates",
                          stale)
-
-        # Refresh plugin update cache in the same background check phase used
-        # for dnf updates so UI rendering never triggers blocking plugin checks.
-        self.__refresh_plugin_updates()
 
         logger.debug("Start getting updates (session=%s)", session_path)
         options = {
@@ -1088,6 +1181,18 @@ class Updater:
 
             update_next     = self.__updateInterval
             add_to_schedule = False
+
+            # Provider-only mode (DNF provider disabled) or temporarily
+            # unavailable backend: no DNF event queue to drain here.
+            if (not self.__dnf_provider_enabled) or self.__backend is None:
+                if self.__scheduler.empty():
+                    self.__scheduler.enter(update_next * 60, 1, self.__get_updates)
+                    logger.info("Scheduled check for updates in %d minutes",
+                                update_next)
+                self.__scheduler.run(blocking=False)
+                time.sleep(0.5)
+                continue
+
             try:
                 counter   = 0
                 count_max = 1000
@@ -1116,6 +1221,7 @@ class Updater:
                         if not info['error']:
                             po_list = info['result']
                             self.__update_count = len(po_list)
+                            self.__refresh_update_providers(self.__update_count)
                             if self.__update_count >= 1:
                                 # Post to main thread via GUI queue
                                 self._gui_queue.put(('updates_found',
@@ -1123,6 +1229,7 @@ class Updater:
                             else:
                                 self._gui_queue.put(('no_updates', gen))
                         else:
+                            self.__refresh_update_providers(0)
                             self._gui_queue.put(('check_failed',
                                                  str(info['error'])))
                         add_to_schedule = True
