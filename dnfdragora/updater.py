@@ -437,6 +437,16 @@ class Updater:
         - If DNF updates OR plugin updates exist: shows "updates found"
         - If neither exist: shows "no updates"
         """
+        # Keep the DNF count tied to the callback payload that triggered this
+        # GUI update. Relying on shared mutable state can race with newer
+        # background checks and lead to inconsistent tray notifications.
+        try:
+            self.__update_count = max(0, int(dnf_update_count))
+        except (TypeError, ValueError):
+            logger.warning("Invalid dnf_update_count=%r, forcing to 0",
+                           dnf_update_count)
+            self.__update_count = 0
+
         # CRITICAL: Always refresh plugin updates, even if DNF count is 0
         # This ensures plugin updates are detected independently of DNF updates
         self.__refresh_plugin_updates()
@@ -467,15 +477,17 @@ class Updater:
             else:
                 message = _('%d updates available') % total_count
 
+            self.__set_tray_icon('system-software-update', 'updates found')
+            self.__set_tray_visible(True, 'updates found')
             if QSystemTrayIcon.supportsMessages():
+                # Some tray implementations can drop notifications when they are
+                # emitted before the tray icon is visible. Ensure visibility first.
                 self._tray.showMessage(
                     'dnfdragora-update',
                     message,
                     QSystemTrayIcon.MessageIcon.Information,
                     7000,
                 )
-            self.__set_tray_icon('system-software-update', 'updates found')
-            self.__set_tray_visible(True, 'updates found')
             self._tray.setToolTip(_('%s - %d updates available.') % (
                 'dnfdragora-updater', total_count
             ))
