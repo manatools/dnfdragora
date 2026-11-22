@@ -144,12 +144,11 @@ class Updater:
         self._tray_update_action = None
         self._tray_open_action = None
         if self.__dnf_provider_enabled:
-            self._tray_update_action = self._tray_menu.addAction(
-                _('Update'), self.__run_update
-            )
+            self._tray_update_action = self._tray_menu.addAction(_('Update'), self.__run_update)
             self._tray_open_action = self._tray_menu.addAction(
                 _('Open dnfdragora dialog'), self.__run_dnfdragora
             )
+            self.__refresh_dnf_action_presentation()
         self._tray_menu.addAction(_('Check for updates'),      self.__check_updates)
         
         # Plugin menu (Extra) - populated dynamically before Exit.
@@ -478,6 +477,28 @@ class Updater:
         with self.__plugin_updates_lock:
             return dict(self.__plugin_updates)
 
+    @staticmethod
+    def __format_provider_count_label(provider_name, count):
+        return f"{provider_name} ({count})"
+
+    def __refresh_dnf_action_presentation(self):
+        if not self.__dnf_provider_enabled or self._tray_update_action is None:
+            return
+
+        provider_states, provider_counts = self.__get_update_providers_snapshot()
+        dnf_state = provider_states.get(self.DNF_PROVIDER_ID)
+        dnf_count = provider_counts.get(self.DNF_PROVIDER_ID, 0)
+        if dnf_count > 0 and dnf_state is not None:
+            label = self.__format_provider_count_label(_('Update'), dnf_count)
+        else:
+            label = _('Update')
+        self._tray_update_action.setText(label)
+
+        icon = self.__load_qicon('dnfdragora')
+        self._tray_update_action.setIcon(icon)
+        if self._tray_open_action is not None:
+            self._tray_open_action.setIcon(icon)
+
     def __get_total_update_count(self):
         """
         Calculate total update count: DNF updates + plugin updates.
@@ -533,6 +554,7 @@ class Updater:
 
         total_count, dnf_count, plugin_counts = self.__get_total_update_count()
         plugin_total = sum(plugin_counts.values())
+        self.__refresh_dnf_action_presentation()
 
         logger.info("check_result: %d DNF update(s), %d plugin update(s), "
                     "total: %d [gen=%s current_gen=%d]",
@@ -547,10 +569,10 @@ class Updater:
             # Build detailed update message
             message_parts = []
             if dnf_count > 0:
-                message_parts.append(_('%d DNF update(s)') % dnf_count)
+                message_parts.append(self.__format_provider_count_label('dnf', dnf_count))
             for plugin_name, count in plugin_counts.items():
                 if count > 0:
-                    message_parts.append(_('%d %s update(s)') % (count, plugin_name))
+                    message_parts.append(self.__format_provider_count_label(plugin_name, count))
 
             if message_parts:
                 message = ', '.join(message_parts)
@@ -633,6 +655,7 @@ class Updater:
         happens while opening the update dialog, hide this menu once.
         '''
         self.__populate_plugin_menu()
+        self.__refresh_dnf_action_presentation()
         
         if not self.__suppress_context_menu_once:
             return
@@ -725,7 +748,7 @@ class Updater:
                     # Add update count info if available
                     update_count = provider_counts.get(provider_id, 0)
                     if update_count > 0:
-                        action.setText(f"{state.display_name} ({update_count} update{'s' if update_count != 1 else ''})")
+                        action.setText(self.__format_provider_count_label(state.display_name, update_count))
                 
                 if self._tray_exit_action is not None:
                     # Keep plugin group visually isolated and always before Exit:
