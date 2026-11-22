@@ -11,6 +11,7 @@ Author: Copilot
 import pytest
 import tempfile
 import os
+import time
 from pathlib import Path
 from unittest.mock import patch, MagicMock, mock_open
 import logging
@@ -737,6 +738,81 @@ class TestUpdaterIntegration:
 
             updates = loader.get_total_plugin_updates()
             assert updates == {"Plugin1": 3, "Plugin2": 7}
+
+    def test_get_total_plugin_updates_runs_in_parallel(self):
+        """Test that plugin update checks execute concurrently."""
+        loader = PluginLoader()
+        loader._plugins = [
+            Plugin(
+                name="Plugin1",
+                module_name="plugin1",
+                dialog_class_name="Dialog1",
+                updater_module_name="updater1",
+                icon_name=None,
+                config_path=Path("/fake/1")
+            ),
+            Plugin(
+                name="Plugin2",
+                module_name="plugin2",
+                dialog_class_name="Dialog2",
+                updater_module_name="updater2",
+                icon_name=None,
+                config_path=Path("/fake/2")
+            ),
+        ]
+
+        def fake_get_updater_function(plugin, _timeout_sec):
+            def update_count():
+                time.sleep(0.30)
+                return 1 if plugin.name == "Plugin1" else 2
+            return update_count
+
+        start = time.monotonic()
+        with patch.object(loader, 'get_updater_function', side_effect=fake_get_updater_function):
+            updates = loader.get_total_plugin_updates(timeout_sec=0.5)
+        elapsed = time.monotonic() - start
+
+        assert updates == {"Plugin1": 1, "Plugin2": 2}
+        # Sequential execution would be around 0.60s; concurrent must stay below that.
+        assert elapsed < 0.50
+
+    def test_get_total_plugin_updates_slow_and_failing_plugin(self):
+        """Test slow and failing plugins do not block each other."""
+        loader = PluginLoader()
+        loader._plugins = [
+            Plugin(
+                name="SlowPlugin",
+                module_name="slow.plugin",
+                dialog_class_name="SlowDialog",
+                updater_module_name="slow.updater",
+                icon_name=None,
+                config_path=Path("/fake/1")
+            ),
+            Plugin(
+                name="FailPlugin",
+                module_name="fail.plugin",
+                dialog_class_name="FailDialog",
+                updater_module_name="fail.updater",
+                icon_name=None,
+                config_path=Path("/fake/2")
+            ),
+        ]
+
+        def fake_get_updater_function(plugin, _timeout_sec):
+            if plugin.name == "SlowPlugin":
+                return lambda: (time.sleep(0.30), 4)[1]
+
+            def failing():
+                raise RuntimeError("boom")
+            return failing
+
+        start = time.monotonic()
+        with patch.object(loader, 'get_updater_function', side_effect=fake_get_updater_function):
+            updates = loader.get_total_plugin_updates(timeout_sec=0.5)
+        elapsed = time.monotonic() - start
+
+        assert updates == {"SlowPlugin": 4, "FailPlugin": 0}
+        assert elapsed < 0.50
 
 
 class TestIconSupport:

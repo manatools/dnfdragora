@@ -88,6 +88,7 @@ class Updater:
         self.__hide_menu      = True
         self.__plugin_loader  = plugin_loader.PluginLoader()
         self.__plugin_updates = {}  # Cache for plugin update counts
+        self.__plugin_updates_lock = threading.Lock()
 
         if self.__config.userPreferences:
             if 'settings' in self.__config.userPreferences.keys():
@@ -400,13 +401,20 @@ class Updater:
         """
         try:
             self.__plugin_loader.discover_plugins()
-            self.__plugin_updates = self.__plugin_loader.get_total_plugin_updates(
+            plugin_updates = self.__plugin_loader.get_total_plugin_updates(
                 timeout_sec=5.0
             )
-            logger.debug(f"Plugin updates: {self.__plugin_updates}")
+            with self.__plugin_updates_lock:
+                self.__plugin_updates = plugin_updates
+            logger.debug(f"Plugin updates: {plugin_updates}")
         except Exception as e:
             logger.error(f"Error refreshing plugin updates: {e}", exc_info=True)
-            self.__plugin_updates = {}
+            with self.__plugin_updates_lock:
+                self.__plugin_updates = {}
+
+    def __get_plugin_updates_snapshot(self):
+        with self.__plugin_updates_lock:
+            return dict(self.__plugin_updates)
 
     def __get_total_update_count(self):
         """
@@ -416,9 +424,10 @@ class Updater:
             Tuple of (total_count, dnf_count, plugin_counts_dict)
         """
         dnf_count = max(0, self.__update_count)  # -1 becomes 0
-        plugin_total = sum(self.__plugin_updates.values())
+        plugin_updates = self.__get_plugin_updates_snapshot()
+        plugin_total = sum(plugin_updates.values())
         total_count = dnf_count + plugin_total
-        return total_count, dnf_count, self.__plugin_updates
+        return total_count, dnf_count, plugin_updates
 
     def __handle_check_result(self, dnf_update_count, gen=None):
         """
@@ -433,7 +442,7 @@ class Updater:
             gen: Generation number for stale result detection
 
         Behavior:
-        - Always refreshes plugin updates (critical fix!)
+        - Uses plugin update cache refreshed by background update-check phase
         - If DNF updates OR plugin updates exist: shows "updates found"
         - If neither exist: shows "no updates"
         """
@@ -446,10 +455,6 @@ class Updater:
             logger.warning("Invalid dnf_update_count=%r, forcing to 0",
                            dnf_update_count)
             self.__update_count = 0
-
-        # CRITICAL: Always refresh plugin updates, even if DNF count is 0
-        # This ensures plugin updates are detected independently of DNF updates
-        self.__refresh_plugin_updates()
 
         total_count, dnf_count, plugin_counts = self.__get_total_update_count()
         plugin_total = sum(plugin_counts.values())
@@ -616,6 +621,7 @@ class Updater:
             if updater_plugins:
                 # Create submenu with icon support
                 self._plugin_menu = QMenu(_('Extra plugins'), self._tray_menu)
+                plugin_updates = self.__get_plugin_updates_snapshot()
                 
                 # Add plugins to submenu with icons if available
                 for plugin in updater_plugins:
@@ -634,7 +640,7 @@ class Updater:
                     action.triggered.connect(lambda checked=False, p=plugin: self.__run_plugin_dialog(p))
                     
                     # Add update count info if available
-                    update_count = self.__plugin_updates.get(plugin.name, 0)
+                    update_count = plugin_updates.get(plugin.name, 0)
                     if update_count > 0:
                         action.setText(f"{plugin.name} ({update_count} update{'s' if update_count != 1 else ''})")
                 
@@ -1036,6 +1042,10 @@ class Updater:
         if stale:
             logger.debug("Discarded %d stale backend event(s) before fetching updates",
                          stale)
+
+        # Refresh plugin update cache in the same background check phase used
+        # for dnf updates so UI rendering never triggers blocking plugin checks.
+        self.__refresh_plugin_updates()
 
         logger.debug("Start getting updates (session=%s)", session_path)
         options = {

@@ -15,6 +15,7 @@ import logging
 import importlib
 import configparser
 import inspect
+import threading
 from dataclasses import dataclass
 from typing import List, Dict, Optional, Any
 from pathlib import Path
@@ -525,20 +526,43 @@ class PluginLoader:
             plugins that have an updater_module.
         """
         updates = {}
+        updates_lock = threading.Lock()
+        workers = []
+
+        def collect_update_count(plugin: Plugin, updater_func):
+            try:
+                count = updater_func()
+                with updates_lock:
+                    updates[plugin.name] = count
+                logger.debug(f"Plugin {plugin.name}: {count} updates")
+            except Exception as e:
+                logger.error(
+                    f"Failed to get updates from plugin {plugin.name}: {e}",
+                    exc_info=True
+                )
+                with updates_lock:
+                    updates[plugin.name] = 0
 
         for plugin in self.get_plugins_for_updater():
             func = self.get_updater_function(plugin, timeout_sec)
-            if func:
-                try:
-                    count = func()
-                    updates[plugin.name] = count
-                    logger.debug(f"Plugin {plugin.name}: {count} updates")
-                except Exception as e:
-                    logger.error(
-                        f"Failed to get updates from plugin {plugin.name}: {e}",
-                        exc_info=True
-                    )
-                    updates[plugin.name] = 0
+            if not func:
+                continue
+            worker = threading.Thread(
+                target=collect_update_count,
+                args=(plugin, func),
+                daemon=True
+            )
+            workers.append(worker)
+            worker.start()
+
+        for worker in workers:
+            worker.join(timeout=timeout_sec + 0.5)
+            if worker.is_alive():
+                logger.warning(
+                    "Plugin update collector worker exceeded timeout budget "
+                    "(timeout=%ss)",
+                    timeout_sec
+                )
 
         return updates
 
