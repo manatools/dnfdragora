@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 16:50+0200\n"
+"POT-Creation-Date: 2026-11-22 19:18+0100\n"
 "PO-Revision-Date: 2017-01-09 12:17+0000\n"
 "Last-Translator: Tinde (Joke), 2026\n"
 "Language-Team: Finnish (https://app.transifex.com/MageiaLinux/teams/9361/"
@@ -168,7 +168,7 @@ msgid "Content"
 msgstr "Sisältö"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:2279
-#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:608 dnfdragora/ui.py:623
+#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:614 dnfdragora/ui.py:629
 msgid "All"
 msgstr "Kaikki"
 
@@ -388,7 +388,7 @@ msgid "  Contains package:"
 msgstr ""
 
 #: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:590
-#: dnfdragora/dialogs.py:1309 dnfdragora/dialogs.py:1365 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:1309 dnfdragora/dialogs.py:1365 dnfdragora/ui.py:595
 msgid "Name"
 msgstr "Nimi"
 
@@ -396,7 +396,7 @@ msgstr "Nimi"
 msgid "EVR"
 msgstr ""
 
-#: dnfdragora/dialogs.py:137 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:137 dnfdragora/ui.py:595
 msgid "Arch"
 msgstr "Arkkitehtuuri"
 
@@ -408,7 +408,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: dnfdragora/dialogs.py:140 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:140 dnfdragora/ui.py:595
 msgid "Summary"
 msgstr "Yhteenveto"
 
@@ -432,7 +432,7 @@ msgstr "&Sulje"
 msgid "Error: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:799
+#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:822
 msgid "installed"
 msgstr "asennettu"
 
@@ -473,7 +473,7 @@ msgstr ""
 msgid "reinstall"
 msgstr ""
 
-#: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:741
+#: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:747
 msgid "Advisory information"
 msgstr ""
 
@@ -526,11 +526,11 @@ msgid "Advisory ID"
 msgstr ""
 
 #: dnfdragora/dialogs.py:478 dnfdragora/dialogs.py:592
-#: dnfdragora/dialogs.py:1310 dnfdragora/ui.py:1367
+#: dnfdragora/dialogs.py:1310 dnfdragora/ui.py:1390
 msgid "Type"
 msgstr "Tyyppi"
 
-#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:593 dnfdragora/ui.py:1367
+#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:593 dnfdragora/ui.py:1390
 msgid "Severity"
 msgstr "Vakavuusaste"
 
@@ -555,7 +555,7 @@ msgstr ""
 msgid "No advisory selected"
 msgstr ""
 
-#: dnfdragora/dialogs.py:594 dnfdragora/ui.py:597
+#: dnfdragora/dialogs.py:594 dnfdragora/ui.py:603
 msgid "Status"
 msgstr "Tila"
 
@@ -605,7 +605,7 @@ msgstr ""
 #: dnfdragora/dialogs.py:869 dnfdragora/dialogs.py:882
 #: dnfdragora/dialogs.py:889 dnfdragora/dialogs.py:897
 #: dnfdragora/dialogs.py:911 dnfdragora/dialogs.py:918
-#: dnfdragora/dialogs.py:926 dnfdragora/ui.py:745
+#: dnfdragora/dialogs.py:926 dnfdragora/ui.py:751
 msgid "Offline transactions"
 msgstr ""
 
@@ -737,7 +737,7 @@ msgstr ""
 msgid "Failed to clean offline transaction data: %s"
 msgstr ""
 
-#: dnfdragora/dialogs.py:947 dnfdragora/ui.py:744 dnfdragora/ui.py:2117
+#: dnfdragora/dialogs.py:947 dnfdragora/ui.py:750 dnfdragora/ui.py:2231
 msgid "System upgrade"
 msgstr ""
 
@@ -923,7 +923,7 @@ msgstr "Distro-tunnisteet"
 msgid "Updated"
 msgstr "Päivitetty"
 
-#: dnfdragora/dialogs.py:1336 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:1336 dnfdragora/ui.py:595
 msgid "Size"
 msgstr "Koko"
 
@@ -963,7 +963,7 @@ msgstr "Id"
 msgid "Information"
 msgstr "Tietoja"
 
-#: dnfdragora/dialogs.py:1383 dnfdragora/ui.py:701 dnfdragora/ui.py:1747
+#: dnfdragora/dialogs.py:1383 dnfdragora/ui.py:707 dnfdragora/ui.py:1770
 msgid "&Apply"
 msgstr "&Käytä"
 
@@ -1073,7 +1073,7 @@ msgid "Find packages"
 msgstr ""
 
 #: dnfdragora/dialogs.py:2280 dnfdragora/progress_ui.py:118
-#: dnfdragora/ui.py:609
+#: dnfdragora/ui.py:615
 msgid "Installed"
 msgstr "Asennettu"
 
@@ -1282,7 +1282,7 @@ msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2472 dnfdragora/ui.py:686
+#: dnfdragora/dialogs.py:2472 dnfdragora/ui.py:692
 msgid "&Search"
 msgstr "&Hae"
 
@@ -1306,7 +1306,7 @@ msgstr ""
 msgid "Close this dialog without running a new search."
 msgstr ""
 
-#: dnfdragora/dialogs.py:2694 dnfdragora/ui.py:1595
+#: dnfdragora/dialogs.py:2694 dnfdragora/ui.py:1618
 msgid "Invalid regular expression"
 msgstr ""
 
@@ -1335,7 +1335,7 @@ msgstr "GPG avain hukassa"
 msgid "package has not any %s attributes"
 msgstr "paketilla ei ole %s-määritteitä"
 
-#: dnfdragora/dnfd_client.py:548
+#: dnfdragora/dnfd_client.py:657
 msgid "Command in progress"
 msgstr "Komento käynnissä"
 
@@ -3104,60 +3104,60 @@ msgstr ""
 msgid "Saving log failed: %(err)s"
 msgstr ""
 
-#: dnfdragora/ui.py:231
+#: dnfdragora/ui.py:237
 msgid "No transaction found"
 msgstr "Ei tapahtumia"
 
-#: dnfdragora/ui.py:241
+#: dnfdragora/ui.py:247
 msgid "Update information"
 msgstr "Päivitystiedot"
 
-#: dnfdragora/ui.py:242
+#: dnfdragora/ui.py:248
 msgid "File list"
 msgstr "Tiedostolista"
 
-#: dnfdragora/ui.py:243
+#: dnfdragora/ui.py:249
 msgid "Changelog"
 msgstr "Muutosloki"
 
-#: dnfdragora/ui.py:244
+#: dnfdragora/ui.py:250
 msgid "Requirements"
 msgstr "Vaatimukset"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:330
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr ""
 
-#: dnfdragora/ui.py:326
+#: dnfdragora/ui.py:332
 msgid "Developers"
 msgstr "Kehittäjät"
 
-#: dnfdragora/ui.py:332
+#: dnfdragora/ui.py:338
 msgid "Current developers and maintainers"
 msgstr ""
 
-#: dnfdragora/ui.py:338
+#: dnfdragora/ui.py:344
 msgid "Translations"
 msgstr ""
 
-#: dnfdragora/ui.py:342
+#: dnfdragora/ui.py:348
 msgid "Contributors"
 msgstr ""
 
-#: dnfdragora/ui.py:351
+#: dnfdragora/ui.py:357
 msgid "Project Links"
 msgstr ""
 
-#: dnfdragora/ui.py:356
+#: dnfdragora/ui.py:362
 msgid "Report Issues or Improvements"
 msgstr ""
 
-#: dnfdragora/ui.py:374
+#: dnfdragora/ui.py:380
 msgid "Logging directory not found"
 msgstr ""
 
-#: dnfdragora/ui.py:376
+#: dnfdragora/ui.py:382
 #, python-format
 msgid ""
 "The configured log directory <b>%s</b> does not exist.<br>Logging is "
@@ -3165,7 +3165,7 @@ msgid ""
 "&rarr; User preferences</i>."
 msgstr ""
 
-#: dnfdragora/ui.py:387
+#: dnfdragora/ui.py:393
 #, python-format
 msgid ""
 "Error connecting to dnfdaemon service.                              \n"
@@ -3175,400 +3175,442 @@ msgid ""
 "Error details: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:518
+#: dnfdragora/ui.py:524
 msgid "Software Management - dnfdragora"
 msgstr "Ohjelmien hallinta - dnfdragora"
 
-#: dnfdragora/ui.py:589
+#: dnfdragora/ui.py:595
 msgid "Release"
 msgstr "Julkaisu"
 
-#: dnfdragora/ui.py:589
+#: dnfdragora/ui.py:595
 msgid "Version"
 msgstr "Versio"
 
-#: dnfdragora/ui.py:604
+#: dnfdragora/ui.py:610
 msgid "Package list"
 msgstr ""
 
-#: dnfdragora/ui.py:610
+#: dnfdragora/ui.py:616
 msgid "Not installed"
 msgstr "Asentamaton"
 
-#: dnfdragora/ui.py:611
+#: dnfdragora/ui.py:617
 msgid "To update"
 msgstr "Päivitys"
 
-#: dnfdragora/ui.py:612
+#: dnfdragora/ui.py:618
 msgid "Desktop Applications"
 msgstr ""
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:624
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "Näytä %s ja vain noarch"
 
-#: dnfdragora/ui.py:624
+#: dnfdragora/ui.py:630
 msgid "Groups"
 msgstr "Ryhmät"
 
-#: dnfdragora/ui.py:629
+#: dnfdragora/ui.py:635
 msgid "Grouping packages"
 msgstr ""
 
-#: dnfdragora/ui.py:662
+#: dnfdragora/ui.py:668
 msgid "Filtering packages"
 msgstr ""
 
-#: dnfdragora/ui.py:687
+#: dnfdragora/ui.py:693
 msgid "Open search dialog"
 msgstr ""
 
-#: dnfdragora/ui.py:689
+#: dnfdragora/ui.py:695
 msgid "&Clear search"
 msgstr "&Tyhjennä haku"
 
-#: dnfdragora/ui.py:690
+#: dnfdragora/ui.py:696
 msgid "Clear current search"
 msgstr ""
 
-#: dnfdragora/ui.py:705
+#: dnfdragora/ui.py:711
 msgid "Sel&ect all"
 msgstr "Valits&e kaikki"
 
-#: dnfdragora/ui.py:707
+#: dnfdragora/ui.py:713
 msgid "Select all the update packages"
 msgstr ""
 
-#: dnfdragora/ui.py:712 dnfdragora/ui.py:731
+#: dnfdragora/ui.py:718 dnfdragora/ui.py:737
 msgid "&Quit"
 msgstr "&Lopeta"
 
-#: dnfdragora/ui.py:714
+#: dnfdragora/ui.py:720
 msgid "Quit the application"
 msgstr ""
 
-#: dnfdragora/ui.py:724
+#: dnfdragora/ui.py:730
 msgid "&File"
 msgstr "&Tiedosto"
 
-#: dnfdragora/ui.py:727
+#: dnfdragora/ui.py:733
 msgid "Reset the selection"
 msgstr "Nollaa valinta"
 
-#: dnfdragora/ui.py:728
+#: dnfdragora/ui.py:734
 msgid "Refresh Metadata"
 msgstr "Virkistä metatiedot"
 
-#: dnfdragora/ui.py:729
+#: dnfdragora/ui.py:735
 msgid "Repositories"
 msgstr "Pakettivarastot"
 
-#: dnfdragora/ui.py:735
+#: dnfdragora/ui.py:741
 msgid "&Actions"
 msgstr "&Toiminnot"
 
-#: dnfdragora/ui.py:738
+#: dnfdragora/ui.py:744
 msgid "&Action on packages"
 msgstr "&Toiminto paketeissa"
 
-#: dnfdragora/ui.py:739
+#: dnfdragora/ui.py:745
 msgid "&Update All"
 msgstr ""
 
-#: dnfdragora/ui.py:740
+#: dnfdragora/ui.py:746
 msgid "&History"
 msgstr ""
 
-#: dnfdragora/ui.py:748
+#: dnfdragora/ui.py:754
 msgid "&Options"
 msgstr "&Asetukset"
 
-#: dnfdragora/ui.py:751
+#: dnfdragora/ui.py:757
 msgid "User preferences"
 msgstr "Käyttäjän asetukset"
 
-#: dnfdragora/ui.py:755
+#: dnfdragora/ui.py:763
+msgid "E&xtra"
+msgstr ""
+
+#: dnfdragora/ui.py:778
 msgid "&Help"
 msgstr "&Ohje"
 
-#: dnfdragora/ui.py:758
+#: dnfdragora/ui.py:781
 msgid "Manual"
 msgstr "Ohjekirja"
 
-#: dnfdragora/ui.py:760
+#: dnfdragora/ui.py:783
 msgid "&About"
 msgstr "&Tietoja"
 
-#: dnfdragora/ui.py:793
+#: dnfdragora/ui.py:816
 msgid "update"
 msgstr "päivitys"
 
-#: dnfdragora/ui.py:796
+#: dnfdragora/ui.py:819
 msgid "locked"
 msgstr "lukittu"
 
-#: dnfdragora/ui.py:1071
+#: dnfdragora/ui.py:1094
 #, python-format
 msgid "[ Refreshing search: %s ]"
 msgstr ""
 
-#: dnfdragora/ui.py:1073
+#: dnfdragora/ui.py:1096
 #, python-format
 msgid "[ Refreshing dependency search: %s ]"
 msgstr ""
 
-#: dnfdragora/ui.py:1076
+#: dnfdragora/ui.py:1099
 #, python-format
 msgid "[ Search: %s ]"
 msgstr ""
 
-#: dnfdragora/ui.py:1078
+#: dnfdragora/ui.py:1101
 #, python-format
 msgid "[ Dependency search: %s ]"
 msgstr ""
 
-#: dnfdragora/ui.py:1350
+#: dnfdragora/ui.py:1373
 msgid "Missing information"
 msgstr "Puuttuvat tiedot"
 
-#: dnfdragora/ui.py:1376
+#: dnfdragora/ui.py:1399
 msgid "Repository"
 msgstr "Pakettivarasto"
 
-#: dnfdragora/ui.py:1760
+#: dnfdragora/ui.py:1783
 msgid "&Downgrade"
 msgstr "&Päivitä aiempaan versioon"
 
-#: dnfdragora/ui.py:1763
+#: dnfdragora/ui.py:1786
 msgid "&Reinstall"
 msgstr "&Uudelleen asenna"
 
-#: dnfdragora/ui.py:1766
+#: dnfdragora/ui.py:1789
 msgid "&Distro Sync"
 msgstr "&Distro-synkronointi"
 
-#: dnfdragora/ui.py:1931
+#: dnfdragora/ui.py:1867 dnfdragora/ui.py:1890 dnfdragora/ui.py:1910
+msgid "Plugin Error"
+msgstr ""
+
+#: dnfdragora/ui.py:1868
+#, python-brace-format
+msgid "Failed to load plugin {0}"
+msgstr ""
+
+#: dnfdragora/ui.py:1891
+#, python-brace-format
+msgid "Plugin {0} dialog missing run() method"
+msgstr ""
+
+#: dnfdragora/ui.py:1911
+#, python-brace-format
+msgid "Error running plugin {0}: {1}"
+msgstr ""
+
+#: dnfdragora/ui.py:2038
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "Pakettia %s ei voi poistaa"
 
-#: dnfdragora/ui.py:1931
+#: dnfdragora/ui.py:2038
 msgid "Protected package selected"
 msgstr "Suojattu paketti valittu"
 
-#: dnfdragora/ui.py:2119
+#: dnfdragora/ui.py:2233
 msgid ""
 "System upgrade requires systemd because execution is scheduled offline for "
 "reboot."
 msgstr ""
 
-#: dnfdragora/ui.py:2139
+#: dnfdragora/ui.py:2253
 msgid "System upgrade confirmation"
 msgstr ""
 
-#: dnfdragora/ui.py:2140
+#: dnfdragora/ui.py:2254
 #, python-format
 msgid ""
 "Are you sure you want to continue with system upgrade to releasever \"%s\"?"
 msgstr ""
 
-#: dnfdragora/ui.py:2157
+#: dnfdragora/ui.py:2271
 msgid "Preparing system upgrade session"
 msgstr ""
 
-#: dnfdragora/ui.py:2164
+#: dnfdragora/ui.py:2278
 msgid "Creating system upgrade transaction"
 msgstr ""
 
-#: dnfdragora/ui.py:2174 dnfdragora/ui.py:2202
+#: dnfdragora/ui.py:2288 dnfdragora/ui.py:2316
 msgid "System upgrade error"
 msgstr ""
 
-#: dnfdragora/ui.py:2176
+#: dnfdragora/ui.py:2290
 #, python-format
 msgid "System upgrade resolve failed:<br>%s"
 msgstr ""
 
-#: dnfdragora/ui.py:2195
+#: dnfdragora/ui.py:2309
 msgid "Scheduling offline system upgrade"
 msgstr ""
 
-#: dnfdragora/ui.py:2204
+#: dnfdragora/ui.py:2318
 #, python-format
 msgid "System upgrade failed: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:2389 dnfdragora/ui.py:2409 dnfdragora/ui.py:2424
-#: dnfdragora/ui.py:2439 dnfdragora/ui.py:2453
+#: dnfdragora/ui.py:2493
+msgid "Unknown transaction error"
+msgstr ""
+
+#: dnfdragora/ui.py:2504
+#, python-format
+msgid "Transaction aborted: %(err)s"
+msgstr ""
+
+#: dnfdragora/ui.py:2509 dnfdragora/ui.py:3359
+#, python-format
+msgid "Error in status %(status)s on %(event)s"
+msgstr "Tilavirhe %(status)skohdassa %(event)s"
+
+#: dnfdragora/ui.py:2537 dnfdragora/ui.py:2557 dnfdragora/ui.py:2572
+#: dnfdragora/ui.py:2587 dnfdragora/ui.py:2601
 msgid "Offline transaction warning"
 msgstr ""
 
-#: dnfdragora/ui.py:2391
+#: dnfdragora/ui.py:2539
 msgid ""
 "Offline transaction was requested, but backend Offline APIs are not "
 "available."
 msgstr ""
 
-#: dnfdragora/ui.py:2411
+#: dnfdragora/ui.py:2559
 #, python-format
 msgid "Offline transaction was requested, but status verification failed: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:2426
+#: dnfdragora/ui.py:2574
 msgid ""
 "Offline transaction was requested, but no pending offline transaction was "
 "detected."
 msgstr ""
 
-#: dnfdragora/ui.py:2441 dnfdragora/ui.py:2455
+#: dnfdragora/ui.py:2589 dnfdragora/ui.py:2603
 #, python-format
 msgid "Offline transaction was created, but setting finish action failed: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:2477
+#: dnfdragora/ui.py:2625
 msgid "Backend busy"
 msgstr ""
 
-#: dnfdragora/ui.py:2479
+#: dnfdragora/ui.py:2627
 msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
 msgstr ""
 
-#: dnfdragora/ui.py:2515
+#: dnfdragora/ui.py:2663
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "Tuntematon toiminta %(action)s on %(name)s"
 
-#: dnfdragora/ui.py:2547
+#: dnfdragora/ui.py:2695
 msgid "Transaction verification"
 msgstr "Transaktioiden vahvistus"
 
-#: dnfdragora/ui.py:2603
+#: dnfdragora/ui.py:2751
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr "Paketin <%(nevra)s> tapahtuma aloitettu"
 
-#: dnfdragora/ui.py:2622
+#: dnfdragora/ui.py:2770
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr "Paketin <%(nevra)s> tapahtuma käynnissä"
 
-#: dnfdragora/ui.py:2661
+#: dnfdragora/ui.py:2809
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr "Tapahtuma käynnissä: <%(nevra)s> alkaa"
 
-#: dnfdragora/ui.py:2680 dnfdragora/ui.py:2701
+#: dnfdragora/ui.py:2828 dnfdragora/ui.py:2849
 msgid "Preparation of transaction"
 msgstr "Transaktion valmistelu"
 
-#: dnfdragora/ui.py:2741
+#: dnfdragora/ui.py:2889
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr "Skriptisovellus <%(nevra)s> käynnistetty"
 
-#: dnfdragora/ui.py:2830
+#: dnfdragora/ui.py:2978
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: dnfdragora/ui.py:2862
+#: dnfdragora/ui.py:3010
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr "Start downloading [%(count_files)d] - file %(id)s - %(description)s..."
 
-#: dnfdragora/ui.py:2899
+#: dnfdragora/ui.py:3047
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr "Tiedoston %(id)slataus %(description)s käynnissä"
 
-#: dnfdragora/ui.py:3002
+#: dnfdragora/ui.py:3150
 msgid "Caching updates"
 msgstr "Päivitykset välimuistiin"
 
-#: dnfdragora/ui.py:3005
+#: dnfdragora/ui.py:3153
 msgid "Caching installed"
 msgstr "Välimuisti asennettu"
 
-#: dnfdragora/ui.py:3009
+#: dnfdragora/ui.py:3157
 msgid "Caching available"
 msgstr "Välimuisti saatavilla"
 
-#: dnfdragora/ui.py:3064
+#: dnfdragora/ui.py:3212
 msgid "Creating packages cache"
 msgstr "Luodaan pakettien välimuistia"
 
-#: dnfdragora/ui.py:3085
+#: dnfdragora/ui.py:3233
 msgid "Transaction with warnings"
 msgstr "Tapahtuma varoituksilla"
 
-#: dnfdragora/ui.py:3129 dnfdragora/ui.py:3178
+#: dnfdragora/ui.py:3277 dnfdragora/ui.py:3326
 msgid "Build Transaction error"
 msgstr "Koontitapahtuman virhe"
 
-#: dnfdragora/ui.py:3171
+#: dnfdragora/ui.py:3319
 msgid "Applying changes to the system"
 msgstr "Muutosten soveltaminen järjestelmään"
 
-#: dnfdragora/ui.py:3208
-#, python-format
-msgid "Error in status %(status)s on %(event)s"
-msgstr "Tilavirhe %(status)skohdassa %(event)s"
-
-#: dnfdragora/ui.py:3404
+#: dnfdragora/ui.py:3555
 msgid "Search error using regular expression"
 msgstr "Hakuvirhe käyttäen säännöllistä lauseketta"
 
-#: dnfdragora/updater.py:119
+#: dnfdragora/updater.py:147 dnfdragora/updater.py:492
+#: dnfdragora/updater.py:494
 msgid "Update"
 msgstr "Päivitä"
 
-#: dnfdragora/updater.py:120
+#: dnfdragora/updater.py:149
 msgid "Open dnfdragora dialog"
 msgstr "Avaa dnfdragora valintaikkuna"
 
-#: dnfdragora/updater.py:121
+#: dnfdragora/updater.py:152
 msgid "Check for updates"
 msgstr "Tarkista päivitykset"
 
-#: dnfdragora/updater.py:123
+#: dnfdragora/updater.py:159 dnfdragora/updater.py:764
 msgid "Exit"
 msgstr "Poistu"
 
-#: dnfdragora/updater.py:145
+#: dnfdragora/updater.py:185
 msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
 
-#: dnfdragora/updater.py:147
+#: dnfdragora/updater.py:187
 msgid "dnfdragora-updater failure"
 msgstr ""
 
-#: dnfdragora/updater.py:384
+#: dnfdragora/updater.py:580
 #, python-format
-msgid "%d updates available."
-msgstr "%d päivitystä saatavilla."
+msgid "%d updates available"
+msgstr ""
 
-#: dnfdragora/updater.py:390
+#: dnfdragora/updater.py:593
 #, python-format
 msgid "%s - %d updates available."
 msgstr ""
 
-#: dnfdragora/updater.py:410
+#: dnfdragora/updater.py:603
 msgid "No updates available"
 msgstr "Ei päivityksiä saatavilla"
 
-#: dnfdragora/updater.py:581
+#: dnfdragora/updater.py:729
+msgid "Extra plugins"
+msgstr ""
+
+#: dnfdragora/updater.py:813
+#, python-format
+msgid "Error running plugin: %s"
+msgstr ""
+
+#: dnfdragora/updater.py:983
 msgid "Error launching dnfdragora dialog"
 msgstr ""
 
-#: dnfdragora/updater.py:583
+#: dnfdragora/updater.py:985
 msgid "Running dnfdragora failure"
 msgstr "Dnfdragoran suoritus epäonnistui"
 
-#: dnfdragora/updater.py:666 dnfdragora/updater.py:777
+#: dnfdragora/updater.py:1070 dnfdragora/updater.py:1204
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "Poikkeus saatu: [%s]"
@@ -3605,6 +3647,10 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr ""
+
+#, python-format
+#~ msgid "%d updates available."
+#~ msgstr "%d päivitystä saatavilla."
 
 #~ msgid "&No"
 #~ msgstr "&Ei"

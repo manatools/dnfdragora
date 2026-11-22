@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dnfdragora 0.xx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 16:50+0200\n"
+"POT-Creation-Date: 2026-11-22 19:18+0100\n"
 "PO-Revision-Date: 2026-04-13 16:05+0200\n"
 "Last-Translator: Mohamed Benkouider <mbkasr@gmail.com>, 2026\n"
 "Language-Team: Arabic (ar/)\n"
@@ -159,7 +159,7 @@ msgid "Content"
 msgstr "المحتوى"
 
 #: dnfdragora/compsicons.py:39 dnfdragora/dialogs.py:2279
-#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:608 dnfdragora/ui.py:623
+#: dnfdragora/groupicons.py:17 dnfdragora/ui.py:614 dnfdragora/ui.py:629
 msgid "All"
 msgstr "الكلّ"
 
@@ -379,7 +379,7 @@ msgid "  Contains package:"
 msgstr "  يحتوي على حزمة:"
 
 #: dnfdragora/dialogs.py:135 dnfdragora/dialogs.py:590
-#: dnfdragora/dialogs.py:1309 dnfdragora/dialogs.py:1365 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:1309 dnfdragora/dialogs.py:1365 dnfdragora/ui.py:595
 msgid "Name"
 msgstr "الاسم"
 
@@ -387,7 +387,7 @@ msgstr "الاسم"
 msgid "EVR"
 msgstr "الإصدار-الإصدار الفرعي"
 
-#: dnfdragora/dialogs.py:137 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:137 dnfdragora/ui.py:595
 msgid "Arch"
 msgstr "المعمارية"
 
@@ -399,7 +399,7 @@ msgstr "الإجراء"
 msgid "Date"
 msgstr "التاريخ"
 
-#: dnfdragora/dialogs.py:140 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:140 dnfdragora/ui.py:595
 msgid "Summary"
 msgstr "ملخص"
 
@@ -423,7 +423,7 @@ msgstr "&إغلاق"
 msgid "Error: %s"
 msgstr "خطأ: %s"
 
-#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:799
+#: dnfdragora/dialogs.py:252 dnfdragora/ui.py:822
 msgid "installed"
 msgstr "مثبت"
 
@@ -464,7 +464,7 @@ msgstr "تخفيض الإصدار"
 msgid "reinstall"
 msgstr "إعادة تثبيت"
 
-#: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:741
+#: dnfdragora/dialogs.py:376 dnfdragora/dialogs.py:388 dnfdragora/ui.py:747
 msgid "Advisory information"
 msgstr "معلومات الاستشارات الأمنية"
 
@@ -517,11 +517,11 @@ msgid "Advisory ID"
 msgstr "معرف الاستشارة الأمنية"
 
 #: dnfdragora/dialogs.py:478 dnfdragora/dialogs.py:592
-#: dnfdragora/dialogs.py:1310 dnfdragora/ui.py:1367
+#: dnfdragora/dialogs.py:1310 dnfdragora/ui.py:1390
 msgid "Type"
 msgstr "النوع"
 
-#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:593 dnfdragora/ui.py:1367
+#: dnfdragora/dialogs.py:479 dnfdragora/dialogs.py:593 dnfdragora/ui.py:1390
 msgid "Severity"
 msgstr "الخطورة"
 
@@ -546,7 +546,7 @@ msgstr "التحديد"
 msgid "No advisory selected"
 msgstr "لم يتم تحديد أي استشارة أمنية"
 
-#: dnfdragora/dialogs.py:594 dnfdragora/ui.py:597
+#: dnfdragora/dialogs.py:594 dnfdragora/ui.py:603
 msgid "Status"
 msgstr "الحالة"
 
@@ -596,7 +596,7 @@ msgstr "خطأ"
 #: dnfdragora/dialogs.py:869 dnfdragora/dialogs.py:882
 #: dnfdragora/dialogs.py:889 dnfdragora/dialogs.py:897
 #: dnfdragora/dialogs.py:911 dnfdragora/dialogs.py:918
-#: dnfdragora/dialogs.py:926 dnfdragora/ui.py:745
+#: dnfdragora/dialogs.py:926 dnfdragora/ui.py:751
 msgid "Offline transactions"
 msgstr "المعاملات غير المتصلة"
 
@@ -739,7 +739,7 @@ msgstr "تم تنظيف بيانات المعاملة غير المتصلة."
 msgid "Failed to clean offline transaction data: %s"
 msgstr "فشل تنظيف بيانات المعاملة غير المتصلة: %s"
 
-#: dnfdragora/dialogs.py:947 dnfdragora/ui.py:744 dnfdragora/ui.py:2117
+#: dnfdragora/dialogs.py:947 dnfdragora/ui.py:750 dnfdragora/ui.py:2231
 msgid "System upgrade"
 msgstr "ترقية النظام"
 
@@ -928,7 +928,7 @@ msgstr "وسوم التوزيعة"
 msgid "Updated"
 msgstr "تم التحديث"
 
-#: dnfdragora/dialogs.py:1336 dnfdragora/ui.py:589
+#: dnfdragora/dialogs.py:1336 dnfdragora/ui.py:595
 msgid "Size"
 msgstr "الحجم"
 
@@ -968,7 +968,7 @@ msgstr "المعرّف"
 msgid "Information"
 msgstr "المعلومات"
 
-#: dnfdragora/dialogs.py:1383 dnfdragora/ui.py:701 dnfdragora/ui.py:1747
+#: dnfdragora/dialogs.py:1383 dnfdragora/ui.py:707 dnfdragora/ui.py:1770
 msgid "&Apply"
 msgstr "&تطبيق"
 
@@ -1078,7 +1078,7 @@ msgid "Find packages"
 msgstr "البحث عن حزم"
 
 #: dnfdragora/dialogs.py:2280 dnfdragora/progress_ui.py:118
-#: dnfdragora/ui.py:609
+#: dnfdragora/ui.py:615
 msgid "Installed"
 msgstr "مثبت"
 
@@ -1300,7 +1300,7 @@ msgid ""
 "When checked, the search is restricted to the selected CPU architectures."
 msgstr "عند التحديد، يقتصر البحث على معماريات المعالج المحددة."
 
-#: dnfdragora/dialogs.py:2472 dnfdragora/ui.py:686
+#: dnfdragora/dialogs.py:2472 dnfdragora/ui.py:692
 msgid "&Search"
 msgstr "&بحث"
 
@@ -1324,7 +1324,7 @@ msgstr "إ&غلاق"
 msgid "Close this dialog without running a new search."
 msgstr "إغلاق هذا الحوار دون تشغيل بحث جديد."
 
-#: dnfdragora/dialogs.py:2694 dnfdragora/ui.py:1595
+#: dnfdragora/dialogs.py:2694 dnfdragora/ui.py:1618
 msgid "Invalid regular expression"
 msgstr "تعبير نمطي غير صالح"
 
@@ -1354,7 +1354,7 @@ msgstr "مفتاح GPG مفقود"
 msgid "package has not any %s attributes"
 msgstr "الحزمة لا تحتوي على أي سمات %s"
 
-#: dnfdragora/dnfd_client.py:548
+#: dnfdragora/dnfd_client.py:657
 msgid "Command in progress"
 msgstr "أمر قيد التنفيذ"
 
@@ -3298,60 +3298,60 @@ msgstr ""
 msgid "Saving log failed: %(err)s"
 msgstr ""
 
-#: dnfdragora/ui.py:231
+#: dnfdragora/ui.py:237
 msgid "No transaction found"
 msgstr "لم يتم العثور على معاملة"
 
-#: dnfdragora/ui.py:241
+#: dnfdragora/ui.py:247
 msgid "Update information"
 msgstr "تحديث المعلومات"
 
-#: dnfdragora/ui.py:242
+#: dnfdragora/ui.py:248
 msgid "File list"
 msgstr "قائمة الملفات"
 
-#: dnfdragora/ui.py:243
+#: dnfdragora/ui.py:249
 msgid "Changelog"
 msgstr "سجل التغييرات"
 
-#: dnfdragora/ui.py:244
+#: dnfdragora/ui.py:250
 msgid "Requirements"
 msgstr "المتطلبات"
 
-#: dnfdragora/ui.py:324
+#: dnfdragora/ui.py:330
 msgid ""
 "dnfdragora is a DNF5 daemon frontend that works using GTK, ncurses and QT"
 msgstr "dnfdragora هو واجهة أمامية لخادم DNF5 تعمل باستخدام GTK و ncurses و QT"
 
-#: dnfdragora/ui.py:326
+#: dnfdragora/ui.py:332
 msgid "Developers"
 msgstr "المطورون"
 
-#: dnfdragora/ui.py:332
+#: dnfdragora/ui.py:338
 msgid "Current developers and maintainers"
 msgstr "المطورون والقائمون على الصيانة الحاليون"
 
-#: dnfdragora/ui.py:338
+#: dnfdragora/ui.py:344
 msgid "Translations"
 msgstr "الترجمات"
 
-#: dnfdragora/ui.py:342
+#: dnfdragora/ui.py:348
 msgid "Contributors"
 msgstr "المساهمون"
 
-#: dnfdragora/ui.py:351
+#: dnfdragora/ui.py:357
 msgid "Project Links"
 msgstr "روابط المشروع"
 
-#: dnfdragora/ui.py:356
+#: dnfdragora/ui.py:362
 msgid "Report Issues or Improvements"
 msgstr "الإبلاغ عن المشكلات أو التحسينات"
 
-#: dnfdragora/ui.py:374
+#: dnfdragora/ui.py:380
 msgid "Logging directory not found"
 msgstr "لم يتم العثور على مجلد التسجيل"
 
-#: dnfdragora/ui.py:376
+#: dnfdragora/ui.py:382
 #, python-format
 msgid ""
 "The configured log directory <b>%s</b> does not exist.<br>Logging is "
@@ -3361,7 +3361,7 @@ msgstr ""
 "مجلد التسجيل المكون <b>%s</b> غير موجود.<br>تم تعطيل التسجيل لهذه الجلسة."
 "<br>يرجى تحديث مجلد التسجيل في <i>خيارات &rarr; تفضيلات المستخدم</i>."
 
-#: dnfdragora/ui.py:387
+#: dnfdragora/ui.py:393
 #, python-format
 msgid ""
 "Error connecting to dnfdaemon service.                              \n"
@@ -3371,238 +3371,275 @@ msgid ""
 "Error details: %s"
 msgstr ""
 
-#: dnfdragora/ui.py:518
+#: dnfdragora/ui.py:524
 msgid "Software Management - dnfdragora"
 msgstr "إدارة البرامج - dnfdragora"
 
-#: dnfdragora/ui.py:589
+#: dnfdragora/ui.py:595
 msgid "Release"
 msgstr "الإصدار الفرعي"
 
-#: dnfdragora/ui.py:589
+#: dnfdragora/ui.py:595
 msgid "Version"
 msgstr "الإصدار"
 
-#: dnfdragora/ui.py:604
+#: dnfdragora/ui.py:610
 msgid "Package list"
 msgstr ""
 
-#: dnfdragora/ui.py:610
+#: dnfdragora/ui.py:616
 msgid "Not installed"
 msgstr "غير مثبت"
 
-#: dnfdragora/ui.py:611
+#: dnfdragora/ui.py:617
 msgid "To update"
 msgstr "لتحديث"
 
-#: dnfdragora/ui.py:612
+#: dnfdragora/ui.py:618
 msgid "Desktop Applications"
 msgstr "تطبيقات سطح المكتب"
 
-#: dnfdragora/ui.py:618
+#: dnfdragora/ui.py:624
 #, python-format
 msgid "Show %s and noarch only"
 msgstr "إظهار %s و noarch فقط"
 
-#: dnfdragora/ui.py:624
+#: dnfdragora/ui.py:630
 msgid "Groups"
 msgstr "المجموعات"
 
-#: dnfdragora/ui.py:629
+#: dnfdragora/ui.py:635
 msgid "Grouping packages"
 msgstr "تجميع الحزم"
 
-#: dnfdragora/ui.py:662
+#: dnfdragora/ui.py:668
 msgid "Filtering packages"
 msgstr "تصفية الحزم"
 
-#: dnfdragora/ui.py:687
+#: dnfdragora/ui.py:693
 msgid "Open search dialog"
 msgstr "فتح حوار البحث"
 
-#: dnfdragora/ui.py:689
+#: dnfdragora/ui.py:695
 msgid "&Clear search"
 msgstr "&مسح البحث"
 
-#: dnfdragora/ui.py:690
+#: dnfdragora/ui.py:696
 msgid "Clear current search"
 msgstr "مسح البحث الحالي"
 
-#: dnfdragora/ui.py:705
+#: dnfdragora/ui.py:711
 msgid "Sel&ect all"
 msgstr "تحديد ال&كل"
 
-#: dnfdragora/ui.py:707
+#: dnfdragora/ui.py:713
 msgid "Select all the update packages"
 msgstr "تحديد كل حزم التحديث"
 
-#: dnfdragora/ui.py:712 dnfdragora/ui.py:731
+#: dnfdragora/ui.py:718 dnfdragora/ui.py:737
 msgid "&Quit"
 msgstr "&خروج"
 
-#: dnfdragora/ui.py:714
+#: dnfdragora/ui.py:720
 msgid "Quit the application"
 msgstr "إنهاء التطبيق"
 
-#: dnfdragora/ui.py:724
+#: dnfdragora/ui.py:730
 msgid "&File"
 msgstr "&ملف"
 
-#: dnfdragora/ui.py:727
+#: dnfdragora/ui.py:733
 msgid "Reset the selection"
 msgstr "إعادة تعيين التحديد"
 
-#: dnfdragora/ui.py:728
+#: dnfdragora/ui.py:734
 msgid "Refresh Metadata"
 msgstr "تحديث البيانات الوصفية"
 
-#: dnfdragora/ui.py:729
+#: dnfdragora/ui.py:735
 msgid "Repositories"
 msgstr "المستودعات"
 
-#: dnfdragora/ui.py:735
+#: dnfdragora/ui.py:741
 msgid "&Actions"
 msgstr "&إجراءات"
 
-#: dnfdragora/ui.py:738
+#: dnfdragora/ui.py:744
 msgid "&Action on packages"
 msgstr "&إجراء على الحزم"
 
-#: dnfdragora/ui.py:739
+#: dnfdragora/ui.py:745
 msgid "&Update All"
 msgstr "&تحديث الكل"
 
-#: dnfdragora/ui.py:740
+#: dnfdragora/ui.py:746
 msgid "&History"
 msgstr "&السجل"
 
-#: dnfdragora/ui.py:748
+#: dnfdragora/ui.py:754
 msgid "&Options"
 msgstr "&خيارات"
 
-#: dnfdragora/ui.py:751
+#: dnfdragora/ui.py:757
 msgid "User preferences"
 msgstr "تفضيلات المستخدم"
 
-#: dnfdragora/ui.py:755
+#: dnfdragora/ui.py:763
+msgid "E&xtra"
+msgstr ""
+
+#: dnfdragora/ui.py:778
 msgid "&Help"
 msgstr "&مساعدة"
 
-#: dnfdragora/ui.py:758
+#: dnfdragora/ui.py:781
 msgid "Manual"
 msgstr "يدوي"
 
-#: dnfdragora/ui.py:760
+#: dnfdragora/ui.py:783
 msgid "&About"
 msgstr "&حول"
 
-#: dnfdragora/ui.py:793
+#: dnfdragora/ui.py:816
 msgid "update"
 msgstr "تحديث"
 
-#: dnfdragora/ui.py:796
+#: dnfdragora/ui.py:819
 msgid "locked"
 msgstr "مقفل"
 
-#: dnfdragora/ui.py:1071
+#: dnfdragora/ui.py:1094
 #, python-format
 msgid "[ Refreshing search: %s ]"
 msgstr "[ تحديث البحث: %s ]"
 
-#: dnfdragora/ui.py:1073
+#: dnfdragora/ui.py:1096
 #, python-format
 msgid "[ Refreshing dependency search: %s ]"
 msgstr "[ تحديث بحث الاعتماديات: %s ]"
 
-#: dnfdragora/ui.py:1076
+#: dnfdragora/ui.py:1099
 #, python-format
 msgid "[ Search: %s ]"
 msgstr "[ بحث: %s ]"
 
-#: dnfdragora/ui.py:1078
+#: dnfdragora/ui.py:1101
 #, python-format
 msgid "[ Dependency search: %s ]"
 msgstr "[ بحث الاعتماديات: %s ]"
 
-#: dnfdragora/ui.py:1350
+#: dnfdragora/ui.py:1373
 msgid "Missing information"
 msgstr "معلومات مفقودة"
 
-#: dnfdragora/ui.py:1376
+#: dnfdragora/ui.py:1399
 msgid "Repository"
 msgstr "المستودع"
 
-#: dnfdragora/ui.py:1760
+#: dnfdragora/ui.py:1783
 msgid "&Downgrade"
 msgstr "تخفيض الإصدار"
 
-#: dnfdragora/ui.py:1763
+#: dnfdragora/ui.py:1786
 msgid "&Reinstall"
 msgstr "إعادة تثبيت"
 
-#: dnfdragora/ui.py:1766
+#: dnfdragora/ui.py:1789
 msgid "&Distro Sync"
 msgstr "مزامنة التوزيعة"
 
-#: dnfdragora/ui.py:1931
+#: dnfdragora/ui.py:1867 dnfdragora/ui.py:1890 dnfdragora/ui.py:1910
+msgid "Plugin Error"
+msgstr ""
+
+#: dnfdragora/ui.py:1868
+#, python-brace-format
+msgid "Failed to load plugin {0}"
+msgstr ""
+
+#: dnfdragora/ui.py:1891
+#, python-brace-format
+msgid "Plugin {0} dialog missing run() method"
+msgstr ""
+
+#: dnfdragora/ui.py:1911
+#, python-brace-format
+msgid "Error running plugin {0}: {1}"
+msgstr ""
+
+#: dnfdragora/ui.py:2038
 #, python-format
 msgid "Package %s cannot be removed"
 msgstr "لا يمكن إزالة الحزمة %s"
 
-#: dnfdragora/ui.py:1931
+#: dnfdragora/ui.py:2038
 msgid "Protected package selected"
 msgstr "تم تحديد حزمة محمية"
 
-#: dnfdragora/ui.py:2119
+#: dnfdragora/ui.py:2233
 msgid ""
 "System upgrade requires systemd because execution is scheduled offline for "
 "reboot."
 msgstr ""
 "ترقية النظام تتطلب systemd لأن التنفيذ يُجدول بشكل غير متصل لإعادة التشغيل."
 
-#: dnfdragora/ui.py:2139
+#: dnfdragora/ui.py:2253
 msgid "System upgrade confirmation"
 msgstr "تأكيد ترقية النظام"
 
-#: dnfdragora/ui.py:2140
+#: dnfdragora/ui.py:2254
 #, python-format
 msgid ""
 "Are you sure you want to continue with system upgrade to releasever \"%s\"?"
 msgstr ""
 "هل أنت متأكد من رغبتك في المتابعة مع ترقية النظام إلى releasever \"%s\"؟"
 
-#: dnfdragora/ui.py:2157
+#: dnfdragora/ui.py:2271
 msgid "Preparing system upgrade session"
 msgstr "تحضير جلسة ترقية النظام"
 
-#: dnfdragora/ui.py:2164
+#: dnfdragora/ui.py:2278
 msgid "Creating system upgrade transaction"
 msgstr "إنشاء معاملة ترقية النظام"
 
-#: dnfdragora/ui.py:2174 dnfdragora/ui.py:2202
+#: dnfdragora/ui.py:2288 dnfdragora/ui.py:2316
 msgid "System upgrade error"
 msgstr "خطأ في ترقية النظام"
 
-#: dnfdragora/ui.py:2176
+#: dnfdragora/ui.py:2290
 #, python-format
 msgid "System upgrade resolve failed:<br>%s"
 msgstr "فشل حل ترقية النظام:<br>%s"
 
-#: dnfdragora/ui.py:2195
+#: dnfdragora/ui.py:2309
 msgid "Scheduling offline system upgrade"
 msgstr "جدولة ترقية النظام غير المتصلة"
 
-#: dnfdragora/ui.py:2204
+#: dnfdragora/ui.py:2318
 #, python-format
 msgid "System upgrade failed: %s"
 msgstr "فشلت ترقية النظام: %s"
 
-#: dnfdragora/ui.py:2389 dnfdragora/ui.py:2409 dnfdragora/ui.py:2424
-#: dnfdragora/ui.py:2439 dnfdragora/ui.py:2453
+#: dnfdragora/ui.py:2493
+msgid "Unknown transaction error"
+msgstr ""
+
+#: dnfdragora/ui.py:2504
+#, python-format
+msgid "Transaction aborted: %(err)s"
+msgstr ""
+
+#: dnfdragora/ui.py:2509 dnfdragora/ui.py:3359
+#, python-format
+msgid "Error in status %(status)s on %(event)s"
+msgstr "خطأ في الحالة %(status)s على %(event)s"
+
+#: dnfdragora/ui.py:2537 dnfdragora/ui.py:2557 dnfdragora/ui.py:2572
+#: dnfdragora/ui.py:2587 dnfdragora/ui.py:2601
 msgid "Offline transaction warning"
 msgstr "تحذير المعاملة غير المتصلة"
 
-#: dnfdragora/ui.py:2391
+#: dnfdragora/ui.py:2539
 msgid ""
 "Offline transaction was requested, but backend Offline APIs are not "
 "available."
@@ -3610,28 +3647,28 @@ msgstr ""
 "تم طلب المعاملة غير المتصلة، لكن واجهات برمجة تطبيقات الوضع غير المتصل في "
 "النهاية الخلفية غير متاحة."
 
-#: dnfdragora/ui.py:2411
+#: dnfdragora/ui.py:2559
 #, python-format
 msgid "Offline transaction was requested, but status verification failed: %s"
 msgstr "تم طلب المعاملة غير المتصلة، لكن فشل التحقق من الحالة: %s"
 
-#: dnfdragora/ui.py:2426
+#: dnfdragora/ui.py:2574
 msgid ""
 "Offline transaction was requested, but no pending offline transaction was "
 "detected."
 msgstr ""
 "تم طلب المعاملة غير المتصلة، لكن لم يتم اكتشاف أي معاملة غير متصلة معلقة."
 
-#: dnfdragora/ui.py:2441 dnfdragora/ui.py:2455
+#: dnfdragora/ui.py:2589 dnfdragora/ui.py:2603
 #, python-format
 msgid "Offline transaction was created, but setting finish action failed: %s"
 msgstr "تم إنشاء المعاملة غير المتصلة، لكن فشل تعيين إجراء الإنهاء: %s"
 
-#: dnfdragora/ui.py:2477
+#: dnfdragora/ui.py:2625
 msgid "Backend busy"
 msgstr "النهاية الخلفية مشغولة"
 
-#: dnfdragora/ui.py:2479
+#: dnfdragora/ui.py:2627
 msgid ""
 "The backend is busy processing the transaction. The operation will continue "
 "and progress events will still be tracked."
@@ -3639,139 +3676,144 @@ msgstr ""
 "النهاية الخلفية مشغولة بمعالجة المعاملة. ستستمر العملية وسيتم تتبع أحداث "
 "التقدم."
 
-#: dnfdragora/ui.py:2515
+#: dnfdragora/ui.py:2663
 #, python-format
 msgid "Unknown action %(action)s on %(name)s"
 msgstr "إجراء غير معروف %(action)s على %(name)s"
 
-#: dnfdragora/ui.py:2547
+#: dnfdragora/ui.py:2695
 msgid "Transaction verification"
 msgstr "التحقق من المعاملة"
 
-#: dnfdragora/ui.py:2603
+#: dnfdragora/ui.py:2751
 #, python-format
 msgid "Transaction for package <%(nevra)s> started"
 msgstr "بدأت معاملة الحزمة <%(nevra)s>"
 
-#: dnfdragora/ui.py:2622
+#: dnfdragora/ui.py:2770
 #, python-format
 msgid "Transaction for package <%(nevra)s> in progress"
 msgstr "معاملة الحزمة <%(nevra)s> قيد التنفيذ"
 
-#: dnfdragora/ui.py:2661
+#: dnfdragora/ui.py:2809
 #, python-format
 msgid "Transaction in progress: <%(nevra)s> starts"
 msgstr "المعاملة قيد التنفيذ: بدء <%(nevra)s>"
 
-#: dnfdragora/ui.py:2680 dnfdragora/ui.py:2701
+#: dnfdragora/ui.py:2828 dnfdragora/ui.py:2849
 msgid "Preparation of transaction"
 msgstr "تحضير المعاملة"
 
-#: dnfdragora/ui.py:2741
+#: dnfdragora/ui.py:2889
 #, python-format
 msgid "Scriptlet <%(nevra)s> started"
 msgstr "بدأ سكربت <%(nevra)s>"
 
-#: dnfdragora/ui.py:2830
+#: dnfdragora/ui.py:2978
 msgid "Unknown"
 msgstr "غير معروف"
 
-#: dnfdragora/ui.py:2862
+#: dnfdragora/ui.py:3010
 #, python-format
 msgid "Start downloading [%(count_files)d] - file %(id)s - %(description)s ..."
 msgstr "بدء التنزيل [%(count_files)d] - ملف %(id)s - %(description)s ..."
 
-#: dnfdragora/ui.py:2899
+#: dnfdragora/ui.py:3047
 #, python-format
 msgid "Downloading file %(id)s - %(description)s in progress"
 msgstr "جاري تنزيل الملف %(id)s - %(description)s"
 
-#: dnfdragora/ui.py:3002
+#: dnfdragora/ui.py:3150
 msgid "Caching updates"
 msgstr "تخزين التحديثات في الخابئ"
 
-#: dnfdragora/ui.py:3005
+#: dnfdragora/ui.py:3153
 msgid "Caching installed"
 msgstr "تخزين المثبت في الخابئ"
 
-#: dnfdragora/ui.py:3009
+#: dnfdragora/ui.py:3157
 msgid "Caching available"
 msgstr "تخزين المتاح في الخابئ"
 
-#: dnfdragora/ui.py:3064
+#: dnfdragora/ui.py:3212
 msgid "Creating packages cache"
 msgstr "إنشاء خابئ الحزم"
 
-#: dnfdragora/ui.py:3085
+#: dnfdragora/ui.py:3233
 msgid "Transaction with warnings"
 msgstr "معاملة مع تحذيرات"
 
-#: dnfdragora/ui.py:3129 dnfdragora/ui.py:3178
+#: dnfdragora/ui.py:3277 dnfdragora/ui.py:3326
 msgid "Build Transaction error"
 msgstr "خطأ في بناء المعاملة"
 
-#: dnfdragora/ui.py:3171
+#: dnfdragora/ui.py:3319
 msgid "Applying changes to the system"
 msgstr "تطبيق التغييرات على النظام"
 
-#: dnfdragora/ui.py:3208
-#, python-format
-msgid "Error in status %(status)s on %(event)s"
-msgstr "خطأ في الحالة %(status)s على %(event)s"
-
-#: dnfdragora/ui.py:3404
+#: dnfdragora/ui.py:3555
 msgid "Search error using regular expression"
 msgstr "خطأ في البحث باستخدام التعابير النمطية"
 
-#: dnfdragora/updater.py:119
+#: dnfdragora/updater.py:147 dnfdragora/updater.py:492
+#: dnfdragora/updater.py:494
 msgid "Update"
 msgstr "تحديث"
 
-#: dnfdragora/updater.py:120
+#: dnfdragora/updater.py:149
 msgid "Open dnfdragora dialog"
 msgstr "فتح حوار dnfdragora"
 
-#: dnfdragora/updater.py:121
+#: dnfdragora/updater.py:152
 msgid "Check for updates"
 msgstr "تحقق من التحديثات"
 
-#: dnfdragora/updater.py:123
+#: dnfdragora/updater.py:159 dnfdragora/updater.py:764
 msgid "Exit"
 msgstr "خروج"
 
-#: dnfdragora/updater.py:145
+#: dnfdragora/updater.py:185
 msgid ""
 "Error connecting to dnfdaemon service.\n"
 "Please check that dnfdaemon is installed and running and try again."
 msgstr ""
 
-#: dnfdragora/updater.py:147
+#: dnfdragora/updater.py:187
 msgid "dnfdragora-updater failure"
 msgstr ""
 
-#: dnfdragora/updater.py:384
+#: dnfdragora/updater.py:580
 #, python-format
-msgid "%d updates available."
-msgstr "%d تحديثاً متاحاً."
+msgid "%d updates available"
+msgstr ""
 
-#: dnfdragora/updater.py:390
+#: dnfdragora/updater.py:593
 #, python-format
 msgid "%s - %d updates available."
 msgstr "%s - %d تحديثاً متاحاً."
 
-#: dnfdragora/updater.py:410
+#: dnfdragora/updater.py:603
 msgid "No updates available"
 msgstr "لا توجد تحديثات متاحة"
 
-#: dnfdragora/updater.py:581
+#: dnfdragora/updater.py:729
+msgid "Extra plugins"
+msgstr ""
+
+#: dnfdragora/updater.py:813
+#, python-format
+msgid "Error running plugin: %s"
+msgstr ""
+
+#: dnfdragora/updater.py:983
 msgid "Error launching dnfdragora dialog"
 msgstr ""
 
-#: dnfdragora/updater.py:583
+#: dnfdragora/updater.py:985
 msgid "Running dnfdragora failure"
 msgstr "فشل في تشغيل dnfdragora"
 
-#: dnfdragora/updater.py:666 dnfdragora/updater.py:777
+#: dnfdragora/updater.py:1070 dnfdragora/updater.py:1204
 #, python-format
 msgid "Exception caught: [%s]"
 msgstr "تم اكتشاف استثناء: [%s]"
@@ -3812,6 +3854,10 @@ msgstr ""
 #: share/metainfo/org.mageia.dnfdragora.metainfo.xml:26
 msgid "Main window"
 msgstr "النافذة الرئيسية"
+
+#, python-format
+#~ msgid "%d updates available."
+#~ msgstr "%d تحديثاً متاحاً."
 
 #~ msgid "&Undo"
 #~ msgstr "&تراجع"
