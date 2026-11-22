@@ -1,5 +1,6 @@
 2026-XX-YY v. 2.99.6
 --------------------
+- dnfdragora-updater with tray hidden notification was sometimes missed
 - dnfdragora-updater tray hidden management do not close updater any more 
 - Fixed issue #279: updater-launched update dialog busy loops/freezes when hide_update_menu is enabled.
 - dnfdragora and dnfdragora-updater can run external application for updates as plugins see docs/plugins.md
