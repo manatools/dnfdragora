@@ -141,8 +141,15 @@ class Updater:
         self._tray.setToolTip('dnfdragora-updater')
 
         self._tray_menu = QMenu()
-        self._tray_menu.addAction(_('Update'),                 self.__run_update)
-        self._tray_menu.addAction(_('Open dnfdragora dialog'), self.__run_dnfdragora)
+        self._tray_update_action = None
+        self._tray_open_action = None
+        if self.__dnf_provider_enabled:
+            self._tray_update_action = self._tray_menu.addAction(
+                _('Update'), self.__run_update
+            )
+            self._tray_open_action = self._tray_menu.addAction(
+                _('Open dnfdragora dialog'), self.__run_dnfdragora
+            )
         self._tray_menu.addAction(_('Check for updates'),      self.__check_updates)
         
         # Plugin menu (Extra) - populated dynamically before Exit.
@@ -643,6 +650,10 @@ class Updater:
         if reason != QSystemTrayIcon.ActivationReason.Trigger:
             return
 
+        if not self.__dnf_provider_enabled:
+            logger.debug("Tray left-click ignored: DNF provider is disabled")
+            return
+
         if not self.__has_updates:
             logger.debug("Tray left-click ignored: no updates available")
             return
@@ -886,6 +897,10 @@ class Updater:
         The background update loop is held back via __dialog_open so it does
         not try to use the D-Bus session while dnfdragora owns it.
         '''
+        if not self.__dnf_provider_enabled:
+            logger.info("Skipping dnfdragora dialog launch: DNF provider is disabled")
+            return
+
         if self._tray is None or self.__main_gui is not None:
             if self.__main_gui:
                 logger.warning("Cannot run dnfdragora: already running")
