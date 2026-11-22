@@ -193,6 +193,11 @@ The "Extra" menu should now appear with your test plugin.
 1. Check the configuration file format and location
 2. Verify the `module` and `dialog_class` names
 3. Check logs: enable logging and check `dnfdragora.log` and `dnfdragora-updater.log` in their related directory 
+4. dnfdragora validates plugin modules and dialog classes during discovery:
+   - module import must succeed
+   - `dialog_class` must exist and be callable
+   - class constructor must instantiate without errors
+   Invalid plugins are skipped and logged with a warning.
 
 ### Dialog Crashes
 1. Check the Python interpreter version (must match dnfdragora's)

@@ -179,7 +179,8 @@ class TestPluginDiscovery:
             with patch.object(
                 PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]
             ):
-                plugins = loader.discover_plugins()
+                with patch.object(loader, '_validate_plugin', return_value=True):
+                    plugins = loader.discover_plugins()
                 assert len(plugins) == 1
                 assert plugins[0].name == "TestPlugin"
 
@@ -217,10 +218,79 @@ class TestPluginDiscovery:
                     PluginLoader, 'PLUGIN_DIRS',
                     [Path(tmpdir1), Path(tmpdir2)]
                 ):
-                    plugins = loader.discover_plugins()
+                    with patch.object(loader, '_validate_plugin', return_value=True):
+                        plugins = loader.discover_plugins()
                     assert len(plugins) == 2
                     names = {p.name for p in plugins}
                     assert names == {"Plugin1", "Plugin2"}
+
+    def test_discover_plugins_skips_missing_module(self, caplog):
+        """Test plugins with missing modules are excluded from discovery."""
+        loader = PluginLoader()
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=missing.module\n"
+                "dialog_class=BrokenDialog\n"
+            )
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with caplog.at_level(logging.WARNING):
+                    plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("Skipping plugin 'Broken': cannot import module" in m
+                   for m in caplog.messages)
+
+    def test_discover_plugins_skips_missing_dialog_class(self, caplog):
+        """Test plugins with missing dialog classes are excluded from discovery."""
+        loader = PluginLoader()
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=test.module\n"
+                "dialog_class=MissingDialog\n"
+            )
+            mock_module = MagicMock(spec=[])
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+                    mock_import.return_value = mock_module
+                    with caplog.at_level(logging.WARNING):
+                        plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("Skipping plugin 'Broken': missing dialog class" in m
+                   for m in caplog.messages)
+
+    def test_discover_plugins_skips_constructor_failures(self, caplog):
+        """Test plugins with failing constructors are excluded from discovery."""
+        loader = PluginLoader()
+
+        class BrokenDialog:
+            def __init__(self):
+                raise RuntimeError("constructor exploded")
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=test.module\n"
+                "dialog_class=BrokenDialog\n"
+            )
+            mock_module = MagicMock()
+            mock_module.BrokenDialog = BrokenDialog
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+                    mock_import.return_value = mock_module
+                    with caplog.at_level(logging.WARNING):
+                        plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("Skipping plugin 'Broken': failed to instantiate dialog class" in m
+                   for m in caplog.messages)
 
 
 class TestPluginLoading:

@@ -125,7 +125,7 @@ class PluginLoader:
                 if config_path:
                     try:
                         plugin = self._parse_plugin_config(config_path)
-                        if plugin:
+                        if plugin and self._validate_plugin(plugin):
                             self._plugins.append(plugin)
                             logger.info(f"Discovered plugin: {plugin.name} ({config_path})")
                     except Exception as e:
@@ -136,6 +136,61 @@ class PluginLoader:
 
         logger.info(f"Total plugins discovered: {len(self._plugins)}")
         return self._plugins
+
+    def _validate_plugin(self, plugin: Plugin) -> bool:
+        """
+        Validate plugin module and dialog class before exposing it in menus.
+
+        Validation checks:
+            - plugin module can be imported
+            - configured dialog class exists
+            - dialog class is callable
+            - dialog class can be instantiated with no args
+
+        Returns:
+            True if validation succeeds, False otherwise.
+        """
+        plugin_parent_dir = str(plugin.config_path.parent.parent)
+        if plugin_parent_dir not in sys.path:
+            sys.path.insert(0, plugin_parent_dir)
+            logger.debug(f"Added plugin directory to sys.path: {plugin_parent_dir}")
+
+        try:
+            module = importlib.import_module(plugin.module_name)
+            dialog_class = getattr(module, plugin.dialog_class_name)
+            if not callable(dialog_class):
+                raise TypeError(
+                    f"Configured dialog class {plugin.dialog_class_name} is not callable"
+                )
+            dialog_class()
+        except ImportError as e:
+            logger.warning(
+                "Skipping plugin '%s': cannot import module '%s' (%s)",
+                plugin.name, plugin.module_name, e
+            )
+            return False
+        except AttributeError as e:
+            logger.warning(
+                "Skipping plugin '%s': missing dialog class '%s' in module '%s' (%s)",
+                plugin.name, plugin.dialog_class_name, plugin.module_name, e
+            )
+            return False
+        except TypeError as e:
+            logger.warning(
+                "Skipping plugin '%s': invalid dialog class '%s' (%s)",
+                plugin.name, plugin.dialog_class_name, e
+            )
+            return False
+        except Exception as e:
+            logger.warning(
+                "Skipping plugin '%s': failed to instantiate dialog class '%s' (%s)",
+                plugin.name, plugin.dialog_class_name, e
+            )
+            return False
+
+        plugin.module = module
+        plugin.dialog_class = dialog_class
+        return True
 
     def _parse_plugin_config(self, config_path: Path) -> Optional[Plugin]:
         """

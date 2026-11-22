@@ -129,7 +129,7 @@ updater_module = plugin{i}.updater
                 sys.path.remove(tmpdir)
 
     def test_plugin_error_handling(self):
-        """Test that broken plugins don't crash the system."""
+        """Test that broken plugins are filtered out during discovery."""
         loader = PluginLoader()
 
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -150,21 +150,12 @@ dialog_class = NonexistentDialog
 updater_module = broken_plugin.updater
 """)
 
-                # Discover should succeed even if loading fails
+                # Discovery should skip invalid plugins
                 with patch.object(
                     PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]
                 ):
                     plugins = loader.discover_plugins()
-                    assert len(plugins) == 1
-
-                    # Trying to get the dialog should fail gracefully
-                    plugin = plugins[0]
-                    dialog_class = loader.get_plugin_dialog_class(plugin)
-                    assert dialog_class is None
-
-                    # get_total_plugin_updates should handle the error
-                    updates = loader.get_total_plugin_updates()
-                    assert updates.get("Broken Plugin", 0) == 0
+                    assert plugins == []
 
             finally:
                 sys.path.remove(tmpdir)
