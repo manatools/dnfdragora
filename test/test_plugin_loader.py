@@ -292,6 +292,144 @@ class TestPluginDiscovery:
         assert any("Skipping plugin 'Broken': failed to instantiate dialog class" in m
                    for m in caplog.messages)
 
+    def test_discover_plugins_skips_missing_updater_module(self, caplog):
+        """Test plugins with missing updater modules are excluded from discovery."""
+        loader = PluginLoader()
+
+        class ValidDialog:
+            def __init__(self):
+                pass
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=test.dialog\n"
+                "dialog_class=ValidDialog\nupdater_module=missing.updater\n"
+            )
+            dialog_module = MagicMock()
+            dialog_module.ValidDialog = ValidDialog
+
+            def import_side_effect(module_name):
+                if module_name == "test.dialog":
+                    return dialog_module
+                raise ImportError("missing updater")
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+                    mock_import.side_effect = import_side_effect
+                    with caplog.at_level(logging.WARNING):
+                        plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("cannot import updater module" in m for m in caplog.messages)
+
+    def test_discover_plugins_skips_missing_get_update_count(self, caplog):
+        """Test updater modules without get_update_count are excluded."""
+        loader = PluginLoader()
+
+        class ValidDialog:
+            def __init__(self):
+                pass
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=test.dialog\n"
+                "dialog_class=ValidDialog\nupdater_module=test.updater\n"
+            )
+            dialog_module = MagicMock()
+            dialog_module.ValidDialog = ValidDialog
+            updater_module = MagicMock(spec=[])
+
+            def import_side_effect(module_name):
+                if module_name == "test.dialog":
+                    return dialog_module
+                if module_name == "test.updater":
+                    return updater_module
+                raise ImportError(module_name)
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+                    mock_import.side_effect = import_side_effect
+                    with caplog.at_level(logging.WARNING):
+                        plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("missing get_update_count" in m for m in caplog.messages)
+
+    def test_discover_plugins_skips_non_callable_get_update_count(self, caplog):
+        """Test updater modules with non-callable get_update_count are excluded."""
+        loader = PluginLoader()
+
+        class ValidDialog:
+            def __init__(self):
+                pass
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=test.dialog\n"
+                "dialog_class=ValidDialog\nupdater_module=test.updater\n"
+            )
+            dialog_module = MagicMock()
+            dialog_module.ValidDialog = ValidDialog
+            updater_module = MagicMock()
+            updater_module.get_update_count = 7
+
+            def import_side_effect(module_name):
+                if module_name == "test.dialog":
+                    return dialog_module
+                if module_name == "test.updater":
+                    return updater_module
+                raise ImportError(module_name)
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+                    mock_import.side_effect = import_side_effect
+                    with caplog.at_level(logging.WARNING):
+                        plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("invalid get_update_count" in m for m in caplog.messages)
+
+    def test_discover_plugins_skips_get_update_count_with_required_args(self, caplog):
+        """Test updater functions requiring arguments are excluded."""
+        loader = PluginLoader()
+
+        class ValidDialog:
+            def __init__(self):
+                pass
+
+        def invalid_get_update_count(required_arg):
+            return 1
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config_path = Path(tmpdir) / "broken.plugin"
+            config_path.write_text(
+                "[plugin]\nname=Broken\nmodule=test.dialog\n"
+                "dialog_class=ValidDialog\nupdater_module=test.updater\n"
+            )
+            dialog_module = MagicMock()
+            dialog_module.ValidDialog = ValidDialog
+            updater_module = MagicMock()
+            updater_module.get_update_count = invalid_get_update_count
+
+            def import_side_effect(module_name):
+                if module_name == "test.dialog":
+                    return dialog_module
+                if module_name == "test.updater":
+                    return updater_module
+                raise ImportError(module_name)
+
+            with patch.object(PluginLoader, 'PLUGIN_DIRS', [Path(tmpdir)]):
+                with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+                    mock_import.side_effect = import_side_effect
+                    with caplog.at_level(logging.WARNING):
+                        plugins = loader.discover_plugins()
+
+        assert plugins == []
+        assert any("get_update_count must not require arguments" in m for m in caplog.messages)
+
 
 class TestPluginLoading:
     """Test dynamic plugin module loading."""
@@ -538,6 +676,30 @@ class TestUpdaterIntegration:
 
             func = loader.get_updater_function(plugin)
             assert func is None
+
+    def test_get_updater_function_non_int_result_returns_zero(self):
+        """Test that non-int updater results are treated as errors."""
+        loader = PluginLoader()
+
+        mock_updater_module = MagicMock()
+        mock_updater_module.get_update_count = MagicMock(return_value="3")
+
+        with patch('dnfdragora.plugin_loader.importlib.import_module') as mock_import:
+            mock_import.return_value = mock_updater_module
+
+            plugin = Plugin(
+                name="Test",
+                module_name="test.module",
+                dialog_class_name="TestDialog",
+                updater_module_name="test.updater",
+                icon_name=None,
+                config_path=Path("/fake/path")
+            )
+
+            func = loader.get_updater_function(plugin)
+            assert func is not None
+            count = func()
+            assert count == 0
 
     def test_get_total_plugin_updates(self):
         """Test aggregation of update counts from multiple plugins."""

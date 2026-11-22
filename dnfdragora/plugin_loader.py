@@ -11,10 +11,10 @@ Author: Angelo Naselli <anaselli@linux.it> by using Copilot
 
 import os
 import sys
-import json
 import logging
 import importlib
 import configparser
+import inspect
 from dataclasses import dataclass
 from typing import List, Dict, Optional, Any
 from pathlib import Path
@@ -146,6 +146,8 @@ class PluginLoader:
             - configured dialog class exists
             - dialog class is callable
             - dialog class can be instantiated with no args
+            - when updater_module is configured, it can be imported
+            - updater module exports callable get_update_count() with no args
 
         Returns:
             True if validation succeeds, False otherwise.
@@ -190,6 +192,59 @@ class PluginLoader:
 
         plugin.module = module
         plugin.dialog_class = dialog_class
+        return self._validate_updater_contract(plugin)
+
+    def _validate_updater_contract(self, plugin: Plugin) -> bool:
+        """
+        Validate optional updater module contract for updater integration.
+
+        Returns:
+            True when no updater module is configured or updater contract is valid.
+        """
+        if not plugin.updater_module_name:
+            return True
+
+        try:
+            updater_module = importlib.import_module(plugin.updater_module_name)
+            updater_function = getattr(updater_module, 'get_update_count')
+            if not callable(updater_function):
+                raise TypeError("get_update_count is not callable")
+
+            signature = inspect.signature(updater_function)
+            for parameter in signature.parameters.values():
+                if (
+                    parameter.default is inspect.Parameter.empty
+                    and parameter.kind in (
+                        inspect.Parameter.POSITIONAL_ONLY,
+                        inspect.Parameter.POSITIONAL_OR_KEYWORD,
+                    )
+                ):
+                    raise TypeError("get_update_count must not require arguments")
+        except ImportError as e:
+            logger.warning(
+                "Skipping plugin '%s': cannot import updater module '%s' (%s)",
+                plugin.name, plugin.updater_module_name, e
+            )
+            return False
+        except AttributeError as e:
+            logger.warning(
+                "Skipping plugin '%s': updater module '%s' is missing get_update_count (%s)",
+                plugin.name, plugin.updater_module_name, e
+            )
+            return False
+        except TypeError as e:
+            logger.warning(
+                "Skipping plugin '%s': invalid get_update_count in updater module '%s' (%s)",
+                plugin.name, plugin.updater_module_name, e
+            )
+            return False
+        except Exception as e:
+            logger.warning(
+                "Skipping plugin '%s': failed to validate updater module '%s' (%s)",
+                plugin.name, plugin.updater_module_name, e
+            )
+            return False
+
         return True
 
     def _parse_plugin_config(self, config_path: Path) -> Optional[Plugin]:
@@ -390,6 +445,12 @@ class PluginLoader:
                 return None
 
             func = getattr(updater_module, 'get_update_count')
+            if not callable(func):
+                logger.error(
+                    f"Updater module {plugin.updater_module_name} has non-callable "
+                    f"get_update_count"
+                )
+                return None
             logger.info(
                 f"Successfully loaded get_update_count from "
                 f"{plugin.updater_module_name}"
@@ -403,7 +464,15 @@ class PluginLoader:
 
                 def target():
                     try:
-                        result['count'] = func()
+                        count = func()
+                        if isinstance(count, bool) or not isinstance(count, int):
+                            logger.warning(
+                                "Plugin %s returned non-int update count from %s: %r",
+                                plugin.name, plugin.updater_module_name, count
+                            )
+                            result['error'] = True
+                            return
+                        result['count'] = count
                     except Exception as e:
                         logger.error(
                             f"Error calling get_update_count from "

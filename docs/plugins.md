@@ -197,6 +197,7 @@ The "Extra" menu should now appear with your test plugin.
    - module import must succeed
    - `dialog_class` must exist and be callable
    - class constructor must instantiate without errors
+   - if `updater_module` is configured, it must be importable and export a callable `get_update_count()` with no required arguments
    Invalid plugins are skipped and logged with a warning.
 
 ### Dialog Crashes
