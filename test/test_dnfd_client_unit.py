@@ -14,6 +14,20 @@ import types
 import threading
 from queue import SimpleQueue
 
+# Preserve original modules to avoid leaking stubs into other test modules.
+_MISSING = object()
+_ORIGINAL_MODULES = {
+    name: sys.modules.get(name, _MISSING)
+    for name in (
+        'dbus',
+        'dbus.mainloop',
+        'dbus.mainloop.glib',
+        'libdnf5',
+        'gi',
+        'gi.repository',
+    )
+}
+
 # Ensure imports come from this workspace copy of dnfdragora, not site-packages.
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if REPO_ROOT not in sys.path:
@@ -168,6 +182,16 @@ def _make_client_stub():
         'Advisories': 'list',
     }
     return c
+
+
+def teardown_module(_module):
+    """Restore interpreter module state after this test module completes."""
+    sys.modules.pop('dnfdragora.dnfd_client', None)
+    for name, original in _ORIGINAL_MODULES.items():
+        if original is _MISSING:
+            sys.modules.pop(name, None)
+        else:
+            sys.modules[name] = original
 
 
 def test_proxy_routes_commands_to_expected_interfaces():

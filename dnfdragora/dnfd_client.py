@@ -25,7 +25,7 @@ import libdnf5
 import locale
 from queue import SimpleQueue, Empty
 
-import dnfdragora.misc
+import dnfdragora.misc as misc
 
 logger = logging.getLogger("dnfdaemon.client")
 
@@ -218,7 +218,7 @@ class Client:
 
         # 300 secs, e.g. 5 minutes without receiving anything during a transaction
         # kernel postscriptlet execution can take a long time, so we need a long timeout here to avoid false positives.
-        self.__TransactionTimer = dnfdragora.misc.TimerEvent(300, self.on_TransactionTimeoutEvent)
+        self.__TransactionTimer = misc.TimerEvent(300, self.on_TransactionTimeoutEvent)
         self.__TransactionTimer.AutoRpeat = False
 
         # Shared libdnf5 Base used by comps queries to avoid repeated repo metadata loading.
@@ -622,7 +622,7 @@ class Client:
         if user_data['result']:
           ### NOTE managing exceptions on expected results
           if user_data['cmd'] == 'Search':
-              result['result']  = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in user_data['result']]
+              result['result']  = [misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in user_data['result']]
           elif user_data['cmd'] == 'BuildTransaction':
               resolved, res = user_data['result']
               result['result'] = (unpack_dbus(res), unpack_dbus(resolved))
@@ -1611,7 +1611,7 @@ class Client:
           self._run_dbus_async('Search', True, options)
         else:
           result = self._run_dbus_sync('Search', options)
-          pkg_ids = [dnfdragora.misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
+          pkg_ids = [misc.to_pkg_id(p["name"], p["epoch"], p["version"], p["release"],p["arch"], p["repo_id"]) for p in unpack_dbus(result)]
           return pkg_ids
 
     def GetRepositories(self, patterns=["*"], repo_attrs=["id", "name", "enabled"], enable_disable="all", sync=False):
@@ -2057,7 +2057,7 @@ class Client:
         else:
             return self._run_dbus_sync('TransactionProblems')
 
-    @dnfdragora.misc.TimeFunction
+    @misc.TimeFunction
     def GetGroups(self, sync=False):
         '''
             Perform Get groups call it works only for Comps.
@@ -2070,7 +2070,7 @@ class Client:
         else:
             return self.__getComps()
 
-    @dnfdragora.misc.TimeFunction
+    @misc.TimeFunction
     def GetGroupPackageNames(self, grp_id, sync=False):
         '''
             Perform Get group package names. It works only for Comps.
@@ -2083,7 +2083,7 @@ class Client:
         else:
             return self.__getPackageNamesFromGroup(grp_id)
 
-    @dnfdragora.misc.TimeFunction
+    @misc.TimeFunction
     def GetGroupsFromPackage(self, package_names, sync=False):
         '''
             Gets groups from a package names. It works only for Comps.
@@ -2098,7 +2098,7 @@ class Client:
             return self.__getGroupFromPackage(pkgs)
 
 
-    @dnfdragora.misc.TimeFunction
+    @misc.TimeFunction
     def GetGroupPackages(self, grp_id, grp_flt, sync=False):
         '''Get packages in a group
 
