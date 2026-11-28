@@ -1,4 +1,4 @@
-2026-XX-YY v. 2.99.6
+2026-11-28 v. 2.99.6
 --------------------
 - dnfdragora-updater with tray hidden notification was sometimes missed
 - dnfdragora-updater tray hidden management do not close updater any more 
