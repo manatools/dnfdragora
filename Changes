@@ -1,5 +1,6 @@
 2026-11-28 v. 2.99.6
 --------------------
+- provide a plugin management to get available updates from other applications (e.g. manapak)
 - dnfdragora-updater with tray hidden notification was sometimes missed
 - dnfdragora-updater tray hidden management do not close updater any more 
 - Fixed issue #279: updater-launched update dialog busy loops/freezes when hide_update_menu is enabled.
